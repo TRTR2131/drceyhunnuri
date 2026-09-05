@@ -4368,3 +4368,192 @@ body.dark-mode .service-card-number {
 body.dark-mode .service-card-image {
     background: #0a1d26;
 }
+
+
+/* V24 - DIL SECICI */
+
+.language-selector {
+    height: 42px;
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    padding: 0 9px;
+    background: #f1f8fc;
+    border: 1px solid #dceaf2;
+    border-radius: 11px;
+}
+
+.language-selector span {
+    font-size: 15px;
+}
+
+.language-selector select {
+    background: transparent;
+    color: #174a69;
+    border: none;
+    outline: none;
+    font-family: inherit;
+    font-size: 12px;
+    font-weight: 800;
+    cursor: pointer;
+}
+
+body.dark-mode .language-selector {
+    background: #132b39;
+    border-color: #294452;
+}
+
+body.dark-mode .language-selector select {
+    color: #e8f6fc;
+}
+
+body.dark-mode .language-selector select option {
+    color: #142632;
+}
+
+
+/* V24 - 10 HIZMET */
+
+.service-grid-v24 {
+    grid-template-columns: repeat(3, 1fr);
+}
+
+.service-card-v24 {
+    overflow: hidden;
+    background: white;
+    border: 1px solid #e4edf3;
+    border-radius: 22px;
+    box-shadow: 0 14px 40px rgba(25, 70, 96, 0.07);
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.service-card-v24:hover {
+    transform: translateY(-7px);
+    box-shadow: 0 22px 55px rgba(25, 70, 96, 0.12);
+}
+
+.service-card-v24 .service-card-image {
+    aspect-ratio: 16 / 9;
+    position: relative;
+    overflow: hidden;
+}
+
+.service-visual-symbol {
+    position: absolute;
+    right: 18px;
+    bottom: 15px;
+    padding: 7px 10px;
+    color: rgba(255,255,255,.92);
+    border: 1px solid rgba(255,255,255,.25);
+    border-radius: 999px;
+    background: rgba(8,24,35,.24);
+    backdrop-filter: blur(8px);
+    font-size: 9px;
+    font-weight: 800;
+    letter-spacing: 1.5px;
+}
+
+.service-image-01 { background: radial-gradient(circle at 65% 50%, rgba(255,109,56,.75), transparent 18%), linear-gradient(135deg,#112f40,#26738d); }
+.service-image-02 { background: radial-gradient(circle at 55% 43%, rgba(255,73,73,.78), transparent 16%), linear-gradient(135deg,#1c3248,#516783); }
+.service-image-03 { background: radial-gradient(circle at 60% 55%, rgba(255,92,54,.78), transparent 18%), linear-gradient(135deg,#142c3c,#315a69); }
+.service-image-04 { background: radial-gradient(circle at 35% 45%, rgba(185,102,255,.65), transparent 17%), radial-gradient(circle at 70% 62%, rgba(255,92,156,.55), transparent 16%), linear-gradient(135deg,#23354e,#53709a); }
+.service-image-05 { background: linear-gradient(135deg,#1c4250,#5d8e95); }
+.service-image-06 { background: radial-gradient(circle at 52% 60%, rgba(86,199,255,.62), transparent 20%), linear-gradient(135deg,#142b3c,#31586f); }
+.service-image-07 { background: radial-gradient(circle at 52% 50%, rgba(255,131,70,.70), transparent 20%), linear-gradient(135deg,#3a2d45,#925d59); }
+.service-image-08 { background: radial-gradient(circle at 50% 50%, rgba(255,215,97,.50), transparent 22%), linear-gradient(135deg,#1d3b49,#57727a); }
+.service-image-09 { background: radial-gradient(circle at 56% 52%, rgba(255,85,70,.76), transparent 18%), linear-gradient(135deg,#24364a,#6a7283); }
+.service-image-10 { background: radial-gradient(circle at 58% 48%, rgba(71,183,255,.60), transparent 20%), linear-gradient(135deg,#153647,#3f7286); }
+
+body.dark-mode .service-card-v24 {
+    background: #132833;
+    border-color: #27414e;
+}
+
+body.dark-mode .service-card-v24 .service-card-body h3 {
+    color: #dcecf4;
+}
+
+body.dark-mode .service-card-v24 .service-card-body p {
+    color: #92a8b4;
+}
+
+
+/* V24 - DEGERLI YORUMLAR */
+
+.reviews-section {
+    padding: 110px 7%;
+    background: #ffffff;
+}
+
+.reviews-grid {
+    max-width: 1100px;
+    margin: auto;
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 20px;
+}
+
+.review-card {
+    padding: 30px;
+    background: linear-gradient(180deg,#ffffff,#f7fbfe);
+    border: 1px solid #e3edf3;
+    border-radius: 20px;
+    box-shadow: 0 14px 38px rgba(25,70,96,.06);
+}
+
+.review-stars {
+    margin-bottom: 16px;
+    color: #e0ad38;
+    letter-spacing: 3px;
+    font-size: 14px;
+}
+
+.review-card p {
+    min-height: 82px;
+    margin-bottom: 18px;
+    color: #607887;
+    font-size: 14px;
+    line-height: 1.75;
+}
+
+.review-card span {
+    color: #1783c2;
+    font-size: 11px;
+    font-weight: 800;
+}
+
+body.dark-mode .reviews-section {
+    background: #0d1d26;
+}
+
+body.dark-mode .review-card {
+    background: #132833;
+    border-color: #27414e;
+}
+
+body.dark-mode .review-card p {
+    color: #9aafbb;
+}
+
+@media (max-width: 1050px) {
+    .service-grid-v24 {
+        grid-template-columns: repeat(2,1fr);
+    }
+}
+
+@media (max-width: 900px) {
+    .reviews-grid {
+        grid-template-columns: 1fr;
+    }
+}
+
+@media (max-width: 650px) {
+    .service-grid-v24 {
+        grid-template-columns: 1fr;
+    }
+
+    .language-selector {
+        height: 38px;
+        padding: 0 7px;
+    }
+}

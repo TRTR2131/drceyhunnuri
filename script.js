@@ -394,6 +394,7 @@ const sectionIds = [
     "hizmetler",
     "videolar",
     "icerikler",
+    "yorumlar",
     "konum",
     "sss",
     "iletisim"
@@ -1037,3 +1038,145 @@ document.addEventListener(
 // YouTube embed kısıtları nedeniyle
 // videolar güvenli kart yapısı ile açılır.
 // İleride haftalık yeni videolar bu alana eklenebilir.
+
+
+// ================================
+// V24 DIL SISTEMI
+// ================================
+const translations = {
+  "tr": {
+    "services_kicker": "HİZMETLER",
+    "services_title": "Başlıca değerlendirme alanları",
+    "services_desc": "Sık karşılaşılan kas-iskelet, romatizmal ve metabolik sağlık konularına yönelik değerlendirme ve bilgilendirme.",
+    "appointment_link": "Randevu Talebi →",
+    "s1_title": "Ankilozan Spondilit",
+    "s1_desc": "Omurga ve leğen kemiği arasındaki eklemleri etkileyebilen romatizmal süreçler hakkında değerlendirme.",
+    "s2_title": "Baş Ağrısı ve Migren",
+    "s2_desc": "Tekrarlayan baş ağrısı ve migren şikayetlerinde öykü, tetikleyiciler ve genel durumun değerlendirilmesi.",
+    "s3_title": "Bel ve Sırt Ağrısı",
+    "s3_desc": "Bel, sırt ve omurga kaynaklı ağrıların nedenlerine yönelik genel değerlendirme ve yaşam önerileri.",
+    "s4_title": "Fibromiyalji",
+    "s4_desc": "Yaygın kas ağrısı, yorgunluk, hassasiyet ve uyku sorunlarıyla seyreden yakınmaların değerlendirilmesi.",
+    "s5_title": "Hasta Bina Sendromu",
+    "s5_desc": "Kapalı ortamlarla ilişkili baş ağrısı, yorgunluk ve benzeri şikayetlerin çevresel etkenlerle birlikte değerlendirilmesi.",
+    "s6_title": "Huzursuz Bacak Sendromu",
+    "s6_desc": "Bacaklarda hareket ettirme isteği, huzursuzluk ve uyku düzenini etkileyen yakınmaların değerlendirilmesi.",
+    "s7_title": "İltihabi Bağırsak Hastalıkları",
+    "s7_desc": "Crohn hastalığı ve ülseratif kolit gibi iltihabi bağırsak hastalıklarında genel değerlendirme ve bilgilendirme.",
+    "s8_title": "Kronik Yorgunluk",
+    "s8_desc": "Uzun süren yorgunluk, enerji kaybı ve günlük yaşam performansını etkileyen yakınmaların değerlendirilmesi.",
+    "s9_title": "Romatoid Artrit",
+    "s9_desc": "Eklem iltihabı, şişlik ve tutuklukla seyreden romatoid artrit sürecinde genel değerlendirme.",
+    "s10_title": "Tip 2 Diyabet",
+    "s10_desc": "Kan şekeri kontrolü, yaşam alışkanlıkları ve metabolik sağlıkla ilgili genel değerlendirme ve bilgilendirme.",
+    "reviews_kicker": "DEĞERLİ YORUMLAR",
+    "reviews_title": "Deneyimlerinizi önemsiyoruz",
+    "reviews_desc": "Gerçek hasta yorumları izin alındıkça bu alanda paylaşılacaktır.",
+    "review_placeholder_1": "Onaylı hasta yorumu eklendiğinde burada yayınlanacaktır.",
+    "review_placeholder_2": "Hasta mahremiyeti korunarak yalnızca izin verilen yorumlar paylaşılacaktır.",
+    "review_placeholder_3": "Gerçek yorumlar daha sonra bu karta eklenebilir.",
+    "verified_label": "Onaylı yorum alanı",
+    "privacy_label": "Mahremiyet odaklı",
+    "coming_label": "Yakında"
+  },
+  "en": {
+    "services_kicker": "SERVICES",
+    "services_title": "Main areas of evaluation",
+    "services_desc": "Evaluation and information for common musculoskeletal, rheumatic and metabolic health concerns.",
+    "appointment_link": "Request Appointment →",
+    "s1_title": "Ankylosing Spondylitis",
+    "s1_desc": "Evaluation of rheumatic processes that may affect the spine and sacroiliac joints.",
+    "s2_title": "Headache & Migraine",
+    "s2_desc": "Assessment of recurring headaches and migraine with attention to history, triggers and overall condition.",
+    "s3_title": "Low Back & Back Pain",
+    "s3_desc": "General evaluation and lifestyle guidance for pain originating from the lower back, back and spine.",
+    "s4_title": "Fibromyalgia",
+    "s4_desc": "Evaluation of widespread muscle pain, fatigue, tenderness and sleep-related complaints.",
+    "s5_title": "Sick Building Syndrome",
+    "s5_desc": "Assessment of headaches, fatigue and similar complaints that may be associated with indoor environments.",
+    "s6_title": "Restless Legs Syndrome",
+    "s6_desc": "Evaluation of discomfort, urge to move the legs and symptoms affecting sleep.",
+    "s7_title": "Inflammatory Bowel Diseases",
+    "s7_desc": "General evaluation and information regarding conditions such as Crohn’s disease and ulcerative colitis.",
+    "s8_title": "Chronic Fatigue",
+    "s8_desc": "Evaluation of prolonged fatigue, low energy and complaints affecting daily performance.",
+    "s9_title": "Rheumatoid Arthritis",
+    "s9_desc": "General evaluation of rheumatoid arthritis with joint inflammation, swelling and stiffness.",
+    "s10_title": "Type 2 Diabetes",
+    "s10_desc": "General evaluation and information on blood glucose control, lifestyle and metabolic health.",
+    "reviews_kicker": "VALUABLE FEEDBACK",
+    "reviews_title": "We value your experience",
+    "reviews_desc": "Real patient feedback will be published here only with permission.",
+    "review_placeholder_1": "Verified patient feedback will appear here when available.",
+    "review_placeholder_2": "Only feedback shared with permission will be published while protecting patient privacy.",
+    "review_placeholder_3": "Real feedback can be added to this card later.",
+    "verified_label": "Verified feedback area",
+    "privacy_label": "Privacy focused",
+    "coming_label": "Coming soon"
+  },
+  "de": {
+    "services_kicker": "LEISTUNGEN",
+    "services_title": "Wichtige Untersuchungsbereiche",
+    "services_desc": "Bewertung und Information zu häufigen muskuloskelettalen, rheumatischen und metabolischen Beschwerden.",
+    "appointment_link": "Termin anfragen →",
+    "s1_title": "Morbus Bechterew",
+    "s1_desc": "Beurteilung rheumatischer Prozesse, die Wirbelsäule und Iliosakralgelenke betreffen können.",
+    "s2_title": "Kopfschmerzen & Migräne",
+    "s2_desc": "Beurteilung wiederkehrender Kopfschmerzen und Migräne unter Berücksichtigung von Verlauf und Auslösern.",
+    "s3_title": "Kreuz- & Rückenschmerzen",
+    "s3_desc": "Allgemeine Beurteilung und Lebensstilhinweise bei Schmerzen im unteren Rücken, Rücken und der Wirbelsäule.",
+    "s4_title": "Fibromyalgie",
+    "s4_desc": "Beurteilung von weit verbreiteten Muskelschmerzen, Müdigkeit, Druckempfindlichkeit und Schlafproblemen.",
+    "s5_title": "Sick-Building-Syndrom",
+    "s5_desc": "Beurteilung von Kopfschmerzen, Müdigkeit und ähnlichen Beschwerden im Zusammenhang mit Innenräumen.",
+    "s6_title": "Restless-Legs-Syndrom",
+    "s6_desc": "Beurteilung von Unruhe, Bewegungsdrang der Beine und schlafbeeinträchtigenden Beschwerden.",
+    "s7_title": "Entzündliche Darmerkrankungen",
+    "s7_desc": "Allgemeine Beurteilung und Information zu Morbus Crohn und Colitis ulcerosa.",
+    "s8_title": "Chronische Müdigkeit",
+    "s8_desc": "Beurteilung anhaltender Müdigkeit, Energiemangel und Beschwerden mit Einfluss auf den Alltag.",
+    "s9_title": "Rheumatoide Arthritis",
+    "s9_desc": "Allgemeine Beurteilung rheumatoider Arthritis mit Gelenkentzündung, Schwellung und Steifigkeit.",
+    "s10_title": "Typ-2-Diabetes",
+    "s10_desc": "Allgemeine Beurteilung und Information zu Blutzuckerkontrolle, Lebensstil und Stoffwechselgesundheit.",
+    "reviews_kicker": "WERTVOLLES FEEDBACK",
+    "reviews_title": "Ihre Erfahrungen sind uns wichtig",
+    "reviews_desc": "Echte Patientenrückmeldungen werden hier nur mit Einwilligung veröffentlicht.",
+    "review_placeholder_1": "Verifizierte Patientenrückmeldungen erscheinen hier, sobald sie verfügbar sind.",
+    "review_placeholder_2": "Nur freigegebene Rückmeldungen werden unter Wahrung der Privatsphäre veröffentlicht.",
+    "review_placeholder_3": "Echte Rückmeldungen können später in dieser Karte ergänzt werden.",
+    "verified_label": "Bereich für verifiziertes Feedback",
+    "privacy_label": "Datenschutz im Fokus",
+    "coming_label": "Demnächst"
+  }
+};
+
+const languageSelect = document.getElementById("languageSelect");
+
+function applyLanguage(language) {
+    const dict = translations[language] || translations.tr;
+
+    document.documentElement.lang = language;
+
+    document.querySelectorAll("[data-i18n]").forEach(element => {
+        const key = element.dataset.i18n;
+
+        if (dict[key]) {
+            element.textContent = dict[key];
+        }
+    });
+
+    localStorage.setItem("ceyhunNuriLanguage", language);
+}
+
+if (languageSelect) {
+    const savedLanguage =
+        localStorage.getItem("ceyhunNuriLanguage") || "tr";
+
+    languageSelect.value = savedLanguage;
+    applyLanguage(savedLanguage);
+
+    languageSelect.addEventListener("change", event => {
+        applyLanguage(event.target.value);
+    });
+}
