@@ -1179,3 +1179,469 @@ if (languageSelect) {
         applyLanguage(event.target.value);
     });
 }
+
+
+// ================================
+// V28 HIZMET BILGI MODALI
+// ================================
+const serviceInfoData = {
+  "tr": {
+    "labels": {
+      "kicker": "HİZMET HAKKINDA",
+      "what": "Nedir?",
+      "why": "Neden olabilir?",
+      "action": "Neler yapılabilir?",
+      "note": "Bu içerik genel bilgilendirme amaçlıdır; kişisel tanı ve tedavi için hekim değerlendirmesi gerekir.",
+      "close": "Kapat",
+      "appointment": "Randevu Talebi"
+    },
+    "s1": {
+      "title": "Ankilozan Spondilit",
+      "summary": "Özellikle omurga ve sakroiliak eklemleri etkileyebilen, uzun süreli iltihapla seyreden romatizmal bir hastalıktır.",
+      "what": "Bel ve kalça çevresinde ağrı, sabah tutukluğu ve hareket kısıtlılığı yapabilir. Bazı kişilerde göz ve diğer organlar da etkilenebilir.",
+      "why": "Tek bir nedeni yoktur. Genetik yatkınlık ve bağışıklık sisteminin anormal iltihabi yanıtı önemli rol oynar.",
+      "action": "Uzun süren bel ağrısı ve sabah tutukluğu varsa değerlendirme alınmalıdır. Düzenli hareket, uygun egzersiz ve hekim tarafından planlanan takip önemlidir."
+    },
+    "s2": {
+      "title": "Baş Ağrısı ve Migren",
+      "summary": "Migren; tekrarlayan, çoğu zaman zonklayıcı baş ağrısı ve ışık-ses hassasiyeti gibi belirtilerle seyredebilir.",
+      "what": "Ataklar saatler sürebilir; bulantı, görsel belirtiler veya günlük aktivitede zorlanma eşlik edebilir.",
+      "why": "Genetik yatkınlık, uyku düzensizliği, stres, açlık, bazı yiyecekler ve hormonal değişimler tetikleyici olabilir.",
+      "action": "Atak günlüğü tutmak, düzenli uyku ve öğün düzeni yardımcı olabilir. Yeni, çok şiddetli veya farklı karakterde baş ağrısında tıbbi değerlendirme gerekir."
+    },
+    "s3": {
+      "title": "Bel ve Sırt Ağrısı",
+      "summary": "Bel ve sırt ağrısı kas, eklem, disk veya omurgayı çevreleyen yapılardan kaynaklanabilen yaygın bir şikayettir.",
+      "what": "Ağrı hareketle artabilir, bacağa yayılabilir veya kas spazmı ve hareket kısıtlılığıyla birlikte görülebilir.",
+      "why": "Kas zorlanması, uzun süreli oturma, yanlış yüklenme, disk sorunları ve bazı romatizmal hastalıklar neden olabilir.",
+      "action": "Hafif vakalarda kontrollü hareket ve ergonomi önemlidir. Güç kaybı, uyuşma, idrar-dışkı kontrolünde değişiklik veya travma varsa acil değerlendirme gerekir."
+    },
+    "s4": {
+      "title": "Fibromiyalji",
+      "summary": "Yaygın vücut ağrısı, hassasiyet, yorgunluk ve uyku bozukluklarıyla seyreden kronik bir ağrı durumudur.",
+      "what": "Kaslarda ve yumuşak dokularda yaygın ağrıya, zihinsel yorgunluk ve dinlenememiş uyanma eşlik edebilir.",
+      "why": "Kesin nedeni tam bilinmez. Ağrı işleme sistemindeki hassasiyet, uyku sorunları, stres ve genetik yatkınlık etkili olabilir.",
+      "action": "Düzenli ve kademeli egzersiz, kaliteli uyku ve stres yönetimi önemlidir. Tanı için diğer olası nedenlerin hekim tarafından değerlendirilmesi gerekir."
+    },
+    "s5": {
+      "title": "Hasta Bina Sendromu",
+      "summary": "Belirli bir kapalı ortamda bulunurken artan, ortamdan uzaklaşınca hafifleyen bir grup yakınmayı tanımlar.",
+      "what": "Baş ağrısı, göz-boğaz irritasyonu, yorgunluk, baş dönmesi ve konsantrasyon güçlüğü görülebilir.",
+      "why": "Yetersiz havalandırma, uçucu kimyasallar, nem-küf, toz ve iç ortam hava kalitesiyle ilişkili faktörler rol oynayabilir.",
+      "action": "Havalandırma ve ortam koşulları kontrol edilmeli, belirtiler belirli bir binayla ilişkiliyse işyeri/ortam değerlendirmesi düşünülmelidir. Süren belirtilerde tıbbi değerlendirme alınmalıdır."
+    },
+    "s6": {
+      "title": "Huzursuz Bacak Sendromu",
+      "summary": "Özellikle dinlenme sırasında bacakları hareket ettirme isteği ve rahatsızlık hissiyle seyreden bir durumdur.",
+      "what": "Belirtiler çoğunlukla akşam ve gece artar; yürümek veya bacakları hareket ettirmek geçici rahatlama sağlayabilir.",
+      "why": "Demir eksikliği, bazı kronik hastalıklar, gebelik, bazı ilaçlar veya genetik yatkınlıkla ilişkili olabilir.",
+      "action": "Uyku düzeni, kafein kullanımı ve demir düzeyi gibi etkenler gözden geçirilebilir. Sık veya uykuyu bozan belirtilerde hekim değerlendirmesi gerekir."
+    },
+    "s7": {
+      "title": "İltihabi Bağırsak Hastalıkları",
+      "summary": "Crohn hastalığı ve ülseratif kolit, bağırsaklarda kronik iltihapla seyreden hastalıklardır.",
+      "what": "Karın ağrısı, uzun süren ishal, dışkıda kan, kilo kaybı ve yorgunluk gibi belirtiler görülebilir.",
+      "why": "Genetik yatkınlık, bağışıklık sistemi ve çevresel faktörlerin birlikte rol oynadığı düşünülür.",
+      "action": "Uzun süren ishal, kanlı dışkı veya açıklanamayan kilo kaybında gastroenteroloji değerlendirmesi önemlidir. Tedavi kişiye ve hastalığın şiddetine göre planlanır."
+    },
+    "s8": {
+      "title": "Kronik Yorgunluk",
+      "summary": "Haftalar veya aylar boyunca süren ve dinlenmeyle tamamen düzelmeyen yorgunluk birçok farklı nedene bağlı olabilir.",
+      "what": "Enerji azalması, konsantrasyon güçlüğü, uyku sorunları ve günlük aktivitelerde zorlanma görülebilir.",
+      "why": "Uyku bozuklukları, kansızlık, tiroit sorunları, enfeksiyonlar, ruhsal durumlar veya başka sağlık sorunları neden olabilir.",
+      "action": "Uyku, beslenme ve günlük aktivite düzeni gözden geçirilmeli; uzun süren veya günlük yaşamı etkileyen yorgunlukta altta yatan neden için tıbbi değerlendirme yapılmalıdır."
+    },
+    "s9": {
+      "title": "Romatoid Artrit",
+      "summary": "Bağışıklık sisteminin eklemlerde iltihaba yol açtığı kronik otoimmün bir romatizmal hastalıktır.",
+      "what": "El ve ayak eklemlerinde simetrik ağrı, şişlik ve uzun süren sabah tutukluğu sık görülebilir.",
+      "why": "Genetik yatkınlık, bağışıklık sistemi değişiklikleri ve sigara gibi çevresel etkenler riski etkileyebilir.",
+      "action": "Erken tanı eklem hasarını önlemede önemlidir. Süren eklem şişliği ve sabah tutukluğunda romatoloji değerlendirmesi alınmalıdır."
+    },
+    "s10": {
+      "title": "Tip 2 Diyabet",
+      "summary": "Vücudun insülini yeterince etkili kullanamadığı ve kan şekerinin zamanla yükseldiği metabolik bir hastalıktır.",
+      "what": "Sık susama, sık idrara çıkma, yorgunluk ve bulanık görme görülebilir; bazen uzun süre belirti vermeyebilir.",
+      "why": "Genetik yatkınlık, fazla kilo, hareketsizlik, yaş ve insülin direnci önemli risk faktörleridir.",
+      "action": "Düzenli kan şekeri takibi, dengeli beslenme, fiziksel aktivite ve hekim kontrolleri önemlidir. Tedavi planı kişiye göre belirlenir."
+    }
+  },
+  "en": {
+    "labels": {
+      "kicker": "ABOUT THIS SERVICE",
+      "what": "What is it?",
+      "why": "Why can it happen?",
+      "action": "What can be done?",
+      "note": "This content is for general information only; personal diagnosis and treatment require medical evaluation.",
+      "close": "Close",
+      "appointment": "Request Appointment"
+    },
+    "s1": {
+      "title": "Ankylosing Spondylitis",
+      "summary": "A chronic inflammatory rheumatic condition that mainly affects the spine and sacroiliac joints.",
+      "what": "It may cause lower back or hip pain, morning stiffness and reduced mobility. Some people can also have eye or other organ involvement.",
+      "why": "There is no single cause. Genetic susceptibility and an abnormal inflammatory immune response play important roles.",
+      "action": "Persistent back pain and morning stiffness should be assessed. Regular movement, appropriate exercise and medical follow-up can be important."
+    },
+    "s2": {
+      "title": "Headache & Migraine",
+      "summary": "Migraine can cause recurring, often throbbing headaches with sensitivity to light or sound.",
+      "what": "Attacks may last for hours and can include nausea, visual symptoms or difficulty with normal daily activity.",
+      "why": "Genetics, poor sleep, stress, skipped meals, certain foods and hormonal changes may trigger attacks.",
+      "action": "A headache diary, regular sleep and meals may help. A new, very severe or unusual headache requires medical assessment."
+    },
+    "s3": {
+      "title": "Low Back & Back Pain",
+      "summary": "Back pain may arise from muscles, joints, discs or structures around the spine.",
+      "what": "Pain can worsen with movement, radiate to the leg, or occur with muscle spasm and reduced movement.",
+      "why": "Muscle strain, prolonged sitting, mechanical overload, disc problems or rheumatic conditions may contribute.",
+      "action": "Gentle movement and ergonomics can help mild cases. Weakness, numbness, bladder/bowel changes or trauma require urgent medical assessment."
+    },
+    "s4": {
+      "title": "Fibromyalgia",
+      "summary": "A chronic pain condition associated with widespread pain, tenderness, fatigue and sleep disturbance.",
+      "what": "Widespread muscle and soft-tissue pain may occur with mental fatigue and unrefreshing sleep.",
+      "why": "The exact cause is not fully known. Pain-processing sensitivity, sleep problems, stress and genetics may contribute.",
+      "action": "Gradual exercise, good sleep and stress management can be helpful. Medical evaluation is needed to exclude other causes."
+    },
+    "s5": {
+      "title": "Sick Building Syndrome",
+      "summary": "A group of symptoms that increase in a particular indoor environment and improve after leaving it.",
+      "what": "Headache, eye or throat irritation, fatigue, dizziness and concentration difficulty may occur.",
+      "why": "Poor ventilation, volatile chemicals, dampness, mold, dust and indoor air quality may contribute.",
+      "action": "Ventilation and environmental conditions should be reviewed. Persistent symptoms should be medically assessed."
+    },
+    "s6": {
+      "title": "Restless Legs Syndrome",
+      "summary": "A condition causing an urge to move the legs, especially during rest.",
+      "what": "Symptoms often worsen in the evening or at night, and movement may bring temporary relief.",
+      "why": "It may be associated with iron deficiency, some chronic diseases, pregnancy, medications or genetics.",
+      "action": "Sleep habits, caffeine use and iron status can be reviewed. Frequent or sleep-disrupting symptoms should be assessed."
+    },
+    "s7": {
+      "title": "Inflammatory Bowel Diseases",
+      "summary": "Crohn’s disease and ulcerative colitis are chronic inflammatory conditions of the digestive tract.",
+      "what": "Abdominal pain, prolonged diarrhea, blood in stool, weight loss and fatigue may occur.",
+      "why": "Genetic susceptibility, the immune system and environmental factors are thought to interact.",
+      "action": "Persistent diarrhea, bloody stool or unexplained weight loss should be evaluated by gastroenterology. Treatment depends on disease severity."
+    },
+    "s8": {
+      "title": "Chronic Fatigue",
+      "summary": "Fatigue lasting weeks or months and not fully relieved by rest can have many causes.",
+      "what": "Low energy, poor concentration, sleep problems and difficulty with daily activity may occur.",
+      "why": "Sleep disorders, anemia, thyroid disease, infections, mental health conditions or other illnesses may contribute.",
+      "action": "Sleep, nutrition and activity patterns should be reviewed. Persistent fatigue that affects daily life deserves medical evaluation."
+    },
+    "s9": {
+      "title": "Rheumatoid Arthritis",
+      "summary": "A chronic autoimmune rheumatic disease in which the immune system causes inflammation in the joints.",
+      "what": "Symmetrical pain, swelling and prolonged morning stiffness in hand and foot joints are common.",
+      "why": "Genetics, immune-system changes and environmental factors such as smoking can affect risk.",
+      "action": "Early diagnosis is important to reduce joint damage. Persistent swelling and morning stiffness should be assessed by rheumatology."
+    },
+    "s10": {
+      "title": "Type 2 Diabetes",
+      "summary": "A metabolic condition in which the body becomes less effective at using insulin and blood glucose rises over time.",
+      "what": "Thirst, frequent urination, fatigue and blurred vision may occur, although there may be no symptoms for a long time.",
+      "why": "Genetics, excess weight, inactivity, age and insulin resistance are major risk factors.",
+      "action": "Blood glucose monitoring, balanced nutrition, physical activity and medical follow-up are important. Treatment is individualized."
+    }
+  },
+  "de": {
+    "labels": {
+      "kicker": "ÜBER DIESE LEISTUNG",
+      "what": "Was ist das?",
+      "why": "Warum kann es entstehen?",
+      "action": "Was kann man tun?",
+      "note": "Diese Inhalte dienen nur der allgemeinen Information; Diagnose und Behandlung erfordern eine ärztliche Beurteilung.",
+      "close": "Schließen",
+      "appointment": "Termin anfragen"
+    },
+    "s1": {
+      "title": "Morbus Bechterew",
+      "summary": "Eine chronisch-entzündliche rheumatische Erkrankung, die vor allem Wirbelsäule und Iliosakralgelenke betreffen kann.",
+      "what": "Typisch sind Schmerzen im unteren Rücken oder Becken, Morgensteifigkeit und eingeschränkte Beweglichkeit.",
+      "why": "Es gibt nicht nur eine Ursache. Genetische Veranlagung und eine fehlgesteuerte Entzündungsreaktion spielen eine wichtige Rolle.",
+      "action": "Anhaltende Rückenschmerzen und Morgensteifigkeit sollten abgeklärt werden. Bewegung, passende Übungen und ärztliche Kontrolle sind wichtig."
+    },
+    "s2": {
+      "title": "Kopfschmerzen & Migräne",
+      "summary": "Migräne kann wiederkehrende, häufig pulsierende Kopfschmerzen mit Licht- oder Lärmempfindlichkeit verursachen.",
+      "what": "Attacken können Stunden dauern und mit Übelkeit, Sehstörungen oder Einschränkungen im Alltag einhergehen.",
+      "why": "Genetik, Schlafmangel, Stress, ausgelassene Mahlzeiten, bestimmte Lebensmittel und Hormonschwankungen können Auslöser sein.",
+      "action": "Ein Kopfschmerztagebuch sowie regelmäßiger Schlaf und Mahlzeiten können helfen. Neue oder sehr starke Kopfschmerzen sollten medizinisch abgeklärt werden."
+    },
+    "s3": {
+      "title": "Kreuz- & Rückenschmerzen",
+      "summary": "Rückenschmerzen können von Muskeln, Gelenken, Bandscheiben oder anderen Strukturen der Wirbelsäule ausgehen.",
+      "what": "Schmerzen können bei Bewegung zunehmen, ins Bein ausstrahlen oder mit Muskelverspannung und Bewegungseinschränkung auftreten.",
+      "why": "Muskelüberlastung, langes Sitzen, Fehlbelastung, Bandscheibenprobleme oder rheumatische Erkrankungen können eine Rolle spielen.",
+      "action": "Leichte Bewegung und Ergonomie helfen oft. Schwäche, Taubheit, Blasen-/Darmstörungen oder Trauma erfordern eine rasche Abklärung."
+    },
+    "s4": {
+      "title": "Fibromyalgie",
+      "summary": "Eine chronische Schmerzerkrankung mit weit verbreiteten Schmerzen, Empfindlichkeit, Müdigkeit und Schlafproblemen.",
+      "what": "Muskel- und Weichteilschmerzen können mit Konzentrationsproblemen und nicht erholsamem Schlaf einhergehen.",
+      "why": "Die genaue Ursache ist nicht vollständig geklärt. Schmerzverarbeitung, Schlafstörungen, Stress und Genetik können beteiligt sein.",
+      "action": "Langsam gesteigerte Bewegung, guter Schlaf und Stressmanagement können helfen. Andere Ursachen sollten ärztlich ausgeschlossen werden."
+    },
+    "s5": {
+      "title": "Sick-Building-Syndrom",
+      "summary": "Beschreibt Beschwerden, die in bestimmten Innenräumen zunehmen und außerhalb des Gebäudes nachlassen.",
+      "what": "Kopfschmerzen, Augen- oder Halsreizung, Müdigkeit, Schwindel und Konzentrationsprobleme können auftreten.",
+      "why": "Schlechte Lüftung, Chemikalien, Feuchtigkeit, Schimmel, Staub und Raumluftqualität können beitragen.",
+      "action": "Lüftung und Raumklima sollten geprüft werden. Anhaltende Beschwerden sollten medizinisch abgeklärt werden."
+    },
+    "s6": {
+      "title": "Restless-Legs-Syndrom",
+      "summary": "Eine Erkrankung mit Bewegungsdrang der Beine, vor allem in Ruhe.",
+      "what": "Die Beschwerden werden häufig abends oder nachts stärker und bessern sich vorübergehend durch Bewegung.",
+      "why": "Eisenmangel, chronische Erkrankungen, Schwangerschaft, Medikamente oder genetische Faktoren können beteiligt sein.",
+      "action": "Schlafgewohnheiten, Koffein und Eisenstatus können geprüft werden. Häufige oder schlafstörende Beschwerden sollten ärztlich abgeklärt werden."
+    },
+    "s7": {
+      "title": "Entzündliche Darmerkrankungen",
+      "summary": "Morbus Crohn und Colitis ulcerosa sind chronisch-entzündliche Erkrankungen des Verdauungstrakts.",
+      "what": "Bauchschmerzen, länger anhaltender Durchfall, Blut im Stuhl, Gewichtsverlust und Müdigkeit sind möglich.",
+      "why": "Genetische Veranlagung, Immunsystem und Umweltfaktoren wirken wahrscheinlich zusammen.",
+      "action": "Anhaltender Durchfall, Blut im Stuhl oder ungeklärter Gewichtsverlust sollten gastroenterologisch abgeklärt werden."
+    },
+    "s8": {
+      "title": "Chronische Müdigkeit",
+      "summary": "Müdigkeit über Wochen oder Monate, die durch Ruhe nicht vollständig verschwindet, kann viele Ursachen haben.",
+      "what": "Energieverlust, Konzentrationsprobleme, Schlafstörungen und Einschränkungen im Alltag können auftreten.",
+      "why": "Schlafstörungen, Anämie, Schilddrüsenerkrankungen, Infektionen, psychische Belastungen oder andere Erkrankungen können beteiligt sein.",
+      "action": "Schlaf, Ernährung und Aktivität sollten überprüft werden. Anhaltende, alltagsrelevante Müdigkeit sollte medizinisch abgeklärt werden."
+    },
+    "s9": {
+      "title": "Rheumatoide Arthritis",
+      "summary": "Eine chronische Autoimmunerkrankung, bei der das Immunsystem Entzündungen in den Gelenken verursacht.",
+      "what": "Symmetrische Schmerzen, Schwellungen und längere Morgensteifigkeit an Hand- und Fußgelenken sind häufig.",
+      "why": "Genetik, Veränderungen des Immunsystems und Umweltfaktoren wie Rauchen können das Risiko beeinflussen.",
+      "action": "Eine frühe Diagnose ist wichtig, um Gelenkschäden zu reduzieren. Anhaltende Gelenkschwellung sollte rheumatologisch abgeklärt werden."
+    },
+    "s10": {
+      "title": "Typ-2-Diabetes",
+      "summary": "Eine Stoffwechselerkrankung, bei der der Körper Insulin weniger wirksam nutzt und der Blutzucker ansteigt.",
+      "what": "Durst, häufiges Wasserlassen, Müdigkeit und verschwommenes Sehen können auftreten; oft bestehen lange keine Beschwerden.",
+      "why": "Genetische Veranlagung, Übergewicht, Bewegungsmangel, Alter und Insulinresistenz sind wichtige Risikofaktoren.",
+      "action": "Blutzuckerkontrolle, ausgewogene Ernährung, Bewegung und ärztliche Betreuung sind wichtig. Die Behandlung wird individuell geplant."
+    }
+  }
+};
+
+
+const serviceInfoModal =
+    document.getElementById("serviceInfoModal");
+
+const serviceInfoBackdrop =
+    document.getElementById("serviceInfoBackdrop");
+
+const serviceInfoClose =
+    document.getElementById("serviceInfoClose");
+
+const serviceInfoDone =
+    document.getElementById("serviceInfoDone");
+
+const serviceInfoAppointment =
+    document.getElementById("serviceInfoAppointment");
+
+const serviceInfoKicker =
+    document.getElementById("serviceInfoKicker");
+
+const serviceInfoTitle =
+    document.getElementById("serviceInfoTitle");
+
+const serviceInfoSummary =
+    document.getElementById("serviceInfoSummary");
+
+const serviceInfoWhatLabel =
+    document.getElementById("serviceInfoWhatLabel");
+
+const serviceInfoWhyLabel =
+    document.getElementById("serviceInfoWhyLabel");
+
+const serviceInfoActionLabel =
+    document.getElementById("serviceInfoActionLabel");
+
+const serviceInfoWhat =
+    document.getElementById("serviceInfoWhat");
+
+const serviceInfoWhy =
+    document.getElementById("serviceInfoWhy");
+
+const serviceInfoAction =
+    document.getElementById("serviceInfoAction");
+
+const serviceInfoNote =
+    document.getElementById("serviceInfoNote");
+
+
+function getCurrentServiceLanguage() {
+
+    if (languageSelect && languageSelect.value) {
+        return languageSelect.value;
+    }
+
+    return (
+        localStorage.getItem("ceyhunNuriLanguage") ||
+        "tr"
+    );
+}
+
+
+function openServiceInfo(serviceKey) {
+
+    if (!serviceInfoModal) {
+        return;
+    }
+
+    const language =
+        getCurrentServiceLanguage();
+
+    const languageData =
+        serviceInfoData[language] ||
+        serviceInfoData.tr;
+
+    const item =
+        languageData[serviceKey];
+
+    const labels =
+        languageData.labels;
+
+    if (!item) {
+        return;
+    }
+
+    serviceInfoKicker.textContent =
+        labels.kicker;
+
+    serviceInfoTitle.textContent =
+        item.title;
+
+    serviceInfoSummary.textContent =
+        item.summary;
+
+    serviceInfoWhatLabel.textContent =
+        labels.what;
+
+    serviceInfoWhyLabel.textContent =
+        labels.why;
+
+    serviceInfoActionLabel.textContent =
+        labels.action;
+
+    serviceInfoWhat.textContent =
+        item.what;
+
+    serviceInfoWhy.textContent =
+        item.why;
+
+    serviceInfoAction.textContent =
+        item.action;
+
+    serviceInfoNote.textContent =
+        labels.note;
+
+    serviceInfoDone.textContent =
+        labels.close;
+
+    serviceInfoAppointment.textContent =
+        labels.appointment;
+
+    serviceInfoModal.classList.add("show");
+
+    serviceInfoModal.setAttribute(
+        "aria-hidden",
+        "false"
+    );
+
+    document.body.classList.add(
+        "modal-open"
+    );
+}
+
+
+function closeServiceInfo() {
+
+    if (!serviceInfoModal) {
+        return;
+    }
+
+    serviceInfoModal.classList.remove("show");
+
+    serviceInfoModal.setAttribute(
+        "aria-hidden",
+        "true"
+    );
+
+    document.body.classList.remove(
+        "modal-open"
+    );
+}
+
+
+document.querySelectorAll(
+    ".service-info-button"
+).forEach(button => {
+
+    button.addEventListener(
+        "click",
+        () => {
+
+            openServiceInfo(
+                button.dataset.serviceInfo
+            );
+
+        }
+    );
+
+});
+
+
+[
+    serviceInfoBackdrop,
+    serviceInfoClose,
+    serviceInfoDone
+].forEach(element => {
+
+    if (element) {
+
+        element.addEventListener(
+            "click",
+            closeServiceInfo
+        );
+
+    }
+
+});
+
+
+if (serviceInfoAppointment) {
+
+    serviceInfoAppointment.addEventListener(
+        "click",
+        closeServiceInfo
+    );
+
+}
+
+
+document.addEventListener(
+    "keydown",
+    event => {
+
+        if (
+            event.key === "Escape" &&
+            serviceInfoModal &&
+            serviceInfoModal.classList.contains(
+                "show"
+            )
+        ) {
+
+            closeServiceInfo();
+
+        }
+
+    }
+);
