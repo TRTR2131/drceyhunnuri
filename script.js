@@ -396,7 +396,6 @@ const sectionIds = [
     "icerikler",
     "yorumlar",
     "konum",
-    "sss",
     "iletisim"
 ];
 

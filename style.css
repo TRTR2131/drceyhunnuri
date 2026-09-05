@@ -4412,10 +4412,11 @@ body.dark-mode .language-selector select option {
 }
 
 
-/* V24 - 10 HIZMET */
+/* V25 - HIZMET GORSELLERI */
 
 .service-grid-v24 {
-    grid-template-columns: repeat(3, 1fr);
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+    gap: 24px;
 }
 
 .service-card-v24 {
@@ -4436,33 +4437,47 @@ body.dark-mode .language-selector select option {
     aspect-ratio: 16 / 9;
     position: relative;
     overflow: hidden;
+    background: #0e2230;
 }
 
-.service-visual-symbol {
+.service-card-v24 .service-card-image::after {
+    content: "";
     position: absolute;
-    right: 18px;
-    bottom: 15px;
+    inset: 0;
+    background: linear-gradient(180deg, rgba(6, 16, 24, 0.04) 0%, rgba(6, 16, 24, 0.14) 38%, rgba(6, 16, 24, 0.42) 100%);
+    pointer-events: none;
+}
+
+.service-card-v24 .service-card-image img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    display: block;
+    transition: transform 0.45s ease;
+}
+
+.service-card-v24:hover .service-card-image img {
+    transform: scale(1.05);
+}
+
+.service-badge-label {
+    position: absolute;
+    right: 14px;
+    top: 14px;
+    z-index: 2;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
     padding: 7px 10px;
-    color: rgba(255,255,255,.92);
-    border: 1px solid rgba(255,255,255,.25);
+    color: rgba(255,255,255,.94);
+    border: 1px solid rgba(255,255,255,.24);
     border-radius: 999px;
-    background: rgba(8,24,35,.24);
+    background: rgba(8, 24, 35, .34);
     backdrop-filter: blur(8px);
     font-size: 9px;
     font-weight: 800;
-    letter-spacing: 1.5px;
+    letter-spacing: 1.4px;
 }
-
-.service-image-01 { background: radial-gradient(circle at 65% 50%, rgba(255,109,56,.75), transparent 18%), linear-gradient(135deg,#112f40,#26738d); }
-.service-image-02 { background: radial-gradient(circle at 55% 43%, rgba(255,73,73,.78), transparent 16%), linear-gradient(135deg,#1c3248,#516783); }
-.service-image-03 { background: radial-gradient(circle at 60% 55%, rgba(255,92,54,.78), transparent 18%), linear-gradient(135deg,#142c3c,#315a69); }
-.service-image-04 { background: radial-gradient(circle at 35% 45%, rgba(185,102,255,.65), transparent 17%), radial-gradient(circle at 70% 62%, rgba(255,92,156,.55), transparent 16%), linear-gradient(135deg,#23354e,#53709a); }
-.service-image-05 { background: linear-gradient(135deg,#1c4250,#5d8e95); }
-.service-image-06 { background: radial-gradient(circle at 52% 60%, rgba(86,199,255,.62), transparent 20%), linear-gradient(135deg,#142b3c,#31586f); }
-.service-image-07 { background: radial-gradient(circle at 52% 50%, rgba(255,131,70,.70), transparent 20%), linear-gradient(135deg,#3a2d45,#925d59); }
-.service-image-08 { background: radial-gradient(circle at 50% 50%, rgba(255,215,97,.50), transparent 22%), linear-gradient(135deg,#1d3b49,#57727a); }
-.service-image-09 { background: radial-gradient(circle at 56% 52%, rgba(255,85,70,.76), transparent 18%), linear-gradient(135deg,#24364a,#6a7283); }
-.service-image-10 { background: radial-gradient(circle at 58% 48%, rgba(71,183,255,.60), transparent 20%), linear-gradient(135deg,#153647,#3f7286); }
 
 body.dark-mode .service-card-v24 {
     background: #132833;
@@ -4477,6 +4492,24 @@ body.dark-mode .service-card-v24 .service-card-body p {
     color: #92a8b4;
 }
 
+@media (max-width: 991px) {
+    .service-grid-v24 {
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+    }
+}
+
+@media (max-width: 640px) {
+    .service-grid-v24 {
+        grid-template-columns: 1fr;
+        gap: 18px;
+    }
+
+    .service-badge-label {
+        top: 12px;
+        right: 12px;
+        font-size: 8px;
+    }
+}
 
 /* V24 - DEGERLI YORUMLAR */
 
@@ -4555,5 +4588,24 @@ body.dark-mode .review-card p {
     .language-selector {
         height: 38px;
         padding: 0 7px;
+    }
+}
+
+
+/* V26 EMBEDDED SERVICE IMAGES */
+
+.service-card-v24 .service-card-image {
+    min-height: 190px;
+}
+
+.service-card-v24 .service-card-image img {
+    opacity: 1;
+    visibility: visible;
+    object-position: center;
+}
+
+@media (max-width: 640px) {
+    .service-card-v24 .service-card-image {
+        min-height: 180px;
     }
 }
