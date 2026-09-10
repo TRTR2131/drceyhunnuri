@@ -2826,3 +2826,34 @@ if (
     }
 
 })();
+
+
+// =========================================================
+// V51 - YAYIN / CACHE TEMİZLİĞİ
+// Eski site dosyalarının tarayıcıda kalmasını azaltır.
+// =========================================================
+
+window.addEventListener("load", async () => {
+    try {
+        if ("serviceWorker" in navigator) {
+            const registrations =
+                await navigator.serviceWorker.getRegistrations();
+
+            for (const registration of registrations) {
+                await registration.unregister();
+            }
+        }
+
+        if ("caches" in window) {
+            const cacheNames = await caches.keys();
+
+            await Promise.all(
+                cacheNames.map(cacheName =>
+                    caches.delete(cacheName)
+                )
+            );
+        }
+    } catch (error) {
+        console.warn("V51 cache temizliği atlandı:", error);
+    }
+});
