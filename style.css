@@ -4932,3 +4932,2548 @@ body.dark-mode .service-info-secondary {
     }
 
 }
+
+
+/* =========================================================
+   V30 - REFERANS GÖRSELİ BOZMADAN HERO UYGULAMASI
+   Görsel gerçek dosya oranıyla gösterilir: kırpma / esnetme yok.
+   ========================================================= */
+
+.hero {
+    min-height: 0;
+    padding: 0;
+    display: block;
+    position: relative;
+    overflow: hidden;
+    background: #0a0a0a;
+}
+
+.hero-reference-image {
+    display: block;
+    width: 100%;
+    height: auto;
+    max-width: none;
+    object-fit: contain;
+    object-position: center top;
+    user-select: none;
+    -webkit-user-drag: none;
+}
+
+.hero-container {
+    display: none;
+}
+
+/* Referans görsel kendi menüsünü içeriyor. İlk ekranda mevcut gerçek
+   header gizli tutulur; kullanıcı aşağı kaydırınca site menüsü açılır. */
+#siteHeader {
+    transform: translateY(-110%);
+    transition: transform .28s ease, height .3s, box-shadow .3s, background .3s;
+}
+
+#siteHeader.scrolled {
+    transform: translateY(0);
+    background: rgba(255, 255, 255, 0.96);
+}
+
+body.dark-mode #siteHeader.scrolled {
+    background: rgba(11, 24, 32, 0.96);
+}
+
+/* Küçük ekranlarda da görselin tamamı korunur; kesinlikle crop yapılmaz. */
+@media (max-width: 900px) {
+    .hero-reference-image {
+        width: 100%;
+        height: auto;
+    }
+}
+
+
+/* =========================================
+   V31 - SITE ACILISINDA REFERANS HERO
+   ========================================= */
+
+.hero.hero-v31 {
+    width: 100%;
+    min-height: 100vh;
+    height: 100vh;
+    padding: 0;
+    margin: 0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    overflow: hidden;
+    background: #111;
+}
+
+.hero-v31-image {
+    display: block;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    object-position: center center;
+}
+
+@media (max-width: 900px) {
+    .hero.hero-v31 {
+        height: auto;
+        min-height: 0;
+        padding: 0;
+    }
+
+    .hero-v31-image {
+        width: 100%;
+        height: auto;
+        object-fit: contain;
+    }
+}
+
+
+/* =========================================
+   V32 - HERO ÜZERİNDE AKTİF "TEDAVİ" MENÜSÜ
+   Şimdilik yalnızca 1 üst menü değiştirildi.
+   ========================================= */
+
+.hero.hero-v31 {
+    position: relative;
+}
+
+/* Referans görseldeki Hakkımda konumunun üzerine gelir */
+.hero-treatment-menu {
+    position: absolute;
+    z-index: 50;
+    top: 7.0%;
+    left: 13.1%;
+    font-family: Arial, Helvetica, sans-serif;
+}
+
+.hero-treatment-button {
+    appearance: none;
+    border: 0;
+    cursor: pointer;
+    display: inline-flex;
+    align-items: center;
+    gap: 9px;
+
+    padding: 7px 12px;
+    border-radius: 8px;
+
+    background: rgba(28, 36, 40, 0.34);
+    backdrop-filter: blur(8px);
+    -webkit-backdrop-filter: blur(8px);
+
+    color: #fff;
+    font-size: clamp(12px, 0.88vw, 17px);
+    line-height: 1;
+    font-weight: 700;
+
+    text-shadow: 0 1px 4px rgba(0, 0, 0, 0.55);
+    transition:
+        background-color .2s ease,
+        transform .2s ease;
+}
+
+.hero-treatment-button:hover,
+.hero-treatment-menu.open .hero-treatment-button {
+    background: rgba(17, 131, 194, 0.82);
+}
+
+.hero-treatment-button:active {
+    transform: translateY(1px);
+}
+
+.hero-treatment-arrow {
+    display: inline-block;
+    font-size: 14px;
+    transition: transform .2s ease;
+}
+
+.hero-treatment-menu.open .hero-treatment-arrow {
+    transform: rotate(180deg);
+}
+
+.hero-treatment-dropdown {
+    position: absolute;
+    top: calc(100% + 10px);
+    left: 0;
+
+    width: 210px;
+    padding: 8px;
+
+    visibility: hidden;
+    opacity: 0;
+    transform: translateY(-6px);
+    pointer-events: none;
+
+    background: rgba(10, 23, 31, 0.94);
+    border: 1px solid rgba(255, 255, 255, 0.14);
+    border-radius: 12px;
+    box-shadow: 0 18px 45px rgba(0, 0, 0, 0.28);
+
+    backdrop-filter: blur(14px);
+    -webkit-backdrop-filter: blur(14px);
+
+    transition:
+        opacity .2s ease,
+        transform .2s ease,
+        visibility .2s ease;
+}
+
+.hero-treatment-menu.open .hero-treatment-dropdown {
+    visibility: visible;
+    opacity: 1;
+    transform: translateY(0);
+    pointer-events: auto;
+}
+
+.hero-treatment-dropdown a {
+    display: block;
+    padding: 11px 12px;
+    border-radius: 8px;
+
+    color: #fff;
+    text-decoration: none;
+    font-size: 14px;
+    font-weight: 600;
+
+    transition:
+        background-color .18s ease,
+        padding-left .18s ease;
+}
+
+.hero-treatment-dropdown a:hover,
+.hero-treatment-dropdown a:focus-visible {
+    background: rgba(23, 131, 194, 0.85);
+    padding-left: 16px;
+    outline: none;
+}
+
+/* Telefonda görsel küçüldüğü için menüyü uygun konuma getir */
+@media (max-width: 900px) {
+    .hero-treatment-menu {
+        top: 6%;
+        left: 12%;
+    }
+
+    .hero-treatment-button {
+        font-size: 11px;
+        padding: 5px 8px;
+    }
+
+    .hero-treatment-dropdown {
+        width: 175px;
+    }
+
+    .hero-treatment-dropdown a {
+        font-size: 12px;
+        padding: 9px 10px;
+    }
+}
+
+
+/* =========================================
+   V33 - HERO "GENEL SAĞLIK" DROPDOWN
+   Tedavi menüsünün hemen yanında.
+   ========================================= */
+
+.hero-health-menu {
+    position: absolute;
+    z-index: 50;
+    top: 7.0%;
+    left: 20.2%;
+    font-family: Arial, Helvetica, sans-serif;
+}
+
+.hero-health-button {
+    appearance: none;
+    border: 0;
+    cursor: pointer;
+    display: inline-flex;
+    align-items: center;
+    gap: 9px;
+    padding: 7px 12px;
+    border-radius: 8px;
+    background: rgba(28, 36, 40, 0.34);
+    backdrop-filter: blur(8px);
+    -webkit-backdrop-filter: blur(8px);
+    color: #fff;
+    font-size: clamp(12px, 0.88vw, 17px);
+    line-height: 1;
+    font-weight: 700;
+    text-shadow: 0 1px 4px rgba(0, 0, 0, 0.55);
+    transition: background-color .2s ease, transform .2s ease;
+}
+
+.hero-health-button:hover,
+.hero-health-menu.open .hero-health-button {
+    background: rgba(17, 131, 194, 0.82);
+}
+
+.hero-health-button:active {
+    transform: translateY(1px);
+}
+
+.hero-health-arrow {
+    display: inline-block;
+    font-size: 14px;
+    transition: transform .2s ease;
+}
+
+.hero-health-menu.open .hero-health-arrow {
+    transform: rotate(180deg);
+}
+
+.hero-health-dropdown {
+    position: absolute;
+    top: calc(100% + 10px);
+    left: 0;
+    width: 210px;
+    padding: 8px;
+    visibility: hidden;
+    opacity: 0;
+    transform: translateY(-6px);
+    pointer-events: none;
+    background: rgba(10, 23, 31, 0.94);
+    border: 1px solid rgba(255, 255, 255, 0.14);
+    border-radius: 12px;
+    box-shadow: 0 18px 45px rgba(0, 0, 0, 0.28);
+    backdrop-filter: blur(14px);
+    -webkit-backdrop-filter: blur(14px);
+    transition: opacity .2s ease, transform .2s ease, visibility .2s ease;
+}
+
+.hero-health-menu.open .hero-health-dropdown {
+    visibility: visible;
+    opacity: 1;
+    transform: translateY(0);
+    pointer-events: auto;
+}
+
+.hero-health-dropdown a {
+    display: block;
+    padding: 11px 12px;
+    border-radius: 8px;
+    color: #fff;
+    text-decoration: none;
+    font-size: 14px;
+    font-weight: 600;
+    transition: background-color .18s ease, padding-left .18s ease;
+}
+
+.hero-health-dropdown a:hover,
+.hero-health-dropdown a:focus-visible {
+    background: rgba(23, 131, 194, 0.85);
+    padding-left: 16px;
+    outline: none;
+}
+
+@media (max-width: 900px) {
+    .hero-health-menu {
+        top: 6%;
+        left: 31%;
+    }
+
+    .hero-health-button {
+        font-size: 11px;
+        padding: 5px 8px;
+    }
+
+    .hero-health-dropdown {
+        width: 175px;
+    }
+
+    .hero-health-dropdown a {
+        font-size: 12px;
+        padding: 9px 10px;
+    }
+}
+
+
+/* =========================================
+   V34 - TEDAVİ ALANLARI / HASTALIKLAR MEGA MENÜ
+   Genel Sağlık menüsünün yanında.
+   ========================================= */
+
+.hero-diseases-menu {
+    position: absolute;
+    z-index: 60;
+    top: 7.0%;
+    left: 31.2%;
+    font-family: Arial, Helvetica, sans-serif;
+}
+
+.hero-diseases-button {
+    appearance: none;
+    border: 0;
+    cursor: pointer;
+
+    display: inline-flex;
+    align-items: center;
+    gap: 9px;
+
+    padding: 7px 12px;
+    border-radius: 8px;
+
+    background: rgba(28, 36, 40, 0.34);
+    backdrop-filter: blur(8px);
+    -webkit-backdrop-filter: blur(8px);
+
+    color: #fff;
+    font-size: clamp(12px, 0.88vw, 17px);
+    line-height: 1;
+    font-weight: 700;
+
+    text-shadow: 0 1px 4px rgba(0, 0, 0, 0.55);
+
+    transition:
+        background-color .2s ease,
+        transform .2s ease;
+}
+
+.hero-diseases-button:hover,
+.hero-diseases-menu.open .hero-diseases-button {
+    background: rgba(17, 131, 194, 0.88);
+}
+
+.hero-diseases-button:active {
+    transform: translateY(1px);
+}
+
+.hero-diseases-arrow {
+    display: inline-block;
+    font-size: 14px;
+    transition: transform .2s ease;
+}
+
+.hero-diseases-menu.open .hero-diseases-arrow {
+    transform: rotate(180deg);
+}
+
+.hero-diseases-panel {
+    position: fixed;
+    z-index: 70;
+
+    top: 92px;
+    left: 50%;
+    transform: translate(-50%, -12px);
+
+    width: min(1240px, calc(100vw - 64px));
+    max-height: calc(100vh - 120px);
+    overflow-y: auto;
+
+    padding: 28px;
+
+    visibility: hidden;
+    opacity: 0;
+    pointer-events: none;
+
+    background: rgba(250, 253, 255, 0.97);
+    border: 1px solid rgba(20, 78, 110, 0.12);
+    border-radius: 24px;
+
+    box-shadow:
+        0 30px 80px rgba(5, 25, 40, 0.30);
+
+    backdrop-filter: blur(18px);
+    -webkit-backdrop-filter: blur(18px);
+
+    transition:
+        opacity .22s ease,
+        transform .22s ease,
+        visibility .22s ease;
+}
+
+.hero-diseases-menu.open .hero-diseases-panel {
+    visibility: visible;
+    opacity: 1;
+    pointer-events: auto;
+    transform: translate(-50%, 0);
+}
+
+.hero-diseases-panel-head {
+    margin-bottom: 22px;
+}
+
+.hero-diseases-panel-head > span {
+    display: inline-block;
+    margin-bottom: 8px;
+
+    color: #1783c2;
+    font-size: 11px;
+    font-weight: 800;
+    letter-spacing: 2px;
+}
+
+.hero-diseases-panel-head h3 {
+    margin: 0 0 8px;
+    color: #12344e;
+    font-size: 32px;
+    line-height: 1.1;
+}
+
+.hero-diseases-panel-head p {
+    margin: 0;
+    color: #6f8391;
+    font-size: 14px;
+    line-height: 1.6;
+}
+
+.hero-diseases-grid {
+    display: grid;
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+    gap: 16px;
+}
+
+.hero-disease-card {
+    min-height: 150px;
+    padding: 22px;
+
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+
+    background: #ffffff;
+
+    border: 1px solid #e7eff4;
+    border-radius: 18px;
+
+    text-decoration: none;
+
+    box-shadow:
+        0 10px 30px rgba(27, 66, 90, 0.07);
+
+    transition:
+        transform .22s ease,
+        box-shadow .22s ease,
+        border-color .22s ease;
+}
+
+.hero-disease-card:hover,
+.hero-disease-card:focus-visible {
+    transform: translateY(-5px);
+    border-color: rgba(23, 131, 194, 0.35);
+
+    box-shadow:
+        0 18px 42px rgba(27, 66, 90, 0.14);
+
+    outline: none;
+}
+
+.hero-disease-icon {
+    width: 46px;
+    height: 46px;
+
+    display: grid;
+    place-items: center;
+
+    margin-bottom: 18px;
+
+    border-radius: 13px;
+
+    background: #eaf7ff;
+    color: #1783c2;
+
+    font-size: 13px;
+    font-weight: 800;
+    letter-spacing: .5px;
+}
+
+.hero-disease-card strong {
+    display: block;
+    margin-bottom: 14px;
+
+    color: #173d57;
+    font-size: 18px;
+    line-height: 1.25;
+}
+
+.hero-disease-card span {
+    color: #1783c2;
+    font-size: 13px;
+    font-weight: 700;
+}
+
+@media (max-width: 1000px) {
+
+    .hero-diseases-menu {
+        top: 6%;
+        left: 50%;
+    }
+
+    .hero-diseases-button {
+        font-size: 11px;
+        padding: 5px 8px;
+    }
+
+    .hero-diseases-panel {
+        top: 72px;
+        width: calc(100vw - 28px);
+        padding: 20px;
+        max-height: calc(100vh - 90px);
+    }
+
+    .hero-diseases-grid {
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+    }
+}
+
+@media (max-width: 620px) {
+
+    .hero-diseases-grid {
+        grid-template-columns: 1fr;
+    }
+
+    .hero-diseases-panel-head h3 {
+        font-size: 26px;
+    }
+
+    .hero-disease-card {
+        min-height: 125px;
+    }
+}
+
+
+/* =========================================================
+   V35 - TEDAVİ ALANLARI ARTIK MEGA MENÜ DEĞİL, AYRI SAYFA
+   ÜST HEADER KALIR, HERO/ANA EKRAN GİDER.
+   ========================================================= */
+
+.hero-diseases-menu {
+    left: 31.2%;
+}
+
+/* Eski mega menüyü tamamen devre dışı bırak */
+.hero-diseases-panel,
+.hero-diseases-grid,
+.hero-diseases-panel-head {
+    display: none !important;
+}
+
+.treatment-page {
+    display: none;
+    min-height: 100vh;
+    background: #ffffff;
+    color: #163047;
+    padding-top: 82px;
+}
+
+body.treatment-page-open .treatment-page {
+    display: block;
+}
+
+body.treatment-page-open .hero.hero-v31 {
+    display: none !important;
+}
+
+/* Sayfanın üst başlık alanı */
+.treatment-page-hero {
+    position: relative;
+    min-height: 300px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    overflow: hidden;
+
+    background:
+        radial-gradient(circle at 12% 80%, rgba(23,131,194,.10), transparent 18%),
+        linear-gradient(180deg, #eef8ff 0%, #edf8ff 100%);
+}
+
+.treatment-page-inner {
+    position: relative;
+    z-index: 2;
+    width: min(1180px, calc(100% - 40px));
+    margin: auto;
+    text-align: center;
+}
+
+.treatment-page-inner h1 {
+    margin: 0 0 24px;
+    color: #12344e;
+    font-size: clamp(42px, 4.3vw, 68px);
+    line-height: 1;
+    letter-spacing: -1.8px;
+}
+
+.treatment-page-inner h1 span {
+    color: #1783c2;
+}
+
+.treatment-breadcrumb {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 10px;
+    color: #24465f;
+    font-size: 15px;
+}
+
+.treatment-breadcrumb button {
+    border: 0;
+    padding: 0;
+    background: transparent;
+    color: #163047;
+    font: inherit;
+    cursor: pointer;
+}
+
+.treatment-breadcrumb button:hover {
+    color: #1783c2;
+}
+
+.treatment-breadcrumb strong {
+    font-weight: 600;
+}
+
+.treatment-plus {
+    position: absolute;
+    color: rgba(23,131,194,.12);
+    line-height: 1;
+    user-select: none;
+}
+
+.treatment-plus-left {
+    left: 2.5%;
+    bottom: 40px;
+    font-size: 86px;
+}
+
+.treatment-plus-right {
+    right: 3%;
+    top: 50%;
+    transform: translateY(-50%);
+    font-size: 120px;
+    font-weight: 200;
+}
+
+/* Kart alanı */
+.treatment-content {
+    padding: 90px 7% 120px;
+    background: #ffffff;
+}
+
+.treatment-grid {
+    max-width: 1220px;
+    margin: auto;
+    display: grid;
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+    gap: 28px;
+}
+
+.treatment-card {
+    min-height: 320px;
+    padding: 30px;
+
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+
+    background: #ffffff;
+    border: 1px solid #edf1f4;
+    border-radius: 28px;
+
+    text-decoration: none;
+
+    box-shadow:
+        0 16px 45px rgba(17, 58, 84, 0.08);
+
+    transition:
+        transform .25s ease,
+        box-shadow .25s ease,
+        border-color .25s ease;
+}
+
+.treatment-card:hover {
+    transform: translateY(-7px);
+    border-color: rgba(23,131,194,.25);
+    box-shadow:
+        0 24px 60px rgba(17, 58, 84, 0.13);
+}
+
+.treatment-card-icon {
+    width: 58px;
+    height: 58px;
+
+    display: grid;
+    place-items: center;
+
+    margin-bottom: 26px;
+
+    color: #1783c2;
+    background: #eef8ff;
+    border-radius: 16px;
+
+    font-size: 15px;
+    font-weight: 800;
+    letter-spacing: .5px;
+}
+
+.treatment-card h3 {
+    margin: 0 0 16px;
+    color: #10354d;
+    font-size: 23px;
+    line-height: 1.22;
+}
+
+.treatment-card p {
+    flex: 1;
+    margin: 0 0 24px;
+    color: #60798a;
+    font-size: 15px;
+    line-height: 1.8;
+}
+
+.treatment-card > span {
+    color: #1783c2;
+    font-size: 14px;
+    font-weight: 700;
+}
+
+/* Tablet */
+@media (max-width: 1000px) {
+    .treatment-page {
+        padding-top: 74px;
+    }
+
+    .treatment-grid {
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+    }
+}
+
+/* Mobil */
+@media (max-width: 650px) {
+    .treatment-page-hero {
+        min-height: 230px;
+    }
+
+    .treatment-content {
+        padding: 55px 20px 80px;
+    }
+
+    .treatment-grid {
+        grid-template-columns: 1fr;
+        gap: 18px;
+    }
+
+    .treatment-card {
+        min-height: 250px;
+        padding: 24px;
+    }
+
+    .treatment-plus-right {
+        font-size: 80px;
+    }
+}
+
+
+/* =========================================================
+   V36 - ESKİ ÜST HEADER KALDIRILDI
+   HERO ÜZERİNDEKİ YENİ MENÜ KALIR.
+   ARKADAKİ BEYAZ YAZILAR BUTON ALTINDA TAMAMEN KAPATILIR.
+   ========================================================= */
+
+/* 1. görseldeki eski sabit üst menüyü tamamen kaldır */
+#siteHeader {
+    display: none !important;
+}
+
+/* Eski header kalktığı için sayfa yukarıdan boşluk bırakmasın */
+.treatment-page {
+    padding-top: 0 !important;
+}
+
+/* Yeni hero üst menüleri her zaman üstte kalsın */
+.hero-treatment-menu,
+.hero-health-menu,
+.hero-diseases-menu {
+    z-index: 120 !important;
+}
+
+/* Arkadaki görselde gömülü beyaz yazılar görünmesin:
+   aktif butonların arkasını tam kapatan opak zemin */
+.hero-treatment-button,
+.hero-health-button,
+.hero-diseases-button {
+    background: #5b6064 !important;
+    border: 1px solid rgba(255, 255, 255, 0.14) !important;
+    box-shadow:
+        0 4px 14px rgba(0, 0, 0, 0.20) !important;
+    backdrop-filter: none !important;
+    -webkit-backdrop-filter: none !important;
+}
+
+/* Hover / açık durumda aktif görünüm */
+.hero-treatment-button:hover,
+.hero-treatment-menu.open .hero-treatment-button,
+.hero-health-button:hover,
+.hero-health-menu.open .hero-health-button,
+.hero-diseases-button:hover,
+.hero-diseases-menu.open .hero-diseases-button {
+    background: #1783c2 !important;
+}
+
+/* Butonların arkasında kalan eski yazıları daha geniş alanda ört */
+.hero-treatment-menu::before,
+.hero-health-menu::before,
+.hero-diseases-menu::before {
+    content: "";
+    position: absolute;
+    z-index: -1;
+    left: -8px;
+    right: -8px;
+    top: -6px;
+    bottom: -6px;
+    background: rgba(66, 72, 76, 0.98);
+    border-radius: 12px;
+}
+
+/* Menü yerleşimini biraz daha temiz hizala */
+.hero-treatment-menu {
+    top: 6.9% !important;
+    left: 13.0% !important;
+}
+
+.hero-health-menu {
+    top: 6.9% !important;
+    left: 20.3% !important;
+}
+
+.hero-diseases-menu {
+    top: 6.9% !important;
+    left: 31.4% !important;
+}
+
+/* Eski header kalkınca ilk ekran tam üstten başlasın */
+.hero.hero-v31 {
+    margin-top: 0 !important;
+}
+
+/* Mobil */
+@media (max-width: 900px) {
+    #siteHeader {
+        display: none !important;
+    }
+
+    .hero-treatment-menu::before,
+    .hero-health-menu::before,
+    .hero-diseases-menu::before {
+        left: -4px;
+        right: -4px;
+        top: -4px;
+        bottom: -4px;
+        border-radius: 9px;
+    }
+}
+
+
+/* =========================================================
+   V37 - SADECE İSTENEN TEMİZLİK
+   Aktif Tedavi / Genel Sağlık / Tedavi Alanları KALIR.
+   Arkadaki eski beyaz menü yazıları KAPATILIR.
+   ========================================================= */
+
+/* Hero görselinin içine gömülü eski beyaz menü satırını kapatan bant */
+.hero.hero-v31::after {
+    content: "";
+    position: absolute;
+    z-index: 105;
+
+    top: 5.4%;
+    left: 0;
+    right: 0;
+    height: 5.4%;
+
+    background: rgba(58, 63, 66, 0.98);
+    pointer-events: none;
+}
+
+/* Aktif yeni menüler bandın üstünde görünmeye devam etsin */
+.hero-treatment-menu,
+.hero-health-menu,
+.hero-diseases-menu {
+    z-index: 130 !important;
+}
+
+/* Önceki tek tek arka kapatma parçalarını kaldır */
+.hero-treatment-menu::before,
+.hero-health-menu::before,
+.hero-diseases-menu::before {
+    display: none !important;
+}
+
+/* Yeni aktif butonlar aynen kalsın */
+.hero-treatment-button,
+.hero-health-button,
+.hero-diseases-button {
+    position: relative;
+    z-index: 131;
+}
+
+/* Mobilde de eski yazı satırını kapat */
+@media (max-width: 900px) {
+    .hero.hero-v31::after {
+        top: 4.8%;
+        height: 7%;
+    }
+}
+
+/* V38 */
+#siteHeader { display:none !important; }
+.hero.hero-v31::after { display:none !important; content:none !important; }
+.hero.hero-v31 { position:relative; width:100%; height:100vh; min-height:720px; overflow:hidden; margin:0 !important; }
+.hero-v31-image { position:absolute; inset:0; width:100%; height:100%; object-fit:cover; object-position:center; }
+.hero-treatment-menu,.hero-health-menu,.hero-diseases-menu { top:6.7% !important; z-index:130 !important; }
+.hero-treatment-menu { left:13.2% !important; }
+.hero-health-menu { left:20.7% !important; }
+.hero-diseases-menu { left:32% !important; }
+.hero-treatment-menu::before,.hero-health-menu::before,.hero-diseases-menu::before { display:none !important; content:none !important; }
+.hero-treatment-button,.hero-health-button,.hero-diseases-button {
+ min-height:42px; padding:0 18px !important; border-radius:11px !important;
+ background:rgba(45,52,57,.88) !important; border:1px solid rgba(255,255,255,.16) !important;
+ color:#fff !important; box-shadow:0 5px 18px rgba(0,0,0,.20) !important;
+}
+
+
+/* =========================================================
+   V39 - TEDAVİ ALANLARI SAYFASINDA ÜST MENÜ
+   Şimdilik sadece: TEDAVİ / GENEL SAĞLIK / TEDAVİ ALANLARI
+   ========================================================= */
+
+/* Tedavi Alanları açıldığında hero gizlense bile üç menüyü görünür tut */
+body.treatment-page-open .hero-treatment-menu,
+body.treatment-page-open .hero-health-menu,
+body.treatment-page-open .hero-diseases-menu {
+    display: block !important;
+    position: fixed !important;
+    top: 22px !important;
+    z-index: 500 !important;
+}
+
+/* Tedavi Alanları sayfasında menü konumları */
+body.treatment-page-open .hero-treatment-menu {
+    left: 6% !important;
+}
+
+body.treatment-page-open .hero-health-menu {
+    left: 14% !important;
+}
+
+body.treatment-page-open .hero-diseases-menu {
+    left: 25.5% !important;
+}
+
+/* Menülerin arkasında temiz, sade üst şerit */
+body.treatment-page-open::before {
+    content: "";
+    position: fixed;
+    z-index: 450;
+    top: 0;
+    left: 0;
+    right: 0;
+    height: 86px;
+    background: #10222d;
+    box-shadow: 0 4px 18px rgba(0,0,0,.10);
+}
+
+/* Başlık alanını üst menünün altından başlat */
+body.treatment-page-open .treatment-page {
+    padding-top: 86px !important;
+}
+
+/* Tedavi Alanları aktif görünsün */
+body.treatment-page-open .hero-diseases-button {
+    background: #1783c2 !important;
+}
+
+/* Tedavi ve Genel Sağlık normal görünüm */
+body.treatment-page-open .hero-treatment-button,
+body.treatment-page-open .hero-health-button {
+    background: rgba(45,52,57,.95) !important;
+}
+
+/* Mobil */
+@media (max-width: 900px) {
+    body.treatment-page-open .hero-treatment-menu {
+        left: 3% !important;
+    }
+
+    body.treatment-page-open .hero-health-menu {
+        left: 28% !important;
+    }
+
+    body.treatment-page-open .hero-diseases-menu {
+        left: 59% !important;
+    }
+
+    body.treatment-page-open::before {
+        height: 76px;
+    }
+
+    body.treatment-page-open .treatment-page {
+        padding-top: 76px !important;
+    }
+}
+
+
+/* =========================================================
+   V40 - TEDAVİ ALANLARI SAYFASINDA SABİT ÜST MENÜ
+   Sadece: TEDAVİ / GENEL SAĞLIK / TEDAVİ ALANLARI
+   Scroll yapılınca da yukarıda sabit kalır.
+   ========================================================= */
+
+/* V39 konumlandırmasını kesin olarak geçersiz kıl */
+body.treatment-page-open::before {
+    content: "";
+    display: block !important;
+    position: fixed !important;
+    top: 0 !important;
+    left: 0 !important;
+    right: 0 !important;
+    width: 100% !important;
+    height: 92px !important;
+    z-index: 9990 !important;
+    background: #102630 !important;
+    box-shadow: 0 3px 16px rgba(0,0,0,.18) !important;
+    pointer-events: none !important;
+}
+
+/* Hero gizli olsa da menülerin kendileri fixed olarak görünür */
+body.treatment-page-open .hero-treatment-menu,
+body.treatment-page-open .hero-health-menu,
+body.treatment-page-open .hero-diseases-menu {
+    display: block !important;
+    visibility: visible !important;
+    opacity: 1 !important;
+    position: fixed !important;
+    top: 24px !important;
+    bottom: auto !important;
+    transform: none !important;
+    z-index: 10000 !important;
+    margin: 0 !important;
+}
+
+/* Üç menüyü üst çubukta yan yana yerleştir */
+body.treatment-page-open .hero-treatment-menu {
+    left: 50px !important;
+}
+
+body.treatment-page-open .hero-health-menu {
+    left: 165px !important;
+}
+
+body.treatment-page-open .hero-diseases-menu {
+    left: 325px !important;
+}
+
+/* Butonların görünürlüğünü garanti et */
+body.treatment-page-open .hero-treatment-button,
+body.treatment-page-open .hero-health-button,
+body.treatment-page-open .hero-diseases-button {
+    display: inline-flex !important;
+    visibility: visible !important;
+    opacity: 1 !important;
+    align-items: center !important;
+    justify-content: center !important;
+    min-height: 44px !important;
+    padding: 0 18px !important;
+    color: #fff !important;
+    background: #37434a !important;
+    border: 1px solid rgba(255,255,255,.16) !important;
+    border-radius: 10px !important;
+    box-shadow: 0 4px 12px rgba(0,0,0,.15) !important;
+    font-size: 15px !important;
+    font-weight: 700 !important;
+    white-space: nowrap !important;
+}
+
+/* Bulunulan sayfa */
+body.treatment-page-open .hero-diseases-button {
+    background: #1783c2 !important;
+}
+
+/* Başlık alanı sabit menünün altından başlasın */
+body.treatment-page-open .treatment-page {
+    display: block !important;
+    padding-top: 92px !important;
+}
+
+/* Scroll sırasında da hiçbir parent menüyü kırpmasın */
+body.treatment-page-open {
+    overflow-x: hidden;
+}
+
+@media (max-width: 700px) {
+    body.treatment-page-open::before {
+        height: 78px !important;
+    }
+
+    body.treatment-page-open .hero-treatment-menu,
+    body.treatment-page-open .hero-health-menu,
+    body.treatment-page-open .hero-diseases-menu {
+        top: 18px !important;
+    }
+
+    body.treatment-page-open .hero-treatment-menu {
+        left: 10px !important;
+    }
+
+    body.treatment-page-open .hero-health-menu {
+        left: 105px !important;
+    }
+
+    body.treatment-page-open .hero-diseases-menu {
+        left: 230px !important;
+    }
+
+    body.treatment-page-open .hero-treatment-button,
+    body.treatment-page-open .hero-health-button,
+    body.treatment-page-open .hero-diseases-button {
+        min-height: 38px !important;
+        padding: 0 10px !important;
+        font-size: 11px !important;
+    }
+
+    body.treatment-page-open .treatment-page {
+        padding-top: 78px !important;
+    }
+}
+
+
+/* =========================================================
+   V41 - TEDAVİ ALANLARI ÜST MENÜ DAVRANIŞI
+   İlk açılış: beyaz yazılı, açık/şeffaf görünüm.
+   Scroll başlayınca: kompakt mavi sabit bar.
+   ========================================================= */
+
+/* V40 koyu sabit şeridini ilk açılışta kaldır */
+body.treatment-page-open::before {
+    opacity: 0 !important;
+    height: 0 !important;
+    box-shadow: none !important;
+    transition:
+        opacity .25s ease,
+        height .25s ease,
+        background-color .25s ease !important;
+}
+
+/* İlk açılışta menüler üstte beyaz ve sade */
+body.treatment-page-open .hero-treatment-menu,
+body.treatment-page-open .hero-health-menu,
+body.treatment-page-open .hero-diseases-menu {
+    position: absolute !important;
+    top: 26px !important;
+    z-index: 10000 !important;
+    transition:
+        top .25s ease,
+        left .25s ease,
+        transform .25s ease !important;
+}
+
+body.treatment-page-open .hero-treatment-menu {
+    left: 50px !important;
+}
+
+body.treatment-page-open .hero-health-menu {
+    left: 165px !important;
+}
+
+body.treatment-page-open .hero-diseases-menu {
+    left: 325px !important;
+}
+
+body.treatment-page-open .hero-treatment-button,
+body.treatment-page-open .hero-health-button,
+body.treatment-page-open .hero-diseases-button {
+    min-height: 40px !important;
+    padding: 0 15px !important;
+
+    color: #ffffff !important;
+    background: transparent !important;
+    border-color: transparent !important;
+    box-shadow: none !important;
+
+    transition:
+        background-color .25s ease,
+        border-color .25s ease,
+        box-shadow .25s ease,
+        min-height .25s ease,
+        padding .25s ease !important;
+}
+
+/* Tedavi Alanları ilk açılışta da beyaz yazı olarak görünür */
+body.treatment-page-open .hero-diseases-button {
+    background: transparent !important;
+}
+
+/* ---------------------------------------------------------
+   SCROLL BAŞLADIĞINDA
+   JS body'ye treatment-nav-scrolled class'ı ekler.
+   --------------------------------------------------------- */
+
+body.treatment-page-open.treatment-nav-scrolled::before {
+    opacity: 1 !important;
+    height: 66px !important;
+    background: #1783c2 !important;
+    box-shadow: 0 5px 20px rgba(0,0,0,.18) !important;
+}
+
+/* Scroll sonrası üç menü artık ekrana sabitlenir */
+body.treatment-page-open.treatment-nav-scrolled .hero-treatment-menu,
+body.treatment-page-open.treatment-nav-scrolled .hero-health-menu,
+body.treatment-page-open.treatment-nav-scrolled .hero-diseases-menu {
+    position: fixed !important;
+    top: 12px !important;
+}
+
+/* Scroll sonrası daha kompakt butonlar */
+body.treatment-page-open.treatment-nav-scrolled .hero-treatment-button,
+body.treatment-page-open.treatment-nav-scrolled .hero-health-button,
+body.treatment-page-open.treatment-nav-scrolled .hero-diseases-button {
+    min-height: 40px !important;
+    padding: 0 14px !important;
+
+    color: #fff !important;
+    background: rgba(10, 70, 105, .22) !important;
+    border: 1px solid rgba(255,255,255,.20) !important;
+    box-shadow: none !important;
+}
+
+/* Aktif Tedavi Alanları scroll sonrası biraz belirgin */
+body.treatment-page-open.treatment-nav-scrolled .hero-diseases-button {
+    background: rgba(8, 55, 88, .42) !important;
+}
+
+/* Sayfa içeriği artık ekstra 92px boşluk istemiyor */
+body.treatment-page-open .treatment-page {
+    padding-top: 0 !important;
+}
+
+/* Mobil */
+@media (max-width: 700px) {
+    body.treatment-page-open .hero-treatment-menu,
+    body.treatment-page-open .hero-health-menu,
+    body.treatment-page-open .hero-diseases-menu {
+        top: 18px !important;
+    }
+
+    body.treatment-page-open.treatment-nav-scrolled::before {
+        height: 58px !important;
+    }
+
+    body.treatment-page-open.treatment-nav-scrolled .hero-treatment-menu,
+    body.treatment-page-open.treatment-nav-scrolled .hero-health-menu,
+    body.treatment-page-open.treatment-nav-scrolled .hero-diseases-menu {
+        top: 10px !important;
+    }
+
+    body.treatment-page-open .hero-treatment-menu {
+        left: 8px !important;
+    }
+
+    body.treatment-page-open .hero-health-menu {
+        left: 100px !important;
+    }
+
+    body.treatment-page-open .hero-diseases-menu {
+        left: 220px !important;
+    }
+}
+
+
+/* =========================================================
+   V42 - TEDAVİ ALANLARI SAYFASINDA GERÇEK ÜST MENÜ
+   Parent hero gizlense bile görünür.
+   Şimdilik sadece: TEDAVİ + GENEL SAĞLIK
+   ========================================================= */
+
+/* V39-V41'de hero içindeki menüleri treatment sayfasında göstermeye çalışan kuralları iptal et */
+body.treatment-page-open .hero-treatment-menu,
+body.treatment-page-open .hero-health-menu,
+body.treatment-page-open .hero-diseases-menu {
+    display: none !important;
+}
+
+/* Eski pseudo üst şerit de kullanılmıyor */
+body.treatment-page-open::before {
+    display: none !important;
+    content: none !important;
+}
+
+/* Treatment sayfası normal başlasın */
+body.treatment-page-open .treatment-page {
+    padding-top: 0 !important;
+}
+
+/* Yeni gerçek nav */
+.treatment-page-nav {
+    position: absolute;
+    top: 22px;
+    left: 50%;
+    transform: translateX(-50%);
+    z-index: 12000;
+
+    display: flex;
+    align-items: center;
+    gap: 14px;
+
+    padding: 8px 10px;
+    border-radius: 14px;
+
+    background: transparent;
+
+    transition:
+        top .25s ease,
+        background-color .25s ease,
+        box-shadow .25s ease,
+        padding .25s ease,
+        border-radius .25s ease;
+}
+
+.treatment-page-nav-item {
+    position: relative;
+}
+
+.treatment-page-nav-button {
+    appearance: none;
+    border: 1px solid rgba(255,255,255,.20);
+    cursor: pointer;
+
+    min-height: 42px;
+    padding: 0 18px;
+
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: 10px;
+
+    border-radius: 10px;
+
+    background: rgba(38, 47, 53, .82);
+    color: #fff;
+
+    font-size: 15px;
+    font-weight: 700;
+    white-space: nowrap;
+
+    box-shadow: 0 5px 16px rgba(0,0,0,.14);
+
+    transition:
+        background-color .2s ease,
+        transform .2s ease,
+        box-shadow .2s ease;
+}
+
+.treatment-page-nav-button:hover,
+.treatment-page-nav-item.open .treatment-page-nav-button {
+    background: #1783c2;
+}
+
+.treatment-page-nav-button:active {
+    transform: translateY(1px);
+}
+
+.treatment-page-nav-button > span {
+    transition: transform .2s ease;
+}
+
+.treatment-page-nav-item.open .treatment-page-nav-button > span {
+    transform: rotate(180deg);
+}
+
+.treatment-page-nav-dropdown {
+    position: absolute;
+    top: calc(100% + 9px);
+    left: 0;
+
+    width: 210px;
+    padding: 8px;
+
+    visibility: hidden;
+    opacity: 0;
+    pointer-events: none;
+    transform: translateY(-6px);
+
+    background: rgba(12, 29, 39, .97);
+    border: 1px solid rgba(255,255,255,.13);
+    border-radius: 12px;
+
+    box-shadow: 0 18px 45px rgba(0,0,0,.25);
+
+    transition:
+        opacity .18s ease,
+        visibility .18s ease,
+        transform .18s ease;
+}
+
+.treatment-page-nav-item.open .treatment-page-nav-dropdown {
+    visibility: visible;
+    opacity: 1;
+    pointer-events: auto;
+    transform: translateY(0);
+}
+
+.treatment-page-nav-dropdown a {
+    display: block;
+    padding: 11px 12px;
+    border-radius: 8px;
+
+    color: #fff;
+    text-decoration: none;
+    font-size: 14px;
+    font-weight: 600;
+}
+
+.treatment-page-nav-dropdown a:hover {
+    background: #1783c2;
+}
+
+/* Kullanıcı aşağı kaydırınca nav mavi, kompakt ve sabit */
+body.treatment-page-open.treatment-nav-scrolled .treatment-page-nav {
+    position: fixed;
+    top: 10px;
+
+    padding: 7px 10px;
+
+    background: #1783c2;
+    border-radius: 13px;
+
+    box-shadow: 0 8px 24px rgba(0,0,0,.20);
+}
+
+body.treatment-page-open.treatment-nav-scrolled .treatment-page-nav-button {
+    min-height: 38px;
+    background: rgba(7, 57, 88, .28);
+    border-color: rgba(255,255,255,.18);
+    box-shadow: none;
+}
+
+/* Başlık ile nav birbirine girmesin */
+.treatment-page-hero {
+    padding-top: 72px;
+}
+
+@media (max-width: 700px) {
+    .treatment-page-nav {
+        top: 12px;
+        gap: 8px;
+        width: max-content;
+        max-width: calc(100vw - 20px);
+    }
+
+    .treatment-page-nav-button {
+        min-height: 38px;
+        padding: 0 12px;
+        font-size: 12px;
+    }
+
+    .treatment-page-nav-dropdown {
+        width: 175px;
+    }
+
+    body.treatment-page-open.treatment-nav-scrolled .treatment-page-nav {
+        top: 8px;
+    }
+
+    .treatment-page-hero {
+        padding-top: 64px;
+    }
+}
+
+
+/* =========================================================
+   V43 - YENİ AĞRI SEKMESİ + AĞRI SAYFASI
+   Tedavi Alanları ile aynı mantıkta çalışır.
+   ========================================================= */
+
+/* Ana hero'daki yeni Ağrı butonu */
+.hero-pain-menu {
+    position: absolute;
+    z-index: 130;
+    top: 6.7%;
+    left: 42.2%;
+    font-family: Arial, Helvetica, sans-serif;
+}
+
+.hero-pain-button {
+    appearance: none;
+    border: 1px solid rgba(255,255,255,.16);
+    cursor: pointer;
+    min-height: 42px;
+    padding: 0 18px;
+    display: inline-flex;
+    align-items: center;
+    gap: 10px;
+    border-radius: 11px;
+    background: rgba(45,52,57,.88);
+    color: #fff;
+    font-size: clamp(12px, .88vw, 17px);
+    font-weight: 700;
+    white-space: nowrap;
+    box-shadow: 0 5px 18px rgba(0,0,0,.20);
+}
+
+.hero-pain-button:hover {
+    background: #1783c2;
+}
+
+/* Ağrı sayfası */
+.pain-page {
+    display: none;
+    min-height: 100vh;
+    background: #fff;
+    color: #163047;
+}
+
+body.pain-page-open .pain-page {
+    display: block;
+}
+
+body.pain-page-open .hero.hero-v31,
+body.pain-page-open .treatment-page {
+    display: none !important;
+}
+
+/* Ağrı sayfası üst nav */
+.pain-page-nav {
+    position: absolute;
+    top: 22px;
+    left: 50%;
+    transform: translateX(-50%);
+    z-index: 12000;
+    display: flex;
+    align-items: center;
+    gap: 14px;
+    padding: 8px 10px;
+    border-radius: 14px;
+    transition: all .25s ease;
+}
+
+.pain-page-nav-item {
+    position: relative;
+}
+
+.pain-page-nav-button {
+    appearance: none;
+    border: 1px solid rgba(255,255,255,.20);
+    cursor: pointer;
+    min-height: 42px;
+    padding: 0 18px;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: 10px;
+    border-radius: 10px;
+    background: rgba(38,47,53,.82);
+    color: #fff;
+    font-size: 15px;
+    font-weight: 700;
+    white-space: nowrap;
+    box-shadow: 0 5px 16px rgba(0,0,0,.14);
+}
+
+.pain-page-nav-button:hover,
+.pain-page-nav-button.active,
+.pain-page-nav-item.open .pain-page-nav-button {
+    background: #1783c2;
+}
+
+.pain-page-nav-dropdown {
+    position: absolute;
+    top: calc(100% + 9px);
+    left: 0;
+    width: 210px;
+    padding: 8px;
+    visibility: hidden;
+    opacity: 0;
+    pointer-events: none;
+    transform: translateY(-6px);
+    background: rgba(12,29,39,.97);
+    border: 1px solid rgba(255,255,255,.13);
+    border-radius: 12px;
+    box-shadow: 0 18px 45px rgba(0,0,0,.25);
+    transition: .18s ease;
+}
+
+.pain-page-nav-item.open .pain-page-nav-dropdown {
+    visibility: visible;
+    opacity: 1;
+    pointer-events: auto;
+    transform: translateY(0);
+}
+
+.pain-page-nav-dropdown a {
+    display: block;
+    padding: 11px 12px;
+    border-radius: 8px;
+    color: #fff;
+    text-decoration: none;
+    font-size: 14px;
+    font-weight: 600;
+}
+
+.pain-page-nav-dropdown a:hover {
+    background: #1783c2;
+}
+
+/* Scroll sonrası Ağrı nav sabit mavi */
+body.pain-page-open.pain-nav-scrolled .pain-page-nav {
+    position: fixed;
+    top: 10px;
+    padding: 7px 10px;
+    background: #1783c2;
+    border-radius: 13px;
+    box-shadow: 0 8px 24px rgba(0,0,0,.20);
+}
+
+/* Ağrı başlık alanı */
+.pain-page-hero {
+    position: relative;
+    min-height: 300px;
+    padding-top: 72px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    overflow: hidden;
+    background:
+        radial-gradient(circle at 12% 80%, rgba(23,131,194,.10), transparent 18%),
+        linear-gradient(180deg, #eef8ff 0%, #edf8ff 100%);
+}
+
+.pain-page-inner {
+    position: relative;
+    z-index: 2;
+    width: min(1180px, calc(100% - 40px));
+    margin: auto;
+    text-align: center;
+}
+
+.pain-page-inner h1 {
+    margin: 0 0 24px;
+    color: #12344e;
+    font-size: clamp(42px, 4.3vw, 68px);
+    line-height: 1;
+    letter-spacing: -1.8px;
+}
+
+.pain-page-inner h1 span {
+    color: #1783c2;
+}
+
+.pain-breadcrumb {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 10px;
+    color: #24465f;
+    font-size: 15px;
+}
+
+.pain-breadcrumb button {
+    border: 0;
+    background: transparent;
+    color: #163047;
+    font: inherit;
+    cursor: pointer;
+}
+
+.pain-plus {
+    position: absolute;
+    color: rgba(23,131,194,.12);
+    line-height: 1;
+    user-select: none;
+}
+
+.pain-plus-left {
+    left: 2.5%;
+    bottom: 40px;
+    font-size: 86px;
+}
+
+.pain-plus-right {
+    right: 3%;
+    top: 50%;
+    transform: translateY(-50%);
+    font-size: 120px;
+}
+
+/* Ağrı kartları */
+.pain-content {
+    padding: 90px 7% 120px;
+}
+
+.pain-grid {
+    max-width: 1220px;
+    margin: auto;
+    display: grid;
+    grid-template-columns: repeat(3, minmax(0,1fr));
+    gap: 28px;
+}
+
+.pain-card {
+    min-height: 300px;
+    padding: 30px;
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    background: #fff;
+    border: 1px solid #edf1f4;
+    border-radius: 28px;
+    text-decoration: none;
+    box-shadow: 0 16px 45px rgba(17,58,84,.08);
+    transition: .25s ease;
+}
+
+.pain-card:hover {
+    transform: translateY(-7px);
+    border-color: rgba(23,131,194,.25);
+    box-shadow: 0 24px 60px rgba(17,58,84,.13);
+}
+
+.pain-card-icon {
+    width: 58px;
+    height: 58px;
+    display: grid;
+    place-items: center;
+    margin-bottom: 26px;
+    color: #1783c2;
+    background: #eef8ff;
+    border-radius: 16px;
+    font-size: 15px;
+    font-weight: 800;
+}
+
+.pain-card h3 {
+    margin: 0 0 16px;
+    color: #10354d;
+    font-size: 23px;
+}
+
+.pain-card p {
+    flex: 1;
+    margin: 0 0 24px;
+    color: #60798a;
+    font-size: 15px;
+    line-height: 1.8;
+}
+
+.pain-card > span {
+    color: #1783c2;
+    font-size: 14px;
+    font-weight: 700;
+}
+
+/* Tedavi Alanları sayfasındaki nav'a eklenen Ağrı butonu */
+.treatment-page-pain-button {
+    background: rgba(38,47,53,.82);
+}
+
+/* Mobil */
+@media (max-width: 1000px) {
+    .hero-pain-menu {
+        left: 72% !important;
+    }
+
+    .pain-grid {
+        grid-template-columns: repeat(2, minmax(0,1fr));
+    }
+}
+
+@media (max-width: 700px) {
+    .pain-page-nav {
+        top: 10px;
+        gap: 6px;
+        max-width: calc(100vw - 14px);
+    }
+
+    .pain-page-nav-button {
+        min-height: 36px;
+        padding: 0 9px;
+        font-size: 10px;
+    }
+
+    .pain-page-hero {
+        min-height: 230px;
+        padding-top: 62px;
+    }
+
+    .pain-content {
+        padding: 55px 20px 80px;
+    }
+
+    .pain-grid {
+        grid-template-columns: 1fr;
+        gap: 18px;
+    }
+}
+
+
+/* =========================================================
+   V44 - ÜST MENÜ SAYFA MANTIĞI
+   - Ağrı sayfasında "Ağrı" gösterilmez.
+   - Tedavi Alanları sayfasında "Tedavi Alanları" gösterilmez.
+   - Tedavi Alanları sayfasında "Ana Sayfa" butonu görünür.
+   ========================================================= */
+
+.treatment-page-home-button {
+    background: rgba(38,47,53,.82) !important;
+}
+
+.treatment-page-home-button:hover {
+    background: #1783c2 !important;
+}
+
+/* Ağrı kendi sayfasındayken Ağrı sekmesi üst menüde yer almaz */
+body.pain-page-open #painPageCurrentButton {
+    display: none !important;
+}
+
+/* Tedavi Alanları kendi sayfasındayken ana hero'daki Tedavi Alanları
+   butonu zaten gizli; ekstra güvence */
+body.treatment-page-open #heroDiseasesMenu {
+    display: none !important;
+}
+
+
+/* =========================================================
+   V45 - TEDAVİ / AĞRI SAYFALARINDA BAŞLIK METİNLERİNİ KALDIR
+   İstenen kaldırmalar:
+   - "Ana Sayfa / ..."
+   - "Tedavi Alanlarımız" başlığı
+   - "Ağrı Alanları" başlığı
+   Üst aktif menüler aynı şekilde kalır.
+   ========================================================= */
+
+/* TEDAVİ ALANLARI sayfası: büyük başlık + breadcrumb gizle */
+.treatment-page-inner h1,
+.treatment-breadcrumb {
+    display: none !important;
+}
+
+/* AĞRI sayfası: büyük başlık + breadcrumb gizle */
+.pain-page-inner h1,
+.pain-breadcrumb {
+    display: none !important;
+}
+
+/* Yazılar kalktığı için üst açık mavi alanı incelt */
+.treatment-page-hero,
+.pain-page-hero {
+    min-height: 130px !important;
+    padding-top: 58px !important;
+    justify-content: flex-start !important;
+}
+
+/* İç kapsayıcı boşluk yapmasın */
+.treatment-page-inner,
+.pain-page-inner {
+    min-height: 0 !important;
+    padding: 0 !important;
+}
+
+/* Dekoratif işaretler daha yukarıda dursun */
+.treatment-plus-left,
+.pain-plus-left {
+    bottom: 12px !important;
+    font-size: 58px !important;
+}
+
+.treatment-plus-right,
+.pain-plus-right {
+    top: 50% !important;
+    font-size: 84px !important;
+}
+
+/* Mobilde alan daha da kompakt olsun */
+@media (max-width: 700px) {
+    .treatment-page-hero,
+    .pain-page-hero {
+        min-height: 96px !important;
+        padding-top: 52px !important;
+    }
+
+    .treatment-plus-left,
+    .pain-plus-left {
+        font-size: 40px !important;
+        bottom: 8px !important;
+    }
+
+    .treatment-plus-right,
+    .pain-plus-right {
+        font-size: 60px !important;
+    }
+}
+
+
+/* =========================================================
+   V46 - AĞRI SAYFASINA ANA SAYFA BUTONU
+   ========================================================= */
+
+.pain-page-home-button {
+    background: rgba(38,47,53,.82) !important;
+}
+
+.pain-page-home-button:hover {
+    background: #1783c2 !important;
+}
+
+
+/* =========================================================
+   V47 - HAKKIMDA YAZISI AKTİF + AYRI HAKKIMDA SAYFASI
+   ========================================================= */
+
+/* Görseldeki büyük "Hakkımda" yazısının üstündeki görünmez tıklama alanı */
+.hero-about-hotspot {
+    position: absolute;
+    z-index: 150;
+    left: 50%;
+    bottom: 1.2%;
+    transform: translateX(-50%);
+
+    width: min(470px, 34vw);
+    height: 110px;
+
+    border: 0;
+    background: transparent;
+    cursor: pointer;
+}
+
+/* Hover'da görünümü bozma; sadece imleç aktif olsun */
+.hero-about-hotspot:hover,
+.hero-about-hotspot:focus-visible {
+    outline: none;
+    background: transparent;
+}
+
+/* Hakkımda ayrı sayfası */
+.about-page-v47 {
+    display: none;
+    min-height: 100vh;
+    background: #ffffff;
+    color: #163047;
+}
+
+body.about-page-open .about-page-v47 {
+    display: block;
+}
+
+body.about-page-open .hero.hero-v31,
+body.about-page-open .treatment-page,
+body.about-page-open .pain-page {
+    display: none !important;
+}
+
+/* Üst menü - Tedavi Alanları tarzında */
+.about-page-nav-v47 {
+    position: absolute;
+    top: 22px;
+    left: 50%;
+    transform: translateX(-50%);
+    z-index: 12000;
+
+    display: flex;
+    align-items: center;
+    gap: 12px;
+
+    padding: 8px 10px;
+    border-radius: 14px;
+}
+
+.about-page-nav-button-v47 {
+    appearance: none;
+    border: 1px solid rgba(255,255,255,.20);
+    cursor: pointer;
+
+    min-height: 42px;
+    padding: 0 18px;
+
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+
+    border-radius: 10px;
+
+    background: rgba(38,47,53,.82);
+    color: #fff;
+
+    font-size: 15px;
+    font-weight: 700;
+    white-space: nowrap;
+
+    box-shadow: 0 5px 16px rgba(0,0,0,.14);
+    transition: background-color .2s ease;
+}
+
+.about-page-nav-button-v47:hover {
+    background: #1783c2;
+}
+
+/* Sayfa üst alanı */
+.about-page-hero-v47 {
+    position: relative;
+    min-height: 260px;
+    padding-top: 72px;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    overflow: hidden;
+
+    background:
+        radial-gradient(circle at 12% 80%, rgba(23,131,194,.10), transparent 18%),
+        linear-gradient(180deg, #eef8ff 0%, #edf8ff 100%);
+}
+
+.about-page-inner-v47 {
+    position: relative;
+    z-index: 2;
+    width: min(1180px, calc(100% - 40px));
+    margin: auto;
+    text-align: center;
+}
+
+.about-page-inner-v47 h1 {
+    margin: 0;
+    color: #12344e;
+    font-size: clamp(46px, 4.5vw, 72px);
+    line-height: 1;
+    letter-spacing: -1.8px;
+}
+
+.about-page-plus-v47 {
+    position: absolute;
+    color: rgba(23,131,194,.12);
+    line-height: 1;
+    user-select: none;
+}
+
+.about-page-plus-left-v47 {
+    left: 2.5%;
+    bottom: 35px;
+    font-size: 82px;
+}
+
+.about-page-plus-right-v47 {
+    right: 3%;
+    top: 50%;
+    transform: translateY(-50%);
+    font-size: 115px;
+}
+
+/* İçerik alanı */
+.about-page-content-v47 {
+    padding: 80px 7% 120px;
+}
+
+.about-page-card-v47 {
+    max-width: 1050px;
+    margin: auto;
+    padding: 48px;
+
+    background: #fff;
+    border: 1px solid #edf1f4;
+    border-radius: 28px;
+
+    box-shadow: 0 16px 45px rgba(17,58,84,.08);
+}
+
+.about-page-card-v47 h2 {
+    margin: 0 0 18px;
+    color: #10354d;
+    font-size: 32px;
+}
+
+.about-page-card-v47 p {
+    margin: 0;
+    color: #60798a;
+    font-size: 16px;
+    line-height: 1.8;
+}
+
+/* Scroll sonrası üst menü sabit */
+body.about-page-open.about-nav-scrolled .about-page-nav-v47 {
+    position: fixed;
+    top: 10px;
+
+    padding: 7px 10px;
+
+    background: #1783c2;
+    border-radius: 13px;
+
+    box-shadow: 0 8px 24px rgba(0,0,0,.20);
+}
+
+body.about-page-open.about-nav-scrolled .about-page-nav-button-v47 {
+    background: rgba(7,57,88,.28);
+    box-shadow: none;
+}
+
+@media (max-width: 700px) {
+    .hero-about-hotspot {
+        width: 60vw;
+        height: 80px;
+        bottom: 1%;
+    }
+
+    .about-page-nav-v47 {
+        top: 10px;
+        gap: 6px;
+        max-width: calc(100vw - 14px);
+    }
+
+    .about-page-nav-button-v47 {
+        min-height: 36px;
+        padding: 0 10px;
+        font-size: 11px;
+    }
+
+    .about-page-hero-v47 {
+        min-height: 220px;
+        padding-top: 60px;
+    }
+
+    .about-page-content-v47 {
+        padding: 55px 20px 80px;
+    }
+
+    .about-page-card-v47 {
+        padding: 28px;
+    }
+}
+
+
+/* =========================================================
+   V48 - MEDYA SEKMESİ
+   TV Programları + YouTube
+   Tedavi Alanları tarzında ayrı sayfa, içerik şimdilik boş.
+   ========================================================= */
+
+/* Ana hero Medya */
+.hero-media-menu {
+    position: absolute;
+    z-index: 130;
+    top: 6.7%;
+    left: 49.2%;
+    font-family: Arial, Helvetica, sans-serif;
+}
+
+.hero-media-button {
+    appearance: none;
+    border: 1px solid rgba(255,255,255,.16);
+    cursor: pointer;
+
+    min-height: 42px;
+    padding: 0 18px;
+
+    display: inline-flex;
+    align-items: center;
+    gap: 9px;
+
+    border-radius: 11px;
+
+    background: rgba(45,52,57,.88);
+    color: #fff;
+
+    font-size: clamp(12px,.88vw,17px);
+    font-weight: 700;
+    white-space: nowrap;
+
+    box-shadow: 0 5px 18px rgba(0,0,0,.20);
+}
+
+.hero-media-button:hover,
+.hero-media-menu.open .hero-media-button {
+    background: #1783c2;
+}
+
+.hero-media-dropdown {
+    position: absolute;
+    top: calc(100% + 9px);
+    left: 0;
+
+    width: 190px;
+    padding: 8px;
+
+    visibility: hidden;
+    opacity: 0;
+    transform: translateY(-6px);
+    pointer-events: none;
+
+    background: rgba(12,29,39,.97);
+    border: 1px solid rgba(255,255,255,.13);
+    border-radius: 12px;
+
+    box-shadow: 0 18px 45px rgba(0,0,0,.25);
+
+    transition: .18s ease;
+}
+
+.hero-media-menu.open .hero-media-dropdown {
+    visibility: visible;
+    opacity: 1;
+    transform: translateY(0);
+    pointer-events: auto;
+}
+
+.hero-media-link {
+    width: 100%;
+    border: 0;
+    cursor: pointer;
+
+    display: block;
+    padding: 11px 12px;
+
+    border-radius: 8px;
+
+    background: transparent;
+    color: #fff;
+
+    text-align: left;
+    font-size: 14px;
+    font-weight: 600;
+}
+
+.hero-media-link:hover {
+    background: #1783c2;
+}
+
+/* Medya sayfası */
+.media-page-v48 {
+    display: none;
+    min-height: 100vh;
+    background: #ffffff;
+    color: #163047;
+}
+
+body.media-page-open .media-page-v48 {
+    display: block;
+}
+
+body.media-page-open .hero.hero-v31,
+body.media-page-open .treatment-page,
+body.media-page-open .pain-page,
+body.media-page-open .about-page-v47 {
+    display: none !important;
+}
+
+/* Üst nav */
+.media-page-nav-v48 {
+    position: absolute;
+    top: 22px;
+    left: 50%;
+    transform: translateX(-50%);
+    z-index: 12000;
+
+    display: flex;
+    gap: 12px;
+    align-items: center;
+
+    padding: 8px 10px;
+    border-radius: 14px;
+}
+
+.media-page-nav-button-v48 {
+    appearance: none;
+    border: 1px solid rgba(255,255,255,.20);
+    cursor: pointer;
+
+    min-height: 42px;
+    padding: 0 18px;
+
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+
+    border-radius: 10px;
+
+    background: rgba(38,47,53,.82);
+    color: #fff;
+
+    font-size: 15px;
+    font-weight: 700;
+    white-space: nowrap;
+
+    box-shadow: 0 5px 16px rgba(0,0,0,.14);
+}
+
+.media-page-nav-button-v48:hover {
+    background: #1783c2;
+}
+
+/* Hero */
+.media-page-hero-v48 {
+    position: relative;
+    min-height: 260px;
+    padding-top: 72px;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    overflow: hidden;
+
+    background:
+        radial-gradient(circle at 12% 80%, rgba(23,131,194,.10), transparent 18%),
+        linear-gradient(180deg, #eef8ff 0%, #edf8ff 100%);
+}
+
+.media-page-inner-v48 {
+    position: relative;
+    z-index: 2;
+    width: min(1180px, calc(100% - 40px));
+    margin: auto;
+    text-align: center;
+}
+
+.media-page-inner-v48 h1 {
+    margin: 0 0 24px;
+    color: #12344e;
+    font-size: clamp(46px,4.5vw,72px);
+    line-height: 1;
+    letter-spacing: -1.8px;
+}
+
+.media-page-subtabs-v48 {
+    display: flex;
+    justify-content: center;
+    gap: 12px;
+}
+
+.media-page-subtab-v48 {
+    border: 1px solid #d8e8f2;
+    cursor: pointer;
+
+    padding: 11px 18px;
+    border-radius: 10px;
+
+    background: #fff;
+    color: #1783c2;
+
+    font-size: 14px;
+    font-weight: 700;
+}
+
+.media-page-subtab-v48:hover,
+.media-page-subtab-v48.active {
+    background: #1783c2;
+    color: #fff;
+}
+
+/* İçerik bilerek boş */
+.media-page-content-v48 {
+    min-height: 460px;
+    background: #fff;
+}
+
+.media-page-plus-v48 {
+    position: absolute;
+    color: rgba(23,131,194,.12);
+    line-height: 1;
+    user-select: none;
+}
+
+.media-page-plus-left-v48 {
+    left: 2.5%;
+    bottom: 35px;
+    font-size: 82px;
+}
+
+.media-page-plus-right-v48 {
+    right: 3%;
+    top: 50%;
+    transform: translateY(-50%);
+    font-size: 115px;
+}
+
+/* Scroll sonrası nav sabit */
+body.media-page-open.media-nav-scrolled .media-page-nav-v48 {
+    position: fixed;
+    top: 10px;
+
+    padding: 7px 10px;
+
+    background: #1783c2;
+    border-radius: 13px;
+
+    box-shadow: 0 8px 24px rgba(0,0,0,.20);
+}
+
+body.media-page-open.media-nav-scrolled .media-page-nav-button-v48 {
+    background: rgba(7,57,88,.28);
+    box-shadow: none;
+}
+
+@media (max-width: 900px) {
+    .hero-media-menu {
+        left: 82% !important;
+    }
+}
+
+@media (max-width: 700px) {
+    .media-page-nav-v48 {
+        top: 10px;
+        gap: 6px;
+        max-width: calc(100vw - 14px);
+    }
+
+    .media-page-nav-button-v48 {
+        min-height: 36px;
+        padding: 0 10px;
+        font-size: 11px;
+    }
+
+    .media-page-hero-v48 {
+        min-height: 220px;
+        padding-top: 60px;
+    }
+}
+
+
+/* =========================================================
+   V49 - MEDYA HERO MENÜSÜ ARTIK DROPDOWN DEĞİL
+   Kişi Medya'ya basınca direkt Medya sayfası açılır.
+   Medya sayfasında TV Programları / YouTube sekmeleri görünür.
+   ========================================================= */
+
+/* Hero'da dropdown tamamen kapalı */
+.hero-media-dropdown,
+.hero-media-link {
+    display: none !important;
+}
+
+/* Buton tasarımı diğerleriyle aynı mantıkta */
+.hero-media-button {
+    justify-content: center;
+}
+
+/* Medya sayfasında varsayılan görünüm:
+   TV Programları aktif, YouTube pasif */
+.media-page-subtab-v48 {
+    min-width: 170px;
+    min-height: 52px;
+    border-radius: 14px;
+    border: 1px solid #d6dfe6;
+    box-shadow: 0 8px 18px rgba(17,58,84,.06);
+}
+
+#mediaTvProgramsButton {
+    background: #1783c2;
+    color: #fff;
+}
+
+#mediaYoutubeButton {
+    background: #fff;
+    color: #1783c2;
+}
+
+.media-page-subtab-v48.active {
+    background: #1783c2 !important;
+    color: #fff !important;
+}
+
+@media (max-width: 700px) {
+    .media-page-subtab-v48 {
+        min-width: 130px;
+        min-height: 44px;
+        padding: 10px 12px;
+    }
+}

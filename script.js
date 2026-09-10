@@ -390,11 +390,6 @@ const backToTop = document.getElementById("backToTop");
 
 const sectionIds = [
     "anasayfa",
-    "hakkimda",
-    "hizmetler",
-    "videolar",
-    "icerikler",
-    "yorumlar",
     "konum",
     "iletisim"
 ];
@@ -1645,3 +1640,1189 @@ document.addEventListener(
 
     }
 );
+
+
+// ================================
+// V32 - HERO TEDAVİ DROPDOWN MENÜSÜ
+// ================================
+
+const heroTreatmentMenu =
+    document.getElementById("heroTreatmentMenu");
+
+const heroTreatmentButton =
+    document.getElementById("heroTreatmentButton");
+
+const heroTreatmentDropdown =
+    document.getElementById("heroTreatmentDropdown");
+
+if (
+    heroTreatmentMenu &&
+    heroTreatmentButton &&
+    heroTreatmentDropdown
+) {
+    const closeHeroTreatmentMenu = () => {
+        heroTreatmentMenu.classList.remove("open");
+        heroTreatmentButton.setAttribute("aria-expanded", "false");
+        heroTreatmentDropdown.setAttribute("aria-hidden", "true");
+    };
+
+    heroTreatmentButton.addEventListener("click", event => {
+        event.stopPropagation();
+
+        const willOpen =
+            !heroTreatmentMenu.classList.contains("open");
+
+        heroTreatmentMenu.classList.toggle("open", willOpen);
+        heroTreatmentButton.setAttribute(
+            "aria-expanded",
+            willOpen ? "true" : "false"
+        );
+        heroTreatmentDropdown.setAttribute(
+            "aria-hidden",
+            willOpen ? "false" : "true"
+        );
+    });
+
+    heroTreatmentDropdown
+        .querySelectorAll("a")
+        .forEach(link => {
+            link.addEventListener("click", closeHeroTreatmentMenu);
+        });
+
+    document.addEventListener("click", event => {
+        if (!heroTreatmentMenu.contains(event.target)) {
+            closeHeroTreatmentMenu();
+        }
+    });
+
+    document.addEventListener("keydown", event => {
+        if (event.key === "Escape") {
+            closeHeroTreatmentMenu();
+        }
+    });
+}
+
+
+// ================================
+// V33 - HERO GENEL SAĞLIK DROPDOWN
+// ================================
+
+const heroHealthMenu =
+    document.getElementById("heroHealthMenu");
+
+const heroHealthButton =
+    document.getElementById("heroHealthButton");
+
+const heroHealthDropdown =
+    document.getElementById("heroHealthDropdown");
+
+if (
+    heroHealthMenu &&
+    heroHealthButton &&
+    heroHealthDropdown
+) {
+    const closeHeroHealthMenu = () => {
+        heroHealthMenu.classList.remove("open");
+        heroHealthButton.setAttribute("aria-expanded", "false");
+        heroHealthDropdown.setAttribute("aria-hidden", "true");
+    };
+
+    heroHealthButton.addEventListener("click", event => {
+        event.stopPropagation();
+
+        const willOpen =
+            !heroHealthMenu.classList.contains("open");
+
+        heroHealthMenu.classList.toggle("open", willOpen);
+        heroHealthButton.setAttribute(
+            "aria-expanded",
+            willOpen ? "true" : "false"
+        );
+        heroHealthDropdown.setAttribute(
+            "aria-hidden",
+            willOpen ? "false" : "true"
+        );
+
+        // Diğer açık menüyü kapat.
+        if (
+            typeof heroTreatmentMenu !== "undefined" &&
+            heroTreatmentMenu &&
+            willOpen
+        ) {
+            heroTreatmentMenu.classList.remove("open");
+            if (heroTreatmentButton) {
+                heroTreatmentButton.setAttribute("aria-expanded", "false");
+            }
+            if (heroTreatmentDropdown) {
+                heroTreatmentDropdown.setAttribute("aria-hidden", "true");
+            }
+        }
+    });
+
+    heroHealthDropdown
+        .querySelectorAll("a")
+        .forEach(link => {
+            link.addEventListener("click", closeHeroHealthMenu);
+        });
+
+    document.addEventListener("click", event => {
+        if (!heroHealthMenu.contains(event.target)) {
+            closeHeroHealthMenu();
+        }
+    });
+
+    document.addEventListener("keydown", event => {
+        if (event.key === "Escape") {
+            closeHeroHealthMenu();
+        }
+    });
+}
+
+
+
+
+// =====================================
+// V35 - TEDAVİ ALANLARI AYRI SAYFA
+// =====================================
+
+const heroDiseasesButtonV35 =
+    document.getElementById("heroDiseasesButton");
+
+const treatmentPage =
+    document.getElementById("tedaviAlanlariPage");
+
+const treatmentBackHome =
+    document.getElementById("treatmentBackHome");
+
+function openTreatmentPage() {
+
+    if (!treatmentPage) {
+        return;
+    }
+
+    // Açık dropdownlar varsa kapat
+    if (
+        typeof heroTreatmentMenu !== "undefined" &&
+        heroTreatmentMenu
+    ) {
+        heroTreatmentMenu.classList.remove("open");
+    }
+
+    if (
+        typeof heroHealthMenu !== "undefined" &&
+        heroHealthMenu
+    ) {
+        heroHealthMenu.classList.remove("open");
+    }
+
+    document.body.classList.add(
+        "treatment-page-open"
+    );
+
+    treatmentPage.setAttribute(
+        "aria-hidden",
+        "false"
+    );
+
+    history.pushState(
+        { page: "tedavi-alanlari" },
+        "",
+        "#tedavi-alanlari"
+    );
+
+    window.scrollTo({
+        top: 0,
+        behavior: "smooth"
+    });
+}
+
+function closeTreatmentPage() {
+
+    if (!treatmentPage) {
+        return;
+    }
+
+    document.body.classList.remove(
+        "treatment-page-open"
+    );
+
+    treatmentPage.setAttribute(
+        "aria-hidden",
+        "true"
+    );
+
+    if (location.hash === "#tedavi-alanlari") {
+        history.pushState(
+            { page: "home" },
+            "",
+            location.pathname + location.search
+        );
+    }
+
+    window.scrollTo({
+        top: 0,
+        behavior: "smooth"
+    });
+}
+
+if (heroDiseasesButtonV35) {
+
+    heroDiseasesButtonV35.addEventListener(
+        "click",
+        event => {
+
+            event.preventDefault();
+            event.stopPropagation();
+
+            openTreatmentPage();
+        }
+    );
+}
+
+if (treatmentBackHome) {
+
+    treatmentBackHome.addEventListener(
+        "click",
+        closeTreatmentPage
+    );
+}
+
+window.addEventListener(
+    "popstate",
+    () => {
+
+        if (location.hash === "#tedavi-alanlari") {
+            document.body.classList.add(
+                "treatment-page-open"
+            );
+
+            if (treatmentPage) {
+                treatmentPage.setAttribute(
+                    "aria-hidden",
+                    "false"
+                );
+            }
+
+            window.scrollTo(0, 0);
+        } else {
+            document.body.classList.remove(
+                "treatment-page-open"
+            );
+
+            if (treatmentPage) {
+                treatmentPage.setAttribute(
+                    "aria-hidden",
+                    "true"
+                );
+            }
+
+            window.scrollTo(0, 0);
+        }
+    }
+);
+
+/* Sayfa doğrudan #tedavi-alanlari ile açılırsa */
+if (
+    location.hash === "#tedavi-alanlari" &&
+    treatmentPage
+) {
+    document.body.classList.add(
+        "treatment-page-open"
+    );
+
+    treatmentPage.setAttribute(
+        "aria-hidden",
+        "false"
+    );
+}
+
+
+// =========================================================
+// V41 - TEDAVİ ALANLARI MENÜSÜ SCROLL DAVRANIŞI
+// İlk görünüm beyaz/sade; aşağı kaydırınca mavi sabit bar.
+// =========================================================
+
+(function () {
+    const updateTreatmentNavState = () => {
+        if (!document.body.classList.contains("treatment-page-open")) {
+            document.body.classList.remove("treatment-nav-scrolled");
+            return;
+        }
+
+        if (window.scrollY > 45) {
+            document.body.classList.add("treatment-nav-scrolled");
+        } else {
+            document.body.classList.remove("treatment-nav-scrolled");
+        }
+    };
+
+    window.addEventListener("scroll", updateTreatmentNavState, {
+        passive: true
+    });
+
+    window.addEventListener("load", updateTreatmentNavState);
+
+    /* Tedavi Alanları butonuna girildiği anda başlangıç görünümünü sıfırla */
+    if (typeof heroDiseasesButtonV35 !== "undefined" && heroDiseasesButtonV35) {
+        heroDiseasesButtonV35.addEventListener("click", () => {
+            document.body.classList.remove("treatment-nav-scrolled");
+            requestAnimationFrame(updateTreatmentNavState);
+        });
+    }
+
+    if (typeof treatmentBackHome !== "undefined" && treatmentBackHome) {
+        treatmentBackHome.addEventListener("click", () => {
+            document.body.classList.remove("treatment-nav-scrolled");
+        });
+    }
+})();
+
+
+// =========================================================
+// V42 - TEDAVİ ALANLARI SAYFASI ÜST MENÜLERİ
+// Tedavi + Genel Sağlık gerçekten treatment-page içinde.
+// =========================================================
+
+(function () {
+
+    const treatmentMenu =
+        document.getElementById("treatmentPageTreatmentMenu");
+
+    const treatmentButton =
+        document.getElementById("treatmentPageTreatmentButton");
+
+    const treatmentDropdown =
+        document.getElementById("treatmentPageTreatmentDropdown");
+
+    const healthMenu =
+        document.getElementById("treatmentPageHealthMenu");
+
+    const healthButton =
+        document.getElementById("treatmentPageHealthButton");
+
+    const healthDropdown =
+        document.getElementById("treatmentPageHealthDropdown");
+
+    function closeMenu(menu, button, dropdown) {
+        if (!menu || !button || !dropdown) {
+            return;
+        }
+
+        menu.classList.remove("open");
+        button.setAttribute("aria-expanded", "false");
+        dropdown.setAttribute("aria-hidden", "true");
+    }
+
+    function openMenu(menu, button, dropdown) {
+        if (!menu || !button || !dropdown) {
+            return;
+        }
+
+        menu.classList.add("open");
+        button.setAttribute("aria-expanded", "true");
+        dropdown.setAttribute("aria-hidden", "false");
+    }
+
+    if (treatmentButton) {
+        treatmentButton.addEventListener("click", event => {
+            event.stopPropagation();
+
+            const isOpen =
+                treatmentMenu.classList.contains("open");
+
+            closeMenu(
+                healthMenu,
+                healthButton,
+                healthDropdown
+            );
+
+            if (isOpen) {
+                closeMenu(
+                    treatmentMenu,
+                    treatmentButton,
+                    treatmentDropdown
+                );
+            } else {
+                openMenu(
+                    treatmentMenu,
+                    treatmentButton,
+                    treatmentDropdown
+                );
+            }
+        });
+    }
+
+    if (healthButton) {
+        healthButton.addEventListener("click", event => {
+            event.stopPropagation();
+
+            const isOpen =
+                healthMenu.classList.contains("open");
+
+            closeMenu(
+                treatmentMenu,
+                treatmentButton,
+                treatmentDropdown
+            );
+
+            if (isOpen) {
+                closeMenu(
+                    healthMenu,
+                    healthButton,
+                    healthDropdown
+                );
+            } else {
+                openMenu(
+                    healthMenu,
+                    healthButton,
+                    healthDropdown
+                );
+            }
+        });
+    }
+
+    document.addEventListener("click", event => {
+
+        if (
+            treatmentMenu &&
+            !treatmentMenu.contains(event.target)
+        ) {
+            closeMenu(
+                treatmentMenu,
+                treatmentButton,
+                treatmentDropdown
+            );
+        }
+
+        if (
+            healthMenu &&
+            !healthMenu.contains(event.target)
+        ) {
+            closeMenu(
+                healthMenu,
+                healthButton,
+                healthDropdown
+            );
+        }
+    });
+
+    document.addEventListener("keydown", event => {
+        if (event.key === "Escape") {
+            closeMenu(
+                treatmentMenu,
+                treatmentButton,
+                treatmentDropdown
+            );
+
+            closeMenu(
+                healthMenu,
+                healthButton,
+                healthDropdown
+            );
+        }
+    });
+
+})();
+
+
+// =========================================================
+// V43 - AĞRI SEKMESİ / AĞRI SAYFASI
+// =========================================================
+
+(function () {
+
+    const heroPainButton =
+        document.getElementById("heroPainButton");
+
+    const treatmentPagePainButton =
+        document.getElementById("treatmentPagePainButton");
+
+    const painPage =
+        document.getElementById("agriPage");
+
+    const painBackHome =
+        document.getElementById("painBackHome");
+
+    const painTreatmentAreasButton =
+        document.getElementById("painPageTreatmentAreasButton");
+
+    function openPainPage() {
+
+        if (!painPage) {
+            return;
+        }
+
+        document.body.classList.remove(
+            "treatment-page-open",
+            "treatment-nav-scrolled"
+        );
+
+        if (typeof treatmentPage !== "undefined" && treatmentPage) {
+            treatmentPage.setAttribute("aria-hidden", "true");
+        }
+
+        document.body.classList.add("pain-page-open");
+        painPage.setAttribute("aria-hidden", "false");
+
+        history.pushState(
+            { page: "agri" },
+            "",
+            "#agri"
+        );
+
+        window.scrollTo({
+            top: 0,
+            behavior: "smooth"
+        });
+    }
+
+    function closePainPage() {
+
+        document.body.classList.remove(
+            "pain-page-open",
+            "pain-nav-scrolled"
+        );
+
+        if (painPage) {
+            painPage.setAttribute("aria-hidden", "true");
+        }
+
+        history.pushState(
+            { page: "home" },
+            "",
+            location.pathname + location.search
+        );
+
+        window.scrollTo({
+            top: 0,
+            behavior: "smooth"
+        });
+    }
+
+    if (heroPainButton) {
+        heroPainButton.addEventListener("click", event => {
+            event.preventDefault();
+            openPainPage();
+        });
+    }
+
+    if (treatmentPagePainButton) {
+        treatmentPagePainButton.addEventListener("click", event => {
+            event.preventDefault();
+            openPainPage();
+        });
+    }
+
+    if (painBackHome) {
+        painBackHome.addEventListener("click", closePainPage);
+    }
+
+    if (painTreatmentAreasButton) {
+        painTreatmentAreasButton.addEventListener("click", event => {
+            event.preventDefault();
+
+            document.body.classList.remove(
+                "pain-page-open",
+                "pain-nav-scrolled"
+            );
+
+            if (painPage) {
+                painPage.setAttribute("aria-hidden", "true");
+            }
+
+            if (typeof openTreatmentPage === "function") {
+                openTreatmentPage();
+            }
+        });
+    }
+
+    /* Scroll sonrası nav sabit mavi */
+    function updatePainNav() {
+        if (!document.body.classList.contains("pain-page-open")) {
+            document.body.classList.remove("pain-nav-scrolled");
+            return;
+        }
+
+        document.body.classList.toggle(
+            "pain-nav-scrolled",
+            window.scrollY > 45
+        );
+    }
+
+    window.addEventListener("scroll", updatePainNav, {
+        passive: true
+    });
+
+    /* Ağrı sayfasındaki dropdownlar */
+    const treatmentMenu =
+        document.getElementById("painPageTreatmentMenu");
+
+    const treatmentButton =
+        document.getElementById("painPageTreatmentButton");
+
+    const treatmentDropdown =
+        document.getElementById("painPageTreatmentDropdown");
+
+    const healthMenu =
+        document.getElementById("painPageHealthMenu");
+
+    const healthButton =
+        document.getElementById("painPageHealthButton");
+
+    const healthDropdown =
+        document.getElementById("painPageHealthDropdown");
+
+    function closeDrop(menu, button, dropdown) {
+        if (!menu || !button || !dropdown) return;
+        menu.classList.remove("open");
+        button.setAttribute("aria-expanded", "false");
+        dropdown.setAttribute("aria-hidden", "true");
+    }
+
+    function toggleDrop(menu, button, dropdown, otherMenu, otherButton, otherDropdown) {
+        if (!menu || !button || !dropdown) return;
+
+        const willOpen = !menu.classList.contains("open");
+
+        closeDrop(otherMenu, otherButton, otherDropdown);
+
+        menu.classList.toggle("open", willOpen);
+        button.setAttribute("aria-expanded", willOpen ? "true" : "false");
+        dropdown.setAttribute("aria-hidden", willOpen ? "false" : "true");
+    }
+
+    if (treatmentButton) {
+        treatmentButton.addEventListener("click", event => {
+            event.stopPropagation();
+            toggleDrop(
+                treatmentMenu,
+                treatmentButton,
+                treatmentDropdown,
+                healthMenu,
+                healthButton,
+                healthDropdown
+            );
+        });
+    }
+
+    if (healthButton) {
+        healthButton.addEventListener("click", event => {
+            event.stopPropagation();
+            toggleDrop(
+                healthMenu,
+                healthButton,
+                healthDropdown,
+                treatmentMenu,
+                treatmentButton,
+                treatmentDropdown
+            );
+        });
+    }
+
+    document.addEventListener("click", event => {
+        if (treatmentMenu && !treatmentMenu.contains(event.target)) {
+            closeDrop(treatmentMenu, treatmentButton, treatmentDropdown);
+        }
+
+        if (healthMenu && !healthMenu.contains(event.target)) {
+            closeDrop(healthMenu, healthButton, healthDropdown);
+        }
+    });
+
+    /* Sayfa #agri ile doğrudan açılırsa */
+    if (location.hash === "#agri" && painPage) {
+        document.body.classList.add("pain-page-open");
+        document.body.classList.remove("treatment-page-open");
+        painPage.setAttribute("aria-hidden", "false");
+
+        if (typeof treatmentPage !== "undefined" && treatmentPage) {
+            treatmentPage.setAttribute("aria-hidden", "true");
+        }
+    }
+
+})();
+
+
+// =========================================================
+// V44 - TEDAVİ ALANLARI ÜST "ANA SAYFA" BUTONU
+// =========================================================
+
+(function () {
+    const treatmentPageHomeButton =
+        document.getElementById("treatmentPageHomeButton");
+
+    if (treatmentPageHomeButton) {
+        treatmentPageHomeButton.addEventListener("click", event => {
+            event.preventDefault();
+
+            if (typeof closeTreatmentPage === "function") {
+                closeTreatmentPage();
+                return;
+            }
+
+            document.body.classList.remove(
+                "treatment-page-open",
+                "treatment-nav-scrolled"
+            );
+
+            const treatmentPageLocal =
+                document.getElementById("tedaviAlanlariPage");
+
+            if (treatmentPageLocal) {
+                treatmentPageLocal.setAttribute(
+                    "aria-hidden",
+                    "true"
+                );
+            }
+
+            history.pushState(
+                { page: "home" },
+                "",
+                location.pathname + location.search
+            );
+
+            window.scrollTo({
+                top: 0,
+                behavior: "smooth"
+            });
+        });
+    }
+})();
+
+
+// =========================================================
+// V46 - AĞRI SAYFASI ÜST "ANA SAYFA" BUTONU
+// =========================================================
+
+(function () {
+    const painPageHomeButton =
+        document.getElementById("painPageHomeButton");
+
+    if (painPageHomeButton) {
+        painPageHomeButton.addEventListener("click", event => {
+            event.preventDefault();
+
+            if (typeof closePainPage === "function") {
+                closePainPage();
+                return;
+            }
+
+            document.body.classList.remove(
+                "pain-page-open",
+                "pain-nav-scrolled"
+            );
+
+            const painPageLocal =
+                document.getElementById("agriPage");
+
+            if (painPageLocal) {
+                painPageLocal.setAttribute(
+                    "aria-hidden",
+                    "true"
+                );
+            }
+
+            history.pushState(
+                { page: "home" },
+                "",
+                location.pathname + location.search
+            );
+
+            window.scrollTo({
+                top: 0,
+                behavior: "smooth"
+            });
+        });
+    }
+})();
+
+
+// =========================================================
+// V47 - HAKKIMDA GÖRSEL YAZISI AKTİF / AYRI SAYFA
+// =========================================================
+
+(function () {
+
+    const heroAboutButton =
+        document.getElementById("heroAboutButton");
+
+    const aboutPage =
+        document.getElementById("hakkimdaPage");
+
+    const aboutPageHomeButton =
+        document.getElementById("aboutPageHomeButton");
+
+    const aboutPageTreatmentAreasButton =
+        document.getElementById("aboutPageTreatmentAreasButton");
+
+    const aboutPagePainButton =
+        document.getElementById("aboutPagePainButton");
+
+    function openAboutPage() {
+        if (!aboutPage) return;
+
+        document.body.classList.remove(
+            "treatment-page-open",
+            "treatment-nav-scrolled",
+            "pain-page-open",
+            "pain-nav-scrolled"
+        );
+
+        document.body.classList.add("about-page-open");
+
+        aboutPage.setAttribute("aria-hidden", "false");
+
+        history.pushState(
+            { page: "hakkimda-v47" },
+            "",
+            "#hakkimda-sayfasi"
+        );
+
+        window.scrollTo({
+            top: 0,
+            behavior: "smooth"
+        });
+    }
+
+    function closeAboutPage() {
+        document.body.classList.remove(
+            "about-page-open",
+            "about-nav-scrolled"
+        );
+
+        if (aboutPage) {
+            aboutPage.setAttribute("aria-hidden", "true");
+        }
+
+        history.pushState(
+            { page: "home" },
+            "",
+            location.pathname + location.search
+        );
+
+        window.scrollTo({
+            top: 0,
+            behavior: "smooth"
+        });
+    }
+
+    if (heroAboutButton) {
+        heroAboutButton.addEventListener("click", event => {
+            event.preventDefault();
+            openAboutPage();
+        });
+    }
+
+    if (aboutPageHomeButton) {
+        aboutPageHomeButton.addEventListener("click", event => {
+            event.preventDefault();
+            closeAboutPage();
+        });
+    }
+
+    if (aboutPageTreatmentAreasButton) {
+        aboutPageTreatmentAreasButton.addEventListener("click", event => {
+            event.preventDefault();
+
+            document.body.classList.remove(
+                "about-page-open",
+                "about-nav-scrolled"
+            );
+
+            if (aboutPage) {
+                aboutPage.setAttribute("aria-hidden", "true");
+            }
+
+            if (typeof openTreatmentPage === "function") {
+                openTreatmentPage();
+            }
+        });
+    }
+
+    if (aboutPagePainButton) {
+        aboutPagePainButton.addEventListener("click", event => {
+            event.preventDefault();
+
+            document.body.classList.remove(
+                "about-page-open",
+                "about-nav-scrolled"
+            );
+
+            if (aboutPage) {
+                aboutPage.setAttribute("aria-hidden", "true");
+            }
+
+            const painPageLocal =
+                document.getElementById("agriPage");
+
+            if (painPageLocal) {
+                document.body.classList.add("pain-page-open");
+                painPageLocal.setAttribute("aria-hidden", "false");
+
+                history.pushState(
+                    { page: "agri" },
+                    "",
+                    "#agri"
+                );
+
+                window.scrollTo({
+                    top: 0,
+                    behavior: "smooth"
+                });
+            }
+        });
+    }
+
+    function updateAboutNav() {
+        if (!document.body.classList.contains("about-page-open")) {
+            document.body.classList.remove("about-nav-scrolled");
+            return;
+        }
+
+        document.body.classList.toggle(
+            "about-nav-scrolled",
+            window.scrollY > 45
+        );
+    }
+
+    window.addEventListener(
+        "scroll",
+        updateAboutNav,
+        { passive: true }
+    );
+
+})();
+
+
+// =========================================================
+// V48 - MEDYA SEKMESİ / TV PROGRAMLARI + YOUTUBE
+// =========================================================
+
+(function () {
+
+    const heroMediaButton =
+        document.getElementById("heroMediaButton");
+
+    const mediaPage =
+        document.getElementById("medyaPage");
+
+    const mediaPageHomeButton =
+        document.getElementById("mediaPageHomeButton");
+
+    const mediaPageTreatmentAreasButton =
+        document.getElementById("mediaPageTreatmentAreasButton");
+
+    const mediaPagePainButton =
+        document.getElementById("mediaPagePainButton");
+
+    const treatmentPageMediaButton =
+        document.getElementById("treatmentPageMediaButton");
+
+    const painPageMediaButton =
+        document.getElementById("painPageMediaButton");
+
+    const aboutPageMediaButton =
+        document.getElementById("aboutPageMediaButton");
+
+    const mediaTvProgramsButton =
+        document.getElementById("mediaTvProgramsButton");
+
+    const mediaYoutubeButton =
+        document.getElementById("mediaYoutubeButton");
+
+    function openMediaPage(target = "tv") {
+
+        if (!mediaPage) return;
+
+        document.body.classList.remove(
+            "treatment-page-open",
+            "treatment-nav-scrolled",
+            "pain-page-open",
+            "pain-nav-scrolled",
+            "about-page-open",
+            "about-nav-scrolled"
+        );
+
+        document.body.classList.add("media-page-open");
+
+        mediaPage.setAttribute("aria-hidden", "false");
+
+        if (mediaTvProgramsButton) {
+            mediaTvProgramsButton.classList.toggle(
+                "active",
+                target === "tv"
+            );
+        }
+
+        if (mediaYoutubeButton) {
+            mediaYoutubeButton.classList.toggle(
+                "active",
+                target === "youtube"
+            );
+        }
+
+        history.pushState(
+            { page: "medya", target },
+            "",
+            "#medya"
+        );
+
+        window.scrollTo({
+            top: 0,
+            behavior: "smooth"
+        });
+    }
+
+    function closeMediaPage() {
+
+        document.body.classList.remove(
+            "media-page-open",
+            "media-nav-scrolled"
+        );
+
+        if (mediaPage) {
+            mediaPage.setAttribute("aria-hidden", "true");
+        }
+
+        history.pushState(
+            { page: "home" },
+            "",
+            location.pathname + location.search
+        );
+
+        window.scrollTo({
+            top: 0,
+            behavior: "smooth"
+        });
+    }
+
+    if (heroMediaButton) {
+        heroMediaButton.addEventListener("click", event => {
+            event.preventDefault();
+            openMediaPage("tv");
+        });
+    }
+
+    [
+        treatmentPageMediaButton,
+        painPageMediaButton,
+        aboutPageMediaButton
+    ].forEach(button => {
+        if (!button) return;
+
+        button.addEventListener("click", event => {
+            event.preventDefault();
+            openMediaPage("tv");
+        });
+    });
+
+    if (mediaPageHomeButton) {
+        mediaPageHomeButton.addEventListener("click", event => {
+            event.preventDefault();
+            closeMediaPage();
+        });
+    }
+
+    if (mediaPageTreatmentAreasButton) {
+        mediaPageTreatmentAreasButton.addEventListener("click", event => {
+            event.preventDefault();
+
+            document.body.classList.remove(
+                "media-page-open",
+                "media-nav-scrolled"
+            );
+
+            if (mediaPage) {
+                mediaPage.setAttribute("aria-hidden", "true");
+            }
+
+            if (typeof openTreatmentPage === "function") {
+                openTreatmentPage();
+            }
+        });
+    }
+
+    if (mediaPagePainButton) {
+        mediaPagePainButton.addEventListener("click", event => {
+            event.preventDefault();
+
+            document.body.classList.remove(
+                "media-page-open",
+                "media-nav-scrolled"
+            );
+
+            if (mediaPage) {
+                mediaPage.setAttribute("aria-hidden", "true");
+            }
+
+            const painPageLocal =
+                document.getElementById("agriPage");
+
+            if (painPageLocal) {
+                document.body.classList.add("pain-page-open");
+                painPageLocal.setAttribute("aria-hidden", "false");
+
+                history.pushState(
+                    { page: "agri" },
+                    "",
+                    "#agri"
+                );
+
+                window.scrollTo({
+                    top: 0,
+                    behavior: "smooth"
+                });
+            }
+        });
+    }
+
+    if (mediaTvProgramsButton) {
+        mediaTvProgramsButton.addEventListener("click", () => {
+            mediaTvProgramsButton.classList.add("active");
+            if (mediaYoutubeButton) {
+                mediaYoutubeButton.classList.remove("active");
+            }
+        });
+    }
+
+    if (mediaYoutubeButton) {
+        mediaYoutubeButton.addEventListener("click", () => {
+            mediaYoutubeButton.classList.add("active");
+            if (mediaTvProgramsButton) {
+                mediaTvProgramsButton.classList.remove("active");
+            }
+        });
+    }
+
+    function updateMediaNav() {
+        if (!document.body.classList.contains("media-page-open")) {
+            document.body.classList.remove("media-nav-scrolled");
+            return;
+        }
+
+        document.body.classList.toggle(
+            "media-nav-scrolled",
+            window.scrollY > 45
+        );
+    }
+
+    window.addEventListener(
+        "scroll",
+        updateMediaNav,
+        { passive: true }
+    );
+
+    if (location.hash === "#medya" && mediaPage) {
+        document.body.classList.add("media-page-open");
+        mediaPage.setAttribute("aria-hidden", "false");
+
+        if (mediaTvProgramsButton) {
+            mediaTvProgramsButton.classList.add("active");
+        }
+
+        if (mediaYoutubeButton) {
+            mediaYoutubeButton.classList.remove("active");
+        }
+    }
+
+})();
