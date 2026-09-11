@@ -31,7 +31,7 @@
 
     <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Crect width='64' height='64' rx='16' fill='%231783c2'/%3E%3Cpath d='M28 14h8v14h14v8H36v14h-8V36H14v-8h14z' fill='white'/%3E%3C/svg%3E">
 
-    <link rel="stylesheet" href="style.css?v=77">
+    <link rel="stylesheet" href="style.css?v=93">
 </head>
 
 <!-- BUILD: V51 / CACHE-BUST -->
@@ -112,13 +112,90 @@
 
 
     <!-- ANA SAYFA -->
-    <section class="hero hero-v31" id="anasayfa">
-        <img
-            class="hero-v31-image"
-            src="./hero-ceyhun_V58.png?v=77"
-            alt="Dr. Ceyhun Nuri"
-        >
+    <section class="hero hero-v31 hero-home-v85" id="anasayfa">
+        <div class="hero-slider-v86" id="heroSliderV86">
 
+            <!-- SLIDE 1: varsayılan doktor ana ekranı -->
+            <div class="hero-slide-v86 doctor-slide-v86 is-active" data-hero-slide="doctor">
+                <img
+                    class="doctor-slide-image-v86"
+                    src="./hero-ceyhun_V58.png?v=93"
+                    alt="Dr. Ceyhun Nuri masasında"
+                >
+                <div class="doctor-slide-overlay-v86"></div>
+
+                <div class="doctor-slide-bottom-v86">
+                    <span class="doctor-slide-tag-v86">Genel</span>
+
+                    <button
+                        type="button"
+                        class="doctor-about-button-v86"
+                        id="heroAboutButton"
+                        aria-label="Hakkımda sayfasını aç"
+                        aria-controls="hakkimdaPage"
+                    >
+                        Hakkımda
+                    </button>
+                </div>
+
+                <button
+                    type="button"
+                    class="hero-slider-arrow-v86 hero-slider-next-v86"
+                    id="heroNextV86"
+                    aria-label="Ankilozan Spondilit içeriğine geç"
+                >
+                    →
+                </button>
+            </div>
+
+            <!-- SLIDE 2: kullanıcı isterse açılan Ankilozan Spondilit -->
+            <div class="hero-slide-v86 ankylosing-slide-v86" data-hero-slide="ankilozan" aria-hidden="true">
+                <div class="ankylosing-slide-bg-v86"></div>
+                <div class="ankylosing-slide-overlay-v86"></div>
+
+                <button
+                    type="button"
+                    class="hero-slider-arrow-v86 hero-slider-prev-v86"
+                    id="heroPrevV86"
+                    aria-label="Doktor ana ekranına dön"
+                >
+                    ←
+                </button>
+
+                <div class="ankylosing-slide-content-v86">
+                    <span class="home-feature-tag-v85">Tedavi Alanı</span>
+
+                    <button
+                        type="button"
+                        class="ankylosing-slide-title-v86"
+                        id="ankilozanHeroButtonV85"
+                        aria-controls="ankilozanFaqSectionV85"
+                    >
+                        Ankilozan Spondilit
+                    </button>
+
+                    <p>
+                        Omurga ve sakroiliak eklemleri etkileyebilen iltihaplı romatizmal bir hastalık olan
+                        ankilozan spondilit; bel-sırt ağrısı, sabah tutukluğu ve hareket kısıtlılığı ile kendini
+                        gösterebilir.
+                    </p>
+
+                    <div class="home-feature-topics-v85">
+                        <button type="button" class="home-feature-chip-v85 js-open-ankilozan-v85">Neden Olur?</button>
+                        <button type="button" class="home-feature-chip-v85 js-open-ankilozan-v85">Belirtiler</button>
+                        <button type="button" class="home-feature-chip-v85 js-open-ankilozan-v85">Nasıl Geçer?</button>
+                    </div>
+
+                    <button type="button" class="home-feature-primary-v85 js-open-ankilozan-v85">
+                        İçeriği Aç
+                    </button>
+                </div>
+            </div>
+
+        </div>
+
+        <!-- V82: HİZALI MODERN ÜST MENÜ -->
+        <nav class="hero-modern-nav-v82" aria-label="Ana sayfa üst menüsü">
         <!-- V32: SADECE 1 MENÜ DEĞİŞTİRİLDİ / AKTİF TEDAVİ MENÜSÜ -->
         <div class="hero-treatment-menu" id="heroTreatmentMenu">
             <button
@@ -137,12 +214,12 @@
                 id="heroTreatmentDropdown"
                 aria-hidden="true"
             >
-                <a href="#osteopati" class="treatment-detail-link-v71" data-treatment-detail="osteopati">Osteopati</a>
-                <a href="#fitoterapi" class="treatment-detail-link-v71" data-treatment-detail="fitoterapi">Fitoterapi</a>
-                <a href="#igne" class="treatment-detail-link-v71" data-treatment-detail="igne">İğne</a>
-                <a href="#hizmetler">Ozon Tedavisi</a>
-                <a href="#hizmetler">Estetiğe Bakış</a>
-                <a href="#damar-yolu" class="treatment-detail-link-v71 treatment-sub-link-v72" data-treatment-detail="damar-yolu">Damar Yolu</a>
+                <a href="#osteopati" class="treatment-detail-link-v71 modern-menu-row-v81" data-treatment-detail="osteopati"><span class="modern-menu-icon-v81"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M8 12V5a1 1 0 0 1 2 0v5-6a1 1 0 0 1 2 0v6-5a1 1 0 0 1 2 0v6-4a1 1 0 0 1 2 0v6c0 4-2.5 7-6 7h-1c-2.4 0-4.3-1.2-5.6-3L2 15.2a1.5 1.5 0 0 1 2.3-1.9L6 15v-3a1 1 0 0 1 2 0Z"/></svg></span><span class="modern-menu-label-v81">Osteopati</span><span class="modern-menu-chevron-v81">›</span></a>
+                <a href="#fitoterapi" class="treatment-detail-link-v71 modern-menu-row-v81" data-treatment-detail="fitoterapi"><span class="modern-menu-icon-v81"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M20 4c-7 0-12 3-14 8-1 2-1 4-1 6 3-4 6-6 10-8-3 2-6 5-8 9h2c1-3 3-5 5-7 4 0 7-3 6-8Z"/><path d="M4 5c4 0 7 2 8 5-2 0-4 .6-6 2-2-1-3-3-2-7Z"/></svg></span><span class="modern-menu-label-v81">Fitoterapi</span><span class="modern-menu-chevron-v81">›</span></a>
+                <a href="#igne" class="treatment-detail-link-v71 modern-menu-row-v81" data-treatment-detail="igne"><span class="modern-menu-icon-v81"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="m14 4 6 6M13 5l6 6M8 10l6 6M6 12l6 6M5 13l6 6-3 3-6-6 3-3Zm10-10 6 6-2 2-6-6 2-2ZM2 22l4-4"/></svg></span><span class="modern-menu-label-v81">İğne</span><span class="modern-menu-chevron-v81">›</span></a>
+                <a href="#hizmetler" class="modern-menu-row-v81"><span class="modern-menu-icon-v81"><svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="9" cy="12" r="5"/><circle cx="16.5" cy="8.5" r="3.5"/><path d="M15 16h5M17.5 13.5v5"/></svg></span><span class="modern-menu-label-v81">Ozon Tedavisi</span><span class="modern-menu-chevron-v81">›</span></a>
+                <a href="#hizmetler" class="modern-menu-row-v81"><span class="modern-menu-icon-v81"><svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="12" r="8"/><path d="M9 10h.01M15 10h.01M9 15c2 1.4 4 1.4 6 0M8 5c2-2 6-2 8 0"/></svg></span><span class="modern-menu-label-v81">Estetiğe Bakış</span><span class="modern-menu-chevron-v81">›</span></a>
+                <a href="#damar-yolu" class="treatment-detail-link-v71 modern-menu-row-v81" data-treatment-detail="damar-yolu"><span class="modern-menu-icon-v81"><svg viewBox="0 0 24 24" aria-hidden="true"><rect x="7" y="3" width="10" height="15" rx="3"/><path d="M10 6h4M12 18v3M9 21h6M10 11h4"/></svg></span><span class="modern-menu-label-v81">Damar Yolu</span><span class="modern-menu-chevron-v81">›</span></a>
             </div>
         </div>
 
@@ -164,11 +241,11 @@
                 id="heroHealthDropdown"
                 aria-hidden="true"
             >
-                <a href="#beslenme" class="health-detail-link-v75" data-health-detail="beslenme">Beslenme</a>
-                <a href="#supplementler" class="health-detail-link-v75" data-health-detail="supplementler">Supplementler</a>
-                <a href="#kurler" class="health-detail-link-v75" data-health-detail="kurler">Kürler</a>
-                <a href="#egzersizler" class="health-detail-link-v75" data-health-detail="egzersizler">Egzersizler</a>
-                <a href="#detoks" class="health-detail-link-v75" data-health-detail="detoks">Detoks</a>
+                <a href="#beslenme" class="health-detail-link-v75 modern-menu-row-v81" data-health-detail="beslenme"><span class="modern-menu-icon-v81"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 7c-2-3-6-2-7 2-1 4 2 10 7 11 5-1 8-7 7-11-1-4-5-5-7-2Z"/><path d="M12 7c0-3 2-5 5-5-1 3-2 5-5 5Z"/></svg></span><span class="modern-menu-label-v81">Beslenme</span><span class="modern-menu-chevron-v81">›</span></a>
+                <a href="#supplementler" class="health-detail-link-v75 modern-menu-row-v81" data-health-detail="supplementler"><span class="modern-menu-icon-v81"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M8 4a5 5 0 0 1 7 0l5 5a5 5 0 0 1-7 7L8 11a5 5 0 0 1 0-7Z"/><path d="m9 12 6-6"/></svg></span><span class="modern-menu-label-v81">Supplementler</span><span class="modern-menu-chevron-v81">›</span></a>
+                <a href="#kurler" class="health-detail-link-v75 modern-menu-row-v81" data-health-detail="kurler"><span class="modern-menu-icon-v81"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 21v-8M12 13c-5 0-8-3-8-8 5 0 8 3 8 8ZM12 13c0-5 3-8 8-8 0 5-3 8-8 8Z"/></svg></span><span class="modern-menu-label-v81">Kürler</span><span class="modern-menu-chevron-v81">›</span></a>
+                <a href="#egzersizler" class="health-detail-link-v75 modern-menu-row-v81" data-health-detail="egzersizler"><span class="modern-menu-icon-v81"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M6 9v6M18 9v6M3 10v4M21 10v4M6 12h12"/></svg></span><span class="modern-menu-label-v81">Egzersizler</span><span class="modern-menu-chevron-v81">›</span></a>
+                <a href="#detoks" class="health-detail-link-v75 modern-menu-row-v81" data-health-detail="detoks"><span class="modern-menu-icon-v81"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 3s6 6 6 11a6 6 0 0 1-12 0c0-5 6-11 6-11Z"/><path d="M9 15c.5 1.5 1.5 2 3 2"/></svg></span><span class="modern-menu-label-v81">Detoks</span><span class="modern-menu-chevron-v81">›</span></a>
             </div>
         </div>
         <!-- V35: TEDAVİ ALANLARI BUTONU -->
@@ -253,20 +330,176 @@
             </div>
         </div>
 
-        <!-- V47: GÖRSELDEKİ HAKKIMDA YAZISINI AKTİF HALE GETİREN TIKLAMA ALANI -->
-        <!-- V59: ANA EKRAN ALT BAŞLIK -->
-        <div class="hero-bottom-title-v59">
-            <span class="hero-category-v59">Genel</span>
+        </nav>
+</section>
 
-            <button
-                type="button"
-                class="hero-about-title-v59"
-                id="heroAboutButton"
-                aria-label="Hakkımda sayfasını aç"
-                aria-controls="hakkimdaPage"
-            >
-                Hakkımda
+    <section
+        class="ankilozan-faq-section-v85 ankilozan-page-v87"
+        id="ankilozanFaqSectionV85"
+        aria-label="Ankilozan spondilit bilgi alanı"
+        aria-hidden="true"
+    >
+
+        <nav class="ankilozan-page-nav-v87" aria-label="Ankilozan Spondilit hızlı geçiş menüsü">
+
+            <button type="button" class="ankilozan-nav-button-v87" id="ankilozanHomeButtonV87">
+                Ana Sayfa
+                <span>⌂</span>
             </button>
+
+            <div class="ankilozan-health-menu-v88" id="ankilozanHealthMenuV88">
+
+                <button
+                    type="button"
+                    class="ankilozan-nav-button-v87 ankilozan-health-button-v88"
+                    id="ankilozanHealthButtonV88"
+                    aria-expanded="false"
+                    aria-controls="ankilozanHealthDropdownV88"
+                >
+                    Genel Sağlık
+                    <span>⌄</span>
+                </button>
+
+                <div
+                    class="ankilozan-health-dropdown-v88"
+                    id="ankilozanHealthDropdownV88"
+                    aria-hidden="true"
+                >
+                    <a href="#beslenme" class="health-detail-link-v75" data-health-detail="beslenme">
+                        Beslenme
+                    </a>
+
+                    <a href="#supplementler" class="health-detail-link-v75" data-health-detail="supplementler">
+                        Supplementler
+                    </a>
+
+                    <a href="#kurler" class="health-detail-link-v75" data-health-detail="kurler">
+                        Kürler
+                    </a>
+
+                    <a href="#egzersizler" class="health-detail-link-v75" data-health-detail="egzersizler">
+                        Egzersizler
+                    </a>
+
+                    <a href="#detoks" class="health-detail-link-v75" data-health-detail="detoks">
+                        Detoks
+                    </a>
+                </div>
+
+            </div>
+
+            <button type="button" class="ankilozan-nav-button-v87" id="ankilozanTreatmentAreasButtonV87">
+                Tedavi Alanları
+                <span>→</span>
+            </button>
+
+            <button type="button" class="ankilozan-nav-button-v87" id="ankilozanPainButtonV87">
+                Ağrı
+                <span>→</span>
+            </button>
+
+            <button type="button" class="ankilozan-nav-button-v87" id="ankilozanMediaButtonV87">
+                Medya
+                <span>→</span>
+            </button>
+
+            <button type="button" class="ankilozan-nav-button-v87" id="ankilozanInfoButtonV87">
+                Bilgi
+                <span>⌄</span>
+            </button>
+
+        </nav>
+
+        <div class="ankilozan-page-hero-v87">
+            <div class="ankilozan-page-hero-inner-v87">
+                <span class="ankilozan-page-kicker-v87">TEDAVİ ALANI</span>
+                <h1>Ankilozan <span>Spondilit</span></h1>
+                <p>Hastalık hakkında temel bilgiler ve sık sorulan sorular.</p>
+            </div>
+        </div>
+
+        <div class="ankilozan-faq-inner-v85">
+            <div class="ankilozan-faq-heading-v85">
+                <span class="ankilozan-faq-kicker-v85">BİLGİ ALANI</span>
+                <h2>Ankilozan Spondilit Hakkında Sık Sorulanlar</h2>
+                <p>
+                    Aşağıdaki başlıklarda ankilozan spondilit ile ilgili temel sorulara sade ve anlaşılır yanıtlar
+                    bulabilirsiniz.
+                </p>
+            </div>
+
+            <div class="ankilozan-faq-list-v85">
+                <article class="ankilozan-faq-item-v85 is-open">
+                    <button type="button" class="ankilozan-faq-question-v85" aria-expanded="true">
+                        <span>Ankilozan spondilit nedir?</span>
+                        <span class="ankilozan-faq-plus-v85">+</span>
+                    </button>
+                    <div class="ankilozan-faq-answer-v85">
+                        <p>
+                            Ankilozan spondilit; en sık omurga ve sakroiliak eklemleri etkileyen, zamanla hareket
+                            kısıtlılığına yol açabilen iltihaplı romatizmal bir hastalıktır. Erken dönemde bel ve sırt
+                            ağrısı, sabah tutukluğu ve uzun süre hareketsiz kalınca artan yakınmalar görülebilir.
+                        </p>
+                    </div>
+                </article>
+
+                <article class="ankilozan-faq-item-v85">
+                    <button type="button" class="ankilozan-faq-question-v85" aria-expanded="false">
+                        <span>Ankilozan spondilit neden olur?</span>
+                        <span class="ankilozan-faq-plus-v85">+</span>
+                    </button>
+                    <div class="ankilozan-faq-answer-v85">
+                        <p>
+                            Tek bir nedene bağlı değildir. Genetik yatkınlık, bağışıklık sistemi ile ilişkili süreçler ve
+                            bazı çevresel faktörler rol oynayabilir. Aile öyküsü olan kişilerde risk artabilir; ancak her
+                            genetik yatkınlığı olan kişide hastalık gelişecek diye bir kural yoktur.
+                        </p>
+                    </div>
+                </article>
+
+                <article class="ankilozan-faq-item-v85">
+                    <button type="button" class="ankilozan-faq-question-v85" aria-expanded="false">
+                        <span>Belirtileri nelerdir?</span>
+                        <span class="ankilozan-faq-plus-v85">+</span>
+                    </button>
+                    <div class="ankilozan-faq-answer-v85">
+                        <p>
+                            En sık görülen belirtiler; sabahları belirginleşen bel-sırt ağrısı, tutukluk, hareketle rahatlama,
+                            uzun süre oturma sonrası zorlanma, kalça ağrısı ve postürde değişiklik hissidir. Bazı kişilerde
+                            yorgunluk, topuk ağrısı veya gözde üveit gibi ek bulgular da eşlik edebilir.
+                        </p>
+                    </div>
+                </article>
+
+                <article class="ankilozan-faq-item-v85">
+                    <button type="button" class="ankilozan-faq-question-v85" aria-expanded="false">
+                        <span>Nasıl hafifler, neler iyi gelebilir?</span>
+                        <span class="ankilozan-faq-plus-v85">+</span>
+                    </button>
+                    <div class="ankilozan-faq-answer-v85">
+                        <p>
+                            Düzenli egzersiz, uygun postür, kişiye özel hareket planı, hekim değerlendirmesi ile belirlenen
+                            tedavi yaklaşımı ve günlük yaşam düzenlemeleri yakınmaların kontrolünde yardımcı olabilir. Uzun
+                            süre hareketsiz kalmamak, omurga hareketliliğini korumak ve uygun uyku-duruş alışkanlıkları da
+                            destekleyici olabilir.
+                        </p>
+                    </div>
+                </article>
+
+                <article class="ankilozan-faq-item-v85">
+                    <button type="button" class="ankilozan-faq-question-v85" aria-expanded="false">
+                        <span>Ne zaman değerlendirme gerekir?</span>
+                        <span class="ankilozan-faq-plus-v85">+</span>
+                    </button>
+                    <div class="ankilozan-faq-answer-v85">
+                        <p>
+                            Uzun süren bel-sırt ağrınız, sabah tutukluğunuz, kalça ağrınız veya hareket kısıtlılığınız varsa;
+                            özellikle ağrılar gece artıyor ve hareketle rahatlıyorsa değerlendirme önemlidir. Kişisel öykü,
+                            muayene ve gerekli görülen tetkiklerle uygun yol haritası belirlenebilir.
+                        </p>
+                    </div>
+                </article>
+            </div>
         </div>
     </section>
 
@@ -427,9 +660,9 @@
         <div class="treatment-content">
             <div class="treatment-grid treatment-grid-v77">
 
-                <a class="treatment-card treatment-card-v77" href="#tedavi-alanlari" data-disease="ankilozan-spondilit">
+                <a class="treatment-card treatment-card-v77 ankilozan-card-link-v87" href="#ankilozan-spondilit" data-disease="ankilozan-spondilit">
                     <div class="treatment-card-image-v77">
-                        <img src="./disease-ankilozan-spondilit-v77.png?v=77" alt="Ankilozan spondilit için omurga ve sakroiliak bölge görseli">
+                        <img src="./disease-ankilozan-spondilit-v77.png?v=93" alt="Ankilozan spondilit için omurga ve sakroiliak bölge görseli">
                     </div>
                     <div class="treatment-card-body-v77">
                         <h3>Ankilozan Spondilit</h3>
@@ -440,7 +673,7 @@
 
                 <a class="treatment-card treatment-card-v77" href="#tedavi-alanlari" data-disease="bas-agrisi-migren">
                     <div class="treatment-card-image-v77">
-                        <img src="./disease-bas-agrisi-migren-v77.png?v=77" alt="Baş ağrısı ve migreni gösteren medikal görsel">
+                        <img src="./disease-bas-agrisi-migren-v77.png?v=93" alt="Baş ağrısı ve migreni gösteren medikal görsel">
                     </div>
                     <div class="treatment-card-body-v77">
                         <h3>Baş Ağrısı ve Migren</h3>
@@ -451,7 +684,7 @@
 
                 <a class="treatment-card treatment-card-v77" href="#tedavi-alanlari" data-disease="bel-sirt-agrisi">
                     <div class="treatment-card-image-v77">
-                        <img src="./disease-bel-sirt-agrisi-v77.png?v=77" alt="Bel ve sırt ağrısını gösteren omurga görseli">
+                        <img src="./disease-bel-sirt-agrisi-v77.png?v=93" alt="Bel ve sırt ağrısını gösteren omurga görseli">
                     </div>
                     <div class="treatment-card-body-v77">
                         <h3>Bel ve Sırt Ağrısı</h3>
@@ -462,7 +695,7 @@
 
                 <a class="treatment-card treatment-card-v77" href="#tedavi-alanlari" data-disease="fibromiyalji">
                     <div class="treatment-card-image-v77">
-                        <img src="./disease-fibromiyalji-v77.png?v=77" alt="Fibromiyaljide yaygın ağrı bölgelerini gösteren medikal görsel">
+                        <img src="./disease-fibromiyalji-v77.png?v=93" alt="Fibromiyaljide yaygın ağrı bölgelerini gösteren medikal görsel">
                     </div>
                     <div class="treatment-card-body-v77">
                         <h3>Fibromiyalji</h3>
@@ -473,7 +706,7 @@
 
                 <a class="treatment-card treatment-card-v77" href="#tedavi-alanlari" data-disease="huzursuz-bacak">
                     <div class="treatment-card-image-v77">
-                        <img src="./disease-huzursuz-bacak-v77.png?v=77" alt="Bacak sinirlerini gösteren medikal görsel">
+                        <img src="./disease-huzursuz-bacak-v77.png?v=93" alt="Bacak sinirlerini gösteren medikal görsel">
                     </div>
                     <div class="treatment-card-body-v77">
                         <h3>Huzursuz Bacak Sendromu</h3>
@@ -484,7 +717,7 @@
 
                 <a class="treatment-card treatment-card-v77" href="#tedavi-alanlari" data-disease="iltihabi-bagirsak">
                     <div class="treatment-card-image-v77">
-                        <img src="./disease-iltihabi-bagirsak-v77.png?v=77" alt="İltihabi bağırsak hastalıklarını temsil eden medikal görsel">
+                        <img src="./disease-iltihabi-bagirsak-v77.png?v=93" alt="İltihabi bağırsak hastalıklarını temsil eden medikal görsel">
                     </div>
                     <div class="treatment-card-body-v77">
                         <h3>İltihabi Bağırsak</h3>
@@ -495,7 +728,7 @@
 
                 <a class="treatment-card treatment-card-v77" href="#tedavi-alanlari" data-disease="kronik-yorgunluk">
                     <div class="treatment-card-image-v77">
-                        <img src="./disease-kronik-yorgunluk-v77.png?v=77" alt="Kronik yorgunluğu temsil eden medikal görsel">
+                        <img src="./disease-kronik-yorgunluk-v77.png?v=93" alt="Kronik yorgunluğu temsil eden medikal görsel">
                     </div>
                     <div class="treatment-card-body-v77">
                         <h3>Kronik Yorgunluk</h3>
@@ -506,7 +739,7 @@
 
                 <a class="treatment-card treatment-card-v77" href="#tedavi-alanlari" data-disease="romatoid-artrit">
                     <div class="treatment-card-image-v77">
-                        <img src="./disease-romatoid-artrit-v77.png?v=77" alt="Romatoid artritte el ve el bileği eklemlerini gösteren medikal görsel">
+                        <img src="./disease-romatoid-artrit-v77.png?v=93" alt="Romatoid artritte el ve el bileği eklemlerini gösteren medikal görsel">
                     </div>
                     <div class="treatment-card-body-v77">
                         <h3>Romatoid Artrit</h3>
@@ -514,19 +747,7 @@
                         <span>Detayları Gör ↗</span>
                     </div>
                 </a>
-
-                <a class="treatment-card treatment-card-v77" href="#tedavi-alanlari" data-disease="tip-2-diyabet">
-                    <div class="treatment-card-image-v77">
-                        <img src="./disease-tip2-diyabet-v77.png?v=77" alt="Tip 2 diyabet ve kan şekeri ölçümünü temsil eden medikal görsel">
-                    </div>
-                    <div class="treatment-card-body-v77">
-                        <h3>Tip 2 Diyabet</h3>
-                        <p>Beslenme, hareket ve yaşam tarzı başlıklarının bütüncül değerlendirilmesi.</p>
-                        <span>Detayları Gör ↗</span>
-                    </div>
-                </a>
-
-            </div>
+</div>
         </div>
 
     </section>
@@ -686,7 +907,7 @@
 
                 <a class="pain-card pain-card-v76" href="#agri" data-pain="diz">
                     <div class="pain-card-image-v76">
-                        <img src="./pain-diz-v76.png?v=76" alt="Diz ağrısını gösteren medikal görsel">
+                        <img src="./pain-diz-v76.png?v=93" alt="Diz ağrısını gösteren medikal görsel">
                     </div>
                     <div class="pain-card-body-v76">
                         <h3>Diz Ağrısı</h3>
@@ -697,7 +918,7 @@
 
                 <a class="pain-card pain-card-v76" href="#agri" data-pain="ayak-ayak-bilegi">
                     <div class="pain-card-image-v76">
-                        <img src="./pain-ayak-bilegi-v76.png?v=76" alt="Ayak ve ayak bileği ağrısını gösteren medikal görsel">
+                        <img src="./pain-ayak-bilegi-v76.png?v=93" alt="Ayak ve ayak bileği ağrısını gösteren medikal görsel">
                     </div>
                     <div class="pain-card-body-v76">
                         <h3>Ayak - Ayak Bileği Ağrısı</h3>
@@ -708,7 +929,7 @@
 
                 <a class="pain-card pain-card-v76" href="#agri" data-pain="kalca">
                     <div class="pain-card-image-v76">
-                        <img src="./pain-kalca-v76.png?v=76" alt="Kalça ağrısını gösteren medikal görsel">
+                        <img src="./pain-kalca-v76.png?v=93" alt="Kalça ağrısını gösteren medikal görsel">
                     </div>
                     <div class="pain-card-body-v76">
                         <h3>Kalça Ağrısı</h3>
@@ -719,7 +940,7 @@
 
                 <a class="pain-card pain-card-v76" href="#agri" data-pain="dirsek">
                     <div class="pain-card-image-v76">
-                        <img src="./pain-dirsek-v76.png?v=76" alt="Dirsek ağrısını gösteren medikal görsel">
+                        <img src="./pain-dirsek-v76.png?v=93" alt="Dirsek ağrısını gösteren medikal görsel">
                     </div>
                     <div class="pain-card-body-v76">
                         <h3>Dirsek Ağrısı</h3>
@@ -730,7 +951,7 @@
 
                 <a class="pain-card pain-card-v76" href="#agri" data-pain="omuz">
                     <div class="pain-card-image-v76">
-                        <img src="./pain-omuz-v76.png?v=76" alt="Omuz ağrısını gösteren medikal görsel">
+                        <img src="./pain-omuz-v76.png?v=93" alt="Omuz ağrısını gösteren medikal görsel">
                     </div>
                     <div class="pain-card-body-v76">
                         <h3>Omuz Ağrısı</h3>
@@ -741,7 +962,7 @@
 
                 <a class="pain-card pain-card-v76" href="#agri" data-pain="el-bilegi">
                     <div class="pain-card-image-v76">
-                        <img src="./pain-el-bilegi-v76.png?v=76" alt="El bileği ağrısını gösteren medikal görsel">
+                        <img src="./pain-el-bilegi-v76.png?v=93" alt="El bileği ağrısını gösteren medikal görsel">
                     </div>
                     <div class="pain-card-body-v76">
                         <h3>El Bileği Ağrısı</h3>
@@ -1263,18 +1484,8 @@
                 <article class="injection-card-v72">
                     <h2>Ozonlu İğne</h2>
 
-                    <div class="injection-visual-v72 ozone-injection-v72" aria-hidden="true">
-                        <svg viewBox="0 0 420 250">
-                            <path d="M95 164h155" stroke="#238ec4" stroke-width="12" stroke-linecap="round"/>
-                            <path d="M247 164l72-36" stroke="#6a7d87" stroke-width="6" stroke-linecap="round"/>
-                            <path d="M316 128l34-17" stroke="#6a7d87" stroke-width="3" stroke-linecap="round"/>
-                            <rect x="105" y="131" width="128" height="66" rx="18" fill="#eaf7ff" stroke="#238ec4" stroke-width="5"/>
-                            <circle cx="151" cy="163" r="14" fill="#fff" opacity=".92"/>
-                            <circle cx="184" cy="149" r="10" fill="#fff" opacity=".92"/>
-                            <circle cx="201" cy="176" r="8" fill="#fff" opacity=".92"/>
-                            <circle cx="311" cy="82" r="25" fill="#c6edff"/>
-                            <circle cx="342" cy="61" r="15" fill="#e8f8ff"/>
-                        </svg>
+                    <div class="injection-visual-v72 injection-photo-v79 ozone-injection-v72">
+                        <img src="./injection-ozon-v80.png?v=93" alt="Ozonlu iğne uygulamasını temsil eden gerçekçi medikal görsel">
                     </div>
 
                     <p>
@@ -1288,14 +1499,8 @@
                 <article class="injection-card-v72">
                     <h2>Proloterapi İğnesi</h2>
 
-                    <div class="injection-visual-v72 prolotherapy-v72" aria-hidden="true">
-                        <svg viewBox="0 0 420 250">
-                            <path d="M103 154c51-66 112-86 181-60" fill="none" stroke="#8ecf98" stroke-width="28" stroke-linecap="round" opacity=".5"/>
-                            <circle cx="222" cy="127" r="42" fill="#effaf1" stroke="#54a968" stroke-width="5"/>
-                            <path d="M90 184l109-45" stroke="#6a7d87" stroke-width="6" stroke-linecap="round"/>
-                            <path d="M197 139l50-20" stroke="#6a7d87" stroke-width="3" stroke-linecap="round"/>
-                            <path d="M215 108c18 8 32 20 41 37" fill="none" stroke="#54a968" stroke-width="7" stroke-linecap="round"/>
-                        </svg>
+                    <div class="injection-visual-v72 injection-photo-v79 prolotherapy-v72">
+                        <img src="./injection-proloterapi-v80.png?v=93" alt="Proloterapi iğnesini temsil eden gerçekçi medikal görsel">
                     </div>
 
                     <p>
@@ -1310,14 +1515,8 @@
                 <article class="injection-card-v72">
                     <h2>Nöral Terapi İğnesi</h2>
 
-                    <div class="injection-visual-v72 neural-therapy-v72" aria-hidden="true">
-                        <svg viewBox="0 0 420 250">
-                            <path d="M126 64c25 34 25 67 0 100 25 34 25 67 0 100" fill="none" stroke="#77bde1" stroke-width="11" stroke-linecap="round"/>
-                            <path d="M170 64c25 34 25 67 0 100 25 34 25 67 0 100" fill="none" stroke="#a5d9f2" stroke-width="8" stroke-linecap="round"/>
-                            <path d="M300 92l-91 61" stroke="#6a7d87" stroke-width="6" stroke-linecap="round"/>
-                            <path d="M211 151l-42 28" stroke="#6a7d87" stroke-width="3" stroke-linecap="round"/>
-                            <circle cx="207" cy="154" r="18" fill="#e8f7ff" stroke="#238ec4" stroke-width="5"/>
-                        </svg>
+                    <div class="injection-visual-v72 injection-photo-v79 neural-therapy-v72">
+                        <img src="./injection-noral-terapi-v80.png?v=93" alt="Nöral terapi iğnesini temsil eden gerçekçi medikal görsel">
                     </div>
 
                     <p>
@@ -1331,15 +1530,8 @@
                 <article class="injection-card-v72">
                     <h2>NöralPro İğnesi</h2>
 
-                    <div class="injection-visual-v72 neuralpro-v72" aria-hidden="true">
-                        <svg viewBox="0 0 420 250">
-                            <circle cx="210" cy="125" r="80" fill="#f4f0ff" stroke="#7a63c7" stroke-width="5"/>
-                            <path d="M166 131c22-35 53-51 91-47" fill="none" stroke="#7a63c7" stroke-width="9" stroke-linecap="round"/>
-                            <path d="M287 64l-61 48" stroke="#6a7d87" stroke-width="6" stroke-linecap="round"/>
-                            <path d="M227 111l-35 28" stroke="#6a7d87" stroke-width="3" stroke-linecap="round"/>
-                            <circle cx="189" cy="141" r="15" fill="#fff" stroke="#7a63c7" stroke-width="5"/>
-                            <text x="210" y="198" text-anchor="middle" font-size="25" font-weight="800" fill="#6b57b7">NÖRALPRO</text>
-                        </svg>
+                    <div class="injection-visual-v72 injection-photo-v79 neuralpro-v72">
+                        <img src="./injection-noralpro-v80.png?v=93" alt="NöralPro iğnesini temsil eden gerçekçi medikal görsel">
                     </div>
 
                     <p>
@@ -1380,16 +1572,12 @@
                 <article class="serum-card-v71">
                     <h2>Ozonlu Serum</h2>
 
-                    <div class="serum-visual-v71 ozone-serum-v71" aria-hidden="true">
-                        <svg viewBox="0 0 420 250">
-                            <rect x="150" y="30" width="120" height="142" rx="22" fill="#eaf7ff" stroke="#2092ca" stroke-width="5"/>
-                            <path d="M177 65h66v70h-66Z" fill="#9edcff" opacity=".7"/>
-                            <circle cx="189" cy="98" r="10" fill="#fff" opacity=".85"/>
-                            <circle cx="218" cy="82" r="7" fill="#fff" opacity=".85"/>
-                            <circle cx="233" cy="112" r="6" fill="#fff" opacity=".85"/>
-                            <path d="M210 172v46c0 20 32 15 32 0" fill="none" stroke="#2092ca" stroke-width="5" stroke-linecap="round"/>
-                            <path d="M240 218h35" stroke="#2092ca" stroke-width="5" stroke-linecap="round"/>
-                        </svg>
+                    <div class="serum-visual-v71 serum-photo-v78 ozone-serum-v71">
+                        <img src="./serum-ozon-v78.png?v=93" alt="Ozonlu serum için gerçekçi damar yolu görseli">
+                        <div class="serum-photo-label-v78 serum-photo-label-blue-v78">
+                            <strong>OZON</strong>
+                            <span>O₃</span>
+                        </div>
                     </div>
 
                     <p>
@@ -1403,15 +1591,12 @@
                 <article class="serum-card-v71">
                     <h2>C Vitamini Serumu</h2>
 
-                    <div class="serum-visual-v71 vitamin-c-v71" aria-hidden="true">
-                        <svg viewBox="0 0 420 250">
-                            <rect x="150" y="30" width="120" height="142" rx="22" fill="#fff6dd" stroke="#e4a62d" stroke-width="5"/>
-                            <path d="M177 65h66v70h-66Z" fill="#ffd26c" opacity=".82"/>
-                            <circle cx="210" cy="100" r="30" fill="#fff" opacity=".92"/>
-                            <text x="210" y="112" text-anchor="middle" font-size="35" font-weight="800" fill="#e59a16">C</text>
-                            <path d="M210 172v46c0 20 32 15 32 0" fill="none" stroke="#e4a62d" stroke-width="5" stroke-linecap="round"/>
-                            <path d="M240 218h35" stroke="#e4a62d" stroke-width="5" stroke-linecap="round"/>
-                        </svg>
+                    <div class="serum-visual-v71 serum-photo-v78 vitamin-c-v71">
+                        <img src="./serum-c-vitamini-v78.png?v=93" alt="C vitamini serumu için gerçekçi damar yolu görseli">
+                        <div class="serum-photo-label-v78 serum-photo-label-gold-v78">
+                            <strong>C</strong>
+                            <span>VİTAMİNİ</span>
+                        </div>
                     </div>
 
                     <p>
@@ -1426,15 +1611,11 @@
                 <article class="serum-card-v71">
                     <h2>Glutatyon</h2>
 
-                    <div class="serum-visual-v71 glutathione-v71" aria-hidden="true">
-                        <svg viewBox="0 0 420 250">
-                            <rect x="150" y="30" width="120" height="142" rx="22" fill="#eefcf1" stroke="#49a866" stroke-width="5"/>
-                            <path d="M177 65h66v70h-66Z" fill="#9ae0ad" opacity=".72"/>
-                            <path d="M188 107c18-39 47-48 70-53-5 37-22 66-55 78-10-9-15-17-15-25Z" fill="#fff" opacity=".92"/>
-                            <path d="M205 125c7-25 20-44 42-58" fill="none" stroke="#49a866" stroke-width="5" stroke-linecap="round"/>
-                            <path d="M210 172v46c0 20 32 15 32 0" fill="none" stroke="#49a866" stroke-width="5" stroke-linecap="round"/>
-                            <path d="M240 218h35" stroke="#49a866" stroke-width="5" stroke-linecap="round"/>
-                        </svg>
+                    <div class="serum-visual-v71 serum-photo-v78 glutathione-v71">
+                        <img src="./serum-glutatyon-v78.png?v=93" alt="Glutatyon serumu için gerçekçi damar yolu görseli">
+                        <div class="serum-photo-label-v78 serum-photo-label-green-v78">
+                            <strong>GLUTATYON</strong>
+                        </div>
                     </div>
 
                     <p>
@@ -1448,15 +1629,12 @@
                 <article class="serum-card-v71">
                     <h2>Major Ozon</h2>
 
-                    <div class="serum-visual-v71 major-ozone-v71" aria-hidden="true">
-                        <svg viewBox="0 0 420 250">
-                            <path d="M128 73h116c18 0 28 13 28 30v62c0 28-22 48-50 48h-72c-28 0-50-20-50-48v-62c0-17 10-30 28-30Z" fill="#eef7ff" stroke="#278bc2" stroke-width="5"/>
-                            <path d="M114 144c40-27 97-27 144 0v21c0 21-17 36-38 36h-68c-21 0-38-15-38-36Z" fill="#d96a65" opacity=".70"/>
-                            <circle cx="311" cy="78" r="30" fill="#b8e5ff"/>
-                            <circle cx="337" cy="110" r="18" fill="#dff4ff"/>
-                            <circle cx="301" cy="124" r="12" fill="#fff"/>
-                            <path d="M244 104c48-2 62-15 67-28" fill="none" stroke="#278bc2" stroke-width="5" stroke-linecap="round"/>
-                        </svg>
+                    <div class="serum-visual-v71 serum-photo-v78 major-ozone-v71">
+                        <img src="./serum-major-ozon-v78.png?v=93" alt="Major ozon uygulaması için gerçekçi kan ve ozon sistemi görseli">
+                        <div class="serum-photo-label-v78 serum-photo-label-red-v78">
+                            <strong>MAJOR</strong>
+                            <span>OZON</span>
+                        </div>
                     </div>
 
                     <p>
@@ -1889,6 +2067,47 @@
             >
                 Ana Sayfa
             </button>
+
+            <div class="media-health-menu-v84" id="mediaHealthMenuV84">
+
+                <button
+                    type="button"
+                    class="media-page-nav-button-v48 media-health-button-v84"
+                    id="mediaHealthButtonV84"
+                    aria-expanded="false"
+                    aria-controls="mediaHealthDropdownV84"
+                >
+                    Genel Sağlık
+                    <span>⌄</span>
+                </button>
+
+                <div
+                    class="media-health-dropdown-v84"
+                    id="mediaHealthDropdownV84"
+                    aria-hidden="true"
+                >
+                    <a href="#beslenme" class="health-detail-link-v75" data-health-detail="beslenme">
+                        Beslenme
+                    </a>
+
+                    <a href="#supplementler" class="health-detail-link-v75" data-health-detail="supplementler">
+                        Supplementler
+                    </a>
+
+                    <a href="#kurler" class="health-detail-link-v75" data-health-detail="kurler">
+                        Kürler
+                    </a>
+
+                    <a href="#egzersizler" class="health-detail-link-v75" data-health-detail="egzersizler">
+                        Egzersizler
+                    </a>
+
+                    <a href="#detoks" class="health-detail-link-v75" data-health-detail="detoks">
+                        Detoks
+                    </a>
+                </div>
+
+            </div>
 
             <button
                 type="button"
@@ -2800,7 +3019,7 @@
     </button>
 
 
-    <script src="script.js?v=77"></script>
+    <script src="script.js?v=93"></script>
 
 </body>
 

@@ -1681,6 +1681,20 @@ if (
             "aria-hidden",
             willOpen ? "false" : "true"
         );
+
+        if (
+            typeof heroHealthMenu !== "undefined" &&
+            heroHealthMenu &&
+            willOpen
+        ) {
+            heroHealthMenu.classList.remove("open");
+            if (heroHealthButton) {
+                heroHealthButton.setAttribute("aria-expanded", "false");
+            }
+            if (heroHealthDropdown) {
+                heroHealthDropdown.setAttribute("aria-hidden", "true");
+            }
+        }
     });
 
     heroTreatmentDropdown
@@ -3798,5 +3812,635 @@ window.addEventListener("load", async () => {
     if (validHealthSections.has(initialHash) && healthDetailPage) {
         openGeneralHealthDetailV75(initialHash);
     }
+
+})();
+
+
+// =========================================================
+// V84 - MEDYA SAYFASI GENEL SAĞLIK DROPDOWN
+// =========================================================
+(function () {
+
+    const menu =
+        document.getElementById("mediaHealthMenuV84");
+
+    const button =
+        document.getElementById("mediaHealthButtonV84");
+
+    const dropdown =
+        document.getElementById("mediaHealthDropdownV84");
+
+    if (!menu || !button || !dropdown) {
+        return;
+    }
+
+    function closeMediaHealthMenuV84() {
+        menu.classList.remove("open");
+        button.setAttribute("aria-expanded", "false");
+        dropdown.setAttribute("aria-hidden", "true");
+    }
+
+    button.addEventListener("click", event => {
+        event.preventDefault();
+        event.stopPropagation();
+
+        const willOpen =
+            !menu.classList.contains("open");
+
+        menu.classList.toggle("open", willOpen);
+
+        button.setAttribute(
+            "aria-expanded",
+            willOpen ? "true" : "false"
+        );
+
+        dropdown.setAttribute(
+            "aria-hidden",
+            willOpen ? "false" : "true"
+        );
+    });
+
+    dropdown.addEventListener("click", () => {
+        closeMediaHealthMenuV84();
+    });
+
+    document.addEventListener("click", event => {
+        if (!menu.contains(event.target)) {
+            closeMediaHealthMenuV84();
+        }
+    });
+
+    document.addEventListener("keydown", event => {
+        if (event.key === "Escape") {
+            closeMediaHealthMenuV84();
+        }
+    });
+
+})();
+
+
+// =========================================================
+// V85 - ANA SAYFA ANKİLOZAN SPONDİLİT HERO + SSS
+// =========================================================
+(function () {
+    const faqSection = document.getElementById('ankilozanFaqSectionV85');
+    const heroTitleButton = document.getElementById('ankilozanHeroButtonV85');
+    const openButtons = document.querySelectorAll('.js-open-ankilozan-v85');
+    const faqQuestions = document.querySelectorAll('.ankilozan-faq-question-v85');
+
+    function openAnkilozanSectionV85() {
+        if (!faqSection) return;
+        faqSection.scrollIntoView({ behavior: 'smooth', block: 'start' });
+    }
+
+    if (heroTitleButton) {
+        heroTitleButton.addEventListener('click', openAnkilozanSectionV85);
+    }
+
+    openButtons.forEach(button => {
+        button.addEventListener('click', openAnkilozanSectionV85);
+    });
+
+    faqQuestions.forEach(button => {
+        button.addEventListener('click', () => {
+            const item = button.closest('.ankilozan-faq-item-v85');
+            if (!item) return;
+            const isOpen = item.classList.contains('is-open');
+
+            faqQuestions.forEach(otherButton => {
+                const otherItem = otherButton.closest('.ankilozan-faq-item-v85');
+                if (!otherItem) return;
+                otherItem.classList.remove('is-open');
+                otherButton.setAttribute('aria-expanded', 'false');
+            });
+
+            if (!isOpen) {
+                item.classList.add('is-open');
+                button.setAttribute('aria-expanded', 'true');
+            }
+        });
+    });
+})();
+
+
+// =========================================================
+// V86 - ANA HERO: DOKTOR VARSAYILAN, AS İSTEĞE BAĞLI
+// =========================================================
+(function () {
+
+    const slider = document.getElementById("heroSliderV86");
+    const doctorSlide = slider
+        ? slider.querySelector('[data-hero-slide="doctor"]')
+        : null;
+    const asSlide = slider
+        ? slider.querySelector('[data-hero-slide="ankilozan"]')
+        : null;
+
+    const nextButton = document.getElementById("heroNextV86");
+    const prevButton = document.getElementById("heroPrevV86");
+
+    if (!doctorSlide || !asSlide) return;
+
+    function showDoctorSlideV86() {
+        doctorSlide.classList.add("is-active");
+        doctorSlide.removeAttribute("aria-hidden");
+
+        asSlide.classList.remove("is-active");
+        asSlide.setAttribute("aria-hidden", "true");
+    }
+
+    function showAnkilozanSlideV86() {
+        asSlide.classList.add("is-active");
+        asSlide.removeAttribute("aria-hidden");
+
+        doctorSlide.classList.remove("is-active");
+        doctorSlide.setAttribute("aria-hidden", "true");
+    }
+
+    if (nextButton) {
+        nextButton.addEventListener("click", showAnkilozanSlideV86);
+    }
+
+    if (prevButton) {
+        prevButton.addEventListener("click", showDoctorSlideV86);
+    }
+
+    // Sayfa her açıldığında ilk görünen ekran daima doktor olsun.
+    showDoctorSlideV86();
+
+})();
+
+
+// =========================================================
+// V87 - ANKİLOZAN SPONDİLİT ÖZEL SAYFASI
+// =========================================================
+(function () {
+
+    const page =
+        document.getElementById("ankilozanFaqSectionV85");
+
+    const heroTitle =
+        document.getElementById("ankilozanHeroButtonV85");
+
+    const openButtons =
+        document.querySelectorAll(".js-open-ankilozan-v85");
+
+    const treatmentCard =
+        document.querySelector(".ankilozan-card-link-v87");
+
+    const homeButton =
+        document.getElementById("ankilozanHomeButtonV87");
+
+    const treatmentAreasButton =
+        document.getElementById("ankilozanTreatmentAreasButtonV87");
+
+    const painButton =
+        document.getElementById("ankilozanPainButtonV87");
+
+    const mediaButton =
+        document.getElementById("ankilozanMediaButtonV87");
+
+    function closeOtherPagesV87() {
+
+        document.body.classList.remove(
+            "treatment-page-open",
+            "treatment-nav-scrolled",
+            "pain-page-open",
+            "pain-nav-scrolled",
+            "media-page-open",
+            "about-page-open",
+            "about-nav-scrolled",
+            "legal-page-open-v56",
+            "treatment-detail-open-v71",
+            "general-health-detail-open-v75"
+        );
+
+        const otherPages = [
+            document.getElementById("tedaviAlanlariPage"),
+            document.getElementById("agriPage"),
+            document.getElementById("medyaPage"),
+            document.getElementById("hakkimdaPage")
+        ];
+
+        otherPages.forEach(item => {
+            if (item) {
+                item.setAttribute("aria-hidden", "true");
+            }
+        });
+    }
+
+    function openAnkilozanPageV87() {
+
+        if (!page) return;
+
+        closeOtherPagesV87();
+
+        document.body.classList.add(
+            "ankilozan-page-open-v87"
+        );
+
+        page.setAttribute(
+            "aria-hidden",
+            "false"
+        );
+
+        history.pushState(
+            { page: "ankilozan-spondilit" },
+            "",
+            "#ankilozan-spondilit"
+        );
+
+        window.scrollTo({
+            top: 0,
+            behavior: "smooth"
+        });
+    }
+
+    function closeAnkilozanPageV87() {
+
+        if (!page) return;
+
+        document.body.classList.remove(
+            "ankilozan-page-open-v87"
+        );
+
+        page.setAttribute(
+            "aria-hidden",
+            "true"
+        );
+
+        history.pushState(
+            { page: "home" },
+            "",
+            location.pathname + location.search
+        );
+
+        window.scrollTo({
+            top: 0,
+            behavior: "smooth"
+        });
+    }
+
+    // Hero'daki "Ankilozan Spondilit" yazısı
+    if (heroTitle) {
+        heroTitle.addEventListener(
+            "click",
+            event => {
+                event.preventDefault();
+                event.stopPropagation();
+                openAnkilozanPageV87();
+            },
+            true
+        );
+    }
+
+    // Hero içindeki Neden Olur / Belirtiler / Nasıl Geçer / İçeriği Aç
+    openButtons.forEach(button => {
+        button.addEventListener(
+            "click",
+            event => {
+                event.preventDefault();
+                event.stopPropagation();
+                openAnkilozanPageV87();
+            },
+            true
+        );
+    });
+
+    // Tedavi Alanları içindeki Ankilozan Spondilit kartı
+    if (treatmentCard) {
+        treatmentCard.addEventListener(
+            "click",
+            event => {
+                event.preventDefault();
+                openAnkilozanPageV87();
+            }
+        );
+    }
+
+    if (homeButton) {
+        homeButton.addEventListener(
+            "click",
+            event => {
+                event.preventDefault();
+                closeAnkilozanPageV87();
+            }
+        );
+    }
+
+    if (treatmentAreasButton) {
+        treatmentAreasButton.addEventListener(
+            "click",
+            event => {
+                event.preventDefault();
+
+                document.body.classList.remove(
+                    "ankilozan-page-open-v87"
+                );
+
+                if (page) {
+                    page.setAttribute(
+                        "aria-hidden",
+                        "true"
+                    );
+                }
+
+                const target =
+                    document.getElementById(
+                        "tedaviAlanlariPage"
+                    );
+
+                if (target) {
+                    target.setAttribute(
+                        "aria-hidden",
+                        "false"
+                    );
+                }
+
+                document.body.classList.add(
+                    "treatment-page-open"
+                );
+
+                history.pushState(
+                    { page: "tedavi-alanlari" },
+                    "",
+                    "#tedavi-alanlari"
+                );
+
+                window.scrollTo({
+                    top: 0,
+                    behavior: "smooth"
+                });
+            }
+        );
+    }
+
+    if (painButton) {
+        painButton.addEventListener(
+            "click",
+            event => {
+                event.preventDefault();
+
+                document.body.classList.remove(
+                    "ankilozan-page-open-v87"
+                );
+
+                if (page) {
+                    page.setAttribute(
+                        "aria-hidden",
+                        "true"
+                    );
+                }
+
+                const target =
+                    document.getElementById(
+                        "agriPage"
+                    );
+
+                if (target) {
+                    target.setAttribute(
+                        "aria-hidden",
+                        "false"
+                    );
+                }
+
+                document.body.classList.add(
+                    "pain-page-open"
+                );
+
+                history.pushState(
+                    { page: "agri" },
+                    "",
+                    "#agri"
+                );
+
+                window.scrollTo({
+                    top: 0,
+                    behavior: "smooth"
+                });
+            }
+        );
+    }
+
+    if (mediaButton) {
+        mediaButton.addEventListener(
+            "click",
+            event => {
+                event.preventDefault();
+
+                document.body.classList.remove(
+                    "ankilozan-page-open-v87"
+                );
+
+                if (page) {
+                    page.setAttribute(
+                        "aria-hidden",
+                        "true"
+                    );
+                }
+
+                const target =
+                    document.getElementById(
+                        "medyaPage"
+                    );
+
+                if (target) {
+                    target.setAttribute(
+                        "aria-hidden",
+                        "false"
+                    );
+                }
+
+                document.body.classList.add(
+                    "media-page-open"
+                );
+
+                history.pushState(
+                    { page: "medya" },
+                    "",
+                    "#medya"
+                );
+
+                window.scrollTo({
+                    top: 0,
+                    behavior: "smooth"
+                });
+            }
+        );
+    }
+
+    // Doğrudan #ankilozan-spondilit URL'si ile açılırsa sayfayı getir
+    if (
+        location.hash ===
+        "#ankilozan-spondilit"
+    ) {
+        setTimeout(
+            openAnkilozanPageV87,
+            0
+        );
+    }
+
+})();
+
+
+// =========================================================
+// V88 - ANKİLOZAN SAYFASI GENEL SAĞLIK DROPDOWN
+// =========================================================
+(function () {
+
+    const menu =
+        document.getElementById("ankilozanHealthMenuV88");
+
+    const button =
+        document.getElementById("ankilozanHealthButtonV88");
+
+    const dropdown =
+        document.getElementById("ankilozanHealthDropdownV88");
+
+    if (!menu || !button || !dropdown) {
+        return;
+    }
+
+    function closeMenuV88() {
+        menu.classList.remove("open");
+
+        button.setAttribute(
+            "aria-expanded",
+            "false"
+        );
+
+        dropdown.setAttribute(
+            "aria-hidden",
+            "true"
+        );
+    }
+
+    button.addEventListener(
+        "click",
+        event => {
+            event.preventDefault();
+            event.stopPropagation();
+
+            const willOpen =
+                !menu.classList.contains("open");
+
+            menu.classList.toggle(
+                "open",
+                willOpen
+            );
+
+            button.setAttribute(
+                "aria-expanded",
+                willOpen ? "true" : "false"
+            );
+
+            dropdown.setAttribute(
+                "aria-hidden",
+                willOpen ? "false" : "true"
+            );
+        }
+    );
+
+    dropdown.addEventListener(
+        "click",
+        () => {
+            closeMenuV88();
+        }
+    );
+
+    document.addEventListener(
+        "click",
+        event => {
+            if (!menu.contains(event.target)) {
+                closeMenuV88();
+            }
+        }
+    );
+
+    document.addEventListener(
+        "keydown",
+        event => {
+            if (event.key === "Escape") {
+                closeMenuV88();
+            }
+        }
+    );
+
+})();
+
+
+// =========================================================
+// V90 - GÜVENLİ SCROLL ANİMASYONLARI
+// Hero ve üst menü yapısını ASLA gizlemez/değiştirmez.
+// =========================================================
+(function () {
+
+    const revealSelector = [
+        ".treatment-card-v77",
+        ".pain-card-v76",
+        ".serum-card-v71",
+        ".injection-card-v72",
+        ".detail-card",
+        ".service-info-card",
+        ".location-info-card",
+        ".map-card",
+        ".general-health-empty-card-v75",
+        ".ankilozan-faq-item-v85",
+        ".section-heading"
+    ].join(",");
+
+    const revealItems =
+        Array.from(document.querySelectorAll(revealSelector));
+
+    revealItems.forEach((item, index) => {
+        item.classList.add("v90-reveal");
+        item.style.transitionDelay =
+            Math.min((index % 4) * 65, 195) + "ms";
+    });
+
+    if ("IntersectionObserver" in window) {
+
+        const revealObserver =
+            new IntersectionObserver(
+                entries => {
+                    entries.forEach(entry => {
+                        if (entry.isIntersecting) {
+                            entry.target.classList.add("is-visible");
+                            revealObserver.unobserve(entry.target);
+                        }
+                    });
+                },
+                {
+                    threshold: 0.10,
+                    rootMargin: "0px 0px -5% 0px"
+                }
+            );
+
+        revealItems.forEach(item => {
+            revealObserver.observe(item);
+        });
+
+    } else {
+
+        revealItems.forEach(item => {
+            item.classList.add("is-visible");
+        });
+
+    }
+
+    function updateV90ScrollState() {
+        document.body.classList.toggle(
+            "v90-scrolled",
+            window.scrollY > 70
+        );
+    }
+
+    updateV90ScrollState();
+
+    window.addEventListener(
+        "scroll",
+        updateV90ScrollState,
+        { passive: true }
+    );
 
 })();
