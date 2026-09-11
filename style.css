@@ -13774,3 +13774,1209 @@ body.about-page-open.about-nav-scrolled .info-menu-button-v54 {
         font-size: 13px !important;
     }
 }
+
+
+/* =========================================================
+   V95 - OSTEOPATİ SAYFASI = TEDAVİ ALANLARI TASARIM DİLİ
+   ========================================================= */
+
+.osteopathy-page-v95 {
+    min-height: 100vh !important;
+    overflow: visible !important;
+    background: #ffffff !important;
+    color: #163047;
+}
+
+/* Eski koyu arka plan yaklaşımını bu sayfada tamamen kapat */
+.osteopathy-page-v95 .treatment-detail-bg-v71,
+.osteopathy-page-v95 .treatment-detail-soft-v71,
+.osteopathy-page-v95 .treatment-detail-content-v71 {
+    display: none !important;
+}
+
+/* Tedavi Alanları ile aynı açık mavi hero dili */
+.osteopathy-page-hero-v95 {
+    position: relative;
+
+    min-height: 300px;
+    padding: 105px 24px 46px;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    overflow: hidden;
+
+    background:
+        radial-gradient(
+            circle at 12% 80%,
+            rgba(23,131,194,.10),
+            transparent 18%
+        ),
+        linear-gradient(
+            180deg,
+            #eef8ff 0%,
+            #edf8ff 100%
+        );
+}
+
+.osteopathy-page-hero-inner-v95 {
+    position: relative;
+    z-index: 2;
+
+    width: min(1180px, calc(100% - 40px));
+    margin: 0 auto;
+
+    text-align: center;
+}
+
+.osteopathy-page-kicker-v95 {
+    display: inline-block;
+    margin-bottom: 12px;
+
+    color: #1783c2;
+
+    font-size: 14px;
+    font-weight: 900;
+    letter-spacing: .22em;
+}
+
+.osteopathy-page-hero-inner-v95 h1 {
+    margin: 0 0 20px;
+
+    color: #12344e;
+
+    font-size: clamp(52px, 5vw, 76px);
+    line-height: 1;
+    letter-spacing: -2px;
+    font-weight: 900;
+}
+
+.osteopathy-page-hero-inner-v95 p {
+    max-width: 830px;
+    margin: 0 auto;
+
+    color: #5e7890;
+
+    font-size: 18px;
+    line-height: 1.75;
+}
+
+/* Dekoratif işaretler */
+.osteopathy-page-plus-v95 {
+    position: absolute;
+
+    color: rgba(23,131,194,.12);
+
+    line-height: 1;
+    user-select: none;
+}
+
+.osteopathy-page-plus-left-v95 {
+    left: 2.5%;
+    bottom: 34px;
+
+    font-size: 68px;
+}
+
+.osteopathy-page-plus-right-v95 {
+    right: 3.5%;
+    top: 90px;
+
+    font-size: 74px;
+    font-weight: 300;
+}
+
+/* İçerik alanı */
+.osteopathy-page-content-v95 {
+    padding: 76px 28px 100px;
+
+    background:
+        linear-gradient(
+            180deg,
+            #ffffff 0%,
+            #f9fcfe 100%
+        );
+}
+
+.osteopathy-page-grid-v95 {
+    width: min(1420px, 100%);
+    margin: 0 auto;
+
+    display: grid;
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+
+    gap: 28px;
+}
+
+/* Tedavi Alanları kartlarıyla aynı karakter */
+.osteopathy-info-card-v95 {
+    min-height: 355px;
+
+    display: flex;
+    flex-direction: column;
+
+    padding: 32px 32px 30px;
+
+    background: #ffffff;
+
+    border: 1px solid #dce9f0;
+    border-radius: 24px;
+
+    box-shadow:
+        0 14px 35px
+        rgba(20,61,88,.08);
+
+    transition:
+        transform .25s ease,
+        box-shadow .25s ease,
+        border-color .25s ease;
+}
+
+.osteopathy-info-card-v95:hover {
+    transform: translateY(-7px);
+
+    border-color:
+        rgba(23,131,194,.20);
+
+    box-shadow:
+        0 24px 55px
+        rgba(20,61,88,.13);
+}
+
+.osteopathy-info-icon-v95 {
+    width: 64px;
+    height: 64px;
+
+    margin-bottom: 28px;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    border-radius: 18px;
+
+    background:
+        linear-gradient(
+            135deg,
+            #eaf7ff,
+            #dff1fb
+        );
+
+    color: #1683c6;
+
+    font-size: 19px;
+    font-weight: 900;
+}
+
+.osteopathy-info-card-v95 h3 {
+    margin: 0 0 16px;
+
+    color: #103854;
+
+    font-size: 25px;
+    line-height: 1.2;
+}
+
+.osteopathy-info-card-v95 p {
+    margin: 0 0 26px;
+
+    color: #648096;
+
+    font-size: 16px;
+    line-height: 1.75;
+}
+
+.osteopathy-info-card-v95 span {
+    margin-top: auto;
+
+    color: #0d83cc;
+
+    font-size: 15px;
+    font-weight: 800;
+}
+
+/* Tedavi detay sayfasının üst menüsü bu sayfada da üstte düzgün dursun */
+body.treatment-detail-open-v71 .treatment-detail-nav-v71 {
+    z-index: 16000;
+}
+
+@media (max-width: 1000px) {
+
+    .osteopathy-page-grid-v95 {
+        grid-template-columns:
+            repeat(2, minmax(0, 1fr));
+    }
+}
+
+@media (max-width: 700px) {
+
+    .osteopathy-page-hero-v95 {
+        min-height: 260px;
+        padding-top: 110px;
+    }
+
+    .osteopathy-page-hero-inner-v95 p {
+        font-size: 16px;
+    }
+
+    .osteopathy-page-content-v95 {
+        padding:
+            48px 16px
+            72px;
+    }
+
+    .osteopathy-page-grid-v95 {
+        grid-template-columns: 1fr;
+        gap: 18px;
+    }
+
+    .osteopathy-info-card-v95 {
+        min-height: 0;
+        padding: 26px 24px;
+    }
+}
+
+
+/* =========================================================
+   V96 - İĞNE UYGULAMALARI LİSTESİ GENİŞLETME
+   ========================================================= */
+
+.injection-grid-v96 {
+    grid-template-columns: repeat(4, minmax(0, 1fr));
+    gap: 24px;
+}
+
+.injection-card-v96 {
+    min-height: 100%;
+}
+
+.injection-card-v96 h2 {
+    min-height: 72px;
+    display: flex;
+    align-items: flex-start;
+}
+
+.injection-card-v96 p {
+    font-size: 15px;
+    line-height: 1.72;
+}
+
+.injection-card-v96 .injection-visual-v72 {
+    margin-bottom: 18px;
+}
+
+.injection-card-v96 .injection-visual-v72 img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
+@media (max-width: 1280px) {
+    .injection-grid-v96 {
+        grid-template-columns: repeat(3, minmax(0, 1fr));
+    }
+}
+
+@media (max-width: 900px) {
+    .injection-grid-v96 {
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+    }
+}
+
+@media (max-width: 640px) {
+    .injection-grid-v96 {
+        grid-template-columns: 1fr;
+    }
+
+    .injection-card-v96 h2 {
+        min-height: 0;
+    }
+}
+
+
+/* =========================================================
+   V98 - TEDAVİ ALANLARINA YENİ ENJEKSİYON / REJENERATİF KARTLAR
+   ========================================================= */
+
+.treatment-card-v98 .treatment-card-image-v77 {
+    aspect-ratio: 4 / 3;
+    overflow: hidden;
+}
+
+.treatment-card-v98 .treatment-card-image-v77 img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    object-position: center;
+    display: block;
+}
+
+.treatment-card-v98 .treatment-card-body-v77 h3 {
+    line-height: 1.22;
+}
+
+.treatment-card-v98 {
+    cursor: pointer;
+}
+
+
+/* =========================================================
+   V99 - OSTEOPATİ: VİDEO, AĞRI, FİZİKSEL UYGULAMA,
+   KAYROPRAKTİK, SORU-CEVAP, AKADEMİK MAKALELER
+   ========================================================= */
+
+.osteopathy-page-v99 {
+    scroll-behavior: smooth;
+}
+
+.osteopathy-quick-actions-v99 {
+    margin: 28px auto 0;
+    max-width: 1120px;
+    display: flex;
+    justify-content: center;
+    flex-wrap: wrap;
+    gap: 10px;
+}
+
+.osteopathy-quick-actions-v99 button {
+    min-height: 44px;
+    padding: 0 17px;
+    border: 1px solid rgba(18, 89, 136, .12);
+    border-radius: 999px;
+    background: rgba(255,255,255,.86);
+    color: #17415f;
+    font: inherit;
+    font-size: 14px;
+    font-weight: 800;
+    cursor: pointer;
+    box-shadow: 0 9px 24px rgba(24, 76, 111, .08);
+    transition: .22s ease;
+}
+
+.osteopathy-quick-actions-v99 button:hover {
+    transform: translateY(-2px);
+    background: #1687cf;
+    color: #fff;
+    border-color: #1687cf;
+    box-shadow: 0 14px 30px rgba(22, 135, 207, .20);
+}
+
+.osteopathy-pain-button-v99 {
+    background: linear-gradient(135deg, #143e5d, #1687cf) !important;
+    color: #fff !important;
+}
+
+.osteopathy-page-content-v99 {
+    padding-bottom: 120px;
+}
+
+.osteopathy-section-v99 {
+    width: min(1420px, 100%);
+    margin: 96px auto 0;
+    scroll-margin-top: 120px;
+}
+
+.osteopathy-section-heading-v99 {
+    max-width: 860px;
+    margin-bottom: 34px;
+}
+
+.osteopathy-section-heading-v99 > span,
+.osteopathy-split-copy-v99 > span {
+    display: inline-block;
+    margin-bottom: 9px;
+    color: #1687cf;
+    font-size: 13px;
+    font-weight: 900;
+    letter-spacing: .18em;
+}
+
+.osteopathy-section-heading-v99 h2,
+.osteopathy-split-copy-v99 h2 {
+    margin: 0 0 14px;
+    color: #113a57;
+    font-size: clamp(34px, 4vw, 52px);
+    line-height: 1.08;
+}
+
+.osteopathy-section-heading-v99 p,
+.osteopathy-split-copy-v99 > p {
+    margin: 0;
+    color: #627d92;
+    font-size: 17px;
+    line-height: 1.8;
+}
+
+/* Video cards */
+.osteopathy-video-grid-v99 {
+    display: grid;
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+    gap: 24px;
+}
+
+.osteopathy-video-card-v99 {
+    position: relative;
+    display: block;
+    overflow: hidden;
+    min-height: 420px;
+    border: 1px solid rgba(22, 135, 207, .12);
+    border-radius: 28px;
+    background: #fff;
+    text-decoration: none;
+    box-shadow: 0 18px 48px rgba(16, 57, 84, .10);
+    transition: transform .25s ease, box-shadow .25s ease;
+}
+
+.osteopathy-video-card-v99:hover {
+    transform: translateY(-7px);
+    box-shadow: 0 28px 62px rgba(16, 57, 84, .16);
+}
+
+.osteopathy-video-card-v99 img {
+    width: 100%;
+    height: 245px;
+    object-fit: cover;
+    display: block;
+}
+
+.osteopathy-play-v99 {
+    position: absolute;
+    top: 206px;
+    right: 24px;
+    width: 58px;
+    height: 58px;
+    display: grid;
+    place-items: center;
+    border-radius: 50%;
+    background: #1687cf;
+    color: #fff;
+    font-size: 20px;
+    box-shadow: 0 12px 26px rgba(22, 135, 207, .28);
+}
+
+.osteopathy-video-card-v99 > div {
+    padding: 28px 28px 30px;
+}
+
+.osteopathy-video-card-v99 small {
+    color: #1687cf;
+    font-weight: 900;
+    letter-spacing: .12em;
+}
+
+.osteopathy-video-card-v99 h3 {
+    margin: 8px 0 10px;
+    color: #113a57;
+    font-size: 24px;
+}
+
+.osteopathy-video-card-v99 p {
+    margin: 0;
+    color: #688197;
+    line-height: 1.7;
+}
+
+/* Physical split */
+.osteopathy-split-v99 {
+    display: grid;
+    grid-template-columns: minmax(0, .95fr) minmax(0, 1.05fr);
+    align-items: stretch;
+    gap: 30px;
+}
+
+.osteopathy-split-copy-v99 {
+    padding: 46px;
+    border-radius: 30px;
+    background: linear-gradient(145deg, #f2f9fe, #ffffff);
+    border: 1px solid rgba(22, 135, 207, .12);
+    box-shadow: 0 18px 48px rgba(16, 57, 84, .08);
+}
+
+.osteopathy-split-image-v99 {
+    min-height: 520px;
+    overflow: hidden;
+    border-radius: 30px;
+    box-shadow: 0 18px 48px rgba(16, 57, 84, .10);
+}
+
+.osteopathy-split-image-v99 img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    display: block;
+}
+
+.osteopathy-mini-points-v99 {
+    display: grid;
+    gap: 14px;
+    margin-top: 30px;
+}
+
+.osteopathy-mini-points-v99 > div {
+    display: grid;
+    grid-template-columns: 50px 1fr;
+    gap: 12px;
+    align-items: center;
+    padding: 16px;
+    border-radius: 16px;
+    background: #fff;
+    border: 1px solid rgba(22, 135, 207, .10);
+}
+
+.osteopathy-mini-points-v99 strong {
+    display: grid;
+    place-items: center;
+    width: 44px;
+    height: 44px;
+    border-radius: 14px;
+    background: #eaf6fd;
+    color: #1687cf;
+}
+
+.osteopathy-mini-points-v99 span {
+    color: #2a526e;
+    font-weight: 700;
+}
+
+/* Chiropractic */
+.osteopathy-chiro-layout-v99 {
+    display: grid;
+    grid-template-columns: minmax(0, 1.05fr) minmax(0, .95fr);
+    gap: 26px;
+    align-items: stretch;
+}
+
+.osteopathy-chiro-image-v99 {
+    min-height: 560px;
+    overflow: hidden;
+    border-radius: 30px;
+    box-shadow: 0 18px 48px rgba(16, 57, 84, .10);
+}
+
+.osteopathy-chiro-image-v99 img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    display: block;
+}
+
+.osteopathy-chiro-cards-v99 {
+    display: grid;
+    gap: 18px;
+}
+
+.osteopathy-chiro-cards-v99 article {
+    padding: 28px;
+    border-radius: 24px;
+    background: #fff;
+    border: 1px solid rgba(22, 135, 207, .12);
+    box-shadow: 0 14px 34px rgba(16, 57, 84, .07);
+}
+
+.osteopathy-chiro-cards-v99 article > span {
+    display: inline-grid;
+    place-items: center;
+    width: 46px;
+    height: 46px;
+    border-radius: 14px;
+    background: #eaf6fd;
+    color: #1687cf;
+    font-weight: 900;
+}
+
+.osteopathy-chiro-cards-v99 h3 {
+    margin: 15px 0 9px;
+    color: #113a57;
+    font-size: 24px;
+}
+
+.osteopathy-chiro-cards-v99 p {
+    margin: 0;
+    color: #688197;
+    line-height: 1.7;
+}
+
+/* FAQ */
+.osteopathy-faq-v99 {
+    display: grid;
+    gap: 14px;
+}
+
+.osteopathy-faq-v99 details {
+    border: 1px solid rgba(22, 135, 207, .13);
+    border-radius: 20px;
+    background: #fff;
+    box-shadow: 0 10px 28px rgba(16, 57, 84, .06);
+    overflow: hidden;
+}
+
+.osteopathy-faq-v99 summary {
+    list-style: none;
+    position: relative;
+    padding: 22px 64px 22px 24px;
+    cursor: pointer;
+    color: #143e5d;
+    font-size: 18px;
+    font-weight: 850;
+}
+
+.osteopathy-faq-v99 summary::-webkit-details-marker {
+    display: none;
+}
+
+.osteopathy-faq-v99 summary::after {
+    content: "+";
+    position: absolute;
+    top: 50%;
+    right: 22px;
+    transform: translateY(-50%);
+    width: 34px;
+    height: 34px;
+    display: grid;
+    place-items: center;
+    border-radius: 50%;
+    background: #eaf6fd;
+    color: #1687cf;
+    font-size: 22px;
+}
+
+.osteopathy-faq-v99 details[open] summary::after {
+    content: "×";
+}
+
+.osteopathy-faq-v99 details p {
+    margin: 0;
+    padding: 0 24px 24px;
+    color: #688197;
+    line-height: 1.75;
+}
+
+/* Academic articles */
+.osteopathy-article-grid-v99 {
+    display: grid;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 22px;
+}
+
+.osteopathy-article-grid-v99 a {
+    display: flex;
+    flex-direction: column;
+    min-height: 300px;
+    padding: 30px;
+    border-radius: 24px;
+    background: linear-gradient(145deg, #fff, #f8fcff);
+    border: 1px solid rgba(22, 135, 207, .13);
+    text-decoration: none;
+    box-shadow: 0 14px 34px rgba(16, 57, 84, .07);
+    transition: .22s ease;
+}
+
+.osteopathy-article-grid-v99 a:hover {
+    transform: translateY(-5px);
+    border-color: rgba(22, 135, 207, .30);
+    box-shadow: 0 22px 48px rgba(16, 57, 84, .12);
+}
+
+.osteopathy-article-grid-v99 small {
+    color: #1687cf;
+    font-weight: 900;
+    letter-spacing: .10em;
+}
+
+.osteopathy-article-grid-v99 h3 {
+    margin: 12px 0 14px;
+    color: #113a57;
+    font-size: 23px;
+    line-height: 1.3;
+}
+
+.osteopathy-article-grid-v99 p {
+    margin: 0 0 18px;
+    color: #688197;
+    line-height: 1.7;
+}
+
+.osteopathy-article-grid-v99 a > span {
+    margin-top: auto;
+    color: #1687cf;
+    font-weight: 850;
+}
+
+.osteopathy-evidence-note-v99 {
+    margin: 22px 0 0;
+    padding: 18px 20px;
+    border-radius: 16px;
+    background: #eef8fe;
+    color: #5c778c;
+    line-height: 1.7;
+    border: 1px solid rgba(22, 135, 207, .10);
+}
+
+@media (max-width: 1000px) {
+    .osteopathy-video-grid-v99 {
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+    }
+
+    .osteopathy-split-v99,
+    .osteopathy-chiro-layout-v99 {
+        grid-template-columns: 1fr;
+    }
+
+    .osteopathy-split-image-v99,
+    .osteopathy-chiro-image-v99 {
+        min-height: 420px;
+    }
+}
+
+@media (max-width: 700px) {
+    .osteopathy-section-v99 {
+        margin-top: 64px;
+    }
+
+    .osteopathy-video-grid-v99,
+    .osteopathy-article-grid-v99 {
+        grid-template-columns: 1fr;
+    }
+
+    .osteopathy-split-copy-v99 {
+        padding: 28px 22px;
+    }
+
+    .osteopathy-video-card-v99 {
+        min-height: 0;
+    }
+
+    .osteopathy-video-card-v99 img {
+        height: 220px;
+    }
+
+    .osteopathy-play-v99 {
+        top: 184px;
+    }
+}
+
+
+/* =========================================================
+   V100 - 2 SANİYELİK SAYFA GEÇİŞ ANİMASYONU
+   + HAKKIMDA BUTONU DAHA BELİRGİN
+   ========================================================= */
+
+/* ---------- ANA SAYFA HAKKIMDA AKTİF GÖRÜNÜMÜ ---------- */
+
+.doctor-slide-bottom-v86 {
+    gap: 0 !important;
+}
+
+.doctor-slide-tag-v86 {
+    margin-bottom: 10px !important;
+    background:
+        linear-gradient(
+            135deg,
+            rgba(16, 63, 91, .96),
+            rgba(22, 135, 207, .96)
+        ) !important;
+    border: 1px solid rgba(255,255,255,.24);
+    box-shadow:
+        0 10px 28px rgba(6, 35, 55, .25),
+        inset 0 1px 0 rgba(255,255,255,.16) !important;
+    letter-spacing: .08em;
+    text-transform: uppercase;
+}
+
+.doctor-about-button-v86 {
+    position: relative;
+
+    display: inline-flex !important;
+    align-items: center;
+    justify-content: center;
+    gap: 16px;
+
+    min-height: 74px;
+    padding: 10px 18px 10px 30px !important;
+
+    border: 1px solid rgba(255,255,255,.34) !important;
+    border-radius: 999px !important;
+
+    background:
+        linear-gradient(
+            135deg,
+            rgba(7, 26, 40, .82),
+            rgba(18, 63, 91, .74)
+        ) !important;
+
+    color: #fff !important;
+
+    font-size: clamp(36px, 4vw, 58px) !important;
+    line-height: 1 !important;
+    font-weight: 850 !important;
+
+    text-shadow:
+        0 4px 18px rgba(0,0,0,.30) !important;
+
+    box-shadow:
+        0 18px 44px rgba(4, 23, 36, .34),
+        0 0 0 1px rgba(75, 187, 255, .10),
+        inset 0 1px 0 rgba(255,255,255,.10) !important;
+
+    backdrop-filter: blur(14px);
+    -webkit-backdrop-filter: blur(14px);
+
+    transition:
+        transform .22s ease,
+        box-shadow .22s ease,
+        border-color .22s ease,
+        background .22s ease !important;
+
+    animation:
+        v100-about-soft-pulse 2.8s ease-in-out infinite;
+}
+
+.doctor-about-button-v86::before {
+    content: "";
+    width: 11px;
+    height: 11px;
+    flex: 0 0 11px;
+
+    border-radius: 50%;
+    background: #62d8ff;
+
+    box-shadow:
+        0 0 0 6px rgba(98, 216, 255, .14),
+        0 0 18px rgba(98, 216, 255, .65);
+}
+
+.doctor-about-button-v86:hover {
+    transform: translateY(-3px) scale(1.015) !important;
+
+    border-color: rgba(112, 214, 255, .72) !important;
+
+    background:
+        linear-gradient(
+            135deg,
+            rgba(12, 51, 77, .94),
+            rgba(17, 123, 189, .90)
+        ) !important;
+
+    box-shadow:
+        0 24px 54px rgba(3, 24, 39, .40),
+        0 0 0 4px rgba(47, 173, 242, .10),
+        inset 0 1px 0 rgba(255,255,255,.14) !important;
+}
+
+.doctor-about-text-v100 {
+    display: inline-block;
+}
+
+.doctor-about-arrow-v100 {
+    width: 50px;
+    height: 50px;
+
+    display: inline-grid;
+    place-items: center;
+
+    flex: 0 0 50px;
+
+    border-radius: 50%;
+
+    background:
+        linear-gradient(
+            135deg,
+            #1f94d7,
+            #56c2f5
+        );
+
+    color: #fff;
+
+    font-size: 27px;
+    font-weight: 700;
+
+    box-shadow:
+        0 10px 22px rgba(16, 136, 203, .28),
+        inset 0 1px 0 rgba(255,255,255,.28);
+}
+
+@keyframes v100-about-soft-pulse {
+    0%, 100% {
+        box-shadow:
+            0 18px 44px rgba(4, 23, 36, .34),
+            0 0 0 1px rgba(75, 187, 255, .10),
+            inset 0 1px 0 rgba(255,255,255,.10);
+    }
+
+    50% {
+        box-shadow:
+            0 20px 50px rgba(4, 23, 36, .38),
+            0 0 0 5px rgba(75, 187, 255, .10),
+            0 0 30px rgba(55, 181, 244, .14),
+            inset 0 1px 0 rgba(255,255,255,.12);
+    }
+}
+
+
+/* ---------- SAYFA GEÇİŞ EKRANI ---------- */
+
+.v100-page-transition {
+    position: fixed;
+    inset: 0;
+    z-index: 999999;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    pointer-events: none;
+
+    opacity: 0;
+    visibility: hidden;
+
+    background:
+        radial-gradient(
+            circle at 50% 46%,
+            rgba(53, 164, 226, .18),
+            transparent 28%
+        ),
+        linear-gradient(
+            135deg,
+            rgba(6, 24, 37, .985),
+            rgba(14, 47, 67, .985)
+        );
+
+    transition:
+        opacity .28s ease,
+        visibility .28s ease;
+}
+
+.v100-page-transition::before,
+.v100-page-transition::after {
+    content: "";
+    position: absolute;
+    border-radius: 50%;
+    border: 1px solid rgba(103, 209, 255, .12);
+}
+
+.v100-page-transition::before {
+    width: min(52vw, 760px);
+    aspect-ratio: 1;
+    animation: v100-transition-ring 2s ease-in-out infinite;
+}
+
+.v100-page-transition::after {
+    width: min(34vw, 500px);
+    aspect-ratio: 1;
+    animation: v100-transition-ring 2s .18s ease-in-out infinite reverse;
+}
+
+.v100-page-transition.is-active {
+    opacity: 1;
+    visibility: visible;
+    pointer-events: all;
+}
+
+.v100-page-transition-inner {
+    position: relative;
+    z-index: 3;
+
+    width: min(720px, calc(100vw - 44px));
+    text-align: center;
+
+    transform: translateY(14px) scale(.985);
+    opacity: 0;
+
+    transition:
+        transform .40s ease,
+        opacity .40s ease;
+}
+
+.v100-page-transition.is-active .v100-page-transition-inner {
+    transform: translateY(0) scale(1);
+    opacity: 1;
+}
+
+.v100-transition-mark {
+    width: 64px;
+    height: 64px;
+
+    margin: 0 auto 22px;
+
+    display: grid;
+    place-items: center;
+
+    border-radius: 22px;
+
+    background:
+        linear-gradient(
+            135deg,
+            #1687cf,
+            #5cc9f6
+        );
+
+    color: #fff;
+
+    font-size: 32px;
+    font-weight: 900;
+
+    box-shadow:
+        0 18px 45px rgba(22, 135, 207, .30),
+        inset 0 1px 0 rgba(255,255,255,.30);
+
+    animation: v100-transition-mark 1.25s ease-in-out infinite;
+}
+
+.v100-transition-kicker {
+    display: block;
+
+    margin-bottom: 10px;
+
+    color: #89dcff;
+
+    font-size: 13px;
+    font-weight: 900;
+    letter-spacing: .22em;
+}
+
+.v100-transition-title {
+    margin: 0;
+
+    color: #fff;
+
+    font-size: clamp(42px, 6vw, 76px);
+    line-height: 1.04;
+    font-weight: 900;
+    letter-spacing: -1.5px;
+
+    text-shadow:
+        0 10px 28px rgba(0,0,0,.28);
+}
+
+.v100-transition-copy {
+    margin: 16px auto 0;
+    max-width: 540px;
+
+    color: rgba(222, 241, 252, .80);
+
+    font-size: 15px;
+    line-height: 1.7;
+}
+
+.v100-transition-progress {
+    position: relative;
+
+    width: min(360px, 72vw);
+    height: 4px;
+
+    margin: 28px auto 0;
+
+    overflow: hidden;
+
+    border-radius: 999px;
+
+    background: rgba(255,255,255,.10);
+}
+
+.v100-transition-progress::after {
+    content: "";
+    position: absolute;
+    inset: 0;
+
+    transform: scaleX(0);
+    transform-origin: left center;
+
+    border-radius: inherit;
+
+    background:
+        linear-gradient(
+            90deg,
+            #2aa8e9,
+            #76dcff
+        );
+}
+
+.v100-page-transition.is-active .v100-transition-progress::after {
+    animation:
+        v100-transition-progress
+        2s
+        linear
+        forwards;
+}
+
+.v100-page-transition.is-leaving {
+    opacity: 0;
+}
+
+body.v100-transitioning {
+    overflow: hidden !important;
+}
+
+@keyframes v100-transition-progress {
+    from { transform: scaleX(0); }
+    to   { transform: scaleX(1); }
+}
+
+@keyframes v100-transition-mark {
+    0%, 100% {
+        transform: translateY(0) scale(1);
+    }
+
+    50% {
+        transform: translateY(-5px) scale(1.04);
+    }
+}
+
+@keyframes v100-transition-ring {
+    0%, 100% {
+        transform: scale(.92);
+        opacity: .30;
+    }
+
+    50% {
+        transform: scale(1.05);
+        opacity: .72;
+    }
+}
+
+
+/* Tablet / Mobil */
+@media (max-width: 700px) {
+
+    .doctor-slide-bottom-v86 {
+        bottom: 24px !important;
+    }
+
+    .doctor-about-button-v86 {
+        min-height: 58px;
+        padding: 8px 10px 8px 20px !important;
+        gap: 11px;
+        font-size: clamp(28px, 9vw, 42px) !important;
+    }
+
+    .doctor-about-arrow-v100 {
+        width: 42px;
+        height: 42px;
+        flex-basis: 42px;
+        font-size: 22px;
+    }
+
+    .doctor-about-button-v86::before {
+        width: 9px;
+        height: 9px;
+        flex-basis: 9px;
+    }
+
+    .v100-transition-mark {
+        width: 56px;
+        height: 56px;
+        border-radius: 19px;
+    }
+}
+
+@media (prefers-reduced-motion: reduce) {
+
+    .doctor-about-button-v86,
+    .v100-page-transition::before,
+    .v100-page-transition::after,
+    .v100-transition-mark,
+    .v100-transition-progress::after {
+        animation: none !important;
+    }
+}
