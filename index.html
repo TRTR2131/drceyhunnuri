@@ -31,7 +31,7 @@
 
     <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Crect width='64' height='64' rx='16' fill='%231783c2'/%3E%3Cpath d='M28 14h8v14h14v8H36v14h-8V36H14v-8h14z' fill='white'/%3E%3C/svg%3E">
 
-    <link rel="stylesheet" href="style.css?v=51">
+    <link rel="stylesheet" href="style.css?v=77">
 </head>
 
 <!-- BUILD: V51 / CACHE-BUST -->
@@ -115,7 +115,7 @@
     <section class="hero hero-v31" id="anasayfa">
         <img
             class="hero-v31-image"
-            src="./hero-ceyhun_V38.png?v=51"
+            src="./hero-ceyhun_V58.png?v=77"
             alt="Dr. Ceyhun Nuri"
         >
 
@@ -137,11 +137,12 @@
                 id="heroTreatmentDropdown"
                 aria-hidden="true"
             >
-                <a href="#hizmetler">Osteopati</a>
-                <a href="#hizmetler">Fitoterapi</a>
-                <a href="#hizmetler">İğne</a>
+                <a href="#osteopati" class="treatment-detail-link-v71" data-treatment-detail="osteopati">Osteopati</a>
+                <a href="#fitoterapi" class="treatment-detail-link-v71" data-treatment-detail="fitoterapi">Fitoterapi</a>
+                <a href="#igne" class="treatment-detail-link-v71" data-treatment-detail="igne">İğne</a>
                 <a href="#hizmetler">Ozon Tedavisi</a>
                 <a href="#hizmetler">Estetiğe Bakış</a>
+                <a href="#damar-yolu" class="treatment-detail-link-v71 treatment-sub-link-v72" data-treatment-detail="damar-yolu">Damar Yolu</a>
             </div>
         </div>
 
@@ -163,11 +164,11 @@
                 id="heroHealthDropdown"
                 aria-hidden="true"
             >
-                <a href="#icerikler">Beslenme</a>
-                <a href="#icerikler">Supplementler</a>
-                <a href="#icerikler">Kürler</a>
-                <a href="#icerikler">Egzersizler</a>
-                <a href="#icerikler">Dekots</a>
+                <a href="#beslenme" class="health-detail-link-v75" data-health-detail="beslenme">Beslenme</a>
+                <a href="#supplementler" class="health-detail-link-v75" data-health-detail="supplementler">Supplementler</a>
+                <a href="#kurler" class="health-detail-link-v75" data-health-detail="kurler">Kürler</a>
+                <a href="#egzersizler" class="health-detail-link-v75" data-health-detail="egzersizler">Egzersizler</a>
+                <a href="#detoks" class="health-detail-link-v75" data-health-detail="detoks">Detoks</a>
             </div>
         </div>
         <!-- V35: TEDAVİ ALANLARI BUTONU -->
@@ -209,14 +210,64 @@
             </button>
         </div>
 
+        <!-- V54: BİLGİ > KVKK > AYDINLATMA METNİ -->
+        <div class="hero-info-menu-v54 info-menu-v54" id="heroInfoMenuV54">
+            <button
+                type="button"
+                class="info-menu-button-v54"
+                aria-expanded="false"
+            >
+                Bilgi
+                <span>⌄</span>
+            </button>
+
+            <div class="info-menu-panel-v54" aria-hidden="true">
+                <button
+                    type="button"
+                    class="info-kvkk-button-v54"
+                    aria-expanded="false"
+                >
+                    KVKK
+                    <span>›</span>
+                </button>
+
+                <div class="info-kvkk-submenu-v54" aria-hidden="true">
+
+                        <button type="button" class="info-legal-open-v56" data-legal-doc="aydinlatma">
+                            Aydınlatma Metni
+                        </button>
+
+                        <button type="button" class="info-legal-open-v56" data-legal-doc="politika">
+                            Kişisel Verilerin İşlenmesi ve Korunması Politikası
+                        </button>
+
+                        <button type="button" class="info-legal-open-v56" data-legal-doc="cerez">
+                            Çerez Politikası
+                        </button>
+
+                        <button type="button" class="info-legal-open-v56" data-legal-doc="acik-riza">
+                            Açık Rıza Metni
+                        </button>
+
+                    </div>
+            </div>
+        </div>
+
         <!-- V47: GÖRSELDEKİ HAKKIMDA YAZISINI AKTİF HALE GETİREN TIKLAMA ALANI -->
-        <button
-            type="button"
-            class="hero-about-hotspot"
-            id="heroAboutButton"
-            aria-label="Hakkımda sayfasını aç"
-            aria-controls="hakkimdaPage"
-        ></button>
+        <!-- V59: ANA EKRAN ALT BAŞLIK -->
+        <div class="hero-bottom-title-v59">
+            <span class="hero-category-v59">Genel</span>
+
+            <button
+                type="button"
+                class="hero-about-title-v59"
+                id="heroAboutButton"
+                aria-label="Hakkımda sayfasını aç"
+                aria-controls="hakkimdaPage"
+            >
+                Hakkımda
+            </button>
+        </div>
     </section>
 
     <!-- V35: TEDAVİ ALANLARI SAYFASI -->
@@ -252,11 +303,12 @@
                     id="treatmentPageTreatmentDropdown"
                     aria-hidden="true"
                 >
-                    <a href="#hizmetler">Osteopati</a>
-                    <a href="#hizmetler">Fitoterapi</a>
-                    <a href="#hizmetler">İğne</a>
+                    <a href="#osteopati" class="treatment-detail-link-v71" data-treatment-detail="osteopati">Osteopati</a>
+                    <a href="#fitoterapi" class="treatment-detail-link-v71" data-treatment-detail="fitoterapi">Fitoterapi</a>
+                    <a href="#igne" class="treatment-detail-link-v71" data-treatment-detail="igne">İğne</a>
                     <a href="#hizmetler">Ozon Tedavisi</a>
                     <a href="#hizmetler">Estetiğe Bakış</a>
+                <a href="#damar-yolu" class="treatment-detail-link-v71 treatment-sub-link-v72" data-treatment-detail="damar-yolu">Damar Yolu</a>
                 </div>
             </div>
 
@@ -277,11 +329,11 @@
                     id="treatmentPageHealthDropdown"
                     aria-hidden="true"
                 >
-                    <a href="#icerikler">Beslenme</a>
-                    <a href="#icerikler">Supplementler</a>
-                    <a href="#icerikler">Kürler</a>
-                    <a href="#icerikler">Egzersizler</a>
-                    <a href="#icerikler">Dekots</a>
+                    <a href="#beslenme" class="health-detail-link-v75" data-health-detail="beslenme">Beslenme</a>
+                    <a href="#supplementler" class="health-detail-link-v75" data-health-detail="supplementler">Supplementler</a>
+                    <a href="#kurler" class="health-detail-link-v75" data-health-detail="kurler">Kürler</a>
+                    <a href="#egzersizler" class="health-detail-link-v75" data-health-detail="egzersizler">Egzersizler</a>
+                    <a href="#detoks" class="health-detail-link-v75" data-health-detail="detoks">Detoks</a>
                 </div>
             </div>
 
@@ -308,6 +360,50 @@
                     <span>→</span>
                 </button>
             </div>
+            <div class="info-menu-v54 treatment-info-menu-v54">
+                <button
+                    type="button"
+                    class="info-menu-button-v54"
+                    aria-expanded="false"
+                >
+                    Bilgi
+                    <span>⌄</span>
+                </button>
+
+                <div class="info-menu-panel-v54" aria-hidden="true">
+
+                    <button
+                        type="button"
+                        class="info-kvkk-button-v54"
+                        aria-expanded="false"
+                    >
+                        KVKK
+                        <span>›</span>
+                    </button>
+
+                    <div class="info-kvkk-submenu-v54" aria-hidden="true">
+
+                        <button type="button" class="info-legal-open-v56" data-legal-doc="aydinlatma">
+                            Aydınlatma Metni
+                        </button>
+
+                        <button type="button" class="info-legal-open-v56" data-legal-doc="politika">
+                            Kişisel Verilerin İşlenmesi ve Korunması Politikası
+                        </button>
+
+                        <button type="button" class="info-legal-open-v56" data-legal-doc="cerez">
+                            Çerez Politikası
+                        </button>
+
+                        <button type="button" class="info-legal-open-v56" data-legal-doc="acik-riza">
+                            Açık Rıza Metni
+                        </button>
+
+                    </div>
+
+                </div>
+            </div>
+
 
         </nav>
 
@@ -329,69 +425,105 @@
         </div>
 
         <div class="treatment-content">
-            <div class="treatment-grid">
+            <div class="treatment-grid treatment-grid-v77">
 
-                <a class="treatment-card" href="#tedavi-alanlari" data-disease="ankilozan-spondilit">
-                    <div class="treatment-card-icon">AS</div>
-                    <h3>Ankilozan Spondilit</h3>
-                    <p>Omurga ve sakroiliak eklemleri etkileyebilen romatizmal hastalıklar için değerlendirme alanı.</p>
-                    <span>Detayları Gör ↗</span>
+                <a class="treatment-card treatment-card-v77" href="#tedavi-alanlari" data-disease="ankilozan-spondilit">
+                    <div class="treatment-card-image-v77">
+                        <img src="./disease-ankilozan-spondilit-v77.png?v=77" alt="Ankilozan spondilit için omurga ve sakroiliak bölge görseli">
+                    </div>
+                    <div class="treatment-card-body-v77">
+                        <h3>Ankilozan Spondilit</h3>
+                        <p>Omurga ve sakroiliak eklemleri etkileyebilen romatizmal hastalıklar için değerlendirme alanı.</p>
+                        <span>Detayları Gör ↗</span>
+                    </div>
                 </a>
 
-                <a class="treatment-card" href="#tedavi-alanlari" data-disease="bas-agrisi-migren">
-                    <div class="treatment-card-icon">BA</div>
-                    <h3>Baş Ağrısı ve Migren</h3>
-                    <p>Baş, boyun ve ilişkili kas-iskelet sistemi faktörlerinin bütüncül değerlendirilmesi.</p>
-                    <span>Detayları Gör ↗</span>
+                <a class="treatment-card treatment-card-v77" href="#tedavi-alanlari" data-disease="bas-agrisi-migren">
+                    <div class="treatment-card-image-v77">
+                        <img src="./disease-bas-agrisi-migren-v77.png?v=77" alt="Baş ağrısı ve migreni gösteren medikal görsel">
+                    </div>
+                    <div class="treatment-card-body-v77">
+                        <h3>Baş Ağrısı ve Migren</h3>
+                        <p>Baş, boyun ve ilişkili kas-iskelet sistemi faktörlerinin bütüncül değerlendirilmesi.</p>
+                        <span>Detayları Gör ↗</span>
+                    </div>
                 </a>
 
-                <a class="treatment-card" href="#tedavi-alanlari" data-disease="bel-sirt-agrisi">
-                    <div class="treatment-card-icon">BS</div>
-                    <h3>Bel ve Sırt Ağrısı</h3>
-                    <p>Bel ve sırt bölgesindeki hareket kısıtlılığı, kas dengesi ve postürün değerlendirilmesi.</p>
-                    <span>Detayları Gör ↗</span>
+                <a class="treatment-card treatment-card-v77" href="#tedavi-alanlari" data-disease="bel-sirt-agrisi">
+                    <div class="treatment-card-image-v77">
+                        <img src="./disease-bel-sirt-agrisi-v77.png?v=77" alt="Bel ve sırt ağrısını gösteren omurga görseli">
+                    </div>
+                    <div class="treatment-card-body-v77">
+                        <h3>Bel ve Sırt Ağrısı</h3>
+                        <p>Bel ve sırt bölgesindeki hareket kısıtlılığı, kas dengesi ve postürün değerlendirilmesi.</p>
+                        <span>Detayları Gör ↗</span>
+                    </div>
                 </a>
 
-                <a class="treatment-card" href="#tedavi-alanlari" data-disease="fibromiyalji">
-                    <div class="treatment-card-icon">FM</div>
-                    <h3>Fibromiyalji</h3>
-                    <p>Yaygın kas-iskelet sistemi yakınmaları ve günlük yaşamı etkileyen belirtilerin değerlendirilmesi.</p>
-                    <span>Detayları Gör ↗</span>
+                <a class="treatment-card treatment-card-v77" href="#tedavi-alanlari" data-disease="fibromiyalji">
+                    <div class="treatment-card-image-v77">
+                        <img src="./disease-fibromiyalji-v77.png?v=77" alt="Fibromiyaljide yaygın ağrı bölgelerini gösteren medikal görsel">
+                    </div>
+                    <div class="treatment-card-body-v77">
+                        <h3>Fibromiyalji</h3>
+                        <p>Yaygın kas-iskelet sistemi yakınmaları ve günlük yaşamı etkileyen belirtilerin değerlendirilmesi.</p>
+                        <span>Detayları Gör ↗</span>
+                    </div>
                 </a>
 
-                <a class="treatment-card" href="#tedavi-alanlari" data-disease="huzursuz-bacak">
-                    <div class="treatment-card-icon">HB</div>
-                    <h3>Huzursuz Bacak Sendromu</h3>
-                    <p>Bacaklarda huzursuzluk hissi ve ilişkili yaşam tarzı faktörlerinin değerlendirilmesi.</p>
-                    <span>Detayları Gör ↗</span>
+                <a class="treatment-card treatment-card-v77" href="#tedavi-alanlari" data-disease="huzursuz-bacak">
+                    <div class="treatment-card-image-v77">
+                        <img src="./disease-huzursuz-bacak-v77.png?v=77" alt="Bacak sinirlerini gösteren medikal görsel">
+                    </div>
+                    <div class="treatment-card-body-v77">
+                        <h3>Huzursuz Bacak Sendromu</h3>
+                        <p>Bacaklarda huzursuzluk hissi ve ilişkili yaşam tarzı faktörlerinin değerlendirilmesi.</p>
+                        <span>Detayları Gör ↗</span>
+                    </div>
                 </a>
 
-                <a class="treatment-card" href="#tedavi-alanlari" data-disease="iltihabi-bagirsak">
-                    <div class="treatment-card-icon">İB</div>
-                    <h3>İltihabi Bağırsak</h3>
-                    <p>Bağırsak sağlığı, beslenme ve yaşam tarzı ile ilişkili faktörlerin bütüncül ele alınması.</p>
-                    <span>Detayları Gör ↗</span>
+                <a class="treatment-card treatment-card-v77" href="#tedavi-alanlari" data-disease="iltihabi-bagirsak">
+                    <div class="treatment-card-image-v77">
+                        <img src="./disease-iltihabi-bagirsak-v77.png?v=77" alt="İltihabi bağırsak hastalıklarını temsil eden medikal görsel">
+                    </div>
+                    <div class="treatment-card-body-v77">
+                        <h3>İltihabi Bağırsak</h3>
+                        <p>Bağırsak sağlığı, beslenme ve yaşam tarzı ile ilişkili faktörlerin bütüncül ele alınması.</p>
+                        <span>Detayları Gör ↗</span>
+                    </div>
                 </a>
 
-                <a class="treatment-card" href="#tedavi-alanlari" data-disease="kronik-yorgunluk">
-                    <div class="treatment-card-icon">KY</div>
-                    <h3>Kronik Yorgunluk</h3>
-                    <p>Uzun süren yorgunluk yakınmalarında yaşam tarzı ve eşlik eden faktörlerin değerlendirilmesi.</p>
-                    <span>Detayları Gör ↗</span>
+                <a class="treatment-card treatment-card-v77" href="#tedavi-alanlari" data-disease="kronik-yorgunluk">
+                    <div class="treatment-card-image-v77">
+                        <img src="./disease-kronik-yorgunluk-v77.png?v=77" alt="Kronik yorgunluğu temsil eden medikal görsel">
+                    </div>
+                    <div class="treatment-card-body-v77">
+                        <h3>Kronik Yorgunluk</h3>
+                        <p>Uzun süren yorgunluk yakınmalarında yaşam tarzı ve eşlik eden faktörlerin değerlendirilmesi.</p>
+                        <span>Detayları Gör ↗</span>
+                    </div>
                 </a>
 
-                <a class="treatment-card" href="#tedavi-alanlari" data-disease="romatoid-artrit">
-                    <div class="treatment-card-icon">RA</div>
-                    <h3>Romatoid Artrit</h3>
-                    <p>Eklem hareketliliği, günlük yaşam ve romatizmal yakınmaların destekleyici değerlendirilmesi.</p>
-                    <span>Detayları Gör ↗</span>
+                <a class="treatment-card treatment-card-v77" href="#tedavi-alanlari" data-disease="romatoid-artrit">
+                    <div class="treatment-card-image-v77">
+                        <img src="./disease-romatoid-artrit-v77.png?v=77" alt="Romatoid artritte el ve el bileği eklemlerini gösteren medikal görsel">
+                    </div>
+                    <div class="treatment-card-body-v77">
+                        <h3>Romatoid Artrit</h3>
+                        <p>Eklem hareketliliği, günlük yaşam ve romatizmal yakınmaların destekleyici değerlendirilmesi.</p>
+                        <span>Detayları Gör ↗</span>
+                    </div>
                 </a>
 
-                <a class="treatment-card" href="#tedavi-alanlari" data-disease="tip-2-diyabet">
-                    <div class="treatment-card-icon">T2</div>
-                    <h3>Tip 2 Diyabet</h3>
-                    <p>Beslenme, hareket ve yaşam tarzı başlıklarının bütüncül değerlendirilmesi.</p>
-                    <span>Detayları Gör ↗</span>
+                <a class="treatment-card treatment-card-v77" href="#tedavi-alanlari" data-disease="tip-2-diyabet">
+                    <div class="treatment-card-image-v77">
+                        <img src="./disease-tip2-diyabet-v77.png?v=77" alt="Tip 2 diyabet ve kan şekeri ölçümünü temsil eden medikal görsel">
+                    </div>
+                    <div class="treatment-card-body-v77">
+                        <h3>Tip 2 Diyabet</h3>
+                        <p>Beslenme, hareket ve yaşam tarzı başlıklarının bütüncül değerlendirilmesi.</p>
+                        <span>Detayları Gör ↗</span>
+                    </div>
                 </a>
 
             </div>
@@ -431,11 +563,12 @@
                     id="painPageTreatmentDropdown"
                     aria-hidden="true"
                 >
-                    <a href="#hizmetler">Osteopati</a>
-                    <a href="#hizmetler">Fitoterapi</a>
-                    <a href="#hizmetler">İğne</a>
+                    <a href="#osteopati" class="treatment-detail-link-v71" data-treatment-detail="osteopati">Osteopati</a>
+                    <a href="#fitoterapi" class="treatment-detail-link-v71" data-treatment-detail="fitoterapi">Fitoterapi</a>
+                    <a href="#igne" class="treatment-detail-link-v71" data-treatment-detail="igne">İğne</a>
                     <a href="#hizmetler">Ozon Tedavisi</a>
                     <a href="#hizmetler">Estetiğe Bakış</a>
+                <a href="#damar-yolu" class="treatment-detail-link-v71 treatment-sub-link-v72" data-treatment-detail="damar-yolu">Damar Yolu</a>
                 </div>
             </div>
 
@@ -456,11 +589,11 @@
                     id="painPageHealthDropdown"
                     aria-hidden="true"
                 >
-                    <a href="#icerikler">Beslenme</a>
-                    <a href="#icerikler">Supplementler</a>
-                    <a href="#icerikler">Kürler</a>
-                    <a href="#icerikler">Egzersizler</a>
-                    <a href="#icerikler">Dekots</a>
+                    <a href="#beslenme" class="health-detail-link-v75" data-health-detail="beslenme">Beslenme</a>
+                    <a href="#supplementler" class="health-detail-link-v75" data-health-detail="supplementler">Supplementler</a>
+                    <a href="#kurler" class="health-detail-link-v75" data-health-detail="kurler">Kürler</a>
+                    <a href="#egzersizler" class="health-detail-link-v75" data-health-detail="egzersizler">Egzersizler</a>
+                    <a href="#detoks" class="health-detail-link-v75" data-health-detail="detoks">Detoks</a>
                 </div>
             </div>
 
@@ -486,6 +619,50 @@
                     <span>→</span>
                 </button>
             </div>
+            <div class="info-menu-v54 pain-info-menu-v54">
+                <button
+                    type="button"
+                    class="info-menu-button-v54"
+                    aria-expanded="false"
+                >
+                    Bilgi
+                    <span>⌄</span>
+                </button>
+
+                <div class="info-menu-panel-v54" aria-hidden="true">
+
+                    <button
+                        type="button"
+                        class="info-kvkk-button-v54"
+                        aria-expanded="false"
+                    >
+                        KVKK
+                        <span>›</span>
+                    </button>
+
+                    <div class="info-kvkk-submenu-v54" aria-hidden="true">
+
+                        <button type="button" class="info-legal-open-v56" data-legal-doc="aydinlatma">
+                            Aydınlatma Metni
+                        </button>
+
+                        <button type="button" class="info-legal-open-v56" data-legal-doc="politika">
+                            Kişisel Verilerin İşlenmesi ve Korunması Politikası
+                        </button>
+
+                        <button type="button" class="info-legal-open-v56" data-legal-doc="cerez">
+                            Çerez Politikası
+                        </button>
+
+                        <button type="button" class="info-legal-open-v56" data-legal-doc="acik-riza">
+                            Açık Rıza Metni
+                        </button>
+
+                    </div>
+
+                </div>
+            </div>
+
 
         </nav>
 
@@ -505,52 +682,799 @@
         </div>
 
         <div class="pain-content">
-            <div class="pain-grid">
+            <div class="pain-grid pain-grid-v76">
 
-                <a class="pain-card" href="#agri" data-pain="diz">
-                    <div class="pain-card-icon">D</div>
-                    <h3>Diz</h3>
-                    <p>Diz bölgesindeki ağrı ve hareket kısıtlılıklarının değerlendirilmesi.</p>
-                    <span>Detayları Gör ↗</span>
+                <a class="pain-card pain-card-v76" href="#agri" data-pain="diz">
+                    <div class="pain-card-image-v76">
+                        <img src="./pain-diz-v76.png?v=76" alt="Diz ağrısını gösteren medikal görsel">
+                    </div>
+                    <div class="pain-card-body-v76">
+                        <h3>Diz Ağrısı</h3>
+                        <p>Diz bölgesindeki ağrı ve hareket kısıtlılıklarının değerlendirilmesi.</p>
+                        <span>Detayları Gör ↗</span>
+                    </div>
                 </a>
 
-                <a class="pain-card" href="#agri" data-pain="ayak-ayak-bilegi">
-                    <div class="pain-card-icon">AB</div>
-                    <h3>Ayak - Ayak Bileği</h3>
-                    <p>Ayak ve ayak bileği bölgesindeki ağrı, yüklenme ve hareket sorunlarının değerlendirilmesi.</p>
-                    <span>Detayları Gör ↗</span>
+                <a class="pain-card pain-card-v76" href="#agri" data-pain="ayak-ayak-bilegi">
+                    <div class="pain-card-image-v76">
+                        <img src="./pain-ayak-bilegi-v76.png?v=76" alt="Ayak ve ayak bileği ağrısını gösteren medikal görsel">
+                    </div>
+                    <div class="pain-card-body-v76">
+                        <h3>Ayak - Ayak Bileği Ağrısı</h3>
+                        <p>Ayak ve ayak bileği bölgesindeki ağrı, yüklenme ve hareket sorunlarının değerlendirilmesi.</p>
+                        <span>Detayları Gör ↗</span>
+                    </div>
                 </a>
 
-                <a class="pain-card" href="#agri" data-pain="kalca">
-                    <div class="pain-card-icon">K</div>
-                    <h3>Kalça</h3>
-                    <p>Kalça çevresindeki ağrı, hareket açıklığı ve kas dengesinin değerlendirilmesi.</p>
-                    <span>Detayları Gör ↗</span>
+                <a class="pain-card pain-card-v76" href="#agri" data-pain="kalca">
+                    <div class="pain-card-image-v76">
+                        <img src="./pain-kalca-v76.png?v=76" alt="Kalça ağrısını gösteren medikal görsel">
+                    </div>
+                    <div class="pain-card-body-v76">
+                        <h3>Kalça Ağrısı</h3>
+                        <p>Kalça çevresindeki ağrı, hareket açıklığı ve kas dengesinin değerlendirilmesi.</p>
+                        <span>Detayları Gör ↗</span>
+                    </div>
                 </a>
 
-                <a class="pain-card" href="#agri" data-pain="dirsek">
-                    <div class="pain-card-icon">Dİ</div>
-                    <h3>Dirsek</h3>
-                    <p>Dirsek bölgesindeki ağrı ve hareket kısıtlılıklarının değerlendirilmesi.</p>
-                    <span>Detayları Gör ↗</span>
+                <a class="pain-card pain-card-v76" href="#agri" data-pain="dirsek">
+                    <div class="pain-card-image-v76">
+                        <img src="./pain-dirsek-v76.png?v=76" alt="Dirsek ağrısını gösteren medikal görsel">
+                    </div>
+                    <div class="pain-card-body-v76">
+                        <h3>Dirsek Ağrısı</h3>
+                        <p>Dirsek bölgesindeki ağrı ve hareket kısıtlılıklarının değerlendirilmesi.</p>
+                        <span>Detayları Gör ↗</span>
+                    </div>
                 </a>
 
-                <a class="pain-card" href="#agri" data-pain="omuz">
-                    <div class="pain-card-icon">O</div>
-                    <h3>Omuz</h3>
-                    <p>Omuz hareketleri, ağrı ve çevre kas yapılarının değerlendirilmesi.</p>
-                    <span>Detayları Gör ↗</span>
+                <a class="pain-card pain-card-v76" href="#agri" data-pain="omuz">
+                    <div class="pain-card-image-v76">
+                        <img src="./pain-omuz-v76.png?v=76" alt="Omuz ağrısını gösteren medikal görsel">
+                    </div>
+                    <div class="pain-card-body-v76">
+                        <h3>Omuz Ağrısı</h3>
+                        <p>Omuz hareketleri, ağrı ve çevre kas yapılarının değerlendirilmesi.</p>
+                        <span>Detayları Gör ↗</span>
+                    </div>
                 </a>
 
-                <a class="pain-card" href="#agri" data-pain="el-bilegi">
-                    <div class="pain-card-icon">EB</div>
-                    <h3>El Bileği</h3>
-                    <p>El bileği bölgesindeki ağrı, hareket ve günlük kullanım sorunlarının değerlendirilmesi.</p>
-                    <span>Detayları Gör ↗</span>
+                <a class="pain-card pain-card-v76" href="#agri" data-pain="el-bilegi">
+                    <div class="pain-card-image-v76">
+                        <img src="./pain-el-bilegi-v76.png?v=76" alt="El bileği ağrısını gösteren medikal görsel">
+                    </div>
+                    <div class="pain-card-body-v76">
+                        <h3>El Bileği Ağrısı</h3>
+                        <p>El bileği bölgesindeki ağrı, hareket ve günlük kullanım sorunlarının değerlendirilmesi.</p>
+                        <span>Detayları Gör ↗</span>
+                    </div>
                 </a>
 
             </div>
         </div>
+
+    </section>
+
+
+    <!-- V56: KVKK / HUKUKİ METİNLER SAYFASI -->
+    <section class="legal-page-v56" id="legalPageV56" aria-hidden="true">
+
+        <nav class="legal-page-topnav-v56" aria-label="KVKK üst menüsü">
+
+            <button type="button" class="legal-top-button-v56" id="legalHomeButtonV56">
+                Ana Sayfa
+            </button>
+
+            <button type="button" class="legal-top-button-v56" data-legal-switch="aydinlatma">
+                Aydınlatma Metni
+            </button>
+
+            <button type="button" class="legal-top-button-v56" data-legal-switch="politika">
+                Kişisel Verilerin İşlenmesi ve Korunması Politikası
+            </button>
+
+            <button type="button" class="legal-top-button-v56" data-legal-switch="cerez">
+                Çerez Politikası
+            </button>
+
+            <button type="button" class="legal-top-button-v56" data-legal-switch="acik-riza">
+                Açık Rıza Metni
+            </button>
+
+        </nav>
+
+        <div class="legal-page-hero-v56">
+            <span class="legal-kicker-v56">KVKK</span>
+            <h1 id="legalPageTitleV56">Aydınlatma Metni</h1>
+        </div>
+
+        <div class="legal-page-content-v56">
+
+            <article class="legal-doc-v56 active" data-legal-doc-page="aydinlatma">
+                <h2>Kişisel Verilerin İşlenmesine İlişkin Aydınlatma Metni</h2>
+                <p>
+                    İşbu Aydınlatma Metni; 6698 sayılı Kişisel Verilerin Korunması
+                    Kanunu (“KVKK”) kapsamında, internet sitesi ve çevrim içi randevu
+                    talebi süreçlerinde kişisel verilerin nasıl işlendiği konusunda
+                    ilgili kişileri bilgilendirmek amacıyla hazırlanmıştır.
+                </p>
+
+                <h3>1. Veri Sorumlusu</h3>
+                <p>
+                    Kişisel verileriniz, veri sorumlusu sıfatıyla Dr. Ceyhun Nuri
+                    tarafından, yürürlükteki mevzuata uygun olarak işlenebilir.
+                </p>
+
+                <div class="legal-contact-v56">
+                    <strong>İletişim</strong>
+                    <span>Mustafa Kemal, 2079. Sk. VIA Green Plaza C-21, 06510 Çankaya/Ankara</span>
+                    <a href="tel:+905349309880">0 534 930 98 80</a>
+                    <a href="mailto:info@doktorceyhunnuri.com">info@doktorceyhunnuri.com</a>
+                </div>
+
+                <h3>2. İşlenebilecek Kişisel Veriler</h3>
+                <p>
+                    İnternet sitesi üzerinden randevu talebi oluşturmanız halinde;
+                    ad-soyad, telefon numarası, tercih edilen randevu türü, tarih,
+                    saat ve tarafınızca girilen kısa not bilgileri işlenebilir.
+                </p>
+                <p>
+                    Randevu notu alanına sağlık raporu, teşhis, tetkik sonucu veya
+                    ayrıntılı sağlık verisi yazılmaması tavsiye edilir.
+                </p>
+
+                <h3>3. İşleme Amaçları</h3>
+                <ul>
+                    <li>Randevu talebinin alınması ve değerlendirilmesi,</li>
+                    <li>İletişim kurulması ve uygunluk bilgisinin verilmesi,</li>
+                    <li>Talep ve başvuru süreçlerinin yürütülmesi,</li>
+                    <li>Hukuki yükümlülüklerin yerine getirilmesi.</li>
+                </ul>
+
+                <h3>4. Toplama Yöntemi ve Hukuki Sebep</h3>
+                <p>
+                    Veriler; internet sitesi formları ve elektronik iletişim kanalları
+                    üzerinden elde edilebilir. İşleme faaliyetleri KVKK’nın 5. ve
+                    gerektiğinde 6. maddelerindeki veri işleme şartlarına dayanır.
+                </p>
+
+                <h3>5. Verilerin Aktarılması</h3>
+                <p>
+                    Randevu talebinizi WhatsApp üzerinden iletmeyi tercih etmeniz
+                    halinde mesaj içeriği ilgili hizmet sağlayıcının altyapısı
+                    üzerinden iletilir. Kanunen yetkili kurumlara yalnızca gerekli
+                    hallerde ve ölçüde aktarım yapılabilir.
+                </p>
+
+                <h3>6. Haklarınız</h3>
+                <p>
+                    KVKK’nın 11. maddesi kapsamındaki taleplerinizi yukarıdaki
+                    iletişim kanallarından veri sorumlusuna iletebilirsiniz.
+                </p>
+            </article>
+
+            <article class="legal-doc-v56" data-legal-doc-page="politika">
+                <h2>Kişisel Verilerin İşlenmesi ve Korunması Politikası</h2>
+                <p>
+                    Bu Politika; Dr. Ceyhun Nuri tarafından yürütülen faaliyetlerde
+                    kişisel verilerin hukuka uygun işlenmesi, korunması, saklanması
+                    ve gerektiğinde imha edilmesine ilişkin temel prensipleri
+                    açıklamak amacıyla hazırlanmıştır.
+                </p>
+
+                <h3>1. Amaç ve Kapsam</h3>
+                <p>
+                    Politika; hastalar, danışanlar, ziyaretçiler, internet sitesi
+                    kullanıcıları ve iletişim kuran gerçek kişilere ait verilerin
+                    işlenmesi süreçlerini kapsar.
+                </p>
+
+                <h3>2. Temel İlkeler</h3>
+                <ul>
+                    <li>Hukuka ve dürüstlük kurallarına uygunluk,</li>
+                    <li>Doğruluk ve gerektiğinde güncellik,</li>
+                    <li>Belirli, açık ve meşru amaçlarla işleme,</li>
+                    <li>Amaçla bağlantılı, sınırlı ve ölçülü olma,</li>
+                    <li>Gerekli süre kadar muhafaza edilme.</li>
+                </ul>
+
+                <h3>3. Veri Kategorileri</h3>
+                <p>
+                    Sürecin niteliğine göre kimlik, iletişim, randevu/işlem,
+                    işlem güvenliği, hukuki işlem ve mevzuatın izin verdiği
+                    hallerde sağlık bilgileri işlenebilir.
+                </p>
+
+                <h3>4. Özel Nitelikli Kişisel Veriler</h3>
+                <p>
+                    Sağlık verileri yalnızca ilgili mevzuatta öngörülen şartların
+                    bulunduğu durumlarda ve gerekli güvenlik tedbirleri alınarak işlenir.
+                </p>
+
+                <h3>5. Veri Güvenliği</h3>
+                <p>
+                    Yetkisiz erişimi önleme, erişimleri sınırlandırma, hesap ve
+                    cihaz güvenliği, yedekleme ve gizlilik tedbirleri uygulanır.
+                </p>
+
+                <h3>6. Saklama ve İmha</h3>
+                <p>
+                    Kişisel veriler ilgili mevzuat ve işleme amacı için gerekli
+                    süre boyunca saklanır; şartlar ortadan kalktığında mevzuata
+                    uygun şekilde silinir, yok edilir veya anonim hale getirilir.
+                </p>
+
+                <h3>7. İlgili Kişi Başvuruları</h3>
+                <p>
+                    İlgili kişiler KVKK’nın 11. maddesindeki haklarına ilişkin
+                    taleplerini veri sorumlusuna iletebilir.
+                </p>
+            </article>
+
+            <article class="legal-doc-v56" data-legal-doc-page="cerez">
+                <h2>Çerez Politikası</h2>
+                <p>
+                    Bu Çerez Politikası, internet sitesini ziyaret ettiğinizde
+                    kullanılan veya ileride kullanılabilecek çerez ve benzeri
+                    teknolojiler hakkında bilgi vermek amacıyla hazırlanmıştır.
+                </p>
+
+                <h3>1. Çerez Nedir?</h3>
+                <p>
+                    Çerezler, internet sitelerinin cihazınıza kaydedebildiği küçük
+                    metin dosyalarıdır.
+                </p>
+
+                <h3>2. Zorunlu Çerezler</h3>
+                <p>
+                    Sitenin güvenli ve doğru şekilde çalışması için gerekli teknik
+                    çerezler ilgili işlevin sağlanması amacıyla kullanılabilir.
+                </p>
+
+                <h3>3. Analitik ve Pazarlama Çerezleri</h3>
+                <p>
+                    Zorunlu olmayan analitik, performans veya reklam/pazarlama
+                    çerezlerinin kullanılması halinde uygun tercih veya izin
+                    mekanizması uygulanır.
+                </p>
+
+                <h3>4. Üçüncü Taraf Hizmetleri</h3>
+                <p>
+                    YouTube, WhatsApp veya sonradan entegre edilebilecek üçüncü
+                    taraf hizmetlerin kendi çerez ve gizlilik koşulları uygulanabilir.
+                </p>
+
+                <h3>5. Çerez Tercihleri</h3>
+                <p>
+                    Tarayıcınız üzerinden çerezleri silebilir, engelleyebilir veya
+                    tercihlerinizi değiştirebilirsiniz.
+                </p>
+            </article>
+
+            <article class="legal-doc-v56" data-legal-doc-page="acik-riza">
+                <h2>Açık Rıza Metni</h2>
+                <p>
+                    Bu metin, yalnızca kişisel veri işleme faaliyetinin açık rıza
+                    hukuki sebebine dayanmasının gerektiği durumlarda kullanılmak
+                    üzere hazırlanmıştır. Açık rıza, aydınlatma yükümlülüğünden
+                    ayrıdır.
+                </p>
+
+                <h3>1. Rızanın Kapsamı</h3>
+                <p>
+                    Açık rızaya dayanan işlemlerde hangi verilerin hangi belirli
+                    amaçlarla işleneceği veya aktarılacağı ilgili kişiye işlem
+                    öncesinde açıkça bildirilir.
+                </p>
+
+                <h3>2. Özgür İrade</h3>
+                <p>
+                    Açık rıza özgür iradeyle verilmelidir ve hukuken gerekli
+                    olmadığı durumlarda hizmetin zorunlu şartı haline getirilmez.
+                </p>
+
+                <h3>3. Sağlık Verileri</h3>
+                <p>
+                    Sağlık verilerinin işlenmesinde KVKK’nın özel nitelikli
+                    kişisel verilere ilişkin hükümleri ve ilgili sağlık mevzuatı
+                    dikkate alınır.
+                </p>
+
+                <h3>4. Rızanın Geri Alınması</h3>
+                <p>
+                    Açık rızaya dayalı işlemlerde rıza ileriye etkili olmak üzere
+                    geri alınabilir.
+                </p>
+
+                <div class="legal-warning-v56">
+                    <strong>Not:</strong>
+                    Klinik içi hasta kabulü ve sağlık verisi süreçleri, gerçek
+                    veri akışları dikkate alınarak ayrıca hukuki kontrolden geçirilmelidir.
+                </div>
+            </article>
+
+        </div>
+    </section>
+
+
+    <!-- V71: TEDAVİ DETAY SAYFASI -->
+    <section
+        class="treatment-detail-page-v71"
+        id="treatmentDetailPageV71"
+        aria-hidden="true"
+    >
+
+        <nav class="treatment-detail-nav-v71" aria-label="Tedavi detay üst menüsü">
+
+            <button
+                type="button"
+                class="treatment-detail-nav-button-v71"
+                id="treatmentDetailHomeV71"
+            >
+                Ana Sayfa
+            </button>
+
+            <div class="treatment-top-menu-v74" id="treatmentTopMenuV74">
+                <button
+                    type="button"
+                    class="treatment-detail-nav-button-v71 treatment-top-menu-button-v74"
+                    id="treatmentTopMenuButtonV74"
+                    aria-expanded="false"
+                    aria-controls="treatmentTopMenuPanelV74"
+                >
+                    Tedavi
+                    <span>⌄</span>
+                </button>
+
+                <div
+                    class="treatment-top-menu-panel-v74"
+                    id="treatmentTopMenuPanelV74"
+                    aria-hidden="true"
+                >
+                    <button type="button" class="treatment-top-option-v74" data-treatment-top="osteopati">
+                        Osteopati
+                    </button>
+
+                    <button type="button" class="treatment-top-option-v74" data-treatment-top="fitoterapi">
+                        Fitoterapi
+                    </button>
+
+                    <button type="button" class="treatment-top-option-v74" data-treatment-top="igne">
+                        İğne
+                    </button>
+
+                    <button type="button" class="treatment-top-option-v74 treatment-top-disabled-v74" aria-disabled="true">
+                        Ozon Tedavisi
+                    </button>
+
+                    <button type="button" class="treatment-top-option-v74 treatment-top-disabled-v74" aria-disabled="true">
+                        Estetiğe Bakış
+                    </button>
+
+                    <button type="button" class="treatment-top-option-v74" data-treatment-top="damar-yolu">
+                        Damar Yolu
+                    </button>
+                </div>
+            </div>
+
+            <button
+                type="button"
+                class="treatment-detail-nav-button-v71"
+                id="treatmentDetailAreasV71"
+            >
+                Tedavi Alanları
+            </button>
+
+            <button
+                type="button"
+                class="treatment-detail-nav-button-v71"
+                id="treatmentDetailPainV71"
+            >
+                Ağrı
+            </button>
+
+            <button
+                type="button"
+                class="treatment-detail-nav-button-v71"
+                id="treatmentDetailMediaV71"
+            >
+                Medya
+            </button>
+
+            <div class="info-menu-v54 treatment-detail-info-v71">
+                <button
+                    type="button"
+                    class="info-menu-button-v54"
+                    aria-expanded="false"
+                >
+                    Bilgi
+                    <span>⌄</span>
+                </button>
+
+                <div class="info-menu-panel-v54" aria-hidden="true">
+                    <button
+                        type="button"
+                        class="info-kvkk-button-v54"
+                        aria-expanded="false"
+                    >
+                        KVKK
+                        <span>›</span>
+                    </button>
+
+                    <div class="info-kvkk-submenu-v54" aria-hidden="true">
+                        <button type="button" class="info-legal-open-v56" data-legal-doc="aydinlatma">
+                            Aydınlatma Metni
+                        </button>
+                        <button type="button" class="info-legal-open-v56" data-legal-doc="politika">
+                            Kişisel Verilerin İşlenmesi ve Korunması Politikası
+                        </button>
+                        <button type="button" class="info-legal-open-v56" data-legal-doc="cerez">
+                            Çerez Politikası
+                        </button>
+                        <button type="button" class="info-legal-open-v56" data-legal-doc="acik-riza">
+                            Açık Rıza Metni
+                        </button>
+                    </div>
+                </div>
+            </div>
+
+        </nav>
+
+<!-- OSTEOPATİ -->
+        <article
+            class="treatment-detail-view-v71 osteopathy-view-v71"
+            data-treatment-detail-view="osteopati"
+        >
+            <div class="treatment-detail-bg-v71"></div>
+            <div class="treatment-detail-soft-v71"></div>
+
+            <div class="treatment-detail-content-v71">
+
+                <div class="treatment-detail-copy-v71">
+                    <span class="treatment-detail-kicker-v71">TEDAVİ</span>
+                    <h1>Osteopati</h1>
+
+                    <p class="treatment-detail-lead-v71">
+                        Osteopati; kas-iskelet sistemi, eklem hareketliliği,
+                        postür ve dokular arasındaki mekanik ilişkileri birlikte
+                        değerlendiren manuel bir yaklaşımdır.
+                    </p>
+
+                    <p>
+                        Muayene sonrasında kişinin şikâyeti, hareket kapasitesi
+                        ve genel durumu dikkate alınarak uygun manuel teknikler,
+                        mobilizasyon uygulamaları ve hareket önerileri planlanabilir.
+                    </p>
+
+                    <p>
+                        Amaç; yalnızca ağrının bulunduğu bölgeye odaklanmak yerine,
+                        şikâyete katkıda bulunabilecek hareket ve yüklenme
+                        paternlerini bütüncül olarak değerlendirmektir.
+                    </p>
+                </div>
+
+                <div class="treatment-topic-visual-v71 osteopathy-visual-v71" aria-hidden="true">
+                    <svg viewBox="0 0 420 520" role="img">
+                        <defs>
+                            <linearGradient id="osteoBodyV71" x1="0" x2="1">
+                                <stop offset="0%" stop-color="#dff4ff"/>
+                                <stop offset="100%" stop-color="#82c9ee"/>
+                            </linearGradient>
+                            <linearGradient id="osteoSpineV71" x1="0" y1="0" x2="0" y2="1">
+                                <stop offset="0%" stop-color="#ffbf6b"/>
+                                <stop offset="100%" stop-color="#ff6a52"/>
+                            </linearGradient>
+                        </defs>
+                        <path d="M210 42c-51 0-88 35-88 84 0 31 15 54 29 71-48 25-79 78-79 146v119h276V343c0-68-31-121-79-146 14-17 29-40 29-71 0-49-37-84-88-84Z"
+                              fill="url(#osteoBodyV71)" opacity=".58"/>
+                        <path d="M210 91c-13 31-13 61-2 92 10 31 9 63-2 95-12 35-10 76 5 119"
+                              fill="none" stroke="url(#osteoSpineV71)" stroke-width="18" stroke-linecap="round"/>
+                        <g fill="#fff" opacity=".88">
+                            <circle cx="210" cy="110" r="7"/><circle cx="210" cy="137" r="7"/>
+                            <circle cx="210" cy="165" r="7"/><circle cx="208" cy="194" r="7"/>
+                            <circle cx="207" cy="224" r="7"/><circle cx="205" cy="254" r="7"/>
+                            <circle cx="205" cy="285" r="7"/><circle cx="207" cy="317" r="7"/>
+                            <circle cx="211" cy="349" r="7"/><circle cx="216" cy="381" r="7"/>
+                        </g>
+                        <path d="M111 297c28-27 61-41 99-41s71 14 99 41"
+                              fill="none" stroke="#278bc2" stroke-width="8" opacity=".75" stroke-linecap="round"/>
+                    </svg>
+                </div>
+
+            </div>
+        </article>
+
+        <!-- FİTOTERAPİ -->
+        <article
+            class="treatment-detail-view-v71 phytotherapy-view-v71"
+            data-treatment-detail-view="fitoterapi"
+        >
+            <div class="treatment-detail-bg-v71"></div>
+            <div class="treatment-detail-soft-v71"></div>
+
+            <div class="treatment-detail-content-v71">
+
+                <div class="treatment-detail-copy-v71">
+                    <span class="treatment-detail-kicker-v71">TEDAVİ</span>
+                    <h1>Fitoterapi</h1>
+
+                    <p class="treatment-detail-lead-v71">
+                        Fitoterapi; bitkisel ürünlerin içerik, doz, kullanım şekli,
+                        olası ilaç etkileşimleri ve kişiye özel riskler açısından
+                        hekim değerlendirmesiyle ele alınmasıdır.
+                    </p>
+
+                    <p>
+                        Kullanılacak ürünün standardizasyonu, güvenilir kaynaktan
+                        temin edilmesi ve mevcut ilaçlarla etkileşiminin
+                        değerlendirilmesi önemlidir.
+                    </p>
+
+                    <p>
+                        Özellikle düzenli ilaç kullananlarda, gebelik-emzirme
+                        döneminde ve karaciğer veya böbrek hastalığı bulunanlarda
+                        bitkisel ürünler hekime danışılmadan kullanılmamalıdır.
+                    </p>
+                </div>
+
+                <div class="treatment-topic-visual-v71 phytotherapy-visual-v71" aria-hidden="true">
+                    <svg viewBox="0 0 520 520" role="img">
+                        <defs>
+                            <linearGradient id="phyLeafV71" x1="0" x2="1">
+                                <stop offset="0%" stop-color="#b8e6a8"/>
+                                <stop offset="100%" stop-color="#4aa66b"/>
+                            </linearGradient>
+                            <linearGradient id="phyBowlV71" x1="0" x2="0" y1="0" y2="1">
+                                <stop offset="0%" stop-color="#efe6cf"/>
+                                <stop offset="100%" stop-color="#c7b28c"/>
+                            </linearGradient>
+                        </defs>
+                        <ellipse cx="260" cy="408" rx="130" ry="36" fill="#173f3c" opacity=".10"/>
+                        <path d="M145 350h230c-8 64-52 102-115 102s-107-38-115-102Z" fill="url(#phyBowlV71)"/>
+                        <path d="M180 338c40-50 91-72 153-65" fill="none" stroke="#80674d" stroke-width="20" stroke-linecap="round"/>
+                        <path d="M232 275c-72-17-109-74-93-145 72 17 109 74 93 145Z" fill="url(#phyLeafV71)"/>
+                        <path d="M279 266c68-40 132-23 171 37-68 40-132 23-171-37Z" fill="url(#phyLeafV71)" opacity=".92"/>
+                        <path d="M260 294c-11-87 19-147 91-181 11 87-19 147-91 181Z" fill="url(#phyLeafV71)" opacity=".82"/>
+                        <path d="M215 234c19-32 45-56 78-74M307 235c25-22 52-36 82-43" fill="none" stroke="#e9ffec" stroke-width="7" stroke-linecap="round" opacity=".7"/>
+                    </svg>
+                </div>
+
+            </div>
+        </article>
+
+        <!-- İĞNE UYGULAMALARI -->
+        <article
+            class="treatment-detail-view-v71 injection-view-v71"
+            data-treatment-detail-view="igne"
+        >
+            <div class="injection-header-v71">
+                <span class="treatment-detail-kicker-v71">TEDAVİ</span>
+                <h1>İğne Uygulamaları</h1>
+                <p>
+                    İğne uygulamaları; kişinin şikâyeti, muayene bulguları,
+                    kullanılan ilaçları ve genel sağlık durumu değerlendirilerek
+                    hekim tarafından planlanır. Uygulamanın türü ve bölgesi kişiye
+                    göre değişebilir.
+                </p>
+            </div>
+
+            <div class="injection-grid-v72">
+
+                <article class="injection-card-v72">
+                    <h2>Ozonlu İğne</h2>
+
+                    <div class="injection-visual-v72 ozone-injection-v72" aria-hidden="true">
+                        <svg viewBox="0 0 420 250">
+                            <path d="M95 164h155" stroke="#238ec4" stroke-width="12" stroke-linecap="round"/>
+                            <path d="M247 164l72-36" stroke="#6a7d87" stroke-width="6" stroke-linecap="round"/>
+                            <path d="M316 128l34-17" stroke="#6a7d87" stroke-width="3" stroke-linecap="round"/>
+                            <rect x="105" y="131" width="128" height="66" rx="18" fill="#eaf7ff" stroke="#238ec4" stroke-width="5"/>
+                            <circle cx="151" cy="163" r="14" fill="#fff" opacity=".92"/>
+                            <circle cx="184" cy="149" r="10" fill="#fff" opacity=".92"/>
+                            <circle cx="201" cy="176" r="8" fill="#fff" opacity=".92"/>
+                            <circle cx="311" cy="82" r="25" fill="#c6edff"/>
+                            <circle cx="342" cy="61" r="15" fill="#e8f8ff"/>
+                        </svg>
+                    </div>
+
+                    <p>
+                        Ozon-oksijen karışımının hekim tarafından belirlenen
+                        bölgelere enjeksiyon yoluyla uygulanmasını ifade eder.
+                        Kullanım amacı ve uygunluğu şikâyete ve muayene bulgularına
+                        göre değerlendirilir; her hasta için uygun olmayabilir.
+                    </p>
+                </article>
+
+                <article class="injection-card-v72">
+                    <h2>Proloterapi İğnesi</h2>
+
+                    <div class="injection-visual-v72 prolotherapy-v72" aria-hidden="true">
+                        <svg viewBox="0 0 420 250">
+                            <path d="M103 154c51-66 112-86 181-60" fill="none" stroke="#8ecf98" stroke-width="28" stroke-linecap="round" opacity=".5"/>
+                            <circle cx="222" cy="127" r="42" fill="#effaf1" stroke="#54a968" stroke-width="5"/>
+                            <path d="M90 184l109-45" stroke="#6a7d87" stroke-width="6" stroke-linecap="round"/>
+                            <path d="M197 139l50-20" stroke="#6a7d87" stroke-width="3" stroke-linecap="round"/>
+                            <path d="M215 108c18 8 32 20 41 37" fill="none" stroke="#54a968" stroke-width="7" stroke-linecap="round"/>
+                        </svg>
+                    </div>
+
+                    <p>
+                        Proloterapi, seçilmiş kas-iskelet sistemi sorunlarında
+                        bağ, tendon veya eklem çevresindeki hedef dokulara
+                        irritan çözeltilerin enjeksiyonunu içeren bir yöntemdir.
+                        Uygun hasta seçimi ve hedef bölgenin doğru belirlenmesi
+                        hekim değerlendirmesi gerektirir.
+                    </p>
+                </article>
+
+                <article class="injection-card-v72">
+                    <h2>Nöral Terapi İğnesi</h2>
+
+                    <div class="injection-visual-v72 neural-therapy-v72" aria-hidden="true">
+                        <svg viewBox="0 0 420 250">
+                            <path d="M126 64c25 34 25 67 0 100 25 34 25 67 0 100" fill="none" stroke="#77bde1" stroke-width="11" stroke-linecap="round"/>
+                            <path d="M170 64c25 34 25 67 0 100 25 34 25 67 0 100" fill="none" stroke="#a5d9f2" stroke-width="8" stroke-linecap="round"/>
+                            <path d="M300 92l-91 61" stroke="#6a7d87" stroke-width="6" stroke-linecap="round"/>
+                            <path d="M211 151l-42 28" stroke="#6a7d87" stroke-width="3" stroke-linecap="round"/>
+                            <circle cx="207" cy="154" r="18" fill="#e8f7ff" stroke="#238ec4" stroke-width="5"/>
+                        </svg>
+                    </div>
+
+                    <p>
+                        Nöral terapi, lokal anesteziklerin belirli deri, skar,
+                        sinir veya tetik nokta bölgelerine düşük dozlarda
+                        uygulanabildiği bir enjeksiyon yaklaşımıdır. Hangi bölgenin
+                        hedefleneceği kişinin öyküsü ve muayenesine göre belirlenir.
+                    </p>
+                </article>
+
+                <article class="injection-card-v72">
+                    <h2>NöralPro İğnesi</h2>
+
+                    <div class="injection-visual-v72 neuralpro-v72" aria-hidden="true">
+                        <svg viewBox="0 0 420 250">
+                            <circle cx="210" cy="125" r="80" fill="#f4f0ff" stroke="#7a63c7" stroke-width="5"/>
+                            <path d="M166 131c22-35 53-51 91-47" fill="none" stroke="#7a63c7" stroke-width="9" stroke-linecap="round"/>
+                            <path d="M287 64l-61 48" stroke="#6a7d87" stroke-width="6" stroke-linecap="round"/>
+                            <path d="M227 111l-35 28" stroke="#6a7d87" stroke-width="3" stroke-linecap="round"/>
+                            <circle cx="189" cy="141" r="15" fill="#fff" stroke="#7a63c7" stroke-width="5"/>
+                            <text x="210" y="198" text-anchor="middle" font-size="25" font-weight="800" fill="#6b57b7">NÖRALPRO</text>
+                        </svg>
+                    </div>
+
+                    <p>
+                        NöralPro, klinikte kullanılan özel bir enjeksiyon yaklaşımı
+                        olarak hekim değerlendirmesi sonrasında planlanır. İçerik,
+                        doz, uygulama bölgesi ve hedeflenen amaç kişiye göre
+                        belirlenmelidir; bu nedenle standart bir kullanım şeması
+                        yerine bireysel değerlendirme esas alınır.
+                    </p>
+                </article>
+
+            </div>
+
+            <p class="treatment-medical-note-v71">
+                Bilgilendirme amaçlıdır; tanı veya tedavi önerisi yerine geçmez.
+                Enjeksiyon uygulamalarının uygunluğu hekim muayenesi sonrasında
+                belirlenmelidir.
+            </p>
+        </article>
+
+        <!-- DAMAR YOLU / SERUMLAR -->
+        <article
+            class="treatment-detail-view-v71 injection-view-v71 vascular-view-v72"
+            data-treatment-detail-view="damar-yolu"
+        >
+            <div class="injection-header-v71">
+                <span class="treatment-detail-kicker-v71">TEDAVİ</span>
+                <h1>Damar Yolu</h1>
+                <p>
+                    Damar yolu uygulamaları kişinin tıbbi öyküsü, kullanılan
+                    ilaçları, eşlik eden hastalıkları ve gerekli laboratuvar
+                    değerlendirmeleri dikkate alınarak hekim tarafından planlanır.
+                </p>
+            </div>
+
+            <div class="serum-grid-v71">
+
+                <article class="serum-card-v71">
+                    <h2>Ozonlu Serum</h2>
+
+                    <div class="serum-visual-v71 ozone-serum-v71" aria-hidden="true">
+                        <svg viewBox="0 0 420 250">
+                            <rect x="150" y="30" width="120" height="142" rx="22" fill="#eaf7ff" stroke="#2092ca" stroke-width="5"/>
+                            <path d="M177 65h66v70h-66Z" fill="#9edcff" opacity=".7"/>
+                            <circle cx="189" cy="98" r="10" fill="#fff" opacity=".85"/>
+                            <circle cx="218" cy="82" r="7" fill="#fff" opacity=".85"/>
+                            <circle cx="233" cy="112" r="6" fill="#fff" opacity=".85"/>
+                            <path d="M210 172v46c0 20 32 15 32 0" fill="none" stroke="#2092ca" stroke-width="5" stroke-linecap="round"/>
+                            <path d="M240 218h35" stroke="#2092ca" stroke-width="5" stroke-linecap="round"/>
+                        </svg>
+                    </div>
+
+                    <p>
+                        Ozonun serum fizyolojik ile birlikte kullanıldığı damar
+                        yolu yaklaşımları bazı kliniklerde destekleyici amaçlarla
+                        değerlendirilmektedir. Uygunluk, hedeflenen amaç ve olası
+                        riskler hekim tarafından kişiye özel değerlendirilmelidir.
+                    </p>
+                </article>
+
+                <article class="serum-card-v71">
+                    <h2>C Vitamini Serumu</h2>
+
+                    <div class="serum-visual-v71 vitamin-c-v71" aria-hidden="true">
+                        <svg viewBox="0 0 420 250">
+                            <rect x="150" y="30" width="120" height="142" rx="22" fill="#fff6dd" stroke="#e4a62d" stroke-width="5"/>
+                            <path d="M177 65h66v70h-66Z" fill="#ffd26c" opacity=".82"/>
+                            <circle cx="210" cy="100" r="30" fill="#fff" opacity=".92"/>
+                            <text x="210" y="112" text-anchor="middle" font-size="35" font-weight="800" fill="#e59a16">C</text>
+                            <path d="M210 172v46c0 20 32 15 32 0" fill="none" stroke="#e4a62d" stroke-width="5" stroke-linecap="round"/>
+                            <path d="M240 218h35" stroke="#e4a62d" stroke-width="5" stroke-linecap="round"/>
+                        </svg>
+                    </div>
+
+                    <p>
+                        Damar yoluyla C vitamini uygulaması, hekim tarafından
+                        uygun görülen durumlarda ve gerekli değerlendirmeler
+                        sonrasında planlanabilir. Doz; böbrek fonksiyonları,
+                        eşlik eden hastalıklar ve kullanılan ilaçlar dikkate
+                        alınarak belirlenmelidir.
+                    </p>
+                </article>
+
+                <article class="serum-card-v71">
+                    <h2>Glutatyon</h2>
+
+                    <div class="serum-visual-v71 glutathione-v71" aria-hidden="true">
+                        <svg viewBox="0 0 420 250">
+                            <rect x="150" y="30" width="120" height="142" rx="22" fill="#eefcf1" stroke="#49a866" stroke-width="5"/>
+                            <path d="M177 65h66v70h-66Z" fill="#9ae0ad" opacity=".72"/>
+                            <path d="M188 107c18-39 47-48 70-53-5 37-22 66-55 78-10-9-15-17-15-25Z" fill="#fff" opacity=".92"/>
+                            <path d="M205 125c7-25 20-44 42-58" fill="none" stroke="#49a866" stroke-width="5" stroke-linecap="round"/>
+                            <path d="M210 172v46c0 20 32 15 32 0" fill="none" stroke="#49a866" stroke-width="5" stroke-linecap="round"/>
+                            <path d="M240 218h35" stroke="#49a866" stroke-width="5" stroke-linecap="round"/>
+                        </svg>
+                    </div>
+
+                    <p>
+                        Glutatyon vücutta doğal olarak bulunan bir antioksidandır.
+                        Damar yoluyla kullanımın gerekliliği, hedeflenen amaç,
+                        mevcut hastalıklar ve diğer tedaviler dikkate alınarak
+                        hekim tarafından değerlendirilmelidir.
+                    </p>
+                </article>
+
+                <article class="serum-card-v71">
+                    <h2>Major Ozon</h2>
+
+                    <div class="serum-visual-v71 major-ozone-v71" aria-hidden="true">
+                        <svg viewBox="0 0 420 250">
+                            <path d="M128 73h116c18 0 28 13 28 30v62c0 28-22 48-50 48h-72c-28 0-50-20-50-48v-62c0-17 10-30 28-30Z" fill="#eef7ff" stroke="#278bc2" stroke-width="5"/>
+                            <path d="M114 144c40-27 97-27 144 0v21c0 21-17 36-38 36h-68c-21 0-38-15-38-36Z" fill="#d96a65" opacity=".70"/>
+                            <circle cx="311" cy="78" r="30" fill="#b8e5ff"/>
+                            <circle cx="337" cy="110" r="18" fill="#dff4ff"/>
+                            <circle cx="301" cy="124" r="12" fill="#fff"/>
+                            <path d="M244 104c48-2 62-15 67-28" fill="none" stroke="#278bc2" stroke-width="5" stroke-linecap="round"/>
+                        </svg>
+                    </div>
+
+                    <p>
+                        Major ozon uygulamasında belirli miktarda kan kapalı bir
+                        sistemde alınır, kontrollü ozon-oksijen karışımıyla temas
+                        ettirilir ve tekrar dolaşıma verilir. Uygun hasta seçimi
+                        ve tıbbi gözetim gerektirir.
+                    </p>
+                </article>
+
+            </div>
+
+            <p class="treatment-medical-note-v71">
+                Bilgilendirme amaçlıdır; tanı veya tedavi önerisi yerine geçmez.
+                Damar yolu uygulamalarının uygunluğu, içeriği ve dozu hekim
+                muayenesi sonrasında belirlenmelidir.
+            </p>
+        </article>
 
     </section>
 
@@ -589,30 +1513,371 @@
             >
                 Medya
             </button>
-        </nav>
+            <div class="info-menu-v54 about-info-menu-v54">
+                <button
+                    type="button"
+                    class="info-menu-button-v54"
+                    aria-expanded="false"
+                >
+                    Bilgi
+                    <span>⌄</span>
+                </button>
 
-        <div class="about-page-hero-v47">
-            <div class="about-page-inner-v47">
-                <h1>Hakkımda</h1>
+                <div class="info-menu-panel-v54" aria-hidden="true">
+
+                    <button
+                        type="button"
+                        class="info-kvkk-button-v54"
+                        aria-expanded="false"
+                    >
+                        KVKK
+                        <span>›</span>
+                    </button>
+
+                    <div class="info-kvkk-submenu-v54" aria-hidden="true">
+
+                        <button type="button" class="info-legal-open-v56" data-legal-doc="aydinlatma">
+                            Aydınlatma Metni
+                        </button>
+
+                        <button type="button" class="info-legal-open-v56" data-legal-doc="politika">
+                            Kişisel Verilerin İşlenmesi ve Korunması Politikası
+                        </button>
+
+                        <button type="button" class="info-legal-open-v56" data-legal-doc="cerez">
+                            Çerez Politikası
+                        </button>
+
+                        <button type="button" class="info-legal-open-v56" data-legal-doc="acik-riza">
+                            Açık Rıza Metni
+                        </button>
+
+                    </div>
+
+                </div>
             </div>
 
-            <div class="about-page-plus-v47 about-page-plus-left-v47">✦</div>
-            <div class="about-page-plus-v47 about-page-plus-right-v47">+</div>
-        </div>
+        </nav>
 
-        <div class="about-page-content-v47">
-            <div class="about-page-card-v47">
-                <h2>Dr. Ceyhun Nuri</h2>
-                <p>
-                    Hakkımda bölümü için içerik alanı hazırlandı.
-                    Burayı bir sonraki adımda birlikte geliştirebiliriz.
-                </p>
+        <div class="about-page-content-v47 about-page-content-v61">
+
+            <div class="about-page-overlay-v60"></div>
+
+            <div class="about-layout-v61">
+
+                <section class="about-summary-v61">
+                    <span class="about-kicker-v60">HAKKIMDA</span>
+
+                    <h1>Dr. Ceyhun Nuri</h1>
+
+                    <p class="about-lead-v60">
+                        Dr. Ceyhun Nuri, klasik batı tıbbı alanındaki başarılı
+                        çalışmalarından sonra <strong>20 yılını</strong> Doğu Tıbbı,
+                        Osteopati ve Fitoterapi alanına sarf etti.
+                    </p>
+
+                    <p>
+                        Bu tecrübe ve çalışmalarını, sahibi bulunmakta olduğu
+                        <strong>Geleneksel ve Tamamlayıcı Tıp Sağlık Kurumunda</strong>
+                        yürütmektedir.
+                    </p>
+
+                    <p>
+                        Dr. Ceyhun Nuri, hastalıkların tedavisinde
+                        <strong>dört önemli sarsılmaz temel</strong> üzerine yoğunlaşır.
+                        İlk hedef, hastalıklar başlamadan sağlığın korunması için gereken
+                        <strong>protokollerin uygulanmasıdır.</strong>
+                    </p>
+
+                    <p>
+                        İkinci ve belki de en önemli olan ise
+                        <strong>doğru ve isabetli teşhis</strong>.
+                        Hastalığın temelinde yatan nedeni ortaya koymak, tedavi etmenin
+                        en önemli aşamasıdır.
+                    </p>
+
+                    <p>
+                        Bunun için yalnızca doktor olmak değil, aynı zamanda vücudu
+                        doğru okuyabilen bir <strong>“HEKİM”</strong> yaklaşımına sahip
+                        olmak gerekir.
+                    </p>
+                </section>
+
+                <section class="about-education-v61">
+                    <div class="about-education-head-v61">
+                        <span class="about-kicker-v60">DR. CEYHUN NURİ</span>
+                        <h2>Eğitim ve Görevler</h2>
+                    </div>
+
+                    <div class="about-education-grid-v61">
+
+                        <article class="about-education-item-v61">
+                            <h3>ANKARA ÜNİVERSİTESİ TIP FAKÜLTESİ</h3>
+                            <p>Mezuniyet</p>
+                        </article>
+
+                        <article class="about-education-item-v61">
+                            <h3>YILDIRIM BEYAZIT ÜNİ.</h3>
+                            <p>Proloterapi Eğitimi</p>
+                        </article>
+
+                        <article class="about-education-item-v61">
+                            <h3>TAMALAYICI EĞİTİM</h3>
+                            <p>Uygulamalı Kinezyoloji</p>
+                        </article>
+
+                        <article class="about-education-item-v61">
+                            <h3>KAMU HASTANELERİ</h3>
+                            <p>Acil Servis Doktoru</p>
+                        </article>
+
+                        <article class="about-education-item-v61">
+                            <h3>YILDIRIM BEYAZIT ÜNİ.</h3>
+                            <p>Ozon Tedavisi Eğitimi</p>
+                        </article>
+
+                        <article class="about-education-item-v61">
+                            <h3>YILDIRIM BEYAZIT ÜNİ.</h3>
+                            <p>Osteopati Eğitimi</p>
+                        </article>
+
+                        <article class="about-education-item-v61">
+                            <h3>YILDIRIM BEYAZIT ÜNİ.</h3>
+                            <p>Fitoterapi Eğitimi</p>
+                        </article>
+
+                        <article class="about-education-item-v61">
+                            <h3>TAMAMLAYICI EĞİTİM</h3>
+                            <p>Manuel Terapi Eğitimi</p>
+                        </article>
+
+                        <article class="about-education-item-v61">
+                            <h3>GAZİ ÜNİVERSİTESİ</h3>
+                            <p>Akupunktur Eğitimi</p>
+                        </article>
+
+                        <article class="about-education-item-v61">
+                            <h3>YILDIRIM BEYAZIT ÜNİ.</h3>
+                            <p>Hirudo Terapi Eğitimi</p>
+                        </article>
+
+                        <article class="about-education-item-v61">
+                            <h3>GAZİ ÜNİVERSİTESİ</h3>
+                            <p>Auriküler Akupunktur Eğ.</p>
+                        </article>
+
+                        <article class="about-education-item-v61">
+                            <h3>YILDIRIM BEYAZIT ÜNİ.</h3>
+                            <p>Kupa ve Hacamat Eğitimi</p>
+                        </article>
+
+                        <article class="about-education-item-v61">
+                            <h3>GAZİ ÜNİVERSİTESİ</h3>
+                            <p>Mezoterapi Eğitimi</p>
+                        </article>
+
+                        <article class="about-education-item-v61">
+                            <h3>T.C. SAĞLIK BAKANLIĞI</h3>
+                            <p>İlk Uçak Ambulans Ekibi</p>
+                        </article>
+
+                        <article class="about-education-item-v61">
+                            <h3>T.C. SAĞLIK BAKANLIĞI</h3>
+                            <p>Aile Hekimliği Eğitimi</p>
+                        </article>
+
+                    </div>
+                </section>
+
             </div>
         </div>
 
     </section>
 
     <!-- V48: MEDYA SAYFASI -->
+
+
+    <!-- V75: GENEL SAĞLIK DETAY SAYFALARI -->
+    <section
+        class="general-health-detail-page-v75"
+        id="generalHealthDetailPageV75"
+        aria-hidden="true"
+    >
+
+        <nav class="treatment-detail-nav-v71 general-health-detail-nav-v75" aria-label="Genel sağlık üst menüsü">
+
+            <button
+                type="button"
+                class="treatment-detail-nav-button-v71"
+                id="healthDetailHomeV75"
+            >
+                Ana Sayfa
+            </button>
+
+            <div class="health-top-menu-v75" id="healthTopMenuV75">
+                <button
+                    type="button"
+                    class="treatment-detail-nav-button-v71 health-top-menu-button-v75"
+                    id="healthTopMenuButtonV75"
+                    aria-expanded="false"
+                    aria-controls="healthTopMenuPanelV75"
+                >
+                    Genel Sağlık
+                    <span>⌄</span>
+                </button>
+
+                <div
+                    class="health-top-menu-panel-v75"
+                    id="healthTopMenuPanelV75"
+                    aria-hidden="true"
+                >
+                    <button type="button" class="health-top-option-v75" data-health-top="beslenme">Beslenme</button>
+                    <button type="button" class="health-top-option-v75" data-health-top="supplementler">Supplementler</button>
+                    <button type="button" class="health-top-option-v75" data-health-top="kurler">Kürler</button>
+                    <button type="button" class="health-top-option-v75" data-health-top="egzersizler">Egzersizler</button>
+                    <button type="button" class="health-top-option-v75" data-health-top="detoks">Detoks</button>
+                </div>
+            </div>
+
+            <button
+                type="button"
+                class="treatment-detail-nav-button-v71"
+                id="healthDetailAreasV75"
+            >
+                Tedavi Alanları
+            </button>
+
+            <button
+                type="button"
+                class="treatment-detail-nav-button-v71"
+                id="healthDetailPainV75"
+            >
+                Ağrı
+            </button>
+
+            <button
+                type="button"
+                class="treatment-detail-nav-button-v71"
+                id="healthDetailMediaV75"
+            >
+                Medya
+            </button>
+
+            <div class="info-menu-v54 treatment-detail-info-v71">
+                <button
+                    type="button"
+                    class="info-menu-button-v54"
+                    aria-expanded="false"
+                >
+                    Bilgi
+                    <span>⌄</span>
+                </button>
+
+                <div class="info-menu-panel-v54" aria-hidden="true">
+                    <button
+                        type="button"
+                        class="info-kvkk-button-v54"
+                        aria-expanded="false"
+                    >
+                        KVKK
+                        <span>›</span>
+                    </button>
+
+                    <div class="info-kvkk-submenu-v54" aria-hidden="true">
+                        <button type="button" class="info-legal-open-v56" data-legal-doc="aydinlatma">
+                            Aydınlatma Metni
+                        </button>
+                        <button type="button" class="info-legal-open-v56" data-legal-doc="politika">
+                            Kişisel Verilerin İşlenmesi ve Korunması Politikası
+                        </button>
+                        <button type="button" class="info-legal-open-v56" data-legal-doc="cerez">
+                            Çerez Politikası
+                        </button>
+                        <button type="button" class="info-legal-open-v56" data-legal-doc="acik-riza">
+                            Açık Rıza Metni
+                        </button>
+                    </div>
+                </div>
+            </div>
+
+        </nav>
+
+        <article class="general-health-view-v75" data-health-detail-view="beslenme">
+            <div class="general-health-hero-v75">
+                <span class="general-health-kicker-v75">GENEL SAĞLIK</span>
+                <h1>Beslenme</h1>
+                <p>Bu bölüm hazırlandı. İçerik daha sonra eklenecek.</p>
+            </div>
+
+            <div class="general-health-empty-wrap-v75">
+                <div class="general-health-empty-card-v75">
+                    <h2>Beslenme</h2>
+                    <p>Şimdilik içerik alanı boş bırakıldı.</p>
+                </div>
+            </div>
+        </article>
+
+        <article class="general-health-view-v75" data-health-detail-view="supplementler">
+            <div class="general-health-hero-v75">
+                <span class="general-health-kicker-v75">GENEL SAĞLIK</span>
+                <h1>Supplementler</h1>
+                <p>Bu bölüm hazırlandı. İçerik daha sonra eklenecek.</p>
+            </div>
+
+            <div class="general-health-empty-wrap-v75">
+                <div class="general-health-empty-card-v75">
+                    <h2>Supplementler</h2>
+                    <p>Şimdilik içerik alanı boş bırakıldı.</p>
+                </div>
+            </div>
+        </article>
+
+        <article class="general-health-view-v75" data-health-detail-view="kurler">
+            <div class="general-health-hero-v75">
+                <span class="general-health-kicker-v75">GENEL SAĞLIK</span>
+                <h1>Kürler</h1>
+                <p>Bu bölüm hazırlandı. İçerik daha sonra eklenecek.</p>
+            </div>
+
+            <div class="general-health-empty-wrap-v75">
+                <div class="general-health-empty-card-v75">
+                    <h2>Kürler</h2>
+                    <p>Şimdilik içerik alanı boş bırakıldı.</p>
+                </div>
+            </div>
+        </article>
+
+        <article class="general-health-view-v75" data-health-detail-view="egzersizler">
+            <div class="general-health-hero-v75">
+                <span class="general-health-kicker-v75">GENEL SAĞLIK</span>
+                <h1>Egzersizler</h1>
+                <p>Bu bölüm hazırlandı. İçerik daha sonra eklenecek.</p>
+            </div>
+
+            <div class="general-health-empty-wrap-v75">
+                <div class="general-health-empty-card-v75">
+                    <h2>Egzersizler</h2>
+                    <p>Şimdilik içerik alanı boş bırakıldı.</p>
+                </div>
+            </div>
+        </article>
+
+        <article class="general-health-view-v75" data-health-detail-view="detoks">
+            <div class="general-health-hero-v75">
+                <span class="general-health-kicker-v75">GENEL SAĞLIK</span>
+                <h1>Detoks</h1>
+                <p>Bu bölüm hazırlandı. İçerik daha sonra eklenecek.</p>
+            </div>
+
+            <div class="general-health-empty-wrap-v75">
+                <div class="general-health-empty-card-v75">
+                    <h2>Detoks</h2>
+                    <p>Şimdilik içerik alanı boş bırakıldı.</p>
+                </div>
+            </div>
+        </article>
+    </section>
+
     <section class="media-page-v48" id="medyaPage" aria-hidden="true">
 
         <nav class="media-page-nav-v48" aria-label="Medya üst menüsü">
@@ -640,6 +1905,50 @@
             >
                 Ağrı
             </button>
+            <div class="info-menu-v54 media-info-menu-v54">
+                <button
+                    type="button"
+                    class="info-menu-button-v54"
+                    aria-expanded="false"
+                >
+                    Bilgi
+                    <span>⌄</span>
+                </button>
+
+                <div class="info-menu-panel-v54" aria-hidden="true">
+
+                    <button
+                        type="button"
+                        class="info-kvkk-button-v54"
+                        aria-expanded="false"
+                    >
+                        KVKK
+                        <span>›</span>
+                    </button>
+
+                    <div class="info-kvkk-submenu-v54" aria-hidden="true">
+
+                        <button type="button" class="info-legal-open-v56" data-legal-doc="aydinlatma">
+                            Aydınlatma Metni
+                        </button>
+
+                        <button type="button" class="info-legal-open-v56" data-legal-doc="politika">
+                            Kişisel Verilerin İşlenmesi ve Korunması Politikası
+                        </button>
+
+                        <button type="button" class="info-legal-open-v56" data-legal-doc="cerez">
+                            Çerez Politikası
+                        </button>
+
+                        <button type="button" class="info-legal-open-v56" data-legal-doc="acik-riza">
+                            Açık Rıza Metni
+                        </button>
+
+                    </div>
+
+                </div>
+            </div>
+
 
         </nav>
 
@@ -1006,11 +2315,10 @@
                         >
 
                         <span>
-                            İletişim bilgilerimin randevu talebinin iletilmesi
-                            amacıyla WhatsApp üzerinden gönderilmesini kabul ediyorum.
                             <button type="button" class="privacy-inline-button" id="openPrivacyFromConsent">
-                                Aydınlatma metni
+                                KVKK Aydınlatma Metni
                             </button>
+                            'ni okudum; randevu talebimin WhatsApp üzerinden iletilmesini istiyorum.
                         </span>
                     </label>
 
@@ -1063,18 +2371,6 @@
                 <p>
                     Sağlığınız için güvenilir ve anlaşılır bilgilendirme.
                 </p>
-            </div>
-
-
-            <div class="footer-column">
-
-                <span>HIZLI MENÜ</span>
-
-                <a href="#hakkimda">Hakkımda</a>
-                <a href="#hizmetler">Hizmetler</a>
-                <a href="#icerikler">İçerikler</a>
-                <a href="#iletisim">Randevu</a>
-
             </div>
 
 
@@ -1138,7 +2434,7 @@
             </p>
 
             <button type="button" class="footer-privacy-button" id="openPrivacyFooter">
-                Gizlilik & KVKK
+                KVKK / Aydınlatma Metni
             </button>
 
         </div>
@@ -1251,44 +2547,155 @@
     </div>
 
 
-    <!-- GIZLILIK / KVKK MODALI -->
+    <!-- KVKK / AYDINLATMA METNİ MODALI -->
     <div class="privacy-modal" id="privacyModal" aria-hidden="true">
 
         <div class="privacy-modal-backdrop" id="privacyModalBackdrop"></div>
 
-        <div class="privacy-modal-card" role="dialog" aria-modal="true" aria-labelledby="privacyModalTitle">
+        <div
+            class="privacy-modal-card privacy-modal-card-v53"
+            role="dialog"
+            aria-modal="true"
+            aria-labelledby="privacyModalTitle"
+        >
 
-            <button type="button" class="privacy-modal-close" id="privacyModalClose" aria-label="Gizlilik metnini kapat">×</button>
+            <button
+                type="button"
+                class="privacy-modal-close"
+                id="privacyModalClose"
+                aria-label="Aydınlatma metnini kapat"
+            >
+                ×
+            </button>
 
-            <span class="privacy-small">GIZLILIK & KVKK</span>
+            <span class="privacy-small">
+                6698 SAYILI KİŞİSEL VERİLERİN KORUNMASI KANUNU
+            </span>
 
-            <h3 id="privacyModalTitle">Randevu formu hakkında bilgilendirme</h3>
+            <h3 id="privacyModalTitle">
+                İnternet Sitesi ve Randevu Talebi Aydınlatma Metni
+            </h3>
 
-            <div class="privacy-content">
-                <p>
-                    Bu internet sitesindeki randevu formu, yazdığınız bilgileri
-                    bir sunucuya kaydetmez. Form gönderildiğinde bilgileriniz
-                    cihazınızda bir WhatsApp mesajına dönüştürülür.
-                </p>
+            <div class="privacy-content privacy-content-v53">
 
-                <p>
-                    WhatsApp'a geçiş yaptıktan sonra verilerin işlenmesi
-                    WhatsApp'ın kendi gizlilik koşullarına tabi olur.
-                </p>
+                <section class="privacy-section-v53" id="kvkk-veri-sorumlusu">
+                    <h4>1. Veri sorumlusu</h4>
+                    <p>
+                        Bu internet sitesi kapsamında kişisel verileriniz,
+                        veri sorumlusu sıfatıyla Dr. Ceyhun Nuri tarafından
+                        aşağıda açıklanan amaç ve kapsamla işlenebilir.
+                    </p>
 
-                <p>
-                    Form alanına hassas sağlık bilgileri, tanı, tetkik sonucu
-                    veya özel nitelikli kişisel veri yazmamanız önerilir.
-                </p>
+                    <div class="privacy-contact-box-v53">
+                        <strong>İletişim</strong>
+                        <span>Mustafa Kemal, 2079. Sk. VIA Green Plaza C-21, 06510 Çankaya/Ankara</span>
+                        <a href="tel:+905349309880">0 534 930 98 80</a>
+                        <a href="mailto:info@doktorceyhunnuri.com">info@doktorceyhunnuri.com</a>
+                    </div>
+                </section>
 
-                <p>
-                    Randevu formu yalnızca iletişim ve randevu talebi oluşturma
-                    amacıyla hazırlanmıştır.
-                </p>
+                <section class="privacy-section-v53" id="kvkk-islenen-veriler">
+                    <h4>2. İşlenen kişisel veriler</h4>
+                    <p>
+                        Randevu talebi sırasında ad-soyad, telefon numarası,
+                        tercih edilen randevu türü, tarih, saat ve sizin
+                        isteğinizle eklediğiniz kısa not bilgisi işlenebilir.
+                    </p>
+                    <p>
+                        Randevu formundaki not alanına sağlık raporu, teşhis,
+                        tetkik sonucu veya diğer hassas sağlık verilerini
+                        yazmamanızı rica ederiz.
+                    </p>
+                </section>
+
+                <section class="privacy-section-v53" id="kvkk-isleme-amaclari">
+                    <h4>3. İşleme amaçları</h4>
+                    <ul>
+                        <li>Randevu talebinizi almak ve değerlendirmek,</li>
+                        <li>Sizinle iletişim kurmak ve uygunluk bilgisi vermek,</li>
+                        <li>Talep ve iletişim süreçlerini yürütmek,</li>
+                        <li>Hukuki yükümlülüklerin yerine getirilmesini sağlamak.</li>
+                    </ul>
+                </section>
+
+                <section class="privacy-section-v53" id="kvkk-hukuki-sebep">
+                    <h4>4. Toplama yöntemi ve hukuki sebep</h4>
+                    <p>
+                        Kişisel verileriniz internet sitesindeki randevu formuna
+                        tarafınızca girilmesi ve talebiniz doğrultusunda WhatsApp
+                        mesajına dönüştürülmesi yoluyla elektronik ortamda elde edilir.
+                    </p>
+                    <p>
+                        Veriler, 6698 sayılı Kanun'un 5. maddesinde yer alan
+                        ilgili veri işleme şartları kapsamında; randevu talebinin
+                        alınması, iletişim kurulması ve gerekli hukuki süreçlerin
+                        yürütülmesi amaçlarıyla işlenebilir.
+                    </p>
+                </section>
+
+                <section class="privacy-section-v53" id="kvkk-veri-aktarimi">
+                    <h4>5. Verilerin aktarılması</h4>
+                    <p>
+                        Randevu talebinizin iletilmesi için WhatsApp'ı tercih
+                        etmeniz halinde, mesaj içeriğiniz WhatsApp hizmeti
+                        aracılığıyla kliniğin yetkili iletişim kanalına gönderilir.
+                        WhatsApp kullanımında ilgili hizmet sağlayıcının kendi
+                        gizlilik ve veri işleme koşulları da uygulanabilir.
+                    </p>
+                    <p>
+                        Kanunen yetkili kamu kurum ve kuruluşlarına aktarım
+                        yapılması gereken durumlarda, yalnızca ilgili mevzuatın
+                        gerektirdiği ölçüde aktarım yapılabilir.
+                    </p>
+                </section>
+
+                <section class="privacy-section-v53" id="kvkk-randevu-formu">
+                    <h4>6. İnternet sitesindeki randevu formunun çalışma şekli</h4>
+                    <p>
+                        Bu sitedeki randevu formu, doldurduğunuz bilgileri doğrudan
+                        bir klinik veri tabanına kaydetmek üzere tasarlanmamıştır.
+                        Form gönderiminde bilgiler cihazınızda düzenlenerek WhatsApp
+                        mesajına dönüştürülür ve son gönderim işlemi sizin tarafınızdan
+                        WhatsApp üzerinde gerçekleştirilir.
+                    </p>
+                </section>
+
+                <section class="privacy-section-v53" id="kvkk-haklar">
+                    <h4>7. KVKK kapsamındaki haklarınız</h4>
+                    <p>
+                        6698 sayılı Kanun'un 11. maddesi kapsamında; kişisel
+                        verilerinizin işlenip işlenmediğini öğrenme, işlenmişse buna
+                        ilişkin bilgi talep etme, işleme amacını ve amacına uygun
+                        kullanılıp kullanılmadığını öğrenme, şartları oluştuğunda
+                        düzeltilmesini veya silinmesini isteme ve Kanunda belirtilen
+                        diğer haklarınızı kullanabilirsiniz.
+                    </p>
+                    <p>
+                        Bu kapsamdaki taleplerinizi kimliğinizi doğrulamaya elverişli
+                        bilgilerle birlikte
+                        <a href="mailto:info@doktorceyhunnuri.com">info@doktorceyhunnuri.com</a>
+                        adresine veya yukarıda belirtilen klinik adresine iletebilirsiniz.
+                    </p>
+                </section>
+
+                <section class="privacy-section-v53 privacy-note-v53">
+                    <h4>Önemli not</h4>
+                    <p>
+                        Bu metin internet sitesi ve çevrim içi randevu talebi
+                        sürecine yöneliktir. Klinik bünyesinde yürütülen hasta kabul,
+                        tıbbi kayıt ve sağlık verisi işleme süreçleri için ayrıca
+                        ilgili aydınlatma ve veri koruma süreçleri uygulanmalıdır.
+                    </p>
+                </section>
+
             </div>
 
-            <button type="button" class="privacy-understood-button" id="privacyUnderstoodButton">
-                Anladım
+            <button
+                type="button"
+                class="privacy-understood-button"
+                id="privacyUnderstoodButton"
+            >
+                Kapat
             </button>
 
         </div>
@@ -1393,7 +2800,7 @@
     </button>
 
 
-    <script src="script.js?v=51"></script>
+    <script src="script.js?v=77"></script>
 
 </body>
 

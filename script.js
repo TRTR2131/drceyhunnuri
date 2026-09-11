@@ -2857,3 +2857,946 @@ window.addEventListener("load", async () => {
         console.warn("V51 cache temizliği atlandı:", error);
     }
 });
+
+
+// =========================================================
+// V54 - BİLGİ > KVKK > AYDINLATMA METNİ
+// =========================================================
+
+(function () {
+
+    const infoMenus =
+        document.querySelectorAll(".info-menu-v54");
+
+    function closeInfoMenu(menu) {
+        if (!menu) return;
+
+        menu.classList.remove("open", "kvkk-open");
+
+        const mainButton =
+            menu.querySelector(".info-menu-button-v54");
+
+        const panel =
+            menu.querySelector(".info-menu-panel-v54");
+
+        const kvkkButton =
+            menu.querySelector(".info-kvkk-button-v54");
+
+        const kvkkSubmenu =
+            menu.querySelector(".info-kvkk-submenu-v54");
+
+        if (mainButton) {
+            mainButton.setAttribute("aria-expanded", "false");
+        }
+
+        if (panel) {
+            panel.setAttribute("aria-hidden", "true");
+        }
+
+        if (kvkkButton) {
+            kvkkButton.setAttribute("aria-expanded", "false");
+            kvkkButton.classList.remove("active");
+        }
+
+        if (kvkkSubmenu) {
+            kvkkSubmenu.setAttribute("aria-hidden", "true");
+        }
+    }
+
+    function closeOtherInfoMenus(currentMenu) {
+        infoMenus.forEach(menu => {
+            if (menu !== currentMenu) {
+                closeInfoMenu(menu);
+            }
+        });
+    }
+
+    infoMenus.forEach(menu => {
+
+        const mainButton =
+            menu.querySelector(".info-menu-button-v54");
+
+        const panel =
+            menu.querySelector(".info-menu-panel-v54");
+
+        const kvkkButton =
+            menu.querySelector(".info-kvkk-button-v54");
+
+        const kvkkSubmenu =
+            menu.querySelector(".info-kvkk-submenu-v54");
+
+        const privacyButtons =
+            menu.querySelectorAll(".info-open-privacy-v54");
+
+        if (mainButton && panel) {
+            mainButton.addEventListener("click", event => {
+                event.preventDefault();
+                event.stopPropagation();
+
+                const willOpen =
+                    !menu.classList.contains("open");
+
+                closeOtherInfoMenus(menu);
+
+                menu.classList.toggle("open", willOpen);
+
+                mainButton.setAttribute(
+                    "aria-expanded",
+                    willOpen ? "true" : "false"
+                );
+
+                panel.setAttribute(
+                    "aria-hidden",
+                    willOpen ? "false" : "true"
+                );
+
+                if (!willOpen) {
+                    menu.classList.remove("kvkk-open");
+
+                    if (kvkkButton) {
+                        kvkkButton.setAttribute(
+                            "aria-expanded",
+                            "false"
+                        );
+                        kvkkButton.classList.remove("active");
+                    }
+
+                    if (kvkkSubmenu) {
+                        kvkkSubmenu.setAttribute(
+                            "aria-hidden",
+                            "true"
+                        );
+                    }
+                }
+            });
+        }
+
+        if (kvkkButton && kvkkSubmenu) {
+            kvkkButton.addEventListener("click", event => {
+                event.preventDefault();
+                event.stopPropagation();
+
+                const willOpen =
+                    !menu.classList.contains("kvkk-open");
+
+                menu.classList.toggle("kvkk-open", willOpen);
+
+                kvkkButton.classList.toggle("active", willOpen);
+
+                kvkkButton.setAttribute(
+                    "aria-expanded",
+                    willOpen ? "true" : "false"
+                );
+
+                kvkkSubmenu.setAttribute(
+                    "aria-hidden",
+                    willOpen ? "false" : "true"
+                );
+            });
+        }
+
+        privacyButtons.forEach(button => {
+            button.addEventListener("click", event => {
+                event.preventDefault();
+                event.stopPropagation();
+
+                const targetId =
+                    button.dataset.privacyTarget || "";
+
+                closeInfoMenu(menu);
+
+                if (typeof openPrivacyModal === "function") {
+                    openPrivacyModal();
+
+                    if (targetId) {
+                        window.setTimeout(() => {
+                            const targetSection =
+                                document.getElementById(targetId);
+
+                            if (targetSection) {
+                                targetSection.scrollIntoView({
+                                    behavior: "smooth",
+                                    block: "start"
+                                });
+                            }
+                        }, 80);
+                    }
+                }
+            });
+        });
+    });
+
+    document.addEventListener("click", event => {
+        infoMenus.forEach(menu => {
+            if (!menu.contains(event.target)) {
+                closeInfoMenu(menu);
+            }
+        });
+    });
+
+    document.addEventListener("keydown", event => {
+        if (event.key === "Escape") {
+            infoMenus.forEach(closeInfoMenu);
+        }
+    });
+
+})();
+
+
+// =========================================================
+// V56 - 4 AYRI KVKK BELGESİ
+// =========================================================
+
+(function () {
+
+    const legalPage =
+        document.getElementById("legalPageV56");
+
+    const legalTitle =
+        document.getElementById("legalPageTitleV56");
+
+    const legalDocs =
+        document.querySelectorAll("[data-legal-doc-page]");
+
+    const legalSwitchButtons =
+        document.querySelectorAll("[data-legal-switch]");
+
+    const legalOpenButtons =
+        document.querySelectorAll(".info-legal-open-v56");
+
+    const legalHomeButton =
+        document.getElementById("legalHomeButtonV56");
+
+    const titles = {
+        "aydinlatma": "Aydınlatma Metni",
+        "politika": "Kişisel Verilerin İşlenmesi ve Korunması Politikası",
+        "cerez": "Çerez Politikası",
+        "acik-riza": "Açık Rıza Metni"
+    };
+
+    function closeAllInfoMenusV56() {
+        document.querySelectorAll(".info-menu-v54").forEach(menu => {
+            menu.classList.remove("open", "kvkk-open");
+
+            const mainButton = menu.querySelector(".info-menu-button-v54");
+            const panel = menu.querySelector(".info-menu-panel-v54");
+            const kvkkButton = menu.querySelector(".info-kvkk-button-v54");
+            const submenu = menu.querySelector(".info-kvkk-submenu-v54");
+
+            if (mainButton) mainButton.setAttribute("aria-expanded", "false");
+            if (panel) panel.setAttribute("aria-hidden", "true");
+
+            if (kvkkButton) {
+                kvkkButton.setAttribute("aria-expanded", "false");
+                kvkkButton.classList.remove("active");
+            }
+
+            if (submenu) submenu.setAttribute("aria-hidden", "true");
+        });
+    }
+
+    function setLegalDocument(docName) {
+        const selected = titles[docName] ? docName : "aydinlatma";
+
+        legalDocs.forEach(doc => {
+            doc.classList.toggle(
+                "active",
+                doc.dataset.legalDocPage === selected
+            );
+        });
+
+        legalSwitchButtons.forEach(button => {
+            button.classList.toggle(
+                "active",
+                button.dataset.legalSwitch === selected
+            );
+        });
+
+        if (legalTitle) legalTitle.textContent = titles[selected];
+
+        window.scrollTo({ top: 0, behavior: "smooth" });
+    }
+
+    function openLegalPage(docName) {
+        if (!legalPage) return;
+
+        document.body.classList.remove(
+            "treatment-page-open",
+            "treatment-nav-scrolled",
+            "pain-page-open",
+            "pain-nav-scrolled",
+            "about-page-open",
+            "about-nav-scrolled",
+            "media-page-open",
+            "media-nav-scrolled"
+        );
+
+        document.body.classList.add("legal-page-open-v56");
+        legalPage.setAttribute("aria-hidden", "false");
+
+        closeAllInfoMenusV56();
+        setLegalDocument(docName);
+
+        history.pushState(
+            { page: "kvkk", doc: docName },
+            "",
+            "#kvkk-" + docName
+        );
+    }
+
+    function closeLegalPage() {
+        document.body.classList.remove("legal-page-open-v56");
+
+        if (legalPage) legalPage.setAttribute("aria-hidden", "true");
+
+        history.pushState(
+            { page: "home" },
+            "",
+            location.pathname + location.search
+        );
+
+        window.scrollTo({ top: 0, behavior: "smooth" });
+    }
+
+    legalOpenButtons.forEach(button => {
+        button.addEventListener("click", event => {
+            event.preventDefault();
+            event.stopPropagation();
+
+            openLegalPage(
+                button.dataset.legalDoc || "aydinlatma"
+            );
+        });
+    });
+
+    legalSwitchButtons.forEach(button => {
+        button.addEventListener("click", event => {
+            event.preventDefault();
+
+            const doc =
+                button.dataset.legalSwitch || "aydinlatma";
+
+            setLegalDocument(doc);
+
+            history.replaceState(
+                { page: "kvkk", doc },
+                "",
+                "#kvkk-" + doc
+            );
+        });
+    });
+
+    if (legalHomeButton) {
+        legalHomeButton.addEventListener("click", event => {
+            event.preventDefault();
+            closeLegalPage();
+        });
+    }
+
+    if (
+        location.hash &&
+        location.hash.startsWith("#kvkk-") &&
+        legalPage
+    ) {
+        const doc =
+            location.hash.replace("#kvkk-", "");
+
+        document.body.classList.add("legal-page-open-v56");
+        legalPage.setAttribute("aria-hidden", "false");
+        setLegalDocument(doc);
+    }
+
+})();
+
+
+// =========================================================
+// V72 - TEDAVİ DETAYLARI: OSTEOPATİ / FİTOTERAPİ / İĞNE / DAMAR YOLU
+// =========================================================
+
+(function () {
+
+    const detailPage =
+        document.getElementById("treatmentDetailPageV71");
+
+    const detailLinks =
+        document.querySelectorAll("[data-treatment-detail]");
+
+    const detailViews =
+        document.querySelectorAll("[data-treatment-detail-view]");
+
+    const treatmentTopMenu =
+        document.getElementById("treatmentTopMenuV74");
+
+    const treatmentTopMenuButton =
+        document.getElementById("treatmentTopMenuButtonV74");
+
+    const treatmentTopMenuPanel =
+        document.getElementById("treatmentTopMenuPanelV74");
+
+    const treatmentTopOptions =
+        document.querySelectorAll("[data-treatment-top]");
+
+    const homeButton =
+        document.getElementById("treatmentDetailHomeV71");
+
+    const areasButton =
+        document.getElementById("treatmentDetailAreasV71");
+
+    const painButton =
+        document.getElementById("treatmentDetailPainV71");
+
+    const mediaButton =
+        document.getElementById("treatmentDetailMediaV71");
+
+    const validTreatments =
+        new Set(["osteopati", "fitoterapi", "igne", "damar-yolu"]);
+
+    function hideOtherPagesV71() {
+
+        document.body.classList.remove(
+            "treatment-page-open",
+            "treatment-nav-scrolled",
+            "pain-page-open",
+            "pain-nav-scrolled",
+            "about-page-open",
+            "about-nav-scrolled",
+            "media-page-open",
+            "media-nav-scrolled",
+            "legal-page-open-v56"
+        );
+
+        const pages = [
+            document.getElementById("tedaviAlanlariPage"),
+            document.getElementById("agriPage"),
+            document.getElementById("hakkimdaPage"),
+            document.getElementById("medyaPage"),
+            document.getElementById("legalPageV56")
+        ];
+
+        pages.forEach(page => {
+            if (page) {
+                page.setAttribute("aria-hidden", "true");
+            }
+        });
+    }
+
+    function setTreatmentViewV71(name) {
+
+        const selected =
+            validTreatments.has(name) ? name : "osteopati";
+
+        detailViews.forEach(view => {
+            view.classList.toggle(
+                "active",
+                view.dataset.treatmentDetailView === selected
+            );
+        });
+
+        treatmentTopOptions.forEach(button => {
+            button.classList.toggle(
+                "is-current-v74",
+                button.dataset.treatmentTop === selected
+            );
+        });
+
+        return selected;
+    }
+
+    function openTreatmentDetailV71(name) {
+
+        if (!detailPage) {
+            return;
+        }
+
+        hideOtherPagesV71();
+
+        const selected =
+            setTreatmentViewV71(name);
+
+        document.body.classList.add(
+            "treatment-detail-open-v71"
+        );
+
+        detailPage.setAttribute(
+            "aria-hidden",
+            "false"
+        );
+
+        history.pushState(
+            {
+                page: "treatment-detail",
+                treatment: selected
+            },
+            "",
+            "#" + selected
+        );
+
+        window.scrollTo({
+            top: 0,
+            behavior: "smooth"
+        });
+    }
+
+    function closeTreatmentDetailV71() {
+
+        document.body.classList.remove(
+            "treatment-detail-open-v71"
+        );
+
+        if (detailPage) {
+            detailPage.setAttribute(
+                "aria-hidden",
+                "true"
+            );
+        }
+    }
+
+    function closeTreatmentTopMenuV74() {
+
+        if (
+            !treatmentTopMenu ||
+            !treatmentTopMenuButton ||
+            !treatmentTopMenuPanel
+        ) {
+            return;
+        }
+
+        treatmentTopMenu.classList.remove("open");
+        treatmentTopMenuButton.setAttribute("aria-expanded", "false");
+        treatmentTopMenuPanel.setAttribute("aria-hidden", "true");
+    }
+
+    if (treatmentTopMenuButton) {
+
+        treatmentTopMenuButton.addEventListener("click", event => {
+            event.preventDefault();
+            event.stopPropagation();
+
+            const willOpen =
+                !treatmentTopMenu.classList.contains("open");
+
+            treatmentTopMenu.classList.toggle("open", willOpen);
+
+            treatmentTopMenuButton.setAttribute(
+                "aria-expanded",
+                willOpen ? "true" : "false"
+            );
+
+            treatmentTopMenuPanel.setAttribute(
+                "aria-hidden",
+                willOpen ? "false" : "true"
+            );
+        });
+    }
+
+    treatmentTopOptions.forEach(button => {
+
+        button.addEventListener("click", event => {
+            event.preventDefault();
+            event.stopPropagation();
+
+            const treatment =
+                button.dataset.treatmentTop;
+
+            if (!validTreatments.has(treatment)) {
+                return;
+            }
+
+            closeTreatmentTopMenuV74();
+            openTreatmentDetailV71(treatment);
+        });
+    });
+
+    document.addEventListener("click", event => {
+
+        if (
+            treatmentTopMenu &&
+            !treatmentTopMenu.contains(event.target)
+        ) {
+            closeTreatmentTopMenuV74();
+        }
+    });
+
+    document.addEventListener("keydown", event => {
+        if (event.key === "Escape") {
+            closeTreatmentTopMenuV74();
+        }
+    });
+
+    detailLinks.forEach(link => {
+
+        link.addEventListener("click", event => {
+
+            const treatment =
+                link.dataset.treatmentDetail;
+
+            if (!validTreatments.has(treatment)) {
+                return;
+            }
+
+            event.preventDefault();
+            event.stopPropagation();
+
+            /* Üst dropdownu kapat */
+            const parentMenu =
+                link.closest(".hero-treatment-menu, .treatment-page-nav-item, .pain-page-nav-item");
+
+            if (parentMenu) {
+                parentMenu.classList.remove("open");
+            }
+
+            openTreatmentDetailV71(treatment);
+        });
+    });
+
+    if (homeButton) {
+        homeButton.addEventListener("click", event => {
+            event.preventDefault();
+
+            closeTreatmentDetailV71();
+
+            history.pushState(
+                { page: "home" },
+                "",
+                location.pathname + location.search
+            );
+
+            window.scrollTo({
+                top: 0,
+                behavior: "smooth"
+            });
+        });
+    }
+
+    if (areasButton) {
+        areasButton.addEventListener("click", event => {
+            event.preventDefault();
+
+            closeTreatmentDetailV71();
+
+            if (typeof openTreatmentPage === "function") {
+                openTreatmentPage();
+            }
+        });
+    }
+
+    if (painButton) {
+        painButton.addEventListener("click", event => {
+            event.preventDefault();
+
+            closeTreatmentDetailV71();
+
+            const painPageLocal =
+                document.getElementById("agriPage");
+
+            if (painPageLocal) {
+                document.body.classList.add("pain-page-open");
+                painPageLocal.setAttribute("aria-hidden", "false");
+
+                history.pushState(
+                    { page: "agri" },
+                    "",
+                    "#agri"
+                );
+
+                window.scrollTo({
+                    top: 0,
+                    behavior: "smooth"
+                });
+            }
+        });
+    }
+
+    if (mediaButton) {
+        mediaButton.addEventListener("click", event => {
+            event.preventDefault();
+
+            closeTreatmentDetailV71();
+
+            const mediaPageLocal =
+                document.getElementById("medyaPage");
+
+            if (mediaPageLocal) {
+                document.body.classList.add("media-page-open");
+                mediaPageLocal.setAttribute("aria-hidden", "false");
+
+                history.pushState(
+                    { page: "medya" },
+                    "",
+                    "#medya"
+                );
+
+                window.scrollTo({
+                    top: 0,
+                    behavior: "smooth"
+                });
+            }
+        });
+    }
+
+    /* Doğrudan URL/hash ile açılabilsin */
+    const initialHash =
+        location.hash.replace("#", "");
+
+    if (
+        validTreatments.has(initialHash) &&
+        detailPage
+    ) {
+        openTreatmentDetailV71(initialHash);
+    }
+
+})();
+
+
+// =========================================================
+// V75 - GENEL SAĞLIK DETAYLARI: BESLENME / SUPPLEMENTLER / KÜRLER / EGZERSİZLER / DETOKS
+// =========================================================
+(function () {
+
+    const healthDetailPage =
+        document.getElementById("generalHealthDetailPageV75");
+
+    const healthDetailLinks =
+        document.querySelectorAll("[data-health-detail]");
+
+    const healthViews =
+        document.querySelectorAll("[data-health-detail-view]");
+
+    const healthTopMenu =
+        document.getElementById("healthTopMenuV75");
+
+    const healthTopMenuButton =
+        document.getElementById("healthTopMenuButtonV75");
+
+    const healthTopMenuPanel =
+        document.getElementById("healthTopMenuPanelV75");
+
+    const healthTopOptions =
+        document.querySelectorAll("[data-health-top]");
+
+    const homeButton =
+        document.getElementById("healthDetailHomeV75");
+
+    const areasButton =
+        document.getElementById("healthDetailAreasV75");
+
+    const painButton =
+        document.getElementById("healthDetailPainV75");
+
+    const mediaButton =
+        document.getElementById("healthDetailMediaV75");
+
+    const validHealthSections =
+        new Set(["beslenme", "supplementler", "kurler", "egzersizler", "detoks"]);
+
+    function closeHealthTopMenuV75() {
+        if (!healthTopMenu || !healthTopMenuButton || !healthTopMenuPanel) {
+            return;
+        }
+
+        healthTopMenu.classList.remove("open");
+        healthTopMenuButton.setAttribute("aria-expanded", "false");
+        healthTopMenuPanel.setAttribute("aria-hidden", "true");
+    }
+
+    function hideOtherPagesV75() {
+        document.body.classList.remove(
+            "treatment-page-open",
+            "treatment-nav-scrolled",
+            "pain-page-open",
+            "pain-nav-scrolled",
+            "about-page-open",
+            "about-nav-scrolled",
+            "media-page-open",
+            "media-nav-scrolled",
+            "legal-page-open-v56",
+            "treatment-detail-open-v71",
+            "general-health-detail-open-v75"
+        );
+
+        [
+            document.getElementById("tedaviAlanlariPage"),
+            document.getElementById("agriPage"),
+            document.getElementById("hakkimdaPage"),
+            document.getElementById("medyaPage"),
+            document.getElementById("legalPageV56"),
+            document.getElementById("treatmentDetailPageV71"),
+            document.getElementById("generalHealthDetailPageV75")
+        ].forEach(page => {
+            if (page) {
+                page.setAttribute("aria-hidden", "true");
+            }
+        });
+    }
+
+    function setHealthViewV75(name) {
+        const selected =
+            validHealthSections.has(name) ? name : "beslenme";
+
+        healthViews.forEach(view => {
+            view.classList.toggle(
+                "active",
+                view.dataset.healthDetailView === selected
+            );
+        });
+
+        healthTopOptions.forEach(button => {
+            button.classList.toggle(
+                "is-current-v75",
+                button.dataset.healthTop === selected
+            );
+        });
+
+        return selected;
+    }
+
+    function openGeneralHealthDetailV75(name) {
+        if (!healthDetailPage) {
+            return;
+        }
+
+        hideOtherPagesV75();
+
+        const selected = setHealthViewV75(name);
+
+        document.body.classList.add("general-health-detail-open-v75");
+        healthDetailPage.setAttribute("aria-hidden", "false");
+
+        history.pushState(
+            {
+                page: "general-health-detail",
+                topic: selected
+            },
+            "",
+            "#" + selected
+        );
+
+        window.scrollTo({
+            top: 0,
+            behavior: "smooth"
+        });
+    }
+
+    function closeGeneralHealthDetailV75() {
+        document.body.classList.remove("general-health-detail-open-v75");
+
+        if (healthDetailPage) {
+            healthDetailPage.setAttribute("aria-hidden", "true");
+        }
+
+        closeHealthTopMenuV75();
+    }
+
+    function openSimplePageV75(pageId, bodyClass, hash) {
+        hideOtherPagesV75();
+
+        const page = document.getElementById(pageId);
+
+        if (page) {
+            document.body.classList.add(bodyClass);
+            page.setAttribute("aria-hidden", "false");
+
+            history.pushState({ page: hash.replace("#", "") }, "", hash);
+
+            window.scrollTo({
+                top: 0,
+                behavior: "smooth"
+            });
+        }
+    }
+
+    if (healthTopMenuButton) {
+        healthTopMenuButton.addEventListener("click", event => {
+            event.preventDefault();
+            event.stopPropagation();
+
+            const willOpen =
+                !healthTopMenu.classList.contains("open");
+
+            healthTopMenu.classList.toggle("open", willOpen);
+            healthTopMenuButton.setAttribute("aria-expanded", willOpen ? "true" : "false");
+            healthTopMenuPanel.setAttribute("aria-hidden", willOpen ? "false" : "true");
+        });
+    }
+
+    healthTopOptions.forEach(button => {
+        button.addEventListener("click", event => {
+            event.preventDefault();
+            event.stopPropagation();
+
+            const topic = button.dataset.healthTop;
+
+            if (!validHealthSections.has(topic)) {
+                return;
+            }
+
+            closeHealthTopMenuV75();
+            openGeneralHealthDetailV75(topic);
+        });
+    });
+
+    healthDetailLinks.forEach(link => {
+        link.addEventListener("click", event => {
+            event.preventDefault();
+
+            const topic = link.dataset.healthDetail;
+
+            if (!validHealthSections.has(topic)) {
+                return;
+            }
+
+            openGeneralHealthDetailV75(topic);
+        });
+    });
+
+    document.addEventListener("click", event => {
+        if (healthTopMenu && !healthTopMenu.contains(event.target)) {
+            closeHealthTopMenuV75();
+        }
+    });
+
+    document.addEventListener("keydown", event => {
+        if (event.key === "Escape") {
+            closeHealthTopMenuV75();
+        }
+    });
+
+    if (homeButton) {
+        homeButton.addEventListener("click", event => {
+            event.preventDefault();
+            closeGeneralHealthDetailV75();
+
+            history.pushState({ page: "home" }, "", "#ana-sayfa");
+            window.scrollTo({ top: 0, behavior: "smooth" });
+        });
+    }
+
+    if (areasButton) {
+        areasButton.addEventListener("click", event => {
+            event.preventDefault();
+            openSimplePageV75("tedaviAlanlariPage", "treatment-page-open", "#tedavi-alanlari");
+        });
+    }
+
+    if (painButton) {
+        painButton.addEventListener("click", event => {
+            event.preventDefault();
+            openSimplePageV75("agriPage", "pain-page-open", "#agri");
+        });
+    }
+
+    if (mediaButton) {
+        mediaButton.addEventListener("click", event => {
+            event.preventDefault();
+            openSimplePageV75("medyaPage", "media-page-open", "#medya");
+        });
+    }
+
+    const initialHash =
+        location.hash.replace("#", "");
+
+    if (validHealthSections.has(initialHash) && healthDetailPage) {
+        openGeneralHealthDetailV75(initialHash);
+    }
+
+})();
