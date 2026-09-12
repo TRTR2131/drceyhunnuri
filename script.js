@@ -3265,7 +3265,7 @@ window.addEventListener("load", async () => {
         document.getElementById("treatmentDetailMediaV71");
 
     const validTreatments =
-        new Set(["osteopati", "fitoterapi", "igne", "damar-yolu"]);
+        new Set(["osteopati", "fitoterapi", "geleneksel-tedavi", "igne", "estetik", "damar-yolu"]);
 
     function hideOtherPagesV71() {
 
@@ -3590,7 +3590,7 @@ window.addEventListener("load", async () => {
 
 
 // =========================================================
-// V75 - GENEL SAĞLIK DETAYLARI: BESLENME / SUPPLEMENTLER / KÜRLER / EGZERSİZLER / DETOKS
+// V138 - GENEL SAĞLIK DETAYLARI: BESLENME / SUPPLEMENTLER / DETOKS KÜRLERİ / EGZERSİZLER
 // =========================================================
 (function () {
 
@@ -3628,7 +3628,7 @@ window.addEventListener("load", async () => {
         document.getElementById("healthDetailMediaV75");
 
     const validHealthSections =
-        new Set(["beslenme", "supplementler", "kurler", "egzersizler", "detoks"]);
+        new Set(["beslenme", "supplementler", "kurler", "egzersizler"]);
 
     function closeHealthTopMenuV75() {
         if (!healthTopMenu || !healthTopMenuButton || !healthTopMenuPanel) {
@@ -4778,8 +4778,13 @@ window.addEventListener("load", async () => {
         },
         "igne": {
             kicker: "TEDAVİ",
-            title: "İğne Uygulamaları",
+            title: "İğneli Uygulamalar",
             subtitle: "Girişimsel ve rejeneratif uygulamalar"
+        },
+        "estetik": {
+            kicker: "TEDAVİ",
+            title: "Estetiğe Bakış",
+            subtitle: "PRP, eksozom ve yenileyici estetik uygulamalar"
         },
         "damar-yolu": {
             kicker: "TEDAVİ",
@@ -4801,19 +4806,14 @@ window.addEventListener("load", async () => {
         },
         "kurler": {
             kicker: "GENEL SAĞLIK",
-            title: "Kürler",
-            subtitle: "Bütüncül destek programları"
+            title: "Detoks Kürleri",
+            subtitle: "Bütüncül detoks ve destek programları"
         },
         "egzersizler": {
             kicker: "GENEL SAĞLIK",
             title: "Egzersizler",
             subtitle: "Hareket ve egzersiz önerileri"
         },
-        "detoks": {
-            kicker: "GENEL SAĞLIK",
-            title: "Detoks",
-            subtitle: "Bütüncül yaşam ve destek yaklaşımları"
-        }
     };
 
     const legalMeta = {
@@ -5559,4 +5559,152 @@ window.addEventListener("load", async () => {
             }
         );
     });
+})();
+
+
+// =========================================================
+// V143 - BİLGİ REHBERİ
+// =========================================================
+(function () {
+    const page = document.getElementById("infoGuidePageV143");
+    const title = document.getElementById("infoGuideTitleV143");
+    const openButtons = document.querySelectorAll(".info-guide-open-v143");
+    const switchButtons = document.querySelectorAll("[data-info-guide-switch]");
+    const views = document.querySelectorAll("[data-info-guide-view]");
+    const homeButton = document.getElementById("infoGuideHomeV143");
+
+    const titles = {
+        "randevu-oncesi": "Randevu Öncesi Rehber",
+        "uygulama-sonrasi": "Uygulama Sonrası Rehber",
+        "randevu-gunu": "Randevu Günü İçin Bilgilendirme",
+        "gorus-bildirimi": "Şikâyet / Görüş Bildirimi"
+    };
+
+    function closeInfoMenusV143() {
+        document.querySelectorAll(".info-menu-v54").forEach(menu => {
+            menu.classList.remove("open", "kvkk-open");
+            const main = menu.querySelector(".info-menu-button-v54");
+            const panel = menu.querySelector(".info-menu-panel-v54");
+            const kvkk = menu.querySelector(".info-kvkk-button-v54");
+            const sub = menu.querySelector(".info-kvkk-submenu-v54");
+            if (main) main.setAttribute("aria-expanded", "false");
+            if (panel) panel.setAttribute("aria-hidden", "true");
+            if (kvkk) kvkk.setAttribute("aria-expanded", "false");
+            if (sub) sub.setAttribute("aria-hidden", "true");
+        });
+    }
+
+    function hideOtherPagesV143() {
+        document.body.classList.remove(
+            "treatment-page-open",
+            "treatment-nav-scrolled",
+            "pain-page-open",
+            "pain-nav-scrolled",
+            "about-page-open",
+            "about-nav-scrolled",
+            "media-page-open",
+            "media-nav-scrolled",
+            "legal-page-open-v56",
+            "treatment-detail-open-v71",
+            "ankilozan-page-open-v87",
+            "general-health-detail-open-v75",
+            "general-featured-open-v124"
+        );
+
+        [
+            "tedaviAlanlariPage",
+            "agriPage",
+            "hakkimdaPage",
+            "medyaPage",
+            "legalPageV56",
+            "treatmentDetailPageV71",
+            "ankilozanFaqSectionV85",
+            "generalHealthDetailPageV75",
+            "generalFeaturedPageV124"
+        ].forEach(id => {
+            const el = document.getElementById(id);
+            if (el) el.setAttribute("aria-hidden", "true");
+        });
+    }
+
+    function setViewV143(name) {
+        const selected = titles[name] ? name : "randevu-oncesi";
+
+        if (title) title.textContent = titles[selected];
+
+        views.forEach(view => {
+            view.classList.toggle(
+                "active",
+                view.dataset.infoGuideView === selected
+            );
+        });
+
+        switchButtons.forEach(button => {
+            button.classList.toggle(
+                "is-active",
+                button.dataset.infoGuideSwitch === selected
+            );
+        });
+
+        return selected;
+    }
+
+    function openGuideV143(name) {
+        if (!page) return;
+
+        hideOtherPagesV143();
+        closeInfoMenusV143();
+
+        const selected = setViewV143(name);
+
+        document.body.classList.add("info-guide-open-v143");
+        page.setAttribute("aria-hidden", "false");
+
+        history.pushState(
+            { page: "info-guide", guide: selected },
+            "",
+            "#" + selected
+        );
+
+        window.scrollTo({ top: 0, behavior: "smooth" });
+    }
+
+    function closeGuideV143() {
+        document.body.classList.remove("info-guide-open-v143");
+        if (page) page.setAttribute("aria-hidden", "true");
+    }
+
+    openButtons.forEach(button => {
+        button.addEventListener("click", event => {
+            event.preventDefault();
+            event.stopPropagation();
+            openGuideV143(button.dataset.infoGuide);
+        });
+    });
+
+    switchButtons.forEach(button => {
+        button.addEventListener("click", event => {
+            event.preventDefault();
+            const selected = setViewV143(button.dataset.infoGuideSwitch);
+            history.replaceState(
+                { page: "info-guide", guide: selected },
+                "",
+                "#" + selected
+            );
+        });
+    });
+
+    if (homeButton) {
+        homeButton.addEventListener("click", event => {
+            event.preventDefault();
+            closeGuideV143();
+            history.pushState({ page: "home" }, "", "#anasayfa");
+            window.scrollTo({ top: 0, behavior: "smooth" });
+        });
+    }
+
+    const initial = location.hash.replace("#", "");
+    if (titles[initial]) {
+        openGuideV143(initial);
+    }
 })();
