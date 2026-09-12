@@ -2475,6 +2475,10 @@ if (
     function openAboutPage() {
         if (!aboutPage) return;
 
+        if (typeof window.resetAboutTabsV116 === "function") {
+            window.resetAboutTabsV116();
+        }
+
         document.body.classList.remove(
             "treatment-page-open",
             "treatment-nav-scrolled",
@@ -2644,6 +2648,32 @@ if (
     const mediaYoutubeButton =
         document.getElementById("mediaYoutubeButton");
 
+    const mediaInstagramButtonV98 =
+        document.getElementById("mediaInstagramButtonV98");
+
+    const mediaFacebookButtonV98 =
+        document.getElementById("mediaFacebookButtonV98");
+
+    const mediaXButtonV98 =
+        document.getElementById("mediaXButtonV98");
+
+    const mediaTargetButtonsV98 = [
+        mediaTvProgramsButton,
+        mediaYoutubeButton,
+        mediaInstagramButtonV98,
+        mediaFacebookButtonV98,
+        mediaXButtonV98
+    ].filter(Boolean);
+
+    function setMediaActiveTargetV98(target) {
+        mediaTargetButtonsV98.forEach(button => {
+            button.classList.toggle(
+                "active",
+                button.dataset.mediaTarget === target
+            );
+        });
+    }
+
     function openMediaPage(target = "tv") {
 
         if (!mediaPage) return;
@@ -2661,19 +2691,7 @@ if (
 
         mediaPage.setAttribute("aria-hidden", "false");
 
-        if (mediaTvProgramsButton) {
-            mediaTvProgramsButton.classList.toggle(
-                "active",
-                target === "tv"
-            );
-        }
-
-        if (mediaYoutubeButton) {
-            mediaYoutubeButton.classList.toggle(
-                "active",
-                target === "youtube"
-            );
-        }
+        setMediaActiveTargetV98(target);
 
         history.pushState(
             { page: "medya", target },
@@ -2790,23 +2808,13 @@ if (
         });
     }
 
-    if (mediaTvProgramsButton) {
-        mediaTvProgramsButton.addEventListener("click", () => {
-            mediaTvProgramsButton.classList.add("active");
-            if (mediaYoutubeButton) {
-                mediaYoutubeButton.classList.remove("active");
-            }
+    mediaTargetButtonsV98.forEach(button => {
+        button.addEventListener("click", () => {
+            setMediaActiveTargetV98(
+                button.dataset.mediaTarget || "tv"
+            );
         });
-    }
-
-    if (mediaYoutubeButton) {
-        mediaYoutubeButton.addEventListener("click", () => {
-            mediaYoutubeButton.classList.add("active");
-            if (mediaTvProgramsButton) {
-                mediaTvProgramsButton.classList.remove("active");
-            }
-        });
-    }
+    });
 
     function updateMediaNav() {
         if (!document.body.classList.contains("media-page-open")) {
@@ -2830,13 +2838,7 @@ if (
         document.body.classList.add("media-page-open");
         mediaPage.setAttribute("aria-hidden", "false");
 
-        if (mediaTvProgramsButton) {
-            mediaTvProgramsButton.classList.add("active");
-        }
-
-        if (mediaYoutubeButton) {
-            mediaYoutubeButton.classList.remove("active");
-        }
+        setMediaActiveTargetV98("tv");
     }
 
 })();
@@ -3276,7 +3278,9 @@ window.addEventListener("load", async () => {
             "about-nav-scrolled",
             "media-page-open",
             "media-nav-scrolled",
-            "legal-page-open-v56"
+            "legal-page-open-v56",
+            "ankilozan-page-open-v87",
+            "general-health-detail-open-v75"
         );
 
         const pages = [
@@ -3284,7 +3288,9 @@ window.addEventListener("load", async () => {
             document.getElementById("agriPage"),
             document.getElementById("hakkimdaPage"),
             document.getElementById("medyaPage"),
-            document.getElementById("legalPageV56")
+            document.getElementById("legalPageV56"),
+            document.getElementById("ankilozanFaqSectionV85"),
+            document.getElementById("generalHealthDetailPageV75")
         ];
 
         pages.forEach(page => {
@@ -3335,6 +3341,27 @@ window.addEventListener("load", async () => {
             "aria-hidden",
             "false"
         );
+
+        /* V101: Osteopati görünümündeki hareketli videoyu güvenli biçimde başlat */
+        if (selected === "osteopati") {
+            const osteopathyVideoV101 =
+                detailPage.querySelector(
+                    '.osteopathy-page-v95 video'
+                );
+
+            if (osteopathyVideoV101) {
+                osteopathyVideoV101.muted = true;
+                const playPromiseV101 =
+                    osteopathyVideoV101.play();
+
+                if (
+                    playPromiseV101 &&
+                    typeof playPromiseV101.catch === "function"
+                ) {
+                    playPromiseV101.catch(() => {});
+                }
+            }
+        }
 
         history.pushState(
             {
@@ -4447,404 +4474,725 @@ window.addEventListener("load", async () => {
 
 
 // =========================================================
-// V99 - OSTEOPATİ SAYFA İÇİ GEÇİŞLER
+// V103 - GEÇİŞ / REVEAL ANİMASYONLARINI GERİ YÜKLE
 // =========================================================
 (function () {
-    document.addEventListener("click", function (event) {
-        const targetButton = event.target.closest("[data-osteopathy-target]");
+    const selector = [
+        ".treatment-card-v77",
+        ".pain-card-v76",
+        ".serum-card-v71",
+        ".injection-card-v72",
+        ".detail-card",
+        ".service-info-card",
+        ".location-info-card",
+        ".map-card",
+        ".general-health-empty-card-v75",
+        ".ankilozan-faq-item-v85",
+        ".section-heading",
+        ".osteopathy-info-card-v95"
+    ].join(",");
 
-        if (targetButton) {
-            const targetId = targetButton.getAttribute("data-osteopathy-target");
-            const target = document.getElementById(targetId);
+    const seen = new WeakSet();
 
-            if (target) {
-                target.scrollIntoView({
-                    behavior: "smooth",
-                    block: "start"
-                });
+    const observer = ("IntersectionObserver" in window)
+        ? new IntersectionObserver(entries => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.classList.add("v103-visible");
+                    observer.unobserve(entry.target);
+                }
+            });
+        }, {
+            threshold: 0.08,
+            rootMargin: "0px 0px -4% 0px"
+        })
+        : null;
+
+    function prepareRevealItems(root = document) {
+        const items = Array.from(root.querySelectorAll(selector));
+
+        items.forEach((item, index) => {
+            if (seen.has(item)) return;
+
+            seen.add(item);
+            item.classList.add("v103-reveal");
+            item.style.transitionDelay =
+                Math.min((index % 4) * 65, 195) + "ms";
+
+            if (observer) {
+                observer.observe(item);
+            } else {
+                item.classList.add("v103-visible");
             }
+        });
+    }
 
-            return;
-        }
+    function replayVisiblePageAnimation() {
+        const candidates = [
+            document.querySelector(".treatment-page"),
+            document.querySelector(".pain-page"),
+            document.querySelector(".media-page-v48"),
+            document.querySelector(".about-page-v47"),
+            document.querySelector(".legal-page-v56"),
+            document.querySelector(".treatment-detail-page-v71"),
+            document.querySelector(".general-health-detail-page-v75"),
+            document.querySelector(".ankilozan-page-v87")
+        ].filter(Boolean);
 
-        const painButton = event.target.closest("#osteopathyPainButtonV99");
+        candidates.forEach(page => {
+            const hidden =
+                page.getAttribute("aria-hidden") === "true" ||
+                getComputedStyle(page).display === "none";
 
-        if (painButton) {
-            const existingPainButton =
-                document.getElementById("treatmentDetailPainV71");
-
-            if (existingPainButton) {
-                existingPainButton.click();
+            if (!hidden) {
+                page.style.animation = "none";
+                void page.offsetWidth;
+                page.style.animation = "";
             }
+        });
+
+        prepareRevealItems(document);
+    }
+
+    prepareRevealItems(document);
+
+    const bodyObserver = new MutationObserver(mutations => {
+        const changed = mutations.some(m =>
+            m.type === "attributes" &&
+            (m.attributeName === "class" || m.attributeName === "aria-hidden")
+        );
+
+        if (changed) {
+            requestAnimationFrame(replayVisiblePageAnimation);
         }
+    });
+
+    bodyObserver.observe(document.body, {
+        attributes: true,
+        subtree: true,
+        attributeFilter: ["class", "aria-hidden"]
     });
 })();
 
 
 // =========================================================
-// V101 - TÜM SAYFALAR ARASINDA 2 SANİYELİK GEÇİŞ ANİMASYONU
-// Ana sayfa -> bölüm, bölüm -> bölüm ve bölüm -> ana sayfa.
+// V105 - OSTEOPATİ SAYFA İÇİ SEKME / FAQ ETKİLEŞİMLERİ
 // =========================================================
 (function () {
+    const osteoPage = document.querySelector('.osteopathy-page-v95');
+    if (!osteoPage) return;
 
-    const body = document.body;
+    const localButtons = Array.from(
+        osteoPage.querySelectorAll('[data-osteo-scroll]')
+    );
 
-    if (!body) {
+    function scrollToOsteoTarget(id) {
+        const target = document.getElementById(id);
+        if (!target) return;
+
+        const y = target.getBoundingClientRect().top + window.scrollY - 145;
+        window.scrollTo({
+            top: Math.max(0, y),
+            behavior: 'smooth'
+        });
+    }
+
+    localButtons.forEach(button => {
+        button.addEventListener('click', () => {
+            const id = button.dataset.osteoScroll;
+            scrollToOsteoTarget(id);
+
+            localButtons.forEach(btn => btn.classList.remove('active'));
+            button.classList.add('active');
+        });
+    });
+
+    const faqItems = Array.from(
+        osteoPage.querySelectorAll('.osteo-faq-item-v105')
+    );
+
+    faqItems.forEach(item => {
+        const button = item.querySelector('button');
+        const answer = item.querySelector('.osteo-faq-answer-v105');
+        if (!button || !answer) return;
+
+        button.addEventListener('click', () => {
+            const willOpen = !item.classList.contains('open');
+
+            faqItems.forEach(other => {
+                other.classList.remove('open');
+                const otherButton = other.querySelector('button');
+                const otherAnswer = other.querySelector('.osteo-faq-answer-v105');
+                if (otherButton) otherButton.setAttribute('aria-expanded', 'false');
+                if (otherAnswer) otherAnswer.style.maxHeight = null;
+            });
+
+            if (willOpen) {
+                item.classList.add('open');
+                button.setAttribute('aria-expanded', 'true');
+                answer.style.maxHeight = answer.scrollHeight + 'px';
+            }
+        });
+    });
+
+    const trackedSections = [
+        'osteoExercisesV105',
+        'osteoPhysicalV105',
+        'osteoChiroV105',
+        'osteoFaqV105',
+        'osteoArticlesV105',
+        'osteoSportsV105'
+    ]
+        .map(id => document.getElementById(id))
+        .filter(Boolean);
+
+    if ('IntersectionObserver' in window && trackedSections.length) {
+        const sectionObserver = new IntersectionObserver(entries => {
+            const visible = entries
+                .filter(entry => entry.isIntersecting)
+                .sort((a, b) => b.intersectionRatio - a.intersectionRatio)[0];
+
+            if (!visible) return;
+
+            localButtons.forEach(button => {
+                button.classList.toggle(
+                    'active',
+                    button.dataset.osteoScroll === visible.target.id
+                );
+            });
+        }, {
+            threshold: [0.15, 0.35, 0.55],
+            rootMargin: '-120px 0px -55% 0px'
+        });
+
+        trackedSections.forEach(section => sectionObserver.observe(section));
+    }
+})();
+
+
+
+
+// =========================================================
+// V107 - OSTEOPATİ "AĞRI" = ANA AĞRI SAYFASI
+// Osteopati içindeki eski Ağrı bölümü artık kullanılmaz.
+// =========================================================
+(function () {
+    const osteoPainButton =
+        document.getElementById("osteoGlobalPainButtonV107");
+
+    const painPage =
+        document.getElementById("agriPage");
+
+    const treatmentDetailPage =
+        document.getElementById("treatmentDetailPageV71");
+
+    if (!osteoPainButton || !painPage) {
         return;
     }
 
-    let overlay =
-        document.querySelector(".v100-page-transition");
+    function closeOtherSpecialPagesV107() {
+        document.body.classList.remove(
+            "treatment-detail-open-v71",
+            "treatment-detail-nav-scrolled-v71",
+            "treatment-page-open",
+            "treatment-nav-scrolled",
+            "general-health-detail-open-v75",
+            "ankilozan-page-open-v87",
+            "media-page-open",
+            "media-nav-scrolled",
+            "about-page-open",
+            "about-nav-scrolled",
+            "legal-page-open-v56"
+        );
 
-    if (!overlay) {
-        overlay = document.createElement("div");
+        const pagesToHide = [
+            treatmentDetailPage,
+            document.getElementById("tedaviAlanlariPage"),
+            document.getElementById("hakkimdaPage"),
+            document.getElementById("medyaPage"),
+            document.getElementById("legalPageV56"),
+            document.getElementById("generalHealthDetailPageV75"),
+            document.getElementById("ankilozanFaqSectionV85")
+        ];
 
-        overlay.className = "v100-page-transition";
-        overlay.setAttribute("aria-hidden", "true");
-
-        overlay.innerHTML = `
-            <div class="v100-page-transition-inner">
-                <div class="v100-transition-mark" aria-hidden="true">+</div>
-                <span class="v100-transition-kicker">DR. CEYHUN NURİ</span>
-                <h2 class="v100-transition-title">Sayfa</h2>
-                <p class="v100-transition-copy">
-                    İlgili bilgi alanı hazırlanıyor...
-                </p>
-                <div class="v100-transition-progress" aria-hidden="true"></div>
-            </div>
-        `;
-
-        body.appendChild(overlay);
+        pagesToHide.forEach(page => {
+            if (page) {
+                page.setAttribute("aria-hidden", "true");
+            }
+        });
     }
 
-    const title =
-        overlay.querySelector(".v100-transition-title");
+    osteoPainButton.addEventListener("click", event => {
+        event.preventDefault();
+        event.stopPropagation();
 
-    const copy =
-        overlay.querySelector(".v100-transition-copy");
+        closeOtherSpecialPagesV107();
 
-    let transitionRunning = false;
-    let bypassNextClick = false;
+        document.body.classList.add("pain-page-open");
+        painPage.setAttribute("aria-hidden", "false");
 
-    function textOf(target) {
-        if (!target) {
-            return "";
-        }
+        history.pushState(
+            { page: "agri" },
+            "",
+            "#agri"
+        );
 
-        const preferredLabel =
-            target.querySelector(".modern-menu-label-v81");
+        window.scrollTo({
+            top: 0,
+            behavior: "smooth"
+        });
+    });
+})();
 
-        if (preferredLabel) {
-            return preferredLabel.textContent.trim();
-        }
 
-        return target.textContent
-            .replace(/[→⌄⌂›]/g, " ")
-            .replace(/\s+/g, " ")
-            .trim();
+// =========================================================
+// V110 - TÜM ANA SEKMELERE 1.5 SN MODERN GEÇİŞ
+// =========================================================
+(function () {
+    const overlay =
+        document.getElementById("sitePageTransitionV110");
+
+    const kickerNode =
+        document.getElementById("siteTransitionKickerV110");
+
+    const titleNode =
+        document.getElementById("siteTransitionTitleV110");
+
+    const subtitleNode =
+        document.getElementById("siteTransitionSubtitleV110");
+
+    if (!overlay || !kickerNode || !titleNode || !subtitleNode) {
+        return;
     }
 
-    function getDestination(target) {
+    const treatmentMeta = {
+        "osteopati": {
+            kicker: "TEDAVİ",
+            title: "Osteopati",
+            subtitle: "Bütüncül hareket ve manuel değerlendirme"
+        },
+        "fitoterapi": {
+            kicker: "TEDAVİ",
+            title: "Fitoterapi - Beslenme",
+            subtitle: "Bitkisel içerikler, beslenme ve kişiye özel değerlendirme"
+        },
+        "igne": {
+            kicker: "TEDAVİ",
+            title: "İğne Uygulamaları",
+            subtitle: "Girişimsel ve rejeneratif uygulamalar"
+        },
+        "damar-yolu": {
+            kicker: "TEDAVİ",
+            title: "Damar Yolu",
+            subtitle: "Serum ve damar yolu uygulamaları"
+        }
+    };
 
-        if (!target) {
-            return null;
+    const healthMeta = {
+        "beslenme": {
+            kicker: "GENEL SAĞLIK",
+            title: "Beslenme",
+            subtitle: "Bütüncül beslenme değerlendirmesi"
+        },
+        "supplementler": {
+            kicker: "GENEL SAĞLIK",
+            title: "Supplementler",
+            subtitle: "Destek ürünleri ve kişiye özel değerlendirme"
+        },
+        "kurler": {
+            kicker: "GENEL SAĞLIK",
+            title: "Kürler",
+            subtitle: "Bütüncül destek programları"
+        },
+        "egzersizler": {
+            kicker: "GENEL SAĞLIK",
+            title: "Egzersizler",
+            subtitle: "Hareket ve egzersiz önerileri"
+        },
+        "detoks": {
+            kicker: "GENEL SAĞLIK",
+            title: "Detoks",
+            subtitle: "Bütüncül yaşam ve destek yaklaşımları"
+        }
+    };
+
+    const legalMeta = {
+        "aydinlatma": {
+            kicker: "BİLGİ",
+            title: "Aydınlatma Metni",
+            subtitle: "Bilgilendirme ve yasal metin"
+        },
+        "politika": {
+            kicker: "BİLGİ",
+            title: "KVKK Politikası",
+            subtitle: "Kişisel verilerin işlenmesi ve korunması"
+        },
+        "cerez": {
+            kicker: "BİLGİ",
+            title: "Çerez Politikası",
+            subtitle: "Web sitesi kullanım bilgileri"
+        },
+        "acik-riza": {
+            kicker: "BİLGİ",
+            title: "Açık Rıza Metni",
+            subtitle: "Kişisel veri bilgilendirmesi"
+        }
+    };
+
+    const fixedIds = {
+        "heroGeneralButtonV124": {
+            kicker: "GENEL",
+            title: "Öne Çıkanlar",
+            subtitle: "Sitedeki öne çıkan içeriklere hızlı erişim"
+        },
+        "generalFeaturedHomeButtonV124": {
+            kicker: "ANA SAYFA",
+            title: "Ana Sayfa",
+            subtitle: "Dr. Ceyhun Nuri"
+        },
+        "treatmentPageHomeButton": {
+            kicker: "ANA SAYFA",
+            title: "Ana Sayfa",
+            subtitle: "Dr. Ceyhun Nuri"
+        },
+        "treatmentBackHome": {
+            kicker: "ANA SAYFA",
+            title: "Ana Sayfa",
+            subtitle: "Dr. Ceyhun Nuri"
+        },
+        "painPageHomeButton": {
+            kicker: "ANA SAYFA",
+            title: "Ana Sayfa",
+            subtitle: "Dr. Ceyhun Nuri"
+        },
+        "painBackHome": {
+            kicker: "ANA SAYFA",
+            title: "Ana Sayfa",
+            subtitle: "Dr. Ceyhun Nuri"
+        },
+        "aboutPageHomeButton": {
+            kicker: "ANA SAYFA",
+            title: "Ana Sayfa",
+            subtitle: "Dr. Ceyhun Nuri"
+        },
+        "mediaPageHomeButton": {
+            kicker: "ANA SAYFA",
+            title: "Ana Sayfa",
+            subtitle: "Dr. Ceyhun Nuri"
+        },
+        "legalHomeButtonV56": {
+            kicker: "ANA SAYFA",
+            title: "Ana Sayfa",
+            subtitle: "Dr. Ceyhun Nuri"
+        },
+        "treatmentDetailHomeV71": {
+            kicker: "ANA SAYFA",
+            title: "Ana Sayfa",
+            subtitle: "Dr. Ceyhun Nuri"
+        },
+        "healthDetailHomeV75": {
+            kicker: "ANA SAYFA",
+            title: "Ana Sayfa",
+            subtitle: "Dr. Ceyhun Nuri"
+        },
+        "ankilozanHomeButtonV87": {
+            kicker: "ANA SAYFA",
+            title: "Ana Sayfa",
+            subtitle: "Dr. Ceyhun Nuri"
+        },
+
+        "heroDiseasesButton": {
+            kicker: "KEŞFET",
+            title: "Tedavi Alanları",
+            subtitle: "Tedavi ve değerlendirme alanlarını keşfedin"
+        },
+        "painPageTreatmentAreasButton": {
+            kicker: "KEŞFET",
+            title: "Tedavi Alanları",
+            subtitle: "Tedavi ve değerlendirme alanlarını keşfedin"
+        },
+        "aboutPageTreatmentAreasButton": {
+            kicker: "KEŞFET",
+            title: "Tedavi Alanları",
+            subtitle: "Tedavi ve değerlendirme alanlarını keşfedin"
+        },
+        "mediaPageTreatmentAreasButton": {
+            kicker: "KEŞFET",
+            title: "Tedavi Alanları",
+            subtitle: "Tedavi ve değerlendirme alanlarını keşfedin"
+        },
+        "ankilozanTreatmentAreasButtonV87": {
+            kicker: "KEŞFET",
+            title: "Tedavi Alanları",
+            subtitle: "Tedavi ve değerlendirme alanlarını keşfedin"
+        },
+        "treatmentDetailAreasV71": {
+            kicker: "KEŞFET",
+            title: "Tedavi Alanları",
+            subtitle: "Tedavi ve değerlendirme alanlarını keşfedin"
+        },
+        "healthDetailAreasV75": {
+            kicker: "KEŞFET",
+            title: "Tedavi Alanları",
+            subtitle: "Tedavi ve değerlendirme alanlarını keşfedin"
+        },
+
+        "heroPainButton": {
+            kicker: "DEĞERLENDİRME",
+            title: "Ağrı",
+            subtitle: "Ağrı bölgeleri ve değerlendirme seçenekleri"
+        },
+        "treatmentPagePainButton": {
+            kicker: "DEĞERLENDİRME",
+            title: "Ağrı",
+            subtitle: "Ağrı bölgeleri ve değerlendirme seçenekleri"
+        },
+        "mediaPagePainButton": {
+            kicker: "DEĞERLENDİRME",
+            title: "Ağrı",
+            subtitle: "Ağrı bölgeleri ve değerlendirme seçenekleri"
+        },
+        "aboutPagePainButton": {
+            kicker: "DEĞERLENDİRME",
+            title: "Ağrı",
+            subtitle: "Ağrı bölgeleri ve değerlendirme seçenekleri"
+        },
+        "ankilozanPainButtonV87": {
+            kicker: "DEĞERLENDİRME",
+            title: "Ağrı",
+            subtitle: "Ağrı bölgeleri ve değerlendirme seçenekleri"
+        },
+        "treatmentDetailPainV71": {
+            kicker: "DEĞERLENDİRME",
+            title: "Ağrı",
+            subtitle: "Ağrı bölgeleri ve değerlendirme seçenekleri"
+        },
+        "healthDetailPainV75": {
+            kicker: "DEĞERLENDİRME",
+            title: "Ağrı",
+            subtitle: "Ağrı bölgeleri ve değerlendirme seçenekleri"
+        },
+        "osteoGlobalPainButtonV107": {
+            kicker: "DEĞERLENDİRME",
+            title: "Ağrı",
+            subtitle: "Ağrı bölgeleri ve değerlendirme seçenekleri"
+        },
+
+        "heroMediaButton": {
+            kicker: "MEDYA",
+            title: "Medya",
+            subtitle: "TV programları, YouTube ve sosyal medya"
+        },
+        "treatmentPageMediaButton": {
+            kicker: "MEDYA",
+            title: "Medya",
+            subtitle: "TV programları, YouTube ve sosyal medya"
+        },
+        "painPageMediaButton": {
+            kicker: "MEDYA",
+            title: "Medya",
+            subtitle: "TV programları, YouTube ve sosyal medya"
+        },
+        "aboutPageMediaButton": {
+            kicker: "MEDYA",
+            title: "Medya",
+            subtitle: "TV programları, YouTube ve sosyal medya"
+        },
+        "ankilozanMediaButtonV87": {
+            kicker: "MEDYA",
+            title: "Medya",
+            subtitle: "TV programları, YouTube ve sosyal medya"
+        },
+        "treatmentDetailMediaV71": {
+            kicker: "MEDYA",
+            title: "Medya",
+            subtitle: "TV programları, YouTube ve sosyal medya"
+        },
+        "healthDetailMediaV75": {
+            kicker: "MEDYA",
+            title: "Medya",
+            subtitle: "TV programları, YouTube ve sosyal medya"
+        },
+
+        "heroAboutButton": {
+            kicker: "BİLGİ",
+            title: "Hakkımda",
+            subtitle: "Dr. Ceyhun Nuri"
+        }
+    };
+
+    const selectors = [
+        "#heroGeneralButtonV124",
+        "#generalFeaturedHomeButtonV124",
+        "#treatmentPageHomeButton",
+        "#treatmentBackHome",
+        "#painPageHomeButton",
+        "#painBackHome",
+        "#aboutPageHomeButton",
+        "#mediaPageHomeButton",
+        "#legalHomeButtonV56",
+        "#treatmentDetailHomeV71",
+        "#healthDetailHomeV75",
+        "#ankilozanHomeButtonV87",
+        "[data-treatment-detail]",
+        "[data-treatment-top]",
+        "[data-health-detail]",
+        ".info-legal-open-v56",
+        "#heroDiseasesButton",
+        "#painPageTreatmentAreasButton",
+        "#aboutPageTreatmentAreasButton",
+        "#mediaPageTreatmentAreasButton",
+        "#ankilozanTreatmentAreasButtonV87",
+        "#treatmentDetailAreasV71",
+        "#healthDetailAreasV75",
+        "#heroPainButton",
+        "#treatmentPagePainButton",
+        "#mediaPagePainButton",
+        "#aboutPagePainButton",
+        "#ankilozanPainButtonV87",
+        "#treatmentDetailPainV71",
+        "#healthDetailPainV75",
+        "#osteoGlobalPainButtonV107",
+        "#heroMediaButton",
+        "#treatmentPageMediaButton",
+        "#painPageMediaButton",
+        "#aboutPageMediaButton",
+        "#ankilozanMediaButtonV87",
+        "#treatmentDetailMediaV71",
+        "#healthDetailMediaV75",
+        "#heroAboutButton"
+    ].join(",");
+
+    let running = false;
+    let bypassTrigger = null;
+
+    function getMeta(trigger) {
+        if (!trigger) return null;
+
+        const treatment =
+            trigger.dataset.treatmentDetail ||
+            trigger.dataset.treatmentTop;
+
+        if (treatment && treatmentMeta[treatment]) {
+            return treatmentMeta[treatment];
         }
 
-        if (
-            target.matches(
-                [
-                    "#treatmentPageHomeButton",
-                    "#painPageHomeButton",
-                    "#mediaPageHomeButton",
-                    "#aboutPageHomeButton",
-                    "#treatmentDetailHomeV71",
-                    "#healthDetailHomeV75",
-                    "#ankilozanHomeButtonV87",
-                    "#legalHomeButtonV56",
-                    "#treatmentBackHome",
-                    "#painBackHome"
-                ].join(",")
-            )
-        ) {
-            return {
-                title: "Ana Sayfa",
-                copy: "Ana sayfa açılıyor."
-            };
+        const health =
+            trigger.dataset.healthDetail;
+
+        if (health && healthMeta[health]) {
+            return healthMeta[health];
         }
 
-        if (
-            target.matches(
-                [
-                    "#heroPainButton",
-                    "#treatmentPagePainButton",
-                    "#mediaPagePainButton",
-                    "#aboutPagePainButton",
-                    "#treatmentDetailPainV71",
-                    "#healthDetailPainV75",
-                    "#ankilozanPainButtonV87"
-                ].join(",")
-            )
-        ) {
-            return {
-                title: "Ağrı",
-                copy:
-                    "Ağrı bölgeleri ve değerlendirme başlıkları açılıyor."
-            };
+        const legal =
+            trigger.dataset.legalDoc;
+
+        if (legal && legalMeta[legal]) {
+            return legalMeta[legal];
         }
 
-        if (
-            target.matches(
-                [
-                    "#heroDiseasesButton",
-                    "#painPageTreatmentAreasButton",
-                    "#mediaPageTreatmentAreasButton",
-                    "#aboutPageTreatmentAreasButton",
-                    "#treatmentDetailAreasV71",
-                    "#healthDetailAreasV75",
-                    "#ankilozanTreatmentAreasButtonV87"
-                ].join(",")
-            )
-        ) {
-            return {
-                title: "Tedavi Alanları",
-                copy:
-                    "Tedavi alanları ve bilgilendirme kartları açılıyor."
-            };
-        }
-
-        if (
-            target.matches(
-                [
-                    "#heroMediaButton",
-                    "#treatmentPageMediaButton",
-                    "#painPageMediaButton",
-                    "#aboutPageMediaButton",
-                    "#treatmentDetailMediaV71",
-                    "#healthDetailMediaV75",
-                    "#ankilozanMediaButtonV87"
-                ].join(",")
-            )
-        ) {
-            return {
-                title: "Medya",
-                copy:
-                    "Video ve medya içerikleri açılıyor."
-            };
-        }
-
-        if (target.matches("#heroAboutButton")) {
-            return {
-                title: "Hakkımda",
-                copy:
-                    "Dr. Ceyhun Nuri hakkında bilgiler açılıyor."
-            };
-        }
-
-        if (target.matches("[data-treatment-detail]")) {
-            return {
-                title:
-                    textOf(target) || "Tedavi",
-                copy:
-                    "Tedavi bilgileri ve ilgili içerikler açılıyor."
-            };
-        }
-
-        if (target.matches("[data-health-detail]")) {
-            return {
-                title:
-                    textOf(target) || "Genel Sağlık",
-                copy:
-                    "Genel sağlık bilgilendirme alanı açılıyor."
-            };
-        }
-
-        if (
-            target.matches(
-                ".treatment-top-option-v74[data-treatment-top]"
-            )
-        ) {
-            return {
-                title:
-                    textOf(target) || "Tedavi",
-                copy:
-                    "Seçilen tedavi bölümü açılıyor."
-            };
-        }
-
-        if (
-            target.matches(
-                ".health-top-option-v75[data-health-top]"
-            )
-        ) {
-            return {
-                title:
-                    textOf(target) || "Genel Sağlık",
-                copy:
-                    "Seçilen genel sağlık bölümü açılıyor."
-            };
-        }
-
-        if (
-            target.matches(
-                ".info-legal-open-v56[data-legal-doc]"
-            )
-        ) {
-            return {
-                title:
-                    textOf(target) || "Bilgi",
-                copy:
-                    "Bilgilendirme metni açılıyor."
-            };
-        }
-
-        return null;
+        return fixedIds[trigger.id] || null;
     }
 
-    function runTransition(
-        target,
-        destination
-    ) {
+    function runTransition(meta, trigger) {
+        if (running) return;
 
-        if (
-            transitionRunning ||
-            !target ||
-            !destination
-        ) {
+        const reduceMotion =
+            window.matchMedia &&
+            window.matchMedia(
+                "(prefers-reduced-motion: reduce)"
+            ).matches;
+
+        if (reduceMotion) {
+            bypassTrigger = trigger;
+            trigger.click();
             return;
         }
 
-        transitionRunning = true;
+        running = true;
 
-        if (title) {
-            title.textContent =
-                destination.title;
-        }
+        kickerNode.textContent = meta.kicker || "BÖLÜM";
+        titleNode.textContent = meta.title || "Sayfa";
+        subtitleNode.textContent =
+            meta.subtitle || "İçerik hazırlanıyor";
 
-        if (copy) {
-            copy.textContent =
-                destination.copy;
-        }
-
-        overlay.classList.remove("is-leaving");
-        overlay.classList.remove("is-active");
-
-        void overlay.offsetWidth;
-
-        overlay.classList.add("is-active");
+        document.body.classList.add(
+            "site-transition-running-v110"
+        );
 
         overlay.setAttribute(
             "aria-hidden",
             "false"
         );
 
-        body.classList.add(
-            "v100-transitioning"
+        overlay.classList.remove(
+            "is-running-v110"
         );
 
+        void overlay.offsetWidth;
+
+        overlay.classList.add(
+            "is-running-v110"
+        );
+
+        // Geçişin tam ortasında gerçek sekme açılır.
         window.setTimeout(() => {
+            bypassTrigger = trigger;
+            trigger.click();
+        }, 750);
 
-            bypassNextClick = true;
-
-            target.click();
-
-            overlay.classList.add(
-                "is-leaving"
+        // Toplam 1.5 saniye.
+        window.setTimeout(() => {
+            overlay.classList.remove(
+                "is-running-v110"
             );
 
-            window.setTimeout(() => {
+            overlay.setAttribute(
+                "aria-hidden",
+                "true"
+            );
 
-                overlay.classList.remove(
-                    "is-active",
-                    "is-leaving"
-                );
+            document.body.classList.remove(
+                "site-transition-running-v110"
+            );
 
-                overlay.setAttribute(
-                    "aria-hidden",
-                    "true"
-                );
-
-                body.classList.remove(
-                    "v100-transitioning"
-                );
-
-                transitionRunning = false;
-
-            }, 360);
-
-        }, 2000);
+            running = false;
+        }, 1500);
     }
-
-    const navigationSelector = [
-        "#treatmentPageHomeButton",
-        "#painPageHomeButton",
-        "#mediaPageHomeButton",
-        "#aboutPageHomeButton",
-        "#treatmentDetailHomeV71",
-        "#healthDetailHomeV75",
-        "#ankilozanHomeButtonV87",
-        "#legalHomeButtonV56",
-        "#treatmentBackHome",
-        "#painBackHome",
-
-        "#heroPainButton",
-        "#treatmentPagePainButton",
-        "#mediaPagePainButton",
-        "#aboutPagePainButton",
-        "#treatmentDetailPainV71",
-        "#healthDetailPainV75",
-        "#ankilozanPainButtonV87",
-
-        "#heroDiseasesButton",
-        "#painPageTreatmentAreasButton",
-        "#mediaPageTreatmentAreasButton",
-        "#aboutPageTreatmentAreasButton",
-        "#treatmentDetailAreasV71",
-        "#healthDetailAreasV75",
-        "#ankilozanTreatmentAreasButtonV87",
-
-        "#heroMediaButton",
-        "#treatmentPageMediaButton",
-        "#painPageMediaButton",
-        "#aboutPageMediaButton",
-        "#treatmentDetailMediaV71",
-        "#healthDetailMediaV75",
-        "#ankilozanMediaButtonV87",
-
-        "#heroAboutButton",
-
-        "[data-treatment-detail]",
-        "[data-health-detail]",
-        ".treatment-top-option-v74[data-treatment-top]",
-        ".health-top-option-v75[data-health-top]",
-        ".info-legal-open-v56[data-legal-doc]"
-    ].join(",");
 
     document.addEventListener(
         "click",
-        function (event) {
-
-            if (bypassNextClick) {
-                bypassNextClick = false;
+        event => {
+            if (
+                event.button !== 0 ||
+                event.metaKey ||
+                event.ctrlKey ||
+                event.shiftKey ||
+                event.altKey
+            ) {
                 return;
             }
 
-            if (transitionRunning) {
+            if (!(event.target instanceof Element)) {
                 return;
             }
 
-            const target =
-                event.target.closest(
-                    navigationSelector
-                );
+            const trigger =
+                event.target.closest(selectors);
 
-            if (!target) {
+            if (!trigger) {
                 return;
             }
 
-            const destination =
-                getDestination(target);
+            // 750 ms'de yaptığımız programatik tıklamayı normal handler'a bırak.
+            if (bypassTrigger === trigger) {
+                bypassTrigger = null;
+                return;
+            }
 
-            if (!destination) {
+            const meta = getMeta(trigger);
+
+            if (!meta) {
                 return;
             }
 
@@ -4852,13 +5200,363 @@ window.addEventListener("load", async () => {
             event.stopPropagation();
             event.stopImmediatePropagation();
 
-            runTransition(
-                target,
-                destination
-            );
-
+            runTransition(meta, trigger);
         },
         true
     );
+})();
 
+
+// =========================================================
+// V116 - HAKKIMDA 3 SEKMELİ İÇERİK
+// Varsayılan: Dr. Ceyhun Nuri Hakkında
+// =========================================================
+(function () {
+    const page =
+        document.getElementById("hakkimdaPage");
+
+    if (!page) return;
+
+    const buttons =
+        Array.from(
+            page.querySelectorAll(
+                "[data-about-tab-v116]"
+            )
+        );
+
+    const panels =
+        Array.from(
+            page.querySelectorAll(
+                "[data-about-panel-v116]"
+            )
+        );
+
+    function activateAboutTabV116(name, focusButton = false) {
+        buttons.forEach(button => {
+            const active =
+                button.dataset.aboutTabV116 === name;
+
+            button.classList.toggle(
+                "active",
+                active
+            );
+
+            button.setAttribute(
+                "aria-selected",
+                active ? "true" : "false"
+            );
+
+            if (active && focusButton) {
+                button.focus({
+                    preventScroll: true
+                });
+            }
+        });
+
+        panels.forEach(panel => {
+            const active =
+                panel.dataset.aboutPanelV116 === name;
+
+            panel.classList.toggle(
+                "active",
+                active
+            );
+
+            panel.setAttribute(
+                "aria-hidden",
+                active ? "false" : "true"
+            );
+        });
+    }
+
+    buttons.forEach((button, index) => {
+        button.addEventListener("click", () => {
+            activateAboutTabV116(
+                button.dataset.aboutTabV116
+            );
+        });
+
+        button.addEventListener("keydown", event => {
+            if (
+                event.key !== "ArrowRight" &&
+                event.key !== "ArrowLeft"
+            ) {
+                return;
+            }
+
+            event.preventDefault();
+
+            const direction =
+                event.key === "ArrowRight"
+                    ? 1
+                    : -1;
+
+            const nextIndex =
+                (index + direction + buttons.length)
+                % buttons.length;
+
+            activateAboutTabV116(
+                buttons[nextIndex]
+                    .dataset.aboutTabV116,
+                true
+            );
+        });
+    });
+
+    window.resetAboutTabsV116 =
+        function () {
+            activateAboutTabV116(
+                "doctor"
+            );
+        };
+
+    activateAboutTabV116(
+        "doctor"
+    );
+})();
+
+
+// =========================================================
+// V124 - GENEL > ÖNE ÇIKANLAR
+// =========================================================
+(function () {
+    const generalButton =
+        document.getElementById("heroGeneralButtonV124");
+
+    const featuredPage =
+        document.getElementById("generalFeaturedPageV124");
+
+    const homeButton =
+        document.getElementById("generalFeaturedHomeButtonV124");
+
+    const treatmentAreasButton =
+        document.getElementById("generalFeaturedTreatmentAreasV124");
+
+    const painButton =
+        document.getElementById("generalFeaturedPainV124");
+
+    const mediaButton =
+        document.getElementById("generalFeaturedMediaV124");
+
+    const featureCards =
+        Array.from(
+            document.querySelectorAll(
+                "[data-general-feature-v124]"
+            )
+        );
+
+    if (!generalButton || !featuredPage) return;
+
+    function hideOtherPagesV124() {
+        document.body.classList.remove(
+            "treatment-page-open",
+            "treatment-nav-scrolled",
+            "pain-page-open",
+            "pain-nav-scrolled",
+            "about-page-open",
+            "about-nav-scrolled",
+            "media-page-open",
+            "media-nav-scrolled",
+            "legal-page-open-v56",
+            "treatment-detail-open-v71",
+            "treatment-detail-nav-scrolled-v71",
+            "general-health-detail-open-v75",
+            "ankilozan-page-open-v87"
+        );
+
+        [
+            "tedaviAlanlariPage",
+            "agriPage",
+            "hakkimdaPage",
+            "medyaPage",
+            "legalPageV56",
+            "treatmentDetailPageV71",
+            "generalHealthDetailPageV75",
+            "ankilozanFaqSectionV85"
+        ].forEach(id => {
+            const page = document.getElementById(id);
+            if (page) {
+                page.setAttribute("aria-hidden", "true");
+            }
+        });
+    }
+
+    function openFeaturedV124() {
+        hideOtherPagesV124();
+
+        document.body.classList.add(
+            "general-featured-open-v124"
+        );
+
+        featuredPage.setAttribute(
+            "aria-hidden",
+            "false"
+        );
+
+        history.pushState(
+            { page: "one-cikanlar-v124" },
+            "",
+            "#one-cikanlar"
+        );
+
+        window.scrollTo({
+            top: 0,
+            behavior: "smooth"
+        });
+    }
+
+    function closeFeaturedV124() {
+        document.body.classList.remove(
+            "general-featured-open-v124"
+        );
+
+        featuredPage.setAttribute(
+            "aria-hidden",
+            "true"
+        );
+
+        history.pushState(
+            { page: "home" },
+            "",
+            location.pathname + location.search
+        );
+
+        window.scrollTo({
+            top: 0,
+            behavior: "smooth"
+        });
+    }
+
+    function leaveFeaturedAndClickV124(target) {
+        if (!target) return;
+
+        document.body.classList.remove(
+            "general-featured-open-v124"
+        );
+
+        featuredPage.setAttribute(
+            "aria-hidden",
+            "true"
+        );
+
+        requestAnimationFrame(() => {
+            target.click();
+        });
+    }
+
+    generalButton.addEventListener(
+        "click",
+        event => {
+            event.preventDefault();
+            openFeaturedV124();
+        }
+    );
+
+    if (homeButton) {
+        homeButton.addEventListener(
+            "click",
+            event => {
+                event.preventDefault();
+                closeFeaturedV124();
+            }
+        );
+    }
+
+    if (treatmentAreasButton) {
+        treatmentAreasButton.addEventListener(
+            "click",
+            () => {
+                leaveFeaturedAndClickV124(
+                    document.getElementById(
+                        "heroDiseasesButton"
+                    )
+                );
+            }
+        );
+    }
+
+    if (painButton) {
+        painButton.addEventListener(
+            "click",
+            () => {
+                leaveFeaturedAndClickV124(
+                    document.getElementById(
+                        "heroPainButton"
+                    )
+                );
+            }
+        );
+    }
+
+    if (mediaButton) {
+        mediaButton.addEventListener(
+            "click",
+            () => {
+                leaveFeaturedAndClickV124(
+                    document.getElementById(
+                        "heroMediaButton"
+                    )
+                );
+            }
+        );
+    }
+
+    featureCards.forEach(card => {
+        card.addEventListener(
+            "click",
+            () => {
+                const target =
+                    card.dataset.generalFeatureV124;
+
+                if (target === "about") {
+                    leaveFeaturedAndClickV124(
+                        document.getElementById(
+                            "heroAboutButton"
+                        )
+                    );
+                    return;
+                }
+
+                if (
+                    target === "osteopati" ||
+                    target === "fitoterapi"
+                ) {
+                    leaveFeaturedAndClickV124(
+                        document.querySelector(
+                            '[data-treatment-detail="' +
+                            target +
+                            '"]'
+                        )
+                    );
+                    return;
+                }
+
+                if (target === "ankilozan") {
+                    leaveFeaturedAndClickV124(
+                        document.getElementById(
+                            "ankilozanHeroButtonV85"
+                        )
+                    );
+                    return;
+                }
+
+                if (target === "pain") {
+                    leaveFeaturedAndClickV124(
+                        document.getElementById(
+                            "heroPainButton"
+                        )
+                    );
+                    return;
+                }
+
+                if (target === "media") {
+                    leaveFeaturedAndClickV124(
+                        document.getElementById(
+                            "heroMediaButton"
+                        )
+                    );
+                }
+            }
+        );
+    });
 })();

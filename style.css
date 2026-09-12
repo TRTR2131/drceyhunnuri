@@ -14096,788 +14096,1957 @@ body.treatment-detail-open-v71 .treatment-detail-nav-v71 {
 
 
 /* =========================================================
-   V98 - TEDAVİ ALANLARINA YENİ ENJEKSİYON / REJENERATİF KARTLAR
+   V98 - MEDYA: TV + YOUTUBE + INSTAGRAM + FACEBOOK + X
+   Modern ikonlu tasarım
    ========================================================= */
 
-.treatment-card-v98 .treatment-card-image-v77 {
-    aspect-ratio: 4 / 3;
-    overflow: hidden;
-}
+.media-page-hero-v48 {
+    min-height: 315px !important;
+    padding-top: 108px !important;
+    padding-bottom: 44px !important;
 
-.treatment-card-v98 .treatment-card-image-v77 img {
-    width: 100%;
-    height: 100%;
-    object-fit: cover;
-    object-position: center;
-    display: block;
-}
-
-.treatment-card-v98 .treatment-card-body-v77 h3 {
-    line-height: 1.22;
-}
-
-.treatment-card-v98 {
-    cursor: pointer;
-}
-
-
-/* =========================================================
-   V99 - OSTEOPATİ: VİDEO, AĞRI, FİZİKSEL UYGULAMA,
-   KAYROPRAKTİK, SORU-CEVAP, AKADEMİK MAKALELER
-   ========================================================= */
-
-.osteopathy-page-v99 {
-    scroll-behavior: smooth;
-}
-
-.osteopathy-quick-actions-v99 {
-    margin: 28px auto 0;
-    max-width: 1120px;
-    display: flex;
-    justify-content: center;
-    flex-wrap: wrap;
-    gap: 10px;
-}
-
-.osteopathy-quick-actions-v99 button {
-    min-height: 44px;
-    padding: 0 17px;
-    border: 1px solid rgba(18, 89, 136, .12);
-    border-radius: 999px;
-    background: rgba(255,255,255,.86);
-    color: #17415f;
-    font: inherit;
-    font-size: 14px;
-    font-weight: 800;
-    cursor: pointer;
-    box-shadow: 0 9px 24px rgba(24, 76, 111, .08);
-    transition: .22s ease;
-}
-
-.osteopathy-quick-actions-v99 button:hover {
-    transform: translateY(-2px);
-    background: #1687cf;
-    color: #fff;
-    border-color: #1687cf;
-    box-shadow: 0 14px 30px rgba(22, 135, 207, .20);
-}
-
-.osteopathy-pain-button-v99 {
-    background: linear-gradient(135deg, #143e5d, #1687cf) !important;
-    color: #fff !important;
-}
-
-.osteopathy-page-content-v99 {
-    padding-bottom: 120px;
-}
-
-.osteopathy-section-v99 {
-    width: min(1420px, 100%);
-    margin: 96px auto 0;
-    scroll-margin-top: 120px;
-}
-
-.osteopathy-section-heading-v99 {
-    max-width: 860px;
-    margin-bottom: 34px;
-}
-
-.osteopathy-section-heading-v99 > span,
-.osteopathy-split-copy-v99 > span {
-    display: inline-block;
-    margin-bottom: 9px;
-    color: #1687cf;
-    font-size: 13px;
-    font-weight: 900;
-    letter-spacing: .18em;
-}
-
-.osteopathy-section-heading-v99 h2,
-.osteopathy-split-copy-v99 h2 {
-    margin: 0 0 14px;
-    color: #113a57;
-    font-size: clamp(34px, 4vw, 52px);
-    line-height: 1.08;
-}
-
-.osteopathy-section-heading-v99 p,
-.osteopathy-split-copy-v99 > p {
-    margin: 0;
-    color: #627d92;
-    font-size: 17px;
-    line-height: 1.8;
-}
-
-/* Video cards */
-.osteopathy-video-grid-v99 {
-    display: grid;
-    grid-template-columns: repeat(3, minmax(0, 1fr));
-    gap: 24px;
-}
-
-.osteopathy-video-card-v99 {
-    position: relative;
-    display: block;
-    overflow: hidden;
-    min-height: 420px;
-    border: 1px solid rgba(22, 135, 207, .12);
-    border-radius: 28px;
-    background: #fff;
-    text-decoration: none;
-    box-shadow: 0 18px 48px rgba(16, 57, 84, .10);
-    transition: transform .25s ease, box-shadow .25s ease;
-}
-
-.osteopathy-video-card-v99:hover {
-    transform: translateY(-7px);
-    box-shadow: 0 28px 62px rgba(16, 57, 84, .16);
-}
-
-.osteopathy-video-card-v99 img {
-    width: 100%;
-    height: 245px;
-    object-fit: cover;
-    display: block;
-}
-
-.osteopathy-play-v99 {
-    position: absolute;
-    top: 206px;
-    right: 24px;
-    width: 58px;
-    height: 58px;
-    display: grid;
-    place-items: center;
-    border-radius: 50%;
-    background: #1687cf;
-    color: #fff;
-    font-size: 20px;
-    box-shadow: 0 12px 26px rgba(22, 135, 207, .28);
-}
-
-.osteopathy-video-card-v99 > div {
-    padding: 28px 28px 30px;
-}
-
-.osteopathy-video-card-v99 small {
-    color: #1687cf;
-    font-weight: 900;
-    letter-spacing: .12em;
-}
-
-.osteopathy-video-card-v99 h3 {
-    margin: 8px 0 10px;
-    color: #113a57;
-    font-size: 24px;
-}
-
-.osteopathy-video-card-v99 p {
-    margin: 0;
-    color: #688197;
-    line-height: 1.7;
-}
-
-/* Physical split */
-.osteopathy-split-v99 {
-    display: grid;
-    grid-template-columns: minmax(0, .95fr) minmax(0, 1.05fr);
-    align-items: stretch;
-    gap: 30px;
-}
-
-.osteopathy-split-copy-v99 {
-    padding: 46px;
-    border-radius: 30px;
-    background: linear-gradient(145deg, #f2f9fe, #ffffff);
-    border: 1px solid rgba(22, 135, 207, .12);
-    box-shadow: 0 18px 48px rgba(16, 57, 84, .08);
-}
-
-.osteopathy-split-image-v99 {
-    min-height: 520px;
-    overflow: hidden;
-    border-radius: 30px;
-    box-shadow: 0 18px 48px rgba(16, 57, 84, .10);
-}
-
-.osteopathy-split-image-v99 img {
-    width: 100%;
-    height: 100%;
-    object-fit: cover;
-    display: block;
-}
-
-.osteopathy-mini-points-v99 {
-    display: grid;
-    gap: 14px;
-    margin-top: 30px;
-}
-
-.osteopathy-mini-points-v99 > div {
-    display: grid;
-    grid-template-columns: 50px 1fr;
-    gap: 12px;
-    align-items: center;
-    padding: 16px;
-    border-radius: 16px;
-    background: #fff;
-    border: 1px solid rgba(22, 135, 207, .10);
-}
-
-.osteopathy-mini-points-v99 strong {
-    display: grid;
-    place-items: center;
-    width: 44px;
-    height: 44px;
-    border-radius: 14px;
-    background: #eaf6fd;
-    color: #1687cf;
-}
-
-.osteopathy-mini-points-v99 span {
-    color: #2a526e;
-    font-weight: 700;
-}
-
-/* Chiropractic */
-.osteopathy-chiro-layout-v99 {
-    display: grid;
-    grid-template-columns: minmax(0, 1.05fr) minmax(0, .95fr);
-    gap: 26px;
-    align-items: stretch;
-}
-
-.osteopathy-chiro-image-v99 {
-    min-height: 560px;
-    overflow: hidden;
-    border-radius: 30px;
-    box-shadow: 0 18px 48px rgba(16, 57, 84, .10);
-}
-
-.osteopathy-chiro-image-v99 img {
-    width: 100%;
-    height: 100%;
-    object-fit: cover;
-    display: block;
-}
-
-.osteopathy-chiro-cards-v99 {
-    display: grid;
-    gap: 18px;
-}
-
-.osteopathy-chiro-cards-v99 article {
-    padding: 28px;
-    border-radius: 24px;
-    background: #fff;
-    border: 1px solid rgba(22, 135, 207, .12);
-    box-shadow: 0 14px 34px rgba(16, 57, 84, .07);
-}
-
-.osteopathy-chiro-cards-v99 article > span {
-    display: inline-grid;
-    place-items: center;
-    width: 46px;
-    height: 46px;
-    border-radius: 14px;
-    background: #eaf6fd;
-    color: #1687cf;
-    font-weight: 900;
-}
-
-.osteopathy-chiro-cards-v99 h3 {
-    margin: 15px 0 9px;
-    color: #113a57;
-    font-size: 24px;
-}
-
-.osteopathy-chiro-cards-v99 p {
-    margin: 0;
-    color: #688197;
-    line-height: 1.7;
-}
-
-/* FAQ */
-.osteopathy-faq-v99 {
-    display: grid;
-    gap: 14px;
-}
-
-.osteopathy-faq-v99 details {
-    border: 1px solid rgba(22, 135, 207, .13);
-    border-radius: 20px;
-    background: #fff;
-    box-shadow: 0 10px 28px rgba(16, 57, 84, .06);
-    overflow: hidden;
-}
-
-.osteopathy-faq-v99 summary {
-    list-style: none;
-    position: relative;
-    padding: 22px 64px 22px 24px;
-    cursor: pointer;
-    color: #143e5d;
-    font-size: 18px;
-    font-weight: 850;
-}
-
-.osteopathy-faq-v99 summary::-webkit-details-marker {
-    display: none;
-}
-
-.osteopathy-faq-v99 summary::after {
-    content: "+";
-    position: absolute;
-    top: 50%;
-    right: 22px;
-    transform: translateY(-50%);
-    width: 34px;
-    height: 34px;
-    display: grid;
-    place-items: center;
-    border-radius: 50%;
-    background: #eaf6fd;
-    color: #1687cf;
-    font-size: 22px;
-}
-
-.osteopathy-faq-v99 details[open] summary::after {
-    content: "×";
-}
-
-.osteopathy-faq-v99 details p {
-    margin: 0;
-    padding: 0 24px 24px;
-    color: #688197;
-    line-height: 1.75;
-}
-
-/* Academic articles */
-.osteopathy-article-grid-v99 {
-    display: grid;
-    grid-template-columns: repeat(2, minmax(0, 1fr));
-    gap: 22px;
-}
-
-.osteopathy-article-grid-v99 a {
-    display: flex;
-    flex-direction: column;
-    min-height: 300px;
-    padding: 30px;
-    border-radius: 24px;
-    background: linear-gradient(145deg, #fff, #f8fcff);
-    border: 1px solid rgba(22, 135, 207, .13);
-    text-decoration: none;
-    box-shadow: 0 14px 34px rgba(16, 57, 84, .07);
-    transition: .22s ease;
-}
-
-.osteopathy-article-grid-v99 a:hover {
-    transform: translateY(-5px);
-    border-color: rgba(22, 135, 207, .30);
-    box-shadow: 0 22px 48px rgba(16, 57, 84, .12);
-}
-
-.osteopathy-article-grid-v99 small {
-    color: #1687cf;
-    font-weight: 900;
-    letter-spacing: .10em;
-}
-
-.osteopathy-article-grid-v99 h3 {
-    margin: 12px 0 14px;
-    color: #113a57;
-    font-size: 23px;
-    line-height: 1.3;
-}
-
-.osteopathy-article-grid-v99 p {
-    margin: 0 0 18px;
-    color: #688197;
-    line-height: 1.7;
-}
-
-.osteopathy-article-grid-v99 a > span {
-    margin-top: auto;
-    color: #1687cf;
-    font-weight: 850;
-}
-
-.osteopathy-evidence-note-v99 {
-    margin: 22px 0 0;
-    padding: 18px 20px;
-    border-radius: 16px;
-    background: #eef8fe;
-    color: #5c778c;
-    line-height: 1.7;
-    border: 1px solid rgba(22, 135, 207, .10);
-}
-
-@media (max-width: 1000px) {
-    .osteopathy-video-grid-v99 {
-        grid-template-columns: repeat(2, minmax(0, 1fr));
-    }
-
-    .osteopathy-split-v99,
-    .osteopathy-chiro-layout-v99 {
-        grid-template-columns: 1fr;
-    }
-
-    .osteopathy-split-image-v99,
-    .osteopathy-chiro-image-v99 {
-        min-height: 420px;
-    }
-}
-
-@media (max-width: 700px) {
-    .osteopathy-section-v99 {
-        margin-top: 64px;
-    }
-
-    .osteopathy-video-grid-v99,
-    .osteopathy-article-grid-v99 {
-        grid-template-columns: 1fr;
-    }
-
-    .osteopathy-split-copy-v99 {
-        padding: 28px 22px;
-    }
-
-    .osteopathy-video-card-v99 {
-        min-height: 0;
-    }
-
-    .osteopathy-video-card-v99 img {
-        height: 220px;
-    }
-
-    .osteopathy-play-v99 {
-        top: 184px;
-    }
-}
-
-
-/* =========================================================
-   V100 - 2 SANİYELİK SAYFA GEÇİŞ ANİMASYONU
-   + HAKKIMDA BUTONU DAHA BELİRGİN
-   ========================================================= */
-
-/* ---------- ANA SAYFA HAKKIMDA AKTİF GÖRÜNÜMÜ ---------- */
-
-.doctor-slide-bottom-v86 {
-    gap: 0 !important;
-}
-
-.doctor-slide-tag-v86 {
-    margin-bottom: 10px !important;
     background:
-        linear-gradient(
-            135deg,
-            rgba(16, 63, 91, .96),
-            rgba(22, 135, 207, .96)
-        ) !important;
-    border: 1px solid rgba(255,255,255,.24);
-    box-shadow:
-        0 10px 28px rgba(6, 35, 55, .25),
-        inset 0 1px 0 rgba(255,255,255,.16) !important;
-    letter-spacing: .08em;
-    text-transform: uppercase;
+        radial-gradient(circle at 10% 90%, rgba(75,178,239,.14), transparent 23%),
+        radial-gradient(circle at 92% 10%, rgba(49,155,222,.10), transparent 24%),
+        linear-gradient(180deg, #eef9ff 0%, #e9f7ff 100%) !important;
 }
 
-.doctor-about-button-v86 {
-    position: relative;
+.media-page-inner-v48 {
+    width: min(1500px, calc(100% - 48px)) !important;
+}
+
+.media-page-inner-v48 h1 {
+    margin-bottom: 28px !important;
+
+    color: #103750 !important;
+
+    font-size: clamp(58px, 5.8vw, 88px) !important;
+    line-height: .95 !important;
+    letter-spacing: -.045em !important;
+}
+
+.media-page-subtabs-v98 {
+    width: min(1450px, 100%);
+    margin: 0 auto;
+
+    display: grid !important;
+    grid-template-columns:
+        minmax(190px, 1.2fr)
+        repeat(4, minmax(160px, 1fr)) !important;
+
+    gap: 14px !important;
+}
+
+.media-social-button-v98 {
+    min-height: 78px !important;
+
+    padding: 10px 22px !important;
 
     display: inline-flex !important;
-    align-items: center;
-    justify-content: center;
-    gap: 16px;
+    align-items: center !important;
+    justify-content: flex-start !important;
+    gap: 16px !important;
 
-    min-height: 74px;
-    padding: 10px 18px 10px 30px !important;
-
-    border: 1px solid rgba(255,255,255,.34) !important;
-    border-radius: 999px !important;
+    border: 1px solid rgba(30, 112, 170, .15) !important;
+    border-radius: 22px !important;
 
     background:
         linear-gradient(
-            135deg,
-            rgba(7, 26, 40, .82),
-            rgba(18, 63, 91, .74)
+            180deg,
+            rgba(255,255,255,.98),
+            rgba(250,253,255,.96)
         ) !important;
 
-    color: #fff !important;
+    color: #113853 !important;
 
-    font-size: clamp(36px, 4vw, 58px) !important;
-    line-height: 1 !important;
-    font-weight: 850 !important;
-
-    text-shadow:
-        0 4px 18px rgba(0,0,0,.30) !important;
+    font-size: 18px !important;
+    font-weight: 800 !important;
 
     box-shadow:
-        0 18px 44px rgba(4, 23, 36, .34),
-        0 0 0 1px rgba(75, 187, 255, .10),
-        inset 0 1px 0 rgba(255,255,255,.10) !important;
+        0 14px 34px rgba(18,63,94,.08) !important;
 
-    backdrop-filter: blur(14px);
-    -webkit-backdrop-filter: blur(14px);
+    transform: translateY(0) !important;
 
     transition:
         transform .22s ease,
         box-shadow .22s ease,
         border-color .22s ease,
         background .22s ease !important;
-
-    animation:
-        v100-about-soft-pulse 2.8s ease-in-out infinite;
 }
 
-.doctor-about-button-v86::before {
-    content: "";
-    width: 11px;
-    height: 11px;
-    flex: 0 0 11px;
+.media-social-button-v98:hover {
+    transform: translateY(-4px) !important;
 
-    border-radius: 50%;
-    background: #62d8ff;
+    border-color: rgba(25,139,208,.25) !important;
 
     box-shadow:
-        0 0 0 6px rgba(98, 216, 255, .14),
-        0 0 18px rgba(98, 216, 255, .65);
+        0 22px 46px rgba(18,63,94,.14) !important;
 }
 
-.doctor-about-button-v86:hover {
-    transform: translateY(-3px) scale(1.015) !important;
-
-    border-color: rgba(112, 214, 255, .72) !important;
-
+.media-social-button-v98.active {
     background:
         linear-gradient(
             135deg,
-            rgba(12, 51, 77, .94),
-            rgba(17, 123, 189, .90)
+            #1488ca,
+            #19a4e4
         ) !important;
 
+    color: #fff !important;
+
+    border-color: rgba(120,210,255,.48) !important;
+
     box-shadow:
-        0 24px 54px rgba(3, 24, 39, .40),
-        0 0 0 4px rgba(47, 173, 242, .10),
-        inset 0 1px 0 rgba(255,255,255,.14) !important;
+        0 18px 40px rgba(19,137,202,.25) !important;
 }
 
-.doctor-about-text-v100 {
-    display: inline-block;
+.media-social-icon-v98 {
+    width: 48px;
+    height: 48px;
+
+    flex: 0 0 48px;
+
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+
+    border-radius: 16px;
+
+    background: #eef7fd;
+
+    box-shadow:
+        inset 0 0 0 1px rgba(29,116,176,.08);
 }
 
-.doctor-about-arrow-v100 {
-    width: 50px;
-    height: 50px;
+.media-social-icon-v98 svg {
+    width: 28px;
+    height: 28px;
+}
 
-    display: inline-grid;
-    place-items: center;
+.media-tv-icon-v98 svg {
+    fill: none;
+    stroke: #1989cc;
+    stroke-width: 1.8;
+    stroke-linecap: round;
+    stroke-linejoin: round;
+}
 
-    flex: 0 0 50px;
+.media-youtube-icon-v98 {
+    background: #fff1f1;
+}
 
-    border-radius: 50%;
+.media-youtube-icon-v98 svg path:first-child {
+    fill: #ff1616;
+}
+
+.media-youtube-icon-v98 .media-icon-cut-v98 {
+    fill: white;
+}
+
+.media-instagram-icon-v98 {
+    background:
+        radial-gradient(circle at 68% 72%, #ffd46c 0 16%, transparent 17%),
+        linear-gradient(135deg, #6447d9, #d92d96 50%, #ff7d39);
+}
+
+.media-instagram-icon-v98 svg {
+    fill: none;
+    stroke: #fff;
+    stroke-width: 1.8;
+}
+
+.media-facebook-icon-v98 {
+    background: #1977f3;
+}
+
+.media-facebook-icon-v98 svg {
+    fill: #fff;
+}
+
+.media-x-icon-v98 {
+    background: #111;
+}
+
+.media-x-icon-v98 svg {
+    fill: #fff;
+}
+
+.media-social-button-v98.active .media-social-icon-v98 {
+    background: rgba(255,255,255,.16);
+    box-shadow:
+        inset 0 0 0 1px rgba(255,255,255,.20);
+}
+
+.media-social-button-v98.active .media-tv-icon-v98 svg {
+    stroke: #fff;
+}
+
+.media-social-button-v98.active .media-youtube-icon-v98,
+.media-social-button-v98.active .media-instagram-icon-v98,
+.media-social-button-v98.active .media-facebook-icon-v98,
+.media-social-button-v98.active .media-x-icon-v98 {
+    background: rgba(255,255,255,.15);
+}
+
+@media (max-width: 1100px) {
+    .media-page-subtabs-v98 {
+        grid-template-columns:
+            repeat(3, minmax(170px, 1fr)) !important;
+    }
+}
+
+@media (max-width: 760px) {
+    .media-page-inner-v48 {
+        width: min(100% - 24px, 1500px) !important;
+    }
+
+    .media-page-subtabs-v98 {
+        grid-template-columns:
+            1fr 1fr !important;
+
+        gap: 10px !important;
+    }
+
+    .media-social-button-v98 {
+        min-height: 64px !important;
+        padding: 8px 12px !important;
+        gap: 10px !important;
+
+        font-size: 14px !important;
+        border-radius: 18px !important;
+    }
+
+    .media-social-icon-v98 {
+        width: 40px;
+        height: 40px;
+        flex-basis: 40px;
+        border-radius: 13px;
+    }
+
+    .media-social-icon-v98 svg {
+        width: 24px;
+        height: 24px;
+    }
+}
+
+@media (max-width: 470px) {
+    .media-page-subtabs-v98 {
+        grid-template-columns: 1fr !important;
+    }
+}
+
+
+/* =========================================================
+   V99 - OSTEOPATİ SAYFASI GÖRÜNÜRLÜK DÜZELTMESİ
+   ========================================================= */
+
+body.treatment-detail-open-v71
+#treatmentDetailPageV71[aria-hidden="false"] {
+    display: block !important;
+}
+
+body.treatment-detail-open-v71
+#treatmentDetailPageV71
+.treatment-detail-view-v71 {
+    display: none !important;
+}
+
+body.treatment-detail-open-v71
+#treatmentDetailPageV71
+.treatment-detail-view-v71.active {
+    display: block !important;
+}
+
+body.treatment-detail-open-v71
+#treatmentDetailPageV71
+.osteopathy-page-v95.active {
+    display: block !important;
+    min-height: 100vh !important;
+}
+
+body.treatment-detail-open-v71
+#treatmentDetailPageV71
+.osteopathy-page-v95.active
+.osteopathy-page-hero-v95,
+body.treatment-detail-open-v71
+#treatmentDetailPageV71
+.osteopathy-page-v95.active
+.osteopathy-page-content-v95 {
+    display: block !important;
+}
+
+
+/* =========================================================
+   V100 - OSTEOPATİ HAREKETLİ VİDEO ALANI
+   ========================================================= */
+
+.osteopathy-motion-card-v100 {
+    width: min(1420px, 100%);
+    margin: 0 auto 34px;
+
+    display: grid;
+    grid-template-columns: minmax(320px, .78fr) minmax(520px, 1.35fr);
+    gap: 28px;
+    align-items: stretch;
+}
+
+.osteopathy-motion-copy-v100,
+.osteopathy-motion-video-v100 {
+    border: 1px solid rgba(22, 111, 171, .13);
+    border-radius: 28px;
 
     background:
         linear-gradient(
-            135deg,
-            #1f94d7,
-            #56c2f5
+            180deg,
+            rgba(255,255,255,.99),
+            rgba(248,252,255,.97)
         );
 
-    color: #fff;
+    box-shadow:
+        0 18px 48px rgba(18, 55, 80, .10);
+}
 
-    font-size: 27px;
-    font-weight: 700;
+.osteopathy-motion-copy-v100 {
+    padding: 38px 36px;
+
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+}
+
+.osteopathy-motion-kicker-v100 {
+    margin-bottom: 14px;
+
+    color: #1685c9;
+
+    font-size: 13px;
+    font-weight: 900;
+    letter-spacing: .18em;
+}
+
+.osteopathy-motion-copy-v100 h2 {
+    margin: 0 0 18px;
+
+    color: #103852;
+
+    font-size: clamp(28px, 2.25vw, 40px);
+    line-height: 1.1;
+    letter-spacing: -.035em;
+}
+
+.osteopathy-motion-copy-v100 p {
+    margin: 0;
+
+    color: #637f95;
+
+    font-size: 16px;
+    line-height: 1.8;
+}
+
+.osteopathy-motion-video-v100 {
+    position: relative;
+
+    min-height: 430px;
+    overflow: hidden;
+
+    background: #eaf3f8;
+}
+
+.osteopathy-motion-video-v100 video {
+    width: 100%;
+    height: 100%;
+
+    position: absolute;
+    inset: 0;
+
+    display: block;
+
+    object-fit: cover;
+    object-position: center;
+
+    background: #eaf3f8;
+}
+
+/* Videoya hafif klinik premium çerçeve */
+.osteopathy-motion-video-v100::after {
+    content: "";
+    position: absolute;
+    inset: 0;
+
+    pointer-events: none;
+
+    border-radius: inherit;
 
     box-shadow:
-        0 10px 22px rgba(16, 136, 203, .28),
-        inset 0 1px 0 rgba(255,255,255,.28);
+        inset 0 0 0 1px rgba(255,255,255,.25);
 }
 
-@keyframes v100-about-soft-pulse {
-    0%, 100% {
-        box-shadow:
-            0 18px 44px rgba(4, 23, 36, .34),
-            0 0 0 1px rgba(75, 187, 255, .10),
-            inset 0 1px 0 rgba(255,255,255,.10);
+@media (max-width: 1000px) {
+    .osteopathy-motion-card-v100 {
+        grid-template-columns: 1fr;
     }
 
-    50% {
-        box-shadow:
-            0 20px 50px rgba(4, 23, 36, .38),
-            0 0 0 5px rgba(75, 187, 255, .10),
-            0 0 30px rgba(55, 181, 244, .14),
-            inset 0 1px 0 rgba(255,255,255,.12);
+    .osteopathy-motion-video-v100 {
+        min-height: 390px;
     }
 }
 
+@media (max-width: 700px) {
+    .osteopathy-motion-card-v100 {
+        gap: 16px;
+        margin-bottom: 22px;
+    }
 
-/* ---------- SAYFA GEÇİŞ EKRANI ---------- */
+    .osteopathy-motion-copy-v100 {
+        padding: 26px 24px;
+        border-radius: 22px;
+    }
 
-.v100-page-transition {
-    position: fixed;
-    inset: 0;
-    z-index: 999999;
+    .osteopathy-motion-video-v100 {
+        min-height: 250px;
+        border-radius: 22px;
+    }
+}
+
+@media (prefers-reduced-motion: reduce) {
+    .osteopathy-motion-video-v100 video {
+        /* Tarayıcı hareket azaltma tercihinde video yine görünür,
+           autoplay davranışını tarayıcı kontrol eder. */
+    }
+}
+
+
+/* =========================================================
+   V101 - OSTEOPATİ SAYFASI KESİN GÖRÜNÜRLÜK / ÇAKIŞMA TEMİZLİĞİ
+   Kullanıcının güncel index/style/script dosyaları baz alınmıştır.
+   ========================================================= */
+
+/* Tedavi detay sayfası açıkken doğru view dışında diğerlerini kapat. */
+body.treatment-detail-open-v71
+#treatmentDetailPageV71[aria-hidden="false"] {
+    display: block !important;
+    visibility: visible !important;
+    opacity: 1 !important;
+}
+
+body.treatment-detail-open-v71
+#treatmentDetailPageV71
+.treatment-detail-view-v71 {
+    display: none !important;
+}
+
+body.treatment-detail-open-v71
+#treatmentDetailPageV71
+.treatment-detail-view-v71.active {
+    display: block !important;
+}
+
+/* Osteopati artık eski koyu iki-sütun şablonuna dönmez. */
+body.treatment-detail-open-v71
+#treatmentDetailPageV71
+.osteopathy-page-v95.active {
+    display: block !important;
+    position: relative !important;
+    min-height: 100vh !important;
+    overflow: visible !important;
+    background: #ffffff !important;
+    color: #163047 !important;
+}
+
+/* Eski V71 arka plan ve içerik kabukları osteopatide kesinlikle kapalı. */
+.osteopathy-page-v95 .treatment-detail-bg-v71,
+.osteopathy-page-v95 .treatment-detail-soft-v71,
+.osteopathy-page-v95 .treatment-detail-content-v71,
+.osteopathy-page-v95 .treatment-topic-visual-v71 {
+    display: none !important;
+}
+
+/* Yeni hero ve içerik alanları açık. */
+.osteopathy-page-v95 .osteopathy-page-hero-v95,
+.osteopathy-page-v95 .osteopathy-page-content-v95,
+.osteopathy-page-v95 .osteopathy-motion-card-v100,
+.osteopathy-page-v95 .osteopathy-page-grid-v95 {
+    visibility: visible !important;
+    opacity: 1 !important;
+}
+
+/* Video kutusu sabit ve temiz. */
+.osteopathy-page-v95 .osteopathy-motion-video-v100 {
+    min-height: 430px !important;
+    overflow: hidden !important;
+    background: #eaf3f8 !important;
+}
+
+.osteopathy-page-v95 .osteopathy-motion-video-v100 video {
+    display: block !important;
+    width: 100% !important;
+    height: 100% !important;
+    position: absolute !important;
+    inset: 0 !important;
+    object-fit: cover !important;
+    object-position: center !important;
+}
+
+/* Eski body/page class'larının Osteopati görünümünü ezmesini önle. */
+body.ankilozan-page-open-v87.treatment-detail-open-v71
+#treatmentDetailPageV71,
+body.general-health-detail-open-v75.treatment-detail-open-v71
+#treatmentDetailPageV71 {
+    display: block !important;
+}
+
+@media (max-width: 1000px) {
+    .osteopathy-page-v95 .osteopathy-motion-video-v100 {
+        min-height: 360px !important;
+    }
+}
+
+@media (max-width: 700px) {
+    .osteopathy-page-v95 .osteopathy-motion-video-v100 {
+        min-height: 240px !important;
+    }
+}
+
+
+/* =========================================================
+   V102 - OSTEOPATİ ESKİ TASARIMA GERİ DÖNÜŞ
+   V71 koyu arka plan + beyaz bilgi kartı + omurga illüstrasyonu
+   ========================================================= */
+
+body.treatment-detail-open-v71
+#treatmentDetailPageV71
+.osteopathy-view-v71.active {
+    display: block !important;
+    position: relative !important;
+    min-height: 100vh !important;
+    overflow: hidden !important;
+    background: transparent !important;
+}
+
+/* Eski arka planı geri getir */
+.osteopathy-view-v71 .treatment-detail-bg-v71 {
+    display: block !important;
+    position: absolute !important;
+    inset: 0 !important;
+
+    background:
+        linear-gradient(
+            120deg,
+            rgba(9,38,55,.72),
+            rgba(20,89,112,.36)
+        ),
+        url("./hero-ceyhun_V58.png?v=102")
+        center center / cover no-repeat !important;
+
+    filter: saturate(.84) contrast(.96) !important;
+}
+
+/* Eski soft overlay */
+.osteopathy-view-v71 .treatment-detail-soft-v71 {
+    display: block !important;
+    position: absolute !important;
+    inset: 0 !important;
+
+    background:
+        radial-gradient(
+            circle at 78% 48%,
+            rgba(255,255,255,.30),
+            transparent 29%
+        ),
+        linear-gradient(
+            90deg,
+            rgba(8,31,45,.78) 0%,
+            rgba(8,31,45,.58) 45%,
+            rgba(8,31,45,.20) 100%
+        ) !important;
+
+    backdrop-filter: blur(2px);
+}
+
+/* Eski iki sütunlu içerik */
+.osteopathy-view-v71 .treatment-detail-content-v71 {
+    display: grid !important;
+    position: relative !important;
+    z-index: 2 !important;
+
+    width: min(1420px, calc(100% - 60px)) !important;
+    min-height: 100vh !important;
+
+    margin: 0 auto !important;
+    padding: 105px 0 58px !important;
+
+    grid-template-columns:
+        minmax(440px, .95fr)
+        minmax(390px, .75fr) !important;
+
+    gap: 70px !important;
+    align-items: center !important;
+}
+
+/* Sol beyaz açıklama kartı */
+.osteopathy-view-v71 .treatment-detail-copy-v71 {
+    padding: 40px 42px !important;
+
+    background:
+        rgba(255,255,255,.90) !important;
+
+    border:
+        1px solid
+        rgba(255,255,255,.74) !important;
+
+    border-radius: 28px !important;
+
+    box-shadow:
+        0 26px 70px
+        rgba(6,28,42,.20) !important;
+
+    backdrop-filter: blur(11px);
+    -webkit-backdrop-filter: blur(11px);
+}
+
+.osteopathy-view-v71 .treatment-detail-copy-v71 h1 {
+    color: #123a59 !important;
+}
+
+.osteopathy-view-v71 .treatment-detail-copy-v71 p {
+    color: #59758a !important;
+}
+
+/* Sağdaki eski omurga / anatomi illüstrasyonu */
+.osteopathy-view-v71 .treatment-topic-visual-v71 {
+    display: flex !important;
+    align-items: center !important;
+    justify-content: center !important;
+
+    min-height: 560px !important;
+
+    opacity: 1 !important;
+    visibility: visible !important;
+}
+
+.osteopathy-view-v71 .osteopathy-visual-v71 svg {
+    width: min(100%, 430px) !important;
+    height: auto !important;
+
+    filter:
+        drop-shadow(
+            0 28px 40px
+            rgba(0,0,0,.16)
+        );
+}
+
+/* V95/V100 yeni Osteopati bileşenleri bu sayfada kullanılmıyor */
+.osteopathy-view-v71 .osteopathy-page-hero-v95,
+.osteopathy-view-v71 .osteopathy-page-content-v95,
+.osteopathy-view-v71 .osteopathy-motion-card-v100,
+.osteopathy-view-v71 .osteopathy-page-grid-v95 {
+    display: none !important;
+}
+
+@media (max-width: 900px) {
+    .osteopathy-view-v71 .treatment-detail-content-v71 {
+        width: min(100% - 28px, 900px) !important;
+        padding: 105px 0 40px !important;
+
+        grid-template-columns: 1fr !important;
+        gap: 24px !important;
+    }
+
+    .osteopathy-view-v71 .treatment-topic-visual-v71 {
+        min-height: 360px !important;
+    }
+
+    .osteopathy-view-v71 .treatment-detail-copy-v71 {
+        padding: 30px 26px !important;
+    }
+}
+
+
+/* =========================================================
+   V103 - DÜNKÜ GEÇİŞLERİ GERİ GETİR + OSTEOPATİYİ
+   TEDAVİ ALANLARI TASARIM DİLİNE DÖNDÜR
+   ========================================================= */
+
+/* Osteopati: V95 açık mavi hero + kartlar */
+body.treatment-detail-open-v71
+#treatmentDetailPageV71
+.osteopathy-page-v95.active {
+    display: block !important;
+    position: relative !important;
+    min-height: 100vh !important;
+    overflow: visible !important;
+    background: #fff !important;
+    color: #163047 !important;
+}
+
+/* Eski V71 koyu arkaplan/iki sütun yaklaşımını Osteopati'de kapat */
+.osteopathy-page-v95 .treatment-detail-bg-v71,
+.osteopathy-page-v95 .treatment-detail-soft-v71,
+.osteopathy-page-v95 .treatment-detail-content-v71,
+.osteopathy-page-v95 .treatment-topic-visual-v71 {
+    display: none !important;
+}
+
+.osteopathy-page-v95 .osteopathy-page-hero-v95,
+.osteopathy-page-v95 .osteopathy-page-content-v95,
+.osteopathy-page-v95 .osteopathy-page-grid-v95 {
+    display: block;
+    visibility: visible !important;
+    opacity: 1 !important;
+}
+
+/* Osteopati kart grid'i */
+.osteopathy-page-v95 .osteopathy-page-grid-v95 {
+    display: grid !important;
+    grid-template-columns: repeat(3, minmax(0, 1fr)) !important;
+    gap: 24px !important;
+}
+
+/* ---------- DÜNKÜ SAYFA GEÇİŞ ANİMASYONU ---------- */
+@keyframes v103-page-enter {
+    0% {
+        opacity: 0;
+        transform: translateY(18px) scale(.995);
+        filter: blur(3px);
+    }
+    100% {
+        opacity: 1;
+        transform: translateY(0) scale(1);
+        filter: blur(0);
+    }
+}
+
+body.treatment-page-open .treatment-page,
+body.pain-page-open .pain-page,
+body.media-page-open .media-page-v48,
+body.about-page-open .about-page-v47,
+body.legal-page-open-v56 .legal-page-v56,
+body.treatment-detail-open-v71 .treatment-detail-page-v71,
+body.general-health-detail-open-v75 .general-health-detail-page-v75,
+body.ankilozan-page-open-v87 .ankilozan-page-v87 {
+    animation: v103-page-enter .48s cubic-bezier(.2,.75,.2,1) both !important;
+}
+
+/* İçerik kartlarının sırayla gelmesi */
+.v103-reveal {
+    opacity: 0;
+    transform: translateY(24px);
+    transition:
+        opacity .58s cubic-bezier(.2,.7,.2,1),
+        transform .58s cubic-bezier(.2,.7,.2,1),
+        box-shadow .25s ease !important;
+    will-change: opacity, transform;
+}
+
+.v103-reveal.v103-visible {
+    opacity: 1;
+    transform: translateY(0);
+}
+
+/* Osteopati hero kendi içinde yumuşak açılır */
+.osteopathy-page-v95.active .osteopathy-page-hero-v95 {
+    animation: v103-page-enter .46s cubic-bezier(.2,.75,.2,1) both !important;
+}
+
+.osteopathy-page-v95.active .osteopathy-page-content-v95 {
+    animation: v103-page-enter .58s .06s cubic-bezier(.2,.75,.2,1) both !important;
+}
+
+/* Hover hareketleri */
+.osteopathy-info-card-v95,
+.treatment-card-v77,
+.pain-card-v76,
+.injection-card-v72,
+.serum-card-v71 {
+    transition:
+        transform .25s ease,
+        box-shadow .25s ease,
+        border-color .25s ease !important;
+}
+
+.osteopathy-info-card-v95:hover,
+.treatment-card-v77:hover,
+.pain-card-v76:hover,
+.injection-card-v72:hover,
+.serum-card-v71:hover {
+    transform: translateY(-6px);
+}
+
+/* Üst nav geçişleri */
+.hero-modern-nav-v82,
+.treatment-page-nav,
+.pain-page-nav,
+.media-page-nav-v48,
+.about-page-nav-v47,
+.treatment-detail-nav-v71,
+.general-health-detail-nav-v75,
+.ankilozan-page-nav-v87,
+.legal-page-topnav-v56 {
+    transition:
+        background .28s ease,
+        box-shadow .28s ease,
+        border-color .28s ease,
+        opacity .28s ease !important;
+}
+
+@media (max-width: 980px) {
+    .osteopathy-page-v95 .osteopathy-page-grid-v95 {
+        grid-template-columns: 1fr !important;
+    }
+}
+
+@media (prefers-reduced-motion: reduce) {
+    .v103-reveal,
+    body.treatment-page-open .treatment-page,
+    body.pain-page-open .pain-page,
+    body.media-page-open .media-page-v48,
+    body.about-page-open .about-page-v47,
+    body.legal-page-open-v56 .legal-page-v56,
+    body.treatment-detail-open-v71 .treatment-detail-page-v71,
+    body.general-health-detail-open-v75 .general-health-detail-page-v75,
+    body.ankilozan-page-open-v87 .ankilozan-page-v87 {
+        animation: none !important;
+        transition: none !important;
+        opacity: 1 !important;
+        transform: none !important;
+        filter: none !important;
+    }
+}
+
+
+/* V104 - Dün akşam istenen iğne kartları ve osteopati görünümü korunur */
+.injection-restore-note-v104 {
+    margin: 0 0 18px;
+    font-size: 0.98rem;
+    color: #47657e;
+}
+
+.injection-card-v96 .injection-visual-v72 img {
+    background: #eef4f9;
+}
+
+
+/* =========================================================
+   V105 - OSTEOPATİ ÖZEL İÇERİK ALANI
+   Egzersiz + fiziksel uygulamalar + ağrı + kayropraktik
+   + SSS + akademik makaleler + spor yaralanmaları
+   ========================================================= */
+
+.osteo-local-nav-v105 {
+    width: min(1420px, 100%);
+    margin: 38px auto 34px;
+    padding: 10px;
+
+    display: flex;
+    gap: 10px;
+    flex-wrap: wrap;
+
+    position: sticky;
+    top: 86px;
+    z-index: 120;
+
+    border: 1px solid #dbe9f1;
+    border-radius: 20px;
+
+    background: rgba(255,255,255,.92);
+    box-shadow: 0 12px 30px rgba(16,56,84,.08);
+    backdrop-filter: blur(14px);
+    -webkit-backdrop-filter: blur(14px);
+}
+
+.osteo-local-nav-v105 button {
+    appearance: none;
+    border: 0;
+    cursor: pointer;
+
+    min-height: 44px;
+    padding: 0 17px;
+
+    border-radius: 13px;
+    background: #eef7fc;
+    color: #16415e;
+
+    font: inherit;
+    font-size: 13px;
+    font-weight: 850;
+
+    transition: transform .2s ease, background .2s ease, color .2s ease, box-shadow .2s ease;
+}
+
+.osteo-local-nav-v105 button:hover,
+.osteo-local-nav-v105 button.active {
+    transform: translateY(-2px);
+    background: #1588cb;
+    color: #fff;
+    box-shadow: 0 9px 20px rgba(21,136,203,.22);
+}
+
+.osteo-workspace-v105 {
+    width: min(1420px, 100%);
+    margin: 0 auto;
+
+    display: grid;
+    grid-template-columns: minmax(0, 1fr) 350px;
+    gap: 30px;
+    align-items: start;
+}
+
+.osteo-main-v105 {
+    min-width: 0;
+}
+
+.osteo-section-v105 {
+    scroll-margin-top: 165px;
+    margin-bottom: 34px;
+    padding: 34px;
+
+    border: 1px solid #dce9f0;
+    border-radius: 26px;
+    background: #fff;
+
+    box-shadow: 0 14px 36px rgba(20,61,88,.07);
+}
+
+.osteo-section-heading-v105 {
+    margin-bottom: 24px;
+}
+
+.osteo-section-heading-v105 > span,
+.osteo-sidebar-kicker-v105 {
+    display: inline-block;
+    margin-bottom: 9px;
+
+    color: #1686c7;
+    font-size: 12px;
+    font-weight: 900;
+    letter-spacing: .16em;
+}
+
+.osteo-section-heading-v105 h2,
+.osteo-sidebar-card-v105 h2 {
+    margin: 0 0 10px;
+    color: #103852;
+    font-size: clamp(27px, 2.2vw, 38px);
+    line-height: 1.1;
+    letter-spacing: -.03em;
+}
+
+.osteo-section-heading-v105 p,
+.osteo-sidebar-card-v105 > p {
+    margin: 0;
+    color: #658096;
+    font-size: 15px;
+    line-height: 1.75;
+}
+
+/* VIDEO */
+.osteo-video-grid-v105 {
+    display: grid;
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+    gap: 18px;
+}
+
+.osteo-video-card-v105 {
+    overflow: hidden;
+    border: 1px solid #deebf2;
+    border-radius: 21px;
+    background: #fff;
+    transition: transform .24s ease, box-shadow .24s ease;
+}
+
+.osteo-video-card-v105:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 18px 36px rgba(16,56,82,.11);
+}
+
+.osteo-video-cover-v105 {
+    min-height: 175px;
+    padding: 18px;
+    position: relative;
 
     display: flex;
     align-items: center;
     justify-content: center;
 
-    pointer-events: none;
-
-    opacity: 0;
-    visibility: hidden;
-
     background:
-        radial-gradient(
-            circle at 50% 46%,
-            rgba(53, 164, 226, .18),
-            transparent 28%
-        ),
-        linear-gradient(
-            135deg,
-            rgba(6, 24, 37, .985),
-            rgba(14, 47, 67, .985)
-        );
-
-    transition:
-        opacity .28s ease,
-        visibility .28s ease;
+        radial-gradient(circle at 72% 28%, rgba(255,255,255,.85), transparent 18%),
+        linear-gradient(135deg, #d9f1ff, #80c9ed);
 }
 
-.v100-page-transition::before,
-.v100-page-transition::after {
-    content: "";
-    position: absolute;
-    border-radius: 50%;
-    border: 1px solid rgba(103, 209, 255, .12);
+.osteo-video-cover-alt-v105 {
+    background:
+        radial-gradient(circle at 72% 28%, rgba(255,255,255,.75), transparent 18%),
+        linear-gradient(135deg, #e9f7ff, #a6d8f1);
 }
 
-.v100-page-transition::before {
-    width: min(52vw, 760px);
-    aspect-ratio: 1;
-    animation: v100-transition-ring 2s ease-in-out infinite;
+.osteo-video-cover-third-v105 {
+    background:
+        radial-gradient(circle at 72% 28%, rgba(255,255,255,.72), transparent 18%),
+        linear-gradient(135deg, #e7f8f3, #9ad8c8);
 }
 
-.v100-page-transition::after {
-    width: min(34vw, 500px);
-    aspect-ratio: 1;
-    animation: v100-transition-ring 2s .18s ease-in-out infinite reverse;
-}
-
-.v100-page-transition.is-active {
-    opacity: 1;
-    visibility: visible;
-    pointer-events: all;
-}
-
-.v100-page-transition-inner {
-    position: relative;
-    z-index: 3;
-
-    width: min(720px, calc(100vw - 44px));
-    text-align: center;
-
-    transform: translateY(14px) scale(.985);
-    opacity: 0;
-
-    transition:
-        transform .40s ease,
-        opacity .40s ease;
-}
-
-.v100-page-transition.is-active .v100-page-transition-inner {
-    transform: translateY(0) scale(1);
-    opacity: 1;
-}
-
-.v100-transition-mark {
-    width: 64px;
-    height: 64px;
-
-    margin: 0 auto 22px;
+.osteo-video-play-v105 {
+    width: 60px;
+    height: 60px;
 
     display: grid;
     place-items: center;
 
+    border-radius: 50%;
+    background: rgba(255,255,255,.94);
+    color: #1687c9;
+    font-size: 20px;
+    box-shadow: 0 12px 30px rgba(12,80,120,.16);
+}
+
+.osteo-video-badge-v105 {
+    position: absolute;
+    left: 16px;
+    top: 16px;
+
+    padding: 7px 9px;
+    border-radius: 9px;
+    background: rgba(13,57,84,.82);
+    color: #fff;
+    font-size: 10px;
+    font-weight: 900;
+    letter-spacing: .12em;
+}
+
+.osteo-video-body-v105 {
+    padding: 20px;
+}
+
+.osteo-video-body-v105 h3 {
+    margin: 0 0 8px;
+    color: #123a56;
+    font-size: 18px;
+}
+
+.osteo-video-body-v105 p {
+    margin: 0;
+    color: #678298;
+    font-size: 14px;
+    line-height: 1.65;
+}
+
+/* AĞRI */
+.osteo-pain-grid-v105 {
+    display: grid;
+    grid-template-columns: repeat(3, minmax(0,1fr));
+    gap: 14px;
+}
+
+.osteo-pain-grid-v105 article {
+    min-height: 130px;
+    padding: 22px;
+
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+
+    border: 1px solid #deebf2;
+    border-radius: 18px;
+    background: linear-gradient(180deg, #fff, #f8fcff);
+}
+
+.osteo-pain-grid-v105 strong {
+    margin-bottom: 7px;
+    color: #123b57;
+    font-size: 17px;
+}
+
+.osteo-pain-grid-v105 span {
+    color: #6b8599;
+    font-size: 13px;
+    line-height: 1.55;
+}
+
+/* KAYROPRAKTİK / FEATURE */
+.osteo-feature-grid-v105 {
+    display: grid;
+    grid-template-columns: repeat(3,minmax(0,1fr));
+    gap: 16px;
+}
+
+.osteo-feature-grid-v105 article {
+    padding: 24px;
+    border-radius: 20px;
+    border: 1px solid #deebf2;
+    background: #fbfdff;
+}
+
+.osteo-feature-icon-v105 {
+    width: 48px;
+    height: 48px;
+    margin-bottom: 18px;
+
+    display: grid;
+    place-items: center;
+    border-radius: 14px;
+
+    background: #e6f5fd;
+    color: #1586c7;
+    font-weight: 900;
+}
+
+.osteo-feature-grid-v105 h3 {
+    margin: 0 0 9px;
+    color: #123a56;
+    font-size: 17px;
+}
+
+.osteo-feature-grid-v105 p {
+    margin: 0;
+    color: #6b8498;
+    font-size: 14px;
+    line-height: 1.65;
+}
+
+/* FAQ */
+.osteo-faq-v105 {
+    display: grid;
+    gap: 12px;
+}
+
+.osteo-faq-item-v105 {
+    overflow: hidden;
+    border: 1px solid #dce9f0;
+    border-radius: 17px;
+    background: #fff;
+}
+
+.osteo-faq-item-v105 > button {
+    width: 100%;
+    min-height: 62px;
+    padding: 0 20px;
+
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 20px;
+
+    border: 0;
+    background: #fff;
+    color: #123b57;
+    cursor: pointer;
+
+    font: inherit;
+    font-size: 16px;
+    font-weight: 800;
+    text-align: left;
+}
+
+.osteo-faq-item-v105 > button span {
+    color: #1586c7;
+    font-size: 25px;
+    font-weight: 500;
+    transition: transform .22s ease;
+}
+
+.osteo-faq-item-v105.open > button span {
+    transform: rotate(45deg);
+}
+
+.osteo-faq-answer-v105 {
+    max-height: 0;
+    overflow: hidden;
+    transition: max-height .32s ease;
+}
+
+.osteo-faq-answer-v105 p {
+    margin: 0;
+    padding: 0 20px 20px;
+    color: #6a8498;
+    font-size: 14px;
+    line-height: 1.75;
+}
+
+/* MAKALELER */
+.osteo-article-grid-v105 {
+    display: grid;
+    grid-template-columns: repeat(3,minmax(0,1fr));
+    gap: 16px;
+}
+
+.osteo-article-grid-v105 article {
+    min-height: 220px;
+    padding: 23px;
+
+    display: flex;
+    flex-direction: column;
+
+    border: 1px solid #dce9f0;
+    border-radius: 20px;
+    background: linear-gradient(180deg, #fff, #f8fcff);
+}
+
+.osteo-article-type-v105 {
+    margin-bottom: 16px;
+    color: #1686c7;
+    font-size: 10px;
+    font-weight: 900;
+    letter-spacing: .14em;
+}
+
+.osteo-article-grid-v105 h3 {
+    margin: 0 0 10px;
+    color: #123a56;
+    font-size: 18px;
+}
+
+.osteo-article-grid-v105 p {
+    margin: 0 0 20px;
+    color: #688297;
+    font-size: 14px;
+    line-height: 1.65;
+}
+
+.osteo-article-link-v105 {
+    margin-top: auto;
+    color: #1586c7;
+    font-size: 13px;
+    font-weight: 800;
+}
+
+/* SPOR */
+.osteo-sports-grid-v105 {
+    display: grid;
+    grid-template-columns: repeat(2,minmax(0,1fr));
+    gap: 14px;
+}
+
+.osteo-sports-grid-v105 article {
+    min-height: 125px;
+    padding: 22px;
+    display: grid;
+    grid-template-columns: 48px 1fr;
+    grid-template-rows: auto auto;
+    column-gap: 14px;
+    align-content: center;
+
+    border: 1px solid #dce9f0;
+    border-radius: 19px;
+    background: #fff;
+}
+
+.osteo-sports-grid-v105 article > span {
+    grid-row: 1 / span 2;
+    width: 46px;
+    height: 46px;
+    display: grid;
+    place-items: center;
+    border-radius: 14px;
+    background: #e7f5fd;
+    color: #1586c7;
+    font-weight: 900;
+}
+
+.osteo-sports-grid-v105 strong {
+    color: #123b57;
+    font-size: 16px;
+}
+
+.osteo-sports-grid-v105 small {
+    color: #6c869a;
+    font-size: 13px;
+    line-height: 1.45;
+}
+
+/* RIGHT SIDEBAR */
+.osteo-sidebar-v105 {
+    scroll-margin-top: 165px;
+    position: sticky;
+    top: 158px;
+    display: grid;
+    gap: 18px;
+}
+
+.osteo-sidebar-card-v105 {
+    padding: 28px;
+    border: 1px solid #dce9f0;
+    border-radius: 24px;
+    background: #fff;
+    box-shadow: 0 14px 35px rgba(20,61,88,.08);
+}
+
+.osteo-sidebar-card-v105 h3 {
+    margin: 0 0 9px;
+    color: #123a56;
+    font-size: 21px;
+}
+
+.osteo-physical-list-v105 {
+    margin-top: 22px;
+    display: grid;
+    gap: 9px;
+}
+
+.osteo-physical-list-v105 div {
+    min-height: 54px;
+    padding: 8px 12px;
+
+    display: grid;
+    grid-template-columns: 34px 1fr;
+    align-items: center;
+    gap: 10px;
+
+    border-radius: 14px;
+    background: #f5faff;
+    border: 1px solid #e2edf4;
+}
+
+.osteo-physical-list-v105 span {
+    width: 30px;
+    height: 30px;
+    display: grid;
+    place-items: center;
+    border-radius: 9px;
+    background: #e2f3fc;
+    color: #1686c7;
+    font-size: 11px;
+    font-weight: 900;
+}
+
+.osteo-physical-list-v105 strong {
+    color: #234960;
+    font-size: 13px;
+}
+
+.osteo-sidebar-pain-v105 {
+    background: linear-gradient(145deg, #123b58, #17658e);
+    border-color: rgba(255,255,255,.06);
+}
+
+.osteo-sidebar-pain-v105 .osteo-sidebar-kicker-v105,
+.osteo-sidebar-pain-v105 h3,
+.osteo-sidebar-pain-v105 p {
+    color: #fff;
+}
+
+.osteo-sidebar-pain-v105 p {
+    opacity: .76;
+    line-height: 1.65;
+}
+
+.osteo-sidebar-pain-v105 button {
+    margin-top: 17px;
+    min-height: 45px;
+    padding: 0 16px;
+
+    border: 1px solid rgba(255,255,255,.18);
+    border-radius: 13px;
+    background: rgba(255,255,255,.10);
+    color: #fff;
+    cursor: pointer;
+
+    font: inherit;
+    font-size: 13px;
+    font-weight: 800;
+}
+
+/* V103 reveal sistemi yeni osteopati kartlarını da güzel açsın */
+.osteo-section-v105,
+.osteo-sidebar-card-v105,
+.osteo-video-card-v105,
+.osteo-pain-grid-v105 article,
+.osteo-feature-grid-v105 article,
+.osteo-article-grid-v105 article,
+.osteo-sports-grid-v105 article {
+    transition:
+        transform .26s ease,
+        box-shadow .26s ease,
+        border-color .26s ease;
+}
+
+@media (max-width: 1160px) {
+    .osteo-workspace-v105 {
+        grid-template-columns: 1fr;
+    }
+
+    .osteo-sidebar-v105 {
+        position: static;
+        grid-template-columns: 1fr 1fr;
+    }
+}
+
+@media (max-width: 900px) {
+    .osteo-video-grid-v105,
+    .osteo-feature-grid-v105,
+    .osteo-article-grid-v105,
+    .osteo-pain-grid-v105 {
+        grid-template-columns: 1fr 1fr;
+    }
+
+    .osteo-local-nav-v105 {
+        top: 76px;
+        flex-wrap: nowrap;
+        overflow-x: auto;
+        scrollbar-width: thin;
+    }
+
+    .osteo-local-nav-v105 button {
+        flex: 0 0 auto;
+    }
+}
+
+@media (max-width: 650px) {
+    .osteo-section-v105 {
+        padding: 24px 18px;
+        border-radius: 21px;
+    }
+
+    .osteo-video-grid-v105,
+    .osteo-feature-grid-v105,
+    .osteo-article-grid-v105,
+    .osteo-pain-grid-v105,
+    .osteo-sports-grid-v105,
+    .osteo-sidebar-v105 {
+        grid-template-columns: 1fr;
+    }
+
+    .osteo-sidebar-card-v105 {
+        padding: 24px 20px;
+    }
+}
+
+
+/* =========================================================
+   V106 - OSTEOPATİ AĞRI BUTONU ANA AĞRI SAYFASINA GİDER
+   Osteopati içindeki tekrar eden Ağrı Bölgeleri bölümü kaldırıldı.
+   ========================================================= */
+
+#osteoGlobalPainButtonV106,
+#osteoSidebarPainButtonV106 {
+    cursor: pointer;
+}
+
+#osteoGlobalPainButtonV106:hover {
+    background: #1588cb;
+    color: #fff;
+    box-shadow: 0 9px 20px rgba(21,136,203,.22);
+}
+
+
+/* =========================================================
+   V107 - OSTEOPATİ İÇİ TEKRAR EDEN AĞRI BÖLÜMÜ KALDIRILDI
+   ========================================================= */
+
+#osteoPainV105,
+.osteopathy-page-v95 #osteoPainV105,
+.osteopathy-page-v95 .osteo-pain-grid-v105,
+.osteopathy-page-v95 .osteo-sidebar-pain-v105 {
+    display: none !important;
+}
+
+#osteoGlobalPainButtonV107 {
+    cursor: pointer;
+}
+
+#osteoGlobalPainButtonV107:hover,
+#osteoGlobalPainButtonV107:focus-visible {
+    background: #1588cb !important;
+    color: #fff !important;
+    box-shadow: 0 9px 20px rgba(21,136,203,.22) !important;
+}
+
+
+/* =========================================================
+   V108 - KAYROPRAKTİK UYGULAMA VİDEOSU
+   ========================================================= */
+
+.osteo-chiro-video-card-v108 {
+    display: grid;
+    grid-template-columns: minmax(0, 1.45fr) minmax(280px, .75fr);
+    gap: 22px;
+    align-items: stretch;
+}
+
+.osteo-chiro-video-v108 {
+    position: relative;
+    min-height: 430px;
+    overflow: hidden;
+
+    border: 1px solid #dce9f0;
+    border-radius: 22px;
+    background: #eaf3f8;
+
+    box-shadow: 0 16px 38px rgba(16,56,82,.08);
+}
+
+.osteo-chiro-video-v108 video {
+    position: absolute;
+    inset: 0;
+
+    display: block;
+
+    width: 100%;
+    height: 100%;
+
+    object-fit: cover;
+    object-position: center;
+}
+
+.osteo-chiro-video-badge-v108 {
+    position: absolute;
+    left: 18px;
+    top: 18px;
+
+    padding: 9px 12px;
+
+    border-radius: 11px;
+
+    background: rgba(13,55,82,.84);
+    color: #fff;
+
+    font-size: 11px;
+    font-weight: 900;
+    letter-spacing: .12em;
+
+    backdrop-filter: blur(8px);
+}
+
+.osteo-chiro-video-copy-v108 {
+    padding: 30px 28px;
+
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+
+    border: 1px solid #dce9f0;
     border-radius: 22px;
 
     background:
         linear-gradient(
+            180deg,
+            #ffffff,
+            #f7fbfe
+        );
+}
+
+.osteo-chiro-video-copy-v108 h3 {
+    margin: 0 0 12px;
+
+    color: #123a56;
+
+    font-size: 24px;
+    line-height: 1.2;
+}
+
+.osteo-chiro-video-copy-v108 p {
+    margin: 0 0 22px;
+
+    color: #678197;
+
+    font-size: 14px;
+    line-height: 1.75;
+}
+
+.osteo-chiro-tags-v108 {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 9px;
+}
+
+.osteo-chiro-tags-v108 span {
+    padding: 9px 11px;
+
+    border-radius: 11px;
+
+    background: #e9f5fc;
+    color: #197eb8;
+
+    font-size: 11px;
+    font-weight: 850;
+}
+
+@media (max-width: 900px) {
+    .osteo-chiro-video-card-v108 {
+        grid-template-columns: 1fr;
+    }
+
+    .osteo-chiro-video-v108 {
+        min-height: 360px;
+    }
+}
+
+@media (max-width: 650px) {
+    .osteo-chiro-video-v108 {
+        min-height: 250px;
+        border-radius: 18px;
+    }
+
+    .osteo-chiro-video-copy-v108 {
+        padding: 23px 20px;
+        border-radius: 18px;
+    }
+}
+
+
+/* =========================================================
+   V110 - TÜM ANA SEKMELER 1.5 SN MODERN GEÇİŞ
+   ========================================================= */
+
+body.site-transition-running-v110 {
+    overflow: hidden !important;
+}
+
+.site-page-transition-v110 {
+    position: fixed;
+    inset: 0;
+    z-index: 999999;
+
+    display: grid;
+    place-items: center;
+
+    pointer-events: none;
+    visibility: hidden;
+    opacity: 0;
+    overflow: hidden;
+
+    background:
+        radial-gradient(
+            circle at 50% 43%,
+            rgba(46,185,241,.18),
+            transparent 25%
+        ),
+        linear-gradient(
             135deg,
-            #1687cf,
-            #5cc9f6
+            rgba(5,27,42,.99),
+            rgba(10,55,79,.985) 52%,
+            rgba(7,35,53,.99)
+        );
+}
+
+.site-page-transition-v110.is-running-v110 {
+    visibility: visible;
+    animation:
+        siteOverlayV110 1.5s
+        cubic-bezier(.22,.72,.2,1)
+        both;
+}
+
+.site-transition-grid-v110 {
+    position: absolute;
+    inset: -8%;
+
+    opacity: .13;
+
+    background-image:
+        linear-gradient(
+            rgba(133,220,255,.12) 1px,
+            transparent 1px
+        ),
+        linear-gradient(
+            90deg,
+            rgba(133,220,255,.12) 1px,
+            transparent 1px
         );
 
-    color: #fff;
+    background-size: 52px 52px;
 
-    font-size: 32px;
-    font-weight: 900;
+    mask-image:
+        radial-gradient(
+            circle at center,
+            #000 0%,
+            rgba(0,0,0,.75) 30%,
+            transparent 72%
+        );
+
+    transform:
+        perspective(700px)
+        rotateX(60deg)
+        translateY(32%);
+}
+
+.site-transition-glow-v110 {
+    position: absolute;
+
+    width: 420px;
+    height: 420px;
+
+    border-radius: 50%;
+
+    filter: blur(85px);
+    opacity: .20;
+}
+
+.site-transition-glow-a-v110 {
+    left: -120px;
+    top: -90px;
+    background: #28b9ef;
+}
+
+.site-transition-glow-b-v110 {
+    right: -120px;
+    bottom: -100px;
+    background: #1788bd;
+}
+
+.site-transition-orbit-v110 {
+    position: absolute;
+
+    border:
+        1px solid
+        rgba(116,215,255,.10);
+
+    border-radius: 50%;
+
+    opacity: 0;
+}
+
+.site-transition-orbit-a-v110 {
+    width: min(74vw, 920px);
+    aspect-ratio: 1;
+
+    transform:
+        rotate(12deg)
+        scale(.75);
+}
+
+.site-transition-orbit-b-v110 {
+    width: min(56vw, 690px);
+    aspect-ratio: 1;
+
+    transform:
+        rotate(-18deg)
+        scale(.82);
+}
+
+.is-running-v110
+.site-transition-orbit-a-v110 {
+    animation:
+        siteOrbitAV110
+        1.5s ease-in-out both;
+}
+
+.is-running-v110
+.site-transition-orbit-b-v110 {
+    animation:
+        siteOrbitBV110
+        1.5s ease-in-out both;
+}
+
+.site-transition-panel-v110 {
+    position: relative;
+    z-index: 5;
+
+    width:
+        min(560px, calc(100vw - 38px));
+
+    padding:
+        38px 34px
+        30px;
+
+    display: grid;
+    justify-items: center;
+
+    border:
+        1px solid
+        rgba(142,224,255,.18);
+
+    border-radius: 32px;
+
+    background:
+        linear-gradient(
+            180deg,
+            rgba(255,255,255,.11),
+            rgba(255,255,255,.045)
+        );
 
     box-shadow:
-        0 18px 45px rgba(22, 135, 207, .30),
-        inset 0 1px 0 rgba(255,255,255,.30);
+        0 30px 90px
+        rgba(0,0,0,.30),
+        inset 0 1px 0
+        rgba(255,255,255,.15);
 
-    animation: v100-transition-mark 1.25s ease-in-out infinite;
+    backdrop-filter: blur(21px);
+    -webkit-backdrop-filter: blur(21px);
+
+    opacity: 0;
+
+    transform:
+        translateY(28px)
+        scale(.94);
 }
 
-.v100-transition-kicker {
-    display: block;
+.is-running-v110
+.site-transition-panel-v110 {
+    animation:
+        sitePanelV110
+        1.5s
+        cubic-bezier(.22,.72,.2,1)
+        both;
+}
 
-    margin-bottom: 10px;
+.site-transition-symbol-v110 {
+    width: 126px;
+    height: 126px;
+    margin-bottom: 20px;
 
-    color: #89dcff;
+    display: grid;
+    place-items: center;
 
-    font-size: 13px;
+    border-radius: 50%;
+
+    background:
+        radial-gradient(
+            circle,
+            rgba(110,219,255,.18),
+            rgba(27,140,193,.06) 56%,
+            transparent 73%
+        );
+
+    box-shadow:
+        0 0 0 1px
+        rgba(124,221,255,.11),
+        0 0 58px
+        rgba(29,171,225,.18);
+
+    opacity: 0;
+
+    transform:
+        scale(.72)
+        rotate(-8deg);
+}
+
+.is-running-v110
+.site-transition-symbol-v110 {
+    animation:
+        siteSymbolV110
+        1.5s
+        cubic-bezier(.22,.72,.2,1)
+        both;
+}
+
+.site-transition-symbol-v110 svg {
+    width: 104px;
+    height: 104px;
+    overflow: visible;
+}
+
+.site-transition-ring-svg-v110 {
+    fill: none;
+    stroke: rgba(123,221,255,.28);
+    stroke-width: 2;
+
+    stroke-dasharray: 310;
+    stroke-dashoffset: 310;
+}
+
+.is-running-v110
+.site-transition-ring-svg-v110 {
+    animation:
+        siteRingDrawV110
+        .72s .08s
+        ease-out forwards;
+}
+
+.site-transition-core-svg-v110 {
+    fill: rgba(47,181,235,.08);
+    stroke: rgba(128,224,255,.22);
+    stroke-width: 1.5;
+    transform-origin: 80px 80px;
+}
+
+.is-running-v110
+.site-transition-core-svg-v110 {
+    animation:
+        siteCorePulseV110
+        .9s .10s
+        ease-in-out both;
+}
+
+.site-transition-pulse-svg-v110 {
+    fill: none;
+    stroke:
+        url(#siteTransitionGradientV110);
+
+    stroke-width: 5;
+    stroke-linecap: round;
+    stroke-linejoin: round;
+
+    stroke-dasharray: 160;
+    stroke-dashoffset: 160;
+}
+
+.is-running-v110
+.site-transition-pulse-svg-v110 {
+    animation:
+        sitePulseDrawV110
+        .66s .24s
+        ease-out forwards;
+}
+
+.site-transition-plus-svg-v110 {
+    fill: none;
+    stroke: #eafaff;
+    stroke-width: 5;
+    stroke-linecap: round;
+    opacity: 0;
+}
+
+.is-running-v110
+.site-transition-plus-svg-v110 {
+    animation:
+        sitePlusInV110
+        .34s .44s
+        ease-out forwards;
+}
+
+.site-transition-copy-v110 {
+    display: grid;
+    justify-items: center;
+    gap: 5px;
+    text-align: center;
+}
+
+.site-transition-copy-v110 > span {
+    color: #72d5fb;
+    font-size: 11px;
     font-weight: 900;
-    letter-spacing: .22em;
+    letter-spacing: .28em;
 }
 
-.v100-transition-title {
-    margin: 0;
+.site-transition-copy-v110 > strong {
+    max-width: 490px;
 
     color: #fff;
 
-    font-size: clamp(42px, 6vw, 76px);
+    font-size:
+        clamp(34px, 5vw, 52px);
+
     line-height: 1.04;
-    font-weight: 900;
-    letter-spacing: -1.5px;
-
-    text-shadow:
-        0 10px 28px rgba(0,0,0,.28);
+    letter-spacing: -.04em;
 }
 
-.v100-transition-copy {
-    margin: 16px auto 0;
-    max-width: 540px;
+.site-transition-copy-v110 > small {
+    max-width: 390px;
+    margin-top: 8px;
 
-    color: rgba(222, 241, 252, .80);
+    color:
+        rgba(229,247,255,.72);
 
-    font-size: 15px;
-    line-height: 1.7;
+    font-size: 13px;
+    line-height: 1.45;
 }
 
-.v100-transition-progress {
-    position: relative;
-
-    width: min(360px, 72vw);
-    height: 4px;
-
-    margin: 28px auto 0;
-
+.site-transition-progress-v110 {
+    width: min(310px, 82%);
+    height: 3px;
+    margin-top: 28px;
     overflow: hidden;
 
     border-radius: 999px;
 
-    background: rgba(255,255,255,.10);
+    background:
+        rgba(255,255,255,.10);
 }
 
-.v100-transition-progress::after {
-    content: "";
-    position: absolute;
-    inset: 0;
+.site-transition-progress-v110 i {
+    display: block;
+
+    width: 100%;
+    height: 100%;
 
     transform: scaleX(0);
     transform-origin: left center;
@@ -14887,96 +16056,5824 @@ body.treatment-detail-open-v71 .treatment-detail-nav-v71 {
     background:
         linear-gradient(
             90deg,
-            #2aa8e9,
-            #76dcff
+            #35b9ef,
+            #8de0ff,
+            #ffffff
         );
+
+    box-shadow:
+        0 0 20px
+        rgba(80,202,247,.64);
 }
 
-.v100-page-transition.is-active .v100-transition-progress::after {
+.is-running-v110
+.site-transition-progress-v110 i {
     animation:
-        v100-transition-progress
-        2s
-        linear
+        siteProgressV110
+        1.34s .08s
+        cubic-bezier(.2,.7,.2,1)
         forwards;
 }
 
-.v100-page-transition.is-leaving {
-    opacity: 0;
+.site-page-transition-v110::before {
+    content: "";
+
+    position: absolute;
+    inset: -20%;
+
+    background:
+        linear-gradient(
+            105deg,
+            transparent 31%,
+            rgba(117,219,255,.07) 43%,
+            rgba(255,255,255,.15) 50%,
+            rgba(117,219,255,.06) 57%,
+            transparent 69%
+        );
+
+    transform:
+        translateX(-58%);
 }
 
-body.v100-transitioning {
-    overflow: hidden !important;
+.is-running-v110.site-page-transition-v110::before {
+    animation:
+        siteLightSweepV110
+        1.5s ease-in-out both;
 }
 
-@keyframes v100-transition-progress {
+@keyframes siteOverlayV110 {
+    0% { opacity: 0; }
+    13% { opacity: 1; }
+    82% { opacity: 1; }
+    100% { opacity: 0; }
+}
+
+@keyframes sitePanelV110 {
+    0% {
+        opacity: 0;
+        transform:
+            translateY(28px)
+            scale(.94);
+    }
+
+    22% {
+        opacity: 1;
+        transform:
+            translateY(0)
+            scale(1);
+    }
+
+    70% {
+        opacity: 1;
+        transform:
+            translateY(0)
+            scale(1);
+    }
+
+    100% {
+        opacity: 0;
+        transform:
+            translateY(-18px)
+            scale(1.025);
+    }
+}
+
+@keyframes siteSymbolV110 {
+    0% {
+        opacity: 0;
+        transform:
+            scale(.72)
+            rotate(-8deg);
+    }
+
+    28% {
+        opacity: 1;
+        transform:
+            scale(1.05)
+            rotate(0);
+    }
+
+    65% {
+        opacity: 1;
+        transform:
+            scale(1)
+            rotate(0);
+    }
+
+    100% {
+        opacity: 0;
+        transform:
+            scale(1.10)
+            rotate(5deg);
+    }
+}
+
+@keyframes siteRingDrawV110 {
+    to { stroke-dashoffset: 0; }
+}
+
+@keyframes siteCorePulseV110 {
+    0% {
+        transform: scale(.82);
+        opacity: .3;
+    }
+
+    55% {
+        transform: scale(1.12);
+        opacity: 1;
+    }
+
+    100% {
+        transform: scale(1);
+        opacity: .85;
+    }
+}
+
+@keyframes sitePulseDrawV110 {
+    to { stroke-dashoffset: 0; }
+}
+
+@keyframes sitePlusInV110 {
+    to { opacity: 1; }
+}
+
+@keyframes siteProgressV110 {
     from { transform: scaleX(0); }
-    to   { transform: scaleX(1); }
+    to { transform: scaleX(1); }
 }
 
-@keyframes v100-transition-mark {
-    0%, 100% {
-        transform: translateY(0) scale(1);
+@keyframes siteLightSweepV110 {
+    0% {
+        transform: translateX(-58%);
+        opacity: 0;
     }
 
-    50% {
-        transform: translateY(-5px) scale(1.04);
-    }
-}
+    28% { opacity: 1; }
+    70% { opacity: .75; }
 
-@keyframes v100-transition-ring {
-    0%, 100% {
-        transform: scale(.92);
-        opacity: .30;
-    }
-
-    50% {
-        transform: scale(1.05);
-        opacity: .72;
+    100% {
+        transform: translateX(58%);
+        opacity: 0;
     }
 }
 
-
-/* Tablet / Mobil */
-@media (max-width: 700px) {
-
-    .doctor-slide-bottom-v86 {
-        bottom: 24px !important;
+@keyframes siteOrbitAV110 {
+    0% {
+        opacity: 0;
+        transform:
+            rotate(12deg)
+            scale(.75);
     }
 
-    .doctor-about-button-v86 {
-        min-height: 58px;
-        padding: 8px 10px 8px 20px !important;
-        gap: 11px;
-        font-size: clamp(28px, 9vw, 42px) !important;
+    30% { opacity: .9; }
+
+    100% {
+        opacity: 0;
+        transform:
+            rotate(45deg)
+            scale(1.10);
+    }
+}
+
+@keyframes siteOrbitBV110 {
+    0% {
+        opacity: 0;
+        transform:
+            rotate(-18deg)
+            scale(.82);
     }
 
-    .doctor-about-arrow-v100 {
-        width: 42px;
-        height: 42px;
-        flex-basis: 42px;
-        font-size: 22px;
+    34% { opacity: .72; }
+
+    100% {
+        opacity: 0;
+        transform:
+            rotate(-48deg)
+            scale(1.18);
+    }
+}
+
+@media (max-width: 650px) {
+    .site-transition-panel-v110 {
+        padding:
+            32px 20px
+            26px;
+
+        border-radius: 25px;
     }
 
-    .doctor-about-button-v86::before {
-        width: 9px;
-        height: 9px;
-        flex-basis: 9px;
+    .site-transition-symbol-v110 {
+        width: 108px;
+        height: 108px;
     }
 
-    .v100-transition-mark {
-        width: 56px;
-        height: 56px;
-        border-radius: 19px;
+    .site-transition-symbol-v110 svg {
+        width: 88px;
+        height: 88px;
+    }
+
+    .site-transition-copy-v110 > small {
+        max-width: 270px;
     }
 }
 
 @media (prefers-reduced-motion: reduce) {
+    .site-page-transition-v110 {
+        display: none !important;
+    }
+}
 
-    .doctor-about-button-v86,
-    .v100-page-transition::before,
-    .v100-page-transition::after,
-    .v100-transition-mark,
-    .v100-transition-progress::after {
+
+/* =========================================================
+   V111 - TÜM ALT SAYFALAR -> ANA SAYFA 1.5 SN GEÇİŞ
+   V110 genel geçiş sistemi kullanılır.
+   ========================================================= */
+
+body.site-transition-running-v110
+#siteTransitionTitleV110 {
+    text-wrap: balance;
+}
+
+
+/* =========================================================
+   V112 - ANA SAYFA "HAKKIMDA" AKTİF GÖRÜNÜMÜ
+   Daha belirgin, modern cam efekti + aktif çizgi + ışık
+   ========================================================= */
+
+.doctor-about-button-v86 {
+    position: relative;
+
+    padding: 12px 28px 18px !important;
+
+    border: 1px solid rgba(255,255,255,.18) !important;
+    border-radius: 26px !important;
+
+    background:
+        linear-gradient(
+            180deg,
+            rgba(8, 31, 46, .38),
+            rgba(5, 22, 34, .22)
+        ) !important;
+
+    color: #ffffff !important;
+
+    text-shadow:
+        0 5px 18px rgba(0,0,0,.38),
+        0 0 24px rgba(92,205,255,.13) !important;
+
+    box-shadow:
+        0 20px 48px rgba(0,0,0,.24),
+        inset 0 1px 0 rgba(255,255,255,.10),
+        0 0 0 1px rgba(72,190,239,.05) !important;
+
+    backdrop-filter: blur(14px);
+    -webkit-backdrop-filter: blur(14px);
+
+    transition:
+        transform .24s ease,
+        background .24s ease,
+        border-color .24s ease,
+        box-shadow .24s ease,
+        text-shadow .24s ease !important;
+}
+
+/* Aktif sayfayı belirginleştiren mavi ışıklı alt çizgi */
+.doctor-about-button-v86::after {
+    content: "";
+
+    position: absolute;
+    left: 50%;
+    bottom: 8px;
+
+    width: 62%;
+    height: 4px;
+
+    transform: translateX(-50%) scaleX(.76);
+    transform-origin: center;
+
+    border-radius: 999px;
+
+    background:
+        linear-gradient(
+            90deg,
+            transparent,
+            #45c6ff 18%,
+            #ffffff 50%,
+            #45c6ff 82%,
+            transparent
+        );
+
+    box-shadow:
+        0 0 12px rgba(69,198,255,.78),
+        0 0 28px rgba(32,164,222,.38);
+
+    opacity: .94;
+
+    transition:
+        transform .24s ease,
+        opacity .24s ease;
+}
+
+/* Aktif olduğunu gösteren küçük ışık noktası */
+.doctor-about-button-v86::before {
+    content: "";
+
+    position: absolute;
+    top: 14px;
+    right: 17px;
+
+    width: 9px;
+    height: 9px;
+
+    border-radius: 50%;
+
+    background: #66d8ff;
+
+    box-shadow:
+        0 0 0 5px rgba(102,216,255,.10),
+        0 0 18px rgba(102,216,255,.88);
+
+    opacity: .98;
+}
+
+/* Doktor slaydı aktifken Hakkımda CTA'sı premium şekilde ışıldar */
+.doctor-slide-v86.is-active
+.doctor-about-button-v86 {
+    border-color: rgba(113,215,255,.30) !important;
+
+    box-shadow:
+        0 22px 54px rgba(0,0,0,.28),
+        inset 0 1px 0 rgba(255,255,255,.13),
+        0 0 38px rgba(31,157,214,.16) !important;
+
+    animation:
+        aboutActiveGlowV112 2.8s
+        ease-in-out infinite;
+}
+
+.doctor-about-button-v86:hover,
+.doctor-about-button-v86:focus-visible {
+    outline: none;
+
+    transform: translateY(-4px) scale(1.015);
+
+    border-color:
+        rgba(124,221,255,.55) !important;
+
+    background:
+        linear-gradient(
+            180deg,
+            rgba(15, 79, 112, .58),
+            rgba(7, 40, 59, .40)
+        ) !important;
+
+    box-shadow:
+        0 26px 62px rgba(0,0,0,.31),
+        inset 0 1px 0 rgba(255,255,255,.16),
+        0 0 46px rgba(30,171,228,.24) !important;
+}
+
+.doctor-about-button-v86:hover::after,
+.doctor-about-button-v86:focus-visible::after {
+    transform:
+        translateX(-50%)
+        scaleX(1);
+}
+
+@keyframes aboutActiveGlowV112 {
+    0%,
+    100% {
+        box-shadow:
+            0 22px 54px rgba(0,0,0,.28),
+            inset 0 1px 0 rgba(255,255,255,.13),
+            0 0 28px rgba(31,157,214,.11);
+    }
+
+    50% {
+        box-shadow:
+            0 22px 54px rgba(0,0,0,.28),
+            inset 0 1px 0 rgba(255,255,255,.13),
+            0 0 48px rgba(56,190,241,.23);
+    }
+}
+
+@media (max-width: 700px) {
+    .doctor-about-button-v86 {
+        padding: 10px 20px 16px !important;
+        border-radius: 21px !important;
+    }
+
+    .doctor-about-button-v86::before {
+        top: 11px;
+        right: 13px;
+        width: 7px;
+        height: 7px;
+    }
+}
+
+@media (prefers-reduced-motion: reduce) {
+    .doctor-slide-v86.is-active
+    .doctor-about-button-v86 {
         animation: none !important;
+    }
+}
+
+
+/* =========================================================
+   V113 - HAKKIMDA TEK EKRAN TASARIM
+   Desktop: bütün içerik tek viewport içinde, dikey scroll yok.
+   Mobil/tablet: okunabilirlik için normal scroll serbest.
+   ========================================================= */
+
+@media (min-width: 1001px) {
+    body.about-page-open {
+        overflow: hidden !important;
+    }
+
+    body.about-page-open .about-page-v47 {
+        height: 100dvh !important;
+        min-height: 100dvh !important;
+        overflow: hidden !important;
+    }
+
+    body.about-page-open .about-page-content-v113 {
+        height: 100dvh !important;
+        min-height: 100dvh !important;
+        overflow: hidden !important;
+
+        padding:
+            98px 30px
+            18px !important;
+
+        background:
+            radial-gradient(
+                circle at 8% 5%,
+                rgba(55, 171, 225, .11),
+                transparent 22%
+            ),
+            radial-gradient(
+                circle at 92% 88%,
+                rgba(48, 155, 205, .08),
+                transparent 24%
+            ),
+            linear-gradient(
+                180deg,
+                #f5fbff 0%,
+                #edf7fb 100%
+            ) !important;
+    }
+
+    body.about-page-open .about-page-overlay-v60 {
+        display: none !important;
+    }
+}
+
+.about-onepage-shell-v113 {
+    width: min(1740px, 100%);
+    height: 100%;
+    margin: 0 auto;
+
+    display: grid;
+    grid-template-rows: auto minmax(0, 1fr) auto;
+    gap: 14px;
+
+    position: relative;
+    z-index: 2;
+}
+
+.about-onepage-head-v113 {
+    min-height: 78px;
+    padding: 13px 20px;
+
+    display: grid;
+    grid-template-columns: .68fr 1.32fr;
+    gap: 24px;
+    align-items: center;
+
+    border:
+        1px solid
+        rgba(198, 222, 235, .92);
+
+    border-radius: 22px;
+
+    background:
+        rgba(255,255,255,.88);
+
+    box-shadow:
+        0 12px 34px
+        rgba(20,57,84,.07);
+
+    backdrop-filter: blur(14px);
+    -webkit-backdrop-filter: blur(14px);
+}
+
+.about-kicker-v113 {
+    display: block;
+    margin: 0 0 3px;
+
+    color: #1584c4;
+
+    font-size: 11px;
+    font-weight: 900;
+    letter-spacing: .20em;
+}
+
+.about-onepage-head-v113 h1 {
+    margin: 0;
+
+    color: #103852;
+
+    font-size:
+        clamp(30px, 2.6vw, 44px);
+
+    line-height: 1;
+    letter-spacing: -.035em;
+}
+
+.about-onepage-intro-v113 {
+    padding-left: 22px;
+
+    border-left:
+        1px solid
+        #dce9f0;
+}
+
+.about-onepage-intro-v113 > span {
+    color: #1584c4;
+
+    font-size: 10px;
+    font-weight: 900;
+    letter-spacing: .15em;
+}
+
+.about-onepage-intro-v113 > strong {
+    display: inline-block;
+    margin-left: 10px;
+
+    color: #153e59;
+
+    font-size: 15px;
+}
+
+.about-onepage-intro-v113 p {
+    margin: 4px 0 0;
+
+    color: #5f7b90;
+
+    font-size: 12.5px;
+    line-height: 1.45;
+}
+
+.about-onepage-grid-v113 {
+    min-height: 0;
+
+    display: grid;
+    grid-template-columns:
+        repeat(3, minmax(0, 1fr));
+
+    gap: 14px;
+}
+
+.about-method-card-v113 {
+    min-height: 0;
+    padding: 20px 21px;
+
+    position: relative;
+    overflow: hidden;
+
+    border:
+        1px solid
+        #d9e8f0;
+
+    border-radius: 22px;
+
+    background:
+        linear-gradient(
+            180deg,
+            rgba(255,255,255,.98),
+            rgba(249,252,254,.96)
+        );
+
+    box-shadow:
+        0 14px 34px
+        rgba(18,58,83,.065);
+}
+
+.about-method-card-v113::before {
+    content: "";
+
+    position: absolute;
+    left: 0;
+    top: 0;
+    bottom: 0;
+
+    width: 4px;
+
+    background:
+        linear-gradient(
+            180deg,
+            #2eb8ec,
+            #1378b4
+        );
+}
+
+.about-card-number-v113 {
+    position: absolute;
+    right: 16px;
+    top: 14px;
+
+    color:
+        rgba(21,132,196,.11);
+
+    font-size: 56px;
+    line-height: 1;
+    font-weight: 950;
+}
+
+.about-card-title-v113 {
+    position: relative;
+    z-index: 2;
+
+    padding-right: 68px;
+    margin-bottom: 13px;
+}
+
+.about-card-title-v113 span {
+    display: block;
+    margin-bottom: 4px;
+
+    color: #1584c4;
+
+    font-size: 9.5px;
+    font-weight: 900;
+    letter-spacing: .13em;
+}
+
+.about-card-title-v113 h2 {
+    margin: 0;
+
+    color: #123a55;
+
+    font-size:
+        clamp(19px, 1.45vw, 26px);
+
+    line-height: 1.08;
+    letter-spacing: -.025em;
+}
+
+.about-method-card-v113 > p,
+.about-step-v113 p,
+.about-tech-note-v113 p,
+.about-hekim-quote-v113 p {
+    color: #536f84;
+
+    font-size: 12.25px;
+    line-height: 1.47;
+}
+
+.about-method-card-v113 > p {
+    margin: 0 0 11px;
+}
+
+.about-method-card-v113 strong {
+    color: #153e58;
+}
+
+.about-step-v113 {
+    margin: 10px 0;
+    padding: 11px 12px;
+
+    display: grid;
+    grid-template-columns: 28px 1fr;
+    gap: 9px;
+
+    border-radius: 14px;
+
+    background:
+        #f0f8fc;
+
+    border:
+        1px solid
+        #dcecf4;
+}
+
+.about-step-v113 > b {
+    width: 28px;
+    height: 28px;
+
+    display: grid;
+    place-items: center;
+
+    border-radius: 9px;
+
+    background: #1589c9;
+    color: #fff;
+
+    font-size: 12px;
+}
+
+.about-step-v113 p {
+    margin: 0;
+}
+
+.about-mini-note-v113,
+.about-tech-note-v113 {
+    padding: 10px 12px;
+
+    border-radius: 13px;
+
+    background:
+        linear-gradient(
+            135deg,
+            #113c59,
+            #17688f
+        );
+
+    color: #fff;
+}
+
+.about-mini-note-v113 {
+    font-size: 11.5px;
+    line-height: 1.45;
+}
+
+.about-mini-note-v113 strong,
+.about-tech-note-v113 strong {
+    color: #fff;
+}
+
+.about-tech-note-v113 {
+    margin-top: 10px;
+}
+
+.about-tech-note-v113 > span {
+    display: block;
+    margin-bottom: 5px;
+
+    color: #8cddff;
+
+    font-size: 9px;
+    font-weight: 900;
+    letter-spacing: .14em;
+}
+
+.about-tech-note-v113 p {
+    margin: 0;
+
+    color:
+        rgba(255,255,255,.84);
+}
+
+.about-treatment-list-v113 {
+    padding: 11px 12px;
+
+    border-radius: 14px;
+
+    background: #f3f9fc;
+
+    border:
+        1px solid
+        #deebf2;
+}
+
+.about-hekim-quote-v113 {
+    margin: 10px 0 0;
+    padding: 11px 13px;
+
+    border:
+        1px solid
+        rgba(33,142,197,.18);
+
+    border-radius: 14px;
+
+    background:
+        linear-gradient(
+            135deg,
+            rgba(226,246,255,.92),
+            rgba(245,251,255,.98)
+        );
+}
+
+.about-hekim-quote-v113 > span {
+    display: block;
+    margin-bottom: 4px;
+
+    color: #db5168;
+
+    font-size: 10px;
+    font-weight: 950;
+    letter-spacing: .14em;
+}
+
+.about-hekim-quote-v113 p {
+    margin: 0;
+}
+
+.about-credentials-v113 {
+    padding: 11px 13px 12px;
+
+    display: grid;
+    grid-template-columns: 170px 1fr;
+    gap: 14px;
+    align-items: center;
+
+    border:
+        1px solid
+        #d9e8f0;
+
+    border-radius: 20px;
+
+    background:
+        rgba(255,255,255,.92);
+
+    box-shadow:
+        0 12px 30px
+        rgba(20,57,84,.06);
+}
+
+.about-credentials-head-v113 span {
+    display: block;
+    margin-bottom: 3px;
+
+    color: #1584c4;
+
+    font-size: 8.5px;
+    font-weight: 900;
+    letter-spacing: .13em;
+}
+
+.about-credentials-head-v113 h2 {
+    margin: 0;
+
+    color: #123a55;
+
+    font-size: 18px;
+    line-height: 1.05;
+}
+
+.about-credentials-grid-v113 {
+    display: grid;
+    grid-template-columns:
+        repeat(5, minmax(0, 1fr));
+
+    gap: 6px;
+}
+
+.about-credentials-grid-v113 > div {
+    min-height: 36px;
+    padding: 6px 8px;
+
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+
+    border-radius: 10px;
+
+    background: #f5f9fc;
+
+    border:
+        1px solid
+        #e0ebf1;
+}
+
+.about-credentials-grid-v113 b {
+    color: #1c587c;
+
+    font-size: 8.7px;
+    line-height: 1.1;
+    text-transform: uppercase;
+}
+
+.about-credentials-grid-v113 span {
+    margin-top: 2px;
+
+    color: #123a55;
+
+    font-size: 10.5px;
+    font-weight: 800;
+    line-height: 1.08;
+}
+
+/* Kısa laptop ekranı: her şey yine tek ekranda kalsın */
+@media (min-width: 1001px) and (max-height: 850px) {
+    body.about-page-open .about-page-content-v113 {
+        padding:
+            92px 22px
+            12px !important;
+    }
+
+    .about-onepage-shell-v113 {
+        gap: 9px;
+    }
+
+    .about-onepage-head-v113 {
+        min-height: 66px;
+        padding: 9px 16px;
+        border-radius: 18px;
+    }
+
+    .about-onepage-head-v113 h1 {
+        font-size: 31px;
+    }
+
+    .about-onepage-intro-v113 p {
+        font-size: 11px;
+        line-height: 1.32;
+    }
+
+    .about-method-card-v113 {
+        padding: 14px 15px;
+        border-radius: 18px;
+    }
+
+    .about-card-title-v113 {
+        margin-bottom: 8px;
+    }
+
+    .about-card-title-v113 h2 {
+        font-size: 18px;
+    }
+
+    .about-method-card-v113 > p,
+    .about-step-v113 p,
+    .about-tech-note-v113 p,
+    .about-hekim-quote-v113 p {
+        font-size: 10.7px;
+        line-height: 1.34;
+    }
+
+    .about-method-card-v113 > p {
+        margin-bottom: 7px;
+    }
+
+    .about-step-v113 {
+        margin: 7px 0;
+        padding: 8px 9px;
+    }
+
+    .about-mini-note-v113,
+    .about-tech-note-v113,
+    .about-treatment-list-v113,
+    .about-hekim-quote-v113 {
+        padding: 8px 9px;
+    }
+
+    .about-credentials-v113 {
+        padding: 8px 10px;
+        grid-template-columns: 145px 1fr;
+        gap: 10px;
+        border-radius: 17px;
+    }
+
+    .about-credentials-head-v113 h2 {
+        font-size: 15px;
+    }
+
+    .about-credentials-grid-v113 {
+        gap: 4px;
+    }
+
+    .about-credentials-grid-v113 > div {
+        min-height: 29px;
+        padding: 4px 6px;
+    }
+
+    .about-credentials-grid-v113 b {
+        font-size: 7.5px;
+    }
+
+    .about-credentials-grid-v113 span {
+        font-size: 9px;
+    }
+}
+
+/* Çok geniş ekran: nefes alan ama yine tek ekran */
+@media (min-width: 1700px) and (min-height: 900px) {
+    .about-method-card-v113 {
+        padding: 24px 25px;
+    }
+
+    .about-method-card-v113 > p,
+    .about-step-v113 p,
+    .about-tech-note-v113 p,
+    .about-hekim-quote-v113 p {
+        font-size: 13px;
+        line-height: 1.52;
+    }
+}
+
+/* Tablet / mobil: tek ekrana sıkıştırmak yerine okunabilir scroll */
+@media (max-width: 1000px) {
+    body.about-page-open {
+        overflow-y: auto !important;
+    }
+
+    body.about-page-open .about-page-v47,
+    body.about-page-open .about-page-content-v113 {
+        height: auto !important;
+        min-height: 100vh !important;
+        overflow: visible !important;
+    }
+
+    body.about-page-open .about-page-content-v113 {
+        padding:
+            104px 14px
+            28px !important;
+    }
+
+    .about-onepage-shell-v113 {
+        height: auto;
+        display: block;
+    }
+
+    .about-onepage-head-v113 {
+        grid-template-columns: 1fr;
+        gap: 12px;
+        margin-bottom: 14px;
+    }
+
+    .about-onepage-intro-v113 {
+        padding: 12px 0 0;
+        border-left: 0;
+        border-top: 1px solid #dce9f0;
+    }
+
+    .about-onepage-grid-v113 {
+        grid-template-columns: 1fr;
+    }
+
+    .about-method-card-v113 {
+        margin-bottom: 14px;
+    }
+
+    .about-credentials-v113 {
+        grid-template-columns: 1fr;
+    }
+
+    .about-credentials-grid-v113 {
+        grid-template-columns:
+            repeat(2, minmax(0, 1fr));
+    }
+}
+
+@media (max-width: 560px) {
+    .about-credentials-grid-v113 {
+        grid-template-columns: 1fr;
+    }
+}
+
+
+/* =========================================================
+   V114 - Hakkımda arka plan doktor görseli büyütüldü
+   ========================================================= */
+
+.about-onepage-shell-v113 > *:not(.about-profile-visual-v114) {
+    position: relative;
+    z-index: 2;
+}
+
+.about-profile-visual-v114 {
+    position: relative;
+    overflow: hidden;
+    border-radius: 28px;
+    border: 1px solid rgba(205, 225, 235, .85);
+    box-shadow: 0 26px 56px rgba(16, 45, 66, .12);
+    background: #dfe9ef;
+}
+
+.about-profile-visual-v114 img {
+    width: 100%;
+    height: 100%;
+    display: block;
+    object-fit: cover;
+    object-position: center 35%;
+    transform: scale(1.04);
+}
+
+.about-profile-visual-v114::after {
+    content: "";
+    position: absolute;
+    inset: 0;
+    background:
+        linear-gradient(
+            180deg,
+            rgba(12, 28, 43, .10) 0%,
+            rgba(8, 20, 32, .18) 100%
+        );
+    pointer-events: none;
+}
+
+@media (min-width: 1001px) {
+    .about-onepage-shell-v113 {
+        padding-left: 318px;
+    }
+
+    .about-profile-visual-v114 {
+        position: absolute;
+        left: 0;
+        top: 0;
+        bottom: 0;
+        width: 292px;
+        z-index: 0;
+    }
+
+    .about-profile-visual-v114 img {
+        object-position: center 34%;
+        transform: scale(1.10);
+    }
+
+    .about-onepage-head-v113,
+    .about-method-card-v113,
+    .about-credentials-v113 {
+        background:
+            rgba(255,255,255,.88);
+        backdrop-filter: blur(14px);
+        -webkit-backdrop-filter: blur(14px);
+    }
+
+    .about-onepage-head-v113 {
+        min-height: 86px;
+    }
+
+    .about-credentials-v113 {
+        grid-template-columns: 195px 1fr;
+    }
+
+    .about-credentials-head-v113 {
+        align-self: center;
+    }
+
+    .about-credentials-grid-v113 > div {
+        min-height: 42px;
+    }
+}
+
+@media (min-width: 1001px) and (max-height: 850px) {
+    .about-onepage-shell-v113 {
+        padding-left: 280px;
+    }
+
+    .about-profile-visual-v114 {
+        width: 258px;
+        border-radius: 24px;
+    }
+
+    .about-onepage-head-v113 {
+        min-height: 72px;
+    }
+
+    .about-credentials-v113 {
+        grid-template-columns: 170px 1fr;
+    }
+}
+
+@media (max-width: 1000px) {
+    .about-profile-visual-v114 {
+        height: 270px;
+        margin-bottom: 14px;
+    }
+
+    .about-profile-visual-v114 img {
+        object-position: center 30%;
+        transform: scale(1.06);
+    }
+}
+
+@media (max-width: 560px) {
+    .about-profile-visual-v114 {
+        height: 220px;
+        border-radius: 22px;
+    }
+}
+
+
+/* =========================================================
+   V115 - HAKKIMDA SOL PANEL METİN
+   Kullanıcının verdiği biyografi metni, eski görsel alanına yerleştirildi.
+   ========================================================= */
+
+.about-profile-text-v115 {
+    position: relative;
+    overflow: hidden;
+
+    padding: 30px 27px;
+
+    border:
+        1px solid
+        rgba(204, 224, 235, .92);
+
+    border-radius: 28px;
+
+    background:
+        linear-gradient(
+            180deg,
+            rgba(255,255,255,.97),
+            rgba(242,249,253,.95)
+        );
+
+    box-shadow:
+        0 24px 58px
+        rgba(15,47,70,.12);
+
+    color: #4f6e84;
+}
+
+.about-profile-text-v115::before {
+    content: "";
+
+    position: absolute;
+    left: 0;
+    top: 0;
+    bottom: 0;
+
+    width: 5px;
+
+    background:
+        linear-gradient(
+            180deg,
+            #3cc3f2,
+            #1584c4 55%,
+            #0d628f
+        );
+}
+
+.about-profile-text-v115::after {
+    content: "";
+
+    position: absolute;
+    right: -70px;
+    top: -70px;
+
+    width: 190px;
+    height: 190px;
+
+    border-radius: 50%;
+
+    background:
+        radial-gradient(
+            circle,
+            rgba(51,184,234,.15),
+            transparent 68%
+        );
+
+    pointer-events: none;
+}
+
+.about-profile-kicker-v115 {
+    display: block;
+    margin: 0 0 7px;
+
+    position: relative;
+    z-index: 2;
+
+    color: #1584c4;
+
+    font-size: 10px;
+    font-weight: 950;
+    letter-spacing: .18em;
+}
+
+.about-profile-text-v115 h2 {
+    margin: 0 0 19px;
+
+    position: relative;
+    z-index: 2;
+
+    color: #103852;
+
+    font-size:
+        clamp(27px, 2vw, 38px);
+
+    line-height: 1.02;
+    letter-spacing: -.035em;
+}
+
+.about-profile-text-v115 p {
+    margin: 0 0 15px;
+
+    position: relative;
+    z-index: 2;
+
+    color: #55758b;
+
+    font-size: 12.3px;
+    line-height: 1.58;
+}
+
+.about-profile-text-v115 strong {
+    color: #153f59;
+}
+
+.about-profile-text-v115 a {
+    color: #0785c9;
+    font-weight: 900;
+    text-decoration: none;
+
+    border-bottom:
+        1px solid
+        rgba(7,133,201,.32);
+}
+
+.about-profile-text-v115 a:hover {
+    color: #005f96;
+
+    border-bottom-color:
+        rgba(0,95,150,.68);
+}
+
+.about-profile-text-v115 blockquote {
+    margin: 17px 0 0;
+    padding: 14px 15px;
+
+    position: relative;
+    z-index: 2;
+
+    border:
+        1px solid
+        rgba(31,141,195,.18);
+
+    border-radius: 15px;
+
+    background:
+        linear-gradient(
+            135deg,
+            #e6f6fd,
+            #f7fcff
+        );
+
+    color: #315b73;
+
+    font-size: 12px;
+    line-height: 1.5;
+}
+
+@media (min-width: 1001px) {
+    .about-onepage-shell-v113 {
+        padding-left: 392px !important;
+    }
+
+    .about-profile-text-v115 {
+        position: absolute;
+        left: 0;
+        top: 0;
+        bottom: 0;
+
+        width: 366px;
+
+        z-index: 1;
+    }
+}
+
+/* Daha kısa laptop ekranlarında metin yine tek ekranda kalsın */
+@media (min-width: 1001px) and (max-height: 850px) {
+    .about-onepage-shell-v113 {
+        padding-left: 350px !important;
+    }
+
+    .about-profile-text-v115 {
+        width: 330px;
+        padding: 21px 21px;
+
+        border-radius: 23px;
+    }
+
+    .about-profile-text-v115 h2 {
+        margin-bottom: 12px;
+
+        font-size: 28px;
+    }
+
+    .about-profile-text-v115 p {
+        margin-bottom: 10px;
+
+        font-size: 10.7px;
+        line-height: 1.42;
+    }
+
+    .about-profile-text-v115 blockquote {
+        margin-top: 10px;
+        padding: 10px 11px;
+
+        font-size: 10.5px;
+        line-height: 1.38;
+    }
+}
+
+@media (max-width: 1000px) {
+    .about-profile-text-v115 {
+        margin-bottom: 14px;
+
+        padding: 25px 22px;
+    }
+
+    .about-profile-text-v115 p {
+        font-size: 13.5px;
+    }
+}
+
+
+/* =========================================================
+   V116 - HAKKIMDA 3 BUTON / 3 İÇERİK
+   Sade, tek ekran ve aktif sekmeli yapı
+   ========================================================= */
+
+@media (min-width: 1001px) {
+    body.about-page-open {
+        overflow: hidden !important;
+    }
+
+    body.about-page-open .about-page-v47,
+    body.about-page-open .about-page-content-v116 {
+        height: 100dvh !important;
+        min-height: 100dvh !important;
+        overflow: hidden !important;
+    }
+}
+
+body.about-page-open .about-page-content-v116 {
+    padding: 106px 34px 26px !important;
+
+    background:
+        radial-gradient(
+            circle at 10% 8%,
+            rgba(51, 178, 230, .10),
+            transparent 24%
+        ),
+        radial-gradient(
+            circle at 91% 85%,
+            rgba(39, 145, 195, .08),
+            transparent 24%
+        ),
+        linear-gradient(
+            180deg,
+            #f2f9fd 0%,
+            #eaf5fa 100%
+        ) !important;
+}
+
+.about-tabs-shell-v116 {
+    width: min(1540px, 100%);
+    height: 100%;
+    margin: 0 auto;
+
+    display: grid;
+    grid-template-rows: auto minmax(0, 1fr);
+    gap: 18px;
+}
+
+.about-tabs-header-v116 {
+    padding: 17px 20px;
+
+    display: grid;
+    grid-template-columns: minmax(260px, .52fr) minmax(700px, 1.48fr);
+    gap: 24px;
+    align-items: center;
+
+    border: 1px solid #d5e6ef;
+    border-radius: 24px;
+
+    background: rgba(255,255,255,.91);
+
+    box-shadow:
+        0 18px 42px rgba(18,55,80,.09);
+
+    backdrop-filter: blur(16px);
+    -webkit-backdrop-filter: blur(16px);
+}
+
+.about-tabs-title-v116 > span {
+    display: block;
+    margin-bottom: 4px;
+
+    color: #1684c4;
+
+    font-size: 10px;
+    font-weight: 950;
+    letter-spacing: .19em;
+}
+
+.about-tabs-title-v116 h1 {
+    margin: 0;
+
+    color: #103852;
+
+    font-size: clamp(29px, 2.3vw, 40px);
+    line-height: 1;
+    letter-spacing: -.035em;
+}
+
+.about-tabs-nav-v116 {
+    display: grid;
+    grid-template-columns: 1.28fr .72fr 1fr;
+    gap: 10px;
+}
+
+.about-tab-button-v116 {
+    min-height: 58px;
+    padding: 8px 15px;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 10px;
+
+    border: 1px solid #d7e7ef;
+    border-radius: 17px;
+
+    background:
+        linear-gradient(
+            180deg,
+            #f8fcff,
+            #edf6fb
+        );
+
+    color: #365c72;
+
+    cursor: pointer;
+
+    font: inherit;
+    font-size: 13px;
+    font-weight: 850;
+
+    transition:
+        transform .22s ease,
+        color .22s ease,
+        background .22s ease,
+        border-color .22s ease,
+        box-shadow .22s ease;
+}
+
+.about-tab-index-v116 {
+    width: 30px;
+    height: 30px;
+
+    display: grid;
+    place-items: center;
+
+    flex: 0 0 30px;
+
+    border-radius: 10px;
+
+    background: #e1f2fb;
+    color: #1684c4;
+
+    font-size: 10px;
+    font-weight: 950;
+}
+
+.about-tab-button-v116:hover {
+    transform: translateY(-2px);
+
+    border-color: #b8dbea;
+
+    color: #123c57;
+
+    box-shadow:
+        0 10px 22px
+        rgba(19,86,124,.09);
+}
+
+.about-tab-button-v116.active {
+    border-color:
+        rgba(30, 164, 221, .42);
+
+    background:
+        linear-gradient(
+            135deg,
+            #1387c8,
+            #20a9e5
+        );
+
+    color: #fff;
+
+    box-shadow:
+        0 14px 30px
+        rgba(18, 139, 199, .22),
+        inset 0 1px 0
+        rgba(255,255,255,.20);
+
+    transform: translateY(-2px);
+}
+
+.about-tab-button-v116.active
+.about-tab-index-v116 {
+    background:
+        rgba(255,255,255,.17);
+
+    color: #fff;
+
+    box-shadow:
+        inset 0 0 0 1px
+        rgba(255,255,255,.20);
+}
+
+.about-tabs-stage-v116 {
+    min-height: 0;
+    position: relative;
+}
+
+.about-tab-panel-v116 {
+    position: absolute;
+    inset: 0;
+
+    visibility: hidden;
+    pointer-events: none;
+
+    opacity: 0;
+
+    transform:
+        translateY(16px)
+        scale(.995);
+
+    transition:
+        opacity .30s ease,
+        transform .30s ease,
+        visibility 0s linear .30s;
+}
+
+.about-tab-panel-v116.active {
+    visibility: visible;
+    pointer-events: auto;
+
+    opacity: 1;
+
+    transform:
+        translateY(0)
+        scale(1);
+
+    transition:
+        opacity .32s ease,
+        transform .32s
+        cubic-bezier(.2,.7,.2,1);
+}
+
+.about-panel-kicker-v116 {
+    display: block;
+    margin-bottom: 7px;
+
+    color: #1684c4;
+
+    font-size: 10px;
+    font-weight: 950;
+    letter-spacing: .16em;
+}
+
+/* ---------- 01 / HAKKINDA ---------- */
+
+.about-doctor-layout-v116 {
+    height: 100%;
+
+    display: grid;
+    grid-template-columns: minmax(350px, .72fr) minmax(560px, 1.28fr);
+    gap: 18px;
+}
+
+.about-doctor-photo-v116,
+.about-doctor-copy-v116,
+.about-treatment-card-v116,
+.about-education-layout-v116 {
+    border: 1px solid #d7e7ef;
+    border-radius: 26px;
+
+    background:
+        rgba(255,255,255,.94);
+
+    box-shadow:
+        0 18px 44px
+        rgba(18,55,80,.08);
+}
+
+.about-doctor-photo-v116 {
+    margin: 0;
+
+    position: relative;
+    overflow: hidden;
+
+    background: #cfdce3;
+}
+
+.about-doctor-photo-v116 img {
+    width: 100%;
+    height: 100%;
+    min-height: 0;
+
+    display: block;
+
+    object-fit: cover;
+    object-position: center 32%;
+
+    transform: scale(1.03);
+}
+
+.about-doctor-photo-v116::after {
+    content: "";
+
+    position: absolute;
+    inset: 0;
+
+    background:
+        linear-gradient(
+            180deg,
+            transparent 45%,
+            rgba(7, 27, 40, .72) 100%
+        );
+
+    pointer-events: none;
+}
+
+.about-doctor-photo-v116 figcaption {
+    position: absolute;
+    left: 23px;
+    right: 23px;
+    bottom: 21px;
+    z-index: 2;
+
+    display: grid;
+    gap: 4px;
+
+    color: #fff;
+}
+
+.about-doctor-photo-v116 figcaption span {
+    color: #7bddff;
+
+    font-size: 10px;
+    font-weight: 950;
+    letter-spacing: .16em;
+}
+
+.about-doctor-photo-v116 figcaption strong {
+    font-size: 17px;
+    line-height: 1.2;
+}
+
+.about-doctor-copy-v116 {
+    padding: 34px 38px;
+
+    overflow: hidden;
+}
+
+.about-doctor-copy-v116 h2 {
+    margin: 0 0 21px;
+
+    color: #103852;
+
+    font-size:
+        clamp(35px, 3vw, 54px);
+
+    line-height: .98;
+    letter-spacing: -.045em;
+}
+
+.about-doctor-copy-v116 p {
+    margin: 0 0 15px;
+
+    color: #55758a;
+
+    font-size: 14px;
+    line-height: 1.62;
+}
+
+.about-doctor-copy-v116 strong {
+    color: #143e58;
+}
+
+.about-doctor-copy-v116 a {
+    color: #0787ca;
+
+    font-weight: 900;
+    text-decoration: none;
+
+    border-bottom:
+        1px solid
+        rgba(7,135,202,.32);
+}
+
+.about-doctor-copy-v116 blockquote {
+    margin: 21px 0 0;
+    padding: 16px 18px;
+
+    border:
+        1px solid
+        rgba(22, 139, 198, .18);
+
+    border-radius: 16px;
+
+    background:
+        linear-gradient(
+            135deg,
+            #e5f6fd,
+            #f7fcff
+        );
+
+    color: #315b72;
+
+    font-size: 13.5px;
+    line-height: 1.55;
+}
+
+/* ---------- 02 / TEDAVİ ---------- */
+
+.about-treatment-layout-v116 {
+    height: 100%;
+
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 18px;
+}
+
+.about-treatment-card-v116 {
+    padding: 27px 29px;
+
+    overflow: hidden;
+}
+
+.about-treatment-head-v116 {
+    margin-bottom: 15px;
+
+    display: grid;
+    grid-template-columns: 48px 1fr;
+    gap: 13px;
+    align-items: center;
+}
+
+.about-treatment-number-v116 {
+    width: 48px;
+    height: 48px;
+
+    display: grid;
+    place-items: center;
+
+    border-radius: 15px;
+
+    background:
+        linear-gradient(
+            135deg,
+            #1689ca,
+            #21aae6
+        );
+
+    color: #fff;
+
+    font-size: 13px;
+    font-weight: 950;
+
+    box-shadow:
+        0 10px 22px
+        rgba(18,137,202,.18);
+}
+
+.about-treatment-head-v116 div > span {
+    display: block;
+    margin-bottom: 3px;
+
+    color: #1684c4;
+
+    font-size: 9px;
+    font-weight: 950;
+    letter-spacing: .14em;
+}
+
+.about-treatment-head-v116 h2 {
+    margin: 0;
+
+    color: #103852;
+
+    font-size:
+        clamp(23px, 1.9vw, 32px);
+
+    line-height: 1.04;
+    letter-spacing: -.03em;
+}
+
+.about-treatment-card-v116 > p,
+.about-treatment-step-v116 p,
+.about-treatment-quote-v116 p {
+    color: #55748a;
+
+    font-size: 12.7px;
+    line-height: 1.48;
+}
+
+.about-treatment-card-v116 > p {
+    margin: 0 0 12px;
+}
+
+.about-treatment-card-v116 strong {
+    color: #143e58;
+}
+
+.about-treatment-step-v116 {
+    margin-bottom: 10px;
+    padding: 10px 12px;
+
+    display: grid;
+    grid-template-columns: 30px 1fr;
+    gap: 10px;
+
+    border: 1px solid #dcebf3;
+    border-radius: 14px;
+
+    background: #f1f8fc;
+}
+
+.about-treatment-step-v116 b {
+    width: 30px;
+    height: 30px;
+
+    display: grid;
+    place-items: center;
+
+    border-radius: 9px;
+
+    background: #1689ca;
+    color: #fff;
+
+    font-size: 11px;
+}
+
+.about-treatment-step-v116 p {
+    margin: 0;
+}
+
+.about-treatment-note-v116,
+.about-treatment-services-v116 {
+    padding: 11px 12px;
+
+    border-radius: 14px;
+
+    background:
+        linear-gradient(
+            180deg,
+            #f6fbfe,
+            #edf7fb
+        );
+
+    border:
+        1px solid
+        #dcebf3;
+}
+
+.about-treatment-quote-v116 {
+    margin: 14px 0 0;
+    padding: 13px 15px;
+
+    border-radius: 15px;
+
+    border:
+        1px solid
+        rgba(25, 140, 195, .20);
+
+    background:
+        linear-gradient(
+            135deg,
+            #123e5b,
+            #176b91
+        );
+}
+
+.about-treatment-quote-v116 > span {
+    display: block;
+    margin-bottom: 5px;
+
+    color: #8cddff;
+
+    font-size: 9px;
+    font-weight: 950;
+    letter-spacing: .15em;
+}
+
+.about-treatment-quote-v116 p,
+.about-treatment-quote-v116 strong {
+    margin: 0;
+
+    color: #fff;
+}
+
+/* ---------- 03 / EĞİTİM ---------- */
+
+.about-education-layout-v116 {
+    height: 100%;
+    padding: 28px 30px;
+
+    display: grid;
+    grid-template-rows: auto minmax(0, 1fr);
+    gap: 21px;
+}
+
+.about-education-heading-v116 {
+    display: grid;
+    grid-template-columns: 1fr auto;
+    column-gap: 24px;
+    align-items: end;
+}
+
+.about-education-heading-v116 h2 {
+    margin: 0;
+
+    color: #103852;
+
+    font-size:
+        clamp(30px, 2.6vw, 44px);
+
+    line-height: 1;
+    letter-spacing: -.04em;
+}
+
+.about-education-heading-v116 p {
+    width: min(540px, 100%);
+    margin: 0;
+
+    color: #678397;
+
+    font-size: 13px;
+    line-height: 1.45;
+}
+
+.about-education-heading-v116
+.about-panel-kicker-v116 {
+    grid-column: 1 / -1;
+}
+
+.about-education-grid-v116 {
+    min-height: 0;
+
+    display: grid;
+    grid-template-columns:
+        repeat(5, minmax(0, 1fr));
+
+    grid-template-rows:
+        repeat(3, minmax(0, 1fr));
+
+    gap: 11px;
+}
+
+.about-education-grid-v116 article {
+    min-height: 0;
+    padding: 13px 14px;
+
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+
+    border: 1px solid #d9e8f0;
+    border-radius: 15px;
+
+    background:
+        linear-gradient(
+            180deg,
+            #fbfdff,
+            #f1f7fb
+        );
+
+    transition:
+        transform .22s ease,
+        border-color .22s ease,
+        box-shadow .22s ease;
+}
+
+.about-education-grid-v116 article:hover {
+    transform: translateY(-3px);
+
+    border-color: #badbea;
+
+    box-shadow:
+        0 10px 22px
+        rgba(18,80,114,.08);
+}
+
+.about-education-grid-v116 article span {
+    margin-bottom: 5px;
+
+    color: #1684c4;
+
+    font-size: 9px;
+    font-weight: 900;
+    letter-spacing: .04em;
+}
+
+.about-education-grid-v116 article strong {
+    color: #143b55;
+
+    font-size: 13px;
+    line-height: 1.18;
+}
+
+/* Kısa laptop ekranında tek ekrana sığdır */
+@media (min-width: 1001px) and (max-height: 850px) {
+    body.about-page-open
+    .about-page-content-v116 {
+        padding:
+            96px 22px
+            15px !important;
+    }
+
+    .about-tabs-shell-v116 {
+        gap: 10px;
+    }
+
+    .about-tabs-header-v116 {
+        padding: 10px 14px;
+        border-radius: 19px;
+    }
+
+    .about-tabs-title-v116 h1 {
+        font-size: 29px;
+    }
+
+    .about-tab-button-v116 {
+        min-height: 47px;
+        font-size: 11px;
+    }
+
+    .about-doctor-layout-v116 {
+        grid-template-columns:
+            minmax(270px, .61fr)
+            minmax(520px, 1.39fr);
+    }
+
+    .about-doctor-copy-v116 {
+        padding: 23px 27px;
+    }
+
+    .about-doctor-copy-v116 h2 {
+        margin-bottom: 12px;
+        font-size: 35px;
+    }
+
+    .about-doctor-copy-v116 p {
+        margin-bottom: 10px;
+        font-size: 11.6px;
+        line-height: 1.46;
+    }
+
+    .about-doctor-copy-v116 blockquote {
+        margin-top: 12px;
+        padding: 10px 12px;
+        font-size: 11px;
+    }
+
+    .about-treatment-card-v116 {
+        padding: 18px 20px;
+    }
+
+    .about-treatment-head-v116 {
+        margin-bottom: 9px;
+    }
+
+    .about-treatment-head-v116 h2 {
+        font-size: 22px;
+    }
+
+    .about-treatment-card-v116 > p,
+    .about-treatment-step-v116 p,
+    .about-treatment-quote-v116 p {
+        font-size: 10.5px;
+        line-height: 1.36;
+    }
+
+    .about-treatment-card-v116 > p {
+        margin-bottom: 8px;
+    }
+
+    .about-treatment-step-v116 {
+        margin-bottom: 7px;
+        padding: 7px 8px;
+    }
+
+    .about-treatment-note-v116,
+    .about-treatment-services-v116,
+    .about-treatment-quote-v116 {
+        padding: 8px 9px;
+    }
+
+    .about-education-layout-v116 {
+        padding: 18px 21px;
+        gap: 13px;
+    }
+
+    .about-education-heading-v116 h2 {
+        font-size: 31px;
+    }
+
+    .about-education-heading-v116 p {
+        font-size: 11px;
+    }
+
+    .about-education-grid-v116 {
+        gap: 7px;
+    }
+
+    .about-education-grid-v116 article {
+        padding: 8px 10px;
+    }
+
+    .about-education-grid-v116 article span {
+        font-size: 7.5px;
+    }
+
+    .about-education-grid-v116 article strong {
+        font-size: 10.5px;
+    }
+}
+
+/* Mobil / tablet: sekmeler üstte yatay, sayfa okunabilir şekilde scroll */
+@media (max-width: 1000px) {
+    body.about-page-open {
+        overflow-y: auto !important;
+    }
+
+    body.about-page-open .about-page-v47,
+    body.about-page-open .about-page-content-v116 {
+        height: auto !important;
+        min-height: 100vh !important;
+        overflow: visible !important;
+    }
+
+    body.about-page-open
+    .about-page-content-v116 {
+        padding:
+            104px 14px
+            30px !important;
+    }
+
+    .about-tabs-shell-v116 {
+        height: auto;
+    }
+
+    .about-tabs-header-v116 {
+        grid-template-columns: 1fr;
+        gap: 14px;
+    }
+
+    .about-tabs-nav-v116 {
+        display: flex;
+        overflow-x: auto;
+        padding-bottom: 3px;
+    }
+
+    .about-tab-button-v116 {
+        flex: 0 0 auto;
+        min-width: 180px;
+    }
+
+    .about-tabs-stage-v116 {
+        min-height: 0;
+    }
+
+    .about-tab-panel-v116,
+    .about-tab-panel-v116.active {
+        position: relative;
+        inset: auto;
+    }
+
+    .about-tab-panel-v116:not(.active) {
+        display: none;
+    }
+
+    .about-doctor-layout-v116,
+    .about-treatment-layout-v116 {
+        grid-template-columns: 1fr;
+    }
+
+    .about-doctor-photo-v116 {
+        min-height: 340px;
+    }
+
+    .about-education-heading-v116 {
+        grid-template-columns: 1fr;
+        gap: 8px;
+    }
+
+    .about-education-grid-v116 {
+        grid-template-columns:
+            repeat(2, minmax(0, 1fr));
+
+        grid-template-rows: auto;
+    }
+}
+
+@media (max-width: 560px) {
+    .about-doctor-copy-v116,
+    .about-treatment-card-v116,
+    .about-education-layout-v116 {
+        padding: 21px 18px;
+        border-radius: 21px;
+    }
+
+    .about-doctor-photo-v116 {
+        min-height: 270px;
+        border-radius: 21px;
+    }
+
+    .about-education-grid-v116 {
+        grid-template-columns: 1fr;
+    }
+}
+
+
+/* =========================================================
+   V117 - HAKKIMDA sekmeleri biraz daha aşağı
+   ve doktor metni güncellemesi
+   ========================================================= */
+
+body.about-page-open .about-page-content-v116 {
+    padding-top: 136px !important;
+}
+
+.about-tabs-shell-v116 {
+    padding-top: 10px;
+}
+
+.about-tabs-header-v116 {
+    margin-top: 6px;
+}
+
+.about-doctor-copy-v116 .about-doctor-strong-v117 {
+    margin-bottom: 18px;
+    color: #4f6f84;
+    font-size: 15px;
+    line-height: 1.72;
+}
+
+.about-doctor-copy-v116 .about-doctor-strong-v117 strong {
+    font-weight: 850;
+    color: #123a55;
+}
+
+.about-doctor-copy-v116 .about-doctor-strong-v117 a,
+.about-doctor-copy-v116 .about-doctor-strong-v117 a strong {
+    color: #0787ca;
+}
+
+@media (min-width: 1001px) and (max-height: 850px) {
+    body.about-page-open .about-page-content-v116 {
+        padding-top: 118px !important;
+    }
+
+    .about-tabs-shell-v116 {
+        padding-top: 8px;
+    }
+
+    .about-tabs-header-v116 {
+        margin-top: 4px;
+    }
+
+    .about-doctor-copy-v116 .about-doctor-strong-v117 {
+        margin-bottom: 12px;
+        font-size: 12.3px;
+        line-height: 1.58;
+    }
+}
+
+@media (max-width: 1000px) {
+    body.about-page-open .about-page-content-v116 {
+        padding-top: 122px !important;
+    }
+
+    .about-tabs-shell-v116 {
+        padding-top: 4px;
+    }
+
+    .about-tabs-header-v116 {
+        margin-top: 6px;
+    }
+}
+
+
+/* =========================================================
+   V118 - HAKKIMDA SEKME DÜZENİ KESİN DÜZELTME
+   Eski V61 flex kuralları artık HTML'de kullanılmıyor.
+   ========================================================= */
+
+@media (min-width: 1001px) {
+    body.about-page-open .about-page-content-v116 {
+        box-sizing: border-box !important;
+
+        height: 100dvh !important;
+        min-height: 100dvh !important;
+
+        padding:
+            126px 28px
+            22px !important;
+
+        display: block !important;
+        overflow: hidden !important;
+    }
+
+    .about-tabs-shell-v116 {
+        width: min(1540px, 100%) !important;
+        height: calc(100dvh - 148px) !important;
+        min-height: 0 !important;
+
+        margin: 0 auto !important;
+        padding: 0 !important;
+
+        display: grid !important;
+        grid-template-rows:
+            92px
+            minmax(0, 1fr) !important;
+
+        gap: 16px !important;
+    }
+
+    .about-tabs-header-v116 {
+        height: 92px !important;
+        min-height: 92px !important;
+
+        margin: 0 !important;
+        padding:
+            14px 18px !important;
+
+        display: grid !important;
+        grid-template-columns:
+            minmax(260px, .52fr)
+            minmax(720px, 1.48fr) !important;
+
+        align-items: center !important;
+
+        background:
+            rgba(255,255,255,.95) !important;
+
+        border:
+            1px solid
+            #d5e6ef !important;
+
+        border-radius:
+            24px !important;
+
+        box-shadow:
+            0 16px 40px
+            rgba(18,55,80,.10) !important;
+
+        position: relative !important;
+        z-index: 5 !important;
+    }
+
+    .about-tabs-stage-v116 {
+        min-height: 0 !important;
+        height: 100% !important;
+
+        position: relative !important;
+        overflow: hidden !important;
+    }
+
+    .about-tab-panel-v116 {
+        position: absolute !important;
+        inset: 0 !important;
+
+        width: 100% !important;
+        height: 100% !important;
+        min-height: 0 !important;
+    }
+
+    .about-tab-panel-v116.active {
+        display: block !important;
+        visibility: visible !important;
+        opacity: 1 !important;
+    }
+
+    .about-doctor-layout-v116,
+    .about-treatment-layout-v116,
+    .about-education-layout-v116 {
+        width: 100% !important;
+        height: 100% !important;
+        min-height: 0 !important;
+    }
+
+    .about-doctor-layout-v116 {
+        grid-template-columns:
+            minmax(410px, .78fr)
+            minmax(650px, 1.22fr) !important;
+    }
+
+    .about-doctor-photo-v116 {
+        height: 100% !important;
+        min-height: 0 !important;
+
+        overflow: hidden !important;
+    }
+
+    .about-doctor-photo-v116 img {
+        width: 100% !important;
+        height: 100% !important;
+
+        object-fit: cover !important;
+        object-position: center 34% !important;
+
+        display: block !important;
+    }
+
+    .about-doctor-copy-v116 {
+        height: 100% !important;
+        min-height: 0 !important;
+
+        padding:
+            28px 34px !important;
+
+        overflow: auto !important;
+        scrollbar-width: thin;
+    }
+
+    .about-doctor-copy-v116 h2 {
+        display: block !important;
+        margin-bottom: 18px !important;
+    }
+
+    .about-doctor-copy-v116 p,
+    .about-doctor-copy-v116 .about-doctor-strong-v117 {
+        display: block !important;
+        visibility: visible !important;
+        opacity: 1 !important;
+    }
+
+    .about-doctor-copy-v116
+    .about-doctor-strong-v117 {
+        margin: 0 0 15px !important;
+
+        color: #4e6d82 !important;
+
+        font-size: 14px !important;
+        line-height: 1.62 !important;
+    }
+
+    .about-doctor-copy-v116
+    .about-doctor-strong-v117 strong {
+        color: #153e58 !important;
+        font-weight: 800 !important;
+    }
+}
+
+/* 1366x768 gibi daha kısa ekranlarda da çökmesin */
+@media (min-width: 1001px) and (max-height: 850px) {
+    body.about-page-open .about-page-content-v116 {
+        padding:
+            116px 22px
+            16px !important;
+    }
+
+    .about-tabs-shell-v116 {
+        height:
+            calc(100dvh - 132px) !important;
+
+        grid-template-rows:
+            76px
+            minmax(0,1fr) !important;
+
+        gap: 10px !important;
+    }
+
+    .about-tabs-header-v116 {
+        height: 76px !important;
+        min-height: 76px !important;
+
+        padding:
+            9px 14px !important;
+    }
+
+    .about-tab-button-v116 {
+        min-height: 48px !important;
+    }
+
+    .about-doctor-layout-v116 {
+        grid-template-columns:
+            minmax(330px, .68fr)
+            minmax(560px, 1.32fr) !important;
+    }
+
+    .about-doctor-copy-v116 {
+        padding:
+            19px 24px !important;
+    }
+
+    .about-doctor-copy-v116 h2 {
+        margin-bottom: 11px !important;
+        font-size: 34px !important;
+    }
+
+    .about-doctor-copy-v116
+    .about-doctor-strong-v117 {
+        margin-bottom: 9px !important;
+
+        font-size: 11.8px !important;
+        line-height: 1.46 !important;
+    }
+}
+
+/* Tablet/mobilde eski V61 davranışlarından tamamen bağımsız */
+@media (max-width: 1000px) {
+    body.about-page-open .about-page-content-v116 {
+        box-sizing: border-box !important;
+
+        display: block !important;
+
+        height: auto !important;
+        min-height: 100vh !important;
+
+        padding:
+            112px 14px
+            30px !important;
+
+        overflow: visible !important;
+    }
+
+    .about-tabs-shell-v116 {
+        height: auto !important;
+        min-height: 0 !important;
+    }
+
+    .about-tabs-stage-v116 {
+        height: auto !important;
+        overflow: visible !important;
+    }
+
+    .about-tab-panel-v116.active {
+        position: relative !important;
+        width: 100% !important;
+        height: auto !important;
+    }
+}
+
+
+/* =========================================================
+   V119 - DR. CEYHUN NURİ KİMDİR?
+   Yeni klinik görsel + daha büyük metin + eşit yükseklik
+   ========================================================= */
+
+@media (min-width: 1001px) {
+    .about-doctor-layout-v116 {
+        height: 100% !important;
+
+        grid-template-columns:
+            minmax(560px, .92fr)
+            minmax(680px, 1.08fr) !important;
+
+        gap: 22px !important;
+        align-items: stretch !important;
+    }
+
+    .about-doctor-photo-v116,
+    .about-doctor-copy-v116 {
+        height: 100% !important;
+        min-height: 100% !important;
+        max-height: 100% !important;
+    }
+
+    .about-doctor-photo-v116 {
+        border-radius: 28px !important;
+
+        overflow: hidden !important;
+
+        background: #d9e5eb !important;
+
+        box-shadow:
+            0 22px 54px
+            rgba(17, 53, 77, .13) !important;
+    }
+
+    .about-doctor-photo-v116 img {
+        width: 100% !important;
+        height: 100% !important;
+
+        object-fit: cover !important;
+        object-position: center center !important;
+
+        transform: scale(1.015) !important;
+    }
+
+    .about-doctor-copy-v116 {
+        box-sizing: border-box !important;
+
+        padding:
+            38px 42px !important;
+
+        display: flex !important;
+        flex-direction: column !important;
+        justify-content: center !important;
+
+        border-radius: 28px !important;
+
+        background:
+            linear-gradient(
+                180deg,
+                rgba(255,255,255,.985),
+                rgba(250,253,255,.97)
+            ) !important;
+
+        box-shadow:
+            0 22px 54px
+            rgba(17, 53, 77, .10) !important;
+
+        overflow: hidden !important;
+    }
+
+    .about-doctor-copy-v116
+    .about-panel-kicker-v116 {
+        margin-bottom: 10px !important;
+
+        font-size: 12px !important;
+        letter-spacing: .18em !important;
+    }
+
+    .about-doctor-copy-v116 h2 {
+        margin:
+            0 0 24px !important;
+
+        font-size:
+            clamp(42px, 3.25vw, 60px) !important;
+
+        line-height: .98 !important;
+        letter-spacing: -.045em !important;
+    }
+
+    .about-doctor-copy-v116
+    .about-doctor-strong-v117 {
+        margin:
+            0 0 20px !important;
+
+        max-width: none !important;
+
+        color: #496a80 !important;
+
+        font-size:
+            16.5px !important;
+
+        line-height: 1.72 !important;
+
+        font-weight: 600 !important;
+    }
+
+    .about-doctor-copy-v116
+    .about-doctor-strong-v117 strong {
+        color: #123d57 !important;
+        font-weight: 850 !important;
+    }
+
+    .about-doctor-copy-v116
+    .about-doctor-strong-v117 a,
+    .about-doctor-copy-v116
+    .about-doctor-strong-v117 a strong {
+        color: #0786c9 !important;
+        font-weight: 900 !important;
+
+        text-decoration: none !important;
+
+        border-bottom:
+            2px solid
+            rgba(7,134,201,.26) !important;
+    }
+
+    .about-doctor-photo-v116 figcaption {
+        left: 26px !important;
+        right: 26px !important;
+        bottom: 24px !important;
+    }
+
+    .about-doctor-photo-v116 figcaption span {
+        font-size: 11px !important;
+    }
+
+    .about-doctor-photo-v116 figcaption strong {
+        font-size: 19px !important;
+    }
+}
+
+/* 1366×768 / kısa laptoplarda da görsel ve metin aynı yükseklikte kalsın */
+@media (min-width: 1001px) and (max-height: 850px) {
+    .about-doctor-layout-v116 {
+        grid-template-columns:
+            minmax(430px, .84fr)
+            minmax(570px, 1.16fr) !important;
+
+        gap: 16px !important;
+    }
+
+    .about-doctor-copy-v116 {
+        padding:
+            22px 27px !important;
+    }
+
+    .about-doctor-copy-v116 h2 {
+        margin-bottom: 13px !important;
+
+        font-size: 38px !important;
+    }
+
+    .about-doctor-copy-v116
+    .about-panel-kicker-v116 {
+        margin-bottom: 6px !important;
+
+        font-size: 10px !important;
+    }
+
+    .about-doctor-copy-v116
+    .about-doctor-strong-v117 {
+        margin-bottom: 10px !important;
+
+        font-size: 12.8px !important;
+        line-height: 1.50 !important;
+    }
+
+    .about-doctor-photo-v116 img {
+        transform: scale(1.01) !important;
+    }
+}
+
+/* Mobilde görsel metnin üstünde, geniş ve net */
+@media (max-width: 1000px) {
+    .about-doctor-photo-v116 {
+        min-height: 390px !important;
+    }
+
+    .about-doctor-photo-v116 img {
+        object-position: center center !important;
+    }
+
+    .about-doctor-copy-v116
+    .about-doctor-strong-v117 {
+        font-size: 15px !important;
+        line-height: 1.65 !important;
+    }
+}
+
+@media (max-width: 560px) {
+    .about-doctor-photo-v116 {
+        min-height: 285px !important;
+    }
+
+    .about-doctor-copy-v116
+    .about-doctor-strong-v117 {
+        font-size: 14px !important;
+    }
+}
+
+
+/* =========================================================
+   V120 - DR. CEYHUN NURİ KİMDİR? METİN KARTI
+   Beyaz alanı tam kullanır + modern premium görünüm
+   ========================================================= */
+
+@media (min-width: 1001px) {
+
+    .about-doctor-copy-v116 {
+        position: relative !important;
+        overflow: hidden !important;
+
+        display: grid !important;
+        grid-template-rows:
+            auto
+            auto
+            minmax(0, 1fr) !important;
+
+        align-content: stretch !important;
+
+        padding:
+            36px 42px
+            34px !important;
+
+        border:
+            1px solid
+            rgba(183, 214, 230, .88) !important;
+
+        border-radius:
+            30px !important;
+
+        background:
+            linear-gradient(
+                145deg,
+                rgba(255,255,255,.995) 0%,
+                rgba(248,252,255,.985) 48%,
+                rgba(239,248,253,.97) 100%
+            ) !important;
+
+        box-shadow:
+            0 24px 60px
+            rgba(19,57,82,.12),
+            inset 0 1px 0
+            rgba(255,255,255,.92) !important;
+
+        backdrop-filter:
+            blur(16px);
+
+        -webkit-backdrop-filter:
+            blur(16px);
+    }
+
+    /* modern dekoratif mavi parıltılar */
+    .about-doctor-copy-v116::before {
+        content: "";
+
+        position: absolute;
+        right: -95px;
+        top: -95px;
+
+        width: 260px;
+        height: 260px;
+
+        border-radius: 50%;
+
+        background:
+            radial-gradient(
+                circle,
+                rgba(27,166,224,.16) 0%,
+                rgba(27,166,224,.06) 46%,
+                transparent 72%
+            );
+
+        pointer-events: none;
+    }
+
+    .about-doctor-copy-v116::after {
+        content: "";
+
+        position: absolute;
+        left: 0;
+        top: 32px;
+        bottom: 32px;
+
+        width: 4px;
+
+        border-radius:
+            999px;
+
+        background:
+            linear-gradient(
+                180deg,
+                #49c9f5,
+                #1789ca 52%,
+                rgba(23,137,202,.10)
+            );
+
+        box-shadow:
+            0 0 18px
+            rgba(40,174,228,.24);
+
+        pointer-events: none;
+    }
+
+    .about-doctor-copy-v116
+    .about-panel-kicker-v116 {
+        position: relative;
+        z-index: 2;
+
+        margin:
+            0 0 9px !important;
+
+        color:
+            #1486c6 !important;
+
+        font-size:
+            12px !important;
+
+        font-weight:
+            950 !important;
+
+        letter-spacing:
+            .18em !important;
+    }
+
+    .about-doctor-copy-v116 h2 {
+        position: relative;
+        z-index: 2;
+
+        margin:
+            0 0 22px !important;
+
+        color:
+            #103a55 !important;
+
+        font-size:
+            clamp(
+                44px,
+                3.2vw,
+                62px
+            ) !important;
+
+        line-height:
+            .98 !important;
+
+        letter-spacing:
+            -.045em !important;
+    }
+
+    /* Metin bloğu kalan beyaz alanı tam doldursun */
+    .about-doctor-copy-v116
+    .about-doctor-strong-v117 {
+        position: relative;
+        z-index: 2;
+
+        margin:
+            0 !important;
+
+        padding:
+            17px 0 !important;
+
+        display: flex !important;
+        align-items: center !important;
+
+        min-height: 0 !important;
+
+        border-top:
+            1px solid
+            rgba(180,211,227,.58);
+
+        color:
+            #4b6d83 !important;
+
+        font-size:
+            clamp(
+                16px,
+                .98vw,
+                18px
+            ) !important;
+
+        line-height:
+            1.72 !important;
+
+        font-weight:
+            600 !important;
+    }
+
+    .about-doctor-copy-v116
+    .about-doctor-strong-v117:first-of-type {
+        border-top: 0;
+    }
+
+    .about-doctor-copy-v116
+    .about-doctor-strong-v117 strong {
+        color:
+            #123e58 !important;
+
+        font-weight:
+            820 !important;
+    }
+
+    .about-doctor-copy-v116
+    .about-doctor-strong-v117 a,
+    .about-doctor-copy-v116
+    .about-doctor-strong-v117 a strong {
+        color:
+            #0786c9 !important;
+
+        font-weight:
+            900 !important;
+
+        text-decoration:
+            none !important;
+
+        border-bottom:
+            2px solid
+            rgba(7,134,201,.30) !important;
+
+        transition:
+            color .2s ease,
+            border-color .2s ease;
+    }
+
+    .about-doctor-copy-v116
+    .about-doctor-strong-v117 a:hover,
+    .about-doctor-copy-v116
+    .about-doctor-strong-v117 a:hover strong {
+        color:
+            #005f96 !important;
+
+        border-bottom-color:
+            rgba(0,95,150,.65) !important;
+    }
+
+    /* Görsel ve beyaz kart tam eşit yüksek */
+    .about-doctor-layout-v116 {
+        align-items: stretch !important;
+    }
+
+    .about-doctor-photo-v116,
+    .about-doctor-copy-v116 {
+        height: 100% !important;
+        min-height: 100% !important;
+    }
+}
+
+/* 1366x768 gibi kısa ekranlarda aynı doluluk korunur */
+@media (min-width: 1001px) and (max-height: 850px) {
+
+    .about-doctor-copy-v116 {
+        padding:
+            23px 28px
+            21px !important;
+
+        border-radius:
+            24px !important;
+    }
+
+    .about-doctor-copy-v116::after {
+        top: 22px;
+        bottom: 22px;
+    }
+
+    .about-doctor-copy-v116
+    .about-panel-kicker-v116 {
+        margin-bottom:
+            5px !important;
+
+        font-size:
+            9.5px !important;
+    }
+
+    .about-doctor-copy-v116 h2 {
+        margin-bottom:
+            10px !important;
+
+        font-size:
+            37px !important;
+    }
+
+    .about-doctor-copy-v116
+    .about-doctor-strong-v117 {
+        padding:
+            9px 0 !important;
+
+        font-size:
+            12.6px !important;
+
+        line-height:
+            1.48 !important;
+    }
+}
+
+/* Büyük monitörde beyaz alanı daha güçlü doldur */
+@media (min-width: 1500px) and (min-height: 850px) {
+
+    .about-doctor-copy-v116 {
+        padding:
+            42px 48px
+            40px !important;
+    }
+
+    .about-doctor-copy-v116
+    .about-doctor-strong-v117 {
+        font-size:
+            18px !important;
+
+        line-height:
+            1.78 !important;
+
+        padding:
+            20px 0 !important;
+    }
+}
+
+/* Mobil görünüm */
+@media (max-width: 1000px) {
+
+    .about-doctor-copy-v116 {
+        position: relative;
+
+        border:
+            1px solid
+            #d8e8f1 !important;
+
+        background:
+            linear-gradient(
+                145deg,
+                #ffffff,
+                #f2f9fd
+            ) !important;
+
+        box-shadow:
+            0 16px 38px
+            rgba(19,57,82,.09) !important;
+    }
+
+    .about-doctor-copy-v116
+    .about-doctor-strong-v117 {
+        font-size:
+            15px !important;
+
+        line-height:
+            1.66 !important;
+    }
+}
+
+
+/* =========================================================
+   V121 - HAKKIMDA METNİ TEK AKIŞ HALİNDE
+   Metin ayrı kutular gibi görünmez, tek düzenli akış olur.
+   Beyaz panelin tamamı daha dengeli kullanılır.
+   ========================================================= */
+
+.about-doctor-copy-v121 {
+    display: flex !important;
+    flex-direction: column !important;
+    justify-content: flex-start !important;
+}
+
+.about-doctor-copy-v121 .about-panel-kicker-v116,
+.about-doctor-copy-v121 h2 {
+    position: relative;
+    z-index: 2;
+}
+
+.about-doctor-flow-v121 {
+    position: relative;
+    z-index: 2;
+
+    display: flex !important;
+    flex-direction: column !important;
+    justify-content: space-between !important;
+
+    flex: 1 1 auto !important;
+    min-height: 0 !important;
+    height: 100% !important;
+
+    margin-top: 8px !important;
+    gap: clamp(18px, 1.3vw, 26px) !important;
+}
+
+.about-doctor-flow-v121 p {
+    margin: 0 !important;
+    padding: 0 !important;
+    border: 0 !important;
+    min-height: 0 !important;
+
+    display: block !important;
+
+    color: #123f5b !important;
+    font-size: clamp(18px, 1.08vw, 20px) !important;
+    line-height: 1.58 !important;
+    font-weight: 760 !important;
+    letter-spacing: -0.01em !important;
+    text-wrap: pretty;
+}
+
+.about-doctor-flow-v121 p strong {
+    color: #123f5b !important;
+    font-weight: 820 !important;
+}
+
+.about-doctor-flow-v121 a,
+.about-doctor-flow-v121 a strong {
+    color: #0b82c7 !important;
+    text-decoration: none !important;
+    border-bottom: 2px solid rgba(11,130,199,.32) !important;
+}
+
+.about-doctor-flow-v121 a:hover,
+.about-doctor-flow-v121 a:hover strong {
+    color: #065f96 !important;
+    border-bottom-color: rgba(6,95,150,.6) !important;
+}
+
+/* Eski parça-parça paragraf stilini bu kartta etkisiz hale getir */
+.about-doctor-copy-v121 .about-doctor-strong-v117 {
+    all: unset;
+}
+
+/* 1366x768 gibi kısa ekranlarda da kart dolu görünsün */
+@media (min-width: 1001px) and (max-height: 850px) {
+    .about-doctor-copy-v121 {
+        padding: 24px 30px 22px !important;
+    }
+
+    .about-doctor-copy-v121 h2 {
+        font-size: 39px !important;
+        margin: 0 0 12px !important;
+    }
+
+    .about-doctor-copy-v121 .about-panel-kicker-v116 {
+        margin-bottom: 6px !important;
+        font-size: 10px !important;
+    }
+
+    .about-doctor-flow-v121 {
+        gap: 14px !important;
+        margin-top: 4px !important;
+    }
+
+    .about-doctor-flow-v121 p {
+        font-size: 15px !important;
+        line-height: 1.46 !important;
+    }
+}
+
+/* Geniş ekranlarda alanı daha iyi kullansın */
+@media (min-width: 1500px) and (min-height: 850px) {
+    .about-doctor-copy-v121 {
+        padding: 44px 50px 40px !important;
+    }
+
+    .about-doctor-copy-v121 h2 {
+        font-size: 60px !important;
+        margin-bottom: 18px !important;
+    }
+
+    .about-doctor-flow-v121 p {
+        font-size: 20px !important;
+        line-height: 1.66 !important;
+    }
+}
+
+/* Mobil */
+@media (max-width: 1000px) {
+    .about-doctor-flow-v121 {
+        gap: 16px !important;
+    }
+
+    .about-doctor-flow-v121 p {
+        font-size: 15px !important;
+        line-height: 1.62 !important;
+    }
+}
+
+
+/* =========================================================
+   V122 - TEŞHİS / TEDAVİ SEKME DÜZENİ
+   Metinler daha büyük, daha dengeli ve kartı tam kullanır.
+   ========================================================= */
+
+.about-treatment-layout-v122 {
+    height: 100% !important;
+    align-items: stretch !important;
+}
+
+.about-treatment-card-v122 {
+    height: 100% !important;
+
+    display: flex !important;
+    flex-direction: column !important;
+
+    padding: clamp(28px, 2.05vw, 36px) !important;
+
+    border-radius: 32px !important;
+    border: 1px solid rgba(183, 211, 225, .88) !important;
+
+    background:
+        linear-gradient(180deg, rgba(255,255,255,.98), rgba(245,250,253,.97)) !important;
+
+    box-shadow:
+        0 16px 36px rgba(17, 56, 82, .06),
+        inset 0 1px 0 rgba(255,255,255,.88) !important;
+}
+
+.about-treatment-flow-v122 {
+    flex: 1 1 auto !important;
+    min-height: 0 !important;
+
+    display: flex !important;
+    flex-direction: column !important;
+    justify-content: space-between !important;
+
+    gap: clamp(14px, 1.4vh, 22px) !important;
+}
+
+.about-treatment-card-v122 .about-treatment-head-v116 {
+    margin-bottom: 18px !important;
+    grid-template-columns: 60px 1fr !important;
+    gap: 15px !important;
+    align-items: center !important;
+}
+
+.about-treatment-card-v122 .about-treatment-number-v116 {
+    width: 60px !important;
+    height: 60px !important;
+    border-radius: 19px !important;
+    font-size: 14px !important;
+    font-weight: 950 !important;
+    box-shadow: 0 14px 26px rgba(18, 137, 202, .20) !important;
+}
+
+.about-treatment-card-v122 .about-treatment-head-v116 div > span {
+    margin-bottom: 4px !important;
+    font-size: 10.5px !important;
+    letter-spacing: .16em !important;
+}
+
+.about-treatment-card-v122 .about-treatment-head-v116 h2 {
+    font-size: clamp(29px, 2.15vw, 39px) !important;
+    line-height: 1.06 !important;
+}
+
+.about-treatment-card-v122 > p,
+.about-treatment-card-v122 .about-treatment-step-v116 p,
+.about-treatment-card-v122 .about-treatment-quote-v116 p,
+.about-treatment-card-v122 .about-treatment-note-v116,
+.about-treatment-card-v122 .about-treatment-services-v116 {
+    font-size: clamp(14.5px, .96vw, 16.8px) !important;
+    line-height: 1.6 !important;
+}
+
+.about-treatment-card-v122 p {
+    margin: 0 !important;
+    color: #537388 !important;
+}
+
+.about-treatment-card-v122 strong {
+    color: #143f5a !important;
+    font-weight: 820 !important;
+}
+
+.about-treatment-card-v122 .about-treatment-step-v116 {
+    margin: 0 !important;
+    padding: 16px 18px !important;
+
+    grid-template-columns: 40px 1fr !important;
+    gap: 12px !important;
+
+    border-radius: 18px !important;
+    border: 1px solid #d5e7f0 !important;
+
+    background:
+        linear-gradient(180deg, #f8fcfe, #eef7fb) !important;
+}
+
+.about-treatment-card-v122 .about-treatment-step-v116 b {
+    width: 40px !important;
+    height: 40px !important;
+
+    border-radius: 12px !important;
+
+    font-size: 13px !important;
+    font-weight: 900 !important;
+
+    box-shadow: 0 10px 22px rgba(22, 137, 202, .18) !important;
+}
+
+.about-treatment-card-v122 .about-treatment-note-v116,
+.about-treatment-card-v122 .about-treatment-services-v116 {
+    padding: 16px 18px !important;
+
+    border-radius: 18px !important;
+
+    background:
+        linear-gradient(180deg, #f8fcfe, #eef7fb) !important;
+
+    border: 1px solid #d7e7f0 !important;
+}
+
+.about-treatment-card-v122 .about-treatment-quote-v116 {
+    margin: 0 !important;
+    padding: 18px 20px !important;
+
+    border-radius: 20px !important;
+
+    box-shadow:
+        0 16px 32px rgba(18, 69, 98, .14) !important;
+}
+
+.about-treatment-card-v122 .about-treatment-quote-v116 > span {
+    margin-bottom: 7px !important;
+    font-size: 10px !important;
+    letter-spacing: .16em !important;
+}
+
+@media (min-width: 1001px) and (max-height: 850px) {
+    .about-treatment-card-v122 {
+        padding: 24px 26px !important;
+    }
+
+    .about-treatment-card-v122 .about-treatment-head-v116 {
+        margin-bottom: 14px !important;
+        grid-template-columns: 54px 1fr !important;
+    }
+
+    .about-treatment-card-v122 .about-treatment-number-v116 {
+        width: 54px !important;
+        height: 54px !important;
+        border-radius: 16px !important;
+    }
+
+    .about-treatment-card-v122 .about-treatment-head-v116 h2 {
+        font-size: 24px !important;
+    }
+
+    .about-treatment-flow-v122 {
+        gap: 12px !important;
+    }
+
+    .about-treatment-card-v122 > p,
+    .about-treatment-card-v122 .about-treatment-step-v116 p,
+    .about-treatment-card-v122 .about-treatment-quote-v116 p,
+    .about-treatment-card-v122 .about-treatment-note-v116,
+    .about-treatment-card-v122 .about-treatment-services-v116 {
+        font-size: 13.5px !important;
+        line-height: 1.48 !important;
+    }
+
+    .about-treatment-card-v122 .about-treatment-step-v116,
+    .about-treatment-card-v122 .about-treatment-note-v116,
+    .about-treatment-card-v122 .about-treatment-services-v116 {
+        padding: 12px 14px !important;
+    }
+
+    .about-treatment-card-v122 .about-treatment-quote-v116 {
+        padding: 14px 16px !important;
+    }
+}
+
+@media (max-width: 1000px) {
+    .about-treatment-layout-v122 {
+        grid-template-columns: 1fr !important;
+        gap: 16px !important;
+    }
+
+    .about-treatment-card-v122 {
+        padding: 22px 18px !important;
+        border-radius: 24px !important;
+    }
+
+    .about-treatment-card-v122 .about-treatment-head-v116 {
+        grid-template-columns: 50px 1fr !important;
+        gap: 12px !important;
+    }
+
+    .about-treatment-card-v122 .about-treatment-head-v116 h2 {
+        font-size: 26px !important;
+    }
+
+    .about-treatment-card-v122 .about-treatment-head-v116 div > span {
+        font-size: 10px !important;
+    }
+
+    .about-treatment-flow-v122 {
+        gap: 12px !important;
+    }
+
+    .about-treatment-card-v122 > p,
+    .about-treatment-card-v122 .about-treatment-step-v116 p,
+    .about-treatment-card-v122 .about-treatment-quote-v116 p,
+    .about-treatment-card-v122 .about-treatment-note-v116,
+    .about-treatment-card-v122 .about-treatment-services-v116 {
+        font-size: 14px !important;
+        line-height: 1.56 !important;
+    }
+}
+
+
+/* =========================================================
+   V123 - EĞİTİM VE GÖREVLER SEKME GÜÇLENDİRME
+   Kartlar daha büyük, daha dikkat çekici ve daha modern.
+   ========================================================= */
+
+.about-education-layout-v123 {
+    height: 100% !important;
+    padding: clamp(28px, 2vw, 36px) !important;
+    gap: clamp(20px, 1.8vh, 26px) !important;
+}
+
+.about-education-layout-v123 .about-education-heading-v116 {
+    align-items: start !important;
+    column-gap: 30px !important;
+    padding-bottom: 8px !important;
+}
+
+.about-education-layout-v123 .about-panel-kicker-v116 {
+    margin-bottom: 8px !important;
+    font-size: 11px !important;
+    letter-spacing: .20em !important;
+}
+
+.about-education-layout-v123 .about-education-heading-v116 h2 {
+    font-size: clamp(34px, 2.8vw, 48px) !important;
+    line-height: 1.02 !important;
+    letter-spacing: -.045em !important;
+}
+
+.about-education-layout-v123 .about-education-heading-v116 p {
+    align-self: center !important;
+    width: min(620px, 100%) !important;
+    font-size: clamp(14px, .95vw, 16px) !important;
+    line-height: 1.55 !important;
+    color: #5c7b90 !important;
+}
+
+.about-education-grid-v123 {
+    counter-reset: eduCard;
+    gap: 16px !important;
+}
+
+.about-education-grid-v123 article {
+    position: relative;
+    isolation: isolate;
+    overflow: hidden;
+
+    padding: 24px 18px 18px !important;
+
+    border-radius: 22px !important;
+    border: 1px solid rgba(194, 219, 231, .95) !important;
+
+    background: linear-gradient(180deg, rgba(255,255,255,.98) 0%, rgba(242,248,252,.98) 100%) !important;
+
+    box-shadow:
+        0 12px 28px rgba(16, 59, 85, .05),
+        inset 0 1px 0 rgba(255,255,255,.9) !important;
+
+    transition:
+        transform .24s ease,
+        border-color .24s ease,
+        box-shadow .24s ease,
+        background .24s ease !important;
+}
+
+.about-education-grid-v123 article::before {
+    content: '';
+    position: absolute;
+    inset: 0 auto auto 0;
+    width: 100%;
+    height: 5px;
+    background: linear-gradient(90deg, #1da1f2 0%, #6dc6ff 100%);
+    opacity: .95;
+}
+
+.about-education-grid-v123 article::after {
+    counter-increment: eduCard;
+    content: counter(eduCard, decimal-leading-zero);
+    position: absolute;
+    top: 14px;
+    right: 14px;
+
+    min-width: 34px;
+    height: 34px;
+    padding: 0 10px;
+
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+
+    border-radius: 999px;
+    background: rgba(24, 136, 201, .10);
+    color: #1684c4;
+
+    font-size: 12px;
+    font-weight: 900;
+    letter-spacing: .02em;
+}
+
+.about-education-grid-v123 article:hover {
+    transform: translateY(-5px) !important;
+    border-color: #afd7ea !important;
+    background: linear-gradient(180deg, #ffffff 0%, #eef8fd 100%) !important;
+    box-shadow:
+        0 18px 38px rgba(16, 74, 106, .10),
+        inset 0 1px 0 rgba(255,255,255,.96) !important;
+}
+
+.about-education-grid-v123 article span {
+    margin-bottom: 10px !important;
+    padding-right: 44px !important;
+
+    color: #1388ca !important;
+
+    font-size: 11px !important;
+    font-weight: 950 !important;
+    line-height: 1.25 !important;
+    letter-spacing: .09em !important;
+    text-transform: uppercase !important;
+}
+
+.about-education-grid-v123 article strong {
+    color: #123f59 !important;
+    font-size: clamp(18px, 1.16vw, 20px) !important;
+    line-height: 1.26 !important;
+    font-weight: 850 !important;
+    letter-spacing: -.015em !important;
+}
+
+@media (min-width: 1001px) and (max-height: 850px) {
+    .about-education-layout-v123 {
+        padding: 22px 24px !important;
+        gap: 16px !important;
+    }
+
+    .about-education-layout-v123 .about-education-heading-v116 h2 {
+        font-size: 30px !important;
+    }
+
+    .about-education-layout-v123 .about-education-heading-v116 p {
+        font-size: 13px !important;
+        line-height: 1.46 !important;
+    }
+
+    .about-education-grid-v123 {
+        gap: 12px !important;
+    }
+
+    .about-education-grid-v123 article {
+        padding: 20px 15px 15px !important;
+        border-radius: 18px !important;
+    }
+
+    .about-education-grid-v123 article::after {
+        top: 12px;
+        right: 12px;
+        min-width: 30px;
+        height: 30px;
+        font-size: 11px;
+    }
+
+    .about-education-grid-v123 article span {
+        margin-bottom: 7px !important;
+        padding-right: 38px !important;
+        font-size: 9.5px !important;
+    }
+
+    .about-education-grid-v123 article strong {
+        font-size: 16px !important;
+        line-height: 1.2 !important;
+    }
+}
+
+@media (max-width: 1000px) {
+    .about-education-layout-v123 {
+        padding: 22px 18px !important;
+    }
+
+    .about-education-layout-v123 .about-education-heading-v116 {
+        grid-template-columns: 1fr !important;
+        gap: 10px !important;
+    }
+
+    .about-education-layout-v123 .about-education-heading-v116 h2 {
+        font-size: 30px !important;
+    }
+
+    .about-education-layout-v123 .about-education-heading-v116 p {
+        width: 100% !important;
+        font-size: 14px !important;
+    }
+
+    .about-education-grid-v123 {
+        grid-template-columns: 1fr !important;
+        grid-template-rows: none !important;
+        gap: 12px !important;
+    }
+
+    .about-education-grid-v123 article {
+        min-height: 108px !important;
+        padding: 20px 16px 16px !important;
+    }
+
+    .about-education-grid-v123 article strong {
+        font-size: 18px !important;
+    }
+}
+
+
+/* =========================================================
+   V124 - ANA SAYFA GENEL BUTONU / AKTİF GÖRÜNÜM
+   ========================================================= */
+
+.doctor-general-button-v124 {
+    position: relative;
+
+    min-height: 46px !important;
+    padding: 0 18px 0 14px !important;
+    gap: 9px;
+
+    border: 1px solid rgba(255,255,255,.30) !important;
+    outline: 0;
+
+    cursor: pointer;
+
+    background:
+        linear-gradient(
+            135deg,
+            #ff4772 0%,
+            #ff245d 55%,
+            #e81853 100%
+        ) !important;
+
+    box-shadow:
+        0 13px 30px rgba(239,30,82,.34),
+        inset 0 1px 0 rgba(255,255,255,.25),
+        0 0 0 4px rgba(255,53,101,.08) !important;
+
+    transition:
+        transform .22s ease,
+        box-shadow .22s ease,
+        filter .22s ease !important;
+}
+
+.doctor-general-button-v124:hover,
+.doctor-general-button-v124:focus-visible {
+    transform: translateY(-3px) scale(1.035);
+
+    box-shadow:
+        0 18px 38px rgba(239,30,82,.42),
+        inset 0 1px 0 rgba(255,255,255,.30),
+        0 0 0 6px rgba(255,53,101,.11) !important;
+}
+
+.general-active-dot-v124 {
+    width: 10px;
+    height: 10px;
+
+    flex: 0 0 10px;
+
+    border-radius: 50%;
+
+    background: #ffffff;
+
+    box-shadow:
+        0 0 0 5px rgba(255,255,255,.13),
+        0 0 18px rgba(255,255,255,.80);
+
+    animation:
+        generalActivePulseV124
+        1.9s ease-in-out infinite;
+}
+
+.general-button-label-v124 {
+    font-size: 15px;
+    font-weight: 900;
+}
+
+.doctor-general-button-v124 small {
+    padding: 4px 7px;
+
+    border-radius: 999px;
+
+    background:
+        rgba(255,255,255,.17);
+
+    color: rgba(255,255,255,.92);
+
+    font-size: 8px;
+    font-weight: 950;
+    letter-spacing: .12em;
+}
+
+@keyframes generalActivePulseV124 {
+    0%,
+    100% {
+        transform: scale(1);
+        opacity: 1;
+    }
+
+    50% {
+        transform: scale(.76);
+        opacity: .72;
+    }
+}
+
+/* =========================================================
+   V124 - GENEL > ÖNE ÇIKANLAR SAYFASI
+   ========================================================= */
+
+.general-featured-page-v124 {
+    display: none;
+
+    min-height: 100vh;
+
+    color: #153b54;
+
+    background:
+        radial-gradient(
+            circle at 10% 8%,
+            rgba(52,181,233,.15),
+            transparent 23%
+        ),
+        radial-gradient(
+            circle at 92% 86%,
+            rgba(31,135,187,.09),
+            transparent 26%
+        ),
+        linear-gradient(
+            180deg,
+            #f4fbff 0%,
+            #eaf6fb 100%
+        );
+}
+
+body.general-featured-open-v124
+.general-featured-page-v124 {
+    display: block;
+}
+
+body.general-featured-open-v124
+.hero.hero-v31,
+body.general-featured-open-v124
+.treatment-page,
+body.general-featured-open-v124
+.pain-page,
+body.general-featured-open-v124
+.about-page-v47,
+body.general-featured-open-v124
+.media-page-v48,
+body.general-featured-open-v124
+.legal-page-v56,
+body.general-featured-open-v124
+.treatment-detail-page-v71,
+body.general-featured-open-v124
+.general-health-detail-page-v75,
+body.general-featured-open-v124
+.ankilozan-page-v87 {
+    display: none !important;
+}
+
+.general-featured-nav-v124 {
+    position: absolute;
+    z-index: 12000;
+
+    top: 22px;
+    left: 50%;
+
+    transform: translateX(-50%);
+
+    display: flex;
+    align-items: center;
+    gap: 10px;
+
+    padding: 9px;
+
+    border:
+        1px solid
+        rgba(113,166,195,.20);
+
+    border-radius: 20px;
+
+    background:
+        rgba(13,45,65,.94);
+
+    box-shadow:
+        0 18px 44px
+        rgba(15,49,71,.22);
+
+    backdrop-filter: blur(18px);
+    -webkit-backdrop-filter: blur(18px);
+}
+
+.general-featured-nav-v124 button {
+    min-height: 48px;
+    padding: 0 18px;
+
+    border:
+        1px solid
+        rgba(255,255,255,.11);
+
+    border-radius: 14px;
+
+    background:
+        rgba(255,255,255,.07);
+
+    color: #fff;
+
+    cursor: pointer;
+
+    font: inherit;
+    font-size: 13px;
+    font-weight: 850;
+
+    transition:
+        transform .2s ease,
+        background .2s ease,
+        border-color .2s ease,
+        box-shadow .2s ease;
+}
+
+.general-featured-nav-v124 button:hover {
+    transform: translateY(-2px);
+
+    background:
+        rgba(255,255,255,.12);
+}
+
+.general-featured-nav-v124 button.active {
+    gap: 9px;
+
+    display: inline-flex;
+    align-items: center;
+
+    background:
+        linear-gradient(
+            135deg,
+            #158dce,
+            #23ace6
+        );
+
+    border-color:
+        rgba(115,218,255,.42);
+
+    box-shadow:
+        0 10px 24px
+        rgba(19,143,205,.30),
+        inset 0 1px 0
+        rgba(255,255,255,.22);
+}
+
+.general-featured-nav-v124 button.active:disabled {
+    opacity: 1;
+    cursor: default;
+}
+
+.general-nav-active-dot-v124 {
+    width: 8px;
+    height: 8px;
+
+    border-radius: 50%;
+
+    background: #fff;
+
+    box-shadow:
+        0 0 0 4px
+        rgba(255,255,255,.13);
+}
+
+.general-featured-shell-v124 {
+    width: min(1480px, calc(100% - 44px));
+    min-height: 100vh;
+
+    margin: 0 auto;
+    padding: 128px 0 34px;
+
+    display: grid;
+    grid-template-rows: auto 1fr;
+    gap: 26px;
+}
+
+.general-featured-hero-v124 {
+    padding: 32px 36px;
+
+    display: grid;
+    grid-template-columns:
+        minmax(320px, .7fr)
+        minmax(420px, 1.3fr);
+
+    align-items: end;
+    gap: 30px;
+
+    border:
+        1px solid
+        #d8e8f1;
+
+    border-radius: 30px;
+
+    background:
+        linear-gradient(
+            145deg,
+            rgba(255,255,255,.97),
+            rgba(244,250,253,.95)
+        );
+
+    box-shadow:
+        0 18px 46px
+        rgba(17,56,82,.08);
+}
+
+.general-featured-hero-v124 span {
+    display: block;
+    margin-bottom: 7px;
+
+    color: #1687c8;
+
+    font-size: 11px;
+    font-weight: 950;
+    letter-spacing: .22em;
+}
+
+.general-featured-hero-v124 h1 {
+    margin: 0;
+
+    color: #103953;
+
+    font-size:
+        clamp(44px, 5vw, 76px);
+
+    line-height: .95;
+    letter-spacing: -.05em;
+}
+
+.general-featured-hero-v124 p {
+    margin: 0;
+
+    color: #5c7b90;
+
+    font-size:
+        clamp(15px, 1.1vw, 18px);
+
+    line-height: 1.7;
+}
+
+.general-featured-grid-v124 {
+    min-height: 0;
+
+    display: grid;
+
+    grid-template-columns:
+        repeat(3, minmax(0, 1fr));
+
+    grid-template-rows:
+        repeat(2, minmax(0, 1fr));
+
+    gap: 18px;
+}
+
+.general-feature-card-v124 {
+    position: relative;
+    overflow: hidden;
+
+    min-height: 220px;
+    padding: 26px;
+
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+
+    text-align: left;
+
+    border:
+        1px solid
+        #d6e7f0;
+
+    border-radius: 26px;
+
+    background:
+        linear-gradient(
+            145deg,
+            #ffffff,
+            #f2f9fd
+        );
+
+    cursor: pointer;
+
+    box-shadow:
+        0 14px 34px
+        rgba(17,57,82,.065);
+
+    transition:
+        transform .25s ease,
+        border-color .25s ease,
+        box-shadow .25s ease;
+}
+
+.general-feature-card-v124::before {
+    content: "";
+
+    position: absolute;
+    right: -70px;
+    top: -70px;
+
+    width: 190px;
+    height: 190px;
+
+    border-radius: 50%;
+
+    background:
+        radial-gradient(
+            circle,
+            rgba(32,167,224,.15),
+            transparent 68%
+        );
+
+    pointer-events: none;
+}
+
+.general-feature-card-v124:hover {
+    transform:
+        translateY(-7px);
+
+    border-color:
+        #b4dceb;
+
+    box-shadow:
+        0 22px 46px
+        rgba(17,68,96,.12);
+}
+
+.general-feature-card-primary-v124 {
+    background:
+        linear-gradient(
+            145deg,
+            #123d59,
+            #17698f
+        );
+
+    border-color:
+        rgba(255,255,255,.08);
+}
+
+.general-feature-index-v124 {
+    position: absolute;
+    right: 20px;
+    top: 18px;
+
+    color:
+        rgba(21,132,196,.16);
+
+    font-size: 48px;
+    line-height: 1;
+    font-weight: 950;
+}
+
+.general-feature-card-primary-v124
+.general-feature-index-v124 {
+    color:
+        rgba(255,255,255,.14);
+}
+
+.general-feature-kicker-v124 {
+    margin-bottom: 13px;
+
+    color: #1687c8;
+
+    font-size: 9.5px;
+    font-weight: 950;
+    letter-spacing: .16em;
+}
+
+.general-feature-card-v124 strong {
+    max-width: 86%;
+
+    color: #123b56;
+
+    font-size:
+        clamp(23px, 1.75vw, 32px);
+
+    line-height: 1.08;
+    letter-spacing: -.03em;
+}
+
+.general-feature-card-v124 small {
+    max-width: 90%;
+    margin-top: 12px;
+
+    color: #678397;
+
+    font-size: 13px;
+    line-height: 1.55;
+}
+
+.general-feature-card-v124 i {
+    margin-top: auto;
+
+    color: #1687c8;
+
+    font-size: 12px;
+    font-style: normal;
+    font-weight: 900;
+}
+
+.general-feature-card-primary-v124
+.general-feature-kicker-v124,
+.general-feature-card-primary-v124 strong,
+.general-feature-card-primary-v124 small,
+.general-feature-card-primary-v124 i {
+    color: #fff;
+}
+
+.general-feature-card-primary-v124 small {
+    opacity: .78;
+}
+
+@media (max-width: 1000px) {
+    .general-featured-page-v124 {
+        min-height: 100vh;
+    }
+
+    .general-featured-nav-v124 {
+        position: fixed;
+        top: 14px;
+
+        max-width:
+            calc(100vw - 24px);
+
+        overflow-x: auto;
+
+        padding: 7px;
+    }
+
+    .general-featured-nav-v124 button {
+        flex: 0 0 auto;
+    }
+
+    .general-featured-shell-v124 {
+        width:
+            min(100% - 24px, 900px);
+
+        padding:
+            104px 0 28px;
+    }
+
+    .general-featured-hero-v124 {
+        grid-template-columns: 1fr;
+
+        padding: 25px 22px;
+
+        border-radius: 24px;
+    }
+
+    .general-featured-grid-v124 {
+        grid-template-columns:
+            repeat(2, minmax(0, 1fr));
+
+        grid-template-rows: auto;
+    }
+}
+
+@media (max-width: 620px) {
+    .doctor-general-button-v124 small {
+        display: none;
+    }
+
+    .general-featured-grid-v124 {
+        grid-template-columns: 1fr;
+    }
+
+    .general-feature-card-v124 {
+        min-height: 190px;
+    }
+}
+
+@media (prefers-reduced-motion: reduce) {
+    .general-active-dot-v124 {
+        animation: none !important;
+    }
+}
+
+
+/* =========================================================
+   V125 - HAKKIMDA: SAĞLIK KURUMU HAKKINDA SEKME
+   ========================================================= */
+
+/* Hakkımda üst sekmeler artık 4 buton */
+.about-tabs-nav-v116 {
+    grid-template-columns:
+        1.28fr
+        .72fr
+        1fr
+        1.18fr !important;
+}
+
+.about-tab-button-institution-v125 {
+    white-space: nowrap;
+}
+
+/* -------- Sağlık Kurumu Hakkında paneli -------- */
+
+.about-institution-layout-v125 {
+    width: 100%;
+    height: 100%;
+    min-height: 0;
+
+    display: grid;
+    grid-template-rows: auto minmax(0, 1fr) auto;
+    gap: 18px;
+
+    padding: 28px 30px;
+
+    border: 1px solid #d7e7ef;
+    border-radius: 28px;
+
+    background:
+        linear-gradient(
+            145deg,
+            rgba(255,255,255,.98),
+            rgba(242,249,253,.97)
+        );
+
+    box-shadow:
+        0 18px 44px rgba(18,55,80,.08);
+}
+
+.about-institution-hero-v125 {
+    display: grid;
+    grid-template-columns:
+        minmax(420px, .9fr)
+        minmax(520px, 1.1fr);
+
+    gap: 34px;
+    align-items: end;
+
+    padding-bottom: 16px;
+
+    border-bottom:
+        1px solid rgba(188,216,230,.70);
+}
+
+.about-institution-hero-v125 h2 {
+    margin: 0;
+
+    color: #103852;
+
+    font-size:
+        clamp(30px, 2.5vw, 46px);
+
+    line-height: 1.02;
+    letter-spacing: -.04em;
+}
+
+.about-institution-hero-v125 p {
+    margin: 0;
+
+    color: #5c7a8f;
+
+    font-size:
+        clamp(14px, .98vw, 16.5px);
+
+    line-height: 1.62;
+}
+
+.about-institution-grid-v125 {
+    min-height: 0;
+
+    display: grid;
+    grid-template-columns:
+        repeat(4, minmax(0, 1fr));
+
+    gap: 14px;
+}
+
+.about-institution-card-v125 {
+    position: relative;
+    overflow: hidden;
+
+    min-height: 0;
+    padding: 24px 20px;
+
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+
+    border: 1px solid #d8e8f1;
+    border-radius: 22px;
+
+    background:
+        linear-gradient(
+            180deg,
+            #ffffff,
+            #f3f9fc
+        );
+
+    transition:
+        transform .24s ease,
+        box-shadow .24s ease,
+        border-color .24s ease;
+}
+
+.about-institution-card-v125::before {
+    content: "";
+
+    position: absolute;
+    right: -50px;
+    top: -50px;
+
+    width: 145px;
+    height: 145px;
+
+    border-radius: 50%;
+
+    background:
+        radial-gradient(
+            circle,
+            rgba(32,166,224,.13),
+            transparent 68%
+        );
+
+    pointer-events: none;
+}
+
+.about-institution-card-v125:hover {
+    transform: translateY(-5px);
+
+    border-color: #b6ddeb;
+
+    box-shadow:
+        0 18px 34px
+        rgba(18,74,105,.10);
+}
+
+.about-institution-card-main-v125 {
+    background:
+        linear-gradient(
+            145deg,
+            #123e5a,
+            #176b91
+        );
+
+    border-color:
+        rgba(255,255,255,.08);
+}
+
+.about-institution-icon-v125 {
+    width: 42px;
+    height: 42px;
+    margin-bottom: 16px;
+
+    display: grid;
+    place-items: center;
+
+    border-radius: 13px;
+
+    background: #e4f4fc;
+    color: #1687c8;
+
+    font-size: 12px;
+    font-weight: 950;
+}
+
+.about-institution-card-v125 small {
+    margin-bottom: 8px;
+
+    color: #1687c8;
+
+    font-size: 9px;
+    font-weight: 950;
+    letter-spacing: .15em;
+}
+
+.about-institution-card-v125 h3 {
+    margin: 0 0 10px;
+
+    color: #123b56;
+
+    font-size:
+        clamp(19px, 1.35vw, 24px);
+
+    line-height: 1.12;
+    letter-spacing: -.025em;
+}
+
+.about-institution-card-v125 p {
+    margin: 0;
+
+    color: #617f93;
+
+    font-size: 12.8px;
+    line-height: 1.58;
+}
+
+.about-institution-card-main-v125
+.about-institution-icon-v125 {
+    background:
+        rgba(255,255,255,.13);
+
+    color: #fff;
+
+    box-shadow:
+        inset 0 0 0 1px
+        rgba(255,255,255,.16);
+}
+
+.about-institution-card-main-v125 small,
+.about-institution-card-main-v125 h3,
+.about-institution-card-main-v125 p {
+    color: #fff;
+}
+
+.about-institution-card-main-v125 p {
+    opacity: .78;
+}
+
+.about-institution-footer-v125 {
+    padding: 14px 18px;
+
+    display: grid;
+    grid-template-columns:
+        minmax(340px, .8fr)
+        minmax(420px, 1.2fr);
+
+    gap: 24px;
+    align-items: center;
+
+    border: 1px solid #d8e8f1;
+    border-radius: 18px;
+
+    background:
+        rgba(248,252,255,.94);
+}
+
+.about-institution-footer-v125 div {
+    display: grid;
+    gap: 3px;
+}
+
+.about-institution-footer-v125 span {
+    color: #1687c8;
+
+    font-size: 9px;
+    font-weight: 950;
+    letter-spacing: .14em;
+}
+
+.about-institution-footer-v125 strong {
+    color: #123b56;
+
+    font-size: 14px;
+}
+
+.about-institution-footer-v125 p {
+    margin: 0;
+
+    color: #6a8497;
+
+    font-size: 12px;
+    line-height: 1.48;
+}
+
+/* Kısa laptop */
+@media (min-width: 1001px) and (max-height: 850px) {
+    .about-tab-button-v116 {
+        padding: 7px 10px !important;
+        font-size: 10.5px !important;
+    }
+
+    .about-tab-button-institution-v125 {
+        white-space: normal;
+        line-height: 1.15;
+    }
+
+    .about-institution-layout-v125 {
+        padding: 20px 22px;
+        gap: 12px;
+    }
+
+    .about-institution-hero-v125 {
+        padding-bottom: 11px;
+        gap: 22px;
+    }
+
+    .about-institution-hero-v125 h2 {
+        font-size: 29px;
+    }
+
+    .about-institution-hero-v125 p {
+        font-size: 12px;
+        line-height: 1.45;
+    }
+
+    .about-institution-grid-v125 {
+        gap: 10px;
+    }
+
+    .about-institution-card-v125 {
+        padding: 16px 15px;
+        border-radius: 18px;
+    }
+
+    .about-institution-icon-v125 {
+        width: 34px;
+        height: 34px;
+        margin-bottom: 10px;
+    }
+
+    .about-institution-card-v125 h3 {
+        margin-bottom: 7px;
+        font-size: 17px;
+    }
+
+    .about-institution-card-v125 p {
+        font-size: 10.5px;
+        line-height: 1.42;
+    }
+
+    .about-institution-footer-v125 {
+        padding: 9px 12px;
+    }
+
+    .about-institution-footer-v125 strong {
+        font-size: 12px;
+    }
+
+    .about-institution-footer-v125 p {
+        font-size: 10px;
+    }
+}
+
+/* Tablet ve mobil */
+@media (max-width: 1000px) {
+    .about-tabs-nav-v116 {
+        display: flex !important;
+    }
+
+    .about-tab-button-institution-v125 {
+        min-width: 215px;
+    }
+
+    .about-institution-layout-v125 {
+        height: auto;
+
+        padding: 22px 18px;
+    }
+
+    .about-institution-hero-v125 {
+        grid-template-columns: 1fr;
+        gap: 12px;
+    }
+
+    .about-institution-grid-v125 {
+        grid-template-columns:
+            repeat(2, minmax(0, 1fr));
+    }
+
+    .about-institution-footer-v125 {
+        grid-template-columns: 1fr;
+        gap: 8px;
+    }
+}
+
+@media (max-width: 600px) {
+    .about-institution-grid-v125 {
+        grid-template-columns: 1fr;
+    }
+}
+
+
+/* =========================================================
+   V126 - SAĞLIK KURUMU HAKKINDA / FOTOĞRAF GALERİSİ
+   ========================================================= */
+
+.about-institution-layout-v126 {
+    width: 100%;
+    height: 100%;
+    min-height: 0;
+
+    padding: 24px 26px;
+
+    display: grid;
+    grid-template-rows: auto minmax(0, 1fr) auto;
+    gap: 15px;
+
+    border: 1px solid #d7e7ef;
+    border-radius: 28px;
+
+    background:
+        linear-gradient(
+            145deg,
+            rgba(255,255,255,.985),
+            rgba(241,249,253,.97)
+        );
+
+    box-shadow:
+        0 18px 44px rgba(18,55,80,.08);
+}
+
+.about-institution-hero-v126 {
+    display: grid;
+    grid-template-columns:
+        minmax(400px, .9fr)
+        minmax(520px, 1.1fr);
+
+    gap: 32px;
+    align-items: end;
+
+    padding-bottom: 13px;
+
+    border-bottom:
+        1px solid rgba(185,214,228,.70);
+}
+
+.about-institution-hero-v126 h2 {
+    margin: 0;
+
+    color: #103852;
+
+    font-size:
+        clamp(31px, 2.45vw, 45px);
+
+    line-height: 1.02;
+    letter-spacing: -.04em;
+}
+
+.about-institution-hero-v126 p {
+    margin: 0;
+
+    color: #5d7b90;
+
+    font-size:
+        clamp(13.5px, .92vw, 15.5px);
+
+    line-height: 1.58;
+}
+
+/* Galeri: 1 büyük + sağda 4 küçük fotoğraf */
+.about-institution-gallery-v126 {
+    min-height: 0;
+
+    display: grid;
+
+    grid-template-columns:
+        minmax(0, 1.18fr)
+        repeat(2, minmax(0, .91fr));
+
+    grid-template-rows:
+        repeat(2, minmax(0, 1fr));
+
+    gap: 12px;
+}
+
+.institution-photo-v126 {
+    position: relative;
+    overflow: hidden;
+
+    min-height: 0;
+    margin: 0;
+
+    border: 1px solid rgba(197,220,232,.88);
+    border-radius: 20px;
+
+    background: #dce8ee;
+
+    box-shadow:
+        0 12px 28px rgba(16,54,78,.075);
+
+    transition:
+        transform .25s ease,
+        box-shadow .25s ease,
+        border-color .25s ease;
+}
+
+.institution-photo-v126:hover {
+    z-index: 3;
+
+    transform: translateY(-4px);
+
+    border-color: #a9d5e7;
+
+    box-shadow:
+        0 20px 38px rgba(16,66,94,.14);
+}
+
+.institution-photo-main-v126 {
+    grid-row: 1 / 3;
+}
+
+.institution-photo-v126 img {
+    width: 100%;
+    height: 100%;
+
+    display: block;
+
+    object-fit: cover;
+    object-position: center;
+
+    transition:
+        transform .55s
+        cubic-bezier(.2,.7,.2,1);
+}
+
+.institution-photo-v126:hover img {
+    transform: scale(1.045);
+}
+
+.institution-photo-v126::after {
+    content: "";
+
+    position: absolute;
+    inset: 0;
+
+    background:
+        linear-gradient(
+            180deg,
+            transparent 42%,
+            rgba(7,28,42,.72) 100%
+        );
+
+    pointer-events: none;
+}
+
+.institution-photo-v126 figcaption {
+    position: absolute;
+    z-index: 2;
+
+    left: 17px;
+    right: 17px;
+    bottom: 14px;
+
+    display: grid;
+    gap: 3px;
+
+    color: #fff;
+}
+
+.institution-photo-main-v126 figcaption {
+    left: 22px;
+    right: 22px;
+    bottom: 20px;
+
+    gap: 5px;
+}
+
+.institution-photo-v126 figcaption > span {
+    color: #83dcff;
+
+    font-size: 8.5px;
+    font-weight: 950;
+    letter-spacing: .16em;
+}
+
+.institution-photo-v126 figcaption strong {
+    font-size: 14px;
+    line-height: 1.15;
+}
+
+.institution-photo-main-v126 figcaption strong {
+    font-size:
+        clamp(22px, 1.5vw, 28px);
+}
+
+.institution-photo-v126 figcaption small {
+    max-width: 94%;
+
+    color: rgba(255,255,255,.82);
+
+    font-size: 9.5px;
+    line-height: 1.35;
+}
+
+.institution-photo-main-v126 figcaption small {
+    font-size: 11.5px;
+}
+
+/* Alt bilgi şeridi */
+.about-institution-points-v126 {
+    display: grid;
+    grid-template-columns:
+        repeat(4, minmax(0, 1fr));
+
+    gap: 9px;
+}
+
+.about-institution-points-v126 article {
+    min-height: 54px;
+    padding: 8px 10px;
+
+    display: grid;
+    grid-template-columns: 34px 1fr;
+    gap: 9px;
+    align-items: center;
+
+    border: 1px solid #dbe9f1;
+    border-radius: 14px;
+
+    background:
+        linear-gradient(
+            180deg,
+            #fbfdff,
+            #f2f8fb
+        );
+}
+
+.about-institution-points-v126 article > span {
+    width: 34px;
+    height: 34px;
+
+    display: grid;
+    place-items: center;
+
+    border-radius: 10px;
+
+    background:
+        linear-gradient(
+            135deg,
+            #1689ca,
+            #22ace7
+        );
+
+    color: #fff;
+
+    font-size: 10px;
+    font-weight: 950;
+
+    box-shadow:
+        0 8px 18px rgba(20,138,202,.17);
+}
+
+.about-institution-points-v126 article > div {
+    display: grid;
+    gap: 2px;
+}
+
+.about-institution-points-v126 small {
+    color: #1687c8;
+
+    font-size: 7.5px;
+    font-weight: 950;
+    letter-spacing: .12em;
+}
+
+.about-institution-points-v126 strong {
+    color: #153e58;
+
+    font-size: 10.5px;
+    line-height: 1.15;
+}
+
+/* Kısa laptop */
+@media (min-width: 1001px) and (max-height: 850px) {
+    .about-institution-layout-v126 {
+        padding: 17px 19px;
+        gap: 9px;
+    }
+
+    .about-institution-hero-v126 {
+        padding-bottom: 8px;
+        gap: 22px;
+    }
+
+    .about-institution-hero-v126 h2 {
+        font-size: 27px;
+    }
+
+    .about-institution-hero-v126 p {
+        font-size: 11px;
+        line-height: 1.4;
+    }
+
+    .about-institution-gallery-v126 {
+        gap: 8px;
+    }
+
+    .institution-photo-v126 {
+        border-radius: 16px;
+    }
+
+    .institution-photo-v126 figcaption {
+        left: 12px;
+        right: 12px;
+        bottom: 10px;
+    }
+
+    .institution-photo-v126 figcaption strong {
+        font-size: 11px;
+    }
+
+    .institution-photo-v126 figcaption small {
+        font-size: 8px;
+    }
+
+    .institution-photo-main-v126 figcaption strong {
+        font-size: 19px;
+    }
+
+    .institution-photo-main-v126 figcaption small {
+        font-size: 9px;
+    }
+
+    .about-institution-points-v126 article {
+        min-height: 44px;
+        padding: 5px 7px;
+
+        grid-template-columns: 28px 1fr;
+    }
+
+    .about-institution-points-v126 article > span {
+        width: 28px;
+        height: 28px;
+
+        border-radius: 8px;
+    }
+
+    .about-institution-points-v126 small {
+        font-size: 6.5px;
+    }
+
+    .about-institution-points-v126 strong {
+        font-size: 8.7px;
+    }
+}
+
+/* Tablet / mobil */
+@media (max-width: 1000px) {
+    .about-institution-layout-v126 {
+        height: auto;
+
+        padding: 20px 16px;
+    }
+
+    .about-institution-hero-v126 {
+        grid-template-columns: 1fr;
+        gap: 11px;
+    }
+
+    .about-institution-gallery-v126 {
+        grid-template-columns:
+            repeat(2, minmax(0, 1fr));
+
+        grid-template-rows: auto;
+    }
+
+    .institution-photo-main-v126 {
+        grid-column: 1 / -1;
+        grid-row: auto;
+
+        min-height: 330px;
+    }
+
+    .institution-photo-v126:not(.institution-photo-main-v126) {
+        min-height: 210px;
+    }
+
+    .about-institution-points-v126 {
+        grid-template-columns:
+            repeat(2, minmax(0, 1fr));
+    }
+}
+
+@media (max-width: 600px) {
+    .about-institution-gallery-v126,
+    .about-institution-points-v126 {
+        grid-template-columns: 1fr;
+    }
+
+    .institution-photo-main-v126,
+    .institution-photo-v126:not(.institution-photo-main-v126) {
+        min-height: 220px;
+    }
+}
+
+
+/* =========================================================
+   V127 - FİTOTERAPİ - BESLENME
+   Ankilozan Spondilit + Romatoid Artrit için 10 destek kartı
+   ========================================================= */
+
+.phytotherapy-page-v127 {
+    min-height: 100vh !important;
+    overflow-y: auto !important;
+
+    background:
+        radial-gradient(circle at 88% 4%, rgba(91,181,115,.17), transparent 24%),
+        radial-gradient(circle at 8% 12%, rgba(44,157,199,.11), transparent 22%),
+        linear-gradient(180deg, #f7fcfa 0%, #eef8f5 100%) !important;
+}
+
+.phyto-page-shell-v127 {
+    width: min(1540px, calc(100% - 44px));
+    margin: 0 auto;
+    padding: 118px 0 36px;
+}
+
+.phyto-hero-v127 {
+    position: relative;
+    overflow: hidden;
+
+    padding: 30px 34px;
+
+    display: grid;
+    grid-template-columns: minmax(620px, 1.35fr) minmax(360px, .65fr);
+    gap: 28px;
+    align-items: center;
+
+    border: 1px solid #d6e9df;
+    border-radius: 30px;
+
+    background:
+        radial-gradient(circle at 88% 36%, rgba(100,199,120,.16), transparent 26%),
+        linear-gradient(135deg, rgba(255,255,255,.98), rgba(240,249,244,.97));
+
+    box-shadow: 0 20px 48px rgba(28,81,63,.08);
+}
+
+.phyto-kicker-v127 {
+    display: block;
+    margin-bottom: 7px;
+
+    color: #218a5b;
+
+    font-size: 11px;
+    font-weight: 950;
+    letter-spacing: .20em;
+}
+
+.phyto-hero-copy-v127 h1 {
+    margin: 0 0 14px;
+
+    color: #123b43;
+
+    font-size: clamp(42px, 4.5vw, 70px);
+    line-height: .98;
+    letter-spacing: -.05em;
+}
+
+.phyto-hero-copy-v127 > p {
+    max-width: 900px;
+    margin: 0;
+
+    color: #567582;
+
+    font-size: clamp(14px, 1vw, 17px);
+    line-height: 1.62;
+}
+
+.phyto-disease-chips-v127 {
+    margin-top: 18px;
+
+    display: flex;
+    flex-wrap: wrap;
+    gap: 9px;
+}
+
+.phyto-disease-chips-v127 span {
+    padding: 8px 12px;
+
+    border: 1px solid #d3e7dd;
+    border-radius: 999px;
+
+    background: rgba(255,255,255,.78);
+
+    color: #185b50;
+
+    font-size: 11px;
+    font-weight: 850;
+}
+
+.phyto-hero-note-v127 {
+    padding: 20px 21px;
+
+    display: grid;
+    grid-template-columns: 48px 1fr;
+    gap: 14px;
+
+    border: 1px solid rgba(86,174,112,.22);
+    border-radius: 21px;
+
+    background:
+        linear-gradient(135deg, #e7f7ec, #f4fbf6);
+}
+
+.phyto-leaf-icon-v127 {
+    width: 48px;
+    height: 48px;
+
+    display: grid;
+    place-items: center;
+
+    border-radius: 15px;
+
+    background: #d1f0da;
+
+    font-size: 24px;
+}
+
+.phyto-hero-note-v127 strong {
+    color: #175942;
+
+    font-size: 14px;
+}
+
+.phyto-hero-note-v127 p {
+    margin: 5px 0 0;
+
+    color: #5b786d;
+
+    font-size: 11.5px;
+    line-height: 1.48;
+}
+
+.phyto-guide-v127 {
+    margin-top: 18px;
+}
+
+.phyto-guide-head-v127 {
+    margin-bottom: 13px;
+    padding: 13px 16px;
+
+    display: grid;
+    grid-template-columns: 1fr auto;
+    gap: 20px;
+    align-items: end;
+
+    border: 1px solid #d8e9e0;
+    border-radius: 18px;
+
+    background: rgba(255,255,255,.78);
+}
+
+.phyto-guide-head-v127 span {
+    display: block;
+    margin-bottom: 3px;
+
+    color: #28935f;
+
+    font-size: 9px;
+    font-weight: 950;
+    letter-spacing: .16em;
+}
+
+.phyto-guide-head-v127 h2 {
+    margin: 0;
+
+    color: #163e47;
+
+    font-size: 24px;
+    line-height: 1.1;
+}
+
+.phyto-guide-head-v127 p {
+    width: min(500px, 100%);
+    margin: 0;
+
+    color: #71888d;
+
+    font-size: 11px;
+    line-height: 1.4;
+    text-align: right;
+}
+
+.phyto-grid-v127 {
+    display: grid;
+    grid-template-columns: repeat(5, minmax(0, 1fr));
+    gap: 13px;
+}
+
+.phyto-card-v127 {
+    position: relative;
+    overflow: hidden;
+
+    min-width: 0;
+
+    border: 1px solid #d7e7df;
+    border-radius: 21px;
+
+    background:
+        linear-gradient(180deg, #fff 0%, #f8fbf9 100%);
+
+    box-shadow: 0 12px 28px rgba(28,80,61,.055);
+
+    transition:
+        transform .24s ease,
+        box-shadow .24s ease,
+        border-color .24s ease;
+}
+
+.phyto-card-v127:hover {
+    transform: translateY(-5px);
+
+    border-color: #afd9c0;
+
+    box-shadow: 0 18px 38px rgba(28,92,65,.11);
+}
+
+.phyto-card-v127 > img {
+    width: 100%;
+    height: 155px;
+
+    display: block;
+
+    object-fit: cover;
+}
+
+.phyto-number-v127 {
+    position: absolute;
+    z-index: 3;
+    left: 12px;
+    top: 12px;
+
+    width: 38px;
+    height: 38px;
+
+    display: grid;
+    place-items: center;
+
+    border-radius: 50%;
+
+    background:
+        linear-gradient(135deg, #238858, #43ad72);
+
+    color: #fff;
+
+    font-size: 12px;
+    font-weight: 950;
+
+    box-shadow:
+        0 8px 18px rgba(26,111,70,.24),
+        0 0 0 4px rgba(255,255,255,.72);
+}
+
+.phyto-card-body-v127 {
+    padding: 15px 15px 17px;
+}
+
+.phyto-card-body-v127 h3 {
+    margin: 0;
+
+    color: #153e49;
+
+    font-size: 17px;
+    line-height: 1.14;
+}
+
+.phyto-card-body-v127 h3 small {
+    display: block;
+    margin-top: 2px;
+
+    color: #54756d;
+
+    font-size: 10px;
+    font-weight: 750;
+}
+
+.phyto-tags-v127 {
+    margin: 10px 0;
+
+    display: flex;
+    gap: 6px;
+}
+
+.phyto-tags-v127 span {
+    min-width: 35px;
+    padding: 5px 8px;
+
+    border-radius: 999px;
+
+    background: #e2f5e8;
+
+    color: #1f7f52;
+
+    font-size: 9px;
+    font-weight: 950;
+    text-align: center;
+}
+
+.phyto-tags-v127 span:first-child {
+    background: #e3f1fb;
+    color: #1b72a5;
+}
+
+.phyto-card-body-v127 p {
+    margin: 0;
+
+    color: #657d82;
+
+    font-size: 10.8px;
+    line-height: 1.48;
+}
+
+.phyto-footer-v127 {
+    margin-top: 15px;
+    padding: 13px 15px;
+
+    display: grid;
+    grid-template-columns: repeat(4, minmax(0, 1fr));
+    gap: 8px;
+
+    border: 1px solid #d6e9df;
+    border-radius: 18px;
+
+    background:
+        linear-gradient(135deg, #edf8f1, #f7fbf8);
+}
+
+.phyto-footer-v127 > div {
+    padding: 7px 9px;
+
+    display: grid;
+    gap: 2px;
+
+    border-right: 1px solid #d9e8df;
+}
+
+.phyto-footer-v127 > div:last-child {
+    border-right: 0;
+}
+
+.phyto-footer-v127 strong {
+    color: #1b6948;
+
+    font-size: 10px;
+}
+
+.phyto-footer-v127 span {
+    color: #71877e;
+
+    font-size: 8.5px;
+    line-height: 1.3;
+}
+
+/* kısa laptop */
+@media (min-width: 1001px) and (max-height: 850px) {
+    .phyto-page-shell-v127 {
+        padding-top: 102px;
+    }
+
+    .phyto-hero-v127 {
+        padding: 20px 24px;
+        border-radius: 24px;
+    }
+
+    .phyto-hero-copy-v127 h1 {
+        font-size: 46px;
+        margin-bottom: 9px;
+    }
+
+    .phyto-hero-copy-v127 > p {
+        font-size: 12.5px;
+        line-height: 1.48;
+    }
+
+    .phyto-disease-chips-v127 {
+        margin-top: 11px;
+    }
+
+    .phyto-hero-note-v127 {
+        padding: 14px;
+    }
+
+    .phyto-guide-v127 {
+        margin-top: 11px;
+    }
+
+    .phyto-guide-head-v127 {
+        margin-bottom: 9px;
+        padding: 9px 12px;
+    }
+
+    .phyto-grid-v127 {
+        gap: 9px;
+    }
+
+    .phyto-card-v127 > img {
+        height: 105px;
+    }
+
+    .phyto-card-body-v127 {
+        padding: 10px 11px 12px;
+    }
+
+    .phyto-card-body-v127 h3 {
+        font-size: 13px;
+    }
+
+    .phyto-tags-v127 {
+        margin: 6px 0;
+    }
+
+    .phyto-card-body-v127 p {
+        font-size: 8.7px;
+        line-height: 1.34;
+    }
+
+    .phyto-number-v127 {
+        width: 30px;
+        height: 30px;
+        font-size: 10px;
+    }
+
+    .phyto-footer-v127 {
+        margin-top: 9px;
+        padding: 8px 10px;
+    }
+}
+
+/* tablet */
+@media (max-width: 1100px) {
+    .phyto-hero-v127 {
+        grid-template-columns: 1fr;
+    }
+
+    .phyto-grid-v127 {
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+    }
+
+    .phyto-footer-v127 {
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+    }
+
+    .phyto-footer-v127 > div:nth-child(2) {
+        border-right: 0;
+    }
+}
+
+/* mobil */
+@media (max-width: 640px) {
+    .phyto-page-shell-v127 {
+        width: min(100% - 20px, 620px);
+        padding: 104px 0 26px;
+    }
+
+    .phyto-hero-v127 {
+        padding: 21px 18px;
+        border-radius: 22px;
+    }
+
+    .phyto-hero-copy-v127 h1 {
+        font-size: 38px;
+    }
+
+    .phyto-guide-head-v127 {
+        grid-template-columns: 1fr;
+    }
+
+    .phyto-guide-head-v127 p {
+        width: 100%;
+        text-align: left;
+    }
+
+    .phyto-grid-v127,
+    .phyto-footer-v127 {
+        grid-template-columns: 1fr;
+    }
+
+    .phyto-card-v127 > img {
+        height: 220px;
+    }
+
+    .phyto-footer-v127 > div {
+        border-right: 0;
+        border-bottom: 1px solid #d9e8df;
+    }
+
+    .phyto-footer-v127 > div:last-child {
+        border-bottom: 0;
+    }
+}
+
+
+/* =========================================================
+   V128 - FİTOTERAPİ ARKA PLANDA KALAN ESKİ YAZILARI TEMİZLE
+   ========================================================= */
+
+/* Eski Fitoterapi sayfasından kalan katmanlar hiçbir şekilde görünmesin */
+.phytotherapy-page-v127 > .treatment-detail-bg-v71,
+.phytotherapy-page-v127 > .treatment-detail-soft-v71,
+.phytotherapy-page-v127 > .treatment-detail-content-v71,
+.phytotherapy-page-v127 .treatment-detail-copy-v71,
+.phytotherapy-page-v127 .treatment-topic-visual-v71,
+.phytotherapy-page-v127 .phytotherapy-visual-v71 {
+    display: none !important;
+    visibility: hidden !important;
+    opacity: 0 !important;
+    pointer-events: none !important;
+}
+
+/* Eski dekoratif/pseudo yazı veya katmanları da iptal et */
+.phytotherapy-page-v127::before,
+.phytotherapy-page-v127::after,
+.phytotherapy-page-v127 .phyto-page-shell-v127::before,
+.phytotherapy-page-v127 .phyto-page-shell-v127::after {
+    content: none !important;
+    display: none !important;
+}
+
+/* Yeni sayfa, arkasındaki hiçbir içeriği göstermeyecek kadar opak */
+.phytotherapy-page-v127 {
+    position: relative !important;
+    isolation: isolate !important;
+
+    background:
+        radial-gradient(
+            circle at 88% 4%,
+            rgba(91,181,115,.16),
+            transparent 24%
+        ),
+        radial-gradient(
+            circle at 8% 12%,
+            rgba(44,157,199,.10),
+            transparent 22%
+        ),
+        linear-gradient(
+            180deg,
+            #f7fcfa 0%,
+            #eef8f5 100%
+        ) !important;
+}
+
+.phytotherapy-page-v127 .phyto-page-shell-v127 {
+    position: relative !important;
+    z-index: 5 !important;
+
+    background:
+        linear-gradient(
+            180deg,
+            rgba(247,252,250,.99),
+            rgba(238,248,245,.99)
+        ) !important;
+}
+
+/* Üst ana bölüm ve kartlar tamamen opak olsun */
+.phytotherapy-page-v127 .phyto-hero-v127,
+.phytotherapy-page-v127 .phyto-guide-head-v127,
+.phytotherapy-page-v127 .phyto-card-v127,
+.phytotherapy-page-v127 .phyto-footer-v127 {
+    opacity: 1 !important;
+    backdrop-filter: none !important;
+    -webkit-backdrop-filter: none !important;
+}
+
+/* Eski sayfa içeriği aktif sınıf alsa bile yeni fitoterapi üzerinde görünmesin */
+body.treatment-detail-open-v71
+.phytotherapy-page-v127.active
+~ .treatment-detail-view-v71:not(.phytotherapy-page-v127) {
+    z-index: 0;
+}
+
+.phytotherapy-page-v127.active {
+    z-index: 10 !important;
+}
+
+
+/* =========================================================
+   V129 - FİTOTERAPİ ÜST PANEL DÜZELTME
+   Global "header" stil çakışması tamamen kaldırıldı.
+   ========================================================= */
+
+.phytotherapy-page-v127 .phyto-hero-v127 {
+    position: relative !important;
+    inset: auto !important;
+
+    width: 100% !important;
+    height: auto !important;
+    min-height: 0 !important;
+
+    margin: 0 !important;
+    padding: 30px 34px !important;
+
+    display: grid !important;
+    grid-template-columns:
+        minmax(620px, 1.35fr)
+        minmax(360px, .65fr) !important;
+
+    gap: 28px !important;
+    align-items: center !important;
+
+    border: 1px solid #d6e9df !important;
+    border-radius: 30px !important;
+
+    background:
+        radial-gradient(
+            circle at 88% 36%,
+            rgba(100,199,120,.16),
+            transparent 26%
+        ),
+        linear-gradient(
+            135deg,
+            #ffffff 0%,
+            #f0f9f4 100%
+        ) !important;
+
+    box-shadow:
+        0 20px 48px rgba(28,81,63,.08) !important;
+
+    backdrop-filter: none !important;
+    -webkit-backdrop-filter: none !important;
+
+    z-index: 1 !important;
+}
+
+/* Koyu modda bile bu bölüm açık ve okunaklı kalsın */
+body.dark-mode
+.phytotherapy-page-v127
+.phyto-hero-v127 {
+    background:
+        radial-gradient(
+            circle at 88% 36%,
+            rgba(100,199,120,.15),
+            transparent 26%
+        ),
+        linear-gradient(
+            135deg,
+            #ffffff 0%,
+            #f0f9f4 100%
+        ) !important;
+
+    color: #123b43 !important;
+}
+
+.phytotherapy-page-v127
+.phyto-hero-copy-v127 {
+    min-width: 0 !important;
+}
+
+.phytotherapy-page-v127
+.phyto-hero-copy-v127 h1 {
+    display: block !important;
+
+    margin: 0 0 14px !important;
+
+    color: #123b43 !important;
+
+    font-size: clamp(42px, 4.5vw, 70px) !important;
+    line-height: .98 !important;
+    letter-spacing: -.05em !important;
+
+    opacity: 1 !important;
+    visibility: visible !important;
+}
+
+.phytotherapy-page-v127
+.phyto-kicker-v127 {
+    color: #218a5b !important;
+}
+
+.phytotherapy-page-v127
+.phyto-hero-copy-v127 > p {
+    color: #567582 !important;
+    opacity: 1 !important;
+}
+
+/* Küçük ekran */
+@media (max-width: 1100px) {
+    .phytotherapy-page-v127 .phyto-hero-v127 {
+        grid-template-columns: 1fr !important;
+    }
+}
+
+@media (max-width: 640px) {
+    .phytotherapy-page-v127 .phyto-hero-v127 {
+        padding: 21px 18px !important;
+        border-radius: 22px !important;
+    }
+
+    .phytotherapy-page-v127
+    .phyto-hero-copy-v127 h1 {
+        font-size: 38px !important;
     }
 }

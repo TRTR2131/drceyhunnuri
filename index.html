@@ -31,7 +31,7 @@
 
     <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Crect width='64' height='64' rx='16' fill='%231783c2'/%3E%3Cpath d='M28 14h8v14h14v8H36v14h-8V36H14v-8h14z' fill='white'/%3E%3C/svg%3E">
 
-    <link rel="stylesheet" href="style.css?v=101">
+    <link rel="stylesheet" href="style.css?v=129">
 </head>
 
 <!-- BUILD: V51 / CACHE-BUST -->
@@ -119,13 +119,24 @@
             <div class="hero-slide-v86 doctor-slide-v86 is-active" data-hero-slide="doctor">
                 <img
                     class="doctor-slide-image-v86"
-                    src="./hero-ceyhun_V94.png?v=101"
+                    src="./hero-ceyhun_V94.png?v=129"
                     alt="Dr. Ceyhun Nuri masasında"
                 >
                 <div class="doctor-slide-overlay-v86"></div>
 
                 <div class="doctor-slide-bottom-v86">
-                    <span class="doctor-slide-tag-v86">Genel</span>
+                    <button
+                        type="button"
+                        class="doctor-slide-tag-v86 doctor-general-button-v124 active"
+                        id="heroGeneralButtonV124"
+                        aria-controls="generalFeaturedPageV124"
+                        aria-label="Öne Çıkanlar bölümünü aç"
+                        aria-current="page"
+                    >
+                        <span class="general-active-dot-v124" aria-hidden="true"></span>
+                        <span class="general-button-label-v124">Genel</span>
+                        <small>AKTİF</small>
+                    </button>
 
                     <button
                         type="button"
@@ -134,8 +145,7 @@
                         aria-label="Hakkımda sayfasını aç"
                         aria-controls="hakkimdaPage"
                     >
-                        <span class="doctor-about-text-v100">Hakkımda</span>
-                        <span class="doctor-about-arrow-v100" aria-hidden="true">→</span>
+                        Hakkımda
                     </button>
                 </div>
 
@@ -216,7 +226,7 @@
                 aria-hidden="true"
             >
                 <a href="#osteopati" class="treatment-detail-link-v71 modern-menu-row-v81" data-treatment-detail="osteopati"><span class="modern-menu-icon-v81"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M8 12V5a1 1 0 0 1 2 0v5-6a1 1 0 0 1 2 0v6-5a1 1 0 0 1 2 0v6-4a1 1 0 0 1 2 0v6c0 4-2.5 7-6 7h-1c-2.4 0-4.3-1.2-5.6-3L2 15.2a1.5 1.5 0 0 1 2.3-1.9L6 15v-3a1 1 0 0 1 2 0Z"/></svg></span><span class="modern-menu-label-v81">Osteopati</span><span class="modern-menu-chevron-v81">›</span></a>
-                <a href="#fitoterapi" class="treatment-detail-link-v71 modern-menu-row-v81" data-treatment-detail="fitoterapi"><span class="modern-menu-icon-v81"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M20 4c-7 0-12 3-14 8-1 2-1 4-1 6 3-4 6-6 10-8-3 2-6 5-8 9h2c1-3 3-5 5-7 4 0 7-3 6-8Z"/><path d="M4 5c4 0 7 2 8 5-2 0-4 .6-6 2-2-1-3-3-2-7Z"/></svg></span><span class="modern-menu-label-v81">Fitoterapi</span><span class="modern-menu-chevron-v81">›</span></a>
+                <a href="#fitoterapi" class="treatment-detail-link-v71 modern-menu-row-v81" data-treatment-detail="fitoterapi"><span class="modern-menu-icon-v81"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M20 4c-7 0-12 3-14 8-1 2-1 4-1 6 3-4 6-6 10-8-3 2-6 5-8 9h2c1-3 3-5 5-7 4 0 7-3 6-8Z"/><path d="M4 5c4 0 7 2 8 5-2 0-4 .6-6 2-2-1-3-3-2-7Z"/></svg></span><span class="modern-menu-label-v81">Fitoterapi - Beslenme</span><span class="modern-menu-chevron-v81">›</span></a>
                 <a href="#igne" class="treatment-detail-link-v71 modern-menu-row-v81" data-treatment-detail="igne"><span class="modern-menu-icon-v81"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="m14 4 6 6M13 5l6 6M8 10l6 6M6 12l6 6M5 13l6 6-3 3-6-6 3-3Zm10-10 6 6-2 2-6-6 2-2ZM2 22l4-4"/></svg></span><span class="modern-menu-label-v81">İğne</span><span class="modern-menu-chevron-v81">›</span></a>
                 <a href="#hizmetler" class="modern-menu-row-v81"><span class="modern-menu-icon-v81"><svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="9" cy="12" r="5"/><circle cx="16.5" cy="8.5" r="3.5"/><path d="M15 16h5M17.5 13.5v5"/></svg></span><span class="modern-menu-label-v81">Ozon Tedavisi</span><span class="modern-menu-chevron-v81">›</span></a>
                 <a href="#hizmetler" class="modern-menu-row-v81"><span class="modern-menu-icon-v81"><svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="12" r="8"/><path d="M9 10h.01M15 10h.01M9 15c2 1.4 4 1.4 6 0M8 5c2-2 6-2 8 0"/></svg></span><span class="modern-menu-label-v81">Estetiğe Bakış</span><span class="modern-menu-chevron-v81">›</span></a>
@@ -333,6 +343,132 @@
 
         </nav>
 </section>
+
+    <!-- V124: GENEL > ÖNE ÇIKANLAR -->
+    <section
+        class="general-featured-page-v124"
+        id="generalFeaturedPageV124"
+        aria-hidden="true"
+        aria-label="Öne Çıkanlar"
+    >
+        <nav class="general-featured-nav-v124" aria-label="Öne Çıkanlar üst menüsü">
+            <button type="button" id="generalFeaturedHomeButtonV124">
+                Ana Sayfa
+            </button>
+
+            <button
+                type="button"
+                class="active"
+                aria-current="page"
+                disabled
+            >
+                <span class="general-nav-active-dot-v124" aria-hidden="true"></span>
+                Öne Çıkanlar
+            </button>
+
+            <button type="button" id="generalFeaturedTreatmentAreasV124">
+                Tedavi Alanları
+            </button>
+
+            <button type="button" id="generalFeaturedPainV124">
+                Ağrı
+            </button>
+
+            <button type="button" id="generalFeaturedMediaV124">
+                Medya
+            </button>
+        </nav>
+
+        <div class="general-featured-shell-v124">
+            <header class="general-featured-hero-v124">
+                <div>
+                    <span>GENEL</span>
+                    <h1>Öne Çıkanlar</h1>
+                </div>
+
+                <p>
+                    Dr. Ceyhun Nuri, tedavi yaklaşımları ve sitede en çok öne çıkan
+                    içeriklere tek ekrandan hızlı erişim.
+                </p>
+            </header>
+
+            <div class="general-featured-grid-v124">
+
+                <button
+                    type="button"
+                    class="general-feature-card-v124 general-feature-card-primary-v124"
+                    data-general-feature-v124="about"
+                >
+                    <span class="general-feature-index-v124">01</span>
+                    <span class="general-feature-kicker-v124">HEKİM</span>
+                    <strong>Dr. Ceyhun Nuri</strong>
+                    <small>Hakkımda, yaklaşım ve eğitim bilgileri</small>
+                    <i>İncele →</i>
+                </button>
+
+                <button
+                    type="button"
+                    class="general-feature-card-v124"
+                    data-general-feature-v124="osteopati"
+                >
+                    <span class="general-feature-index-v124">02</span>
+                    <span class="general-feature-kicker-v124">TEDAVİ</span>
+                    <strong>Osteopati</strong>
+                    <small>Manuel değerlendirme, egzersizler ve uygulamalar</small>
+                    <i>İncele →</i>
+                </button>
+
+                <button
+                    type="button"
+                    class="general-feature-card-v124"
+                    data-general-feature-v124="fitoterapi"
+                >
+                    <span class="general-feature-index-v124">03</span>
+                    <span class="general-feature-kicker-v124">TEDAVİ</span>
+                    <strong>Fitoterapi - Beslenme</strong>
+                    <small>Bitkisel yaklaşımlar ve kişiye özel değerlendirme</small>
+                    <i>İncele →</i>
+                </button>
+
+                <button
+                    type="button"
+                    class="general-feature-card-v124"
+                    data-general-feature-v124="ankilozan"
+                >
+                    <span class="general-feature-index-v124">04</span>
+                    <span class="general-feature-kicker-v124">ÖNE ÇIKAN KONU</span>
+                    <strong>Ankilozan Spondilit</strong>
+                    <small>Belirtiler, değerlendirme ve sık sorulan sorular</small>
+                    <i>İncele →</i>
+                </button>
+
+                <button
+                    type="button"
+                    class="general-feature-card-v124"
+                    data-general-feature-v124="pain"
+                >
+                    <span class="general-feature-index-v124">05</span>
+                    <span class="general-feature-kicker-v124">DEĞERLENDİRME</span>
+                    <strong>Ağrı Bölgeleri</strong>
+                    <small>Boyun, sırt, bel, omuz, kalça, diz ve diğer bölgeler</small>
+                    <i>İncele →</i>
+                </button>
+
+                <button
+                    type="button"
+                    class="general-feature-card-v124"
+                    data-general-feature-v124="media"
+                >
+                    <span class="general-feature-index-v124">06</span>
+                    <span class="general-feature-kicker-v124">MEDYA</span>
+                    <strong>Medya</strong>
+                    <small>TV programları, YouTube ve sosyal medya içerikleri</small>
+                    <i>İncele →</i>
+                </button>
+
+            </div>
+        </div>
+    </section>
 
     <section
         class="ankilozan-faq-section-v85 ankilozan-page-v87"
@@ -538,7 +674,7 @@
                     aria-hidden="true"
                 >
                     <a href="#osteopati" class="treatment-detail-link-v71" data-treatment-detail="osteopati">Osteopati</a>
-                    <a href="#fitoterapi" class="treatment-detail-link-v71" data-treatment-detail="fitoterapi">Fitoterapi</a>
+                    <a href="#fitoterapi" class="treatment-detail-link-v71" data-treatment-detail="fitoterapi">Fitoterapi - Beslenme</a>
                     <a href="#igne" class="treatment-detail-link-v71" data-treatment-detail="igne">İğne</a>
                     <a href="#hizmetler">Ozon Tedavisi</a>
                     <a href="#hizmetler">Estetiğe Bakış</a>
@@ -663,7 +799,7 @@
 
                 <a class="treatment-card treatment-card-v77 ankilozan-card-link-v87" href="#ankilozan-spondilit" data-disease="ankilozan-spondilit">
                     <div class="treatment-card-image-v77">
-                        <img src="./disease-ankilozan-spondilit-v77.png?v=101" alt="Ankilozan spondilit için omurga ve sakroiliak bölge görseli">
+                        <img src="./disease-ankilozan-spondilit-v77.png?v=129" alt="Ankilozan spondilit için omurga ve sakroiliak bölge görseli">
                     </div>
                     <div class="treatment-card-body-v77">
                         <h3>Ankilozan Spondilit</h3>
@@ -674,7 +810,7 @@
 
                 <a class="treatment-card treatment-card-v77" href="#tedavi-alanlari" data-disease="bas-agrisi-migren">
                     <div class="treatment-card-image-v77">
-                        <img src="./disease-bas-agrisi-migren-v77.png?v=101" alt="Baş ağrısı ve migreni gösteren medikal görsel">
+                        <img src="./disease-bas-agrisi-migren-v77.png?v=129" alt="Baş ağrısı ve migreni gösteren medikal görsel">
                     </div>
                     <div class="treatment-card-body-v77">
                         <h3>Baş Ağrısı ve Migren</h3>
@@ -685,7 +821,7 @@
 
                 <a class="treatment-card treatment-card-v77" href="#tedavi-alanlari" data-disease="bel-sirt-agrisi">
                     <div class="treatment-card-image-v77">
-                        <img src="./disease-bel-sirt-agrisi-v77.png?v=101" alt="Bel ve sırt ağrısını gösteren omurga görseli">
+                        <img src="./disease-bel-sirt-agrisi-v77.png?v=129" alt="Bel ve sırt ağrısını gösteren omurga görseli">
                     </div>
                     <div class="treatment-card-body-v77">
                         <h3>Bel ve Sırt Ağrısı</h3>
@@ -696,7 +832,7 @@
 
                 <a class="treatment-card treatment-card-v77" href="#tedavi-alanlari" data-disease="fibromiyalji">
                     <div class="treatment-card-image-v77">
-                        <img src="./disease-fibromiyalji-v77.png?v=101" alt="Fibromiyaljide yaygın ağrı bölgelerini gösteren medikal görsel">
+                        <img src="./disease-fibromiyalji-v77.png?v=129" alt="Fibromiyaljide yaygın ağrı bölgelerini gösteren medikal görsel">
                     </div>
                     <div class="treatment-card-body-v77">
                         <h3>Fibromiyalji</h3>
@@ -707,7 +843,7 @@
 
                 <a class="treatment-card treatment-card-v77" href="#tedavi-alanlari" data-disease="huzursuz-bacak">
                     <div class="treatment-card-image-v77">
-                        <img src="./disease-huzursuz-bacak-v77.png?v=101" alt="Bacak sinirlerini gösteren medikal görsel">
+                        <img src="./disease-huzursuz-bacak-v77.png?v=129" alt="Bacak sinirlerini gösteren medikal görsel">
                     </div>
                     <div class="treatment-card-body-v77">
                         <h3>Huzursuz Bacak Sendromu</h3>
@@ -718,7 +854,7 @@
 
                 <a class="treatment-card treatment-card-v77" href="#tedavi-alanlari" data-disease="iltihabi-bagirsak">
                     <div class="treatment-card-image-v77">
-                        <img src="./disease-iltihabi-bagirsak-v77.png?v=101" alt="İltihabi bağırsak hastalıklarını temsil eden medikal görsel">
+                        <img src="./disease-iltihabi-bagirsak-v77.png?v=129" alt="İltihabi bağırsak hastalıklarını temsil eden medikal görsel">
                     </div>
                     <div class="treatment-card-body-v77">
                         <h3>İltihabi Bağırsak</h3>
@@ -729,7 +865,7 @@
 
                 <a class="treatment-card treatment-card-v77" href="#tedavi-alanlari" data-disease="kronik-yorgunluk">
                     <div class="treatment-card-image-v77">
-                        <img src="./disease-kronik-yorgunluk-v77.png?v=101" alt="Kronik yorgunluğu temsil eden medikal görsel">
+                        <img src="./disease-kronik-yorgunluk-v77.png?v=129" alt="Kronik yorgunluğu temsil eden medikal görsel">
                     </div>
                     <div class="treatment-card-body-v77">
                         <h3>Kronik Yorgunluk</h3>
@@ -740,7 +876,7 @@
 
                 <a class="treatment-card treatment-card-v77" href="#tedavi-alanlari" data-disease="romatoid-artrit">
                     <div class="treatment-card-image-v77">
-                        <img src="./disease-romatoid-artrit-v77.png?v=101" alt="Romatoid artritte el ve el bileği eklemlerini gösteren medikal görsel">
+                        <img src="./disease-romatoid-artrit-v77.png?v=129" alt="Romatoid artritte el ve el bileği eklemlerini gösteren medikal görsel">
                     </div>
                     <div class="treatment-card-body-v77">
                         <h3>Romatoid Artrit</h3>
@@ -748,167 +884,6 @@
                         <span>Detayları Gör ↗</span>
                     </div>
                 </a>
-
-                <a
-                    class="treatment-card treatment-card-v77 treatment-card-v98"
-                    href="#igne"
-                    data-disease="sirt-agrisi-epte"
-                    data-treatment-detail="igne"
-                >
-                    <div class="treatment-card-image-v77">
-                        <img src="./treatment-sirt-epte-v98.png?v=101" alt="Sırt ağrısı, omurga ve kas dokularını gösteren klinik görsel">
-                    </div>
-                    <div class="treatment-card-body-v77">
-                        <h3>Sırt Ağrısı: EPTE ve Egzersizler</h3>
-                        <p>Sırt ağrısında nedenler, belirtiler, EPTE yaklaşımı ve kişiye uygun egzersiz seçeneklerinin değerlendirilmesi.</p>
-                        <span>Detayları Gör ↗</span>
-                    </div>
-                </a>
-
-                <a
-                    class="treatment-card treatment-card-v77 treatment-card-v98"
-                    href="#igne"
-                    data-disease="koksidini-impar-blok"
-                    data-treatment-detail="igne"
-                >
-                    <div class="treatment-card-image-v77">
-                        <img src="./treatment-koksidini-impar-v98.png?v=101" alt="Kuyruk sokumu ağrısı ve koksidiniyi gösteren klinik görsel">
-                    </div>
-                    <div class="treatment-card-body-v77">
-                        <h3>Kuyruk Sokumu Ağrısı ve İmpar Blok</h3>
-                        <p>Koksidini olarak bilinen kuyruk sokumu ağrısında nedenler ve seçilmiş hastalarda girişimsel seçeneklerin değerlendirilmesi.</p>
-                        <span>Detayları Gör ↗</span>
-                    </div>
-                </a>
-
-                <a
-                    class="treatment-card treatment-card-v77 treatment-card-v98"
-                    href="#igne"
-                    data-disease="sanakin"
-                    data-treatment-detail="igne"
-                >
-                    <div class="treatment-card-image-v77">
-                        <img src="./treatment-sanakin-v98.png?v=101" alt="Sanakin tedavisini temsil eden enjeksiyon uygulaması görseli">
-                    </div>
-                    <div class="treatment-card-body-v77">
-                        <h3>Sanakin Tedavisi</h3>
-                        <p>Seçilmiş kas-iskelet sistemi sorunlarında hekim değerlendirmesi sonrasında planlanabilen biyolojik tedavi yaklaşımı.</p>
-                        <span>Detayları Gör ↗</span>
-                    </div>
-                </a>
-
-                <a
-                    class="treatment-card treatment-card-v77 treatment-card-v98"
-                    href="#igne"
-                    data-disease="diz-kireclenmesi-igne"
-                    data-treatment-detail="igne"
-                >
-                    <div class="treatment-card-image-v77">
-                        <img src="./treatment-diz-kireclenmesi-v98.png?v=101" alt="Diz eklemine uygulanan enjeksiyonu gösteren medikal görsel">
-                    </div>
-                    <div class="treatment-card-body-v77">
-                        <h3>Ameliyatsız Diz Kireçlenmesi Tedavisi</h3>
-                        <p>Diz kireçlenmesinde uygun hastalarda enjeksiyon seçenekleri ve eklem fonksiyonunu destekleyen yaklaşımların değerlendirilmesi.</p>
-                        <span>Detayları Gör ↗</span>
-                    </div>
-                </a>
-
-                <a
-                    class="treatment-card treatment-card-v77 treatment-card-v98"
-                    href="#igne"
-                    data-disease="rejeneratif-ortobiyolojik"
-                    data-treatment-detail="igne"
-                >
-                    <div class="treatment-card-image-v77">
-                        <img src="./treatment-rejeneratif-ortobiyolojik-v98.png?v=101" alt="Rejeneratif tıp ve ortobiyolojik enjeksiyon uygulamasını gösteren görsel">
-                    </div>
-                    <div class="treatment-card-body-v77">
-                        <h3>Rejeneratif Tıp ve Ortobiyolojik Tedaviler</h3>
-                        <p>PRP, biyolojik ürünler ve benzeri rejeneratif yaklaşımların hasta ve hedef dokuya göre değerlendirilmesi.</p>
-                        <span>Detayları Gör ↗</span>
-                    </div>
-                </a>
-
-                <a
-                    class="treatment-card treatment-card-v77 treatment-card-v98"
-                    href="#igne"
-                    data-disease="prp"
-                    data-treatment-detail="igne"
-                >
-                    <div class="treatment-card-image-v77">
-                        <img src="./treatment-prp-v98.png?v=101" alt="PRP enjeksiyonu ve kan tüpünü gösteren klinik görsel">
-                    </div>
-                    <div class="treatment-card-body-v77">
-                        <h3>PRP Tedavisi</h3>
-                        <p>Kişinin kendi kanından hazırlanan trombositten zengin plazmanın uygun bölgeye uygulanmasını içeren rejeneratif yaklaşım.</p>
-                        <span>Detayları Gör ↗</span>
-                    </div>
-                </a>
-
-                <a
-                    class="treatment-card treatment-card-v77 treatment-card-v98"
-                    href="#igne"
-                    data-disease="kok-hucre"
-                    data-treatment-detail="igne"
-                >
-                    <div class="treatment-card-image-v77">
-                        <img src="./treatment-kok-hucre-v98.png?v=101" alt="Kök hücre ve diz eklemi uygulamasını temsil eden klinik görsel">
-                    </div>
-                    <div class="treatment-card-body-v77">
-                        <h3>Kök Hücre Tedavisi</h3>
-                        <p>Seçilmiş hastalarda değerlendirilebilen ileri rejeneratif tıp seçeneklerinden biri; uygunluk klinik değerlendirme ile belirlenir.</p>
-                        <span>Detayları Gör ↗</span>
-                    </div>
-                </a>
-
-                <a
-                    class="treatment-card treatment-card-v77 treatment-card-v98"
-                    href="#igne"
-                    data-disease="ultrason-esliginde-igne"
-                    data-treatment-detail="igne"
-                >
-                    <div class="treatment-card-image-v77">
-                        <img src="./treatment-ultrason-igne-v98.png?v=101" alt="Ultrason eşliğinde diz enjeksiyonunu gösteren klinik görsel">
-                    </div>
-                    <div class="treatment-card-body-v77">
-                        <h3>Ultrason Eşliğinde İğne Tedavileri</h3>
-                        <p>Hedef dokunun görüntülenmesine yardımcı olmak amacıyla bazı enjeksiyonların ultrason eşliğinde planlanması.</p>
-                        <span>Detayları Gör ↗</span>
-                    </div>
-                </a>
-
-                <a
-                    class="treatment-card treatment-card-v77 treatment-card-v98"
-                    href="#igne"
-                    data-disease="magellan-prp"
-                    data-treatment-detail="igne"
-                >
-                    <div class="treatment-card-image-v77">
-                        <img src="./treatment-magellan-prp-v98.png?v=101" alt="PRP hazırlama sistemi ve uygulamasını gösteren klinik görsel">
-                    </div>
-                    <div class="treatment-card-body-v77">
-                        <h3>Magellan PRP</h3>
-                        <p>PRP hazırlama süreçlerinde kullanılan ileri sistemlerden biri; kullanım kararı hekim değerlendirmesi ile verilir.</p>
-                        <span>Detayları Gör ↗</span>
-                    </div>
-                </a>
-
-                <a
-                    class="treatment-card treatment-card-v77 treatment-card-v98"
-                    href="#igne"
-                    data-disease="hyaluronik-asit"
-                    data-treatment-detail="igne"
-                >
-                    <div class="treatment-card-image-v77">
-                        <img src="./treatment-hyaluronik-asit-v98.png?v=101" alt="Diz eklemine hyaluronik asit enjeksiyonunu gösteren medikal görsel">
-                    </div>
-                    <div class="treatment-card-body-v77">
-                        <h3>Hyaluronik Asit Enjeksiyonu</h3>
-                        <p>Özellikle eklem kaynaklı yakınmalarda hareket konforunu desteklemek amacıyla değerlendirilebilen enjeksiyon uygulaması.</p>
-                        <span>Detayları Gör ↗</span>
-                    </div>
-                </a>
-
 </div>
         </div>
 
@@ -947,7 +922,7 @@
                     aria-hidden="true"
                 >
                     <a href="#osteopati" class="treatment-detail-link-v71" data-treatment-detail="osteopati">Osteopati</a>
-                    <a href="#fitoterapi" class="treatment-detail-link-v71" data-treatment-detail="fitoterapi">Fitoterapi</a>
+                    <a href="#fitoterapi" class="treatment-detail-link-v71" data-treatment-detail="fitoterapi">Fitoterapi - Beslenme</a>
                     <a href="#igne" class="treatment-detail-link-v71" data-treatment-detail="igne">İğne</a>
                     <a href="#hizmetler">Ozon Tedavisi</a>
                     <a href="#hizmetler">Estetiğe Bakış</a>
@@ -1069,7 +1044,7 @@
 
                 <a class="pain-card pain-card-v76" href="#agri" data-pain="diz">
                     <div class="pain-card-image-v76">
-                        <img src="./pain-diz-v76.png?v=101" alt="Diz ağrısını gösteren medikal görsel">
+                        <img src="./pain-diz-v76.png?v=129" alt="Diz ağrısını gösteren medikal görsel">
                     </div>
                     <div class="pain-card-body-v76">
                         <h3>Diz Ağrısı</h3>
@@ -1080,7 +1055,7 @@
 
                 <a class="pain-card pain-card-v76" href="#agri" data-pain="ayak-ayak-bilegi">
                     <div class="pain-card-image-v76">
-                        <img src="./pain-ayak-bilegi-v76.png?v=101" alt="Ayak ve ayak bileği ağrısını gösteren medikal görsel">
+                        <img src="./pain-ayak-bilegi-v76.png?v=129" alt="Ayak ve ayak bileği ağrısını gösteren medikal görsel">
                     </div>
                     <div class="pain-card-body-v76">
                         <h3>Ayak - Ayak Bileği Ağrısı</h3>
@@ -1091,7 +1066,7 @@
 
                 <a class="pain-card pain-card-v76" href="#agri" data-pain="kalca">
                     <div class="pain-card-image-v76">
-                        <img src="./pain-kalca-v76.png?v=101" alt="Kalça ağrısını gösteren medikal görsel">
+                        <img src="./pain-kalca-v76.png?v=129" alt="Kalça ağrısını gösteren medikal görsel">
                     </div>
                     <div class="pain-card-body-v76">
                         <h3>Kalça Ağrısı</h3>
@@ -1102,7 +1077,7 @@
 
                 <a class="pain-card pain-card-v76" href="#agri" data-pain="dirsek">
                     <div class="pain-card-image-v76">
-                        <img src="./pain-dirsek-v76.png?v=101" alt="Dirsek ağrısını gösteren medikal görsel">
+                        <img src="./pain-dirsek-v76.png?v=129" alt="Dirsek ağrısını gösteren medikal görsel">
                     </div>
                     <div class="pain-card-body-v76">
                         <h3>Dirsek Ağrısı</h3>
@@ -1113,7 +1088,7 @@
 
                 <a class="pain-card pain-card-v76" href="#agri" data-pain="omuz">
                     <div class="pain-card-image-v76">
-                        <img src="./pain-omuz-v76.png?v=101" alt="Omuz ağrısını gösteren medikal görsel">
+                        <img src="./pain-omuz-v76.png?v=129" alt="Omuz ağrısını gösteren medikal görsel">
                     </div>
                     <div class="pain-card-body-v76">
                         <h3>Omuz Ağrısı</h3>
@@ -1124,7 +1099,7 @@
 
                 <a class="pain-card pain-card-v76" href="#agri" data-pain="el-bilegi">
                     <div class="pain-card-image-v76">
-                        <img src="./pain-el-bilegi-v76.png?v=101" alt="El bileği ağrısını gösteren medikal görsel">
+                        <img src="./pain-el-bilegi-v76.png?v=129" alt="El bileği ağrısını gösteren medikal görsel">
                     </div>
                     <div class="pain-card-body-v76">
                         <h3>El Bileği Ağrısı</h3>
@@ -1419,7 +1394,7 @@
                     </button>
 
                     <button type="button" class="treatment-top-option-v74" data-treatment-top="fitoterapi">
-                        Fitoterapi
+                        Fitoterapi - Beslenme
                     </button>
 
                     <button type="button" class="treatment-top-option-v74" data-treatment-top="igne">
@@ -1503,9 +1478,9 @@
 
         </nav>
 
-<!-- OSTEOPATİ - V99 GELİŞTİRİLMİŞ İÇERİK -->
-        <article
-            class="treatment-detail-view-v71 osteopathy-view-v71 osteopathy-page-v95 osteopathy-page-v99"
+<!-- OSTEOPATİ - V105 GELİŞMİŞ ÖZEL SAYFA -->
+<article
+            class="treatment-detail-view-v71 osteopathy-view-v71 osteopathy-page-v95"
             data-treatment-detail-view="osteopati"
         >
 
@@ -1513,47 +1488,24 @@
                 <div class="osteopathy-page-hero-inner-v95">
                     <span class="osteopathy-page-kicker-v95">TEDAVİ</span>
 
-                    <h1>Osteopati</h1>
+                    <h1>
+                        Osteopati
+                    </h1>
 
                     <p>
                         Kas-iskelet sistemi, eklem hareketliliği, postür ve hareket
                         paternlerinin bütüncül değerlendirilmesine yönelik manuel yaklaşım.
                     </p>
-
-                    <div class="osteopathy-quick-actions-v99" aria-label="Osteopati hızlı geçişler">
-                        <button type="button" data-osteopathy-target="osteopathyExerciseV99">
-                            ▶ Egzersiz Videoları
-                        </button>
-
-                        <button type="button" class="osteopathy-pain-button-v99" id="osteopathyPainButtonV99">
-                            Ağrı Alanları →
-                        </button>
-
-                        <button type="button" data-osteopathy-target="osteopathyPhysicalV99">
-                            Fiziksel Uygulama
-                        </button>
-
-                        <button type="button" data-osteopathy-target="osteopathyChiroV99">
-                            Kayropraktik
-                        </button>
-
-                        <button type="button" data-osteopathy-target="osteopathyFaqV99">
-                            Soru & Cevap
-                        </button>
-
-                        <button type="button" data-osteopathy-target="osteopathyArticlesV99">
-                            Akademik Makaleler
-                        </button>
-                    </div>
                 </div>
 
                 <div class="osteopathy-page-plus-v95 osteopathy-page-plus-left-v95">✦</div>
                 <div class="osteopathy-page-plus-v95 osteopathy-page-plus-right-v95">+</div>
             </div>
 
-            <div class="osteopathy-page-content-v95 osteopathy-page-content-v99">
+            <div class="osteopathy-page-content-v95">
 
                 <div class="osteopathy-page-grid-v95">
+
                     <article class="osteopathy-info-card-v95">
                         <div class="osteopathy-info-icon-v95">O</div>
                         <h3>Osteopati Nedir?</h3>
@@ -1586,267 +1538,456 @@
                         </p>
                         <span>Bilgilendirme ↗</span>
                     </article>
+
                 </div>
 
-                <!-- EGZERSİZ VİDEOLARI -->
-                <section class="osteopathy-section-v99" id="osteopathyExerciseV99">
-                    <div class="osteopathy-section-heading-v99">
-                        <span>HAREKET & EGZERSİZ</span>
-                        <h2>Osteopati Egzersiz Videoları</h2>
-                        <p>
-                            Muayene ve kişisel ihtiyaçlara göre seçilebilecek hareket
-                            çalışmalarını anlatan video alanı. İlgili videolar Dr. Ceyhun Nuri
-                            YouTube kanalına bağlanabilir.
-                        </p>
-                    </div>
+                <!-- V105: OSTEOPATİ SAYFA İÇİ HIZLI SEKME MENÜSÜ -->
+                <nav class="osteo-local-nav-v105" aria-label="Osteopati sayfa içi menüsü">
+                    <button type="button" data-osteo-scroll="osteoExercisesV105">
+                        Egzersiz Videoları
+                    </button>
+                    <button type="button" data-osteo-scroll="osteoPhysicalV105">
+                        Fiziksel Uygulamalar
+                    </button>
+                    <button type="button" id="osteoGlobalPainButtonV107">
+                        Ağrı
+                    </button>
+                    <button type="button" data-osteo-scroll="osteoChiroV105">
+                        Kayropraktik
+                    </button>
+                    <button type="button" data-osteo-scroll="osteoFaqV105">
+                        Soru & Cevap
+                    </button>
+                    <button type="button" data-osteo-scroll="osteoArticlesV105">
+                        Akademik Makaleler
+                    </button>
+                    <button type="button" data-osteo-scroll="osteoSportsV105">
+                        Spor Yaralanmaları
+                    </button>
+                </nav>
 
-                    <div class="osteopathy-video-grid-v99">
-                        <a class="osteopathy-video-card-v99"
-                           href="https://www.youtube.com/@DrCeyhunNuri"
-                           target="_blank" rel="noopener noreferrer">
-                            <img src="./disease-bel-sirt-agrisi-v77.png?v=101"
-                                 alt="Bel ve omurga egzersizleri için video görseli">
-                            <span class="osteopathy-play-v99">▶</span>
-                            <div>
-                                <small>EGZERSİZ VİDEOSU</small>
-                                <h3>Bel ve Omurga Mobilitesi</h3>
-                                <p>Omurga hareketliliği ve günlük mobiliteye yönelik egzersiz içerikleri.</p>
+                <div class="osteo-workspace-v105">
+
+                    <main class="osteo-main-v105">
+
+                        <!-- EGZERSİZ VİDEOLARI -->
+                        <section class="osteo-section-v105" id="osteoExercisesV105">
+                            <div class="osteo-section-heading-v105">
+                                <span>HAREKET & EGZERSİZ</span>
+                                <h2>Egzersiz Videoları</h2>
+                                <p>
+                                    Osteopatik değerlendirme sonrasında uygun görülebilecek
+                                    hareket ve egzersiz başlıklarını tek yerde topluyoruz.
+                                </p>
                             </div>
-                        </a>
 
-                        <a class="osteopathy-video-card-v99"
-                           href="https://www.youtube.com/@DrCeyhunNuri"
-                           target="_blank" rel="noopener noreferrer">
-                            <img src="./pain-omuz-v76.png?v=101"
-                                 alt="Boyun ve omuz egzersizleri için video görseli">
-                            <span class="osteopathy-play-v99">▶</span>
-                            <div>
-                                <small>EGZERSİZ VİDEOSU</small>
-                                <h3>Boyun ve Omuz Mobilitesi</h3>
-                                <p>Boyun-omuz çevresi hareket açıklığına yönelik temel egzersiz içerikleri.</p>
+                            <div class="osteo-video-grid-v105">
+                                <article class="osteo-video-card-v105">
+                                    <div class="osteo-video-cover-v105">
+                                        <span class="osteo-video-play-v105">▶</span>
+                                        <span class="osteo-video-badge-v105">VİDEO</span>
+                                    </div>
+                                    <div class="osteo-video-body-v105">
+                                        <h3>Boyun ve Omuz Mobilitesi</h3>
+                                        <p>Boyun, skapula ve omuz kuşağı için kontrollü hareket örnekleri.</p>
+                                    </div>
+                                </article>
+
+                                <article class="osteo-video-card-v105">
+                                    <div class="osteo-video-cover-v105 osteo-video-cover-alt-v105">
+                                        <span class="osteo-video-play-v105">▶</span>
+                                        <span class="osteo-video-badge-v105">VİDEO</span>
+                                    </div>
+                                    <div class="osteo-video-body-v105">
+                                        <h3>Torakal Omurga Hareketleri</h3>
+                                        <p>Sırt bölgesi hareket açıklığı ve postür farkındalığına yönelik egzersizler.</p>
+                                    </div>
+                                </article>
+
+                                <article class="osteo-video-card-v105">
+                                    <div class="osteo-video-cover-v105 osteo-video-cover-third-v105">
+                                        <span class="osteo-video-play-v105">▶</span>
+                                        <span class="osteo-video-badge-v105">VİDEO</span>
+                                    </div>
+                                    <div class="osteo-video-body-v105">
+                                        <h3>Kalça ve Pelvis Mobilitesi</h3>
+                                        <p>Kalça çevresi, pelvis ve bel hareket zincirini destekleyen kontrollü çalışmalar.</p>
+                                    </div>
+                                </article>
                             </div>
-                        </a>
-
-                        <a class="osteopathy-video-card-v99"
-                           href="https://www.youtube.com/@DrCeyhunNuri"
-                           target="_blank" rel="noopener noreferrer">
-                            <img src="./pain-kalca-v76.png?v=101"
-                                 alt="Kalça ve pelvis egzersizleri için video görseli">
-                            <span class="osteopathy-play-v99">▶</span>
-                            <div>
-                                <small>EGZERSİZ VİDEOSU</small>
-                                <h3>Kalça ve Pelvis Hareketleri</h3>
-                                <p>Kalça, pelvis ve alt ekstremite hareket kontrolüne yönelik egzersiz içerikleri.</p>
+                        </section>
+<!-- KAYROPRAKTİK -->
+                        <section class="osteo-section-v105" id="osteoChiroV105">
+                            <div class="osteo-section-heading-v105">
+                                <span>MANUEL YAKLAŞIMLAR</span>
+                                <h2>Kayropraktik Uygulamalar</h2>
+                                <p>
+                                    Omurga ve eklem hareketliliğine yönelik manuel teknikler,
+                                    kişinin muayene bulgularına ve uygunluğuna göre değerlendirilir.
+                                </p>
                             </div>
-                        </a>
-                    </div>
-                </section>
 
-                <!-- FİZİKSEL UYGULAMA -->
-                <section class="osteopathy-section-v99 osteopathy-split-v99" id="osteopathyPhysicalV99">
-                    <div class="osteopathy-split-copy-v99">
-                        <span>FİZİKSEL UYGULAMA</span>
-                        <h2>Manuel Değerlendirme ve Uygulamalar</h2>
-                        <p>
-                            Osteopatik değerlendirmede hareket açıklığı, postür, eklem
-                            hareketliliği ve yumuşak doku ilişkileri birlikte ele alınabilir.
-                            Uygulama biçimi kişinin muayene bulgularına göre seçilir.
-                        </p>
+                            <div class="osteo-chiro-video-card-v108">
+                                <div class="osteo-chiro-video-v108">
+                                    <video
+                                        autoplay
+                                        muted
+                                        loop
+                                        playsinline
+                                        preload="metadata"
+                                        aria-label="Kayropraktik uygulama videosu"
+                                    >
+                                        <source src="./kayropraktik-uygulama-v108.mp4" type="video/mp4">
+                                    </video>
 
-                        <div class="osteopathy-mini-points-v99">
-                            <div><strong>01</strong><span>Eklem hareketliliğinin değerlendirilmesi</span></div>
-                            <div><strong>02</strong><span>Yumuşak doku ve kas gerginliklerinin incelenmesi</span></div>
-                            <div><strong>03</strong><span>Postür ve hareket paternlerinin değerlendirilmesi</span></div>
+                                    <div class="osteo-chiro-video-badge-v108">
+                                        KAYROPRAKTİK UYGULAMA
+                                    </div>
+                                </div>
+
+                                <div class="osteo-chiro-video-copy-v108">
+                                    <h3>Kayropraktik Uygulama Videosu</h3>
+                                    <p>
+                                        Omurga ve eklem hareketliliğine yönelik manuel uygulama örneği.
+                                        Uygulanacak teknikler kişinin muayene bulgularına göre belirlenir.
+                                    </p>
+
+                                    <div class="osteo-chiro-tags-v108">
+                                        <span>Omurga Mobilizasyonu</span>
+                                        <span>Eklem Hareketliliği</span>
+                                        <span>Postür & Hareket Zinciri</span>
+                                    </div>
+                                </div>
+                            </div>
+                        </section>
+
+                        <!-- SORU CEVAP -->
+                        <section class="osteo-section-v105" id="osteoFaqV105">
+                            <div class="osteo-section-heading-v105">
+                                <span>MERAK EDİLENLER</span>
+                                <h2>Osteopati Soru & Cevap</h2>
+                            </div>
+
+                            <div class="osteo-faq-v105">
+                                <article class="osteo-faq-item-v105">
+                                    <button type="button" aria-expanded="false">
+                                        Osteopati nedir?
+                                        <span>+</span>
+                                    </button>
+                                    <div class="osteo-faq-answer-v105">
+                                        <p>Osteopati; kas-iskelet sistemi, eklem hareketliliği, postür ve hareket ilişkilerini manuel değerlendirme içinde ele alan bir yaklaşımdır.</p>
+                                    </div>
+                                </article>
+
+                                <article class="osteo-faq-item-v105">
+                                    <button type="button" aria-expanded="false">
+                                        İlk değerlendirmede nelere bakılır?
+                                        <span>+</span>
+                                    </button>
+                                    <div class="osteo-faq-answer-v105">
+                                        <p>Şikâyetin öyküsü, hareket kapasitesi, postür, eklem hareketliliği ve kişinin genel sağlık durumu birlikte değerlendirilir.</p>
+                                    </div>
+                                </article>
+
+                                <article class="osteo-faq-item-v105">
+                                    <button type="button" aria-expanded="false">
+                                        Egzersiz programı herkeste aynı mıdır?
+                                        <span>+</span>
+                                    </button>
+                                    <div class="osteo-faq-answer-v105">
+                                        <p>Hayır. Egzersiz ve hareket önerileri kişinin muayene bulgularına, kapasitesine ve hedeflerine göre kişiselleştirilir.</p>
+                                    </div>
+                                </article>
+
+                                <article class="osteo-faq-item-v105">
+                                    <button type="button" aria-expanded="false">
+                                        Manuel uygulamalar kimlere uygun değildir?
+                                        <span>+</span>
+                                    </button>
+                                    <div class="osteo-faq-answer-v105">
+                                        <p>Uygunluk; kişinin tıbbi öyküsü, mevcut hastalıkları ve muayene bulgularına göre belirlenir. Gerektiğinde ilgili uzmanlık alanlarına yönlendirme yapılır.</p>
+                                    </div>
+                                </article>
+                            </div>
+                        </section>
+
+                        <!-- AKADEMİK MAKALELER -->
+                        <section class="osteo-section-v105" id="osteoArticlesV105">
+                            <div class="osteo-section-heading-v105">
+                                <span>BİLİMSEL İÇERİK</span>
+                                <h2>Osteopati ile İlgili Akademik Makaleler</h2>
+                                <p>
+                                    Bilimsel yayınlar ve kaynaklar için düzenli güncellenebilen bir arşiv alanı.
+                                </p>
+                            </div>
+
+                            <div class="osteo-article-grid-v105">
+                                <article>
+                                    <span class="osteo-article-type-v105">DERLEME</span>
+                                    <h3>Osteopatik Manuel Yaklaşımlar</h3>
+                                    <p>Kas-iskelet sistemi ve manuel tedavi literatürüne yönelik akademik kaynak alanı.</p>
+                                    <span class="osteo-article-link-v105">Kaynak eklenecek ↗</span>
+                                </article>
+                                <article>
+                                    <span class="osteo-article-type-v105">ARAŞTIRMA</span>
+                                    <h3>Postür ve Hareket Biyomekaniği</h3>
+                                    <p>Postür, eklem hareketi ve fonksiyon ilişkisini inceleyen çalışmalar için bölüm.</p>
+                                    <span class="osteo-article-link-v105">Kaynak eklenecek ↗</span>
+                                </article>
+                                <article>
+                                    <span class="osteo-article-type-v105">SPOR</span>
+                                    <h3>Sporcularda Manuel Yaklaşımlar</h3>
+                                    <p>Sporcularda hareket kapasitesi ve yaralanma sonrası değerlendirme literatürü.</p>
+                                    <span class="osteo-article-link-v105">Kaynak eklenecek ↗</span>
+                                </article>
+                            </div>
+                        </section>
+
+                        <!-- SPOR YARALANMALARI -->
+                        <section class="osteo-section-v105" id="osteoSportsV105">
+                            <div class="osteo-section-heading-v105">
+                                <span>SPOR & HAREKET</span>
+                                <h2>Spor Yaralanmaları</h2>
+                                <p>
+                                    Sporcularda ağrı, hareket kısıtlılığı ve yüklenme sonrası oluşan
+                                    fonksiyonel sorunların bütüncül değerlendirilmesi.
+                                </p>
+                            </div>
+
+                            <div class="osteo-sports-grid-v105">
+                                <article><span>01</span><strong>Ayak Bileği</strong><small>Burkulma sonrası hareket ve yük aktarımı</small></article>
+                                <article><span>02</span><strong>Diz</strong><small>Koşu, sıçrama ve aşırı yüklenme sorunları</small></article>
+                                <article><span>03</span><strong>Kalça & Pelvis</strong><small>Spor performansında hareket zinciri</small></article>
+                                <article><span>04</span><strong>Omuz</strong><small>Atış ve baş üstü sporlarında hareket kontrolü</small></article>
+                            </div>
+                        </section>
+
+                    </main>
+
+                    <!-- SAĞ TARAF: FİZİKSEL UYGULAMALAR -->
+                    <aside class="osteo-sidebar-v105" id="osteoPhysicalV105">
+                        <div class="osteo-sidebar-card-v105">
+                            <span class="osteo-sidebar-kicker-v105">FİZİKSEL UYGULAMALAR</span>
+                            <h2>Uygulama Alanları</h2>
+                            <p>
+                                Muayene sonrasında kişiye göre seçilebilecek manuel ve
+                                hareket temelli uygulama başlıkları.
+                            </p>
+
+                            <div class="osteo-physical-list-v105">
+                                <div><span>01</span><strong>Manuel Terapi</strong></div>
+                                <div><span>02</span><strong>Eklem Mobilizasyonu</strong></div>
+                                <div><span>03</span><strong>Miyofasyal Gevşetme</strong></div>
+                                <div><span>04</span><strong>Postür Analizi</strong></div>
+                                <div><span>05</span><strong>Hareket Analizi</strong></div>
+                                <div><span>06</span><strong>Solunum & Diyafram</strong></div>
+                                <div><span>07</span><strong>Yumuşak Doku Teknikleri</strong></div>
+                            </div>
                         </div>
-                    </div>
+                    </aside>
 
-                    <div class="osteopathy-split-image-v99">
-                        <img src="./osteopathy-physical-v99.png?v=101"
-                             alt="Klinik ortamda manuel fiziksel uygulama">
-                    </div>
-                </section>
-
-                <!-- KAYROPRAKTİK -->
-                <section class="osteopathy-section-v99 osteopathy-chiro-v99" id="osteopathyChiroV99">
-                    <div class="osteopathy-section-heading-v99">
-                        <span>KAYROPRAKTİK / MANUEL UYGULAMALAR</span>
-                        <h2>Kayropraktik Uygulamalar</h2>
-                        <p>
-                            Kayropraktik ve osteopati farklı disiplinlerdir. Uygun manuel
-                            yaklaşım; şikâyet, muayene bulguları ve güvenlik değerlendirmesi
-                            dikkate alınarak seçilmelidir.
-                        </p>
-                    </div>
-
-                    <div class="osteopathy-chiro-layout-v99">
-                        <div class="osteopathy-chiro-image-v99">
-                            <img src="./osteopathy-chiropractic-v99.png?v=101"
-                                 alt="Boyun ve omuz bölgesinde manuel uygulama">
-                        </div>
-
-                        <div class="osteopathy-chiro-cards-v99">
-                            <article>
-                                <span>01</span>
-                                <h3>Omurga Mobilizasyonu</h3>
-                                <p>Hareket kısıtlılığı bulunan segmentlerin klinik değerlendirmesi sonrası planlanan manuel yaklaşım.</p>
-                            </article>
-                            <article>
-                                <span>02</span>
-                                <h3>Eklem Manipülasyonu</h3>
-                                <p>Uygun hastalarda ve gerekli güvenlik değerlendirmeleri sonrasında düşünülebilen manuel teknikler.</p>
-                            </article>
-                            <article>
-                                <span>03</span>
-                                <h3>Postür ve Hareket Analizi</h3>
-                                <p>Günlük hareket alışkanlıkları ve yüklenme paternlerinin değerlendirilmesi.</p>
-                            </article>
-                        </div>
-                    </div>
-                </section>
-
-                <!-- SORU CEVAP -->
-                <section class="osteopathy-section-v99" id="osteopathyFaqV99">
-                    <div class="osteopathy-section-heading-v99">
-                        <span>SIK SORULAN SORULAR</span>
-                        <h2>Osteopati Hakkında Soru & Cevap</h2>
-                    </div>
-
-                    <div class="osteopathy-faq-v99">
-                        <details open>
-                            <summary>Osteopati hangi şikâyetlerde değerlendirilebilir?</summary>
-                            <p>Kas-iskelet sistemi ağrıları, hareket kısıtlılığı, postür ve fonksiyonla ilişkili yakınmaların değerlendirilmesinde kullanılabilir. Uygunluk muayene ile belirlenir.</p>
-                        </details>
-
-                        <details>
-                            <summary>Kaç seans gerekir?</summary>
-                            <p>Tek bir standart seans sayısı yoktur. Şikâyetin süresi, muayene bulguları, kişinin genel durumu ve uygulamaya verdiği yanıt dikkate alınır.</p>
-                        </details>
-
-                        <details>
-                            <summary>Osteopati ağrılı bir uygulama mıdır?</summary>
-                            <p>Kullanılan tekniğe göre hissedilen basınç değişebilir. Bazı kişilerde uygulama sonrasında kısa süreli hassasiyet görülebilir.</p>
-                        </details>
-
-                        <details>
-                            <summary>Herkese uygulanabilir mi?</summary>
-                            <p>Hayır. Bazı hastalıklar, akut travmalar veya diğer klinik durumlarda manuel uygulamalar uygun olmayabilir. Ön değerlendirme bu nedenle önemlidir.</p>
-                        </details>
-
-                        <details>
-                            <summary>Egzersiz neden osteopatiyle birlikte önerilebilir?</summary>
-                            <p>Egzersiz; hareket kontrolü, kuvvet, esneklik ve günlük fonksiyonun sürdürülmesine destek olmak amacıyla kişiye özel olarak planlanabilir.</p>
-                        </details>
-                    </div>
-                </section>
-
-                <!-- AKADEMİK MAKALELER -->
-                <section class="osteopathy-section-v99" id="osteopathyArticlesV99">
-                    <div class="osteopathy-section-heading-v99">
-                        <span>BİLİMSEL KAYNAKLAR</span>
-                        <h2>Osteopati ile İlgili Akademik Makaleler</h2>
-                        <p>
-                            Osteopatik manipülatif tedaviye ilişkin seçilmiş bilimsel yayınlar.
-                            Kanıt düzeyi; incelenen bölge, hastalık ve çalışmanın yöntemine göre değişebilir.
-                        </p>
-                    </div>
-
-                    <div class="osteopathy-article-grid-v99">
-                        <a href="https://pubmed.ncbi.nlm.nih.gov/41975930/"
-                           target="_blank" rel="noopener noreferrer">
-                            <small>2026 · SYSTEMATIC & UMBRELLA REVIEW</small>
-                            <h3>Osteopathy for Musculoskeletal Pain: A Systematic and Umbrella Review of Effectiveness and Safety</h3>
-                            <p>Kas-iskelet sistemi ağrılarında osteopatiye ilişkin randomize çalışmaların ve önceki derlemelerin değerlendirilmesi.</p>
-                            <span>PubMed'de Gör ↗</span>
-                        </a>
-
-                        <a href="https://pubmed.ncbi.nlm.nih.gov/35414546/"
-                           target="_blank" rel="noopener noreferrer">
-                            <small>2022 · OVERVIEW OF SYSTEMATIC REVIEWS</small>
-                            <h3>Efficacy and Safety of Osteopathic Manipulative Treatment</h3>
-                            <p>OMT'nin etkinlik ve güvenliğine ilişkin sistematik derlemeleri toplu olarak inceleyen çalışma.</p>
-                            <span>PubMed'de Gör ↗</span>
-                        </a>
-
-                        <a href="https://pubmed.ncbi.nlm.nih.gov/38197301/"
-                           target="_blank" rel="noopener noreferrer">
-                            <small>2024 · RANDOMIZED CONTROLLED TRIAL</small>
-                            <h3>Effects of Osteopathic Manipulative Treatment on Chronic Low Back Pain</h3>
-                            <p>Kronik bel ağrısında ağrı ve fonksiyon sonuçlarını değerlendiren randomize kontrollü çalışma.</p>
-                            <span>PubMed'de Gör ↗</span>
-                        </a>
-
-                        <a href="https://pubmed.ncbi.nlm.nih.gov/26927908/"
-                           target="_blank" rel="noopener noreferrer">
-                            <small>2016 · RANDOMIZED CONTROLLED TRIAL</small>
-                            <h3>Recovery From Chronic Low Back Pain After Osteopathic Manipulative Treatment</h3>
-                            <p>Kronik bel ağrısında osteopatik manipülatif tedavi sonrası iyileşme sonuçlarını değerlendiren çalışma.</p>
-                            <span>PubMed'de Gör ↗</span>
-                        </a>
-                    </div>
-
-                    <p class="osteopathy-evidence-note-v99">
-                        Bilgilendirme amaçlıdır. Bilimsel yayınlar tek başına kişisel tanı veya
-                        tedavi önerisi oluşturmaz; klinik karar bireysel değerlendirme ile verilmelidir.
-                    </p>
-                </section>
+                </div>
 
             </div>
         </article>
 
-        <!-- FİTOTERAPİ -->
+        <!-- FİTOTERAPİ - BESLENME -->
         <article
-            class="treatment-detail-view-v71 phytotherapy-view-v71"
+            class="treatment-detail-view-v71 phytotherapy-view-v71 phytotherapy-page-v127"
             data-treatment-detail-view="fitoterapi"
         >
-            <div class="treatment-detail-bg-v71"></div>
-            <div class="treatment-detail-soft-v71"></div>
+            <div class="phyto-page-shell-v127">
 
-            <div class="treatment-detail-content-v71">
+                <div class="phyto-hero-v127">
+                    <div class="phyto-hero-copy-v127">
+                        <span class="phyto-kicker-v127">FİTOTERAPİ • BESLENME</span>
+                        <h1>Fitoterapi - Beslenme</h1>
+                        <p>
+                            Ankilozan Spondilit (AS) ve Romatoid Artrit (RA) gibi
+                            inflamatuar romatizmal hastalıklarda; beslenme düzeni ve
+                            bazı bitkisel içerikler, hekim kontrolünde mevcut tedavi
+                            planına destek amacıyla değerlendirilebilir.
+                        </p>
 
-                <div class="treatment-detail-copy-v71">
-                    <span class="treatment-detail-kicker-v71">TEDAVİ</span>
-                    <h1>Fitoterapi</h1>
+                        <div class="phyto-disease-chips-v127">
+                            <span>AS • Ankilozan Spondilit</span>
+                            <span>RA • Romatoid Artrit</span>
+                        </div>
+                    </div>
 
-                    <p class="treatment-detail-lead-v71">
-                        Fitoterapi; bitkisel ürünlerin içerik, doz, kullanım şekli,
-                        olası ilaç etkileşimleri ve kişiye özel riskler açısından
-                        hekim değerlendirmesiyle ele alınmasıdır.
-                    </p>
-
-                    <p>
-                        Kullanılacak ürünün standardizasyonu, güvenilir kaynaktan
-                        temin edilmesi ve mevcut ilaçlarla etkileşiminin
-                        değerlendirilmesi önemlidir.
-                    </p>
-
-                    <p>
-                        Özellikle düzenli ilaç kullananlarda, gebelik-emzirme
-                        döneminde ve karaciğer veya böbrek hastalığı bulunanlarda
-                        bitkisel ürünler hekime danışılmadan kullanılmamalıdır.
-                    </p>
+                    <div class="phyto-hero-note-v127">
+                        <div class="phyto-leaf-icon-v127" aria-hidden="true">🌿</div>
+                        <div>
+                            <strong>Doğal Destek • Bilinçli Kullanım</strong>
+                            <p>
+                                Bitkisel ürünler ilaç değildir ve reçeteli tedavinin
+                                yerine geçmez. İlaç etkileşimleri ve kişisel riskler
+                                açısından hekime danışılmalıdır.
+                            </p>
+                        </div>
+                    </div>
                 </div>
 
-                <div class="treatment-topic-visual-v71 phytotherapy-visual-v71" aria-hidden="true">
-                    <svg viewBox="0 0 520 520" role="img">
-                        <defs>
-                            <linearGradient id="phyLeafV71" x1="0" x2="1">
-                                <stop offset="0%" stop-color="#b8e6a8"/>
-                                <stop offset="100%" stop-color="#4aa66b"/>
-                            </linearGradient>
-                            <linearGradient id="phyBowlV71" x1="0" x2="0" y1="0" y2="1">
-                                <stop offset="0%" stop-color="#efe6cf"/>
-                                <stop offset="100%" stop-color="#c7b28c"/>
-                            </linearGradient>
-                        </defs>
-                        <ellipse cx="260" cy="408" rx="130" ry="36" fill="#173f3c" opacity=".10"/>
-                        <path d="M145 350h230c-8 64-52 102-115 102s-107-38-115-102Z" fill="url(#phyBowlV71)"/>
-                        <path d="M180 338c40-50 91-72 153-65" fill="none" stroke="#80674d" stroke-width="20" stroke-linecap="round"/>
-                        <path d="M232 275c-72-17-109-74-93-145 72 17 109 74 93 145Z" fill="url(#phyLeafV71)"/>
-                        <path d="M279 266c68-40 132-23 171 37-68 40-132 23-171-37Z" fill="url(#phyLeafV71)" opacity=".92"/>
-                        <path d="M260 294c-11-87 19-147 91-181 11 87-19 147-91 181Z" fill="url(#phyLeafV71)" opacity=".82"/>
-                        <path d="M215 234c19-32 45-56 78-74M307 235c25-22 52-36 82-43" fill="none" stroke="#e9ffec" stroke-width="7" stroke-linecap="round" opacity=".7"/>
-                    </svg>
-                </div>
+                <section class="phyto-guide-v127">
+                    <div class="phyto-guide-head-v127">
+                        <div>
+                            <span>10 ÖRNEK</span>
+                            <h2>Bitki ve Beslenme Destekleri</h2>
+                        </div>
+                        <p>
+                            Aşağıdaki içerikler bilgilendirme amaçlıdır. Kanıt düzeyi
+                            ürün ve hastalığa göre değişebilir.
+                        </p>
+                    </div>
+
+                    <div class="phyto-grid-v127">
+
+                        <article class="phyto-card-v127">
+                            <span class="phyto-number-v127">01</span>
+                            <img src="./phyto-zerdecal-v127.jpg?v=129" alt="Zerdeçal ve kurkumin görseli">
+                            <div class="phyto-card-body-v127">
+                                <h3>Zerdeçal <small>(Kurkumin)</small></h3>
+                                <div class="phyto-tags-v127"><span>AS</span><span>RA</span></div>
+                                <p>
+                                    Kurkuminin inflamasyonla ilişkili yollar üzerindeki
+                                    etkileri araştırılmıştır. Özellikle RA'da destekleyici
+                                    kullanım üzerine çalışmalar vardır.
+                                </p>
+                            </div>
+                        </article>
+
+                        <article class="phyto-card-v127">
+                            <span class="phyto-number-v127">02</span>
+                            <img src="./phyto-zencefil-v127.jpg?v=129" alt="Zencefil görseli">
+                            <div class="phyto-card-body-v127">
+                                <h3>Zencefil</h3>
+                                <div class="phyto-tags-v127"><span>AS</span><span>RA</span></div>
+                                <p>
+                                    Gingerol ve benzeri bileşenleri nedeniyle inflamasyon
+                                    ve ağrı mekanizmaları açısından incelenmektedir.
+                                </p>
+                            </div>
+                        </article>
+
+                        <article class="phyto-card-v127">
+                            <span class="phyto-number-v127">03</span>
+                            <img src="./phyto-yesil-cay-v127.jpg?v=129" alt="Yeşil çay görseli">
+                            <div class="phyto-card-body-v127">
+                                <h3>Yeşil Çay <small>(EGCG)</small></h3>
+                                <div class="phyto-tags-v127"><span>AS</span><span>RA</span></div>
+                                <p>
+                                    EGCG güçlü bir polifenoldür. Antioksidan özellikleri
+                                    nedeniyle inflamatuar süreçlerde araştırılmaktadır.
+                                </p>
+                            </div>
+                        </article>
+
+                        <article class="phyto-card-v127">
+                            <span class="phyto-number-v127">04</span>
+                            <img src="./phyto-omega3-v127.jpg?v=129" alt="Omega-3 kaynakları somon, ceviz ve tohumlar">
+                            <div class="phyto-card-body-v127">
+                                <h3>Omega-3 <small>(Balık Yağı)</small></h3>
+                                <div class="phyto-tags-v127"><span>AS</span><span>RA</span></div>
+                                <p>
+                                    Omega-3 yağ asitleri özellikle RA'da ağrı ve sabah
+                                    tutukluğu gibi yakınmalara destek açısından en çok
+                                    araştırılan beslenme bileşenlerindendir.
+                                </p>
+                            </div>
+                        </article>
+
+                        <article class="phyto-card-v127">
+                            <span class="phyto-number-v127">05</span>
+                            <img src="./phyto-boswellia-v127.jpg?v=129" alt="Boswellia akgünlük reçinesi görseli">
+                            <div class="phyto-card-body-v127">
+                                <h3>Boswellia <small>(Akgünlük)</small></h3>
+                                <div class="phyto-tags-v127"><span>AS</span><span>RA</span></div>
+                                <p>
+                                    Boswellik asitler inflamatuar yollar açısından
+                                    araştırılmıştır. Romatizmal hastalıklarda klinik
+                                    kanıt düzeyi sınırlıdır.
+                                </p>
+                            </div>
+                        </article>
+
+                        <article class="phyto-card-v127">
+                            <span class="phyto-number-v127">06</span>
+                            <img src="./phyto-isirgan-v127.jpg?v=129" alt="Isırgan otu görseli">
+                            <div class="phyto-card-body-v127">
+                                <h3>Isırgan Otu</h3>
+                                <div class="phyto-tags-v127"><span>AS</span><span>RA</span></div>
+                                <p>
+                                    Geleneksel kullanımı yaygındır. İnflamasyonla ilişkili
+                                    etkileri araştırılsa da doğrudan AS/RA klinik kanıtı
+                                    sınırlıdır.
+                                </p>
+                            </div>
+                        </article>
+
+                        <article class="phyto-card-v127">
+                            <span class="phyto-number-v127">07</span>
+                            <img src="./phyto-kekik-v127.jpg?v=129" alt="Kekik ve kekik yağı görseli">
+                            <div class="phyto-card-body-v127">
+                                <h3>Kekik</h3>
+                                <div class="phyto-tags-v127"><span>AS</span><span>RA</span></div>
+                                <p>
+                                    Timol ve karvakrol gibi bileşenler içerir. Antioksidan
+                                    özellikleri bilinmekle birlikte romatizmal hastalıklarda
+                                    doğrudan tedavi kanıtı yoktur.
+                                </p>
+                            </div>
+                        </article>
+
+                        <article class="phyto-card-v127">
+                            <span class="phyto-number-v127">08</span>
+                            <img src="./phyto-biberiye-v127.jpg?v=129" alt="Biberiye görseli">
+                            <div class="phyto-card-body-v127">
+                                <h3>Biberiye</h3>
+                                <div class="phyto-tags-v127"><span>AS</span><span>RA</span></div>
+                                <p>
+                                    Rosmarinik asit ve polifenoller açısından zengindir.
+                                    Antioksidan özellikleri nedeniyle destekleyici beslenme
+                                    kapsamında değerlendirilebilir.
+                                </p>
+                            </div>
+                        </article>
+
+                        <article class="phyto-card-v127">
+                            <span class="phyto-number-v127">09</span>
+                            <img src="./phyto-civanpercemi-v127.jpg?v=129" alt="Civanperçemi görseli">
+                            <div class="phyto-card-body-v127">
+                                <h3>Civanperçemi</h3>
+                                <div class="phyto-tags-v127"><span>AS</span><span>RA</span></div>
+                                <p>
+                                    Geleneksel bitkisel kullanımı vardır; ancak AS ve RA
+                                    için doğrudan klinik etkinliği kanıtlanmış değildir.
+                                </p>
+                            </div>
+                        </article>
+
+                        <article class="phyto-card-v127">
+                            <span class="phyto-number-v127">10</span>
+                            <img src="./phyto-sarimsak-v127.jpg?v=129" alt="Sarımsak görseli">
+                            <div class="phyto-card-body-v127">
+                                <h3>Sarımsak</h3>
+                                <div class="phyto-tags-v127"><span>AS</span><span>RA</span></div>
+                                <p>
+                                    Organosülfür bileşenleri ve kardiyometabolik etkileri
+                                    nedeniyle sağlıklı beslenmede değerlidir. RA'da bazı
+                                    küçük çalışmalar da bulunmaktadır.
+                                </p>
+                            </div>
+                        </article>
+
+                    </div>
+                </section>
+
+                <footer class="phyto-footer-v127">
+                    <div><strong>Doğal Destek</strong><span>Kanıta dayalı ve kontrollü kullanım</span></div>
+                    <div><strong>Doğru Beslenme</strong><span>Akdeniz tipi, dengeli beslenme yaklaşımı</span></div>
+                    <div><strong>Kişiye Özel Yaklaşım</strong><span>İlaçlar ve eşlik eden hastalıklar dikkate alınır</span></div>
+                    <div><strong>Önemli</strong><span>Tedaviyi değiştirmeden önce hekiminize danışın</span></div>
+                </footer>
 
             </div>
         </article>
@@ -1866,12 +2007,15 @@
                 </p>
             </div>
 
+            
+                <p class="injection-restore-note-v104">Güncel kart listesi; istenen başlıklar ve görseller korunarak yeniden yüklendi.</p>
+
             <div class="injection-grid-v72 injection-grid-v96">
                 <article class="injection-card-v72 injection-card-v96">
                     <h2>Ozonlu İğne</h2>
 
                     <div class="injection-visual-v72 injection-photo-v79">
-                        <img src="./injection-ozon-v80.png?v=101" alt="Ozonlu iğne uygulamasını temsil eden gerçekçi medikal görsel">
+                        <img src="./injection-ozon-v80.png?v=129" alt="Ozonlu iğne uygulamasını temsil eden gerçekçi medikal görsel">
                     </div>
 
                     <p>
@@ -1882,7 +2026,7 @@
                     <h2>Proloterapi İğnesi</h2>
 
                     <div class="injection-visual-v72 injection-photo-v79">
-                        <img src="./injection-proloterapi-v80.png?v=101" alt="Proloterapi iğnesini temsil eden gerçekçi medikal görsel">
+                        <img src="./injection-proloterapi-v80.png?v=129" alt="Proloterapi iğnesini temsil eden gerçekçi medikal görsel">
                     </div>
 
                     <p>
@@ -1893,7 +2037,7 @@
                     <h2>Nöral Terapi İğnesi</h2>
 
                     <div class="injection-visual-v72 injection-photo-v79">
-                        <img src="./injection-noral-terapi-v80.png?v=101" alt="Nöral terapi iğnesini temsil eden gerçekçi medikal görsel">
+                        <img src="./injection-noral-terapi-v80.png?v=129" alt="Nöral terapi iğnesini temsil eden gerçekçi medikal görsel">
                     </div>
 
                     <p>
@@ -1904,7 +2048,7 @@
                     <h2>NöralPro İğnesi</h2>
 
                     <div class="injection-visual-v72 injection-photo-v79">
-                        <img src="./injection-noralpro-v80.png?v=101" alt="NöralPro iğnesini temsil eden gerçekçi medikal görsel">
+                        <img src="./injection-noralpro-v80.png?v=129" alt="NöralPro iğnesini temsil eden gerçekçi medikal görsel">
                     </div>
 
                     <p>
@@ -1915,7 +2059,7 @@
                     <h2>Sırt Ağrısı, EPTE ve Egzersizler</h2>
 
                     <div class="injection-visual-v72 injection-photo-v79">
-                        <img src="./treatment-sirt-epte-v98.png?v=101" alt="Sırt ağrısını temsil eden medikal görsel">
+                        <img src="./treatment-sirt-epte-v104.png?v=129" alt="Sırt ağrısını temsil eden medikal görsel">
                     </div>
 
                     <p>
@@ -1926,7 +2070,7 @@
                     <h2>Kuyruk Sokumu Ağrısı ve İmpar Blok</h2>
 
                     <div class="injection-visual-v72 injection-photo-v79">
-                        <img src="./treatment-koksidini-impar-v98.png?v=101" alt="Kuyruk sokumu ağrısını temsil eden medikal görsel">
+                        <img src="./treatment-koksidini-impar-v104.png?v=129" alt="Kuyruk sokumu ağrısını temsil eden medikal görsel">
                     </div>
 
                     <p>
@@ -1937,7 +2081,7 @@
                     <h2>Sanakin Tedavisi</h2>
 
                     <div class="injection-visual-v72 injection-photo-v79">
-                        <img src="./treatment-sanakin-v98.png?v=101" alt="Sanakin tedavisini temsil eden medikal görsel">
+                        <img src="./treatment-sanakin-v104.png?v=129" alt="Sanakin tedavisini temsil eden medikal görsel">
                     </div>
 
                     <p>
@@ -1948,7 +2092,7 @@
                     <h2>Ameliyatsız Diz Kireçlenmesi Tedavisi</h2>
 
                     <div class="injection-visual-v72 injection-photo-v79">
-                        <img src="./treatment-diz-kireclenmesi-v98.png?v=101" alt="Diz kireçlenmesini temsil eden medikal görsel">
+                        <img src="./treatment-diz-kireclenmesi-v104.png?v=129" alt="Diz kireçlenmesini temsil eden medikal görsel">
                     </div>
 
                     <p>
@@ -1959,7 +2103,7 @@
                     <h2>Rejeneratif Tıp ve Ortobiyolojik Tedaviler</h2>
 
                     <div class="injection-visual-v72 injection-photo-v79">
-                        <img src="./treatment-rejeneratif-ortobiyolojik-v98.png?v=101" alt="Rejeneratif tıp ve ortobiyolojik tedavileri temsil eden medikal görsel">
+                        <img src="./treatment-rejeneratif-ortobiyolojik-v104.png?v=129" alt="Rejeneratif tıp ve ortobiyolojik tedavileri temsil eden medikal görsel">
                     </div>
 
                     <p>
@@ -1970,7 +2114,7 @@
                     <h2>PRP Tedavisi</h2>
 
                     <div class="injection-visual-v72 injection-photo-v79">
-                        <img src="./treatment-prp-v98.png?v=101" alt="PRP tedavisini temsil eden medikal görsel">
+                        <img src="./treatment-prp-v104.png?v=129" alt="PRP tedavisini temsil eden medikal görsel">
                     </div>
 
                     <p>
@@ -1981,7 +2125,7 @@
                     <h2>Kök Hücre Tedavisi</h2>
 
                     <div class="injection-visual-v72 injection-photo-v79">
-                        <img src="./treatment-kok-hucre-v98.png?v=101" alt="Kök hücre tedavisini temsil eden medikal görsel">
+                        <img src="./treatment-kok-hucre-v104.png?v=129" alt="Kök hücre tedavisini temsil eden medikal görsel">
                     </div>
 
                     <p>
@@ -1992,7 +2136,7 @@
                     <h2>Ultrason Eşliğinde İğne Tedavileri</h2>
 
                     <div class="injection-visual-v72 injection-photo-v79">
-                        <img src="./treatment-ultrason-igne-v98.png?v=101" alt="Ultrason eşliğinde iğne tedavisini temsil eden medikal görsel">
+                        <img src="./treatment-ultrason-igne-v104.png?v=129" alt="Ultrason eşliğinde iğne tedavisini temsil eden medikal görsel">
                     </div>
 
                     <p>
@@ -2003,7 +2147,7 @@
                     <h2>Magellan PRP</h2>
 
                     <div class="injection-visual-v72 injection-photo-v79">
-                        <img src="./treatment-magellan-prp-v98.png?v=101" alt="Magellan PRP tedavisini temsil eden medikal görsel">
+                        <img src="./treatment-magellan-prp-v104.png?v=129" alt="Magellan PRP tedavisini temsil eden medikal görsel">
                     </div>
 
                     <p>
@@ -2014,7 +2158,7 @@
                     <h2>Hyaluronik Asit Enjeksiyonu</h2>
 
                     <div class="injection-visual-v72 injection-photo-v79">
-                        <img src="./treatment-hyaluronik-asit-v98.png?v=101" alt="Hyaluronik asit enjeksiyonunu temsil eden medikal görsel">
+                        <img src="./treatment-hyaluronik-asit-v104.png?v=129" alt="Hyaluronik asit enjeksiyonunu temsil eden medikal görsel">
                     </div>
 
                     <p>
@@ -2025,7 +2169,7 @@
                     <h2>PRGF Tedavisi</h2>
 
                     <div class="injection-visual-v72 injection-photo-v79">
-                        <img src="./injection-proloterapi-v80.png?v=101" alt="PRGF tedavisini temsil eden medikal görsel">
+                        <img src="./treatment-prgf-v104.png?v=129" alt="PRGF tedavisini temsil eden medikal görsel">
                     </div>
 
                     <p>
@@ -2036,7 +2180,7 @@
                     <h2>Alfa-2 Makroglobulin (A2M) Enjeksiyonu</h2>
 
                     <div class="injection-visual-v72 injection-photo-v79">
-                        <img src="./pain-diz-v76.png?v=101" alt="A2M enjeksiyonunu temsil eden medikal görsel">
+                        <img src="./treatment-a2m-v104.png?v=129" alt="A2M enjeksiyonunu temsil eden medikal görsel">
                     </div>
 
                     <p>
@@ -2047,7 +2191,7 @@
                     <h2>Eksozom Tedavisi</h2>
 
                     <div class="injection-visual-v72 injection-photo-v79">
-                        <img src="./serum-c-vitamini-v78.png?v=101" alt="Eksozom tedavisini temsil eden medikal görsel">
+                        <img src="./treatment-eksozom-v104.png?v=129" alt="Eksozom tedavisini temsil eden medikal görsel">
                     </div>
 
                     <p>
@@ -2058,7 +2202,7 @@
                     <h2>Hidrojel Diz Tedavisi – Sıvı Diz Protezi</h2>
 
                     <div class="injection-visual-v72 injection-photo-v79">
-                        <img src="./pain-diz-v76.png?v=101" alt="Hidrojel diz tedavisini temsil eden medikal görsel">
+                        <img src="./treatment-hidrojel-diz-v104.png?v=129" alt="Hidrojel diz tedavisini temsil eden medikal görsel">
                     </div>
 
                     <p>
@@ -2069,7 +2213,7 @@
                     <h2>Fibromiyalji ve Miyofasyal Ağrı</h2>
 
                     <div class="injection-visual-v72 injection-photo-v79">
-                        <img src="./disease-fibromiyalji-v77.png?v=101" alt="Fibromiyalji ve miyofasyal ağrıyı temsil eden medikal görsel">
+                        <img src="./treatment-fibromiyalji-v104.png?v=129" alt="Fibromiyalji ve miyofasyal ağrıyı temsil eden medikal görsel">
                     </div>
 
                     <p>
@@ -2106,7 +2250,7 @@
                     <h2>Ozonlu Serum</h2>
 
                     <div class="serum-visual-v71 serum-photo-v78 ozone-serum-v71">
-                        <img src="./serum-ozon-v78.png?v=101" alt="Ozonlu serum için gerçekçi damar yolu görseli">
+                        <img src="./serum-ozon-v78.png?v=129" alt="Ozonlu serum için gerçekçi damar yolu görseli">
                         <div class="serum-photo-label-v78 serum-photo-label-blue-v78">
                             <strong>OZON</strong>
                             <span>O₃</span>
@@ -2125,7 +2269,7 @@
                     <h2>C Vitamini Serumu</h2>
 
                     <div class="serum-visual-v71 serum-photo-v78 vitamin-c-v71">
-                        <img src="./serum-c-vitamini-v78.png?v=101" alt="C vitamini serumu için gerçekçi damar yolu görseli">
+                        <img src="./serum-c-vitamini-v78.png?v=129" alt="C vitamini serumu için gerçekçi damar yolu görseli">
                         <div class="serum-photo-label-v78 serum-photo-label-gold-v78">
                             <strong>C</strong>
                             <span>VİTAMİNİ</span>
@@ -2145,7 +2289,7 @@
                     <h2>Glutatyon</h2>
 
                     <div class="serum-visual-v71 serum-photo-v78 glutathione-v71">
-                        <img src="./serum-glutatyon-v78.png?v=101" alt="Glutatyon serumu için gerçekçi damar yolu görseli">
+                        <img src="./serum-glutatyon-v78.png?v=129" alt="Glutatyon serumu için gerçekçi damar yolu görseli">
                         <div class="serum-photo-label-v78 serum-photo-label-green-v78">
                             <strong>GLUTATYON</strong>
                         </div>
@@ -2163,7 +2307,7 @@
                     <h2>Major Ozon</h2>
 
                     <div class="serum-visual-v71 serum-photo-v78 major-ozone-v71">
-                        <img src="./serum-major-ozon-v78.png?v=101" alt="Major ozon uygulaması için gerçekçi kan ve ozon sistemi görseli">
+                        <img src="./serum-major-ozon-v78.png?v=129" alt="Major ozon uygulaması için gerçekçi kan ve ozon sistemi görseli">
                         <div class="serum-photo-label-v78 serum-photo-label-red-v78">
                             <strong>MAJOR</strong>
                             <span>OZON</span>
@@ -2270,135 +2414,403 @@
 
         </nav>
 
-        <div class="about-page-content-v47 about-page-content-v61">
+        <div class="about-page-content-v47 about-page-content-v116">
 
-            <div class="about-page-overlay-v60"></div>
+            <div class="about-tabs-shell-v116">
 
-            <div class="about-layout-v61">
-
-                <section class="about-summary-v61">
-                    <span class="about-kicker-v60">HAKKIMDA</span>
-
-                    <h1>Dr. Ceyhun Nuri</h1>
-
-                    <p class="about-lead-v60">
-                        Dr. Ceyhun Nuri, klasik batı tıbbı alanındaki başarılı
-                        çalışmalarından sonra <strong>20 yılını</strong> Doğu Tıbbı,
-                        Osteopati ve Fitoterapi alanına sarf etti.
-                    </p>
-
-                    <p>
-                        Bu tecrübe ve çalışmalarını, sahibi bulunmakta olduğu
-                        <strong>Geleneksel ve Tamamlayıcı Tıp Sağlık Kurumunda</strong>
-                        yürütmektedir.
-                    </p>
-
-                    <p>
-                        Dr. Ceyhun Nuri, hastalıkların tedavisinde
-                        <strong>dört önemli sarsılmaz temel</strong> üzerine yoğunlaşır.
-                        İlk hedef, hastalıklar başlamadan sağlığın korunması için gereken
-                        <strong>protokollerin uygulanmasıdır.</strong>
-                    </p>
-
-                    <p>
-                        İkinci ve belki de en önemli olan ise
-                        <strong>doğru ve isabetli teşhis</strong>.
-                        Hastalığın temelinde yatan nedeni ortaya koymak, tedavi etmenin
-                        en önemli aşamasıdır.
-                    </p>
-
-                    <p>
-                        Bunun için yalnızca doktor olmak değil, aynı zamanda vücudu
-                        doğru okuyabilen bir <strong>“HEKİM”</strong> yaklaşımına sahip
-                        olmak gerekir.
-                    </p>
-                </section>
-
-                <section class="about-education-v61">
-                    <div class="about-education-head-v61">
-                        <span class="about-kicker-v60">DR. CEYHUN NURİ</span>
-                        <h2>Eğitim ve Görevler</h2>
+                <header class="about-tabs-header-v116">
+                    <div class="about-tabs-title-v116">
+                        <span>HAKKIMDA</span>
+                        <h1>Dr. Ceyhun Nuri</h1>
                     </div>
 
-                    <div class="about-education-grid-v61">
+                    <div
+                        class="about-tabs-nav-v116"
+                        role="tablist"
+                        aria-label="Dr. Ceyhun Nuri hakkında bölümler"
+                    >
+                        <button
+                            type="button"
+                            class="about-tab-button-v116 active"
+                            id="aboutTabDoctorV116"
+                            data-about-tab-v116="doctor"
+                            role="tab"
+                            aria-selected="true"
+                            aria-controls="aboutPanelDoctorV116"
+                        >
+                            <span class="about-tab-index-v116">01</span>
+                            Dr. Ceyhun Nuri Hakkında
+                        </button>
 
-                        <article class="about-education-item-v61">
-                            <h3>ANKARA ÜNİVERSİTESİ TIP FAKÜLTESİ</h3>
-                            <p>Mezuniyet</p>
-                        </article>
+                        <button
+                            type="button"
+                            class="about-tab-button-v116"
+                            id="aboutTabTreatmentV116"
+                            data-about-tab-v116="treatment"
+                            role="tab"
+                            aria-selected="false"
+                            aria-controls="aboutPanelTreatmentV116"
+                        >
+                            <span class="about-tab-index-v116">02</span>
+                            Tedavi
+                        </button>
 
-                        <article class="about-education-item-v61">
-                            <h3>YILDIRIM BEYAZIT ÜNİ.</h3>
-                            <p>Proloterapi Eğitimi</p>
-                        </article>
+                        <button
+                            type="button"
+                            class="about-tab-button-v116"
+                            id="aboutTabEducationV116"
+                            data-about-tab-v116="education"
+                            role="tab"
+                            aria-selected="false"
+                            aria-controls="aboutPanelEducationV116"
+                        >
+                            <span class="about-tab-index-v116">03</span>
+                            Eğitim ve Görevler
+                        </button>
 
-                        <article class="about-education-item-v61">
-                            <h3>TAMALAYICI EĞİTİM</h3>
-                            <p>Uygulamalı Kinezyoloji</p>
-                        </article>
-
-                        <article class="about-education-item-v61">
-                            <h3>KAMU HASTANELERİ</h3>
-                            <p>Acil Servis Doktoru</p>
-                        </article>
-
-                        <article class="about-education-item-v61">
-                            <h3>YILDIRIM BEYAZIT ÜNİ.</h3>
-                            <p>Ozon Tedavisi Eğitimi</p>
-                        </article>
-
-                        <article class="about-education-item-v61">
-                            <h3>YILDIRIM BEYAZIT ÜNİ.</h3>
-                            <p>Osteopati Eğitimi</p>
-                        </article>
-
-                        <article class="about-education-item-v61">
-                            <h3>YILDIRIM BEYAZIT ÜNİ.</h3>
-                            <p>Fitoterapi Eğitimi</p>
-                        </article>
-
-                        <article class="about-education-item-v61">
-                            <h3>TAMAMLAYICI EĞİTİM</h3>
-                            <p>Manuel Terapi Eğitimi</p>
-                        </article>
-
-                        <article class="about-education-item-v61">
-                            <h3>GAZİ ÜNİVERSİTESİ</h3>
-                            <p>Akupunktur Eğitimi</p>
-                        </article>
-
-                        <article class="about-education-item-v61">
-                            <h3>YILDIRIM BEYAZIT ÜNİ.</h3>
-                            <p>Hirudo Terapi Eğitimi</p>
-                        </article>
-
-                        <article class="about-education-item-v61">
-                            <h3>GAZİ ÜNİVERSİTESİ</h3>
-                            <p>Auriküler Akupunktur Eğ.</p>
-                        </article>
-
-                        <article class="about-education-item-v61">
-                            <h3>YILDIRIM BEYAZIT ÜNİ.</h3>
-                            <p>Kupa ve Hacamat Eğitimi</p>
-                        </article>
-
-                        <article class="about-education-item-v61">
-                            <h3>GAZİ ÜNİVERSİTESİ</h3>
-                            <p>Mezoterapi Eğitimi</p>
-                        </article>
-
-                        <article class="about-education-item-v61">
-                            <h3>T.C. SAĞLIK BAKANLIĞI</h3>
-                            <p>İlk Uçak Ambulans Ekibi</p>
-                        </article>
-
-                        <article class="about-education-item-v61">
-                            <h3>T.C. SAĞLIK BAKANLIĞI</h3>
-                            <p>Aile Hekimliği Eğitimi</p>
-                        </article>
-
+                        <button
+                            type="button"
+                            class="about-tab-button-v116 about-tab-button-institution-v125"
+                            id="aboutTabInstitutionV125"
+                            data-about-tab-v116="institution"
+                            role="tab"
+                            aria-selected="false"
+                            aria-controls="aboutPanelInstitutionV125"
+                        >
+                            <span class="about-tab-index-v116">04</span>
+                            Sağlık Kurumu Hakkında
+                        </button>
                     </div>
-                </section>
+                </header>
+
+                <div class="about-tabs-stage-v116">
+
+                    <!-- 01 / DR. CEYHUN NURİ HAKKINDA -->
+                    <section
+                        class="about-tab-panel-v116 active"
+                        id="aboutPanelDoctorV116"
+                        data-about-panel-v116="doctor"
+                        role="tabpanel"
+                        aria-labelledby="aboutTabDoctorV116"
+                        aria-hidden="false"
+                    >
+                        <div class="about-doctor-layout-v116">
+
+                            <figure class="about-doctor-photo-v116">
+                                <img
+                                    src="./about-doctor-kimdir-v119.png?v=129"
+                                    alt="Dr. Ceyhun Nuri"
+                                >
+                                <figcaption>
+                                    <span>DR. CEYHUN NURİ</span>
+                                    <strong>Hekim • Osteopati • Fitoterapi</strong>
+                                </figcaption>
+                            </figure>
+
+                            
+                            <article class="about-doctor-copy-v116 about-doctor-copy-v121">
+                                <span class="about-panel-kicker-v116">DR. CEYHUN NURİ KİMDİR?</span>
+                                <h2>Dr. Ceyhun Nuri</h2>
+
+                                <div class="about-doctor-flow-v121">
+                                    <p>
+                                        <strong>Dr. Ceyhun Nuri, klasik batı tıbbı alanındaki başarılı çalışmalarından sonra 20 yılını Doğu Tıbbı, Osteopati, Fitoterapi alanına sarf etti.</strong>
+                                    </p>
+
+                                    <p>
+                                        <strong>Bu tecrübe ve çalışmalarını, sahibi bulunmakta olduğu Geleneksel ve Tamamlayıcı Tıp Sağlık Kurumunda yürütmektedir.</strong>
+                                    </p>
+
+                                    <p>
+                                        <strong>Dr. Ceyhun Nuri, hastalıkların tedavisinde dört önemli sarsılmaz temel üzerine yoğunlaşır. İlk hedef, hastalıkların başlamadan sağlığın korunması için gereken protokollerin uygulanmasıdır. İkinci ve belki de en önemli olan ise </strong>
+                                        <a
+                                            href="https://www.drceyhunnuri.com/teshise-yaklasim/"
+                                            target="_blank"
+                                            rel="noopener"
+                                        ><strong>doğru ve isabetli teşhis</strong></a>
+                                        <strong>tir. Hastalığın temelinde yatan nedeni ortaya koymak tedavi etmenin en önemli aşamasıdır. Bunun için doktor olmanız gerektiği kadar vücudu okumasını bilen bir “HEKİM” de olmalısınız.</strong>
+                                    </p>
+                                </div>
+                            </article>
+
+
+                        </div>
+                    </section>
+
+                    <!-- 02 / TEDAVİ -->
+                    <section
+                        class="about-tab-panel-v116"
+                        id="aboutPanelTreatmentV116"
+                        data-about-panel-v116="treatment"
+                        role="tabpanel"
+                        aria-labelledby="aboutTabTreatmentV116"
+                        aria-hidden="true"
+                    >
+                        
+                        <div class="about-treatment-layout-v116 about-treatment-layout-v122">
+
+                            <article class="about-treatment-card-v116 about-treatment-card-v122">
+                                <div class="about-treatment-head-v116">
+                                    <span class="about-treatment-number-v116">01</span>
+                                    <div>
+                                        <span>TEŞHİS AŞAMASI</span>
+                                        <h2>Önce doğru değerlendirme</h2>
+                                    </div>
+                                </div>
+
+                                <div class="about-treatment-flow-v122">
+                                    <p>
+                                        Teşhis aşaması öncelikle kişinin
+                                        <strong>laboratuvar / görüntüleme tetkiklerinin</strong>
+                                        değerlendirilmesiyle başlar. Bundan sonraki aşamada beden
+                                        belirtilerini tanımamıza yardım edecek iki ana teşhis-tespit
+                                        yoluna başvurulur.
+                                    </p>
+
+                                    <div class="about-treatment-step-v116">
+                                        <b>1</b>
+                                        <p>
+                                            Kas-iskelet sisteminin iç organlar üzerine veya aksi yöndeki
+                                            etkisini tespit edebilmek için
+                                            <strong>postür analizi, ayak bası analizi, omurga-kalçanın biyomekaniği</strong>
+                                            osteopati anlayışı çerçevesinde değerlendirilir.
+                                        </p>
+                                    </div>
+
+                                    <div class="about-treatment-step-v116">
+                                        <b>2</b>
+                                        <p>
+                                            Organların metabolik durumları hakkında bilgi edinmek için
+                                            <strong>vücut pH ölçümü, kulak mikrosistem tarama, dil üzerinden teşhis,
+                                            meridyen-enerji kanal taraması (check-up)</strong>
+                                            ve OSTEOPAT HEKİM anlayışı içerisinde fiziksel değerlendirme yapılır.
+                                        </p>
+                                    </div>
+
+                                    <p class="about-treatment-note-v116">
+                                        Teşhis ve muayenede kullandığımız teknoloji ve yöntemler,
+                                        vücut mikrosistemlerini, ısısını ve enerjisini kullanarak
+                                        klinik değerlendirmeye ek olanak sağlamayı amaçlar.
+                                    </p>
+                                </div>
+                            </article>
+
+                            <article class="about-treatment-card-v116 about-treatment-card-v122">
+                                <div class="about-treatment-head-v116">
+                                    <span class="about-treatment-number-v116">02</span>
+                                    <div>
+                                        <span>TEDAVİ ALANI</span>
+                                        <h2>Kişiye özel sentez ve planlama</h2>
+                                    </div>
+                                </div>
+
+                                <div class="about-treatment-flow-v122">
+                                    <p>
+                                        Alanında tecrübe sahibi ekibimizle birlikte tedavi planlaması yapılırken,
+                                        kadimden gelen bilgiler ve güncel tıp anlayışı içinde
+                                        <strong>hastaya özel reçete hazırlanması</strong>
+                                        temel hedef olarak görülür.
+                                    </p>
+
+                                    <p class="about-treatment-services-v116">
+                                        Manuel terapi, osteopati, kayropraksi, fitoterapi, akupunktur,
+                                        akupressür, robotik lazer, elektrostimülasyon, Çin manipülasyonu,
+                                        medikal ozon, mezoterapi, PRP, proloterapi, magnetoterapi,
+                                        kuru iğneleme, hacamat, hirudoterapi, kuru kupa ve I.V. / damar yoluyla
+                                        kişiye özgü destek karışımları; ana tedavi protokolüne destek amacıyla değerlendirilir.
+                                    </p>
+
+                                    <blockquote class="about-treatment-quote-v116">
+                                        <span>ANCAK…</span>
+                                        <p>
+                                            Bütün bu uygulamalar tekil olarak istenen sonucu doğurmayabilir;
+                                            çünkü bunlar sadece birer <strong>enstrümandır.</strong>
+                                            “HEKİM” olan kişi doğru sentez ve kombinasyonları tercih ederek
+                                            başarıyı hedefler.
+                                        </p>
+                                    </blockquote>
+                                </div>
+                            </article>
+
+                        </div>
+
+                    </section>
+
+                    <!-- 03 / EĞİTİM VE GÖREVLER -->
+                    <section
+                        class="about-tab-panel-v116"
+                        id="aboutPanelEducationV116"
+                        data-about-panel-v116="education"
+                        role="tabpanel"
+                        aria-labelledby="aboutTabEducationV116"
+                        aria-hidden="true"
+                    >
+                        <div class="about-education-layout-v116 about-education-layout-v123">
+
+                            <div class="about-education-heading-v116">
+                                <span class="about-panel-kicker-v116">DR. CEYHUN NURİ</span>
+                                <h2>Eğitim ve Görevler</h2>
+                                <p>
+                                    Tıp eğitimi, geleneksel ve tamamlayıcı tıp alanındaki
+                                    sertifikasyonlar ve mesleki görevler.
+                                </p>
+                            </div>
+
+                            <div class="about-education-grid-v116 about-education-grid-v123">
+                                <article><span>ANKARA ÜNİ. TIP FAKÜLTESİ</span><strong>Mezuniyet</strong></article>
+                                <article><span>YILDIRIM BEYAZIT ÜNİ.</span><strong>Proloterapi Eğitimi</strong></article>
+                                <article><span>TAMAMLAYICI EĞİTİM</span><strong>Uygulamalı Kinezyoloji</strong></article>
+                                <article><span>KAMU HASTANELERİ</span><strong>Acil Servis Doktoru</strong></article>
+                                <article><span>YILDIRIM BEYAZIT ÜNİ.</span><strong>Ozon Tedavisi Eğitimi</strong></article>
+
+                                <article><span>YILDIRIM BEYAZIT ÜNİ.</span><strong>Osteopati Eğitimi</strong></article>
+                                <article><span>YILDIRIM BEYAZIT ÜNİ.</span><strong>Fitoterapi Eğitimi</strong></article>
+                                <article><span>TAMAMLAYICI EĞİTİM</span><strong>Manuel Terapi Eğitimi</strong></article>
+                                <article><span>GAZİ ÜNİVERSİTESİ</span><strong>Akupunktur Eğitimi</strong></article>
+                                <article><span>YILDIRIM BEYAZIT ÜNİ.</span><strong>Hirudoterapi Eğitimi</strong></article>
+
+                                <article><span>GAZİ ÜNİVERSİTESİ</span><strong>Auriküler Akupunktur Eğ.</strong></article>
+                                <article><span>YILDIRIM BEYAZIT ÜNİ.</span><strong>Kupa ve Hacamat Eğitimi</strong></article>
+                                <article><span>GAZİ ÜNİVERSİTESİ</span><strong>Mezoterapi Eğitimi</strong></article>
+                                <article><span>T.C. SAĞLIK BAKANLIĞI</span><strong>İlk Uçak Ambulans Ekibi</strong></article>
+                                <article><span>T.C. SAĞLIK BAKANLIĞI</span><strong>Aile Hekimliği Eğitimi</strong></article>
+                            </div>
+
+                        </div>
+                    </section>
+
+                    <!-- 04 / SAĞLIK KURUMU HAKKINDA -->
+                    <section
+                        class="about-tab-panel-v116"
+                        id="aboutPanelInstitutionV125"
+                        data-about-panel-v116="institution"
+                        role="tabpanel"
+                        aria-labelledby="aboutTabInstitutionV125"
+                        aria-hidden="true"
+                    >
+                        <div class="about-institution-layout-v126">
+
+                            <header class="about-institution-hero-v126">
+                                <div>
+                                    <span class="about-panel-kicker-v116">SAĞLIK KURUMU HAKKINDA</span>
+                                    <h2>Sağlık Kurumumuzu Yakından Tanıyın</h2>
+                                </div>
+
+                                <p>
+                                    Modern mimarisi, ferah iç mekânları ve bütüncül sağlık yaklaşımına
+                                    uygun planlanmış alanlarıyla kurumumuz; danışanlarımıza konforlu,
+                                    düzenli ve profesyonel bir değerlendirme ortamı sunmaktadır.
+                                </p>
+                            </header>
+
+                            <div class="about-institution-gallery-v126">
+
+                                <figure class="institution-photo-v126 institution-photo-main-v126">
+                                    <img
+                                        src="./kurum-dis-cephe-v126.png?v=129"
+                                        alt="Dr. Ceyhun Nuri sağlık kurumunun dış cephe görünümü"
+                                    >
+                                    <figcaption>
+                                        <span>KURUMDAN GÖRÜNTÜLER</span>
+                                        <strong>Dış Cephe ve Ana Giriş</strong>
+                                        <small>
+                                            Modern, kurumsal ve kolay fark edilen dış görünüm.
+                                        </small>
+                                    </figcaption>
+                                </figure>
+
+                                <figure class="institution-photo-v126">
+                                    <img
+                                        src="./kurum-giris-v126.png?v=129"
+                                        alt="Dr. Ceyhun Nuri sağlık kurumu giriş alanı"
+                                    >
+                                    <figcaption>
+                                        <strong>Giriş ve Karşılama</strong>
+                                        <small>
+                                            Sade, düzenli ve güven veren giriş alanı.
+                                        </small>
+                                    </figcaption>
+                                </figure>
+
+                                <figure class="institution-photo-v126">
+                                    <img
+                                        src="./kurum-danisma-v126.png?v=129"
+                                        alt="Dr. Ceyhun Nuri sağlık kurumu danışma alanı"
+                                    >
+                                    <figcaption>
+                                        <strong>Danışma Alanı</strong>
+                                        <small>
+                                            Randevu ve yönlendirme süreçleri için planlanmış karşılama bölümü.
+                                        </small>
+                                    </figcaption>
+                                </figure>
+
+                                <figure class="institution-photo-v126">
+                                    <img
+                                        src="./kurum-ic-mimari-v126.png?v=129"
+                                        alt="Dr. Ceyhun Nuri sağlık kurumu iç mimari görünümü"
+                                    >
+                                    <figcaption>
+                                        <strong>Ferah İç Mimari</strong>
+                                        <small>
+                                            Ahşap detaylar, doğal ışık ve modern tasarım.
+                                        </small>
+                                    </figcaption>
+                                </figure>
+
+                                <figure class="institution-photo-v126">
+                                    <img
+                                        src="./kurum-dis-cephe-2-v126.png?v=129"
+                                        alt="Dr. Ceyhun Nuri sağlık kurumu dış cephe ikinci görünüm"
+                                    >
+                                    <figcaption>
+                                        <strong>Klinik Çevresi</strong>
+                                        <small>
+                                            Açık, ferah ve kurumsal dış mekân görünümü.
+                                        </small>
+                                    </figcaption>
+                                </figure>
+
+                            </div>
+
+                            <div class="about-institution-points-v126">
+                                <article>
+                                    <span>01</span>
+                                    <div>
+                                        <small>YAKLAŞIM</small>
+                                        <strong>Bütüncül Değerlendirme</strong>
+                                    </div>
+                                </article>
+
+                                <article>
+                                    <span>02</span>
+                                    <div>
+                                        <small>ORTAM</small>
+                                        <strong>Modern ve Konforlu Klinik</strong>
+                                    </div>
+                                </article>
+
+                                <article>
+                                    <span>03</span>
+                                    <div>
+                                        <small>HİZMET</small>
+                                        <strong>Kişiye Özel Planlama</strong>
+                                    </div>
+                                </article>
+
+                                <article>
+                                    <span>04</span>
+                                    <div>
+                                        <small>EKİP</small>
+                                        <strong>Deneyim ve Takip</strong>
+                                    </div>
+                                </article>
+                            </div>
+
+                        </div>
+                    </section>
+
+                </div>
 
             </div>
         </div>
@@ -2708,22 +3120,88 @@
             <div class="media-page-inner-v48">
                 <h1>Medya</h1>
 
-                <div class="media-page-subtabs-v48">
+                <div class="media-page-subtabs-v48 media-page-subtabs-v98">
+
                     <button
                         type="button"
-                        class="media-page-subtab-v48"
+                        class="media-page-subtab-v48 media-social-button-v98 media-tv-button-v98"
                         id="mediaTvProgramsButton"
+                        data-media-target="tv"
+                        aria-label="TV Programları"
                     >
-                        TV Programları
+                        <span class="media-social-icon-v98 media-tv-icon-v98" aria-hidden="true">
+                            <svg viewBox="0 0 24 24">
+                                <rect x="3.5" y="5.5" width="17" height="13" rx="3"></rect>
+                                <path d="M9 2.8 12 5.5 15 2.8"></path>
+                                <path d="m10 9 5 3-5 3z"></path>
+                            </svg>
+                        </span>
+                        <span>TV Programları</span>
                     </button>
 
                     <button
                         type="button"
-                        class="media-page-subtab-v48"
+                        class="media-page-subtab-v48 media-social-button-v98"
                         id="mediaYoutubeButton"
+                        data-media-target="youtube"
+                        aria-label="YouTube"
                     >
-                        YouTube
+                        <span class="media-social-icon-v98 media-youtube-icon-v98" aria-hidden="true">
+                            <svg viewBox="0 0 24 24">
+                                <path d="M21 7.2a3 3 0 0 0-2.1-2.1C17 4.6 12 4.6 12 4.6s-5 0-6.9.5A3 3 0 0 0 3 7.2 31 31 0 0 0 2.6 12 31 31 0 0 0 3 16.8a3 3 0 0 0 2.1 2.1c1.9.5 6.9.5 6.9.5s5 0 6.9-.5a3 3 0 0 0 2.1-2.1 31 31 0 0 0 .4-4.8 31 31 0 0 0-.4-4.8Z"></path>
+                                <path class="media-icon-cut-v98" d="m10 8.8 5.2 3.2-5.2 3.2Z"></path>
+                            </svg>
+                        </span>
+                        <span>YouTube</span>
                     </button>
+
+                    <button
+                        type="button"
+                        class="media-page-subtab-v48 media-social-button-v98"
+                        id="mediaInstagramButtonV98"
+                        data-media-target="instagram"
+                        aria-label="Instagram"
+                    >
+                        <span class="media-social-icon-v98 media-instagram-icon-v98" aria-hidden="true">
+                            <svg viewBox="0 0 24 24">
+                                <rect x="4" y="4" width="16" height="16" rx="5"></rect>
+                                <circle cx="12" cy="12" r="3.5"></circle>
+                                <circle cx="17.3" cy="6.8" r="1"></circle>
+                            </svg>
+                        </span>
+                        <span>Instagram</span>
+                    </button>
+
+                    <button
+                        type="button"
+                        class="media-page-subtab-v48 media-social-button-v98"
+                        id="mediaFacebookButtonV98"
+                        data-media-target="facebook"
+                        aria-label="Facebook"
+                    >
+                        <span class="media-social-icon-v98 media-facebook-icon-v98" aria-hidden="true">
+                            <svg viewBox="0 0 24 24">
+                                <path d="M14.6 8.2h3V4.4c-.5-.1-2.2-.2-4.1-.2-4 0-6.7 2.4-6.7 6.9v3.8H2.3V19h4.5v10h5.5V19h4.5l.7-4.1h-5.2v-3.4c0-1.2.3-2 2.3-2Z" transform="scale(.75) translate(4 0)"></path>
+                            </svg>
+                        </span>
+                        <span>Facebook</span>
+                    </button>
+
+                    <button
+                        type="button"
+                        class="media-page-subtab-v48 media-social-button-v98"
+                        id="mediaXButtonV98"
+                        data-media-target="x"
+                        aria-label="X"
+                    >
+                        <span class="media-social-icon-v98 media-x-icon-v98" aria-hidden="true">
+                            <svg viewBox="0 0 24 24">
+                                <path d="M5 4h4.2l3.4 4.7L16.6 4H19l-5.3 6.2L20 20h-4.2l-3.9-5.3L7.4 20H5l5.8-6.8Z"></path>
+                            </svg>
+                        </span>
+                        <span>X</span>
+                    </button>
+
                 </div>
             </div>
 
@@ -3552,7 +4030,58 @@
     </button>
 
 
-    <script src="script.js?v=101"></script>
+
+
+    <!-- V110: TÜM ANA SEKMELER İÇİN 1.5 SN MODERN GEÇİŞ -->
+    <div
+        class="site-page-transition-v110"
+        id="sitePageTransitionV110"
+        aria-hidden="true"
+    >
+        <div class="site-transition-grid-v110"></div>
+        <div class="site-transition-glow-v110 site-transition-glow-a-v110"></div>
+        <div class="site-transition-glow-v110 site-transition-glow-b-v110"></div>
+
+        <div class="site-transition-orbit-v110 site-transition-orbit-a-v110"></div>
+        <div class="site-transition-orbit-v110 site-transition-orbit-b-v110"></div>
+
+        <div class="site-transition-panel-v110">
+            <div class="site-transition-symbol-v110" aria-hidden="true">
+                <svg viewBox="0 0 160 160">
+                    <defs>
+                        <linearGradient id="siteTransitionGradientV110" x1="0" y1="0" x2="1" y2="1">
+                            <stop offset="0%" stop-color="#8be4ff"/>
+                            <stop offset="50%" stop-color="#2bb8f0"/>
+                            <stop offset="100%" stop-color="#0f78b8"/>
+                        </linearGradient>
+                    </defs>
+
+                    <circle class="site-transition-ring-svg-v110" cx="80" cy="80" r="48"></circle>
+                    <circle class="site-transition-core-svg-v110" cx="80" cy="80" r="28"></circle>
+                    <path
+                        class="site-transition-pulse-svg-v110"
+                        d="M25 82 H54 L65 61 L79 103 L94 70 L104 82 H135"
+                    ></path>
+                    <path
+                        class="site-transition-plus-svg-v110"
+                        d="M80 50 V66 M72 58 H88"
+                    ></path>
+                </svg>
+            </div>
+
+            <div class="site-transition-copy-v110">
+                <span id="siteTransitionKickerV110">BÖLÜM</span>
+                <strong id="siteTransitionTitleV110">Sayfa</strong>
+                <small id="siteTransitionSubtitleV110">İçerik hazırlanıyor</small>
+            </div>
+
+            <div class="site-transition-progress-v110">
+                <i></i>
+            </div>
+        </div>
+    </div>
+
+    <script src="script.js?v=129"></script>
 
 </body>
 
