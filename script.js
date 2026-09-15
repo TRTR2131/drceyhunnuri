@@ -3265,7 +3265,7 @@ window.addEventListener("load", async () => {
         document.getElementById("treatmentDetailMediaV71");
 
     const validTreatments =
-        new Set(["osteopati", "fitoterapi", "geleneksel-tedavi", "igne", "estetik", "damar-yolu"]);
+        new Set(["osteopati", "fitoterapi", "geleneksel-tedavi", "diger-cihazlar", "igne", "estetik", "damar-yolu"]);
 
     function hideOtherPagesV71() {
 
@@ -5707,4 +5707,232 @@ window.addEventListener("load", async () => {
     if (titles[initial]) {
         openGuideV143(initial);
     }
+})();
+
+// =========================================================
+// V154 - ROBOTİK LAZER HERO / RANDEVU YÖNLENDİRMESİ
+// =========================================================
+(function () {
+    const appointmentButtons = [
+        document.getElementById("roboticAppointmentHotspotV154"),
+        document.getElementById("roboticAppointmentMobileV154")
+    ].filter(Boolean);
+
+    if (!appointmentButtons.length) return;
+
+    function goToAppointmentV154() {
+        const treatmentHomeButton =
+            document.getElementById("treatmentDetailHomeV71");
+
+        if (treatmentHomeButton) {
+            treatmentHomeButton.click();
+        } else {
+            document.body.classList.remove("treatment-detail-open-v71");
+            const treatmentPage = document.getElementById("treatmentDetailPageV71");
+            if (treatmentPage) treatmentPage.setAttribute("aria-hidden", "true");
+        }
+
+        window.setTimeout(() => {
+            const contact = document.getElementById("iletisim");
+            if (contact) {
+                history.pushState({ page: "home", section: "iletisim" }, "", "#iletisim");
+                contact.scrollIntoView({ behavior: "smooth", block: "start" });
+            }
+        }, 120);
+    }
+
+    appointmentButtons.forEach(button => {
+        button.addEventListener("click", goToAppointmentV154);
+    });
+})();
+
+
+// =========================================================
+// V155 - DİĞER CİHAZLAR POSTER HERO
+// Navigasyon mevcut anchor/data-treatment-detail altyapısını kullanır.
+// =========================================================
+
+
+// =========================================================
+// V157 - DİĞER CİHAZLAR / AYRI CİHAZ DETAY SAYFASI
+// =========================================================
+(function(){
+    const page=document.getElementById("deviceDetailPageV157"); if(!page)return;
+    const title=document.getElementById("deviceDetailTitleV157");
+    const breadcrumbTitle=document.getElementById("deviceDetailBreadcrumbTitleV157");
+    const homeButton=document.getElementById("deviceDetailHomeV157");
+    const backButton=document.getElementById("deviceDetailBackV157");
+    const breadcrumbBack=document.getElementById("deviceDetailBreadcrumbBackV157");
+    const tabs=page.querySelectorAll("[data-device-detail-tab]");
+    const panels=page.querySelectorAll("[data-device-detail-panel]");
+    const openers=document.querySelectorAll("[data-device-detail-open]");
+    const meta={ems:{title:"EMS Yatak",hash:"#cihaz-ems-yatak"},magneto:{title:"Magneto",hash:"#cihaz-magneto"},induktif:{title:"İndüktif Magneto",hash:"#cihaz-induktif-magneto"},lenf:{title:"Lenf Drenaj",hash:"#cihaz-lenf-drenaj"}};
+    function setDevice(name){const selected=meta[name]?name:"ems";tabs.forEach(b=>{const a=b.dataset.deviceDetailTab===selected;b.classList.toggle("active",a);b.setAttribute("aria-current",a?"page":"false")});panels.forEach(p=>{const a=p.dataset.deviceDetailPanel===selected;p.classList.toggle("active",a);p.hidden=!a});title.textContent=meta[selected].title;breadcrumbTitle.textContent=meta[selected].title;return selected}
+    function hideKnown(){document.body.classList.remove("treatment-page-open","treatment-nav-scrolled","pain-page-open","pain-nav-scrolled","about-page-open","about-nav-scrolled","media-page-open","media-nav-scrolled","legal-page-open-v56","treatment-detail-open-v71","treatment-detail-nav-scrolled-v71","general-health-detail-open-v75","ankilozan-page-open-v87","info-guide-page-open-v143");["tedaviAlanlariPage","agriPage","hakkimdaPage","medyaPage","legalPageV56","treatmentDetailPageV71","generalHealthDetailPageV75","ankilozanFaqSectionV85","infoGuidePageV143"].forEach(id=>{const e=document.getElementById(id);if(e)e.setAttribute("aria-hidden","true")})}
+    function openDevice(name,push=true){hideKnown();const selected=setDevice(name);document.body.classList.add("device-detail-page-open-v157");page.setAttribute("aria-hidden","false");if(push)history.pushState({page:"device-detail",device:selected},"",meta[selected].hash);window.scrollTo({top:0,behavior:"smooth"})}
+    function openOther(push=true){document.body.classList.remove("device-detail-page-open-v157");page.setAttribute("aria-hidden","true");const t=document.getElementById("treatmentDetailPageV71");if(t){document.body.classList.add("treatment-detail-open-v71");t.setAttribute("aria-hidden","false");t.querySelectorAll("[data-treatment-detail-view]").forEach(v=>v.classList.toggle("active",v.dataset.treatmentDetailView==="diger-cihazlar"));t.querySelectorAll("[data-treatment-top]").forEach(b=>b.classList.toggle("is-current-v74",b.dataset.treatmentTop==="diger-cihazlar"))}if(push)history.pushState({page:"treatment-detail",treatment:"diger-cihazlar"},"","#diger-cihazlar");window.scrollTo({top:0,behavior:"smooth"})}
+    function goHome(){document.body.classList.remove("device-detail-page-open-v157","treatment-detail-open-v71");page.setAttribute("aria-hidden","true");const t=document.getElementById("treatmentDetailPageV71");if(t)t.setAttribute("aria-hidden","true");history.pushState({page:"home"},"",location.pathname+location.search);window.scrollTo({top:0,behavior:"smooth"})}
+    openers.forEach(o=>o.addEventListener("click",e=>{e.preventDefault();openDevice(o.dataset.deviceDetailOpen)}));
+    tabs.forEach(b=>b.addEventListener("click",()=>openDevice(b.dataset.deviceDetailTab)));
+    if(homeButton)homeButton.addEventListener("click",goHome);if(backButton)backButton.addEventListener("click",()=>openOther());if(breadcrumbBack)breadcrumbBack.addEventListener("click",()=>openOther());
+    function resolve(){const found=Object.entries(meta).find(([,v])=>v.hash===location.hash);if(found){openDevice(found[0],false);return true}return false}
+    window.addEventListener("popstate",()=>{if(resolve())return;if(location.hash==="#diger-cihazlar")openOther(false);else{document.body.classList.remove("device-detail-page-open-v157");page.setAttribute("aria-hidden","true")}});
+    resolve();
+})();
+
+
+// =========================================================
+// V158 - DİĞER CİHAZLAR GERİYE UYUMLU TIKLAMA
+// Eski özel-sekme butonları kalsa bile cihaz detay sayfasını açsın.
+// =========================================================
+(function () {
+    const legacyOpeners = document.querySelectorAll("[data-device-special-open]");
+    legacyOpeners.forEach(opener => {
+        opener.addEventListener("click", function () {
+            const key = opener.getAttribute("data-device-special-open");
+            if (!key) return;
+            opener.setAttribute("data-device-detail-open", key);
+        }, { capture: true });
+    });
+})();
+
+
+// =========================================================
+// V160 - TEDAVİ DETAY MODERN NAV EK DAVRANIŞLARI
+// =========================================================
+(function(){
+ const brand=document.getElementById("treatmentDetailBrandV160");
+ const home=document.getElementById("treatmentDetailHomeV71");
+ const appointment=document.getElementById("treatmentDetailAppointmentV160");
+ if(brand&&home){brand.addEventListener("click",()=>home.click());}
+ if(appointment){appointment.addEventListener("click",()=>{if(home){home.click();}else{document.body.classList.remove("treatment-detail-open-v71");const page=document.getElementById("treatmentDetailPageV71");if(page)page.setAttribute("aria-hidden","true");}setTimeout(()=>{const contact=document.getElementById("iletisim");if(contact){history.pushState({page:"home",section:"iletisim"},"","#iletisim");contact.scrollIntoView({behavior:"smooth",block:"start"});}},120);});}
+})();
+
+
+// =========================================================
+// V161 - ORTAK MODERN NAV: LOGO VE RANDEVU
+// =========================================================
+(function(){
+    function goHomeV161(){
+        const candidates=[
+            document.getElementById('treatmentPageHomeButton'),
+            document.getElementById('mediaPageHomeButton'),
+            document.getElementById('healthDetailHomeV75'),
+            document.getElementById('treatmentDetailHomeV71')
+        ];
+        const visible=candidates.find(el=>el && el.offsetParent!==null);
+        if(visible){visible.click();return;}
+        document.body.classList.remove('treatment-page-open','media-page-open','general-health-detail-open-v75','treatment-detail-open-v71');
+        window.scrollTo({top:0,behavior:'smooth'});
+    }
+
+    document.querySelectorAll('[data-universal-home-v161]').forEach(btn=>{
+        btn.addEventListener('click',goHomeV161);
+    });
+
+    document.querySelectorAll('[data-universal-appointment-v161]').forEach(btn=>{
+        btn.addEventListener('click',function(){
+            goHomeV161();
+            window.setTimeout(function(){
+                const contact=document.getElementById('iletisim');
+                if(!contact)return;
+                history.pushState({page:'home',section:'iletisim'},'', '#iletisim');
+                contact.scrollIntoView({behavior:'smooth',block:'start'});
+            },120);
+        });
+    });
+})();
+
+
+// =========================================================
+// V162 - ORTAK TEDAVİ DROPDOWN (MEDYA / BESLENME ÜST MENÜLERİ)
+// =========================================================
+(function () {
+    function wireMenu(menuId, buttonId, panelId) {
+        const menu = document.getElementById(menuId);
+        const button = document.getElementById(buttonId);
+        const panel = document.getElementById(panelId);
+
+        if (!menu || !button || !panel) {
+            return;
+        }
+
+        function closeMenu() {
+            menu.classList.remove('open');
+            button.setAttribute('aria-expanded', 'false');
+            panel.setAttribute('aria-hidden', 'true');
+        }
+
+        button.addEventListener('click', function (event) {
+            event.preventDefault();
+            event.stopPropagation();
+
+            const willOpen = !menu.classList.contains('open');
+
+            document.querySelectorAll('.universal-treatment-menu-v162.open').forEach(function (openMenu) {
+                openMenu.classList.remove('open');
+                const openButton = openMenu.querySelector('.universal-treatment-menu-button-v162');
+                const openPanel = openMenu.querySelector('.universal-treatment-menu-panel-v162');
+                if (openButton) openButton.setAttribute('aria-expanded', 'false');
+                if (openPanel) openPanel.setAttribute('aria-hidden', 'true');
+            });
+
+            menu.classList.toggle('open', willOpen);
+            button.setAttribute('aria-expanded', willOpen ? 'true' : 'false');
+            panel.setAttribute('aria-hidden', willOpen ? 'false' : 'true');
+        });
+
+        document.addEventListener('click', function (event) {
+            if (!menu.contains(event.target)) {
+                closeMenu();
+            }
+        });
+
+        document.addEventListener('keydown', function (event) {
+            if (event.key === 'Escape') {
+                closeMenu();
+            }
+        });
+    }
+
+    wireMenu('mediaPageTreatmentMenuV162', 'mediaPageTreatmentButtonV162', 'mediaPageTreatmentPanelV162');
+    wireMenu('healthDetailTreatmentMenuV162', 'healthDetailTreatmentButtonV162', 'healthDetailTreatmentPanelV162');
+})();
+
+
+// =========================================================
+// V169 - DROPDOWN LAYOUT GUARD
+// Panel açılırken navbar flex akışına girmesini engeller.
+// =========================================================
+(function () {
+    const pairs = [
+        ['mediaPageTreatmentMenuV162', 'mediaPageTreatmentPanelV162'],
+        ['healthDetailTreatmentMenuV162', 'healthDetailTreatmentPanelV162'],
+        ['treatmentPageTreatmentMenu', 'treatmentPageTreatmentDropdown'],
+        ['painPageTreatmentMenu', 'painPageTreatmentDropdown'],
+        ['painPageHealthMenu', 'painPageHealthDropdown']
+    ];
+
+    pairs.forEach(function (pair) {
+        const menu = document.getElementById(pair[0]);
+        const panel = document.getElementById(pair[1]);
+        if (!menu || !panel) return;
+
+        menu.style.position = 'relative';
+        panel.style.position = 'absolute';
+        panel.style.left = '0';
+        panel.style.top = 'calc(100% + 12px)';
+        panel.style.zIndex = '50000';
+        panel.style.margin = '0';
+
+        const observer = new MutationObserver(function () {
+            if (panel.getAttribute('aria-hidden') === 'false') {
+                panel.style.position = window.innerWidth <= 820 ? 'fixed' : 'absolute';
+                panel.style.zIndex = '50000';
+                panel.style.margin = '0';
+            }
+        });
+
+        observer.observe(panel, { attributes: true, attributeFilter: ['aria-hidden'] });
+    });
 })();
