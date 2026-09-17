@@ -1,0 +1,38 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1600" height="900" viewBox="0 0 1600 900" fill="none">
+  <defs>
+    <linearGradient id="bg2" x1="0" y1="0" x2="1600" y2="900" gradientUnits="userSpaceOnUse">
+      <stop stop-color="#0A3552"/>
+      <stop offset="1" stop-color="#0B4A71"/>
+    </linearGradient>
+    <linearGradient id="glass2" x1="0" y1="0" x2="1" y2="1">
+      <stop stop-color="#FFFFFF" stop-opacity="0.20"/>
+      <stop offset="1" stop-color="#FFFFFF" stop-opacity="0.04"/>
+    </linearGradient>
+    <filter id="blur2" x="-10%" y="-10%" width="120%" height="120%"><feGaussianBlur stdDeviation="18"/></filter>
+  </defs>
+  <rect width="1600" height="900" fill="url(#bg2)"/>
+  <circle cx="1320" cy="180" r="170" fill="#48C1FF" fill-opacity="0.20" filter="url(#blur2)"/>
+  <circle cx="200" cy="760" r="240" fill="#6AD8FF" fill-opacity="0.16" filter="url(#blur2)"/>
+  <rect x="70" y="70" width="1460" height="760" rx="42" fill="url(#glass2)" stroke="#94D7FF" stroke-opacity="0.45"/>
+  <text x="120" y="160" fill="#7FD0FF" font-family="Arial, sans-serif" font-weight="700" font-size="34" letter-spacing="4">GELENEKSEL TEDAVİ</text>
+  <text x="120" y="245" fill="#FFFFFF" font-family="Arial, sans-serif" font-weight="700" font-size="72">Sülük Uygulaması</text>
+  <text x="120" y="320" fill="#D7F1FF" font-family="Arial, sans-serif" font-size="34">Hirudoterapiyi temsil eden, kontrollü ve klinik yaklaşıma uygun modern illüstrasyon.</text>
+  <g transform="translate(830,120)">
+    <rect x="0" y="0" width="590" height="640" rx="36" fill="#0B2E47" fill-opacity="0.45" stroke="#7DD4FF" stroke-opacity="0.35"/>
+    <path d="M180 180c70-20 190-20 270 20 40 20 78 62 70 112-6 42-42 71-76 80-34 8-56 16-74 36-18 18-28 42-38 72l-38 110h-76l32-128c10-40 30-74 57-100 24-24 50-34 84-42 18-5 48-18 53-43 7-33-28-55-54-66-52-22-130-26-192-12l-18-39Z" fill="#F4CFBF"/>
+    <path d="M408 296c18 14 30 36 30 61 0 42-34 76-76 76-33 0-62-21-72-51 24-13 44-27 62-44 18-17 34-31 56-42Z" fill="#F7D8CC"/>
+    <g>
+      <path d="M310 420c28-42 57-63 86-64 22 0 44 12 58 28-6 16-16 30-30 40-17 11-37 18-55 28-14 7-29 18-46 34-10-22-16-43-13-66Z" fill="#163F59"/>
+      <path d="M350 392c15-16 33-28 52-31 15-2 31 2 45 11-9 10-21 18-35 24-16 7-31 11-44 17-7 3-13 6-18 10-6-9-6-21 0-31Z" fill="#75E7BE" fill-opacity="0.85"/>
+    </g>
+    <circle cx="442" cy="392" r="12" fill="#C7F2FF"/>
+    <path d="M294 612h240" stroke="#A2E6FF" stroke-width="4" opacity="0.5"/>
+  </g>
+  <g transform="translate(120,440)">
+    <rect x="0" y="0" width="520" height="270" rx="28" fill="#0B2E47" fill-opacity="0.42" stroke="#7DD4FF" stroke-opacity="0.30"/>
+    <text x="36" y="58" fill="#FFFFFF" font-family="Arial, sans-serif" font-size="34" font-weight="700">Öne çıkan başlıklar</text>
+    <text x="36" y="110" fill="#D9F3FF" font-family="Arial, sans-serif" font-size="28">• Dolaşım desteği ve bölgesel rahatlama yaklaşımı</text>
+    <text x="36" y="155" fill="#D9F3FF" font-family="Arial, sans-serif" font-size="28">• Hekim değerlendirmesi sonrası planlanan uygulama</text>
+    <text x="36" y="200" fill="#D9F3FF" font-family="Arial, sans-serif" font-size="28">• Tamamlayıcı tıp yaklaşımı içinde ele alınabilir</text>
+  </g>
+</svg>

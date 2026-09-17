@@ -1,3 +1,8 @@
+// V207 - Hakkımda içerik görünürlüğü CSS ile düzeltildi; mevcut davranış korunur.
+// V206 - Eğitim ve Görevler paneli kısa ekran görünümü düzeltildi
+// V205 - Üst menü yalnızca CSS ile kompakt/hizalı güncellendi; mevcut animasyonlar korunur.
+// V204 - Ana sayfa üst menü beyaz tema; mevcut animasyon ve yönlendirmeler korunur
+// V203 - Romatoid Artrit hero konu başlıkları 8 başlığa tamamlandı
 const menuButton = document.getElementById("menuButton");
 const navbar = document.getElementById("navbar");
 const siteHeader = document.getElementById("siteHeader");
@@ -137,51 +142,17 @@ if (appointmentForm) {
 
         event.preventDefault();
 
-        const name =
-            document.getElementById("name").value.trim();
+        const name = document.getElementById("name")?.value.trim() || "";
+        const age = document.getElementById("age")?.value.trim() || "";
+        const complaint = document.getElementById("complaint")?.value.trim() || "";
+        const phone = document.getElementById("phone")?.value.trim() || "";
 
-        const phone =
-            document.getElementById("phone").value.trim();
+        const cleanPhone = phone.replace(/\D/g, "");
 
-        const appointmentType =
-            document.getElementById("appointmentType").value;
-
-        const date =
-            document.getElementById("date").value;
-
-        const time =
-            document.getElementById("time").value;
-
-        const note =
-            document.getElementById("note").value.trim();
-
-        const consent =
-            document.getElementById("consent");
-
-        if (!consent.checked) {
-
-            alert(
-                "Devam etmek için iletişim bilgilerinizin WhatsApp üzerinden gönderilmesini kabul etmeniz gerekiyor."
-            );
-
+        if (!name || !age || !complaint || cleanPhone.length < 10) {
+            alert("Lütfen isim soyad, yaş, şikayet / ağrı bilgisi ve telefon numaranızı eksiksiz doldurun.");
             return;
         }
-
-        const cleanPhone =
-            phone.replace(/\D/g, "");
-
-        if (cleanPhone.length < 10) {
-
-            alert(
-                "Lütfen geçerli bir telefon numarası girin."
-            );
-
-            return;
-        }
-
-        const formattedDate = date
-            ? date.split("-").reverse().join(".")
-            : "Belirtilmedi";
 
         const message =
 `Merhaba,
@@ -190,11 +161,9 @@ if (appointmentForm) {
 ------------------------------
 
 *Ad Soyad:* ${name}
+*Yaş:* ${age}
 *Telefon:* ${phone}
-*Randevu Türü:* ${appointmentType}
-*Tercih Edilen Tarih:* ${formattedDate}
-*Tercih Edilen Saat:* ${time}
-*Not:* ${note || "Belirtilmedi"}
+*Şikayet / Hastalık / Ağrı:* ${complaint}
 
 ------------------------------
 
@@ -208,46 +177,22 @@ Teşekkür ederim.`;
             "?text=" +
             encodeURIComponent(message);
 
-        appointmentPreview.innerHTML = `
-            <div class="preview-row">
-                <span>Ad Soyad</span>
-                <strong>${name}</strong>
-            </div>
+        if (appointmentPreview) {
+            appointmentPreview.innerHTML = `
+                <div class="preview-row"><span>Ad Soyad</span><strong>${name}</strong></div>
+                <div class="preview-row"><span>Yaş</span><strong>${age}</strong></div>
+                <div class="preview-row"><span>Telefon</span><strong>${phone}</strong></div>
+                <div class="preview-row"><span>Şikayet / Hastalık / Ağrı</span><strong>${complaint}</strong></div>
+            `;
+        }
 
-            <div class="preview-row">
-                <span>Telefon</span>
-                <strong>${phone}</strong>
-            </div>
-
-            <div class="preview-row">
-                <span>Randevu Türü</span>
-                <strong>${appointmentType}</strong>
-            </div>
-
-            <div class="preview-row">
-                <span>Tarih</span>
-                <strong>${formattedDate}</strong>
-            </div>
-
-            <div class="preview-row">
-                <span>Saat</span>
-                <strong>${time}</strong>
-            </div>
-
-            <div class="preview-row">
-                <span>Not</span>
-                <strong>${note || "Belirtilmedi"}</strong>
-            </div>
-        `;
-
-        appointmentModal.classList.add("show");
-
-        appointmentModal.setAttribute(
-            "aria-hidden",
-            "false"
-        );
-
-        document.body.classList.add("modal-open");
+        if (appointmentModal) {
+            appointmentModal.classList.add("show");
+            appointmentModal.setAttribute("aria-hidden", "false");
+            document.body.classList.add("modal-open");
+        } else {
+            window.open(pendingWhatsappURL, "_blank", "noopener,noreferrer");
+        }
 
     });
 
@@ -3265,7 +3210,7 @@ window.addEventListener("load", async () => {
         document.getElementById("treatmentDetailMediaV71");
 
     const validTreatments =
-        new Set(["osteopati", "fitoterapi", "geleneksel-tedavi", "diger-cihazlar", "igne", "estetik", "damar-yolu"]);
+        new Set(["osteopati", "fitoterapi", "robotik-lazer", "geleneksel-tedavi", "diger-cihazlar", "igne", "estetik", "damar-yolu"]);
 
     function hideOtherPagesV71() {
 
@@ -3951,50 +3896,38 @@ window.addEventListener("load", async () => {
 
 
 // =========================================================
-// V86 - ANA HERO: DOKTOR VARSAYILAN, AS İSTEĞE BAĞLI
+// V202 - ANA HERO: DOKTOR -> ANKİLOZAN -> ROMATOİD ARTRİT
 // =========================================================
 (function () {
-
     const slider = document.getElementById("heroSliderV86");
-    const doctorSlide = slider
-        ? slider.querySelector('[data-hero-slide="doctor"]')
-        : null;
-    const asSlide = slider
-        ? slider.querySelector('[data-hero-slide="ankilozan"]')
-        : null;
+    if (!slider) return;
 
-    const nextButton = document.getElementById("heroNextV86");
-    const prevButton = document.getElementById("heroPrevV86");
+    const doctorSlide = slider.querySelector('[data-hero-slide="doctor"]');
+    const asSlide = slider.querySelector('[data-hero-slide="ankilozan"]');
+    const raSlide = slider.querySelector('[data-hero-slide="romatoid"]');
 
-    if (!doctorSlide || !asSlide) return;
+    const doctorNext = document.getElementById("heroNextV86");
+    const asPrev = document.getElementById("heroPrevV86");
+    const asNext = document.getElementById("heroNextRomatoidV202");
+    const raPrev = document.getElementById("heroPrevRomatoidV202");
 
-    function showDoctorSlideV86() {
-        doctorSlide.classList.add("is-active");
-        doctorSlide.removeAttribute("aria-hidden");
+    if (!doctorSlide || !asSlide || !raSlide) return;
 
-        asSlide.classList.remove("is-active");
-        asSlide.setAttribute("aria-hidden", "true");
+    function activate(slide) {
+        [doctorSlide, asSlide, raSlide].forEach(item => {
+            const active = item === slide;
+            item.classList.toggle("is-active", active);
+            if (active) item.removeAttribute("aria-hidden");
+            else item.setAttribute("aria-hidden", "true");
+        });
     }
 
-    function showAnkilozanSlideV86() {
-        asSlide.classList.add("is-active");
-        asSlide.removeAttribute("aria-hidden");
+    if (doctorNext) doctorNext.addEventListener("click", () => activate(asSlide));
+    if (asPrev) asPrev.addEventListener("click", () => activate(doctorSlide));
+    if (asNext) asNext.addEventListener("click", () => activate(raSlide));
+    if (raPrev) raPrev.addEventListener("click", () => activate(asSlide));
 
-        doctorSlide.classList.remove("is-active");
-        doctorSlide.setAttribute("aria-hidden", "true");
-    }
-
-    if (nextButton) {
-        nextButton.addEventListener("click", showAnkilozanSlideV86);
-    }
-
-    if (prevButton) {
-        prevButton.addEventListener("click", showDoctorSlideV86);
-    }
-
-    // Sayfa her açıldığında ilk görünen ekran daima doktor olsun.
-    showDoctorSlideV86();
-
+    activate(doctorSlide);
 })();
 
 
@@ -4056,7 +3989,7 @@ window.addEventListener("load", async () => {
         });
     }
 
-    function openAnkilozanPageV87() {
+    function openAnkilozanPageV87(options = {}) {
 
         if (!page) return;
 
@@ -4077,11 +4010,15 @@ window.addEventListener("load", async () => {
             "#ankilozan-spondilit"
         );
 
-        window.scrollTo({
-            top: 0,
-            behavior: "smooth"
-        });
+        if (!options.skipScroll) {
+            window.scrollTo({
+                top: 0,
+                behavior: "smooth"
+            });
+        }
     }
+
+    window.openAnkilozanPageV87 = openAnkilozanPageV87;
 
     function closeAnkilozanPageV87() {
 
@@ -4637,7 +4574,6 @@ window.addEventListener("load", async () => {
 
     const trackedSections = [
         'osteoExercisesV105',
-        'osteoPhysicalV105',
         'osteoChiroV105',
         'osteoFaqV105',
         'osteoArticlesV105',
@@ -4773,8 +4709,18 @@ window.addEventListener("load", async () => {
         },
         "fitoterapi": {
             kicker: "TEDAVİ",
-            title: "Fitoterapi - Beslenme",
-            subtitle: "Bitkisel içerikler, beslenme ve kişiye özel değerlendirme"
+            title: "FitoTerapi-Bitkisel",
+            subtitle: "Bitkisel destekler, beslenme ve kişiye özel değerlendirme"
+        },
+        "robotik-lazer": {
+            kicker: "TEDAVİ",
+            title: "Robotik Lazer",
+            subtitle: "Modern cihaz desteği ve kişiye özel klinik planlama"
+        },
+        "geleneksel-tedavi": {
+            kicker: "TEDAVİ",
+            title: "Geleneksel Tedavi",
+            subtitle: "Hacamat ve sülük uygulamalarına dair tamamlayıcı yaklaşım"
         },
         "igne": {
             kicker: "TEDAVİ",
@@ -4788,8 +4734,8 @@ window.addEventListener("load", async () => {
         },
         "damar-yolu": {
             kicker: "TEDAVİ",
-            title: "Damar Yolu",
-            subtitle: "Serum ve damar yolu uygulamaları"
+            title: "Damar Yolu Uygulamaları",
+            subtitle: "Serum ve destek amaçlı damar yolu uygulamaları"
         }
     };
 
@@ -5568,6 +5514,9 @@ window.addEventListener("load", async () => {
 (function () {
     const page = document.getElementById("infoGuidePageV143");
     const title = document.getElementById("infoGuideTitleV143");
+    const heroText = document.getElementById("infoGuideHeroTextV225");
+    const summaryText = document.getElementById("infoGuideSummaryTextV225");
+    const breadcrumbTitle = document.getElementById("infoGuideBreadcrumbTitleV225");
     const openButtons = document.querySelectorAll(".info-guide-open-v143");
     const switchButtons = document.querySelectorAll("[data-info-guide-switch]");
     const views = document.querySelectorAll("[data-info-guide-view]");
@@ -5576,8 +5525,22 @@ window.addEventListener("load", async () => {
     const titles = {
         "randevu-oncesi": "Randevu Öncesi Rehber",
         "uygulama-sonrasi": "Uygulama Sonrası Rehber",
-        "randevu-gunu": "Randevu Günü İçin Bilgilendirme",
-        "gorus-bildirimi": "Şikâyet / Görüş Bildirimi"
+        "randevu-gunu": "Randevu Günü İçin Bilgilendirme"
+    };
+
+    const guideCopyV225 = {
+        "randevu-oncesi": {
+            hero: "Randevu ve uygulama süreçlerinde işinizi kolaylaştıracak kısa, anlaşılır ve pratik bilgilendirmeleri modern bir rehber yapısında burada bulabilirsiniz.",
+            summary: "Randevu öncesinden uygulama sonrasına kadar ihtiyaç duyabileceğiniz temel bilgiler tek alanda toplandı."
+        },
+        "uygulama-sonrasi": {
+            hero: "Uygulama ve tedavi süreçlerinin ardından dikkat etmeniz gereken öneriler ve pratik bilgileri anlaşılır bir şekilde burada bulabilirsiniz.",
+            summary: "Uygulama sonrasında ihtiyaç duyabileceğiniz temel bilgiler tek alanda, anlaşılır ve pratik bir şekilde toplandı."
+        },
+        "randevu-gunu": {
+            hero: "Randevu gününde hazırlıklı gelmeniz, sürecin daha verimli ve rahat geçmesini sağlar. Kısa, anlaşılır ve pratik bilgilendirmeleri burada bulabilirsiniz.",
+            summary: "Randevu gününüzde ihtiyaç duyabileceğiniz temel bilgiler tek alanda toplandı."
+        }
     };
 
     function closeInfoMenusV143() {
@@ -5631,6 +5594,9 @@ window.addEventListener("load", async () => {
         const selected = titles[name] ? name : "randevu-oncesi";
 
         if (title) title.textContent = titles[selected];
+        if (breadcrumbTitle) breadcrumbTitle.textContent = titles[selected];
+        if (heroText) heroText.textContent = guideCopyV225[selected].hero;
+        if (summaryText) summaryText.textContent = guideCopyV225[selected].summary;
 
         views.forEach(view => {
             view.classList.toggle(
@@ -5810,129 +5776,1034 @@ window.addEventListener("load", async () => {
 
 
 // =========================================================
-// V161 - ORTAK MODERN NAV: LOGO VE RANDEVU
+// V161 - MODERN TEDAVİ MENÜ HARDENING
 // =========================================================
 (function(){
-    function goHomeV161(){
-        const candidates=[
-            document.getElementById('treatmentPageHomeButton'),
-            document.getElementById('mediaPageHomeButton'),
-            document.getElementById('healthDetailHomeV75'),
-            document.getElementById('treatmentDetailHomeV71')
-        ];
-        const visible=candidates.find(el=>el && el.offsetParent!==null);
-        if(visible){visible.click();return;}
-        document.body.classList.remove('treatment-page-open','media-page-open','general-health-detail-open-v75','treatment-detail-open-v71');
+  function hardenTreatmentNavV161(){
+    const nav=document.querySelector('#treatmentDetailPageV71 .treatment-detail-nav-v71');
+    if(nav) nav.classList.add('treatment-detail-nav-modern-v160');
+  }
+  document.addEventListener('DOMContentLoaded',hardenTreatmentNavV161);
+  hardenTreatmentNavV161();
+})();
+
+
+// =========================================================
+// V168 - GELENEKSEL TEDAVİ / HACAMAT & SÜLÜK ÖZEL SAYFALARI
+// =========================================================
+(function () {
+    const treatmentView = document.querySelector('[data-treatment-detail-view="geleneksel-tedavi"]');
+    if (!treatmentView) return;
+
+    const overview = document.getElementById('traditionalOverviewV168');
+    const detailViews = treatmentView.querySelectorAll('[data-traditional-detail]');
+    const openers = treatmentView.querySelectorAll('[data-traditional-open]');
+    const backButtons = treatmentView.querySelectorAll('[data-traditional-back]');
+    const scrollButtons = treatmentView.querySelectorAll('[data-traditional-scroll]');
+    const traditionalTopLinks = document.querySelectorAll('[data-treatment-detail="geleneksel-tedavi"], [data-treatment-top="geleneksel-tedavi"]');
+
+    function showOverviewV168(updateHash = false) {
+        if (overview) {
+            overview.classList.add('active');
+            overview.setAttribute('aria-hidden', 'false');
+        }
+        detailViews.forEach(view => {
+            view.classList.remove('active');
+            view.setAttribute('aria-hidden', 'true');
+        });
+        if (updateHash && history.replaceState) {
+            history.replaceState(history.state, '', '#geleneksel-tedavi');
+        }
+        window.scrollTo({ top: 0, behavior: 'smooth' });
+    }
+
+    function showDetailV168(name, updateHash = true) {
+        const target = treatmentView.querySelector('[data-traditional-detail="' + name + '"]');
+        if (!target) return;
+        if (overview) {
+            overview.classList.remove('active');
+            overview.setAttribute('aria-hidden', 'true');
+        }
+        detailViews.forEach(view => {
+            const active = view === target;
+            view.classList.toggle('active', active);
+            view.setAttribute('aria-hidden', active ? 'false' : 'true');
+        });
+        if (updateHash && history.replaceState) {
+            history.replaceState(history.state, '', name === 'hacamat' ? '#geleneksel-hacamat' : '#geleneksel-suluk');
+        }
+        window.scrollTo({ top: 0, behavior: 'smooth' });
+    }
+
+    openers.forEach(button => {
+        button.addEventListener('click', () => showDetailV168(button.dataset.traditionalOpen));
+    });
+
+    backButtons.forEach(button => {
+        button.addEventListener('click', () => showOverviewV168(true));
+    });
+
+    scrollButtons.forEach(button => {
+        button.addEventListener('click', () => {
+            const target = document.getElementById(button.dataset.traditionalScroll);
+            if (target) target.scrollIntoView({ behavior: 'smooth', block: 'start' });
+        });
+    });
+
+    traditionalTopLinks.forEach(link => {
+        link.addEventListener('click', () => {
+            window.setTimeout(() => showOverviewV168(false), 30);
+        });
+    });
+
+    function resolveTraditionalHashV168() {
+        if (location.hash === '#geleneksel-hacamat') {
+            showDetailV168('hacamat', false);
+            return true;
+        }
+        if (location.hash === '#geleneksel-suluk') {
+            showDetailV168('suluk', false);
+            return true;
+        }
+        return false;
+    }
+
+    window.addEventListener('popstate', resolveTraditionalHashV168);
+    resolveTraditionalHashV168();
+})();
+
+
+// =========================================================
+// V172 - TÜM ALT SAYFA MARKA ALANI / ANA SAYFA DAVRANIŞI
+// =========================================================
+(function () {
+    const brands = document.querySelectorAll('[data-global-brand-v172]');
+    if (!brands.length) return;
+
+    const homeSelectors = [
+        '#generalFeaturedHomeButtonV124',
+        '#ankilozanHomeButtonV87',
+        '#treatmentPageHomeButton',
+        '#painPageHomeButton',
+        '#legalHomeButtonV56',
+        '#infoGuideHomeV143',
+        '#treatmentDetailHomeV71',
+        '#deviceDetailHomeV157',
+        '#aboutPageHomeButton',
+        '#healthDetailHomeV75',
+        '#mediaPageHomeButton'
+    ];
+
+    brands.forEach(function (brand) {
+        brand.addEventListener('click', function (event) {
+            // Existing treatment detail brand already has its own handler; avoid duplicate navigation.
+            if (brand.id === 'treatmentDetailBrandV160') return;
+            event.preventDefault();
+            const nav = brand.closest('nav');
+            let home = null;
+            if (nav) {
+                for (const selector of homeSelectors) {
+                    const candidate = nav.querySelector(selector);
+                    if (candidate) { home = candidate; break; }
+                }
+            }
+            if (home) {
+                home.click();
+                return;
+            }
+            for (const selector of homeSelectors) {
+                const candidate = document.querySelector(selector);
+                if (candidate) { candidate.click(); return; }
+            }
+            window.location.hash = '';
+            window.scrollTo({ top: 0, behavior: 'smooth' });
+        });
+    });
+})();
+
+
+// =========================================================
+// V175 - BESLENME DETAY SAYFALARI
+// =========================================================
+(function () {
+    const nutritionView = document.querySelector('[data-health-detail-view="beslenme"]');
+    if (!nutritionView) return;
+
+    const overview = document.getElementById('nutritionOverviewV175');
+    const details = nutritionView.querySelectorAll('[data-nutrition-detail]');
+    const openers = nutritionView.querySelectorAll('[data-nutrition-open]');
+    const backButtons = nutritionView.querySelectorAll('[data-nutrition-back]');
+    const nutritionTopLinks = document.querySelectorAll('[data-health-detail="beslenme"], [data-health-top="beslenme"]');
+    const valid = new Set(['balanced','pregnancy','children','autoimmune','digestion','heart','weight','detox']);
+
+    function showOverviewV175(updateHash) {
+        if (overview) {
+            overview.classList.add('active');
+            overview.setAttribute('aria-hidden','false');
+        }
+        details.forEach(view => {
+            view.classList.remove('active');
+            view.setAttribute('aria-hidden','true');
+        });
+        if (updateHash && history.replaceState) history.replaceState(history.state,'','#beslenme');
         window.scrollTo({top:0,behavior:'smooth'});
     }
 
-    document.querySelectorAll('[data-universal-home-v161]').forEach(btn=>{
-        btn.addEventListener('click',goHomeV161);
-    });
-
-    document.querySelectorAll('[data-universal-appointment-v161]').forEach(btn=>{
-        btn.addEventListener('click',function(){
-            goHomeV161();
-            window.setTimeout(function(){
-                const contact=document.getElementById('iletisim');
-                if(!contact)return;
-                history.pushState({page:'home',section:'iletisim'},'', '#iletisim');
-                contact.scrollIntoView({behavior:'smooth',block:'start'});
-            },120);
+    function showDetailV175(name, updateHash=true) {
+        if (!valid.has(name)) return;
+        const target = nutritionView.querySelector('[data-nutrition-detail="' + name + '"]');
+        if (!target) return;
+        if (overview) {
+            overview.classList.remove('active');
+            overview.setAttribute('aria-hidden','true');
+        }
+        details.forEach(view => {
+            const active = view === target;
+            view.classList.toggle('active', active);
+            view.setAttribute('aria-hidden', active ? 'false':'true');
         });
-    });
+        if (updateHash && history.replaceState) history.replaceState(history.state,'','#beslenme-' + name);
+        window.scrollTo({top:0,behavior:'smooth'});
+    }
+
+    openers.forEach(btn => btn.addEventListener('click', () => showDetailV175(btn.dataset.nutritionOpen)));
+    backButtons.forEach(btn => btn.addEventListener('click', () => showOverviewV175(true)));
+    nutritionTopLinks.forEach(link => link.addEventListener('click', () => window.setTimeout(() => showOverviewV175(false), 40)));
+
+    function resolveHashV175() {
+        const hash = location.hash.replace('#','');
+        if (hash.startsWith('beslenme-')) {
+            const key = hash.replace('beslenme-','');
+            if (valid.has(key)) {
+                showDetailV175(key,false);
+                return true;
+            }
+        }
+        return false;
+    }
+    window.addEventListener('popstate', resolveHashV175);
+    resolveHashV175();
 })();
 
 
 // =========================================================
-// V162 - ORTAK TEDAVİ DROPDOWN (MEDYA / BESLENME ÜST MENÜLERİ)
+// V177 - MEDYA İÇERİK PANELLERİ
 // =========================================================
 (function () {
-    function wireMenu(menuId, buttonId, panelId) {
-        const menu = document.getElementById(menuId);
-        const button = document.getElementById(buttonId);
-        const panel = document.getElementById(panelId);
+    const mediaContentV177 = document.getElementById("mediaPageContent");
+    if (!mediaContentV177) return;
 
-        if (!menu || !button || !panel) {
-            return;
-        }
+    const panelsV177 = Array.from(mediaContentV177.querySelectorAll("[data-media-panel]"));
+    const buttonsV177 = Array.from(document.querySelectorAll("[data-media-target]"));
 
-        function closeMenu() {
-            menu.classList.remove('open');
-            button.setAttribute('aria-expanded', 'false');
-            panel.setAttribute('aria-hidden', 'true');
-        }
-
-        button.addEventListener('click', function (event) {
-            event.preventDefault();
-            event.stopPropagation();
-
-            const willOpen = !menu.classList.contains('open');
-
-            document.querySelectorAll('.universal-treatment-menu-v162.open').forEach(function (openMenu) {
-                openMenu.classList.remove('open');
-                const openButton = openMenu.querySelector('.universal-treatment-menu-button-v162');
-                const openPanel = openMenu.querySelector('.universal-treatment-menu-panel-v162');
-                if (openButton) openButton.setAttribute('aria-expanded', 'false');
-                if (openPanel) openPanel.setAttribute('aria-hidden', 'true');
-            });
-
-            menu.classList.toggle('open', willOpen);
-            button.setAttribute('aria-expanded', willOpen ? 'true' : 'false');
-            panel.setAttribute('aria-hidden', willOpen ? 'false' : 'true');
+    function showMediaPanelV177(target) {
+        const safeTarget = target || "youtube";
+        panelsV177.forEach(panel => {
+            const active = panel.dataset.mediaPanel === safeTarget;
+            panel.classList.toggle("active", active);
+            panel.setAttribute("aria-hidden", active ? "false" : "true");
         });
-
-        document.addEventListener('click', function (event) {
-            if (!menu.contains(event.target)) {
-                closeMenu();
-            }
-        });
-
-        document.addEventListener('keydown', function (event) {
-            if (event.key === 'Escape') {
-                closeMenu();
-            }
+        buttonsV177.forEach(button => {
+            button.classList.toggle("active", button.dataset.mediaTarget === safeTarget);
         });
     }
 
-    wireMenu('mediaPageTreatmentMenuV162', 'mediaPageTreatmentButtonV162', 'mediaPageTreatmentPanelV162');
-    wireMenu('healthDetailTreatmentMenuV162', 'healthDetailTreatmentButtonV162', 'healthDetailTreatmentPanelV162');
+    buttonsV177.forEach(button => {
+        button.addEventListener("click", function () {
+            showMediaPanelV177(button.dataset.mediaTarget || "youtube");
+        });
+    });
+
+    // TV içerikleri kullanıcı tarafından daha sonra ekleneceği için Medya ilk açılışta YouTube'u gösterir.
+    const mediaOpenersV177 = [
+        document.getElementById("heroMediaButton"),
+        document.getElementById("treatmentPageMediaButton"),
+        document.getElementById("painPageMediaButton"),
+        document.getElementById("aboutPageMediaButton")
+    ].filter(Boolean);
+
+    mediaOpenersV177.forEach(button => {
+        button.addEventListener("click", () => {
+            window.setTimeout(() => showMediaPanelV177("youtube"), 0);
+        });
+    });
+
+    if (document.body.classList.contains("media-page-open") || location.hash === "#medya") {
+        showMediaPanelV177("youtube");
+    } else {
+        showMediaPanelV177("youtube");
+    }
 })();
 
 
 // =========================================================
-// V169 - DROPDOWN LAYOUT GUARD
-// Panel açılırken navbar flex akışına girmesini engeller.
+// V185 - CİHAZ DESTEKLİ UYGULAMALAR ROUTE GÜVENLİĞİ
+// Robotik Lazer içindeki butonların beyaz ekran vermesini engeller.
 // =========================================================
 (function () {
-    const pairs = [
-        ['mediaPageTreatmentMenuV162', 'mediaPageTreatmentPanelV162'],
-        ['healthDetailTreatmentMenuV162', 'healthDetailTreatmentPanelV162'],
-        ['treatmentPageTreatmentMenu', 'treatmentPageTreatmentDropdown'],
-        ['painPageTreatmentMenu', 'painPageTreatmentDropdown'],
-        ['painPageHealthMenu', 'painPageHealthDropdown']
-    ];
+    const hub = document.querySelector('[data-treatment-detail-view="diger-cihazlar"]');
+    const page = document.getElementById('treatmentDetailPageV71');
+    if (!hub || !page) return;
 
-    pairs.forEach(function (pair) {
-        const menu = document.getElementById(pair[0]);
-        const panel = document.getElementById(pair[1]);
-        if (!menu || !panel) return;
-
-        menu.style.position = 'relative';
-        panel.style.position = 'absolute';
-        panel.style.left = '0';
-        panel.style.top = 'calc(100% + 12px)';
-        panel.style.zIndex = '50000';
-        panel.style.margin = '0';
-
-        const observer = new MutationObserver(function () {
-            if (panel.getAttribute('aria-hidden') === 'false') {
-                panel.style.position = window.innerWidth <= 820 ? 'fixed' : 'absolute';
-                panel.style.zIndex = '50000';
-                panel.style.margin = '0';
-            }
+    document.querySelectorAll('[data-treatment-detail="diger-cihazlar"]').forEach(link => {
+        link.addEventListener('click', function () {
+            // Ana V72 handler aynı eventte çalışır; bu mikro görev sadece görünürlüğü garanti eder.
+            window.setTimeout(() => {
+                if (location.hash !== '#diger-cihazlar') return;
+                document.body.classList.add('treatment-detail-open-v71');
+                page.setAttribute('aria-hidden', 'false');
+                page.querySelectorAll('[data-treatment-detail-view]').forEach(view => {
+                    view.classList.toggle('active', view === hub);
+                });
+            }, 0);
         });
-
-        observer.observe(panel, { attributes: true, attributeFilter: ['aria-hidden'] });
     });
 })();
+
+
+/* =========================================================
+   V191 - ANA SAYFA ÜST MENÜ PREMIUM TIKLAMA ANİMASYONU
+   Sadece görsel sınıflar ekler; mevcut route / dropdown eventlerini bozmaz.
+   ========================================================= */
+(function () {
+    function initHomeTopNavAnimationV191() {
+        const heroNav = document.querySelector('.hero-modern-nav-v82');
+        if (!heroNav || heroNav.dataset.animV191 === '1') return;
+
+        heroNav.dataset.animV191 = '1';
+        const buttons = heroNav.querySelectorAll('button');
+
+        buttons.forEach((button) => {
+            button.addEventListener('pointerdown', (event) => {
+                const rect = button.getBoundingClientRect();
+                const x = Number.isFinite(event.clientX) && event.clientX !== 0
+                    ? event.clientX - rect.left
+                    : rect.width / 2;
+                const y = Number.isFinite(event.clientY) && event.clientY !== 0
+                    ? event.clientY - rect.top
+                    : rect.height / 2;
+
+                button.style.setProperty('--nav-click-x-v191', `${x}px`);
+                button.style.setProperty('--nav-click-y-v191', `${y}px`);
+            }, { passive: true });
+
+            button.addEventListener('click', () => {
+                button.classList.remove('nav-click-v191');
+                void button.offsetWidth;
+                button.classList.add('nav-click-v191');
+
+                window.setTimeout(() => {
+                    button.classList.remove('nav-click-v191');
+                }, 820);
+            });
+        });
+    }
+
+    if (document.readyState === 'loading') {
+        document.addEventListener('DOMContentLoaded', initHomeTopNavAnimationV191, { once: true });
+    } else {
+        initHomeTopNavAnimationV191();
+    }
+})();
+
+/* =========================================================
+   V196 - ANKİLOZAN SPONDİLİT DETAY SEKMELERİ
+   ========================================================= */
+(function () {
+    function initAnkilozanDetailTabsV196() {
+        const hub = document.getElementById('ankilozanDetailHubV196');
+        if (!hub || hub.dataset.readyV196 === '1') return;
+        hub.dataset.readyV196 = '1';
+
+        const triggers = document.querySelectorAll('[data-ank-detail-v196]');
+        const tabs = hub.querySelectorAll('.ankilozan-detail-tab-v196');
+        const panels = hub.querySelectorAll('[data-ank-panel-v196]');
+
+        function openDetail(key, shouldScroll) {
+            tabs.forEach((tab) => {
+                const active = tab.dataset.ankDetailV196 === key;
+                tab.classList.toggle('is-active', active);
+                tab.setAttribute('aria-selected', active ? 'true' : 'false');
+            });
+
+            panels.forEach((panel) => {
+                const active = panel.dataset.ankPanelV196 === key;
+                panel.classList.toggle('is-active', active);
+                panel.hidden = !active;
+            });
+
+            if (shouldScroll) {
+                window.requestAnimationFrame(() => {
+                    hub.scrollIntoView({ behavior: 'smooth', block: 'start' });
+                });
+            }
+        }
+
+        window.openAnkilozanDetailV196 = openDetail;
+
+        triggers.forEach((trigger) => {
+            trigger.addEventListener('click', () => {
+                openDetail(trigger.dataset.ankDetailV196, true);
+            });
+        });
+
+        tabs.forEach((tab, index) => {
+            tab.addEventListener('keydown', (event) => {
+                if (event.key !== 'ArrowRight' && event.key !== 'ArrowLeft') return;
+                event.preventDefault();
+                const direction = event.key === 'ArrowRight' ? 1 : -1;
+                const next = tabs[(index + direction + tabs.length) % tabs.length];
+                next.focus();
+                next.click();
+            });
+        });
+    }
+
+    if (document.readyState === 'loading') {
+        document.addEventListener('DOMContentLoaded', initAnkilozanDetailTabsV196, { once: true });
+    } else {
+        initAnkilozanDetailTabsV196();
+    }
+})();
+
+
+/* =========================================================
+   V197 - ANA HERO KONU BUTONLARI -> İLGİLİ AÇIKLAMAYA GİT
+   ========================================================= */
+(function () {
+    function initAnkilozanTopicRoutingV197() {
+        const topicButtons = document.querySelectorAll('[data-ank-topic-v197]');
+        if (!topicButtons.length) return;
+
+        topicButtons.forEach((button) => {
+            if (button.dataset.ankTopicReadyV197 === '1') return;
+            button.dataset.ankTopicReadyV197 = '1';
+
+            button.addEventListener('click', (event) => {
+                event.preventDefault();
+                event.stopPropagation();
+
+                const key = button.dataset.ankTopicV197;
+                if (!key) return;
+
+                if (typeof window.openAnkilozanPageV87 === 'function') {
+                    window.openAnkilozanPageV87({ skipScroll: true });
+                }
+
+                window.requestAnimationFrame(() => {
+                    window.setTimeout(() => {
+                        if (typeof window.openAnkilozanDetailV196 === 'function') {
+                            window.openAnkilozanDetailV196(key, true);
+                        } else {
+                            const hub = document.getElementById('ankilozanDetailHubV196');
+                            const target = document.querySelector(`[data-ank-detail-v196="${key}"]`);
+                            if (target) target.click();
+                            if (hub) hub.scrollIntoView({ behavior: 'smooth', block: 'start' });
+                        }
+                    }, 40);
+                });
+            });
+        });
+    }
+
+    if (document.readyState === 'loading') {
+        document.addEventListener('DOMContentLoaded', initAnkilozanTopicRoutingV197, { once: true });
+    } else {
+        initAnkilozanTopicRoutingV197();
+    }
+})();
+
+
+// =========================================================
+// V200 - ROMATOİD ARTRİT ÖZEL SAYFASI
+// =========================================================
+(function(){
+  const page=document.getElementById('romatoidFaqSectionV198');
+  const card=document.querySelector('.romatoid-card-link-v198');
+  const home=document.getElementById('romatoidHomeButtonV198');
+  const areas=document.getElementById('romatoidTreatmentAreasButtonV198');
+  const pain=document.getElementById('romatoidPainButtonV198');
+  const media=document.getElementById('romatoidMediaButtonV198');
+  const info=document.getElementById('romatoidInfoButtonV198');
+  const healthMenu=document.getElementById('romatoidHealthMenuV198');
+  const healthBtn=document.getElementById('romatoidHealthButtonV198');
+  const healthDrop=document.getElementById('romatoidHealthDropdownV198');
+  if(!page) return;
+
+  function closeKnown(){
+    document.body.classList.remove('treatment-page-open','treatment-nav-scrolled','pain-page-open','pain-nav-scrolled','media-page-open','media-nav-scrolled','about-page-open','about-nav-scrolled','legal-page-open-v56','treatment-detail-open-v71','general-health-detail-open-v75','ankilozan-page-open-v87','info-guide-page-open-v143','device-detail-page-open-v157');
+    ['tedaviAlanlariPage','agriPage','medyaPage','hakkimdaPage','legalPageV56','treatmentDetailPageV71','generalHealthDetailPageV75','ankilozanFaqSectionV85','infoGuidePageV143'].forEach(id=>{const e=document.getElementById(id);if(e)e.setAttribute('aria-hidden','true')});
+  }
+  function openRA(push=true){
+    closeKnown();
+    document.body.classList.add('romatoid-page-open-v198');
+    page.setAttribute('aria-hidden','false');
+    if(push) history.pushState({page:'romatoid-artrit'},'','#romatoid-artrit');
+    window.scrollTo({top:0,behavior:'smooth'});
+  }
+  function closeRA(){
+    document.body.classList.remove('romatoid-page-open-v198');
+    page.setAttribute('aria-hidden','true');
+  }
+  window.openRomatoidPageV198=openRA;
+
+  if(card) card.addEventListener('click',e=>{e.preventDefault();openRA(true)});
+  if(home) home.addEventListener('click',e=>{e.preventDefault();closeRA();history.pushState({page:'home'},'',location.pathname+location.search);window.scrollTo({top:0,behavior:'smooth'})});
+  if(areas) areas.addEventListener('click',e=>{e.preventDefault();closeRA();const p=document.getElementById('tedaviAlanlariPage');if(p){document.body.classList.add('treatment-page-open');p.setAttribute('aria-hidden','false');history.pushState({page:'tedavi-alanlari'},'','#tedavi-alanlari');window.scrollTo({top:0,behavior:'smooth'})}});
+  if(pain) pain.addEventListener('click',e=>{e.preventDefault();closeRA();const p=document.getElementById('agriPage');if(p){document.body.classList.add('pain-page-open');p.setAttribute('aria-hidden','false');history.pushState({page:'agri'},'','#agri');window.scrollTo({top:0,behavior:'smooth'})}});
+  if(media) media.addEventListener('click',e=>{e.preventDefault();closeRA();const p=document.getElementById('medyaPage');if(p){document.body.classList.add('media-page-open');p.setAttribute('aria-hidden','false');history.pushState({page:'medya'},'','#medya');window.scrollTo({top:0,behavior:'smooth'})}});
+  if(info) info.addEventListener('click',e=>{e.preventDefault();const t=page.querySelector('.ra-faq-shell-v198');if(t)t.scrollIntoView({behavior:'smooth',block:'start'})});
+
+  function closeHealth(){if(!healthMenu||!healthBtn||!healthDrop)return;healthMenu.classList.remove('open');healthBtn.setAttribute('aria-expanded','false');healthDrop.setAttribute('aria-hidden','true')}
+  if(healthBtn) healthBtn.addEventListener('click',e=>{e.preventDefault();e.stopPropagation();const o=!healthMenu.classList.contains('open');healthMenu.classList.toggle('open',o);healthBtn.setAttribute('aria-expanded',o?'true':'false');healthDrop.setAttribute('aria-hidden',o?'false':'true')});
+  document.addEventListener('click',e=>{if(healthMenu&&!healthMenu.contains(e.target))closeHealth()});
+  document.addEventListener('keydown',e=>{if(e.key==='Escape')closeHealth()});
+
+  if(location.hash.replace('#','')==='romatoid-artrit') setTimeout(()=>openRA(false),0);
+})();
+
+// V201 - Romatoid Artrit konu sekmeleri + yan sekme
+(function(){
+  const hub=document.getElementById('romatoidDetailHubV198');
+  if(!hub) return;
+  const tabs=[...hub.querySelectorAll('.ra-detail-tab-v198')];
+  const panels=[...hub.querySelectorAll('.ra-detail-panel-v198')];
+  const sideLinks=[...hub.querySelectorAll('.ra-side-link-v200')];
+  const triggers=[...document.querySelectorAll('[data-ra-detail-v198]')];
+
+  function show(key,scroll=false){
+    tabs.forEach(t=>{const a=t.dataset.raDetailV198===key;t.classList.toggle('is-active',a);t.setAttribute('aria-selected',a?'true':'false')});
+    panels.forEach(p=>{const a=p.dataset.raPanelV198===key;p.classList.toggle('is-active',a);p.hidden=!a});
+    sideLinks.forEach(l=>{const a=l.dataset.raDetailV198===key;l.classList.toggle('is-active',a)});
+    if(scroll) hub.scrollIntoView({behavior:'smooth',block:'start'});
+  }
+
+  triggers.forEach(el=>{
+    el.addEventListener('click',e=>{
+      const key=el.dataset.raDetailV198;
+      if(!key) return;
+      e.preventDefault();
+      const isTab=el.classList.contains('ra-detail-tab-v198');
+      const isSide=el.classList.contains('ra-side-link-v200');
+      show(key,!(isTab||isSide));
+    });
+  });
+
+  window.openRomatoidDetailV198=show;
+})();
+
+// V200 - Romatoid Artrit SSS
+(function(){
+  const buttons=[...document.querySelectorAll('.ra-faq-question-v198')];
+  buttons.forEach(btn=>btn.addEventListener('click',()=>{
+    const item=btn.closest('.ra-faq-item-v198');if(!item)return;const was=item.classList.contains('is-open');
+    buttons.forEach(b=>{const i=b.closest('.ra-faq-item-v198');if(i)i.classList.remove('is-open');b.setAttribute('aria-expanded','false')});
+    if(!was){item.classList.add('is-open');btn.setAttribute('aria-expanded','true')}
+  }));
+})();
+
+
+// =========================================================
+// V202 - ROMATOİD ARTRİT HERO SLIDE YÖNLENDİRMELERİ
+// =========================================================
+(function(){
+    function openRomatoidHeroV202(detailKey){
+        if (typeof window.openRomatoidPageV198 === 'function') {
+            window.openRomatoidPageV198(true);
+            if (detailKey) {
+                window.setTimeout(() => {
+                    if (typeof window.openRomatoidDetailV198 === 'function') {
+                        window.openRomatoidDetailV198(detailKey, true);
+                    }
+                }, 120);
+            }
+        }
+    }
+
+    document.querySelectorAll('.js-open-romatoid-hero-v202').forEach(btn => {
+        btn.addEventListener('click', e => {
+            e.preventDefault();
+            openRomatoidHeroV202();
+        });
+    });
+
+    document.querySelectorAll('.ra-hero-topic-v202').forEach(btn => {
+        btn.addEventListener('click', e => {
+            e.preventDefault();
+            openRomatoidHeroV202(btn.dataset.raHeroTopicV202 || 'neden');
+        });
+    });
+})();
+
+
+// =========================================================
+// V208 - BASİT RANDEVU FORMU
+// =========================================================
+(function(){
+    const age=document.getElementById('age');
+    const complaint=document.getElementById('complaint');
+    if(age){
+        age.addEventListener('input',()=>{
+            if(Number(age.value)>120) age.value='120';
+            if(Number(age.value)<0) age.value='';
+        });
+    }
+    if(complaint){
+        complaint.addEventListener('input',()=>{
+            complaint.classList.toggle('valid-field',complaint.value.trim().length>=5);
+        });
+    }
+})();
+
+
+// =========================================================
+// V215 - AĞRI KARTLARI -> TAM SAYFA ÖZEL DETAY
+// V210 stabil sürüm üstüne bağımsız olarak eklenmiştir.
+// =========================================================
+(function() {
+    const painPage=document.getElementById('agriPage');
+    const detailPage=document.getElementById('painFullDetailPageV215');
+    const cards=Array.from(document.querySelectorAll('#agriPage .pain-card-v76[data-pain]'));
+    if(!painPage || !detailPage || !cards.length) return;
+
+    const data={
+        'diz': {
+            title: 'Diz Ağrısı',
+            lead: 'Diz ağrısı; eklem yüzeyi, bağ yapıları, çevre kaslar ve yük aktarımı birlikte değerlendirilerek ele alınır.',
+            summaryTitle: 'Diz bölgesindeki ağrı ve zorlanma çok yönlü değerlendirilmeli.',
+            summaryText: 'Şikâyetin yeri, merdiven çıkma-çömelme ile ilişkisi, tutukluk hissi ve yük taşırken artış gösterip göstermediği birlikte sorgulanır.',
+            summaryCards: [
+                ['Eklem Yüzeyi', 'Kıkırdak, menisküs ve eklem çevresi hassasiyetleri değerlendirilir.'],
+                ['Yük Aktarımı', 'Diz-kalça-ayak hattındaki yük dağılımı incelenir.'],
+                ['Hareket', 'Bükme-açma hareketleri ve fonksiyonel zorlanmalar gözden geçirilir.']
+            ],
+            symptomsTitle: 'Dizde öne çıkan belirtiler',
+            symptomsLead: 'Özellikle hareket ve yüklenme ile ilişkili yakınmalar sık öne çıkar.',
+            symptoms: [
+                'Dizde ağrı, hassasiyet veya şişlik hissi',
+                'Merdiven çıkarken ya da çömelirken zorlanma',
+                'Uzun süre hareketsizlik sonrası tutukluk',
+                'Yük verirken güvensizlik veya klik sesi'
+            ],
+            whoTitle: 'Kimlerde daha sık görülebilir?',
+            whoText: 'Merdiven inip çıkarken zorlananlar, sporcularda yüklenme yaşayanlar, uzun süre ayakta kalanlar ve hareket kısıtlılığı hisseden kişilerde sık görülebilir.',
+            evalTitle: 'Diz için değerlendirme başlıkları',
+            evalText: 'Eklem hareketi, yüklenme paterni, çevre kas dengesi ve günlük yaşamı zorlayan hareketler birlikte incelenir.',
+            evalCards: [
+                ['Muayene', 'Eklem hattı, bağ dokular ve ağrılı noktalar değerlendirilir.'],
+                ['Kas Dengesi', 'Quadriceps, hamstring ve kalça kasları birlikte ele alınır.'],
+                ['Fonksiyon', 'Yürüme, çömelme ve merdiven kullanımı analiz edilir.']
+            ],
+            approachTitle: 'Diz ağrısında yaklaşım',
+            approachText: 'Amaç; zorlayan mekanikleri belirlemek, hareket kalitesini korumak ve günlük yaşamı kolaylaştıracak kişiye özel yönlendirme oluşturmaktır.',
+            approachTags: ['Yüklenme Analizi', 'Kas Dengesi', 'Fonksiyonel Test', 'Günlük Yaşam']
+        },
+        'ayak-ayak-bilegi': {
+            title: 'Ayak - Ayak Bileği Ağrısı',
+            lead: 'Ayak ve ayak bileği ağrılarında basış paterni, yük dağılımı ve eklem hareket açıklığı büyük önem taşır.',
+            summaryTitle: 'Ayak-bilek bölgesi yürüyüş ve dengede temel rol oynar.',
+            summaryText: 'Ağrının basarken artması, burkulma öyküsü, topuk veya taban etkilenimi ve günlük yürüyüş kapasitesi birlikte değerlendirilir.',
+            summaryCards: [
+                ['Basış', 'Ayak arkı ve zemine temas biçimi gözlenir.'],
+                ['Denge', 'Ayak bileği stabilitesi ve kontrolü incelenir.'],
+                ['Yük Dağılımı', 'Ağrının gün içindeki yüklenmeyle ilişkisi değerlendirilir.']
+            ],
+            symptomsTitle: 'Ayak ve ayak bileğinde belirtiler',
+            symptomsLead: 'Basarken artan yakınmalar ve dengesizlik hissi sık karşılaşılabilir.',
+            symptoms: [
+                'Basarken artan ağrı veya hassasiyet',
+                'Ayak bileğinde tutukluk ya da instabilite hissi',
+                'Topuk, taban veya bilek çevresinde rahatsızlık',
+                'Yürüyüş sırasında dengesizlik veya çabuk yorulma'
+            ],
+            whoTitle: 'Kimlerde görülebilir?',
+            whoText: 'Uzun süre ayakta kalanlar, yürüyüş sırasında ağrı yaşayanlar, spor yapanlar ve tekrarlayan burkulma öyküsü olan kişilerde daha sık görülebilir.',
+            evalTitle: 'Ayak-bilek değerlendirme başlıkları',
+            evalText: 'Ayak arkı, subtalar hareketler, bilek mobilitesi ve yürüyüş alışkanlıkları birlikte ele alınır.',
+            evalCards: [
+                ['Yürüyüş', 'Basış paterni ve adım mekanikleri izlenir.'],
+                ['Mobilite', 'Ayak bileği hareket açıklığı gözden geçirilir.'],
+                ['Destek', 'Ayakkabı kullanımı ve günlük alışkanlıklar değerlendirilir.']
+            ],
+            approachTitle: 'Ayak-bilek yaklaşımı',
+            approachText: 'Gerektiğinde günlük kullanım düzenlemeleri, destekleyici öneriler ve kişiye uygun hareket yaklaşımı planlanır.',
+            approachTags: ['Basış Analizi', 'Yürüyüş', 'Mobilite', 'Destekleyici Öneriler']
+        },
+        'kalca': {
+            title: 'Kalça Ağrısı',
+            lead: 'Kalça ağrısı; eklem, çevre kaslar, sakroiliak bölge ve omurga ilişkisiyle birlikte ele alınır.',
+            summaryTitle: 'Kalça ağrısı hareket kalitesini doğrudan etkileyebilir.',
+            summaryText: 'Kasık, yan kalça veya kalça arkası yakınmaları; oturup kalkma, yürüme ve dönme hareketleriyle birlikte değerlendirilir.',
+            summaryCards: [
+                ['Hareket Açıklığı', 'Kalçanın dönme ve bükülme hareketleri incelenir.'],
+                ['Pelvis', 'Pelvik hizalanma ve yük aktarımı gözden geçirilir.'],
+                ['Kas Yapıları', 'Gluteal kaslar ve çevre yumuşak dokular değerlendirilir.']
+            ],
+            symptomsTitle: 'Kalçada öne çıkan belirtiler',
+            symptomsLead: 'Kasık veya yan kalça kaynaklı ağrılar günlük hareketleri etkileyebilir.',
+            symptoms: [
+                'Kalça veya kasık bölgesinde ağrı',
+                'Yürürken, oturup kalkarken zorlanma',
+                'Hareket açıklığında azalma',
+                'Kalça çevresinde sertlik veya yük aktarımında bozulma'
+            ],
+            whoTitle: 'Kimlerde daha sık olabilir?',
+            whoText: 'Uzun süre oturanlar, yürümede zorlananlar, kalça çevresinde sıkışma veya gerginlik hisseden kişilerde sık görülebilir.',
+            evalTitle: 'Kalça için değerlendirme',
+            evalText: 'Kalça eklem hareketleri, gluteal kas dengesi, pelvik hizalanma ve omurga-kalça ilişkisi birlikte değerlendirilir.',
+            evalCards: [
+                ['Eklem', 'Kalça ekleminin fonksiyonel hareketleri analiz edilir.'],
+                ['Kas Dengesi', 'Gluteal ve çevre kaslar değerlendirilir.'],
+                ['Fonksiyonel Kullanım', 'Yürüme ve oturup kalkma hareketi ele alınır.']
+            ],
+            approachTitle: 'Kalça ağrısında yaklaşım',
+            approachText: 'Şikâyeti artıran mekanik yükleri azaltmak, günlük fonksiyonu desteklemek ve hareketi rahatlatmak hedeflenir.',
+            approachTags: ['Pelvis', 'Kalça Hareketi', 'Kas Dengesi', 'Fonksiyonel Analiz']
+        },
+        'bel': {
+            title: 'Bel Ağrısı',
+            lead: 'Bel ağrısı; postür, omurga hareketi, disk-eklem ilişkisi ve günlük yaşam yüklenmeleri açısından detaylı değerlendirme gerektirir.',
+            summaryTitle: 'Bel bölgesindeki yakınmalar kişiye özel ele alınmalıdır.',
+            summaryText: 'Bel ağrısının ne zaman arttığı, hangi pozisyonlarda rahatladığı, günlük yaşam ve çalışma düzenini nasıl etkilediği birlikte değerlendirilir.',
+            summaryCards: [
+                ['Postür', 'Oturma, ayakta durma ve yük taşıma alışkanlıkları incelenir.'],
+                ['Omurga - Kalça', 'Belin kalça ve pelvis ile ilişkisi değerlendirilir.'],
+                ['Günlük Yaşam', 'Uzun oturma, eğilme ve dönme gibi hareketler gözden geçirilir.']
+            ],
+            symptomsTitle: 'Bel ağrısında sık görülen belirtiler',
+            symptomsLead: 'Duruş ve hareketle ilişkili yakınmalar ön planda olabilir.',
+            symptoms: [
+                'Bel bölgesinde ağrı, tutukluk veya yanma hissi',
+                'Uzun oturma veya ayakta kalma sonrası rahatsızlık',
+                'Eğilme, dönme veya kalkma sırasında zorlanma',
+                'Bazen kalça veya bacağa yayılan ağrı hissi'
+            ],
+            whoTitle: 'Kimlerde sık görülebilir?',
+            whoText: 'Masa başı çalışanlar, uzun süre aynı pozisyonda kalanlar, yük kaldıranlar ve duruş problemi yaşayan kişilerde sık görülür.',
+            evalTitle: 'Bel ağrısında değerlendirme',
+            evalText: 'Postür analizi, omurga-kalça biyomekaniği, kas dengesizlikleri ve günlük yaşam alışkanlıkları birlikte ele alınır.',
+            evalCards: [
+                ['Postür Analizi', 'Duruş bozuklukları ve yüklenme paternleri gözden geçirilir.'],
+                ['Hareket', 'Eğilme, dönme ve doğrulma hareketleri değerlendirilir.'],
+                ['Kas Yapıları', 'Bel, karın, kalça ve çevre kas ilişkileri incelenir.']
+            ],
+            approachTitle: 'Bel ağrısında yaklaşım',
+            approachText: 'Hedef; hareket kalitesini artırmak, zorlayıcı alışkanlıkları düzenlemek ve günlük konforu destekleyecek kişiye özel yol haritası oluşturmaktır.',
+            approachTags: ['Postür Analizi', 'Omurga - Kalça', 'Hareket Kısıtlılığı', 'Günlük Konfor']
+        },
+        'sirt': {
+            title: 'Sırt Ağrısı',
+            lead: 'Sırt ağrılarında omurga segmentleri, kürek kemiği çevresi, boyun-sırt ilişkisi ve kas gerginlikleri birlikte değerlendirilir.',
+            summaryTitle: 'Sırt ağrısı çoğu zaman duruş ve kas gerginliğiyle ilişkilidir.',
+            summaryText: 'Öne eğik çalışma, masa başı yaşam, stres ve boyun-sırt bölgesi arasındaki yüklenme ilişkisi ayrıntılı biçimde değerlendirilir.',
+            summaryCards: [
+                ['Torasik Bölge', 'Sırt omurlarının hareket açıklığı ele alınır.'],
+                ['Skapula', 'Kürek kemiği çevresi kas dengesi değerlendirilir.'],
+                ['Boyun İlişkisi', 'Boyun-sırt bağlantılı gerginlikler gözden geçirilir.']
+            ],
+            symptomsTitle: 'Sırt ağrısında belirtiler',
+            symptomsLead: 'Kas gerginliği ve omurga çevresinde sıkışma hissi sık öne çıkar.',
+            symptoms: [
+                'Sırt bölgesinde ağrı veya künt rahatsızlık',
+                'Kas gerginliği ve kürek kemikleri arasında sıkışma hissi',
+                'Omurga hareketlerinde sertlik veya zorlanma',
+                'Boyun ile sırt arasında yayılan gerginlik'
+            ],
+            whoTitle: 'Kimlerde görülebilir?',
+            whoText: 'Bilgisayar başında çalışanlar, stresle birlikte kas gerginliği yaşayanlar ve uzun süre öne eğik pozisyonda kalan kişilerde sık görülebilir.',
+            evalTitle: 'Sırt ağrısında değerlendirme',
+            evalText: 'Duruş, solunum paterni, skapular denge ve torasik hareket açıklığı birlikte değerlendirilir.',
+            evalCards: [
+                ['Kas Gerginliği', 'Sırt kaslarındaki gergin alanlar incelenir.'],
+                ['Mobilite', 'Torasik omurga ve kaburga hareketleri değerlendirilir.'],
+                ['Postür', 'Çalışma düzeni ve oturuş alışkanlıkları ele alınır.']
+            ],
+            approachTitle: 'Sırt ağrısında yaklaşım',
+            approachText: 'Kas gevşetici yaklaşım, omurga mobilitesi, yaşam tarzı önerileri ve bölgeye uygun hareket planlaması birlikte düşünülür.',
+            approachTags: ['Kas Gerginliği', 'Torasik Mobilite', 'Skapular Denge', 'Boyun - Sırt İlişkisi']
+        },
+        'dirsek': {
+            title: 'Dirsek Ağrısı',
+            lead: 'Dirsek ağrılarında tekrarlayan kullanım, tendon yapıları ve el-bilek-dirsek zinciri birlikte değerlendirilir.',
+            summaryTitle: 'Dirsek ağrısı çoğu zaman kullanım alışkanlıklarıyla ilişkilidir.',
+            summaryText: 'Kavrama, taşıma, yazı yazma veya bilgisayar kullanımı gibi tekrar eden yüklenmeler sorgulanarak değerlendirme yapılır.',
+            summaryCards: [
+                ['Tendon Yapıları', 'Dirsek çevresindeki tendon hassasiyetleri incelenir.'],
+                ['Kullanım Şekli', 'Gün içindeki tekrar eden hareketler değerlendirilir.'],
+                ['Ön Kol', 'Kas gerginliği ve kuvvet dengesi gözden geçirilir.']
+            ],
+            symptomsTitle: 'Dirsek ağrısında belirtiler',
+            symptomsLead: 'Kavrama ve taşıma ile artan rahatsızlık öne çıkabilir.',
+            symptoms: [
+                'Dirsek çevresinde ağrı ve hassasiyet',
+                'Kavrama veya taşıma sırasında artan rahatsızlık',
+                'Açma-kapama hareketlerinde zorlanma',
+                'Ön kol boyunca gerginlik hissi'
+            ],
+            whoTitle: 'Kimlerde sık görülebilir?',
+            whoText: 'Bilgisayar kullananlarda, tekrarlayan kavrama hareketi yapanlarda ve sporcularda dirsek ağrısı daha sık izlenebilir.',
+            evalTitle: 'Dirsek için değerlendirme',
+            evalText: 'Dirsek hareket açıklığı, tendon hassasiyeti, ön kol kas dengesi ve tekrarlayıcı kullanım alışkanlıkları ele alınır.',
+            evalCards: [
+                ['Muayene', 'Ağrılı bölgenin yerleşimi değerlendirilir.'],
+                ['Fonksiyon', 'Kavrama ve kaldırma hareketleri gözden geçirilir.'],
+                ['Ergonomi', 'İş ve kullanım düzeni analiz edilir.']
+            ],
+            approachTitle: 'Dirsek ağrısında yaklaşım',
+            approachText: 'Tekrarlayıcı yüklenmeyi azaltmak, fonksiyonel kullanımı rahatlatmak ve kişiye özel öneriler geliştirmek amaçlanır.',
+            approachTags: ['Tendon Yapıları', 'Tekrarlayıcı Kullanım', 'Ön Kol', 'Fonksiyon']
+        },
+        'omuz': {
+            title: 'Omuz Ağrısı',
+            lead: 'Omuz ağrısında eklem hareket açıklığı, rotator manşet yapıları, skapula dengesi ve boyun-omuz ilişkisi önemlidir.',
+            summaryTitle: 'Omuz hareketi günlük yaşam için kritik öneme sahiptir.',
+            summaryText: 'Kol kaldırma, uzanma, giyinme veya gece ağrısı gibi yakınmaların seyri ve hareketle ilişkisi birlikte değerlendirilir.',
+            summaryCards: [
+                ['Hareket Açıklığı', 'Omuzun kaldırma ve döndürme hareketleri incelenir.'],
+                ['Skapula', 'Kürek kemiği ritmi ve dengesi gözden geçirilir.'],
+                ['Boyun İlişkisi', 'Boyundan kaynaklı etkiler birlikte değerlendirilir.']
+            ],
+            symptomsTitle: 'Omuz ağrısında belirtiler',
+            symptomsLead: 'Özellikle kolu kaldırırken zorlanma ve gece rahatsızlığı sık görülebilir.',
+            symptoms: [
+                'Omuzda ağrı ve hareket kısıtlılığı',
+                'Kol kaldırırken zorlanma',
+                'Gece artan omuz rahatsızlığı',
+                'Omuz çevresinde güçsüzlük veya sertlik hissi'
+            ],
+            whoTitle: 'Kimlerde görülebilir?',
+            whoText: 'Kolunu yukarı kaldırırken ağrı hissedenler, tekrarlayan omuz kullanımı olanlar ve donukluk yaşayan kişilerde sık görülebilir.',
+            evalTitle: 'Omuz için değerlendirme',
+            evalText: 'Omuz eklemi, skapular ritim, boyunla ilişkili etkiler ve çevre kas dengesizlikleri birlikte değerlendirilir.',
+            evalCards: [
+                ['Eklem', 'Omuz ekleminin hareket kapasitesi incelenir.'],
+                ['Kas Yapıları', 'Rotator manşet ve çevre kas yapıları değerlendirilir.'],
+                ['Fonksiyon', 'Günlük omuz kullanımı ve kısıtlılık ele alınır.']
+            ],
+            approachTitle: 'Omuz ağrısında yaklaşım',
+            approachText: 'Ağrıyı artıran mekanik yükleri azaltmak, omuz hareket kalitesini desteklemek ve günlük fonksiyonu korumak hedeflenir.',
+            approachTags: ['Rotator Manşet', 'Skapula', 'Hareket Açıklığı', 'Fonksiyonel Kullanım']
+        },
+        'el-bilegi': {
+            title: 'El Bileği Ağrısı',
+            lead: 'El bileği ağrılarında eklem hareketi, tendon yapıları, kavrama fonksiyonu ve günlük kullanım alışkanlıkları değerlendirilir.',
+            summaryTitle: 'El bileği günlük kullanımın merkezinde yer alır.',
+            summaryText: 'Yazma, bilgisayar kullanma, taşıma, kavrama ve ince motor aktivitelerde artan yakınmalar değerlendirme için önemlidir.',
+            summaryCards: [
+                ['Kavrama', 'Tutuş sırasında rahatsızlık olup olmadığı değerlendirilir.'],
+                ['Tendonlar', 'El bileği çevresi yumuşak doku yapıları incelenir.'],
+                ['Günlük Kullanım', 'Tekrarlayıcı hareketler ve kullanım sıklığı gözden geçirilir.']
+            ],
+            symptomsTitle: 'El bileği ağrısında belirtiler',
+            symptomsLead: 'Hareket ve kavrama ile ilişkili yakınmalar sık ön planda olabilir.',
+            symptoms: [
+                'El bileğinde ağrı veya hassasiyet',
+                'Kavrama sırasında rahatsızlık',
+                'Hareketle artan zorlanma',
+                'Günlük kullanımda çabuk yorulma hissi'
+            ],
+            whoTitle: 'Kimlerde sık görülebilir?',
+            whoText: 'Bilgisayar kullanıcılarında, elini yoğun kullananlarda, tekrarlayan hareket yapanlarda ve yük taşırken zorlanan kişilerde görülebilir.',
+            evalTitle: 'El bileği değerlendirme başlıkları',
+            evalText: 'El bileği mobilitesi, el-kol zinciri, kavrama gücü ve tekrarlayıcı yüklenmeler birlikte ele alınır.',
+            evalCards: [
+                ['Mobilite', 'El bileği hareket açıklığı değerlendirilir.'],
+                ['Ergonomi', 'Kullanım alışkanlıkları ve çalışma düzeni incelenir.'],
+                ['Fonksiyon', 'Kavrama, taşıma ve ince motor beceriler ele alınır.']
+            ],
+            approachTitle: 'El bileği ağrısında yaklaşım',
+            approachText: 'Şikâyete göre ergonomi, kullanım önerileri ve hareket planlaması ile günlük işlevlerin desteklenmesi amaçlanır.',
+            approachTags: ['Kavrama Fonksiyonu', 'Ergonomi', 'Mobilite', 'Günlük Kullanım']
+        }
+    };;
+    const title=document.getElementById('painFullTitleV215');
+    const lead=document.getElementById('painFullLeadV215');
+    const image=document.getElementById('painFullImageV215');
+    const tabs=Array.from(detailPage.querySelectorAll('.pain-full-tab-v215[data-pain-full-tab-v215]'));
+    const panels=Array.from(detailPage.querySelectorAll('[data-pain-full-panel-v215]'));
+    const generalTitle=document.getElementById('painFullGeneralTitleV215');
+    const generalText=document.getElementById('painFullGeneralTextV215');
+    const generalCards=document.getElementById('painFullGeneralCardsV215');
+    const symptomsTitle=document.getElementById('painFullSymptomsTitleV215');
+    const symptomsLead=document.getElementById('painFullSymptomsLeadV215');
+    const symptomsList=document.getElementById('painFullSymptomsListV215');
+    const whoTitle=document.getElementById('painFullWhoTitleV215');
+    const whoText=document.getElementById('painFullWhoTextV215');
+    const evalTitle=document.getElementById('painFullEvalTitleV215');
+    const evalText=document.getElementById('painFullEvalTextV215');
+    const evalCards=document.getElementById('painFullEvalCardsV215');
+    const approachTitle=document.getElementById('painFullApproachTitleV215');
+    const approachText=document.getElementById('painFullApproachTextV215');
+    const approachTags=document.getElementById('painFullApproachTagsV215');
+    const backButtons=[document.getElementById('painFullBackV215')].filter(Boolean);
+    const homeButton=document.getElementById('painFullHomeV215');
+    const treatmentAreasButton=document.getElementById('painFullTreatmentAreasV215');
+    const appointment=document.getElementById('painFullAppointmentV215');
+    const quickBack=document.getElementById('painFullBackQuickV217');
+    const quickButtons=Array.from(detailPage.querySelectorAll('[data-pain-quick-v217]'));
+    const contextImages=Array.from(detailPage.querySelectorAll('[data-pain-context-image-v219]'));
+    const quickImages=Array.from(detailPage.querySelectorAll('[data-pain-quick-image-v219]'));
+
+    let activePain='';
+    let activeImageSrc='';
+
+    const painImageMap={};
+    cards.forEach(card=>{
+      const img=card.querySelector('img');
+      if(img) painImageMap[card.dataset.pain]=img.getAttribute('src')||img.src;
+    });
+    quickImages.forEach(img=>{
+      const key=img.dataset.painQuickImageV219;
+      if(painImageMap[key]) img.src=painImageMap[key];
+    });
+
+    function cardHtml(items) {
+      return (items||[]).map(item=>`<article class="pain-full-info-card-v215 pain-full-info-card-v219"><div class="pain-full-card-image-v219"><img src="${activeImageSrc||''}" alt="${item[0]} görseli"></div><div class="pain-full-card-body-v219"><strong>${item[0]}</strong><p>${item[1]}</p><span>Detayları İncele →</span></div></article>`).join('');
+    }
+
+    function openTab(key) {
+      tabs.forEach(tab=>{
+        const active=tab.dataset.painFullTabV215===key;
+        tab.classList.toggle('is-active',active);
+        tab.setAttribute('aria-selected',active?'true':'false');
+      });
+      panels.forEach(panel=>{
+        const active=panel.dataset.painFullPanelV215===key;
+        panel.classList.toggle('is-active',active);
+        panel.hidden=!active;
+      });
+      const main=document.querySelector('.pain-full-main-v215');
+      if(main && key!=='genel') main.scrollIntoView({behavior:'smooth',block:'start'});
+    }
+
+    function render(key,card) {
+      const item=data[key];
+      if(!item) return;
+      activePain=key;
+      quickButtons.forEach(btn=>{
+        const active=btn.dataset.painQuickV217===key;
+        btn.classList.toggle('is-active',active);
+        btn.setAttribute('aria-current',active?'page':'false');
+      });
+      if(title) title.textContent=item.title;
+      if(lead) lead.textContent=item.lead+' '+item.summaryText;
+      const cardImage=card ? card.querySelector('img') : null;
+      activeImageSrc=(cardImage && (cardImage.getAttribute('src')||cardImage.src)) || painImageMap[key] || activeImageSrc;
+      if(image && activeImageSrc) { image.src=activeImageSrc; image.alt=item.title+' medikal görseli'; }
+      contextImages.forEach(img=>{ if(activeImageSrc){ img.src=activeImageSrc; img.alt=item.title+' medikal görseli'; } });
+      if(generalTitle) generalTitle.textContent=item.summaryTitle;
+      if(generalText) generalText.textContent=item.summaryText;
+      if(generalCards) generalCards.innerHTML=cardHtml(item.summaryCards);
+      if(symptomsTitle) symptomsTitle.textContent=item.symptomsTitle;
+      if(symptomsLead) symptomsLead.textContent=item.symptomsLead;
+      if(symptomsList) symptomsList.innerHTML=(item.symptoms||[]).map(x=>`<li>${x}</li>`).join('');
+      if(whoTitle) whoTitle.textContent=item.title+' kimlerde görülebilir?';
+      if(whoText) whoText.textContent=item.whoText;
+      if(evalTitle) evalTitle.textContent=item.evalTitle;
+      if(evalText) evalText.textContent=item.evalText;
+      if(evalCards) evalCards.innerHTML=cardHtml(item.evalCards);
+      if(approachTitle) approachTitle.textContent=item.approachTitle;
+      if(approachText) approachText.textContent=item.approachText;
+      if(approachTags) approachTags.innerHTML=(item.approachTags||[]).map(x=>`<span>${x}</span>`).join('');
+      openTab('genel');
+    }
+
+    function openDetail(key,card,push=true) {
+      render(key,card);
+      document.body.classList.remove('pain-page-open','pain-nav-scrolled');
+      document.body.classList.add('pain-full-detail-open-v215');
+      painPage.setAttribute('aria-hidden','true');
+      detailPage.setAttribute('aria-hidden','false');
+      if(push) history.pushState({page:'pain-full-detail-v215',pain:key},'', '#agri-'+key);
+      window.scrollTo({top:0,behavior:'smooth'});
+    }
+
+    function closeDetail(push=true) {
+      document.body.classList.remove('pain-full-detail-open-v215');
+      document.body.classList.add('pain-page-open');
+      detailPage.setAttribute('aria-hidden','true');
+      painPage.setAttribute('aria-hidden','false');
+      if(push) history.pushState({page:'agri'},'', '#agri');
+      window.scrollTo({top:0,behavior:'smooth'});
+    }
+
+    cards.forEach(card=>{
+      const cta=card.querySelector('.pain-card-body-v76 span');
+      if(cta) cta.textContent='Detay Sayfasını Aç ↗';
+      card.addEventListener('click',event=>{
+        event.preventDefault();
+        openDetail(card.dataset.pain,card,true);
+      });
+    });
+
+    tabs.forEach((tab,index)=>{
+      tab.addEventListener('click',()=>openTab(tab.dataset.painFullTabV215));
+      tab.addEventListener('keydown',event=>{
+        if(event.key!=='ArrowRight'&&event.key!=='ArrowLeft') return;
+        event.preventDefault();
+        const dir=event.key==='ArrowRight'?1:-1;
+        const next=tabs[(index+dir+tabs.length)%tabs.length];
+        next.focus(); next.click();
+      });
+    });
+
+    quickButtons.forEach(btn=>{
+      btn.addEventListener('click',()=>{
+        const key=btn.dataset.painQuickV217;
+        const card=cards.find(c=>c.dataset.pain===key);
+        if(!card || key===activePain) return;
+        render(key,card);
+        history.pushState({page:'pain-full-detail-v215',pain:key},'', '#agri-'+key);
+        const hero=detailPage.querySelector('.pain-full-hero-v215');
+        if(hero) hero.scrollIntoView({behavior:'smooth',block:'start'});
+      });
+    });
+
+    if(quickBack) quickBack.addEventListener('click',()=>closeDetail(true));
+
+    backButtons.forEach(btn=>btn.addEventListener('click',()=>closeDetail(true)));
+
+    if(homeButton) homeButton.addEventListener('click',()=>{
+      document.body.classList.remove('pain-full-detail-open-v215','pain-page-open');
+      detailPage.setAttribute('aria-hidden','true');
+      painPage.setAttribute('aria-hidden','true');
+      history.pushState({page:'home'},'',location.pathname+location.search);
+      window.scrollTo({top:0,behavior:'smooth'});
+    });
+
+    if(treatmentAreasButton) treatmentAreasButton.addEventListener('click',()=>{
+      document.body.classList.remove('pain-full-detail-open-v215');
+      detailPage.setAttribute('aria-hidden','true');
+      const page=document.getElementById('tedaviAlanlariPage');
+      if(typeof window.openTreatmentPage==='function') { window.openTreatmentPage(); return; }
+      if(page) { document.body.classList.add('treatment-page-open'); page.setAttribute('aria-hidden','false'); window.scrollTo({top:0,behavior:'smooth'}); }
+    });
+
+    if(appointment) appointment.addEventListener('click',event=>{
+      event.preventDefault();
+      document.body.classList.remove('pain-full-detail-open-v215','pain-page-open');
+      detailPage.setAttribute('aria-hidden','true');
+      painPage.setAttribute('aria-hidden','true');
+      history.pushState({page:'home',section:'randevu'},'', '#randevu');
+      const target=document.getElementById('randevu');
+      if(target) setTimeout(()=>target.scrollIntoView({behavior:'smooth',block:'start'}),40);
+    });
+
+    window.openPainFullDetailV215=openDetail;
+    window.closePainFullDetailV215=closeDetail;
+
+    const match=location.hash.match(/^#agri-(diz|ayak-ayak-bilegi|kalca|bel|sirt|dirsek|omuz|el-bilegi)$/);
+    if(match) {
+      const card=cards.find(c=>c.dataset.pain===match[1]);
+      if(card) openDetail(match[1],card,false);
+    }
+
+    window.addEventListener('popstate',()=>{
+      const m=location.hash.match(/^#agri-(diz|ayak-ayak-bilegi|kalca|bel|sirt|dirsek|omuz|el-bilegi)$/);
+      if(m) { const card=cards.find(c=>c.dataset.pain===m[1]); if(card) openDetail(m[1],card,false); }
+      else if(location.hash==='#agri' && document.body.classList.contains('pain-full-detail-open-v215')) closeDetail(false);
+    });
+})();
+
+
+// V218: Hızlı ağrı geçişi hero içine taşındı; mevcut data-pain-quick-v217 davranışı korunur.

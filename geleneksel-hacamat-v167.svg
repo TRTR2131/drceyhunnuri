@@ -1,0 +1,43 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1600" height="900" viewBox="0 0 1600 900" fill="none">
+  <defs>
+    <linearGradient id="bg" x1="0" y1="0" x2="1600" y2="900" gradientUnits="userSpaceOnUse">
+      <stop stop-color="#0A3552"/>
+      <stop offset="1" stop-color="#0D5A8A"/>
+    </linearGradient>
+    <linearGradient id="glass" x1="0" y1="0" x2="1" y2="1">
+      <stop stop-color="#FFFFFF" stop-opacity="0.20"/>
+      <stop offset="1" stop-color="#FFFFFF" stop-opacity="0.04"/>
+    </linearGradient>
+    <filter id="blur" x="-10%" y="-10%" width="120%" height="120%"><feGaussianBlur stdDeviation="18"/></filter>
+  </defs>
+  <rect width="1600" height="900" fill="url(#bg)"/>
+  <circle cx="1380" cy="130" r="160" fill="#4FB4FF" fill-opacity="0.22" filter="url(#blur)"/>
+  <circle cx="180" cy="750" r="220" fill="#61D4FF" fill-opacity="0.18" filter="url(#blur)"/>
+  <rect x="70" y="70" width="1460" height="760" rx="42" fill="url(#glass)" stroke="#94D7FF" stroke-opacity="0.45"/>
+  <text x="120" y="160" fill="#7FD0FF" font-family="Arial, sans-serif" font-weight="700" font-size="34" letter-spacing="4">GELENEKSEL TEDAVİ</text>
+  <text x="120" y="245" fill="#FFFFFF" font-family="Arial, sans-serif" font-weight="700" font-size="72">Hacamat</text>
+  <text x="120" y="320" fill="#D7F1FF" font-family="Arial, sans-serif" font-size="34">Modern klinik ortamda, kontrollü ve hijyenik kupa uygulamasını temsil eden görsel.</text>
+  <g transform="translate(820,120)">
+    <rect x="0" y="0" width="610" height="640" rx="36" fill="#0B2E47" fill-opacity="0.45" stroke="#7DD4FF" stroke-opacity="0.35"/>
+    <ellipse cx="305" cy="420" rx="175" ry="150" fill="#F1C9B7"/>
+    <path d="M165 315c38-72 96-110 140-110s102 38 140 110c-35 45-72 80-140 80s-105-35-140-80Z" fill="#F7D7C9"/>
+    <g fill="#BEEAFF" stroke="#69C9FF" stroke-width="6" opacity="0.96">
+      <path d="M220 245h32v24c0 24-10 42-16 48-6-6-16-24-16-48v-24Z"/>
+      <path d="M290 225h32v24c0 24-10 42-16 48-6-6-16-24-16-48v-24Z"/>
+      <path d="M360 245h32v24c0 24-10 42-16 48-6-6-16-24-16-48v-24Z"/>
+      <path d="M255 320h32v24c0 24-10 42-16 48-6-6-16-24-16-48v-24Z"/>
+      <path d="M325 320h32v24c0 24-10 42-16 48-6-6-16-24-16-48v-24Z"/>
+    </g>
+    <g stroke="#A2E6FF" stroke-width="3" opacity="0.55">
+      <path d="M210 510c40 16 88 24 144 24 56 0 105-8 146-24"/>
+      <path d="M192 556c46 18 98 28 162 28 64 0 117-10 164-28"/>
+    </g>
+  </g>
+  <g transform="translate(120,440)">
+    <rect x="0" y="0" width="520" height="270" rx="28" fill="#0B2E47" fill-opacity="0.42" stroke="#7DD4FF" stroke-opacity="0.30"/>
+    <text x="36" y="58" fill="#FFFFFF" font-family="Arial, sans-serif" font-size="34" font-weight="700">Öne çıkan başlıklar</text>
+    <text x="36" y="110" fill="#D9F3FF" font-family="Arial, sans-serif" font-size="28">• Dolaşım ve rahatlama odaklı destek</text>
+    <text x="36" y="155" fill="#D9F3FF" font-family="Arial, sans-serif" font-size="28">• Kas gerginliği ve yorgunluk hissinde yardımcı yaklaşım</text>
+    <text x="36" y="200" fill="#D9F3FF" font-family="Arial, sans-serif" font-size="28">• Bütüncül tedavi planı içinde değerlendirilebilir</text>
+  </g>
+</svg>
