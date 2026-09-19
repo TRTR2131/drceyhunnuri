@@ -34289,3 +34289,1959 @@ body.info-guide-open-v143 .info-guide-page-v143 {
     margin-top: 0 !important;
 }
 
+
+
+/* =========================================================
+   V229 - DR. CEYHUN NURI PREMIUM PULSE GLOBAL GEÇİŞ
+   Seçilen 5 numaralı animasyon. Toplam süre: 1.5 saniye.
+   ========================================================= */
+
+.site-page-transition-v229 {
+    background: #07131d !important;
+    isolation: isolate;
+}
+
+.site-page-transition-v229::before {
+    display: none !important;
+}
+
+.site-transition-v229-backdrop {
+    position: absolute;
+    inset: 0;
+    z-index: 0;
+    background:
+        radial-gradient(circle at 50% 48%, rgba(202, 157, 84, .10), transparent 24%),
+        radial-gradient(circle at 50% 54%, rgba(33, 91, 119, .18), transparent 42%),
+        linear-gradient(145deg, #061019 0%, #0a1721 52%, #07121b 100%);
+}
+
+.site-transition-v229-aura {
+    position: absolute;
+    z-index: 1;
+    width: 360px;
+    height: 360px;
+    border-radius: 50%;
+    opacity: 0;
+    filter: blur(85px);
+    pointer-events: none;
+}
+
+.site-transition-v229-aura-a {
+    left: 8%;
+    top: 7%;
+    background: rgba(201, 156, 83, .18);
+}
+
+.site-transition-v229-aura-b {
+    right: 7%;
+    bottom: 2%;
+    background: rgba(38, 121, 155, .18);
+}
+
+.is-running-v110 .site-transition-v229-aura-a {
+    animation: sitePremiumAuraAV229 1.5s ease-in-out both;
+}
+
+.is-running-v110 .site-transition-v229-aura-b {
+    animation: sitePremiumAuraBV229 1.5s ease-in-out both;
+}
+
+.site-transition-premium-v229 {
+    position: relative;
+    z-index: 5;
+    width: min(920px, calc(100vw - 28px));
+    display: grid;
+    justify-items: center;
+    align-content: center;
+    gap: 5px;
+    opacity: 0;
+    transform: translateY(10px) scale(.97);
+}
+
+.is-running-v110 .site-transition-premium-v229 {
+    animation: sitePremiumStageV229 1.5s cubic-bezier(.22,.72,.2,1) both;
+}
+
+.site-transition-logo-wrap-v229 {
+    position: relative;
+    width: min(900px, 92vw);
+    aspect-ratio: 900 / 506;
+    display: grid;
+    place-items: center;
+    overflow: hidden;
+    border-radius: 32px;
+    background: #07131d;
+    box-shadow:
+        0 34px 100px rgba(0,0,0,.34),
+        0 0 90px rgba(191, 146, 77, .08);
+}
+
+.site-transition-logo-wrap-v229::after {
+    content: "";
+    position: absolute;
+    inset: 0;
+    pointer-events: none;
+    border-radius: inherit;
+    box-shadow:
+        inset 0 0 0 1px rgba(216, 177, 111, .08),
+        inset 0 -45px 80px rgba(0,0,0,.10);
+}
+
+.site-transition-logo-v229 {
+    width: 100%;
+    height: 100%;
+    display: block;
+    object-fit: contain;
+    background: #07131d;
+}
+
+.site-transition-copy-v229 {
+    position: absolute;
+    left: 50%;
+    bottom: 20px;
+    z-index: 8;
+    width: min(520px, 80vw);
+    transform: translateX(-50%);
+    gap: 2px;
+    pointer-events: none;
+    text-shadow: 0 2px 12px rgba(0,0,0,.75);
+}
+
+.site-transition-copy-v229 > span {
+    color: #d3ad68 !important;
+    font-size: 9px !important;
+    letter-spacing: .24em !important;
+}
+
+.site-transition-copy-v229 > strong {
+    color: rgba(255,255,255,.96) !important;
+    font-size: clamp(18px, 2.4vw, 28px) !important;
+    line-height: 1.1 !important;
+    letter-spacing: -.02em !important;
+}
+
+.site-transition-copy-v229 > small {
+    display: none;
+}
+
+.site-transition-v229-timeline {
+    position: absolute;
+    left: 50%;
+    bottom: 8px;
+    z-index: 9;
+    width: min(210px, 36vw);
+    height: 2px;
+    transform: translateX(-50%);
+    overflow: hidden;
+    border-radius: 999px;
+    background: rgba(255,255,255,.07);
+}
+
+.site-transition-v229-timeline i {
+    display: block;
+    width: 100%;
+    height: 100%;
+    transform: scaleX(0);
+    transform-origin: left center;
+    border-radius: inherit;
+    background: linear-gradient(90deg, #8b642d, #e3bd78, #fff0c7);
+    box-shadow: 0 0 12px rgba(219, 178, 107, .44);
+}
+
+.is-running-v110 .site-transition-v229-timeline i {
+    animation: sitePremiumTimelineV229 1.42s .04s linear forwards;
+}
+
+@keyframes sitePremiumStageV229 {
+    0% {
+        opacity: 0;
+        transform: translateY(10px) scale(.97);
+    }
+    10% {
+        opacity: 1;
+    }
+    24% {
+        transform: translateY(0) scale(1);
+    }
+    82% {
+        opacity: 1;
+        transform: translateY(0) scale(1);
+    }
+    100% {
+        opacity: 0;
+        transform: translateY(-5px) scale(1.012);
+    }
+}
+
+@keyframes sitePremiumAuraAV229 {
+    0% { opacity: 0; transform: scale(.72); }
+    30% { opacity: .8; transform: scale(1); }
+    78% { opacity: .50; }
+    100% { opacity: 0; transform: scale(1.18); }
+}
+
+@keyframes sitePremiumAuraBV229 {
+    0% { opacity: 0; transform: scale(.78); }
+    34% { opacity: .65; transform: scale(1); }
+    80% { opacity: .42; }
+    100% { opacity: 0; transform: scale(1.16); }
+}
+
+@keyframes sitePremiumTimelineV229 {
+    from { transform: scaleX(0); }
+    to { transform: scaleX(1); }
+}
+
+@media (max-width: 680px) {
+    .site-transition-logo-wrap-v229 {
+        width: 96vw;
+        border-radius: 22px;
+    }
+
+    .site-transition-copy-v229 {
+        bottom: 14px;
+        width: 86vw;
+    }
+
+    .site-transition-copy-v229 > strong {
+        font-size: 18px !important;
+    }
+
+    .site-transition-v229-timeline {
+        bottom: 4px;
+    }
+}
+
+@media (prefers-reduced-motion: reduce) {
+    .site-page-transition-v229 {
+        display: none !important;
+    }
+}
+
+
+/* =========================================================
+   V230 - FULL SCREEN PREMIUM PULSE GEÇİŞ
+   Logo doğrudan HTML içine gömülü, dosya yolu sorunu yok.
+   Tüm ekranı kaplar, toplam süre 1.5 saniye.
+   ========================================================= */
+
+.site-page-transition-v229 {
+    position: fixed !important;
+    inset: 0 !important;
+    width: 100vw !important;
+    height: 100vh !important;
+    min-width: 100vw !important;
+    min-height: 100vh !important;
+    padding: 0 !important;
+    margin: 0 !important;
+    display: grid !important;
+    place-items: center !important;
+    overflow: hidden !important;
+    background:
+        radial-gradient(circle at 50% 48%, rgba(197, 152, 83, .10), transparent 22%),
+        radial-gradient(circle at 50% 52%, rgba(27, 85, 114, .18), transparent 46%),
+        linear-gradient(145deg, #050d14 0%, #091620 52%, #050d14 100%) !important;
+}
+
+.site-transition-v229-backdrop {
+    position: absolute !important;
+    inset: 0 !important;
+    width: 100vw !important;
+    height: 100vh !important;
+    background:
+        radial-gradient(circle at center, rgba(215,172,98,.09) 0, rgba(12,24,34,.18) 32%, rgba(4,11,17,.96) 72%),
+        linear-gradient(135deg, #06111a 0%, #0b1924 50%, #061019 100%) !important;
+}
+
+.site-transition-v229-aura {
+    width: 72vmax !important;
+    height: 72vmax !important;
+    filter: blur(110px) !important;
+}
+
+.site-transition-premium-v229 {
+    position: relative !important;
+    z-index: 6 !important;
+    width: 100vw !important;
+    height: 100vh !important;
+    max-width: none !important;
+    display: grid !important;
+    place-items: center !important;
+    opacity: 0;
+    transform: scale(.98);
+}
+
+.site-transition-logo-wrap-v229 {
+    position: relative !important;
+    width: 100vw !important;
+    height: 100vh !important;
+    max-width: none !important;
+    max-height: none !important;
+    aspect-ratio: auto !important;
+    display: grid !important;
+    place-items: center !important;
+    overflow: visible !important;
+    border-radius: 0 !important;
+    background: transparent !important;
+    box-shadow: none !important;
+}
+
+.site-transition-logo-wrap-v229::after {
+    display: none !important;
+}
+
+.site-transition-logo-wrap-v229::before {
+    content: "";
+    position: absolute;
+    left: 50%;
+    top: 50%;
+    width: min(52vw, 560px);
+    height: min(52vw, 560px);
+    transform: translate(-50%, -50%) scale(.42);
+    border-radius: 50%;
+    border: 1px solid rgba(223,179,105,.28);
+    opacity: 0;
+    box-shadow:
+        0 0 0 20px rgba(219,175,101,.025),
+        0 0 90px rgba(213,170,99,.14),
+        0 0 180px rgba(213,170,99,.08);
+}
+
+.site-transition-logo-v230 {
+    width: auto !important;
+    height: min(72vh, 720px) !important;
+    max-width: 72vw !important;
+    object-fit: contain !important;
+    background: transparent !important;
+    opacity: 0;
+    transform: scale(.70);
+    filter:
+        drop-shadow(0 26px 70px rgba(0,0,0,.58))
+        drop-shadow(0 0 34px rgba(208,165,93,.14));
+    will-change: opacity, transform, filter;
+}
+
+.is-running-v110 .site-transition-premium-v229 {
+    animation: siteFullStageV230 1.5s cubic-bezier(.22,.72,.2,1) both !important;
+}
+
+.is-running-v110 .site-transition-logo-v230 {
+    animation: siteFullLogoPulseV230 1.5s cubic-bezier(.22,.72,.2,1) both !important;
+}
+
+.is-running-v110 .site-transition-logo-wrap-v229::before {
+    animation: siteFullRingV230 1.5s ease-out both !important;
+}
+
+/* Geniş ekran ışık halkaları */
+.site-transition-premium-v229::before,
+.site-transition-premium-v229::after {
+    content: "";
+    position: absolute;
+    left: 50%;
+    top: 50%;
+    width: 46vmax;
+    height: 46vmax;
+    transform: translate(-50%, -50%) scale(.40);
+    border-radius: 50%;
+    pointer-events: none;
+    opacity: 0;
+}
+
+.site-transition-premium-v229::before {
+    border: 1px solid rgba(210,167,94,.19);
+    box-shadow:
+        0 0 80px rgba(210,167,94,.08),
+        inset 0 0 80px rgba(210,167,94,.04);
+}
+
+.site-transition-premium-v229::after {
+    width: 62vmax;
+    height: 62vmax;
+    border: 1px solid rgba(73,151,190,.12);
+}
+
+.is-running-v110 .site-transition-premium-v229::before {
+    animation: siteFullWaveOneV230 1.5s ease-out both;
+}
+
+.is-running-v110 .site-transition-premium-v229::after {
+    animation: siteFullWaveTwoV230 1.5s .08s ease-out both;
+}
+
+/* Alt başlık merkezde ama küçük */
+.site-transition-copy-v229 {
+    position: absolute !important;
+    left: 50% !important;
+    bottom: 6.5vh !important;
+    width: min(620px, 86vw) !important;
+    transform: translateX(-50%) !important;
+    text-align: center !important;
+    z-index: 12 !important;
+    text-shadow: 0 2px 14px rgba(0,0,0,.78) !important;
+}
+
+.site-transition-copy-v229 > span {
+    color: #d7b16c !important;
+    font-size: 10px !important;
+    letter-spacing: .28em !important;
+}
+
+.site-transition-copy-v229 > strong {
+    color: #ffffff !important;
+    font-size: clamp(18px, 2vw, 28px) !important;
+    line-height: 1.12 !important;
+}
+
+.site-transition-copy-v229 > small {
+    display: none !important;
+}
+
+.site-transition-v229-timeline {
+    position: absolute !important;
+    left: 50% !important;
+    bottom: 4.2vh !important;
+    width: min(260px, 42vw) !important;
+    height: 2px !important;
+    transform: translateX(-50%) !important;
+}
+
+@keyframes siteFullStageV230 {
+    0%   { opacity: 0; transform: scale(.985); }
+    8%   { opacity: 1; }
+    82%  { opacity: 1; transform: scale(1); }
+    100% { opacity: 0; transform: scale(1.012); }
+}
+
+@keyframes siteFullLogoPulseV230 {
+    0% {
+        opacity: 0;
+        transform: scale(.68);
+        filter:
+            blur(9px)
+            drop-shadow(0 20px 48px rgba(0,0,0,.52));
+    }
+    16% {
+        opacity: .72;
+        transform: scale(.86);
+        filter:
+            blur(3px)
+            drop-shadow(0 24px 58px rgba(0,0,0,.55))
+            drop-shadow(0 0 20px rgba(211,168,96,.10));
+    }
+    32% {
+        opacity: 1;
+        transform: scale(1.04);
+        filter:
+            blur(0)
+            drop-shadow(0 28px 74px rgba(0,0,0,.58))
+            drop-shadow(0 0 42px rgba(211,168,96,.24));
+    }
+    50% {
+        transform: scale(.985);
+        filter:
+            drop-shadow(0 26px 70px rgba(0,0,0,.58))
+            drop-shadow(0 0 28px rgba(211,168,96,.17));
+    }
+    76% {
+        opacity: 1;
+        transform: scale(1);
+    }
+    100% {
+        opacity: 0;
+        transform: scale(1.045);
+        filter:
+            drop-shadow(0 28px 76px rgba(0,0,0,.48))
+            drop-shadow(0 0 18px rgba(211,168,96,.08));
+    }
+}
+
+@keyframes siteFullRingV230 {
+    0% {
+        opacity: 0;
+        transform: translate(-50%, -50%) scale(.34);
+    }
+    20% {
+        opacity: .76;
+    }
+    58% {
+        opacity: .22;
+        transform: translate(-50%, -50%) scale(1.12);
+    }
+    100% {
+        opacity: 0;
+        transform: translate(-50%, -50%) scale(1.42);
+    }
+}
+
+@keyframes siteFullWaveOneV230 {
+    0%   { opacity: 0; transform: translate(-50%, -50%) scale(.35); }
+    24%  { opacity: .48; }
+    100% { opacity: 0; transform: translate(-50%, -50%) scale(1.18); }
+}
+
+@keyframes siteFullWaveTwoV230 {
+    0%   { opacity: 0; transform: translate(-50%, -50%) scale(.44); }
+    28%  { opacity: .34; }
+    100% { opacity: 0; transform: translate(-50%, -50%) scale(1.10); }
+}
+
+@media (max-width: 700px) {
+    .site-transition-logo-v230 {
+        height: min(64vh, 560px) !important;
+        max-width: 84vw !important;
+    }
+
+    .site-transition-copy-v229 {
+        bottom: 7vh !important;
+    }
+
+    .site-transition-v229-timeline {
+        bottom: 4.8vh !important;
+    }
+}
+
+
+/* =========================================================
+   V231 - ESKİ TARZA YAKIN PREMIUM YAZI ODAKLI GLOBAL GEÇİŞ
+   ========================================================= */
+
+body.site-transition-running-v110 {
+    overflow: hidden !important;
+}
+
+.site-page-transition-v110.site-page-transition-old-v231 {
+    position: fixed !important;
+    inset: 0 !important;
+    z-index: 999999 !important;
+    display: grid !important;
+    place-items: center !important;
+    overflow: hidden !important;
+    pointer-events: none !important;
+    visibility: hidden;
+    opacity: 0;
+    background:
+        linear-gradient(
+            135deg,
+            rgba(4,20,32,.985) 0%,
+            rgba(6,31,47,.995) 52%,
+            rgba(3,18,30,.99) 100%
+        ) !important;
+}
+
+.site-page-transition-v110.site-page-transition-old-v231.is-running-v110 {
+    visibility: visible;
+    animation: siteOverlayOldV231 1.5s cubic-bezier(.22,.72,.2,1) both;
+}
+
+.site-transition-old-bg-v231 {
+    position: absolute;
+    inset: 0;
+    background:
+        radial-gradient(circle at 50% 50%, rgba(43,145,198,.16), transparent 28%),
+        radial-gradient(circle at 20% 50%, rgba(52,153,206,.12), transparent 26%),
+        radial-gradient(circle at 80% 50%, rgba(22,102,150,.10), transparent 24%);
+}
+
+.site-transition-old-bg-v231::before,
+.site-transition-old-bg-v231::after {
+    content: "";
+    position: absolute;
+    left: 50%;
+    top: 50%;
+    width: 88vmax;
+    height: 88vmax;
+    border-radius: 50%;
+    border: 1px solid rgba(106,177,214,.09);
+    transform: translate(-50%,-50%) scale(.82);
+    opacity: 0;
+}
+
+.site-page-transition-old-v231.is-running-v110 .site-transition-old-bg-v231::before {
+    animation: siteOldRingOneV231 1.5s ease both;
+}
+
+.site-page-transition-old-v231.is-running-v110 .site-transition-old-bg-v231::after {
+    animation: siteOldRingTwoV231 1.5s ease both;
+}
+
+.site-transition-old-glow-v231 {
+    position: absolute;
+    top: 50%;
+    width: min(38vw,440px);
+    height: min(54vw,620px);
+    transform: translateY(-50%);
+    filter: blur(70px);
+    opacity: 0;
+}
+
+.site-transition-old-glow-left-v231 {
+    left: -8vw;
+    background: linear-gradient(180deg,rgba(76,179,230,.18),rgba(8,48,76,0));
+}
+
+.site-transition-old-glow-right-v231 {
+    right: -8vw;
+    background: linear-gradient(180deg,rgba(23,108,160,.16),rgba(5,25,41,0));
+}
+
+.site-page-transition-old-v231.is-running-v110 .site-transition-old-glow-left-v231 {
+    animation: siteGlowLeftV231 1.5s ease both;
+}
+
+.site-page-transition-old-v231.is-running-v110 .site-transition-old-glow-right-v231 {
+    animation: siteGlowRightV231 1.5s ease both;
+}
+
+.site-transition-old-line-v231 {
+    position: absolute;
+    left: 0;
+    width: 100%;
+    height: 3px;
+    opacity: 0;
+}
+
+.site-transition-old-line-top-v231 {
+    top: 0;
+    background: linear-gradient(90deg,transparent,rgba(67,164,215,.85),transparent);
+}
+
+.site-transition-old-line-bottom-v231 {
+    bottom: 0;
+    background: linear-gradient(90deg,transparent,rgba(199,158,87,.75),transparent);
+}
+
+.site-page-transition-old-v231.is-running-v110 .site-transition-old-line-v231 {
+    animation: siteLineFadeV231 1.5s ease both;
+}
+
+.site-transition-old-copy-v231 {
+    position: relative;
+    z-index: 3;
+    width: min(92vw,1080px);
+    padding: 24px 24px 34px;
+    display: grid;
+    justify-items: center;
+    align-content: center;
+    gap: 8px;
+    text-align: center;
+    opacity: 0;
+    transform: translateY(26px) scale(.985);
+}
+
+.site-page-transition-old-v231.is-running-v110 .site-transition-old-copy-v231 {
+    animation: siteCopyOldV231 1.5s cubic-bezier(.22,.72,.2,1) both;
+}
+
+.site-page-transition-old-v231 .site-transition-copy-v110 > span {
+    color: #cda257 !important;
+    font-size: 12px !important;
+    font-weight: 900 !important;
+    letter-spacing: .34em !important;
+}
+
+.site-page-transition-old-v231 .site-transition-copy-v110 > strong {
+    max-width: min(94vw,920px) !important;
+    color: #fff !important;
+    font-size: clamp(40px,6.4vw,88px) !important;
+    line-height: 1.02 !important;
+    letter-spacing: -.045em !important;
+    text-shadow: 0 10px 30px rgba(0,0,0,.24) !important;
+}
+
+.site-page-transition-old-v231 .site-transition-copy-v110 > small {
+    max-width: min(88vw,720px) !important;
+    margin-top: 6px !important;
+    color: rgba(203,221,233,.80) !important;
+    font-size: clamp(14px,1.45vw,18px) !important;
+    line-height: 1.55 !important;
+}
+
+.site-transition-old-underline-v231 {
+    width: min(180px,38vw);
+    height: 3px;
+    margin-top: 12px;
+    border-radius: 999px;
+    background: linear-gradient(90deg,transparent,#c79e57,transparent);
+    transform: scaleX(0);
+    opacity: 0;
+    box-shadow: 0 0 22px rgba(199,158,87,.34);
+}
+
+.site-page-transition-old-v231.is-running-v110 .site-transition-old-underline-v231 {
+    animation: siteUnderlineOldV231 1.5s cubic-bezier(.2,.7,.2,1) both;
+}
+
+@keyframes siteOverlayOldV231 {
+    0% { opacity: 0; }
+    10% { opacity: 1; }
+    84% { opacity: 1; }
+    100% { opacity: 0; }
+}
+
+@keyframes siteCopyOldV231 {
+    0% { opacity: 0; transform: translateY(26px) scale(.985); }
+    22% { opacity: 1; transform: translateY(0) scale(1); }
+    74% { opacity: 1; transform: translateY(0) scale(1); }
+    100% { opacity: 0; transform: translateY(-12px) scale(1.01); }
+}
+
+@keyframes siteUnderlineOldV231 {
+    0%,18% { opacity: 0; transform: scaleX(.18); }
+    34% { opacity: 1; transform: scaleX(1); }
+    74% { opacity: 1; transform: scaleX(1); }
+    100% { opacity: 0; transform: scaleX(.78); }
+}
+
+@keyframes siteLineFadeV231 {
+    0% { opacity: 0; }
+    12% { opacity: .95; }
+    78% { opacity: .95; }
+    100% { opacity: 0; }
+}
+
+@keyframes siteGlowLeftV231 {
+    0% { opacity: 0; transform: translateY(-50%) translateX(-28px) scale(.86); }
+    25% { opacity: .85; transform: translateY(-50%) translateX(0) scale(1); }
+    75% { opacity: .62; transform: translateY(-50%) translateX(12px) scale(1.06); }
+    100% { opacity: 0; transform: translateY(-50%) translateX(30px) scale(1.12); }
+}
+
+@keyframes siteGlowRightV231 {
+    0% { opacity: 0; transform: translateY(-50%) translateX(28px) scale(.86); }
+    25% { opacity: .78; transform: translateY(-50%) translateX(0) scale(1); }
+    75% { opacity: .58; transform: translateY(-50%) translateX(-12px) scale(1.06); }
+    100% { opacity: 0; transform: translateY(-50%) translateX(-30px) scale(1.12); }
+}
+
+@keyframes siteOldRingOneV231 {
+    0% { opacity: 0; transform: translate(-50%,-50%) scale(.76); }
+    28% { opacity: .55; transform: translate(-50%,-50%) scale(1); }
+    74% { opacity: .22; transform: translate(-50%,-50%) scale(1.10); }
+    100% { opacity: 0; transform: translate(-50%,-50%) scale(1.16); }
+}
+
+@keyframes siteOldRingTwoV231 {
+    0%,12% { opacity: 0; transform: translate(-50%,-50%) scale(.68); }
+    34% { opacity: .42; transform: translate(-50%,-50%) scale(.95); }
+    76% { opacity: .16; transform: translate(-50%,-50%) scale(1.07); }
+    100% { opacity: 0; transform: translate(-50%,-50%) scale(1.14); }
+}
+
+@media (max-width:768px) {
+    .site-page-transition-old-v231 .site-transition-copy-v110 > strong {
+        font-size: clamp(34px,10vw,58px) !important;
+    }
+}
+
+
+/* =========================================================
+   V232 - FİTOTERAPİ AS / RA AKTİF SEÇİM + AS BİTKİSEL BÖLÜM
+   ========================================================= */
+.phyto-disease-chips-v232 {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 12px;
+}
+
+.phyto-disease-chip-btn-v232 {
+    appearance: none;
+    border: 1px solid rgba(20, 110, 162, .18);
+    background: rgba(255,255,255,.78);
+    color: #12425f;
+    border-radius: 999px;
+    padding: 12px 18px;
+    font: inherit;
+    font-weight: 800;
+    letter-spacing: .01em;
+    cursor: pointer;
+    transition: transform .24s ease, box-shadow .24s ease, background .24s ease, color .24s ease, border-color .24s ease;
+    box-shadow: 0 10px 22px rgba(6, 57, 94, .05);
+}
+
+.phyto-disease-chip-btn-v232:hover,
+.phyto-disease-chip-btn-v232:focus-visible {
+    transform: translateY(-2px);
+    outline: none;
+    border-color: rgba(18, 121, 181, .38);
+    box-shadow: 0 14px 26px rgba(10, 61, 99, .12);
+}
+
+.phyto-disease-chip-btn-v232.is-active {
+    background: linear-gradient(135deg, #0d6fa6 0%, #13a7d8 100%);
+    color: #fff;
+    border-color: transparent;
+    box-shadow: 0 18px 32px rgba(10, 93, 146, .26);
+}
+
+.phyto-condition-spotlight-v232 {
+    margin-top: 28px;
+    display: grid;
+    grid-template-columns: minmax(280px, 380px) minmax(0, 1fr);
+    gap: 28px;
+    align-items: stretch;
+    padding: 28px;
+    border-radius: 30px;
+    background: linear-gradient(135deg, rgba(8, 50, 82, .98), rgba(9, 71, 111, .93));
+    color: #fff;
+    box-shadow: 0 28px 60px rgba(5, 39, 64, .18);
+}
+
+.phyto-condition-media-v232 {
+    min-height: 320px;
+    border-radius: 24px;
+    overflow: hidden;
+    background: rgba(255,255,255,.08);
+    border: 1px solid rgba(255,255,255,.12);
+}
+
+.phyto-condition-media-v232 img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    display: block;
+}
+
+.phyto-condition-copy-v232 {
+    display: flex;
+    flex-direction: column;
+    gap: 18px;
+    justify-content: center;
+}
+
+.phyto-condition-kicker-v232,
+.phyto-focus-head-v232 > div > span,
+.phyto-ra-placeholder-box-v232 > span {
+    display: inline-flex;
+    align-self: flex-start;
+    padding: 8px 14px;
+    border-radius: 999px;
+    background: rgba(255,255,255,.10);
+    border: 1px solid rgba(255,255,255,.14);
+    color: #a9dcff;
+    font-size: .78rem;
+    font-weight: 800;
+    letter-spacing: .14em;
+}
+
+.phyto-condition-copy-v232 h2,
+.phyto-focus-head-v232 h2,
+.phyto-ra-placeholder-box-v232 h2 {
+    margin: 0;
+    font-size: clamp(2rem, 2.6vw, 3rem);
+    line-height: 1.08;
+}
+
+.phyto-condition-copy-v232 p,
+.phyto-focus-head-v232 p,
+.phyto-ra-placeholder-box-v232 p {
+    margin: 0;
+    color: rgba(228, 240, 247, .9);
+    font-size: 1rem;
+    line-height: 1.75;
+}
+
+.phyto-condition-points-v232 {
+    display: grid;
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+    gap: 14px;
+}
+
+.phyto-condition-points-v232 article {
+    padding: 18px 16px;
+    border-radius: 18px;
+    background: rgba(255,255,255,.08);
+    border: 1px solid rgba(255,255,255,.10);
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+}
+
+.phyto-condition-points-v232 article strong {
+    font-size: 1rem;
+    color: #fff;
+}
+
+.phyto-condition-points-v232 article span {
+    color: rgba(230, 239, 245, .86);
+    line-height: 1.6;
+    font-size: .95rem;
+}
+
+.phyto-condition-actions-v232 {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 12px;
+}
+
+.phyto-action-btn-v232 {
+    appearance: none;
+    border: none;
+    cursor: pointer;
+    font: inherit;
+    font-weight: 800;
+    border-radius: 16px;
+    padding: 14px 20px;
+    transition: transform .24s ease, box-shadow .24s ease, background .24s ease, color .24s ease;
+}
+
+.phyto-action-btn-v232:hover,
+.phyto-action-btn-v232:focus-visible {
+    transform: translateY(-2px);
+    outline: none;
+}
+
+.phyto-action-btn-v232.primary {
+    background: linear-gradient(135deg, #ffffff 0%, #dff3ff 100%);
+    color: #0a4f76;
+    box-shadow: 0 14px 28px rgba(0,0,0,.16);
+}
+
+.phyto-action-btn-v232.secondary {
+    background: rgba(255,255,255,.08);
+    color: #fff;
+    border: 1px solid rgba(255,255,255,.14);
+}
+
+.phyto-herbal-focus-v232,
+.phyto-ra-placeholder-v232 {
+    margin-top: 34px;
+    padding: 34px;
+    border-radius: 30px;
+    background: linear-gradient(180deg, rgba(255,255,255,.98), rgba(240,248,252,.98));
+    border: 1px solid rgba(17, 109, 165, .10);
+    box-shadow: 0 20px 46px rgba(8, 49, 81, .08);
+}
+
+.phyto-focus-head-v232 {
+    display: grid;
+    grid-template-columns: minmax(0, 1.05fr) minmax(280px, .95fr);
+    gap: 24px;
+    align-items: end;
+    margin-bottom: 24px;
+}
+
+.phyto-focus-head-v232 p {
+    color: #5a7387;
+}
+
+.phyto-herbal-grid-v232 {
+    display: grid;
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+    gap: 18px;
+}
+
+.phyto-herbal-card-v232 {
+    overflow: hidden;
+    border-radius: 22px;
+    background: #fff;
+    border: 1px solid rgba(18, 112, 168, .10);
+    box-shadow: 0 16px 34px rgba(9, 51, 84, .08);
+    transition: transform .24s ease, box-shadow .24s ease;
+}
+
+.phyto-herbal-card-v232:hover {
+    transform: translateY(-4px);
+    box-shadow: 0 22px 40px rgba(7, 47, 79, .14);
+}
+
+.phyto-herbal-card-v232 img {
+    width: 100%;
+    height: 200px;
+    object-fit: cover;
+    display: block;
+}
+
+.phyto-herbal-card-v232 > div {
+    padding: 18px 18px 20px;
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+}
+
+.phyto-herbal-card-v232 > div > span {
+    display: inline-flex;
+    align-self: flex-start;
+    min-width: 42px;
+    min-height: 42px;
+    align-items: center;
+    justify-content: center;
+    border-radius: 14px;
+    background: linear-gradient(135deg, #ecf8ff, #d8effb);
+    color: #0d74aa;
+    font-weight: 800;
+}
+
+.phyto-herbal-card-v232 h3 {
+    margin: 0;
+    font-size: 1.3rem;
+    color: #113d5c;
+}
+
+.phyto-herbal-card-v232 h3 small {
+    color: #4d7e97;
+    font-weight: 700;
+}
+
+.phyto-herbal-card-v232 p {
+    margin: 0;
+    color: #577084;
+    line-height: 1.7;
+}
+
+.phyto-focus-note-v232 {
+    margin-top: 22px;
+    padding: 18px 20px;
+    border-radius: 18px;
+    background: linear-gradient(135deg, rgba(8, 73, 114, .08), rgba(18, 157, 184, .06));
+    border: 1px solid rgba(18, 112, 168, .10);
+}
+
+.phyto-focus-note-v232 strong {
+    display: block;
+    margin-bottom: 8px;
+    color: #0b5883;
+}
+
+.phyto-focus-note-v232 p {
+    margin: 0;
+    color: #577084;
+    line-height: 1.75;
+}
+
+.phyto-ra-placeholder-box-v232 {
+    min-height: 260px;
+    border-radius: 24px;
+    background: linear-gradient(135deg, rgba(8, 50, 82, .96), rgba(17, 111, 158, .88));
+    padding: 28px;
+    box-shadow: inset 0 1px 0 rgba(255,255,255,.06);
+}
+
+.phyto-ra-placeholder-box-v232 h2,
+.phyto-ra-placeholder-box-v232 p {
+    color: #fff;
+}
+
+@media (max-width: 1100px) {
+    .phyto-condition-spotlight-v232,
+    .phyto-focus-head-v232 {
+        grid-template-columns: 1fr;
+    }
+
+    .phyto-condition-points-v232,
+    .phyto-herbal-grid-v232 {
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+    }
+}
+
+@media (max-width: 767px) {
+    .phyto-condition-spotlight-v232,
+    .phyto-herbal-focus-v232,
+    .phyto-ra-placeholder-v232 {
+        padding: 20px;
+        border-radius: 24px;
+    }
+
+    .phyto-condition-media-v232 {
+        min-height: 230px;
+    }
+
+    .phyto-condition-points-v232,
+    .phyto-herbal-grid-v232 {
+        grid-template-columns: 1fr;
+    }
+
+    .phyto-disease-chip-btn-v232 {
+        width: 100%;
+        justify-content: center;
+    }
+
+    .phyto-action-btn-v232 {
+        width: 100%;
+    }
+}
+
+
+/* =========================================================
+   V233 - AS BUTONU ÖZEL SAYFAYA GİDER / BİTKİLER AS SAYFASINDA
+   ========================================================= */
+.phyto-disease-link-v233 {
+    display: inline-flex;
+    align-items: center;
+    gap: 9px;
+}
+
+.phyto-disease-link-v233 > span {
+    font-size: 1.05em;
+    transition: transform .22s ease;
+}
+
+.phyto-disease-link-v233:hover > span,
+.phyto-disease-link-v233:focus-visible > span {
+    transform: translate(3px, -2px);
+}
+
+.ankilozan-herbal-focus-v233 {
+    width: min(1520px, calc(100% - 56px));
+    margin: 34px auto 54px;
+}
+
+.ankilozan-herbal-focus-v233 .phyto-focus-head-v232 > div > span {
+    color: #0b77ad;
+    background: #eaf7ff;
+    border-color: rgba(13, 120, 174, .12);
+}
+
+.ankilozan-herbal-focus-v233 .phyto-focus-head-v232 h2 {
+    color: #103c59;
+}
+
+@media (max-width: 767px) {
+    .ankilozan-herbal-focus-v233 {
+        width: min(100% - 24px, 720px);
+        margin: 24px auto 36px;
+    }
+}
+
+
+/* =========================================================
+   V234 - C VİTAMİNİ DETAY ALANI / DOCX TİPOGRAFİSİ
+   Times New Roman: 24 pt başlık, 18 pt bölüm, 12 pt gövde
+   ========================================================= */
+.serum-detail-open-v234 {
+    margin-top: 14px;
+    appearance: none;
+    border: 1px solid rgba(15, 117, 176, .18);
+    background: linear-gradient(135deg, #f4fbff, #e6f5fc);
+    color: #0c6597;
+    padding: 11px 16px;
+    border-radius: 12px;
+    font: inherit;
+    font-weight: 800;
+    cursor: pointer;
+    transition: transform .22s ease, box-shadow .22s ease, background .22s ease;
+}
+
+.serum-detail-open-v234:hover,
+.serum-detail-open-v234:focus-visible {
+    transform: translateY(-2px);
+    outline: none;
+    box-shadow: 0 12px 24px rgba(8, 73, 114, .12);
+}
+
+.vitamin-c-detail-v234 {
+    margin-top: 34px;
+    scroll-margin-top: 110px;
+}
+
+.vitamin-c-editorial-v234 {
+    border-radius: 30px;
+    padding: clamp(24px, 4vw, 54px);
+    background: linear-gradient(180deg, #ffffff 0%, #f7fbfd 100%);
+    border: 1px solid rgba(13, 94, 145, .10);
+    box-shadow: 0 24px 55px rgba(7, 46, 78, .08);
+    color: #1b2d3a;
+}
+
+.vitamin-c-editorial-v234,
+.vitamin-c-editorial-v234 button {
+    font-family: "Times New Roman", Times, serif;
+}
+
+.vitamin-c-doc-head-v234 {
+    max-width: 1080px;
+    margin: 0 auto 32px;
+}
+
+.vitamin-c-doc-kicker-v234 {
+    display: inline-flex;
+    margin-bottom: 14px;
+    color: #1587c1;
+    font-family: Arial, Helvetica, sans-serif;
+    font-size: 12px;
+    font-weight: 800;
+    letter-spacing: .18em;
+}
+
+.vitamin-c-doc-head-v234 h2 {
+    margin: 0 0 22px;
+    font-family: "Times New Roman", Times, serif;
+    font-size: 32px; /* 24 pt */
+    line-height: 1.16;
+    font-weight: 700;
+    color: #102f46;
+}
+
+.vitamin-c-doc-head-v234 p,
+.vitamin-c-doc-section-v234 p,
+.vitamin-c-doc-section-v234 li,
+.vitamin-c-final-note-v234 {
+    font-family: "Times New Roman", Times, serif;
+    font-size: 16px; /* 12 pt */
+    line-height: 1.75;
+    color: #344e60;
+}
+
+.vitamin-c-doc-head-v234 p {
+    margin: 0 0 16px;
+}
+
+.vitamin-c-doc-section-v234 {
+    max-width: 1080px;
+    margin: 0 auto;
+    padding: 26px 0;
+    border-top: 1px solid rgba(16, 83, 127, .10);
+}
+
+.vitamin-c-doc-section-v234 h3 {
+    margin: 0 0 16px;
+    font-family: "Times New Roman", Times, serif;
+    font-size: 24px; /* 18 pt */
+    line-height: 1.25;
+    font-weight: 700;
+    color: #123b58;
+}
+
+.vitamin-c-doc-section-v234 p {
+    margin: 0 0 14px;
+}
+
+.vitamin-c-doc-section-v234 ul {
+    margin: 12px 0 0;
+    padding-left: 24px;
+}
+
+.vitamin-c-doc-section-v234 li {
+    margin: 0 0 14px;
+}
+
+.vitamin-c-doc-section-v234 li::marker {
+    color: #168bc4;
+}
+
+.vitamin-c-literature-v234 {
+    margin-top: 15px !important;
+    padding: 14px 16px;
+    border-left: 4px solid #1696cd;
+    background: #eef8fd;
+    border-radius: 0 12px 12px 0;
+    color: #0d638f !important;
+    font-weight: 700;
+}
+
+.vitamin-c-link-panel-v234 {
+    max-width: 1080px;
+    margin: 12px auto 0;
+    display: grid;
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+    gap: 16px;
+}
+
+.vitamin-c-link-card-v234 {
+    appearance: none;
+    min-height: 154px;
+    padding: 20px;
+    text-align: left;
+    border-radius: 20px;
+    border: 1px solid rgba(14, 100, 153, .12);
+    cursor: pointer;
+    display: flex;
+    flex-direction: column;
+    gap: 9px;
+    transition: transform .22s ease, box-shadow .22s ease, border-color .22s ease;
+}
+
+.vitamin-c-link-card-v234:hover,
+.vitamin-c-link-card-v234:focus-visible {
+    transform: translateY(-3px);
+    outline: none;
+    box-shadow: 0 16px 30px rgba(7, 54, 88, .12);
+    border-color: rgba(14, 116, 176, .25);
+}
+
+.vitamin-c-link-card-v234.internal {
+    background: linear-gradient(145deg, #fbfdfe, #eef7fb);
+}
+
+.vitamin-c-link-card-v234.disease {
+    background: linear-gradient(145deg, #0c527e, #0f78aa);
+    border-color: rgba(255,255,255,.08);
+    color: #fff;
+}
+
+.vitamin-c-link-card-v234 > span {
+    font-family: Arial, Helvetica, sans-serif;
+    font-size: 11px;
+    font-weight: 800;
+    letter-spacing: .13em;
+    color: #1687bd;
+}
+
+.vitamin-c-link-card-v234.disease > span {
+    color: #a9ddf5;
+}
+
+.vitamin-c-link-card-v234 > strong {
+    font-size: 22px;
+    line-height: 1.18;
+    color: #113d5a;
+}
+
+.vitamin-c-link-card-v234.disease > strong {
+    color: #fff;
+}
+
+.vitamin-c-link-card-v234 > small {
+    font-size: 15px;
+    line-height: 1.55;
+    color: #667d8e;
+}
+
+.vitamin-c-link-card-v234.disease > small {
+    color: rgba(235,247,252,.84);
+}
+
+.vitamin-c-future-anchor-v234 {
+    max-width: 1080px;
+    margin: 18px auto 0;
+    padding: 18px 20px;
+    border-radius: 16px;
+    background: #f8fbfd;
+    border: 1px dashed rgba(16, 111, 167, .24);
+    scroll-margin-top: 120px;
+}
+
+.vitamin-c-future-anchor-v234 > span {
+    display: block;
+    margin-bottom: 6px;
+    font-family: Arial, Helvetica, sans-serif;
+    color: #1687bd;
+    font-size: 11px;
+    font-weight: 800;
+    letter-spacing: .12em;
+}
+
+.vitamin-c-future-anchor-v234 p {
+    margin: 0;
+    font-family: "Times New Roman", Times, serif;
+    font-size: 16px;
+    color: #5d7586;
+}
+
+.vitamin-c-final-note-v234 {
+    max-width: 1080px;
+    margin: 24px auto 0;
+    padding-top: 20px;
+    border-top: 1px solid rgba(16, 83, 127, .10);
+    font-style: italic;
+}
+
+@media (max-width: 900px) {
+    .vitamin-c-link-panel-v234 {
+        grid-template-columns: 1fr;
+    }
+}
+
+@media (max-width: 640px) {
+    .vitamin-c-editorial-v234 {
+        border-radius: 22px;
+        padding: 22px 18px;
+    }
+
+    .vitamin-c-doc-head-v234 h2 {
+        font-size: 28px;
+    }
+
+    .vitamin-c-doc-section-v234 h3 {
+        font-size: 22px;
+    }
+}
+
+
+/* =========================================================
+   V235 - C VİTAMİNİ "BİLGİ EDİN" ÖZEL SEKME / ALT SAYFA
+   ========================================================= */
+
+.vitamin-c-detail-v234.vitamin-c-special-tab-v235 {
+    display: none;
+    margin-top: 0;
+    min-height: calc(100vh - 24px);
+    padding: 18px 0 40px;
+    scroll-margin-top: 0;
+}
+
+.vascular-view-v72.vitamin-c-tab-open-v235 > * {
+    display: none !important;
+}
+
+.vascular-view-v72.vitamin-c-tab-open-v235 > .vitamin-c-special-tab-v235 {
+    display: block !important;
+}
+
+.vitamin-c-special-nav-v235 {
+    position: sticky;
+    top: 10px;
+    z-index: 30;
+    width: min(1180px, calc(100% - 32px));
+    margin: 0 auto 18px;
+    padding: 12px;
+    display: grid;
+    grid-template-columns: auto 1fr auto;
+    align-items: center;
+    gap: 14px;
+    border-radius: 22px;
+    background: rgba(249, 253, 255, .94);
+    border: 1px solid rgba(12, 91, 139, .12);
+    box-shadow: 0 18px 42px rgba(8, 45, 72, .10);
+    backdrop-filter: blur(16px);
+    -webkit-backdrop-filter: blur(16px);
+}
+
+.vitamin-c-back-v235,
+.vitamin-c-special-tab-label-v235 {
+    min-height: 48px;
+    padding: 0 18px;
+    border-radius: 15px;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: 9px;
+    font-family: Arial, Helvetica, sans-serif;
+    font-size: 14px;
+    font-weight: 800;
+}
+
+.vitamin-c-back-v235 {
+    appearance: none;
+    border: 1px solid rgba(14, 103, 158, .13);
+    background: #fff;
+    color: #123f5b;
+    cursor: pointer;
+    transition: transform .22s ease, box-shadow .22s ease, border-color .22s ease;
+}
+
+.vitamin-c-back-v235:hover,
+.vitamin-c-back-v235:focus-visible {
+    transform: translateY(-2px);
+    outline: none;
+    border-color: rgba(16, 129, 190, .28);
+    box-shadow: 0 12px 24px rgba(9, 55, 88, .10);
+}
+
+.vitamin-c-special-title-v235 {
+    min-width: 0;
+    display: flex;
+    align-items: baseline;
+    justify-content: center;
+    gap: 10px;
+    font-family: Arial, Helvetica, sans-serif;
+}
+
+.vitamin-c-special-title-v235 > span {
+    color: #1b93c8;
+    font-size: 10px;
+    font-weight: 900;
+    letter-spacing: .14em;
+}
+
+.vitamin-c-special-title-v235 > strong {
+    color: #123b56;
+    font-size: 18px;
+}
+
+.vitamin-c-special-tab-label-v235 {
+    background: linear-gradient(135deg, #168dca 0%, #23a9df 100%);
+    color: #fff;
+    box-shadow: 0 12px 24px rgba(17, 132, 190, .19);
+}
+
+.vitamin-c-special-intro-v235 {
+    width: min(1180px, calc(100% - 32px));
+    margin: 0 auto 18px;
+    padding: clamp(26px, 4vw, 54px);
+    border-radius: 28px;
+    background:
+        radial-gradient(circle at 88% 18%, rgba(105, 203, 242, .18), transparent 26%),
+        linear-gradient(135deg, #082f4a 0%, #0b5078 58%, #0a638d 100%);
+    box-shadow: 0 24px 54px rgba(7, 48, 78, .16);
+    color: #fff;
+}
+
+.vitamin-c-special-intro-v235 > span {
+    display: inline-flex;
+    margin-bottom: 12px;
+    font-family: Arial, Helvetica, sans-serif;
+    font-size: 11px;
+    font-weight: 900;
+    letter-spacing: .16em;
+    color: #9adfff;
+}
+
+.vitamin-c-special-intro-v235 h1 {
+    margin: 0 0 14px;
+    font-family: "Times New Roman", Times, serif;
+    font-size: clamp(38px, 5vw, 62px);
+    line-height: 1.02;
+    font-weight: 700;
+    letter-spacing: -.025em;
+}
+
+.vitamin-c-special-intro-v235 p {
+    max-width: 820px;
+    margin: 0;
+    font-family: "Times New Roman", Times, serif;
+    font-size: 17px;
+    line-height: 1.72;
+    color: rgba(236, 248, 253, .90);
+}
+
+.vitamin-c-special-tab-v235 > .vitamin-c-editorial-v234 {
+    width: min(1180px, calc(100% - 32px));
+    margin: 0 auto;
+}
+
+.vitamin-c-links-head-v235 {
+    max-width: 1080px;
+    margin: 30px auto 12px;
+    padding-top: 26px;
+    border-top: 1px solid rgba(16, 83, 127, .10);
+}
+
+.vitamin-c-links-head-v235 > span {
+    display: block;
+    margin-bottom: 7px;
+    font-family: Arial, Helvetica, sans-serif;
+    color: #1587c1;
+    font-size: 11px;
+    font-weight: 900;
+    letter-spacing: .14em;
+}
+
+.vitamin-c-links-head-v235 h3 {
+    margin: 0 0 8px;
+    font-family: "Times New Roman", Times, serif;
+    font-size: 26px;
+    line-height: 1.2;
+    color: #123b58;
+}
+
+.vitamin-c-links-head-v235 p {
+    margin: 0;
+    font-family: "Times New Roman", Times, serif;
+    font-size: 16px;
+    line-height: 1.6;
+    color: #617989;
+}
+
+/* "Bilgi Edin" düğmesini kart içinde daha net yap */
+.serum-detail-open-v235 {
+    width: 100%;
+    margin-top: 14px;
+    min-height: 48px;
+    font-size: 15px;
+}
+
+@media (max-width: 820px) {
+    .vitamin-c-special-nav-v235 {
+        position: relative;
+        top: auto;
+        grid-template-columns: 1fr;
+    }
+
+    .vitamin-c-special-title-v235 {
+        order: -1;
+        flex-direction: column;
+        align-items: center;
+        gap: 3px;
+    }
+
+    .vitamin-c-back-v235,
+    .vitamin-c-special-tab-label-v235 {
+        width: 100%;
+    }
+}
+
+@media (max-width: 560px) {
+    .vitamin-c-special-nav-v235,
+    .vitamin-c-special-intro-v235,
+    .vitamin-c-special-tab-v235 > .vitamin-c-editorial-v234 {
+        width: min(100% - 18px, 1180px);
+    }
+
+    .vitamin-c-special-intro-v235 {
+        border-radius: 22px;
+        padding: 24px 20px;
+    }
+
+    .vitamin-c-special-intro-v235 h1 {
+        font-size: 36px;
+    }
+}
+
+
+/* =========================================================
+   V236 - C VİTAMİNİ GERÇEK ALT SEKME YAPISI
+   "Bilgi Edin" artık C Vitamini'nin kendi özel sekmesinde açılır.
+   ========================================================= */
+
+.vitamin-c-special-tabs-v236 {
+    display: inline-flex;
+    align-items: center;
+    gap: 7px;
+    padding: 5px;
+    border-radius: 16px;
+    background: rgba(218, 239, 249, .72);
+    border: 1px solid rgba(13, 105, 158, .10);
+}
+
+.vitamin-c-special-tab-btn-v236 {
+    appearance: none;
+    border: 0;
+    min-height: 42px;
+    padding: 0 16px;
+    border-radius: 12px;
+    background: transparent;
+    color: #315b73;
+    font-family: Arial, Helvetica, sans-serif;
+    font-size: 13px;
+    font-weight: 800;
+    cursor: pointer;
+    transition:
+        background .22s ease,
+        color .22s ease,
+        box-shadow .22s ease,
+        transform .22s ease;
+}
+
+.vitamin-c-special-tab-btn-v236:hover,
+.vitamin-c-special-tab-btn-v236:focus-visible {
+    outline: none;
+    transform: translateY(-1px);
+    background: rgba(255,255,255,.74);
+}
+
+.vitamin-c-special-tab-btn-v236.is-active {
+    color: #fff;
+    background: linear-gradient(135deg, #168dca 0%, #23a9df 100%);
+    box-shadow: 0 10px 22px rgba(17, 132, 190, .20);
+}
+
+.vitamin-c-subpanel-v236[hidden] {
+    display: none !important;
+}
+
+.vitamin-c-subpanel-v236 {
+    width: 100%;
+}
+
+.vitamin-c-overview-panel-v236 {
+    width: min(1180px, calc(100% - 32px));
+    margin: 0 auto;
+    padding: clamp(22px, 3.5vw, 40px);
+    display: grid;
+    grid-template-columns: minmax(300px, .88fr) minmax(0, 1.12fr);
+    gap: 30px;
+    align-items: stretch;
+    border-radius: 30px;
+    background:
+        radial-gradient(circle at 92% 10%, rgba(75, 189, 233, .14), transparent 28%),
+        linear-gradient(135deg, #f9fdff 0%, #edf8fd 100%);
+    border: 1px solid rgba(15, 104, 157, .10);
+    box-shadow: 0 24px 52px rgba(7, 48, 78, .10);
+}
+
+.vitamin-c-overview-visual-v236 {
+    overflow: hidden;
+    min-height: 400px;
+    border-radius: 24px;
+    background: #dff3fb;
+    box-shadow: inset 0 0 0 1px rgba(16, 106, 158, .08);
+}
+
+.vitamin-c-overview-visual-v236 img {
+    display: block;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
+.vitamin-c-overview-copy-v236 {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    gap: 16px;
+}
+
+.vitamin-c-overview-copy-v236 > span {
+    color: #168bc4;
+    font-family: Arial, Helvetica, sans-serif;
+    font-size: 11px;
+    font-weight: 900;
+    letter-spacing: .16em;
+}
+
+.vitamin-c-overview-copy-v236 h1 {
+    margin: 0;
+    color: #123c58;
+    font-family: "Times New Roman", Times, serif;
+    font-size: clamp(38px, 5vw, 58px);
+    line-height: 1.03;
+}
+
+.vitamin-c-overview-copy-v236 > p {
+    margin: 0;
+    max-width: 760px;
+    color: #60798a;
+    font-family: "Times New Roman", Times, serif;
+    font-size: 17px;
+    line-height: 1.72;
+}
+
+.vitamin-c-overview-cards-v236 {
+    display: grid;
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+    gap: 12px;
+    margin-top: 4px;
+}
+
+.vitamin-c-overview-cards-v236 article {
+    min-height: 132px;
+    padding: 17px;
+    border-radius: 18px;
+    background: rgba(255,255,255,.86);
+    border: 1px solid rgba(14, 105, 160, .10);
+    box-shadow: 0 10px 24px rgba(8, 55, 88, .05);
+}
+
+.vitamin-c-overview-cards-v236 strong,
+.vitamin-c-overview-cards-v236 span {
+    display: block;
+}
+
+.vitamin-c-overview-cards-v236 strong {
+    margin-bottom: 8px;
+    color: #154c6c;
+    font-family: Arial, Helvetica, sans-serif;
+    font-size: 14px;
+}
+
+.vitamin-c-overview-cards-v236 span {
+    color: #688091;
+    font-family: "Times New Roman", Times, serif;
+    font-size: 15px;
+    line-height: 1.55;
+}
+
+.vitamin-c-overview-info-btn-v236 {
+    align-self: flex-start;
+    appearance: none;
+    border: 0;
+    margin-top: 2px;
+    min-height: 48px;
+    padding: 0 20px;
+    border-radius: 15px;
+    background: linear-gradient(135deg, #117fbc 0%, #20a8dc 100%);
+    color: #fff;
+    font-family: Arial, Helvetica, sans-serif;
+    font-size: 14px;
+    font-weight: 800;
+    cursor: pointer;
+    box-shadow: 0 13px 26px rgba(15, 125, 184, .20);
+    transition: transform .22s ease, box-shadow .22s ease;
+}
+
+.vitamin-c-overview-info-btn-v236:hover,
+.vitamin-c-overview-info-btn-v236:focus-visible {
+    outline: none;
+    transform: translateY(-2px);
+    box-shadow: 0 17px 30px rgba(15, 125, 184, .26);
+}
+
+.vitamin-c-info-panel-v236 > .vitamin-c-special-intro-v235 {
+    margin-top: 0;
+}
+
+/* V235'in tek sekme etiketini V236'da kullanmıyoruz. */
+.vitamin-c-special-tab-label-v235 {
+    display: none !important;
+}
+
+@media (max-width: 980px) {
+    .vitamin-c-overview-panel-v236 {
+        grid-template-columns: 1fr;
+    }
+
+    .vitamin-c-overview-visual-v236 {
+        min-height: 300px;
+    }
+
+    .vitamin-c-overview-cards-v236 {
+        grid-template-columns: 1fr;
+    }
+}
+
+@media (max-width: 820px) {
+    .vitamin-c-special-tabs-v236 {
+        width: 100%;
+    }
+
+    .vitamin-c-special-tab-btn-v236 {
+        flex: 1;
+    }
+}
+
+@media (max-width: 560px) {
+    .vitamin-c-overview-panel-v236 {
+        width: min(100% - 18px, 1180px);
+        padding: 20px;
+        border-radius: 22px;
+    }
+
+    .vitamin-c-overview-visual-v236 {
+        min-height: 240px;
+    }
+
+    .vitamin-c-overview-copy-v236 h1 {
+        font-size: 36px;
+    }
+
+    .vitamin-c-overview-info-btn-v236 {
+        width: 100%;
+    }
+}
+
+
+/* =========================================================
+   V237 - C VİTAMİNİ BAĞLANTI DÜZENLEMELERİ
+   ========================================================= */
+
+/* Genel Bakış kaldırıldı; üstte tek aktif etiket */
+.vitamin-c-special-tab-label-v237 {
+    min-height: 42px;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    padding: 0 18px;
+    border-radius: 13px;
+    background: linear-gradient(135deg, #168dca 0%, #23a9df 100%);
+    color: #fff;
+    font-family: Arial, Helvetica, sans-serif;
+    font-size: 13px;
+    font-weight: 800;
+    box-shadow: 0 10px 22px rgba(17, 132, 190, .20);
+}
+
+/* Eski V236 alt sekme kontrolünü görünmez tut */
+.vitamin-c-special-tabs-v236,
+.vitamin-c-overview-panel-v236 {
+    display: none !important;
+}
+
+/* PMC kartı gerçek <a> olduğu için görünüm kartlarla aynı kalsın */
+.vitamin-c-pmc-link-v237 {
+    text-decoration: none !important;
+    cursor: pointer;
+}
+
+.vitamin-c-pmc-link-v237 strong,
+.vitamin-c-pmc-link-v237 small,
+.vitamin-c-pmc-link-v237 span {
+    text-decoration: none !important;
+}
+
+.vitamin-c-pmc-link-v237 small {
+    overflow-wrap: anywhere;
+}
+
+/* Paragraf / madde sonunda kullanılan hastalık sayfası geçişi */
+.vitamin-c-inline-disease-link-v237 {
+    appearance: none;
+    border: 0;
+    padding: 0;
+    margin: 0 0 0 5px;
+    background: transparent;
+    color: #0785c4;
+    font-family: "Times New Roman", Times, serif;
+    font-size: inherit;
+    font-weight: 700;
+    line-height: inherit;
+    cursor: pointer;
+    text-decoration: underline;
+    text-decoration-thickness: 1px;
+    text-underline-offset: 3px;
+    transition: color .2s ease, text-decoration-color .2s ease;
+}
+
+.vitamin-c-inline-disease-link-v237:hover,
+.vitamin-c-inline-disease-link-v237:focus-visible {
+    color: #055d8a;
+    outline: none;
+    text-decoration-thickness: 2px;
+}
+
+@media (max-width: 820px) {
+    .vitamin-c-special-tab-label-v237 {
+        width: 100%;
+    }
+}
+
+
+/* =========================================================
+   V238 - C VİTAMİNİ HASTALIK KARTLARI KALDIRILDI
+   Hastalık geçişleri artık metin içi link olarak çalışıyor.
+   ========================================================= */
+
+.vitamin-c-link-panel-v234 {
+    grid-template-columns: minmax(0, 1fr) !important;
+}
+
+.vitamin-c-pmc-link-v237 {
+    width: 100%;
+    max-width: 760px;
+}
+
+@media (max-width: 760px) {
+    .vitamin-c-pmc-link-v237 {
+        max-width: none;
+    }
+}
+
+
+/* =========================================================
+   V239 - OZONLU SERUM "BİLGİ EDİN" ÖZEL SEKME
+   C Vitamini özel sekmesiyle aynı sayfa mantığı.
+   ========================================================= */
+
+.vascular-view-v72.ozone-tab-open-v239 > * {
+    display: none !important;
+}
+
+.vascular-view-v72.ozone-tab-open-v239 > .ozone-special-tab-v239 {
+    display: block !important;
+}
+
+.ozone-special-tab-v239 {
+    display: none;
+    margin-top: 0;
+    min-height: calc(100vh - 24px);
+    padding: 18px 0 40px;
+    scroll-margin-top: 0;
+}
+
+.ozone-special-intro-v239 {
+    background:
+        radial-gradient(circle at 88% 18%, rgba(91, 218, 217, .15), transparent 26%),
+        linear-gradient(135deg, #072f48 0%, #0a526b 56%, #087483 100%) !important;
+}
+
+.ozone-special-intro-v239 > span {
+    color: #9ae8e4 !important;
+}
+
+/* Ozon kartındaki Bilgi Edin düğmesi C Vitamini ile aynı görünür. */
+#openOzoneDetailV239 {
+    width: 100%;
+    margin-top: 14px;
+    min-height: 48px;
+    font-size: 15px;
+}

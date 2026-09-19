@@ -4682,7 +4682,7 @@ window.addEventListener("load", async () => {
 
 
 // =========================================================
-// V110 - TÜM ANA SEKMELERE 1.5 SN MODERN GEÇİŞ
+// V231 - TÜM ANA SEKMELERE 1.5 SN ESKİ TARZA YAKIN PREMIUM GEÇİŞ
 // =========================================================
 (function () {
     const overlay =
@@ -4846,6 +4846,21 @@ window.addEventListener("load", async () => {
             title: "Ana Sayfa",
             subtitle: "Dr. Ceyhun Nuri"
         },
+        "romatoidHomeButtonV198": {
+            kicker: "ANA SAYFA",
+            title: "Ana Sayfa",
+            subtitle: "Dr. Ceyhun Nuri"
+        },
+        "deviceDetailHomeV157": {
+            kicker: "ANA SAYFA",
+            title: "Ana Sayfa",
+            subtitle: "Dr. Ceyhun Nuri"
+        },
+        "infoGuideHomeV143": {
+            kicker: "ANA SAYFA",
+            title: "Ana Sayfa",
+            subtitle: "Dr. Ceyhun Nuri"
+        },
 
         "heroDiseasesButton": {
             kicker: "KEŞFET",
@@ -4868,6 +4883,11 @@ window.addEventListener("load", async () => {
             subtitle: "Tedavi ve değerlendirme alanlarını keşfedin"
         },
         "ankilozanTreatmentAreasButtonV87": {
+            kicker: "KEŞFET",
+            title: "Tedavi Alanları",
+            subtitle: "Tedavi ve değerlendirme alanlarını keşfedin"
+        },
+        "romatoidTreatmentAreasButtonV198": {
             kicker: "KEŞFET",
             title: "Tedavi Alanları",
             subtitle: "Tedavi ve değerlendirme alanlarını keşfedin"
@@ -4904,6 +4924,11 @@ window.addEventListener("load", async () => {
             subtitle: "Ağrı bölgeleri ve değerlendirme seçenekleri"
         },
         "ankilozanPainButtonV87": {
+            kicker: "DEĞERLENDİRME",
+            title: "Ağrı",
+            subtitle: "Ağrı bölgeleri ve değerlendirme seçenekleri"
+        },
+        "romatoidPainButtonV198": {
             kicker: "DEĞERLENDİRME",
             title: "Ağrı",
             subtitle: "Ağrı bölgeleri ve değerlendirme seçenekleri"
@@ -4949,6 +4974,11 @@ window.addEventListener("load", async () => {
             title: "Medya",
             subtitle: "TV programları, YouTube ve sosyal medya"
         },
+        "romatoidMediaButtonV198": {
+            kicker: "MEDYA",
+            title: "Medya",
+            subtitle: "TV programları, YouTube ve sosyal medya"
+        },
         "treatmentDetailMediaV71": {
             kicker: "MEDYA",
             title: "Medya",
@@ -4980,6 +5010,9 @@ window.addEventListener("load", async () => {
         "#treatmentDetailHomeV71",
         "#healthDetailHomeV75",
         "#ankilozanHomeButtonV87",
+        "#romatoidHomeButtonV198",
+        "#deviceDetailHomeV157",
+        "#infoGuideHomeV143",
         "[data-treatment-detail]",
         "[data-treatment-top]",
         "[data-health-detail]",
@@ -4989,6 +5022,7 @@ window.addEventListener("load", async () => {
         "#aboutPageTreatmentAreasButton",
         "#mediaPageTreatmentAreasButton",
         "#ankilozanTreatmentAreasButtonV87",
+        "#romatoidTreatmentAreasButtonV198",
         "#treatmentDetailAreasV71",
         "#healthDetailAreasV75",
         "#heroPainButton",
@@ -4996,6 +5030,7 @@ window.addEventListener("load", async () => {
         "#mediaPagePainButton",
         "#aboutPagePainButton",
         "#ankilozanPainButtonV87",
+        "#romatoidPainButtonV198",
         "#treatmentDetailPainV71",
         "#healthDetailPainV75",
         "#osteoGlobalPainButtonV107",
@@ -5004,6 +5039,7 @@ window.addEventListener("load", async () => {
         "#painPageMediaButton",
         "#aboutPageMediaButton",
         "#ankilozanMediaButtonV87",
+        "#romatoidMediaButtonV198",
         "#treatmentDetailMediaV71",
         "#healthDetailMediaV75",
         "#heroAboutButton"
@@ -6807,3 +6843,265 @@ window.addEventListener("load", async () => {
 
 
 // V218: Hızlı ağrı geçişi hero içine taşındı; mevcut data-pain-quick-v217 davranışı korunur.
+
+// =========================================================
+// V233 - FİTOTERAPİ AS BUTONU -> ANKİLOZAN ÖZEL SAYFASI
+// =========================================================
+(function () {
+    const asButton = document.querySelector('.phyto-disease-chip-btn-v232[data-phyto-disease="as"]');
+    const raButton = document.querySelector('.phyto-disease-chip-btn-v232[data-phyto-disease="ra"]');
+    const raSection = document.getElementById('phytoRaPlaceholderV232');
+    const diseaseButtons = Array.from(document.querySelectorAll('.phyto-disease-chip-btn-v232'));
+    const titleNode = document.getElementById('phytoConditionTitleV232');
+    const descNode = document.getElementById('phytoConditionDescV232');
+    const imageNode = document.getElementById('phytoConditionImageV232');
+    const pointsNode = document.getElementById('phytoConditionPointsV232');
+    const goHerbsButton = document.getElementById('phytoGoHerbsV232');
+    const openDiseaseButton = document.getElementById('phytoOpenDiseasePageV232');
+
+    const raData = {
+        title: 'Romatoid Artrit',
+        desc: 'Romatoid artritte küçük eklem yakınmaları, sabah tutukluğu ve inflamatuar aktivite ön planda olabilir. Romatoid artrite özel bitkisel bölüm sonraki adımda aynı yapıyla hazırlanacaktır.',
+        image: './disease-romatoid-artrit-v77.png?v=150',
+        alt: 'Romatoid artritte el ve el bileği eklemlerini gösteren medikal görsel',
+        points: [
+            ['El & El Bileği', 'Simetrik küçük eklem tutulumu ve günlük yaşam fonksiyonları değerlendirilir.'],
+            ['İnflamatuar Yük', 'Yorgunluk, hassasiyet ve sabah tutukluğu gibi belirtiler birlikte ele alınır.'],
+            ['Yakında', 'Romatoid artrite özel bitkisel destek bölümü sonraki adımda eklenecektir.']
+        ]
+    };
+
+    function renderRaPoints() {
+        if (!pointsNode) return;
+        pointsNode.innerHTML = raData.points.map(([title, text]) => (
+            `<article><strong>${title}</strong><span>${text}</span></article>`
+        )).join('');
+    }
+
+    function openAnkilozanFromPhyto() {
+        if (typeof window.openAnkilozanPageV87 === 'function') {
+            window.openAnkilozanPageV87();
+            return;
+        }
+
+        const card = document.querySelector('.ankilozan-card-link-v87');
+        if (card) card.click();
+    }
+
+    if (asButton) {
+        asButton.addEventListener('click', (event) => {
+            event.preventDefault();
+            event.stopPropagation();
+            openAnkilozanFromPhyto();
+        });
+    }
+
+    if (raButton) {
+        raButton.addEventListener('click', () => {
+            diseaseButtons.forEach((button) => {
+                const active = button === raButton;
+                button.classList.toggle('is-active', active);
+                button.setAttribute('aria-pressed', String(active));
+            });
+
+            if (titleNode) titleNode.textContent = raData.title;
+            if (descNode) descNode.textContent = raData.desc;
+            if (imageNode) {
+                imageNode.src = raData.image;
+                imageNode.alt = raData.alt;
+            }
+            renderRaPoints();
+
+            if (raSection) {
+                raSection.hidden = false;
+                raSection.scrollIntoView({ behavior: 'smooth', block: 'start' });
+            }
+
+            if (goHerbsButton) goHerbsButton.textContent = 'RA Bölümünü Gör';
+        });
+    }
+
+    if (openDiseaseButton) {
+        openDiseaseButton.addEventListener('click', () => {
+            const raActive = raButton && raButton.classList.contains('is-active');
+            if (raActive) {
+                const raCard = document.querySelector('.romatoid-card-link-v198');
+                if (raCard) raCard.click();
+                return;
+            }
+            openAnkilozanFromPhyto();
+        });
+    }
+
+    if (goHerbsButton) {
+        goHerbsButton.addEventListener('click', () => {
+            const raActive = raButton && raButton.classList.contains('is-active');
+            if (raActive && raSection) {
+                raSection.scrollIntoView({ behavior: 'smooth', block: 'start' });
+                return;
+            }
+            openAnkilozanFromPhyto();
+        });
+    }
+})();
+
+
+// =========================================================
+// V238 - C VİTAMİNİ "BİLGİ EDİN" ÖZEL SEKME / METİN İÇİ HASTALIK GEÇİŞLERİ
+// =========================================================
+(function () {
+    const openDetailButton = document.getElementById('openVitaminCDetailV234');
+    const closeDetailButton = document.getElementById('closeVitaminCDetailV235');
+    const detailSection = document.getElementById('vitaminCDetailV234');
+    const vascularView = detailSection?.closest('[data-treatment-detail-view="damar-yolu"]');
+    const diseaseButtons = Array.from(document.querySelectorAll('[data-vitamin-c-disease-link]'));
+    const asCardLink = document.querySelector('.ankilozan-card-link-v87');
+    const raCardLink = document.querySelector('.romatoid-card-link-v198');
+
+    if (!detailSection || !vascularView) {
+        return;
+    }
+
+    function scrollViewTop() {
+        const top = vascularView.getBoundingClientRect().top + window.scrollY - 12;
+        window.scrollTo({ top: Math.max(0, top), behavior: 'smooth' });
+    }
+
+    function openVitaminCTab() {
+        vascularView.classList.add('vitamin-c-tab-open-v235');
+        detailSection.setAttribute('aria-hidden', 'false');
+
+        window.requestAnimationFrame(() => {
+            scrollViewTop();
+        });
+    }
+
+    function closeVitaminCTab(options = {}) {
+        vascularView.classList.remove('vitamin-c-tab-open-v235');
+        detailSection.setAttribute('aria-hidden', 'true');
+
+        if (options.returnToCard !== false && openDetailButton) {
+            window.requestAnimationFrame(() => {
+                openDetailButton.closest('.serum-card-v71')?.scrollIntoView({
+                    behavior: 'smooth',
+                    block: 'center'
+                });
+            });
+        }
+    }
+
+    if (openDetailButton) {
+        openDetailButton.addEventListener('click', openVitaminCTab);
+    }
+
+    if (closeDetailButton) {
+        closeDetailButton.addEventListener('click', () => closeVitaminCTab());
+    }
+
+    diseaseButtons.forEach((button) => {
+        button.addEventListener('click', () => {
+            const target = button.dataset.vitaminCDiseaseLink;
+            const link = target === 'ra' ? raCardLink : asCardLink;
+            if (!link) return;
+
+            /* Hastalık sayfasına geçerken C vitamini alt sekmesini kapat. */
+            closeVitaminCTab({ returnToCard: false });
+
+            window.setTimeout(() => {
+                link.click();
+            }, 80);
+        });
+    });
+
+    /* Escape ile özel sekmeden çıkış */
+    document.addEventListener('keydown', (event) => {
+        if (event.key === 'Escape' && vascularView.classList.contains('vitamin-c-tab-open-v235')) {
+            closeVitaminCTab();
+        }
+    });
+})();
+
+
+
+// =========================================================
+// V239 - OZONLU SERUM "BİLGİ EDİN" ÖZEL SEKME
+// =========================================================
+(function () {
+    const openDetailButton = document.getElementById('openOzoneDetailV239');
+    const closeDetailButton = document.getElementById('closeOzoneDetailV239');
+    const detailSection = document.getElementById('ozoneDetailV239');
+    const vascularView = detailSection?.closest('[data-treatment-detail-view="damar-yolu"]');
+    const diseaseButtons = Array.from(document.querySelectorAll('[data-ozone-disease-link]'));
+    const asCardLink = document.querySelector('.ankilozan-card-link-v87');
+    const raCardLink = document.querySelector('.romatoid-card-link-v198');
+
+    if (!detailSection || !vascularView) {
+        return;
+    }
+
+    function scrollViewTop() {
+        const top = vascularView.getBoundingClientRect().top + window.scrollY - 12;
+        window.scrollTo({ top: Math.max(0, top), behavior: 'smooth' });
+    }
+
+    function closeOtherSpecialTabs() {
+        vascularView.classList.remove('vitamin-c-tab-open-v235');
+
+        const vitaminSection = document.getElementById('vitaminCDetailV234');
+        if (vitaminSection) {
+            vitaminSection.setAttribute('aria-hidden', 'true');
+        }
+    }
+
+    function openOzoneTab() {
+        closeOtherSpecialTabs();
+        vascularView.classList.add('ozone-tab-open-v239');
+        detailSection.setAttribute('aria-hidden', 'false');
+
+        window.requestAnimationFrame(() => {
+            scrollViewTop();
+        });
+    }
+
+    function closeOzoneTab(options = {}) {
+        vascularView.classList.remove('ozone-tab-open-v239');
+        detailSection.setAttribute('aria-hidden', 'true');
+
+        if (options.returnToCard !== false && openDetailButton) {
+            window.requestAnimationFrame(() => {
+                openDetailButton.closest('.serum-card-v71')?.scrollIntoView({
+                    behavior: 'smooth',
+                    block: 'center'
+                });
+            });
+        }
+    }
+
+    if (openDetailButton) {
+        openDetailButton.addEventListener('click', openOzoneTab);
+    }
+
+    if (closeDetailButton) {
+        closeDetailButton.addEventListener('click', () => closeOzoneTab());
+    }
+
+    diseaseButtons.forEach((button) => {
+        button.addEventListener('click', () => {
+            const target = button.dataset.ozoneDiseaseLink;
+            const link = target === 'ra' ? raCardLink : asCardLink;
+            if (!link) return;
+
+            closeOzoneTab({ returnToCard: false });
+
+            window.setTimeout(() => {
+                link.click();
+            }, 80);
+        });
+    });
+
+    document.addEventListener('keydown', (event) => {
+        if (event.key === 'Escape' && vascularView.classList.contains('ozone-tab-open-v239')) {
+            closeOzoneTab();
+        }
+    });
+})();
