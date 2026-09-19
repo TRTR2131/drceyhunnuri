@@ -36245,3 +36245,698 @@ body.site-transition-running-v110 {
     min-height: 48px;
     font-size: 15px;
 }
+
+
+/* =========================================================
+   V240 - MAJÖR OZON "BİLGİ EDİN" ÖZEL SEKME
+   ========================================================= */
+
+.vascular-view-v72.major-ozone-tab-open-v240 > * {
+    display: none !important;
+}
+
+.vascular-view-v72.major-ozone-tab-open-v240 > .major-ozone-special-tab-v240 {
+    display: block !important;
+}
+
+.major-ozone-special-tab-v240 {
+    display: none;
+    margin-top: 0;
+    min-height: calc(100vh - 24px);
+    padding: 18px 0 40px;
+    scroll-margin-top: 0;
+}
+
+.major-ozone-special-intro-v240 {
+    background:
+        radial-gradient(circle at 90% 14%, rgba(166, 71, 87, .18), transparent 28%),
+        radial-gradient(circle at 12% 90%, rgba(42, 129, 171, .14), transparent 26%),
+        linear-gradient(135deg, #082d43 0%, #0b4259 54%, #713748 132%) !important;
+}
+
+.major-ozone-special-intro-v240 > span {
+    color: #eeb4be !important;
+}
+
+#openMajorOzoneDetailV240 {
+    width: 100%;
+    margin-top: 14px;
+    min-height: 48px;
+    font-size: 15px;
+}
+
+
+/* =========================================================
+   V241 - GLUTATYON "BİLGİ EDİN" ÖZEL SEKME
+   C Vitamini / Ozon / Majör Ozon ile aynı sayfa mantığı.
+   ========================================================= */
+
+.vascular-view-v72.glutathione-tab-open-v241 > * {
+    display: none !important;
+}
+
+.vascular-view-v72.glutathione-tab-open-v241 > .glutathione-special-tab-v241 {
+    display: block !important;
+}
+
+.glutathione-special-tab-v241 {
+    display: none;
+    margin-top: 0;
+    min-height: calc(100vh - 24px);
+    padding: 18px 0 40px;
+    scroll-margin-top: 0;
+}
+
+.glutathione-special-intro-v241 {
+    background:
+        radial-gradient(circle at 88% 14%, rgba(114, 219, 165, .18), transparent 28%),
+        radial-gradient(circle at 12% 90%, rgba(43, 156, 171, .12), transparent 26%),
+        linear-gradient(135deg, #073441 0%, #0a5261 58%, #166c5a 118%) !important;
+}
+
+.glutathione-special-intro-v241 > span {
+    color: #a7ecd0 !important;
+}
+
+#openGlutathioneDetailV241 {
+    width: 100%;
+    margin-top: 14px;
+    min-height: 48px;
+    font-size: 15px;
+}
+
+
+/* =========================================================
+   V242 - IV NAD+ KARTI VE ÖZEL SEKME
+   ========================================================= */
+
+.nad-iv-v242 {
+    background: linear-gradient(145deg, #edf1ff, #dfe8ff) !important;
+}
+
+.serum-photo-label-purple-v242 {
+    color: #5f57cc;
+}
+
+.nad-visual-composition-v242 {
+    position: absolute;
+    inset: 0;
+    overflow: hidden;
+    background:
+        radial-gradient(circle at 22% 24%, rgba(255,255,255,.95), rgba(255,255,255,0) 24%),
+        radial-gradient(circle at 78% 24%, rgba(123, 150, 255, .22), rgba(123, 150, 255, 0) 24%),
+        linear-gradient(135deg, rgba(94, 111, 214, .10) 0%, rgba(72, 151, 232, .08) 100%);
+}
+
+.nad-orb-v242 {
+    position: absolute;
+    border-radius: 999px;
+    filter: blur(2px);
+}
+
+.nad-orb-a-v242 {
+    width: 140px;
+    height: 140px;
+    left: -24px;
+    bottom: -18px;
+    background: radial-gradient(circle, rgba(118, 203, 255, .40) 0%, rgba(118, 203, 255, 0) 70%);
+}
+
+.nad-orb-b-v242 {
+    width: 120px;
+    height: 120px;
+    right: -18px;
+    top: -10px;
+    background: radial-gradient(circle, rgba(107, 94, 232, .32) 0%, rgba(107, 94, 232, 0) 72%);
+}
+
+.nad-iv-line-v242 {
+    position: absolute;
+    left: 92px;
+    top: 34px;
+    width: 2px;
+    height: 145px;
+    background: linear-gradient(180deg, rgba(90, 123, 210, .18), rgba(90, 123, 210, .58), rgba(90, 123, 210, .08));
+    border-radius: 999px;
+}
+
+.nad-iv-line-v242::before,
+.nad-iv-line-v242::after {
+    content: "";
+    position: absolute;
+    left: -4px;
+    width: 10px;
+    height: 10px;
+    border-radius: 50%;
+    background: #85d2ff;
+    box-shadow: 0 0 0 6px rgba(133, 210, 255, .16);
+}
+
+.nad-iv-line-v242::before { top: 12px; }
+.nad-iv-line-v242::after { bottom: 24px; }
+
+.nad-iv-bag-v242 {
+    position: absolute;
+    right: 64px;
+    top: 28px;
+    width: 108px;
+    height: 146px;
+    border-radius: 26px 26px 28px 28px;
+    border: 1px solid rgba(135, 166, 228, .46);
+    background: linear-gradient(180deg, rgba(255,255,255,.93), rgba(239,246,255,.82));
+    box-shadow: 0 14px 32px rgba(56, 87, 164, .16), inset 0 1px 0 rgba(255,255,255,.94);
+    backdrop-filter: blur(4px);
+}
+
+.nad-bag-cap-v242 {
+    position: absolute;
+    top: -12px;
+    left: 50%;
+    width: 34px;
+    height: 16px;
+    transform: translateX(-50%);
+    border-radius: 10px;
+    background: linear-gradient(180deg, #7aa6ff, #5572df);
+    box-shadow: 0 5px 12px rgba(74, 92, 173, .22);
+}
+
+.nad-fluid-v242 {
+    position: absolute;
+    left: 12px;
+    right: 12px;
+    bottom: 12px;
+    height: 58%;
+    border-radius: 20px 20px 24px 24px;
+    background: linear-gradient(180deg, rgba(114, 192, 255, .15) 0%, rgba(108, 141, 255, .45) 42%, rgba(88, 112, 228, .72) 100%);
+}
+
+.nad-fluid-v242::before {
+    content: "";
+    position: absolute;
+    left: 0;
+    right: 0;
+    top: 10px;
+    height: 10px;
+    border-radius: 999px;
+    background: rgba(255,255,255,.34);
+}
+
+.nad-bag-copy-v242 {
+    position: absolute;
+    inset: 24px 0 auto 0;
+    z-index: 2;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 4px;
+    text-align: center;
+    color: #325091;
+}
+
+.nad-bag-copy-v242 strong {
+    font-size: 24px;
+    font-weight: 900;
+    letter-spacing: .6px;
+}
+
+.nad-bag-copy-v242 span {
+    font-size: 10px;
+    font-weight: 800;
+    letter-spacing: 1.1px;
+}
+
+.nad-pulse-card-v242 {
+    position: absolute;
+    left: 28px;
+    bottom: 26px;
+    padding: 10px 14px;
+    border-radius: 14px;
+    background: rgba(255,255,255,.84);
+    border: 1px solid rgba(141, 171, 232, .34);
+    box-shadow: 0 10px 24px rgba(53, 79, 152, .12);
+    color: #34538f;
+    font-size: 11px;
+    font-weight: 900;
+    letter-spacing: .9px;
+}
+
+.vascular-view-v72.nad-tab-open-v242 > * {
+    display: none !important;
+}
+
+.vascular-view-v72.nad-tab-open-v242 > .nad-special-tab-v242 {
+    display: block !important;
+}
+
+.nad-special-tab-v242 {
+    display: none;
+    margin-top: 0;
+    min-height: calc(100vh - 24px);
+    padding: 18px 0 40px;
+    scroll-margin-top: 0;
+}
+
+.nad-special-intro-v242 {
+    background:
+        radial-gradient(circle at 86% 14%, rgba(162, 147, 255, .22), transparent 29%),
+        radial-gradient(circle at 10% 86%, rgba(120, 220, 255, .16), transparent 27%),
+        linear-gradient(135deg, #102a65 0%, #203f87 58%, #1c6ea0 118%) !important;
+}
+
+.nad-special-intro-v242 > span {
+    color: #c7d8ff !important;
+}
+
+.vitamin-c-literature-link-v242 {
+    display: block;
+    text-decoration: none;
+    transition: transform .22s ease, box-shadow .22s ease, background .22s ease;
+}
+
+.vitamin-c-literature-link-v242:hover {
+    transform: translateY(-2px);
+    background: #e6f4fb;
+}
+
+#openNadDetailV242 {
+    width: 100%;
+    margin-top: 14px;
+    min-height: 48px;
+    font-size: 15px;
+}
+
+
+/* =========================================================
+   V243 - L-KARNİTİN KARTI VE ÖZEL SEKME
+   ========================================================= */
+
+.karnitin-v243 {
+    background: linear-gradient(145deg, #fff2df, #ffe5c5) !important;
+}
+
+.serum-photo-label-orange-v243 {
+    color: #b56200;
+}
+
+.karnitin-visual-composition-v243 {
+    position: absolute;
+    inset: 0;
+    overflow: hidden;
+    background:
+        radial-gradient(circle at 20% 22%, rgba(255,255,255,.92), rgba(255,255,255,0) 25%),
+        radial-gradient(circle at 82% 20%, rgba(255, 173, 92, .20), rgba(255, 173, 92, 0) 24%),
+        linear-gradient(135deg, rgba(255, 183, 94, .16) 0%, rgba(247, 138, 53, .11) 100%);
+}
+
+.karnitin-glow-v243 {
+    position: absolute;
+    border-radius: 50%;
+    filter: blur(3px);
+}
+
+.karnitin-glow-a-v243 {
+    width: 132px;
+    height: 132px;
+    left: -14px;
+    bottom: -18px;
+    background: radial-gradient(circle, rgba(255, 183, 84, .38) 0%, rgba(255, 183, 84, 0) 72%);
+}
+
+.karnitin-glow-b-v243 {
+    width: 116px;
+    height: 116px;
+    right: -14px;
+    top: -8px;
+    background: radial-gradient(circle, rgba(255, 130, 76, .30) 0%, rgba(255, 130, 76, 0) 72%);
+}
+
+.karnitin-energy-ring-v243 {
+    position: absolute;
+    left: 34px;
+    top: 42px;
+    width: 92px;
+    height: 92px;
+    border-radius: 50%;
+    border: 2px solid rgba(228, 134, 52, .32);
+    box-shadow: inset 0 0 0 10px rgba(255,255,255,.42);
+}
+
+.karnitin-energy-ring-v243::before,
+.karnitin-energy-ring-v243::after {
+    content: "";
+    position: absolute;
+    inset: 16px;
+    border-radius: 50%;
+    border: 2px dashed rgba(233, 122, 38, .34);
+}
+
+.karnitin-energy-ring-v243::after {
+    inset: 31px;
+    border-style: solid;
+    border-color: rgba(255,255,255,.72);
+}
+
+.karnitin-bag-v243 {
+    position: absolute;
+    right: 58px;
+    top: 28px;
+    width: 112px;
+    height: 148px;
+    border-radius: 24px 24px 28px 28px;
+    border: 1px solid rgba(225, 145, 58, .42);
+    background: linear-gradient(180deg, rgba(255,255,255,.92), rgba(255,247,236,.84));
+    box-shadow: 0 14px 30px rgba(164, 92, 17, .14), inset 0 1px 0 rgba(255,255,255,.95);
+    backdrop-filter: blur(4px);
+}
+
+.karnitin-bag-cap-v243 {
+    position: absolute;
+    top: -11px;
+    left: 50%;
+    width: 34px;
+    height: 15px;
+    transform: translateX(-50%);
+    border-radius: 10px;
+    background: linear-gradient(180deg, #ffb85f, #e7852c);
+    box-shadow: 0 4px 12px rgba(163, 90, 13, .20);
+}
+
+.karnitin-fluid-v243 {
+    position: absolute;
+    left: 12px;
+    right: 12px;
+    bottom: 12px;
+    height: 56%;
+    border-radius: 18px 18px 22px 22px;
+    background: linear-gradient(180deg, rgba(255, 201, 109, .18) 0%, rgba(255, 158, 71, .48) 46%, rgba(239, 118, 27, .74) 100%);
+}
+
+.karnitin-fluid-v243::before {
+    content: "";
+    position: absolute;
+    left: 0;
+    right: 0;
+    top: 10px;
+    height: 10px;
+    border-radius: 999px;
+    background: rgba(255,255,255,.34);
+}
+
+.karnitin-bag-copy-v243 {
+    position: absolute;
+    inset: 24px 10px auto 10px;
+    z-index: 2;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 4px;
+    text-align: center;
+    color: #8f4700;
+}
+
+.karnitin-bag-copy-v243 strong {
+    font-size: 13px;
+    font-weight: 900;
+    letter-spacing: .8px;
+}
+
+.karnitin-bag-copy-v243 span {
+    font-size: 10px;
+    font-weight: 800;
+    letter-spacing: 1px;
+}
+
+.karnitin-capsule-v243 {
+    position: absolute;
+    left: 26px;
+    bottom: 28px;
+    padding: 10px 14px;
+    border-radius: 14px;
+    background: rgba(255,255,255,.84);
+    border: 1px solid rgba(232, 160, 83, .34);
+    box-shadow: 0 10px 24px rgba(163, 98, 34, .12);
+    color: #9b5706;
+    font-size: 11px;
+    font-weight: 900;
+    letter-spacing: .8px;
+}
+
+.vascular-view-v72.karnitin-tab-open-v243 > * {
+    display: none !important;
+}
+
+.vascular-view-v72.karnitin-tab-open-v243 > .karnitin-special-tab-v243 {
+    display: block !important;
+}
+
+.karnitin-special-tab-v243 {
+    display: none;
+    margin-top: 0;
+    min-height: calc(100vh - 24px);
+    padding: 18px 0 40px;
+    scroll-margin-top: 0;
+}
+
+.karnitin-special-intro-v243 {
+    background:
+        radial-gradient(circle at 88% 14%, rgba(255, 210, 132, .24), transparent 28%),
+        radial-gradient(circle at 10% 86%, rgba(255, 246, 220, .14), transparent 26%),
+        linear-gradient(135deg, #8e4f0d 0%, #c96d14 56%, #ef9c36 118%) !important;
+}
+
+.karnitin-special-intro-v243 > span {
+    color: #ffefcf !important;
+}
+
+.vitamin-c-literature-link-v243 {
+    display: block;
+    text-decoration: none;
+    transition: transform .22s ease, box-shadow .22s ease, background .22s ease;
+}
+
+.vitamin-c-literature-link-v243:hover {
+    transform: translateY(-2px);
+    background: #fff4e8;
+}
+
+#openKarnitinDetailV243 {
+    width: 100%;
+    margin-top: 14px;
+    min-height: 48px;
+    font-size: 15px;
+}
+
+
+/* =========================================================
+   V244 - SELENYUM KARTI VE ÖZEL SEKME
+   ========================================================= */
+
+.selenium-v244 {
+    background: linear-gradient(145deg, #ecfbf6, #d9f4eb) !important;
+}
+
+.serum-photo-label-emerald-v244 {
+    color: #0f7c60;
+}
+
+.selenium-visual-composition-v244 {
+    position: absolute;
+    inset: 0;
+    overflow: hidden;
+    background:
+        radial-gradient(circle at 18% 22%, rgba(255,255,255,.94), rgba(255,255,255,0) 24%),
+        radial-gradient(circle at 84% 18%, rgba(78, 182, 153, .18), rgba(78, 182, 153, 0) 24%),
+        linear-gradient(135deg, rgba(38, 165, 132, .09) 0%, rgba(16, 122, 95, .14) 100%);
+}
+
+.selenium-glow-v244 {
+    position: absolute;
+    border-radius: 50%;
+    filter: blur(4px);
+}
+
+.selenium-glow-a-v244 {
+    width: 140px;
+    height: 140px;
+    left: -20px;
+    bottom: -24px;
+    background: radial-gradient(circle, rgba(79, 190, 160, .34) 0%, rgba(79, 190, 160, 0) 72%);
+}
+
+.selenium-glow-b-v244 {
+    width: 122px;
+    height: 122px;
+    right: -18px;
+    top: -14px;
+    background: radial-gradient(circle, rgba(34, 159, 126, .28) 0%, rgba(34, 159, 126, 0) 72%);
+}
+
+.selenium-shield-v244 {
+    position: absolute;
+    left: 28px;
+    top: 34px;
+    width: 88px;
+    height: 104px;
+    clip-path: polygon(50% 0%, 88% 12%, 88% 58%, 50% 100%, 12% 58%, 12% 12%);
+    background: linear-gradient(180deg, rgba(255,255,255,.94), rgba(215, 246, 236, .96));
+    border: 1px solid rgba(26, 134, 106, .24);
+    box-shadow: 0 12px 26px rgba(14, 88, 70, .12), inset 0 0 0 7px rgba(255,255,255,.42);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.selenium-shield-v244 span {
+    font-size: 28px;
+    font-weight: 900;
+    color: #0d8163;
+    letter-spacing: .8px;
+}
+
+.selenium-bag-v244 {
+    position: absolute;
+    right: 54px;
+    top: 26px;
+    width: 114px;
+    height: 150px;
+    border-radius: 24px 24px 28px 28px;
+    border: 1px solid rgba(22, 128, 98, .28);
+    background: linear-gradient(180deg, rgba(255,255,255,.94), rgba(242,255,250,.84));
+    box-shadow: 0 14px 30px rgba(16, 99, 78, .12), inset 0 1px 0 rgba(255,255,255,.95);
+    backdrop-filter: blur(4px);
+}
+
+.selenium-bag-cap-v244 {
+    position: absolute;
+    top: -11px;
+    left: 50%;
+    width: 34px;
+    height: 15px;
+    transform: translateX(-50%);
+    border-radius: 10px;
+    background: linear-gradient(180deg, #59c5a7, #168364);
+    box-shadow: 0 4px 12px rgba(16, 100, 79, .18);
+}
+
+.selenium-fluid-v244 {
+    position: absolute;
+    left: 12px;
+    right: 12px;
+    bottom: 12px;
+    height: 57%;
+    border-radius: 18px 18px 22px 22px;
+    background: linear-gradient(180deg, rgba(135, 225, 200, .18) 0%, rgba(83, 197, 167, .46) 46%, rgba(20, 137, 104, .72) 100%);
+}
+
+.selenium-fluid-v244::before {
+    content: "";
+    position: absolute;
+    left: 0;
+    right: 0;
+    top: 10px;
+    height: 10px;
+    border-radius: 999px;
+    background: rgba(255,255,255,.34);
+}
+
+.selenium-bag-copy-v244 {
+    position: absolute;
+    inset: 24px 10px auto 10px;
+    z-index: 2;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 4px;
+    text-align: center;
+    color: #0c6f56;
+}
+
+.selenium-bag-copy-v244 strong {
+    font-size: 13px;
+    font-weight: 900;
+    letter-spacing: .75px;
+}
+
+.selenium-bag-copy-v244 span {
+    font-size: 10px;
+    font-weight: 800;
+    letter-spacing: 1px;
+}
+
+.selenium-capsule-v244 {
+    position: absolute;
+    left: 24px;
+    bottom: 28px;
+    padding: 10px 14px;
+    border-radius: 14px;
+    background: rgba(255,255,255,.86);
+    border: 1px solid rgba(36, 144, 115, .24);
+    box-shadow: 0 10px 24px rgba(18, 90, 70, .10);
+    color: #0f7a5e;
+    font-size: 11px;
+    font-weight: 900;
+    letter-spacing: .8px;
+}
+
+.vascular-view-v72.selenium-tab-open-v244 > * {
+    display: none !important;
+}
+
+.vascular-view-v72.selenium-tab-open-v244 > .selenium-special-tab-v244 {
+    display: block !important;
+}
+
+.selenium-special-tab-v244 {
+    display: none;
+    margin-top: 0;
+    min-height: calc(100vh - 24px);
+    padding: 18px 0 40px;
+    scroll-margin-top: 0;
+}
+
+.selenium-special-intro-v244 {
+    background:
+        radial-gradient(circle at 88% 14%, rgba(207, 255, 238, .20), transparent 28%),
+        radial-gradient(circle at 10% 86%, rgba(255, 255, 255, .14), transparent 26%),
+        linear-gradient(135deg, #0d6d55 0%, #179579 58%, #58c4a8 118%) !important;
+}
+
+.selenium-special-intro-v244 > span {
+    color: #e7fff7 !important;
+}
+
+.vitamin-c-literature-link-v244 {
+    display: block;
+    text-decoration: none;
+    transition: transform .22s ease, box-shadow .22s ease, background .22s ease;
+}
+
+.vitamin-c-literature-link-v244:hover {
+    transform: translateY(-2px);
+    background: #eefcf7;
+}
+
+#openSeleniumDetailV244 {
+    width: 100%;
+    margin-top: 14px;
+    min-height: 48px;
+    font-size: 15px;
+}
+
+
+/* =========================================================
+   V245 - BİLİMSEL LİTERATÜR LİNKLERİ
+   ========================================================= */
+.vitamin-c-literature-link-v245 {
+    display: block;
+    text-decoration: none;
+    transition: transform .22s ease, box-shadow .22s ease, background .22s ease;
+}
+
+.vitamin-c-literature-link-v245:hover,
+.vitamin-c-literature-link-v245:focus-visible {
+    transform: translateY(-2px);
+    background: #eaf7fd;
+    outline: none;
+    box-shadow: 0 10px 22px rgba(13, 99, 143, .09);
+}

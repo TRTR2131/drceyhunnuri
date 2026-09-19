@@ -6968,6 +6968,23 @@ window.addEventListener("load", async () => {
     }
 
     function openVitaminCTab() {
+        vascularView.classList.remove('ozone-tab-open-v239');
+        vascularView.classList.remove('major-ozone-tab-open-v240');
+        vascularView.classList.remove('glutathione-tab-open-v241');
+        vascularView.classList.remove('nad-tab-open-v242');
+        vascularView.classList.remove('karnitin-tab-open-v243');
+
+        const ozoneSection = document.getElementById('ozoneDetailV239');
+        const majorOzoneSection = document.getElementById('majorOzoneDetailV240');
+        const glutathioneSection = document.getElementById('glutathioneDetailV241');
+        const nadSection = document.getElementById('nadDetailV242');
+        const karnitinSection = document.getElementById('karnitinDetailV243');
+
+        if (ozoneSection) ozoneSection.setAttribute('aria-hidden', 'true');
+        if (majorOzoneSection) majorOzoneSection.setAttribute('aria-hidden', 'true');
+        if (glutathioneSection) glutathioneSection.setAttribute('aria-hidden', 'true');
+        if (nadSection) nadSection.setAttribute('aria-hidden', 'true');
+
         vascularView.classList.add('vitamin-c-tab-open-v235');
         detailSection.setAttribute('aria-hidden', 'false');
 
@@ -7046,10 +7063,35 @@ window.addEventListener("load", async () => {
 
     function closeOtherSpecialTabs() {
         vascularView.classList.remove('vitamin-c-tab-open-v235');
+        vascularView.classList.remove('major-ozone-tab-open-v240');
+        vascularView.classList.remove('glutathione-tab-open-v241');
+        vascularView.classList.remove('nad-tab-open-v242');
+        vascularView.classList.remove('karnitin-tab-open-v243');
 
         const vitaminSection = document.getElementById('vitaminCDetailV234');
+        const majorOzoneSection = document.getElementById('majorOzoneDetailV240');
+        const glutathioneSection = document.getElementById('glutathioneDetailV241');
+        const nadSection = document.getElementById('nadDetailV242');
+        const karnitinSection = document.getElementById('karnitinDetailV243');
+
         if (vitaminSection) {
             vitaminSection.setAttribute('aria-hidden', 'true');
+        }
+
+        if (majorOzoneSection) {
+            majorOzoneSection.setAttribute('aria-hidden', 'true');
+        }
+
+        if (glutathioneSection) {
+            glutathioneSection.setAttribute('aria-hidden', 'true');
+        }
+
+        if (nadSection) {
+            nadSection.setAttribute('aria-hidden', 'true');
+        }
+
+        if (karnitinSection) {
+            karnitinSection.setAttribute('aria-hidden', 'true');
         }
     }
 
@@ -7102,6 +7144,604 @@ window.addEventListener("load", async () => {
     document.addEventListener('keydown', (event) => {
         if (event.key === 'Escape' && vascularView.classList.contains('ozone-tab-open-v239')) {
             closeOzoneTab();
+        }
+    });
+})();
+
+
+// =========================================================
+// V240 - MAJÖR OZON "BİLGİ EDİN" ÖZEL SEKME
+// =========================================================
+(function () {
+    const openDetailButton = document.getElementById('openMajorOzoneDetailV240');
+    const closeDetailButton = document.getElementById('closeMajorOzoneDetailV240');
+    const detailSection = document.getElementById('majorOzoneDetailV240');
+    const vascularView = detailSection?.closest('[data-treatment-detail-view="damar-yolu"]');
+    const diseaseButtons = Array.from(document.querySelectorAll('[data-major-ozone-disease-link]'));
+    const asCardLink = document.querySelector('.ankilozan-card-link-v87');
+    const raCardLink = document.querySelector('.romatoid-card-link-v198');
+
+    if (!detailSection || !vascularView) {
+        return;
+    }
+
+    function scrollViewTop() {
+        const top = vascularView.getBoundingClientRect().top + window.scrollY - 12;
+        window.scrollTo({
+            top: Math.max(0, top),
+            behavior: 'smooth'
+        });
+    }
+
+    function closeOtherSpecialTabs() {
+        vascularView.classList.remove('vitamin-c-tab-open-v235');
+        vascularView.classList.remove('ozone-tab-open-v239');
+        vascularView.classList.remove('glutathione-tab-open-v241');
+        vascularView.classList.remove('nad-tab-open-v242');
+        vascularView.classList.remove('karnitin-tab-open-v243');
+
+        const vitaminSection = document.getElementById('vitaminCDetailV234');
+        const ozoneSection = document.getElementById('ozoneDetailV239');
+        const glutathioneSection = document.getElementById('glutathioneDetailV241');
+        const nadSection = document.getElementById('nadDetailV242');
+        const karnitinSection = document.getElementById('karnitinDetailV243');
+
+        if (vitaminSection) {
+            vitaminSection.setAttribute('aria-hidden', 'true');
+        }
+
+        if (ozoneSection) {
+            ozoneSection.setAttribute('aria-hidden', 'true');
+        }
+
+        if (glutathioneSection) {
+            glutathioneSection.setAttribute('aria-hidden', 'true');
+        }
+
+        if (nadSection) {
+            nadSection.setAttribute('aria-hidden', 'true');
+        }
+
+        if (karnitinSection) {
+            karnitinSection.setAttribute('aria-hidden', 'true');
+        }
+    }
+
+    function openMajorOzoneTab() {
+        closeOtherSpecialTabs();
+        vascularView.classList.add('major-ozone-tab-open-v240');
+        detailSection.setAttribute('aria-hidden', 'false');
+
+        window.requestAnimationFrame(() => {
+            scrollViewTop();
+        });
+    }
+
+    function closeMajorOzoneTab(options = {}) {
+        vascularView.classList.remove('major-ozone-tab-open-v240');
+        detailSection.setAttribute('aria-hidden', 'true');
+
+        if (options.returnToCard !== false && openDetailButton) {
+            window.requestAnimationFrame(() => {
+                openDetailButton.closest('.serum-card-v71')?.scrollIntoView({
+                    behavior: 'smooth',
+                    block: 'center'
+                });
+            });
+        }
+    }
+
+    if (openDetailButton) {
+        openDetailButton.addEventListener('click', openMajorOzoneTab);
+    }
+
+    if (closeDetailButton) {
+        closeDetailButton.addEventListener('click', () => closeMajorOzoneTab());
+    }
+
+    diseaseButtons.forEach((button) => {
+        button.addEventListener('click', () => {
+            const target = button.dataset.majorOzoneDiseaseLink;
+            const link = target === 'ra' ? raCardLink : asCardLink;
+
+            if (!link) return;
+
+            closeMajorOzoneTab({ returnToCard: false });
+
+            window.setTimeout(() => {
+                link.click();
+            }, 80);
+        });
+    });
+
+    document.addEventListener('keydown', (event) => {
+        if (
+            event.key === 'Escape' &&
+            vascularView.classList.contains('major-ozone-tab-open-v240')
+        ) {
+            closeMajorOzoneTab();
+        }
+    });
+})();
+
+
+// =========================================================
+// V241 - GLUTATYON "BİLGİ EDİN" ÖZEL SEKME
+// =========================================================
+(function () {
+    const openDetailButton = document.getElementById('openGlutathioneDetailV241');
+    const closeDetailButton = document.getElementById('closeGlutathioneDetailV241');
+    const detailSection = document.getElementById('glutathioneDetailV241');
+    const vascularView = detailSection?.closest('[data-treatment-detail-view="damar-yolu"]');
+    const diseaseButtons = Array.from(document.querySelectorAll('[data-glutathione-disease-link]'));
+    const asCardLink = document.querySelector('.ankilozan-card-link-v87');
+    const raCardLink = document.querySelector('.romatoid-card-link-v198');
+
+    if (!detailSection || !vascularView) {
+        return;
+    }
+
+    function scrollViewTop() {
+        const top = vascularView.getBoundingClientRect().top + window.scrollY - 12;
+
+        window.scrollTo({
+            top: Math.max(0, top),
+            behavior: 'smooth'
+        });
+    }
+
+    function closeOtherSpecialTabs() {
+        vascularView.classList.remove('vitamin-c-tab-open-v235');
+        vascularView.classList.remove('ozone-tab-open-v239');
+        vascularView.classList.remove('major-ozone-tab-open-v240');
+        vascularView.classList.remove('nad-tab-open-v242');
+        vascularView.classList.remove('karnitin-tab-open-v243');
+
+        const vitaminSection = document.getElementById('vitaminCDetailV234');
+        const ozoneSection = document.getElementById('ozoneDetailV239');
+        const majorOzoneSection = document.getElementById('majorOzoneDetailV240');
+        const nadSection = document.getElementById('nadDetailV242');
+        const karnitinSection = document.getElementById('karnitinDetailV243');
+
+        if (vitaminSection) {
+            vitaminSection.setAttribute('aria-hidden', 'true');
+        }
+
+        if (ozoneSection) {
+            ozoneSection.setAttribute('aria-hidden', 'true');
+        }
+
+        if (majorOzoneSection) {
+            majorOzoneSection.setAttribute('aria-hidden', 'true');
+        }
+
+        if (nadSection) {
+            nadSection.setAttribute('aria-hidden', 'true');
+        }
+
+        if (karnitinSection) {
+            karnitinSection.setAttribute('aria-hidden', 'true');
+        }
+    }
+
+    function openGlutathioneTab() {
+        closeOtherSpecialTabs();
+        vascularView.classList.add('glutathione-tab-open-v241');
+        detailSection.setAttribute('aria-hidden', 'false');
+
+        window.requestAnimationFrame(() => {
+            scrollViewTop();
+        });
+    }
+
+    function closeGlutathioneTab(options = {}) {
+        vascularView.classList.remove('glutathione-tab-open-v241');
+        detailSection.setAttribute('aria-hidden', 'true');
+
+        if (options.returnToCard !== false && openDetailButton) {
+            window.requestAnimationFrame(() => {
+                openDetailButton.closest('.serum-card-v71')?.scrollIntoView({
+                    behavior: 'smooth',
+                    block: 'center'
+                });
+            });
+        }
+    }
+
+    if (openDetailButton) {
+        openDetailButton.addEventListener('click', openGlutathioneTab);
+    }
+
+    if (closeDetailButton) {
+        closeDetailButton.addEventListener('click', () => closeGlutathioneTab());
+    }
+
+    diseaseButtons.forEach((button) => {
+        button.addEventListener('click', () => {
+            const target = button.dataset.glutathioneDiseaseLink;
+            const link = target === 'ra' ? raCardLink : asCardLink;
+
+            if (!link) return;
+
+            closeGlutathioneTab({ returnToCard: false });
+
+            window.setTimeout(() => {
+                link.click();
+            }, 80);
+        });
+    });
+
+    document.addEventListener('keydown', (event) => {
+        if (
+            event.key === 'Escape' &&
+            vascularView.classList.contains('glutathione-tab-open-v241')
+        ) {
+            closeGlutathioneTab();
+        }
+    });
+})();
+
+
+
+// =========================================================
+// V242 - IV NAD+ "BİLGİ EDİN" ÖZEL SEKME
+// =========================================================
+(function () {
+    const openDetailButton = document.getElementById('openNadDetailV242');
+    const closeDetailButton = document.getElementById('closeNadDetailV242');
+    const detailSection = document.getElementById('nadDetailV242');
+    const vascularView = detailSection?.closest('[data-treatment-detail-view="damar-yolu"]');
+    const diseaseButtons = Array.from(document.querySelectorAll('[data-nad-disease-link]'));
+    const asCardLink = document.querySelector('.ankilozan-card-link-v87');
+    const raCardLink = document.querySelector('.romatoid-card-link-v198');
+
+    if (!detailSection || !vascularView) {
+        return;
+    }
+
+    function scrollViewTop() {
+        const top = vascularView.getBoundingClientRect().top + window.scrollY - 12;
+
+        window.scrollTo({
+            top: Math.max(0, top),
+            behavior: 'smooth'
+        });
+    }
+
+    function closeOtherSpecialTabs() {
+        vascularView.classList.remove('vitamin-c-tab-open-v235');
+        vascularView.classList.remove('ozone-tab-open-v239');
+        vascularView.classList.remove('major-ozone-tab-open-v240');
+        vascularView.classList.remove('glutathione-tab-open-v241');
+        vascularView.classList.remove('karnitin-tab-open-v243');
+
+        const vitaminSection = document.getElementById('vitaminCDetailV234');
+        const ozoneSection = document.getElementById('ozoneDetailV239');
+        const majorOzoneSection = document.getElementById('majorOzoneDetailV240');
+        const glutathioneSection = document.getElementById('glutathioneDetailV241');
+        const karnitinSection = document.getElementById('karnitinDetailV243');
+
+        if (vitaminSection) {
+            vitaminSection.setAttribute('aria-hidden', 'true');
+        }
+
+        if (ozoneSection) {
+            ozoneSection.setAttribute('aria-hidden', 'true');
+        }
+
+        if (majorOzoneSection) {
+            majorOzoneSection.setAttribute('aria-hidden', 'true');
+        }
+
+        if (glutathioneSection) {
+            glutathioneSection.setAttribute('aria-hidden', 'true');
+        }
+
+        if (karnitinSection) {
+            karnitinSection.setAttribute('aria-hidden', 'true');
+        }
+    }
+
+    function openNadTab() {
+        closeOtherSpecialTabs();
+        vascularView.classList.add('nad-tab-open-v242');
+        detailSection.setAttribute('aria-hidden', 'false');
+
+        window.requestAnimationFrame(() => {
+            scrollViewTop();
+        });
+    }
+
+    function closeNadTab(options = {}) {
+        vascularView.classList.remove('nad-tab-open-v242');
+        detailSection.setAttribute('aria-hidden', 'true');
+
+        if (options.returnToCard !== false && openDetailButton) {
+            window.requestAnimationFrame(() => {
+                openDetailButton.closest('.serum-card-v71')?.scrollIntoView({
+                    behavior: 'smooth',
+                    block: 'center'
+                });
+            });
+        }
+    }
+
+    if (openDetailButton) {
+        openDetailButton.addEventListener('click', openNadTab);
+    }
+
+    if (closeDetailButton) {
+        closeDetailButton.addEventListener('click', () => closeNadTab());
+    }
+
+    diseaseButtons.forEach((button) => {
+        button.addEventListener('click', () => {
+            const target = button.dataset.nadDiseaseLink;
+            const link = target === 'ra' ? raCardLink : asCardLink;
+
+            if (!link) return;
+
+            closeNadTab({ returnToCard: false });
+
+            window.setTimeout(() => {
+                link.click();
+            }, 80);
+        });
+    });
+
+    document.addEventListener('keydown', (event) => {
+        if (
+            event.key === 'Escape' &&
+            vascularView.classList.contains('nad-tab-open-v242')
+        ) {
+            closeNadTab();
+        }
+    });
+})();
+
+
+
+// =========================================================
+// V243 - L-KARNİTİN "BİLGİ EDİN" ÖZEL SEKME
+// =========================================================
+(function () {
+    const openDetailButton = document.getElementById('openKarnitinDetailV243');
+    const closeDetailButton = document.getElementById('closeKarnitinDetailV243');
+    const detailSection = document.getElementById('karnitinDetailV243');
+    const vascularView = detailSection?.closest('[data-treatment-detail-view="damar-yolu"]');
+    const diseaseButtons = Array.from(document.querySelectorAll('[data-karnitin-disease-link]'));
+    const asCardLink = document.querySelector('.ankilozan-card-link-v87');
+    const raCardLink = document.querySelector('.romatoid-card-link-v198');
+
+    if (!detailSection || !vascularView) {
+        return;
+    }
+
+    function scrollViewTop() {
+        const top = vascularView.getBoundingClientRect().top + window.scrollY - 12;
+
+        window.scrollTo({
+            top: Math.max(0, top),
+            behavior: 'smooth'
+        });
+    }
+
+    function closeOtherSpecialTabs() {
+        vascularView.classList.remove('vitamin-c-tab-open-v235');
+        vascularView.classList.remove('ozone-tab-open-v239');
+        vascularView.classList.remove('major-ozone-tab-open-v240');
+        vascularView.classList.remove('glutathione-tab-open-v241');
+        vascularView.classList.remove('nad-tab-open-v242');
+
+        const vitaminSection = document.getElementById('vitaminCDetailV234');
+        const ozoneSection = document.getElementById('ozoneDetailV239');
+        const majorOzoneSection = document.getElementById('majorOzoneDetailV240');
+        const glutathioneSection = document.getElementById('glutathioneDetailV241');
+        const nadSection = document.getElementById('nadDetailV242');
+
+        if (vitaminSection) {
+            vitaminSection.setAttribute('aria-hidden', 'true');
+        }
+
+        if (ozoneSection) {
+            ozoneSection.setAttribute('aria-hidden', 'true');
+        }
+
+        if (majorOzoneSection) {
+            majorOzoneSection.setAttribute('aria-hidden', 'true');
+        }
+
+        if (glutathioneSection) {
+            glutathioneSection.setAttribute('aria-hidden', 'true');
+        }
+
+        if (nadSection) {
+            nadSection.setAttribute('aria-hidden', 'true');
+        }
+    }
+
+    function openKarnitinTab() {
+        closeOtherSpecialTabs();
+        vascularView.classList.add('karnitin-tab-open-v243');
+        detailSection.setAttribute('aria-hidden', 'false');
+
+        window.requestAnimationFrame(() => {
+            scrollViewTop();
+        });
+    }
+
+    function closeKarnitinTab(options = {}) {
+        vascularView.classList.remove('karnitin-tab-open-v243');
+        detailSection.setAttribute('aria-hidden', 'true');
+
+        if (options.returnToCard !== false && openDetailButton) {
+            window.requestAnimationFrame(() => {
+                openDetailButton.closest('.serum-card-v71')?.scrollIntoView({
+                    behavior: 'smooth',
+                    block: 'center'
+                });
+            });
+        }
+    }
+
+    if (openDetailButton) {
+        openDetailButton.addEventListener('click', openKarnitinTab);
+    }
+
+    if (closeDetailButton) {
+        closeDetailButton.addEventListener('click', () => closeKarnitinTab());
+    }
+
+    diseaseButtons.forEach((button) => {
+        button.addEventListener('click', () => {
+            const target = button.dataset.karnitinDiseaseLink;
+            const link = target === 'ra' ? raCardLink : asCardLink;
+
+            if (!link) return;
+
+            closeKarnitinTab({ returnToCard: false });
+
+            window.setTimeout(() => {
+                link.click();
+            }, 80);
+        });
+    });
+
+    document.addEventListener('keydown', (event) => {
+        if (
+            event.key === 'Escape' &&
+            vascularView.classList.contains('karnitin-tab-open-v243')
+        ) {
+            closeKarnitinTab();
+        }
+    });
+})();
+
+
+
+// =========================================================
+// V244 - SELENYUM "BİLGİ EDİN" ÖZEL SEKME
+// =========================================================
+(function () {
+    const openDetailButton = document.getElementById('openSeleniumDetailV244');
+    const closeDetailButton = document.getElementById('closeSeleniumDetailV244');
+    const detailSection = document.getElementById('seleniumDetailV244');
+    const vascularView = detailSection?.closest('[data-treatment-detail-view="damar-yolu"]');
+    const diseaseButtons = Array.from(document.querySelectorAll('[data-selenium-disease-link]'));
+    const asCardLink = document.querySelector('.ankilozan-card-link-v87');
+    const raCardLink = document.querySelector('.romatoid-card-link-v198');
+    const foreignButtonsSelector = [
+        '#openVitaminCDetailV234',
+        '#openOzoneDetailV239',
+        '#openMajorOzoneDetailV240',
+        '#openGlutathioneDetailV241',
+        '#openNadDetailV242',
+        '#openKarnitinDetailV243',
+        '#closeVitaminCDetailV234',
+        '#closeOzoneDetailV239',
+        '#closeMajorOzoneDetailV240',
+        '#closeGlutathioneDetailV241',
+        '#closeNadDetailV242',
+        '#closeKarnitinDetailV243'
+    ].join(',');
+
+    if (!detailSection || !vascularView) {
+        return;
+    }
+
+    function scrollViewTop() {
+        const top = vascularView.getBoundingClientRect().top + window.scrollY - 12;
+
+        window.scrollTo({
+            top: Math.max(0, top),
+            behavior: 'smooth'
+        });
+    }
+
+    function closeOtherSpecialTabs() {
+        vascularView.classList.remove('vitamin-c-tab-open-v235');
+        vascularView.classList.remove('ozone-tab-open-v239');
+        vascularView.classList.remove('major-ozone-tab-open-v240');
+        vascularView.classList.remove('glutathione-tab-open-v241');
+        vascularView.classList.remove('nad-tab-open-v242');
+        vascularView.classList.remove('karnitin-tab-open-v243');
+
+        const vitaminSection = document.getElementById('vitaminCDetailV234');
+        const ozoneSection = document.getElementById('ozoneDetailV239');
+        const majorOzoneSection = document.getElementById('majorOzoneDetailV240');
+        const glutathioneSection = document.getElementById('glutathioneDetailV241');
+        const nadSection = document.getElementById('nadDetailV242');
+        const karnitinSection = document.getElementById('karnitinDetailV243');
+
+        if (vitaminSection) vitaminSection.setAttribute('aria-hidden', 'true');
+        if (ozoneSection) ozoneSection.setAttribute('aria-hidden', 'true');
+        if (majorOzoneSection) majorOzoneSection.setAttribute('aria-hidden', 'true');
+        if (glutathioneSection) glutathioneSection.setAttribute('aria-hidden', 'true');
+        if (nadSection) nadSection.setAttribute('aria-hidden', 'true');
+        if (karnitinSection) karnitinSection.setAttribute('aria-hidden', 'true');
+    }
+
+    function openSeleniumTab() {
+        closeOtherSpecialTabs();
+        vascularView.classList.add('selenium-tab-open-v244');
+        detailSection.setAttribute('aria-hidden', 'false');
+
+        window.requestAnimationFrame(() => {
+            scrollViewTop();
+        });
+    }
+
+    function closeSeleniumTab(options = {}) {
+        vascularView.classList.remove('selenium-tab-open-v244');
+        detailSection.setAttribute('aria-hidden', 'true');
+
+        if (options.returnToCard !== false && openDetailButton) {
+            window.requestAnimationFrame(() => {
+                openDetailButton.closest('.serum-card-v71')?.scrollIntoView({
+                    behavior: 'smooth',
+                    block: 'center'
+                });
+            });
+        }
+    }
+
+    if (openDetailButton) {
+        openDetailButton.addEventListener('click', openSeleniumTab);
+    }
+
+    if (closeDetailButton) {
+        closeDetailButton.addEventListener('click', () => closeSeleniumTab());
+    }
+
+    document.addEventListener('click', (event) => {
+        const foreignButton = event.target.closest(foreignButtonsSelector);
+        if (!foreignButton) return;
+
+        vascularView.classList.remove('selenium-tab-open-v244');
+        detailSection.setAttribute('aria-hidden', 'true');
+    }, true);
+
+    diseaseButtons.forEach((button) => {
+        button.addEventListener('click', () => {
+            const target = button.dataset.seleniumDiseaseLink;
+            const link = target === 'ra' ? raCardLink : asCardLink;
+
+            if (!link) return;
+
+            closeSeleniumTab({ returnToCard: false });
+
+            window.setTimeout(() => {
+                link.click();
+            }, 80);
+        });
+    });
+
+    document.addEventListener('keydown', (event) => {
+        if (
+            event.key === 'Escape' &&
+            vascularView.classList.contains('selenium-tab-open-v244')
+        ) {
+            closeSeleniumTab();
         }
     });
 })();
