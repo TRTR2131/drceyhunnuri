@@ -4,12 +4,13 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="referrer" content="strict-origin-when-cross-origin">
 
     <!-- V51: YAYIN / CACHE GÜNCELLEMESİ -->
     <meta http-equiv="Cache-Control" content="no-cache, no-store, must-revalidate">
     <meta http-equiv="Pragma" content="no-cache">
     <meta http-equiv="Expires" content="0">
-    <meta name="site-version" content="245">
+    <meta name="site-version" content="278">
 
     <title>Doktor Ceyhun Nuri</title>
 
@@ -31,7 +32,7 @@
 
     <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Crect width='64' height='64' rx='16' fill='%231783c2'/%3E%3Cpath d='M28 14h8v14h14v8H36v14h-8V36H14v-8h14z' fill='white'/%3E%3C/svg%3E">
 
-    <link rel="stylesheet" href="style.css?v=245">
+    <link rel="stylesheet" href="style.css?v=290">
 
 <style id="treatmentNavCriticalV161">
 /* V161 critical: HTML içine gömülü, eski CSS bu menüyü geri çeviremez */
@@ -367,6 +368,196 @@ body.ankilozan-page-open-v87 #ankilozanFaqSectionV85 {
 <!-- V187: Tedavi Uygulamaları menü sırası güncellendi; Ozon Tedavisi menüden kaldırıldı. -->
 <!-- V193: Ana sayfa 6 üst buton tek ortak görsel sınıfta eşitlendi. -->
 <!-- V195: Ankilozan Spondilit özel sayfası modern görsel düzenle yenilendi; sayfa içi ekstra üst nav kaldırıldı. -->
+<style id="vertical-gap-fix-v254">
+/* =========================================================
+   V256 - TÜM ALT SAYFALARDA GEREKSİZ DİKEY BOŞLUKLARI TEMİZLE
+   Sabit üst menü boşluğu yalnızca sayfa kabuğunda bırakılır.
+   İç hero / detail bloklarının ikinci kez üstten boşluk üretmesi engellenir.
+   ========================================================= */
+
+/* 1) Liste sayfaları: sabit menünün altında tek bir güvenli boşluk */
+body.treatment-page-open #tedaviAlanlariPage,
+body.pain-page-open #agriPage,
+body.media-page-open #medyaPage,
+body.about-page-open #hakkimdaPage,
+body.general-health-detail-open-v75 #generalHealthDetailPageV75 {
+    padding-top: 96px !important;
+}
+
+/* Tedavi Alanları ve Ağrı sayfalarında başlık/breadcrumb zaten gizli.
+   Boş kalan eski hero bandını tamamen kaldır. */
+body.treatment-page-open .treatment-page-hero,
+body.pain-page-open .pain-page-hero {
+    display: none !important;
+    min-height: 0 !important;
+    height: 0 !important;
+    padding: 0 !important;
+    margin: 0 !important;
+}
+
+/* Medya: içerik var; fakat ikinci bir 118px üst boşluk oluşturmasın. */
+body.media-page-open .media-page-hero-v48 {
+    min-height: 0 !important;
+    height: auto !important;
+    padding: 18px 20px 22px !important;
+    margin: 0 !important;
+}
+
+/* Hakkımda yeni sekmeli yapı kendi başlığını taşıyor. Eski hero görünürse boşluk üretmesin. */
+body.about-page-open .about-page-hero-v47 {
+    display: none !important;
+    min-height: 0 !important;
+    height: 0 !important;
+    padding: 0 !important;
+    margin: 0 !important;
+}
+
+/* 2) Tedavi detayları: dış sayfa zaten fixed nav için üst boşluğu bırakıyor.
+   Osteopati / Fitoterapi / Damar Yolu / İğne içinde ikinci kez 100+px boşluk verme. */
+body.treatment-detail-open-v71 #treatmentDetailPageV71 {
+    padding-top: 96px !important;
+}
+
+body.treatment-detail-open-v71 .treatment-detail-content-v71,
+body.treatment-detail-open-v71 .injection-view-v71,
+body.treatment-detail-open-v71 .phyto-page-shell-v127 {
+    padding-top: 20px !important;
+}
+
+/* İç sayfa min-height'ları içerik bittikten sonra gereksiz boş ekran bırakmasın. */
+body.treatment-detail-open-v71 .treatment-detail-view-v71.active,
+body.treatment-detail-open-v71 .osteopathy-page-v95.active,
+body.treatment-detail-open-v71 .phytotherapy-page-v127.active,
+body.treatment-detail-open-v71 .injection-view-v71.active,
+body.treatment-detail-open-v71 .vascular-view-v72.active {
+    min-height: 0 !important;
+    height: auto !important;
+}
+
+/* Osteopati yeni sayfa düzeni */
+body.treatment-detail-open-v71 .osteopathy-page-v95 .osteopathy-page-hero-v95 {
+    min-height: 0 !important;
+    height: auto !important;
+    padding-top: 26px !important;
+    padding-bottom: 26px !important;
+}
+
+body.treatment-detail-open-v71 .osteopathy-page-v95 .osteopathy-page-content-v95 {
+    padding-top: 18px !important;
+}
+
+/* Fitoterapi: V253 sıkılaştırmasına ek olarak sayfa kabuğundaki 118px'i kaldır. */
+body.treatment-detail-open-v71 .phytotherapy-page-v127 .phyto-page-shell-v127 {
+    padding-top: 20px !important;
+    padding-bottom: 28px !important;
+}
+
+body.treatment-detail-open-v71 .phytotherapy-page-v127 .phyto-hero-v127 {
+    margin-top: 0 !important;
+}
+
+/* Damar yolu / iğne kart sayfaları */
+body.treatment-detail-open-v71 .injection-view-v71 {
+    padding-top: 20px !important;
+    padding-bottom: 42px !important;
+}
+
+body.treatment-detail-open-v71 .injection-header-v71 {
+    margin-top: 0 !important;
+    margin-bottom: 24px !important;
+}
+
+/* Serum "Bilgi Edin" alt sayfaları: dış üst boşluk zaten mevcut. */
+body.treatment-detail-open-v71 .vitamin-c-detail-v234.vitamin-c-special-tab-v235,
+body.treatment-detail-open-v71 .ozone-special-tab-v239,
+body.treatment-detail-open-v71 .major-ozone-special-tab-v240,
+body.treatment-detail-open-v71 .glutathione-special-tab-v241,
+body.treatment-detail-open-v71 .nad-special-tab-v242,
+body.treatment-detail-open-v71 .karnitin-special-tab-v243,
+body.treatment-detail-open-v71 .selenium-special-tab-v244 {
+    min-height: 0 !important;
+    padding-top: 8px !important;
+    padding-bottom: 28px !important;
+}
+
+body.treatment-detail-open-v71 .vitamin-c-special-nav-v235 {
+    margin-bottom: 12px !important;
+}
+
+body.treatment-detail-open-v71 .vitamin-c-special-intro-v235 {
+    margin-bottom: 12px !important;
+    padding-top: 30px !important;
+    padding-bottom: 30px !important;
+}
+
+/* 3) Genel Sağlık / Beslenme: fixed nav boşluğu + içerik boşluğu çakışmasın. */
+body.general-health-detail-open-v75 .general-health-detail-page-v75 {
+    padding-top: 0 !important;
+}
+
+body.general-health-detail-open-v75 .general-health-view-v75.active {
+    padding-top: 12px !important;
+}
+
+body.general-health-detail-open-v75 .general-health-detail-nav-v75 {
+    margin-bottom: 14px !important;
+}
+
+body.general-health-detail-open-v75 .nutrition-view-v174 {
+    min-height: 0 !important;
+    height: auto !important;
+    padding-bottom: 42px !important;
+}
+
+body.general-health-detail-open-v75 .nutrition-hero-v174 {
+    padding-top: 18px !important;
+    padding-bottom: 18px !important;
+}
+
+body.general-health-detail-open-v75 .nutrition-intro-v174 {
+    padding-top: 18px !important;
+}
+
+/* 4) Sayfa içindeki büyük boş kart / placeholder yüksekliklerini içerik kadar tut. */
+body.general-health-detail-open-v75 .general-health-empty-card-v75 {
+    min-height: 220px !important;
+}
+
+body.media-page-open .media-page-content-v48 {
+    min-height: 0 !important;
+}
+
+/* 5) Mobil: menü daha kısa olduğu için üst güvenli boşluğu da küçült. */
+@media (max-width: 760px) {
+    body.treatment-page-open #tedaviAlanlariPage,
+    body.pain-page-open #agriPage,
+    body.media-page-open #medyaPage,
+    body.about-page-open #hakkimdaPage,
+    body.general-health-detail-open-v75 #generalHealthDetailPageV75,
+    body.treatment-detail-open-v71 #treatmentDetailPageV71 {
+        padding-top: 74px !important;
+    }
+
+    body.media-page-open .media-page-hero-v48 {
+        padding: 12px 12px 16px !important;
+    }
+
+    body.treatment-detail-open-v71 .treatment-detail-content-v71,
+    body.treatment-detail-open-v71 .injection-view-v71,
+    body.treatment-detail-open-v71 .phyto-page-shell-v127 {
+        padding-top: 12px !important;
+    }
+
+    body.treatment-detail-open-v71 .osteopathy-page-v95 .osteopathy-page-hero-v95 {
+        padding-top: 18px !important;
+        padding-bottom: 18px !important;
+    }
+
+    body.general-health-detail-open-v75 .nutrition-hero-v174 {
+        padding-top: 12px !important;
+    }
+}
+</style>
 </head>
 
 <!-- BUILD: V53 / CACHE-BUST -->
@@ -1168,6 +1359,58 @@ body.ankilozan-page-open-v87 #ankilozanFaqSectionV85 {
 
         </nav>
 
+        <section class="disease-switcher-v250 disease-switcher-as-v250" data-disease-switcher-v250 aria-label="Tedavi alanları hastalıklar arası hızlı geçiş">
+            <div class="disease-switcher-head-v250">
+                <div>
+                    <span>TEDAVİ ALANLARI</span>
+                    <strong>Hastalıklar Arası Hızlı Geçiş</strong>
+                </div>
+                <small>Bulunduğunuz sayfadan diğer hastalık alanlarına geçin</small>
+            </div>
+            <div class="disease-switch-grid-v250">
+            <button type="button" class="disease-switch-card-v250 is-active" data-disease-switch-v250="as" aria-current="page">
+                <span class="disease-switch-code-v250">AS</span>
+                <strong>Ankilozan Spondilit</strong>
+                <span class="disease-switch-arrow-v250" aria-hidden="true">↗</span>
+            </button>
+            <button type="button" class="disease-switch-card-v250" data-disease-switch-v250="ra">
+                <span class="disease-switch-code-v250">RA</span>
+                <strong>Romatoid Artrit</strong>
+                <span class="disease-switch-arrow-v250" aria-hidden="true">↗</span>
+            </button>
+            <button type="button" class="disease-switch-card-v250" data-disease-switch-v250="bas-agrisi-migren">
+                <span class="disease-switch-code-v250">01</span>
+                <strong>Baş Ağrısı & Migren</strong>
+                <span class="disease-switch-arrow-v250" aria-hidden="true">↗</span>
+            </button>
+            <button type="button" class="disease-switch-card-v250" data-disease-switch-v250="bel-sirt-agrisi">
+                <span class="disease-switch-code-v250">02</span>
+                <strong>Bel & Sırt Ağrısı</strong>
+                <span class="disease-switch-arrow-v250" aria-hidden="true">↗</span>
+            </button>
+            <button type="button" class="disease-switch-card-v250" data-disease-switch-v250="fibromiyalji">
+                <span class="disease-switch-code-v250">03</span>
+                <strong>Fibromiyalji</strong>
+                <span class="disease-switch-arrow-v250" aria-hidden="true">↗</span>
+            </button>
+            <button type="button" class="disease-switch-card-v250" data-disease-switch-v250="huzursuz-bacak">
+                <span class="disease-switch-code-v250">04</span>
+                <strong>Huzursuz Bacak</strong>
+                <span class="disease-switch-arrow-v250" aria-hidden="true">↗</span>
+            </button>
+            <button type="button" class="disease-switch-card-v250" data-disease-switch-v250="iltihabi-bagirsak">
+                <span class="disease-switch-code-v250">05</span>
+                <strong>İltihabi Bağırsak</strong>
+                <span class="disease-switch-arrow-v250" aria-hidden="true">↗</span>
+            </button>
+            <button type="button" class="disease-switch-card-v250" data-disease-switch-v250="kronik-yorgunluk">
+                <span class="disease-switch-code-v250">06</span>
+                <strong>Kronik Yorgunluk</strong>
+                <span class="disease-switch-arrow-v250" aria-hidden="true">↗</span>
+            </button>
+            </div>
+        </section>
+
         <div class="ankilozan-overview-v195 ankilozan-overview-interactive-v196" aria-label="Ankilozan Spondilit modern bilgilendirme alanı">
             <img src="./ankilozan-overview-v195.png?v=195" alt="Ankilozan Spondilit temel bilgiler, sakroiliak eklem ve omurga etkilenimini anlatan modern bilgilendirme görseli">
 
@@ -1176,6 +1419,55 @@ body.ankilozan-page-open-v87 #ankilozanFaqSectionV85 {
             <button type="button" class="ankilozan-card-hotspot-v196 ankilozan-card-hotspot-tani-v196" data-ank-detail-v196="tani" aria-label="Tanı Süreci detaylı bilgi sekmesini aç"></button>
             <button type="button" class="ankilozan-card-hotspot-v196 ankilozan-card-hotspot-tedavi-v196" data-ank-detail-v196="tedavi" aria-label="Tedavi Yaklaşımı detaylı bilgi sekmesini aç"></button>
         </div>
+
+        <!-- V274: Ankilozan Spondilit ana vitrini - Osteopati benzeri özel sekme butonları -->
+        <section class="as-launcher-v274" id="asLauncherV274" aria-label="Ankilozan Spondilit özel içerik bölümleri">
+            <div class="as-launcher-head-v274">
+                <div>
+                    <span>ANKİLOZAN SPONDİLİT</span>
+                    <h2>Merak Ettiğiniz Bölüme Geçin</h2>
+                </div>
+                <p>Bir başlık seçin; yalnızca seçtiğiniz özel içerik alanı açılsın.</p>
+            </div>
+
+            <div class="as-launcher-grid-v274">
+                <button type="button" class="as-launch-card-v274 is-primary-v274" data-as-special-target-v274="overview">
+                    <span class="as-launch-icon-v274" aria-hidden="true">✦</span>
+                    <span class="as-launch-copy-v274"><strong>Hastalığı Tanıyın</strong><small>Neden • belirtiler • kimlerde</small></span>
+                    <span class="as-launch-arrow-v274" aria-hidden="true">↗</span>
+                </button>
+
+                <button type="button" class="as-launch-card-v274" data-as-special-target-v274="diagnosis">
+                    <span class="as-launch-icon-v274" aria-hidden="true">⌕</span>
+                    <span class="as-launch-copy-v274"><strong>Tanı Süreci</strong><small>Muayene • MR • laboratuvar</small></span>
+                    <span class="as-launch-arrow-v274" aria-hidden="true">↗</span>
+                </button>
+
+                <button type="button" class="as-launch-card-v274" data-as-special-target-v274="treatment">
+                    <span class="as-launch-icon-v274" aria-hidden="true">＋</span>
+                    <span class="as-launch-copy-v274"><strong>Tedavi Yaklaşımı</strong><small>Nasıl hafifler • tedavi planı</small></span>
+                    <span class="as-launch-arrow-v274" aria-hidden="true">↗</span>
+                </button>
+
+                <button type="button" class="as-launch-card-v274" data-as-special-target-v274="movement">
+                    <span class="as-launch-icon-v274" aria-hidden="true">↔</span>
+                    <span class="as-launch-copy-v274"><strong>Egzersiz &amp; Günlük Yaşam</strong><small>Hareket • postür • rutin</small></span>
+                    <span class="as-launch-arrow-v274" aria-hidden="true">↗</span>
+                </button>
+
+                <button type="button" class="as-launch-card-v274" data-as-special-target-v274="faq">
+                    <span class="as-launch-icon-v274" aria-hidden="true">?</span>
+                    <span class="as-launch-copy-v274"><strong>Merak Edilen Sorular</strong><small>Soru &amp; cevap</small></span>
+                    <span class="as-launch-arrow-v274" aria-hidden="true">↗</span>
+                </button>
+
+                <button type="button" class="as-launch-card-v274" data-as-special-target-v274="herbs">
+                    <span class="as-launch-icon-v274" aria-hidden="true">≋</span>
+                    <span class="as-launch-copy-v274"><strong>Bitkisel Destekler</strong><small>Fitoterapi • hekim kontrolü</small></span>
+                    <span class="as-launch-arrow-v274" aria-hidden="true">↗</span>
+                </button>
+            </div>
+        </section>
 
         <section class="ankilozan-detail-hub-v196 ankilozan-detail-hub-v197" id="ankilozanDetailHubV196" aria-label="Ankilozan Spondilit konu açıklamaları">
             <div class="ankilozan-detail-head-v196">
@@ -1636,9 +1928,21 @@ body.ankilozan-page-open-v87 #ankilozanFaqSectionV85 {
                     </div>
                 </a>
 
-                <a class="treatment-card treatment-card-v77" href="#tedavi-alanlari" data-disease="bas-agrisi-migren">
+                <a class="treatment-card treatment-card-v77 romatoid-card-link-v198" href="#tedavi-alanlari" data-disease="romatoid-artrit">
                     <div class="treatment-card-image-v77">
-                        <img src="./disease-bas-agrisi-migren-v77.png?v=150" alt="Baş ağrısı ve migreni gösteren medikal görsel">
+                        <img src="./disease-romatoid-artrit-v77.png?v=150" alt="Romatoid artritte el ve el bileği eklemlerini gösteren medikal görsel">
+                    </div>
+                    <div class="treatment-card-body-v77">
+                        <h3>Romatoid Artrit</h3>
+                        <p>Eklem hareketliliği, günlük yaşam ve romatizmal yakınmaların destekleyici değerlendirilmesi.</p>
+                        <span>Detayları Gör ↗</span>
+                    </div>
+                </a>
+
+
+                <a class="treatment-card treatment-card-v77 condition-card-link-v246" href="#bas-agrisi-migren" data-disease="bas-agrisi-migren">
+                    <div class="treatment-card-image-v77">
+                        <img src="./disease-bas-agrisi-migren-v77.png?v=150" alt="Baş ağrısı ve migren için medikal görsel">
                     </div>
                     <div class="treatment-card-body-v77">
                         <h3>Baş Ağrısı ve Migren</h3>
@@ -1647,9 +1951,9 @@ body.ankilozan-page-open-v87 #ankilozanFaqSectionV85 {
                     </div>
                 </a>
 
-                <a class="treatment-card treatment-card-v77" href="#tedavi-alanlari" data-disease="bel-sirt-agrisi">
+                <a class="treatment-card treatment-card-v77 condition-card-link-v246" href="#bel-sirt-agrisi" data-disease="bel-sirt-agrisi">
                     <div class="treatment-card-image-v77">
-                        <img src="./disease-bel-sirt-agrisi-v77.png?v=150" alt="Bel ve sırt ağrısını gösteren omurga görseli">
+                        <img src="./disease-bel-sirt-agrisi-v77.png?v=150" alt="Bel ve sırt ağrısı için omurga görseli">
                     </div>
                     <div class="treatment-card-body-v77">
                         <h3>Bel ve Sırt Ağrısı</h3>
@@ -1658,7 +1962,7 @@ body.ankilozan-page-open-v87 #ankilozanFaqSectionV85 {
                     </div>
                 </a>
 
-                <a class="treatment-card treatment-card-v77" href="#tedavi-alanlari" data-disease="fibromiyalji">
+                <a class="treatment-card treatment-card-v77 condition-card-link-v246" href="#fibromiyalji" data-disease="fibromiyalji">
                     <div class="treatment-card-image-v77">
                         <img src="./disease-fibromiyalji-v77.png?v=150" alt="Fibromiyaljide yaygın ağrı bölgelerini gösteren medikal görsel">
                     </div>
@@ -1669,7 +1973,7 @@ body.ankilozan-page-open-v87 #ankilozanFaqSectionV85 {
                     </div>
                 </a>
 
-                <a class="treatment-card treatment-card-v77" href="#tedavi-alanlari" data-disease="huzursuz-bacak">
+                <a class="treatment-card treatment-card-v77 condition-card-link-v246" href="#huzursuz-bacak" data-disease="huzursuz-bacak">
                     <div class="treatment-card-image-v77">
                         <img src="./disease-huzursuz-bacak-v77.png?v=150" alt="Bacak sinirlerini gösteren medikal görsel">
                     </div>
@@ -1680,7 +1984,7 @@ body.ankilozan-page-open-v87 #ankilozanFaqSectionV85 {
                     </div>
                 </a>
 
-                <a class="treatment-card treatment-card-v77" href="#tedavi-alanlari" data-disease="iltihabi-bagirsak">
+                <a class="treatment-card treatment-card-v77 condition-card-link-v246" href="#iltihabi-bagirsak" data-disease="iltihabi-bagirsak">
                     <div class="treatment-card-image-v77">
                         <img src="./disease-iltihabi-bagirsak-v77.png?v=150" alt="İltihabi bağırsak hastalıklarını temsil eden medikal görsel">
                     </div>
@@ -1691,24 +1995,13 @@ body.ankilozan-page-open-v87 #ankilozanFaqSectionV85 {
                     </div>
                 </a>
 
-                <a class="treatment-card treatment-card-v77" href="#tedavi-alanlari" data-disease="kronik-yorgunluk">
+                <a class="treatment-card treatment-card-v77 condition-card-link-v246" href="#kronik-yorgunluk" data-disease="kronik-yorgunluk">
                     <div class="treatment-card-image-v77">
                         <img src="./disease-kronik-yorgunluk-v77.png?v=150" alt="Kronik yorgunluğu temsil eden medikal görsel">
                     </div>
                     <div class="treatment-card-body-v77">
                         <h3>Kronik Yorgunluk</h3>
                         <p>Uzun süren yorgunluk yakınmalarında yaşam tarzı ve eşlik eden faktörlerin değerlendirilmesi.</p>
-                        <span>Detayları Gör ↗</span>
-                    </div>
-                </a>
-
-                <a class="treatment-card treatment-card-v77 romatoid-card-link-v198" href="#tedavi-alanlari" data-disease="romatoid-artrit">
-                    <div class="treatment-card-image-v77">
-                        <img src="./disease-romatoid-artrit-v77.png?v=150" alt="Romatoid artritte el ve el bileği eklemlerini gösteren medikal görsel">
-                    </div>
-                    <div class="treatment-card-body-v77">
-                        <h3>Romatoid Artrit</h3>
-                        <p>Eklem hareketliliği, günlük yaşam ve romatizmal yakınmaların destekleyici değerlendirilmesi.</p>
                         <span>Detayları Gör ↗</span>
                     </div>
                 </a>
@@ -1770,6 +2063,106 @@ body.ankilozan-page-open-v87 #ankilozanFaqSectionV85 {
         <button type="button" class="ankilozan-nav-button-v87" id="romatoidMediaButtonV198">Medya <span>→</span></button>
         <button type="button" class="ankilozan-nav-button-v87" id="romatoidInfoButtonV198">Bilgi <span>⌄</span></button>
     </nav>
+
+        <section class="disease-switcher-v250 disease-switcher-ra-v250" data-disease-switcher-v250 aria-label="Tedavi alanları hastalıklar arası hızlı geçiş">
+            <div class="disease-switcher-head-v250">
+                <div>
+                    <span>TEDAVİ ALANLARI</span>
+                    <strong>Hastalıklar Arası Hızlı Geçiş</strong>
+                </div>
+                <small>Bulunduğunuz sayfadan diğer hastalık alanlarına geçin</small>
+            </div>
+            <div class="disease-switch-grid-v250">
+            <button type="button" class="disease-switch-card-v250" data-disease-switch-v250="as">
+                <span class="disease-switch-code-v250">AS</span>
+                <strong>Ankilozan Spondilit</strong>
+                <span class="disease-switch-arrow-v250" aria-hidden="true">↗</span>
+            </button>
+            <button type="button" class="disease-switch-card-v250 is-active" data-disease-switch-v250="ra" aria-current="page">
+                <span class="disease-switch-code-v250">RA</span>
+                <strong>Romatoid Artrit</strong>
+                <span class="disease-switch-arrow-v250" aria-hidden="true">↗</span>
+            </button>
+            <button type="button" class="disease-switch-card-v250" data-disease-switch-v250="bas-agrisi-migren">
+                <span class="disease-switch-code-v250">01</span>
+                <strong>Baş Ağrısı & Migren</strong>
+                <span class="disease-switch-arrow-v250" aria-hidden="true">↗</span>
+            </button>
+            <button type="button" class="disease-switch-card-v250" data-disease-switch-v250="bel-sirt-agrisi">
+                <span class="disease-switch-code-v250">02</span>
+                <strong>Bel & Sırt Ağrısı</strong>
+                <span class="disease-switch-arrow-v250" aria-hidden="true">↗</span>
+            </button>
+            <button type="button" class="disease-switch-card-v250" data-disease-switch-v250="fibromiyalji">
+                <span class="disease-switch-code-v250">03</span>
+                <strong>Fibromiyalji</strong>
+                <span class="disease-switch-arrow-v250" aria-hidden="true">↗</span>
+            </button>
+            <button type="button" class="disease-switch-card-v250" data-disease-switch-v250="huzursuz-bacak">
+                <span class="disease-switch-code-v250">04</span>
+                <strong>Huzursuz Bacak</strong>
+                <span class="disease-switch-arrow-v250" aria-hidden="true">↗</span>
+            </button>
+            <button type="button" class="disease-switch-card-v250" data-disease-switch-v250="iltihabi-bagirsak">
+                <span class="disease-switch-code-v250">05</span>
+                <strong>İltihabi Bağırsak</strong>
+                <span class="disease-switch-arrow-v250" aria-hidden="true">↗</span>
+            </button>
+            <button type="button" class="disease-switch-card-v250" data-disease-switch-v250="kronik-yorgunluk">
+                <span class="disease-switch-code-v250">06</span>
+                <strong>Kronik Yorgunluk</strong>
+                <span class="disease-switch-arrow-v250" aria-hidden="true">↗</span>
+            </button>
+            </div>
+        </section>
+
+        <section class="as-launcher-v274 treatment-launcher-v279" id="raLauncherV279" data-treatment-launch-source-v279="ra" aria-label="Romatoid Artrit özel içerik bölümleri">
+            <div class="as-launcher-head-v274">
+                <div>
+                    <span>ROMATOİD ARTRİT</span>
+                    <h2>Merak Ettiğiniz Bölüme Geçin</h2>
+                </div>
+                <p>Bir başlık seçin; yalnızca seçtiğiniz özel içerik alanı açılsın.</p>
+            </div>
+
+            <div class="as-launcher-grid-v274">
+                <button type="button" class="as-launch-card-v274 is-primary-v274" data-treatment-special-target-v279="overview">
+                    <span class="as-launch-icon-v274" aria-hidden="true">✦</span>
+                    <span class="as-launch-copy-v274"><strong>Hastalığı Tanıyın</strong><small>Neden • belirtiler • kimlerde</small></span>
+                    <span class="as-launch-arrow-v274" aria-hidden="true">↗</span>
+                </button>
+
+                <button type="button" class="as-launch-card-v274" data-treatment-special-target-v279="diagnosis">
+                    <span class="as-launch-icon-v274" aria-hidden="true">⌕</span>
+                    <span class="as-launch-copy-v274"><strong>Tanı Süreci</strong><small>Muayene • laboratuvar • değerlendirme</small></span>
+                    <span class="as-launch-arrow-v274" aria-hidden="true">↗</span>
+                </button>
+
+                <button type="button" class="as-launch-card-v274" data-treatment-special-target-v279="treatment">
+                    <span class="as-launch-icon-v274" aria-hidden="true">＋</span>
+                    <span class="as-launch-copy-v274"><strong>Tedavi Yaklaşımı</strong><small>Nasıl hafifler • tedavi planı</small></span>
+                    <span class="as-launch-arrow-v274" aria-hidden="true">↗</span>
+                </button>
+
+                <button type="button" class="as-launch-card-v274" data-treatment-special-target-v279="movement">
+                    <span class="as-launch-icon-v274" aria-hidden="true">↔</span>
+                    <span class="as-launch-copy-v274"><strong>Egzersiz &amp; Günlük Yaşam</strong><small>Hareket • eklem koruma • rutin</small></span>
+                    <span class="as-launch-arrow-v274" aria-hidden="true">↗</span>
+                </button>
+
+                <button type="button" class="as-launch-card-v274" data-treatment-special-target-v279="faq">
+                    <span class="as-launch-icon-v274" aria-hidden="true">?</span>
+                    <span class="as-launch-copy-v274"><strong>Merak Edilen Sorular</strong><small>Soru &amp; cevap</small></span>
+                    <span class="as-launch-arrow-v274" aria-hidden="true">↗</span>
+                </button>
+
+                <button type="button" class="as-launch-card-v274" data-treatment-special-target-v279="herbs">
+                    <span class="as-launch-icon-v274" aria-hidden="true">≋</span>
+                    <span class="as-launch-copy-v274"><strong>Bitkisel Destekler</strong><small>Fitoterapi • hekim kontrolü</small></span>
+                    <span class="as-launch-arrow-v274" aria-hidden="true">↗</span>
+                </button>
+            </div>
+        </section>
 
     <div class="ra-hero-v198">
         <div class="ra-hero-copy-v198">
@@ -2029,6 +2422,219 @@ body.ankilozan-page-open-v87 #ankilozanFaqSectionV85 {
         </div>
     </div>
 </section>
+
+    <!-- V246: TEDAVİ ALANLARI - DİNAMİK HASTALIK ÖZEL SAYFASI -->
+    <section class="condition-disease-page-v246 condition-as-page-v249" id="conditionDiseasePageV246" aria-hidden="true">
+        <nav class="condition-page-nav-v249" id="conditionPageNavV249" aria-label="Hastalık özel sayfası üst menüsü">
+            <button type="button" class="global-page-brand-v172 condition-brand-v249" id="conditionHomeV249" aria-label="Dr. Ceyhun Nuri - Ana Sayfa">
+                <span class="global-page-brand-icon-v172" aria-hidden="true">
+                    <svg viewBox="0 0 48 48" fill="none">
+                        <circle cx="24" cy="13" r="7" stroke="currentColor" stroke-width="2.5"/>
+                        <path d="M18 20v10c0 5 2.7 8 6 10 3.3-2 6-5 6-10V20" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"/>
+                        <path d="M14 9c-4 3-6 7-6 12 0 6 3 11 8 14M34 9c4 3 6 7 6 12 0 6-3 11-8 14" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"/>
+                    </svg>
+                </span>
+                <span class="global-page-brand-copy-v172"><strong>Dr. Ceyhun Nuri</strong><small>DAHA SAĞLIKLI YARINLAR</small></span>
+            </button>
+
+            <button type="button" class="condition-nav-btn-v249" id="conditionNavHomeV249">Ana Sayfa <span>⌂</span></button>
+
+            <div class="condition-nav-menu-v249" id="conditionHealthMenuV249">
+                <button type="button" class="condition-nav-btn-v249" id="conditionHealthButtonV249" aria-expanded="false" aria-controls="conditionHealthDropdownV249">Genel Sağlık <span>⌄</span></button>
+                <div class="condition-nav-dropdown-v249" id="conditionHealthDropdownV249" aria-hidden="true">
+                    <a href="#beslenme" class="health-detail-link-v75" data-health-detail="beslenme">Beslenme</a>
+                    <a href="#supplementler" class="health-detail-link-v75" data-health-detail="supplementler">Supplementler</a>
+                    <a href="#kurler" class="health-detail-link-v75" data-health-detail="kurler">Detoks Kürleri</a>
+                    <a href="#egzersizler" class="health-detail-link-v75" data-health-detail="egzersizler">Egzersizler</a>
+                </div>
+            </div>
+
+            <button type="button" class="condition-nav-btn-v249 is-primary" id="conditionAreasV249">Tedavi Alanları <span>→</span></button>
+            <button type="button" class="condition-nav-btn-v249" id="conditionPainV249">Ağrı <span>→</span></button>
+            <button type="button" class="condition-nav-btn-v249" id="conditionMediaV249">Medya <span>→</span></button>
+            <button type="button" class="condition-nav-btn-v249" id="conditionInfoV249">Bilgi <span>⌄</span></button>
+        </nav>
+
+        <section class="disease-switcher-v250 disease-switcher-condition-v250" data-disease-switcher-v250 aria-label="Tedavi alanları hastalıklar arası hızlı geçiş">
+            <div class="disease-switcher-head-v250">
+                <div>
+                    <span>TEDAVİ ALANLARI</span>
+                    <strong>Hastalıklar Arası Hızlı Geçiş</strong>
+                </div>
+                <small>Bulunduğunuz sayfadan diğer hastalık alanlarına geçin</small>
+            </div>
+            <div class="disease-switch-grid-v250">
+            <button type="button" class="disease-switch-card-v250" data-disease-switch-v250="as">
+                <span class="disease-switch-code-v250">AS</span>
+                <strong>Ankilozan Spondilit</strong>
+                <span class="disease-switch-arrow-v250" aria-hidden="true">↗</span>
+            </button>
+            <button type="button" class="disease-switch-card-v250" data-disease-switch-v250="ra">
+                <span class="disease-switch-code-v250">RA</span>
+                <strong>Romatoid Artrit</strong>
+                <span class="disease-switch-arrow-v250" aria-hidden="true">↗</span>
+            </button>
+            <button type="button" class="disease-switch-card-v250" data-disease-switch-v250="bas-agrisi-migren">
+                <span class="disease-switch-code-v250">01</span>
+                <strong>Baş Ağrısı & Migren</strong>
+                <span class="disease-switch-arrow-v250" aria-hidden="true">↗</span>
+            </button>
+            <button type="button" class="disease-switch-card-v250" data-disease-switch-v250="bel-sirt-agrisi">
+                <span class="disease-switch-code-v250">02</span>
+                <strong>Bel & Sırt Ağrısı</strong>
+                <span class="disease-switch-arrow-v250" aria-hidden="true">↗</span>
+            </button>
+            <button type="button" class="disease-switch-card-v250" data-disease-switch-v250="fibromiyalji">
+                <span class="disease-switch-code-v250">03</span>
+                <strong>Fibromiyalji</strong>
+                <span class="disease-switch-arrow-v250" aria-hidden="true">↗</span>
+            </button>
+            <button type="button" class="disease-switch-card-v250" data-disease-switch-v250="huzursuz-bacak">
+                <span class="disease-switch-code-v250">04</span>
+                <strong>Huzursuz Bacak</strong>
+                <span class="disease-switch-arrow-v250" aria-hidden="true">↗</span>
+            </button>
+            <button type="button" class="disease-switch-card-v250" data-disease-switch-v250="iltihabi-bagirsak">
+                <span class="disease-switch-code-v250">05</span>
+                <strong>İltihabi Bağırsak</strong>
+                <span class="disease-switch-arrow-v250" aria-hidden="true">↗</span>
+            </button>
+            <button type="button" class="disease-switch-card-v250" data-disease-switch-v250="kronik-yorgunluk">
+                <span class="disease-switch-code-v250">06</span>
+                <strong>Kronik Yorgunluk</strong>
+                <span class="disease-switch-arrow-v250" aria-hidden="true">↗</span>
+            </button>
+            </div>
+        </section>
+
+        <section class="as-launcher-v274 treatment-launcher-v279" id="conditionLauncherV279" data-treatment-launch-source-v279="condition" aria-label="Tedavi alanı özel içerik bölümleri">
+            <div class="as-launcher-head-v274">
+                <div>
+                    <span>TEDAVİ ALANI</span>
+                    <h2>Merak Ettiğiniz Bölüme Geçin</h2>
+                </div>
+                <p>Bir başlık seçin; yalnızca seçtiğiniz özel içerik alanı açılsın.</p>
+            </div>
+
+            <div class="as-launcher-grid-v274">
+                <button type="button" class="as-launch-card-v274 is-primary-v274" data-treatment-special-target-v279="overview">
+                    <span class="as-launch-icon-v274" aria-hidden="true">✦</span>
+                    <span class="as-launch-copy-v274"><strong>Hastalığı Tanıyın</strong><small>Neden • belirtiler • kimlerde</small></span>
+                    <span class="as-launch-arrow-v274" aria-hidden="true">↗</span>
+                </button>
+
+                <button type="button" class="as-launch-card-v274" data-treatment-special-target-v279="diagnosis">
+                    <span class="as-launch-icon-v274" aria-hidden="true">⌕</span>
+                    <span class="as-launch-copy-v274"><strong>Tanı Süreci</strong><small>Muayene • laboratuvar • görüntüleme</small></span>
+                    <span class="as-launch-arrow-v274" aria-hidden="true">↗</span>
+                </button>
+
+                <button type="button" class="as-launch-card-v274" data-treatment-special-target-v279="treatment">
+                    <span class="as-launch-icon-v274" aria-hidden="true">＋</span>
+                    <span class="as-launch-copy-v274"><strong>Tedavi Yaklaşımı</strong><small>Nasıl hafifler • tedavi planı</small></span>
+                    <span class="as-launch-arrow-v274" aria-hidden="true">↗</span>
+                </button>
+
+                <button type="button" class="as-launch-card-v274" data-treatment-special-target-v279="movement">
+                    <span class="as-launch-icon-v274" aria-hidden="true">↔</span>
+                    <span class="as-launch-copy-v274"><strong>Egzersiz &amp; Günlük Yaşam</strong><small>Hareket • postür • rutin</small></span>
+                    <span class="as-launch-arrow-v274" aria-hidden="true">↗</span>
+                </button>
+
+                <button type="button" class="as-launch-card-v274" data-treatment-special-target-v279="faq">
+                    <span class="as-launch-icon-v274" aria-hidden="true">?</span>
+                    <span class="as-launch-copy-v274"><strong>Merak Edilen Sorular</strong><small>Soru &amp; cevap</small></span>
+                    <span class="as-launch-arrow-v274" aria-hidden="true">↗</span>
+                </button>
+
+                <button type="button" class="as-launch-card-v274" data-treatment-special-target-v279="herbs">
+                    <span class="as-launch-icon-v274" aria-hidden="true">≋</span>
+                    <span class="as-launch-copy-v274"><strong>Bitkisel Destekler</strong><small>Fitoterapi • hekim kontrolü</small></span>
+                    <span class="as-launch-arrow-v274" aria-hidden="true">↗</span>
+                </button>
+            </div>
+        </section>
+
+        <section class="condition-overview-poster-v249" aria-label="Hastalık genel bakış alanı">
+            <div class="condition-overview-copy-v249">
+                <span class="condition-overview-kicker-v249" id="conditionKickerV249">TEDAVİ ALANI</span>
+                <h1 id="conditionTitleV249">Hastalık Başlığı</h1>
+                <p id="conditionSummaryV249">Bilgilendirme metni.</p>
+                <div class="condition-overview-pills-v249" id="conditionPillsV249"></div>
+            </div>
+
+            <figure class="condition-overview-media-v249">
+                <img id="conditionImageV249" src="./disease-fibromiyalji-v77.png?v=150" alt="Hastalık bilgilendirme görseli" loading="eager" decoding="async">
+                <figcaption id="conditionImageCaptionV249">Bütüncül değerlendirme • Kişiye özel yaklaşım</figcaption>
+            </figure>
+
+            <div class="condition-overview-actions-v249" aria-label="Hızlı konu geçişleri">
+                <button type="button" data-condition-topic-v249="neden"><span>01</span><strong>Neden Olur?</strong><small id="conditionQuickCauseV249">İlişkili faktörleri inceleyin.</small></button>
+                <button type="button" data-condition-topic-v249="belirtiler"><span>02</span><strong>Belirtiler</strong><small id="conditionQuickSymptomsV249">Sık görülen yakınmaları inceleyin.</small></button>
+                <button type="button" data-condition-topic-v249="tani"><span>03</span><strong>Tanı Süreci</strong><small id="conditionQuickDiagnosisV249">Değerlendirme adımlarını inceleyin.</small></button>
+                <button type="button" data-condition-topic-v249="tedavi"><span>04</span><strong>Tedavi Yaklaşımı</strong><small id="conditionQuickTreatmentV249">Kişiye özel planlamayı inceleyin.</small></button>
+            </div>
+        </section>
+
+        <section class="ankilozan-detail-hub-v196 ankilozan-detail-hub-v197 condition-detail-hub-v249" id="conditionDetailHubV249" aria-label="Hastalık konu açıklamaları">
+            <div class="ankilozan-detail-head-v196">
+                <span>KONUYA GÖRE DETAYLI BİLGİ</span>
+                <h2>Merak Ettiğiniz Başlığa Doğrudan Gidin</h2>
+                <p>Yukarıdaki konu kartlarından veya aşağıdaki sekmelerden birine bastığınızda seçtiğiniz başlık doğrudan açılır.</p>
+            </div>
+
+            <div class="ankilozan-detail-tabs-v196 ankilozan-detail-tabs-v197" role="tablist" aria-label="Hastalık bilgi başlıkları">
+                <button type="button" class="ankilozan-detail-tab-v196 is-active" data-condition-topic-v249="neden" role="tab" aria-selected="true"><span class="ankilozan-detail-tab-icon-v196">🧬</span><span>Neden Olur?</span></button>
+                <button type="button" class="ankilozan-detail-tab-v196" data-condition-topic-v249="belirtiler" role="tab" aria-selected="false"><span class="ankilozan-detail-tab-icon-v196">🧍</span><span>Belirtiler</span></button>
+                <button type="button" class="ankilozan-detail-tab-v196" data-condition-topic-v249="nasil-gecer" role="tab" aria-selected="false"><span class="ankilozan-detail-tab-icon-v196">↗</span><span>Nasıl Hafifler?</span></button>
+                <button type="button" class="ankilozan-detail-tab-v196" data-condition-topic-v249="kimlerde" role="tab" aria-selected="false"><span class="ankilozan-detail-tab-icon-v196">👥</span><span>Kimlerde Görülür?</span></button>
+                <button type="button" class="ankilozan-detail-tab-v196" data-condition-topic-v249="tani" role="tab" aria-selected="false"><span class="ankilozan-detail-tab-icon-v196">🩺</span><span>Tanı Süreci</span></button>
+                <button type="button" class="ankilozan-detail-tab-v196" data-condition-topic-v249="tedavi" role="tab" aria-selected="false"><span class="ankilozan-detail-tab-icon-v196">💊</span><span>Tedavi Yaklaşımı</span></button>
+                <button type="button" class="ankilozan-detail-tab-v196" data-condition-topic-v249="egzersiz" role="tab" aria-selected="false"><span class="ankilozan-detail-tab-icon-v196">🏃</span><span>Egzersiz &amp; Hareket</span></button>
+                <button type="button" class="ankilozan-detail-tab-v196" data-condition-topic-v249="gunluk" role="tab" aria-selected="false"><span class="ankilozan-detail-tab-icon-v196">☀️</span><span>Günlük Yaşam</span></button>
+            </div>
+
+            <div class="ankilozan-detail-panels-v196">
+                <article class="ankilozan-detail-panel-v196 is-active" id="conditionDetailPanelV249" role="tabpanel">
+                    <div class="ankilozan-detail-panel-copy-v196">
+                        <span class="ankilozan-detail-kicker-v196" id="conditionDetailKickerV249">NEDEN OLUR?</span>
+                        <h3 id="conditionDetailTitleV249">Detay başlığı</h3>
+                        <p id="conditionDetailDescV249">Detay açıklaması.</p>
+                    </div>
+                    <div class="ankilozan-detail-grid-v196" id="conditionDetailGridV249"></div>
+                    <div class="ankilozan-detail-note-v196" id="conditionDetailNoteV249"></div>
+                </article>
+            </div>
+        </section>
+
+        <div class="ankilozan-faq-inner-v85 condition-faq-inner-v249">
+            <div class="ankilozan-faq-heading-v85">
+                <span class="ankilozan-faq-kicker-v85">BİLGİ ALANI</span>
+                <h2 id="conditionFaqTitleV249">Hastalık Hakkında Sık Sorulanlar</h2>
+                <p>Temel sorulara sade ve anlaşılır yanıtlar.</p>
+            </div>
+            <div class="ankilozan-faq-list-v85" id="conditionFaqListV249"></div>
+        </div>
+
+        <section class="phyto-herbal-focus-v232 condition-herbal-focus-v249" id="conditionHerbalSupportV249" aria-label="Bitkisel destekler">
+            <div class="phyto-focus-head-v232">
+                <div>
+                    <span id="conditionHerbKickerV249">FİTOTERAPİ • DESTEK</span>
+                    <h2 id="conditionHerbTitleV249">Değerlendirilebilecek Bitkisel Destekler</h2>
+                </div>
+                <p>
+                    Aşağıdaki içerikler hastalığı tedavi eden ürünler olarak değil; hekim kontrolünde,
+                    bireysel riskler, laboratuvar bulguları ve ilaç etkileşimleri göz önünde bulundurularak
+                    değerlendirilebilecek destek seçenekleri olarak düşünülmelidir.
+                </p>
+            </div>
+            <div class="phyto-herbal-grid-v232" id="conditionHerbGridV249"></div>
+            <div class="phyto-focus-note-v232">
+                <strong>Önemli Not:</strong>
+                <p id="conditionHerbNoteV249">Bitkisel ürünler reçeteli tedavilerin yerine geçmez. Doz, süre ve uygunluk mutlaka hekim tarafından değerlendirilmelidir.</p>
+            </div>
+        </section>
+    </section>
 
     <!-- V43: AĞRI SAYFASI -->
     <section class="pain-page" id="agriPage" aria-hidden="true">
@@ -2993,53 +3599,199 @@ body.ankilozan-page-open-v87 #ankilozanFaqSectionV85 {
             data-treatment-detail-view="osteopati"
         >
 
-            <div class="osteopathy-page-hero-v95">
-                <div class="osteopathy-page-hero-inner-v95">
-                    <span class="osteopathy-page-kicker-v95">TEDAVİ</span>
+            <div class="osteopathy-page-hero-v95 osteo-signature-hero-v257">
+                <div class="osteo-hero-orb-v257 osteo-hero-orb-one-v257" aria-hidden="true"></div>
+                <div class="osteo-hero-orb-v257 osteo-hero-orb-two-v257" aria-hidden="true"></div>
 
-                    <h1>
-                        Osteopati
-                    </h1>
+                <div class="osteo-signature-shell-v257">
+                    <div class="osteo-signature-copy-v257">
+                        <span class="osteopathy-page-kicker-v95 osteo-signature-kicker-v257">
+                            <i aria-hidden="true"></i>
+                            OSTEOPATİ • BÜTÜNCÜL MANUEL DEĞERLENDİRME
+                        </span>
 
-                    <p>
-                        Kas-iskelet sistemi, eklem hareketliliği, postür ve hareket
-                        paternlerinin bütüncül değerlendirilmesine yönelik manuel yaklaşım.
-                    </p>
+                        <h1>Osteopati</h1>
+
+                        <p class="osteo-signature-lead-v257">
+                            Kas-iskelet sistemi, eklem hareketliliği, postür ve hareket paternleri;
+                            kişinin öyküsü ve muayene bulgularıyla birlikte değerlendirilir.
+                        </p>
+
+                        <div class="osteo-pillar-list-v257" aria-label="Osteopatik değerlendirme başlıkları">
+                            <span><b>01</b> Postür</span>
+                            <span><b>02</b> Eklem Hareketliliği</span>
+                            <span><b>03</b> Hareket Zinciri</span>
+                        </div>
+
+                        <div class="osteo-hero-launch-grid-v261" aria-label="Osteopati içerik alanları">
+                            <button type="button" class="osteo-hero-launch-card-v261 is-featured-v261" data-osteo-tab-target="manual">
+                                <span class="osteo-hero-launch-icon-v261" aria-hidden="true">✦</span>
+                                <span class="osteo-hero-launch-copy-v261"><strong>Manuel Uygulamalar</strong><small>Kayropraktik • mobilite</small></span>
+                                <span class="osteo-hero-launch-arrow-v261" aria-hidden="true">↗</span>
+                            </button>
+                            <button type="button" class="osteo-hero-launch-card-v261" data-osteo-tab-target="exercise">
+                                <span class="osteo-hero-launch-icon-v261" aria-hidden="true">↗</span>
+                                <span class="osteo-hero-launch-copy-v261"><strong>Egzersiz &amp; Hareket</strong><small>Video • hareket planı</small></span>
+                                <span class="osteo-hero-launch-arrow-v261" aria-hidden="true">↗</span>
+                            </button>
+                            <button type="button" class="osteo-hero-launch-card-v261" data-osteo-tab-target="sports">
+                                <span class="osteo-hero-launch-icon-v261" aria-hidden="true">◎</span>
+                                <span class="osteo-hero-launch-copy-v261"><strong>Spor Yaralanmaları</strong><small>Yüklenme • fonksiyon</small></span>
+                                <span class="osteo-hero-launch-arrow-v261" aria-hidden="true">↗</span>
+                            </button>
+                            <button type="button" class="osteo-hero-launch-card-v261" data-osteo-tab-target="pain">
+                                <span class="osteo-hero-launch-icon-v261" aria-hidden="true">＋</span>
+                                <span class="osteo-hero-launch-copy-v261"><strong>Ağrı Rehberi</strong><small>Bölgelere göre incele</small></span>
+                                <span class="osteo-hero-launch-arrow-v261" aria-hidden="true">↗</span>
+                            </button>
+                            <button type="button" class="osteo-hero-launch-card-v261" data-osteo-tab-target="faq">
+                                <span class="osteo-hero-launch-icon-v261" aria-hidden="true">?</span>
+                                <span class="osteo-hero-launch-copy-v261"><strong>Soru &amp; Cevap</strong><small>Merak edilenler</small></span>
+                                <span class="osteo-hero-launch-arrow-v261" aria-hidden="true">↗</span>
+                            </button>
+                            <button type="button" class="osteo-hero-launch-card-v261" data-osteo-tab-target="articles">
+                                <span class="osteo-hero-launch-icon-v261" aria-hidden="true">≡</span>
+                                <span class="osteo-hero-launch-copy-v261"><strong>Bilimsel Yayınlar</strong><small>Akademik kaynaklar</small></span>
+                                <span class="osteo-hero-launch-arrow-v261" aria-hidden="true">↗</span>
+                            </button>
+                        </div>
+
+                        <small class="osteo-hero-note-v257">
+                            Uygunluk ve uygulanacak teknikler hekim değerlendirmesi sonrasında belirlenir.
+                        </small>
+                    </div>
+
+                    <div class="osteo-signature-visual-v257" aria-label="Omurga, postür ve hareket ilişkisini temsil eden osteopati görseli">
+                        <div class="osteo-visual-topline-v257">
+                            <span>HAREKET HARİTASI</span>
+                            <small>POSTÜR • OMURGA • PELVİS</small>
+                        </div>
+
+                        <div class="osteo-anatomy-stage-v257" aria-hidden="true">
+                            <svg viewBox="0 0 420 520" role="img" aria-label="Stilize omurga ve postür şeması">
+                                <defs>
+                                    <linearGradient id="osteoSpineGradientV257" x1="0" y1="0" x2="0" y2="1">
+                                        <stop offset="0%" stop-color="#8de8ff"/>
+                                        <stop offset="52%" stop-color="#3ab8ec"/>
+                                        <stop offset="100%" stop-color="#1b79c6"/>
+                                    </linearGradient>
+                                    <radialGradient id="osteoNodeGradientV257" cx="50%" cy="45%" r="70%">
+                                        <stop offset="0%" stop-color="#ffffff"/>
+                                        <stop offset="100%" stop-color="#89ddff"/>
+                                    </radialGradient>
+                                    <filter id="osteoGlowV257" x="-50%" y="-50%" width="200%" height="200%">
+                                        <feGaussianBlur stdDeviation="5" result="blur"/>
+                                        <feMerge><feMergeNode in="blur"/><feMergeNode in="SourceGraphic"/></feMerge>
+                                    </filter>
+                                </defs>
+
+                                <path class="osteo-body-line-v257" d="M210 58 C168 84 146 120 144 166 C141 220 160 264 158 315 C156 362 139 405 118 451"/>
+                                <path class="osteo-body-line-v257 osteo-body-line-right-v257" d="M210 58 C252 84 274 120 276 166 C279 220 260 264 262 315 C264 362 281 405 302 451"/>
+                                <path class="osteo-shoulder-line-v257" d="M125 145 C165 122 255 122 295 145"/>
+                                <path class="osteo-pelvis-line-v257" d="M157 345 C180 365 240 365 263 345"/>
+                                <path class="osteo-spine-path-v257" d="M211 92 C199 115 218 136 206 158 C195 180 217 200 205 221 C194 242 218 263 205 286 C193 308 217 329 204 351 C192 373 211 397 207 425" stroke="url(#osteoSpineGradientV257)" filter="url(#osteoGlowV257)"/>
+
+                                <g class="osteo-vertebrae-v257">
+                                    <circle cx="210" cy="103" r="8"/>
+                                    <circle cx="205" cy="128" r="8"/>
+                                    <circle cx="210" cy="153" r="8"/>
+                                    <circle cx="204" cy="178" r="8"/>
+                                    <circle cx="209" cy="203" r="8"/>
+                                    <circle cx="203" cy="228" r="8"/>
+                                    <circle cx="208" cy="253" r="8"/>
+                                    <circle cx="202" cy="278" r="8"/>
+                                    <circle cx="207" cy="303" r="8"/>
+                                    <circle cx="201" cy="328" r="8"/>
+                                    <circle cx="206" cy="353" r="8"/>
+                                    <circle cx="202" cy="378" r="8"/>
+                                    <circle cx="207" cy="403" r="8"/>
+                                </g>
+
+                                <circle class="osteo-focus-ring-v257 osteo-ring-neck-v257" cx="208" cy="128" r="34"/>
+                                <circle class="osteo-focus-ring-v257 osteo-ring-thorax-v257" cx="205" cy="238" r="48"/>
+                                <circle class="osteo-focus-ring-v257 osteo-ring-pelvis-v257" cx="205" cy="355" r="52"/>
+                            </svg>
+
+                            <span class="osteo-map-label-v257 osteo-map-neck-v257">Boyun</span>
+                            <span class="osteo-map-label-v257 osteo-map-thorax-v257">Toraks</span>
+                            <span class="osteo-map-label-v257 osteo-map-pelvis-v257">Pelvis</span>
+                        </div>
+
+                        <div class="osteo-visual-caption-v257">
+                            <span class="osteo-visual-caption-icon-v257" aria-hidden="true">✦</span>
+                            <div>
+                                <strong>Bölgesel değil, ilişkisel bakış</strong>
+                                <small>Hareket, postür ve eklem ilişkileri birlikte değerlendirilir.</small>
+                            </div>
+                        </div>
+                    </div>
                 </div>
-
-                <div class="osteopathy-page-plus-v95 osteopathy-page-plus-left-v95">✦</div>
-                <div class="osteopathy-page-plus-v95 osteopathy-page-plus-right-v95">+</div>
             </div>
 
-            <div class="osteopathy-page-content-v95">
+        </article>
 
-                <!-- V105: OSTEOPATİ SAYFA İÇİ HIZLI SEKME MENÜSÜ -->
-                <nav class="osteo-local-nav-v105" aria-label="Osteopati sayfa içi menüsü">
-                    <button type="button" data-osteo-scroll="osteoExercisesV105">
-                        Egzersiz Videoları
+
+
+        <!-- V261 - OSTEOPATİ BAĞIMSIZ ÖZEL İÇERİK SAYFASI -->
+        <div class="osteopathy-special-page-v260 osteo-special-view-v259" id="osteoSpecialViewV259" aria-hidden="true" hidden>
+
+                <!-- V261: OSTEOPATİ ANA SAYFASINDAN BAĞIMSIZ, TAM EKRAN ÖZEL SAYFA -->
+                <header class="osteo-special-head-v259">
+                    <button type="button" class="osteo-special-back-v259" id="osteoSpecialBackV259" aria-label="Osteopati ana görünümüne dön">
+                        <span aria-hidden="true">←</span>
+                        <span>Osteopati Ana Sayfa</span>
                     </button>
-                    <button type="button" id="osteoGlobalPainButtonV107">
-                        Ağrı
+
+                    <div class="osteo-special-title-v259">
+                        <span class="osteo-special-kicker-v259">OSTEOPATİ • ÖZEL İÇERİK ALANI</span>
+                        <h2 id="osteoSpecialTitleV259">Manuel Uygulamalar</h2>
+                        <p id="osteoSpecialTextV259">Kayropraktik ve eklem hareketliliğine yönelik içerikler.</p>
+                    </div>
+
+                    <div class="osteo-special-index-v259" aria-hidden="true">
+                        <span id="osteoSpecialIndexV259">01</span>
+                        <small>/ 06</small>
+                    </div>
+                </header>
+
+                <!-- Osteopati bölümleri artık bu özel görünüm içinde açılır -->
+                <nav class="osteo-local-nav-v105 osteo-tabs-v258" role="tablist" aria-label="Osteopati içerik sekmeleri">
+                    <button type="button" class="is-active-v258" role="tab" aria-selected="true" aria-controls="osteoChiroV105" id="osteoTabManualV258" data-osteo-tab="manual">
+                        <span class="osteo-tab-icon-v258" aria-hidden="true">✦</span>
+                        <span class="osteo-tab-copy-v258"><strong>Manuel Uygulamalar</strong><small>Kayropraktik • mobilite</small></span>
                     </button>
-                    <button type="button" data-osteo-scroll="osteoChiroV105">
-                        Kayropraktik
+                    <button type="button" role="tab" aria-selected="false" aria-controls="osteoExercisesV105" id="osteoTabExerciseV258" data-osteo-tab="exercise">
+                        <span class="osteo-tab-icon-v258" aria-hidden="true">↗</span>
+                        <span class="osteo-tab-copy-v258"><strong>Egzersiz & Hareket</strong><small>Video • hareket planı</small></span>
                     </button>
-                    <button type="button" data-osteo-scroll="osteoFaqV105">
-                        Soru & Cevap
+                    <button type="button" role="tab" aria-selected="false" aria-controls="osteoSportsV105" id="osteoTabSportsV258" data-osteo-tab="sports">
+                        <span class="osteo-tab-icon-v258" aria-hidden="true">◎</span>
+                        <span class="osteo-tab-copy-v258"><strong>Spor Yaralanmaları</strong><small>Yüklenme • fonksiyon</small></span>
                     </button>
-                    <button type="button" data-osteo-scroll="osteoArticlesV105">
-                        Akademik Makaleler
+                    <button type="button" role="tab" aria-selected="false" aria-controls="osteoPainV258" id="osteoTabPainV258" data-osteo-tab="pain">
+                        <span class="osteo-tab-icon-v258" aria-hidden="true">＋</span>
+                        <span class="osteo-tab-copy-v258"><strong>Ağrı Rehberi</strong><small>Bölgelere göre incele</small></span>
                     </button>
-                    <button type="button" data-osteo-scroll="osteoSportsV105">
-                        Spor Yaralanmaları
+                    <button type="button" role="tab" aria-selected="false" aria-controls="osteoFaqV105" id="osteoTabFaqV258" data-osteo-tab="faq">
+                        <span class="osteo-tab-icon-v258" aria-hidden="true">?</span>
+                        <span class="osteo-tab-copy-v258"><strong>Soru & Cevap</strong><small>Merak edilenler</small></span>
+                    </button>
+                    <button type="button" role="tab" aria-selected="false" aria-controls="osteoArticlesV105" id="osteoTabArticlesV258" data-osteo-tab="articles">
+                        <span class="osteo-tab-icon-v258" aria-hidden="true">≡</span>
+                        <span class="osteo-tab-copy-v258"><strong>Bilimsel Yayınlar</strong><small>Akademik kaynaklar</small></span>
                     </button>
                 </nav>
+
+                <div class="osteo-tab-status-v258" aria-live="polite">
+                    <span class="osteo-tab-status-dot-v258" aria-hidden="true"></span>
+                    <p><strong id="osteoTabStatusTitleV258">Manuel Uygulamalar</strong><span id="osteoTabStatusTextV258">Kayropraktik ve eklem hareketliliğine yönelik içerikler.</span></p>
+                </div>
 
                 <div class="osteo-workspace-v105">
 
                     <main class="osteo-main-v105">
 <!-- KAYROPRAKTİK -->
-                        <section class="osteo-section-v105" id="osteoChiroV105">
+                        <section class="osteo-section-v105 osteo-tab-panel-v258 is-active-v258" id="osteoChiroV105" role="tabpanel" aria-labelledby="osteoTabManualV258" data-osteo-panel="manual">
                             <div class="osteo-section-heading-v105">
                                 <span>MANUEL YAKLAŞIMLAR</span>
                                 <h2>Kayropraktik Uygulamalar</h2>
@@ -3081,10 +3833,62 @@ body.ankilozan-page-open-v87 #ankilozanFaqSectionV85 {
                                     </div>
                                 </div>
                             </div>
+
+                            <div class="osteo-manual-grid-v264" aria-label="Manuel uygulama başlıkları">
+                                <article class="osteo-manual-card-v264">
+                                    <span>01</span>
+                                    <h3>Mobilizasyon</h3>
+                                    <p>Eklem hareket açıklığını desteklemek için kontrollü manuel yaklaşım başlıkları.</p>
+                                </article>
+                                <article class="osteo-manual-card-v264">
+                                    <span>02</span>
+                                    <h3>Yumuşak Doku</h3>
+                                    <p>Kas, fasya ve çevre dokuların değerlendirilmesine yönelik manuel temas alanı.</p>
+                                </article>
+                                <article class="osteo-manual-card-v264">
+                                    <span>03</span>
+                                    <h3>Postür Analizi</h3>
+                                    <p>Statik duruş, yük aktarımı ve hareket zincirinin birlikte yorumlandığı bölüm.</p>
+                                </article>
+                                <article class="osteo-manual-card-v264">
+                                    <span>04</span>
+                                    <h3>Pelvis & Omurga</h3>
+                                    <p>Boyun, toraks, bel ve pelvis ilişkisini birlikte ele alan değerlendirme başlığı.</p>
+                                </article>
+                            </div>
+                        </section>
+
+                        <!-- AĞRI REHBERİ - bağımsız sekme -->
+                        <section class="osteo-section-v105 osteo-tab-panel-v258 osteo-pain-panel-v258" id="osteoPainV258" role="tabpanel" aria-labelledby="osteoTabPainV258" data-osteo-panel="pain" hidden>
+                            <div class="osteo-section-heading-v105">
+                                <span>AĞRI &amp; HAREKET</span>
+                                <h2>Ağrıyı Bölgesine Göre İnceleyin</h2>
+                                <p>
+                                    Ağrı tek başına bir tanı değildir. Şikâyetin yeri, süresi, hareketle ilişkisi ve eşlik eden bulgular birlikte değerlendirilir.
+                                    Bu sekme yalnızca ağrı başlıklarına ayrılmıştır; manuel uygulamalar ve egzersiz içerikleri ayrı sekmelerde tutulur.
+                                </p>
+                            </div>
+
+                            <div class="osteo-pain-grid-v258 osteo-pain-grid-v264 osteo-pain-links-v265" aria-label="Ağrı bölgeleri">
+                                <button type="button" class="osteo-pain-link-v265" data-osteo-pain-target-v265="boyun-ense" aria-label="Boyun ve ense ağrısı detay sayfasını aç"><span>01</span><div><strong>Boyun &amp; Ense</strong><small>Boyun hareketi, omuz kuşağı ve postür ilişkisi</small></div><i aria-hidden="true">↗</i></button>
+                                <button type="button" class="osteo-pain-link-v265" data-osteo-pain-target-v265="bel-sirt" aria-label="Bel ve sırt ağrısı detay sayfasını aç"><span>02</span><div><strong>Bel &amp; Sırt</strong><small>Omurga hareketliliği ve günlük yüklenme paternleri</small></div><i aria-hidden="true">↗</i></button>
+                                <button type="button" class="osteo-pain-link-v265" data-osteo-pain-target-v265="omuz-kol" aria-label="Omuz ve kol ağrısı detay sayfasını aç"><span>03</span><div><strong>Omuz &amp; Kol</strong><small>Omuz kuşağı, skapula ve üst ekstremite hareketi</small></div><i aria-hidden="true">↗</i></button>
+                                <button type="button" class="osteo-pain-link-v265" data-osteo-pain-target-v265="kalca-diz" aria-label="Kalça ve diz ağrısı detay sayfasını aç"><span>04</span><div><strong>Kalça &amp; Diz</strong><small>Alt ekstremite yük aktarımı ve hareket zinciri</small></div><i aria-hidden="true">↗</i></button>
+                                <button type="button" class="osteo-pain-link-v265" data-osteo-pain-target-v265="cene-bas" aria-label="Çene ve baş ağrısı detay sayfasını aç"><span>05</span><div><strong>Çene &amp; Baş</strong><small>TME, baş-boyun ilişkisi ve üst çapraz paternler</small></div><i aria-hidden="true">↗</i></button>
+                                <button type="button" class="osteo-pain-link-v265" data-osteo-pain-target-v265="ayak-ayak-bilegi" aria-label="Ayak ve ayak bileği ağrısı detay sayfasını aç"><span>06</span><div><strong>Ayak &amp; Bilek</strong><small>Basış paterni, denge ve alt zincir yük aktarımı</small></div><i aria-hidden="true">↗</i></button>
+                            </div>
+
+                            <div class="osteo-pain-cta-v258">
+                                <div>
+                                    <span>DETAYLI AĞRI KÜTÜPHANESİ</span>
+                                    <strong>Tüm ağrı başlıklarını ayrı sayfada görüntüleyin.</strong>
+                                </div>
+                                <button type="button" id="osteoGlobalPainButtonV107">Ağrı Sayfasını Aç <span aria-hidden="true">↗</span></button>
+                            </div>
                         </section>
 
                         <!-- SORU CEVAP -->
-                        <section class="osteo-section-v105" id="osteoFaqV105">
+                        <section class="osteo-section-v105 osteo-tab-panel-v258" id="osteoFaqV105" role="tabpanel" aria-labelledby="osteoTabFaqV258" data-osteo-panel="faq" hidden>
                             <div class="osteo-section-heading-v105">
                                 <span>MERAK EDİLENLER</span>
                                 <h2>Osteopati Soru & Cevap</h2>
@@ -3130,11 +3934,31 @@ body.ankilozan-page-open-v87 #ankilozanFaqSectionV85 {
                                         <p>Uygunluk; kişinin tıbbi öyküsü, mevcut hastalıkları ve muayene bulgularına göre belirlenir. Gerektiğinde ilgili uzmanlık alanlarına yönlendirme yapılır.</p>
                                     </div>
                                 </article>
+
+                                <article class="osteo-faq-item-v105">
+                                    <button type="button" aria-expanded="false">
+                                        Seans sonrasında nelere dikkat edilir?
+                                        <span>+</span>
+                                    </button>
+                                    <div class="osteo-faq-answer-v105">
+                                        <p>Günlük yüklenme, su tüketimi, önerilen hareketler ve kişisel durumunuza göre verilen tavsiyeler dikkate alınmalıdır.</p>
+                                    </div>
+                                </article>
+
+                                <article class="osteo-faq-item-v105">
+                                    <button type="button" aria-expanded="false">
+                                        Sporcularda yaklaşım farklı mı planlanır?
+                                        <span>+</span>
+                                    </button>
+                                    <div class="osteo-faq-answer-v105">
+                                        <p>Evet. Spor branşı, yüklenme tipi, performans hedefi ve yaralanma öyküsü değerlendirmeye ayrıca dahil edilir.</p>
+                                    </div>
+                                </article>
                             </div>
                         </section>
 
                         <!-- AKADEMİK MAKALELER -->
-                        <section class="osteo-section-v105" id="osteoArticlesV105">
+                        <section class="osteo-section-v105 osteo-tab-panel-v258" id="osteoArticlesV105" role="tabpanel" aria-labelledby="osteoTabArticlesV258" data-osteo-panel="articles" hidden>
                             <div class="osteo-section-heading-v105">
                                 <span>BİLİMSEL İÇERİK</span>
                                 <h2>Osteopati ile İlgili Akademik Makaleler</h2>
@@ -3143,30 +3967,78 @@ body.ankilozan-page-open-v87 #ankilozanFaqSectionV85 {
                                 </p>
                             </div>
 
-                            <div class="osteo-article-grid-v105">
+                            <div class="osteo-article-grid-v105 osteo-article-grid-v264">
                                 <article>
                                     <span class="osteo-article-type-v105">DERLEME</span>
                                     <h3>Osteopatik Manuel Yaklaşımlar</h3>
-                                    <p>Kas-iskelet sistemi ve manuel tedavi literatürüne yönelik akademik kaynak alanı.</p>
-                                    <span class="osteo-article-link-v105">Kaynak eklenecek ↗</span>
+                                    <p>Kronik bel ağrısında osteopatik manipülatif tedaviyi değerlendiren güncel sistematik derleme ve meta-analiz.</p>
+                                    <div class="osteo-source-meta-v266">2026 • Sistematik derleme &amp; meta-analiz • PubMed</div>
+                                    <a class="osteo-article-link-v105 osteo-source-link-v266"
+                                       href="https://pubmed.ncbi.nlm.nih.gov/42136223/"
+                                       target="_blank" rel="noopener noreferrer">
+                                        PubMed'de kaynağı aç <span aria-hidden="true">↗</span>
+                                    </a>
                                 </article>
                                 <article>
                                     <span class="osteo-article-type-v105">ARAŞTIRMA</span>
                                     <h3>Postür ve Hareket Biyomekaniği</h3>
-                                    <p>Postür, eklem hareketi ve fonksiyon ilişkisini inceleyen çalışmalar için bölüm.</p>
-                                    <span class="osteo-article-link-v105">Kaynak eklenecek ↗</span>
+                                    <p>Bel ağrısının omurga kinematiği, hareket açıklığı ve hareket özellikleriyle ilişkisini inceleyen sistematik derleme.</p>
+                                    <div class="osteo-source-meta-v266">2023 • Sistematik derleme &amp; meta-analiz • PubMed</div>
+                                    <a class="osteo-article-link-v105 osteo-source-link-v266"
+                                       href="https://pubmed.ncbi.nlm.nih.gov/37595368/"
+                                       target="_blank" rel="noopener noreferrer">
+                                        PubMed'de kaynağı aç <span aria-hidden="true">↗</span>
+                                    </a>
                                 </article>
                                 <article>
                                     <span class="osteo-article-type-v105">SPOR</span>
                                     <h3>Sporcularda Manuel Yaklaşımlar</h3>
-                                    <p>Sporcularda hareket kapasitesi ve yaralanma sonrası değerlendirme literatürü.</p>
-                                    <span class="osteo-article-link-v105">Kaynak eklenecek ↗</span>
+                                    <p>Spinal manipülatif tedavinin spor performansıyla ilişkisini değerlendiren sistematik derleme; kanıtların sınırlı olduğunu vurgular.</p>
+                                    <div class="osteo-source-meta-v266">2017 • Sistematik derleme • PubMed</div>
+                                    <a class="osteo-article-link-v105 osteo-source-link-v266"
+                                       href="https://pubmed.ncbi.nlm.nih.gov/29191288/"
+                                       target="_blank" rel="noopener noreferrer">
+                                        PubMed'de kaynağı aç <span aria-hidden="true">↗</span>
+                                    </a>
+                                </article>
+                                <article>
+                                    <span class="osteo-article-type-v105">KLİNİK</span>
+                                    <h3>Bel &amp; Pelvis İlişkisi</h3>
+                                    <p>Bel ağrısı olan ve olmayan bireylerde lumbopelvik postür ve hareket özelliklerini karşılaştıran sistematik derleme.</p>
+                                    <div class="osteo-source-meta-v266">2014 • Sistematik derleme &amp; meta-analiz • PubMed</div>
+                                    <a class="osteo-article-link-v105 osteo-source-link-v266"
+                                       href="https://pubmed.ncbi.nlm.nih.gov/25012528/"
+                                       target="_blank" rel="noopener noreferrer">
+                                        PubMed'de kaynağı aç <span aria-hidden="true">↗</span>
+                                    </a>
+                                </article>
+                                <article>
+                                    <span class="osteo-article-type-v105">BOYUN</span>
+                                    <h3>Servikal Bölge ve Postür</h3>
+                                    <p>İleri baş postürü ile boyun ağrısı arasındaki ilişkiyi yetişkin ve ergen gruplarında değerlendiren sistematik derleme.</p>
+                                    <div class="osteo-source-meta-v266">2019 • Sistematik derleme &amp; meta-analiz • PubMed</div>
+                                    <a class="osteo-article-link-v105 osteo-source-link-v266"
+                                       href="https://pubmed.ncbi.nlm.nih.gov/31773477/"
+                                       target="_blank" rel="noopener noreferrer">
+                                        PubMed'de kaynağı aç <span aria-hidden="true">↗</span>
+                                    </a>
+                                </article>
+                                <article>
+                                    <span class="osteo-article-type-v105">FONKSİYON</span>
+                                    <h3>Hareket Zinciri Çalışmaları</h3>
+                                    <p>Kinetik zincirin spor performansı, yük aktarımı ve yaralanma riski içindeki rolünü ele alan güncel derleme.</p>
+                                    <div class="osteo-source-meta-v266">2023 • Derleme • PubMed</div>
+                                    <a class="osteo-article-link-v105 osteo-source-link-v266"
+                                       href="https://pubmed.ncbi.nlm.nih.gov/38406779/"
+                                       target="_blank" rel="noopener noreferrer">
+                                        PubMed'de kaynağı aç <span aria-hidden="true">↗</span>
+                                    </a>
                                 </article>
                             </div>
                         </section>
 
                         <!-- EGZERSİZ VİDEOLARI -->
-                        <section class="osteo-section-v105" id="osteoExercisesV105">
+                        <section class="osteo-section-v105 osteo-tab-panel-v258" id="osteoExercisesV105" role="tabpanel" aria-labelledby="osteoTabExerciseV258" data-osteo-panel="exercise" hidden>
                             <div class="osteo-section-heading-v105">
                                 <span>HAREKET & EGZERSİZ</span>
                                 <h2>Egzersiz Videoları</h2>
@@ -3177,43 +4049,93 @@ body.ankilozan-page-open-v87 #ankilozanFaqSectionV85 {
                             </div>
 
                             <div class="osteo-video-grid-v105">
-                                <article class="osteo-video-card-v105">
-                                    <div class="osteo-video-cover-v105">
-                                        <span class="osteo-video-play-v105">▶</span>
+                                <article class="osteo-video-card-v105 osteo-youtube-card-v267">
+                                    <div class="osteo-video-cover-v105 osteo-video-thumb-v267 osteo-inline-video-v268"
+                                         data-youtube-id="N8bVECuPNJs"
+                                         role="button"
+                                         tabindex="0"
+                                         aria-label="Osteopati egzersiz videosu 1'i bu sayfada oynat">
+                                        <img src="https://i.ytimg.com/vi/N8bVECuPNJs/hqdefault.jpg"
+                                             alt="Osteopati egzersiz videosu 1 YouTube kapak görseli"
+                                             loading="lazy" decoding="async">
+                                        <span class="osteo-video-play-v105" aria-hidden="true">▶</span>
                                         <span class="osteo-video-badge-v105">VİDEO</span>
+                                        <span class="osteo-inline-hint-v268">Videoyu İzle</span>
                                     </div>
                                     <div class="osteo-video-body-v105">
-                                        <h3>Boyun ve Omuz Mobilitesi</h3>
-                                        <p>Boyun, skapula ve omuz kuşağı için kontrollü hareket örnekleri.</p>
+                                        <h3>Osteopati Egzersiz Videosu 1</h3>
+                                        <p>Hareket ve egzersiz içeriğini YouTube üzerinden izleyebilirsiniz.</p>
+                                        <button type="button"
+                                                class="osteo-video-watch-v267 osteo-video-inline-button-v268"
+                                                data-youtube-id="N8bVECuPNJs">
+                                            Videoyu İzle <span aria-hidden="true">▶</span>
+                                        </button>
                                     </div>
                                 </article>
 
-                                <article class="osteo-video-card-v105">
-                                    <div class="osteo-video-cover-v105 osteo-video-cover-alt-v105">
-                                        <span class="osteo-video-play-v105">▶</span>
+                                <article class="osteo-video-card-v105 osteo-youtube-card-v267">
+                                    <div class="osteo-video-cover-v105 osteo-video-thumb-v267 osteo-inline-video-v268"
+                                         data-youtube-id="bHGs5me61EU"
+                                         role="button"
+                                         tabindex="0"
+                                         aria-label="Osteopati egzersiz videosu 2'i bu sayfada oynat">
+                                        <img src="https://i.ytimg.com/vi/bHGs5me61EU/hqdefault.jpg"
+                                             alt="Osteopati egzersiz videosu 2 YouTube kapak görseli"
+                                             loading="lazy" decoding="async">
+                                        <span class="osteo-video-play-v105" aria-hidden="true">▶</span>
                                         <span class="osteo-video-badge-v105">VİDEO</span>
+                                        <span class="osteo-inline-hint-v268">Videoyu İzle</span>
                                     </div>
                                     <div class="osteo-video-body-v105">
-                                        <h3>Torakal Omurga Hareketleri</h3>
-                                        <p>Sırt bölgesi hareket açıklığı ve postür farkındalığına yönelik egzersizler.</p>
+                                        <h3>Osteopati Egzersiz Videosu 2</h3>
+                                        <p>Hareket ve egzersiz içeriğini YouTube üzerinden izleyebilirsiniz.</p>
+                                        <button type="button"
+                                                class="osteo-video-watch-v267 osteo-video-inline-button-v268"
+                                                data-youtube-id="bHGs5me61EU">
+                                            Videoyu İzle <span aria-hidden="true">▶</span>
+                                        </button>
                                     </div>
                                 </article>
 
-                                <article class="osteo-video-card-v105">
-                                    <div class="osteo-video-cover-v105 osteo-video-cover-third-v105">
-                                        <span class="osteo-video-play-v105">▶</span>
+                                <article class="osteo-video-card-v105 osteo-youtube-card-v267">
+                                    <div class="osteo-video-cover-v105 osteo-video-thumb-v267 osteo-inline-video-v268"
+                                         data-youtube-id="TYI5PcJOVFA"
+                                         role="button"
+                                         tabindex="0"
+                                         aria-label="Osteopati egzersiz videosu 3'i bu sayfada oynat">
+                                        <img src="https://i.ytimg.com/vi/TYI5PcJOVFA/hqdefault.jpg"
+                                             alt="Osteopati egzersiz videosu 3 YouTube kapak görseli"
+                                             loading="lazy" decoding="async">
+                                        <span class="osteo-video-play-v105" aria-hidden="true">▶</span>
                                         <span class="osteo-video-badge-v105">VİDEO</span>
+                                        <span class="osteo-inline-hint-v268">Videoyu İzle</span>
                                     </div>
                                     <div class="osteo-video-body-v105">
-                                        <h3>Kalça ve Pelvis Mobilitesi</h3>
-                                        <p>Kalça çevresi, pelvis ve bel hareket zincirini destekleyen kontrollü çalışmalar.</p>
+                                        <h3>Osteopati Egzersiz Videosu 3</h3>
+                                        <p>Hareket ve egzersiz içeriğini YouTube üzerinden izleyebilirsiniz.</p>
+                                        <button type="button"
+                                                class="osteo-video-watch-v267 osteo-video-inline-button-v268"
+                                                data-youtube-id="TYI5PcJOVFA">
+                                            Videoyu İzle <span aria-hidden="true">▶</span>
+                                        </button>
+                                    </div>
+                                </article>
+
+                                <article class="osteo-video-card-v105 osteo-video-coming-v267">
+                                    <div class="osteo-video-cover-v105 osteo-video-cover-fourth-v264">
+                                        <span class="osteo-video-play-v105">＋</span>
+                                        <span class="osteo-video-badge-v105">4. VİDEO</span>
+                                    </div>
+                                    <div class="osteo-video-body-v105">
+                                        <h3>Yeni Video İçin Hazır</h3>
+                                        <p>Dördüncü video bağlantısını gönderdiğinizde bu alana ekleyebiliriz.</p>
                                     </div>
                                 </article>
                             </div>
                         </section>
 
                         <!-- SPOR YARALANMALARI -->
-                        <section class="osteo-section-v105" id="osteoSportsV105">
+                        <section class="osteo-section-v105 osteo-tab-panel-v258" id="osteoSportsV105" role="tabpanel" aria-labelledby="osteoTabSportsV258" data-osteo-panel="sports" hidden>
                             <div class="osteo-section-heading-v105">
                                 <span>SPOR & HAREKET</span>
                                 <h2>Spor Yaralanmaları</h2>
@@ -3223,11 +4145,13 @@ body.ankilozan-page-open-v87 #ankilozanFaqSectionV85 {
                                 </p>
                             </div>
 
-                            <div class="osteo-sports-grid-v105">
+                            <div class="osteo-sports-grid-v105 osteo-sports-grid-v264">
                                 <article><span>01</span><strong>Ayak Bileği</strong><small>Burkulma sonrası hareket ve yük aktarımı</small></article>
                                 <article><span>02</span><strong>Diz</strong><small>Koşu, sıçrama ve aşırı yüklenme sorunları</small></article>
                                 <article><span>03</span><strong>Kalça & Pelvis</strong><small>Spor performansında hareket zinciri</small></article>
                                 <article><span>04</span><strong>Omuz</strong><small>Atış ve baş üstü sporlarında hareket kontrolü</small></article>
+                                <article><span>05</span><strong>Bel</strong><small>Rotasyon, yüklenme ve gövde kontrolü</small></article>
+                                <article><span>06</span><strong>Boyun</strong><small>Temas sporları ve postüral yüklenmeler</small></article>
                             </div>
                         </section>
 
@@ -3236,7 +4160,6 @@ body.ankilozan-page-open-v87 #ankilozanFaqSectionV85 {
                 </div>
 
             </div>
-        </article>
 
         <!-- FİTOTERAPİ - BESLENME -->
         <article
@@ -3250,15 +4173,21 @@ body.ankilozan-page-open-v87 #ankilozanFaqSectionV85 {
                         <span class="phyto-kicker-v127">FİTOTERAPİ • BİTKİSEL</span>
                         <h1>FitoTerapi-Bitkisel</h1>
                         <p>
-                            Ankilozan Spondilit (AS) ve Romatoid Artrit (RA) gibi
-                            inflamatuar romatizmal hastalıklarda; beslenme düzeni ve
-                            bazı bitkisel içerikler, hekim kontrolünde mevcut tedavi
-                            planına destek amacıyla değerlendirilebilir.
+                            Ankilozan Spondilit, Romatoid Artrit, Fibromiyalji, kronik yorgunluk,
+                            baş ağrısı-migren ve diğer tedavi alanlarında; beslenme düzeni ile bazı
+                            bitkisel içerikler, hekim kontrolünde mevcut tedavi planına destek amacıyla
+                            değerlendirilebilir. Aşağıdaki hastalık başlıkları kendi özel bilgi sayfalarına gider.
                         </p>
 
-                        <div class="phyto-disease-chips-v127 phyto-disease-chips-v232" role="tablist" aria-label="Fitoterapi hastalık seçimi">
-                            <button type="button" class="phyto-disease-chip-btn-v232 phyto-disease-link-v233 is-active" data-phyto-disease="as" aria-pressed="true" aria-label="Ankilozan Spondilit özel sayfasını aç">AS • Ankilozan Spondilit <span aria-hidden="true">↗</span></button>
-                            <button type="button" class="phyto-disease-chip-btn-v232" data-phyto-disease="ra" aria-pressed="false">RA • Romatoid Artrit</button>
+                        <div class="phyto-disease-chips-v127 phyto-disease-chips-v232 phyto-disease-links-v246" id="phytoDiseaseLinksV246" role="navigation" aria-label="Fitoterapi hastalık sayfaları">
+                            <button type="button" class="phyto-disease-chip-btn-v232 phyto-disease-link-v233" data-phyto-disease="as" aria-label="Ankilozan Spondilit özel sayfasını aç">AS • Ankilozan Spondilit <span aria-hidden="true">↗</span></button>
+                            <button type="button" class="phyto-disease-chip-btn-v232" data-phyto-disease="ra" aria-label="Romatoid Artrit özel sayfasını aç">RA • Romatoid Artrit <span aria-hidden="true">↗</span></button>
+                            <button type="button" class="phyto-disease-chip-btn-v232" data-phyto-disease="bas-agrisi-migren">Baş Ağrısı & Migren <span aria-hidden="true">↗</span></button>
+                            <button type="button" class="phyto-disease-chip-btn-v232" data-phyto-disease="bel-sirt-agrisi">Bel & Sırt Ağrısı <span aria-hidden="true">↗</span></button>
+                            <button type="button" class="phyto-disease-chip-btn-v232" data-phyto-disease="fibromiyalji">Fibromiyalji <span aria-hidden="true">↗</span></button>
+                            <button type="button" class="phyto-disease-chip-btn-v232" data-phyto-disease="huzursuz-bacak">Huzursuz Bacak <span aria-hidden="true">↗</span></button>
+                            <button type="button" class="phyto-disease-chip-btn-v232" data-phyto-disease="iltihabi-bagirsak">İltihabi Bağırsak <span aria-hidden="true">↗</span></button>
+                            <button type="button" class="phyto-disease-chip-btn-v232" data-phyto-disease="kronik-yorgunluk">Kronik Yorgunluk <span aria-hidden="true">↗</span></button>
                         </div>
                     </div>
 
@@ -3274,38 +4203,6 @@ body.ankilozan-page-open-v87 #ankilozanFaqSectionV85 {
                         </div>
                     </div>
                 </div>
-
-                <section class="phyto-condition-spotlight-v232" id="phytoConditionSpotlightV232" aria-label="Seçilen romatizmal hastalık için bitkisel yaklaşım özeti">
-                    <div class="phyto-condition-media-v232">
-                        <img
-                            id="phytoConditionImageV232"
-                            src="./disease-ankilozan-spondilit-v77.png?v=150"
-                            alt="Ankilozan spondilit için omurga ve sakroiliak bölge görseli"
-                            loading="lazy"
-                            decoding="async"
-                        >
-                    </div>
-
-                    <div class="phyto-condition-copy-v232">
-                        <span class="phyto-condition-kicker-v232">İLİŞKİLİ TEDAVİ ALANI</span>
-                        <h2 id="phytoConditionTitleV232">Ankilozan Spondilit</h2>
-                        <p id="phytoConditionDescV232">
-                            Omurga ve sakroiliak eklemleri etkileyebilen inflamatuar süreçte; fitoterapi yaklaşımı
-                            yalnızca hekim kontrolünde, mevcut medikal ve yaşam tarzı planına destek olarak değerlendirilebilir.
-                        </p>
-
-                        <div class="phyto-condition-points-v232" id="phytoConditionPointsV232">
-                            <article><strong>Sabah Tutukluğu</strong><span>Günün ilk saatlerinde sertlik ve hareketle rahatlama ön planda olabilir.</span></article>
-                            <article><strong>Omurga & Sakroiliak Bölge</strong><span>Bel-kalça hattı ve omurga hareketliliği birlikte ele alınır.</span></article>
-                            <article><strong>Bitkisel Destek</strong><span>Beslenme, antioksidan içerikler ve inflamasyon modülasyonu açısından destekleyici değerlendirme yapılır.</span></article>
-                        </div>
-
-                        <div class="phyto-condition-actions-v232">
-                            <button type="button" class="phyto-action-btn-v232 primary" id="phytoGoHerbsV232">Bitkisel Desteklere Git</button>
-                            <button type="button" class="phyto-action-btn-v232 secondary" id="phytoOpenDiseasePageV232">Tedavi Alanında Aç</button>
-                        </div>
-                    </div>
-                </section>
 
                 <section class="phyto-guide-v127">
                     <div class="phyto-guide-head-v127">
@@ -8051,7 +8948,138 @@ body.ankilozan-page-open-v87 #ankilozanFaqSectionV85 {
         </div>
     </div>
 
-    <script src="script.js?v=245"></script>
+
+
+
+    <!-- V274: ANKİLOZAN SPONDİLİT BAĞIMSIZ ÖZEL İÇERİK SAYFASI -->
+    <section class="as-special-view-v274" id="asSpecialViewV274" aria-hidden="true">
+        <div class="as-special-shell-v274">
+            <header class="as-special-head-v274">
+                <button type="button" class="as-special-back-v274" id="asSpecialBackV274">
+                    <span aria-hidden="true">←</span>
+                    <strong>Ankilozan Spondilit Ana Sayfa</strong>
+                </button>
+
+                <div class="as-special-title-v274">
+                    <span class="as-special-kicker-v274">ANKİLOZAN SPONDİLİT • ÖZEL İÇERİK</span>
+                    <h2 id="asSpecialTitleV274">Hastalığı Tanıyın</h2>
+                    <p id="asSpecialDescV274">Nedenleri, belirtileri ve kimlerde görüldüğünü birlikte inceleyin.</p>
+                </div>
+
+                <div class="as-special-index-v274" aria-hidden="true">
+                    <span id="asSpecialIndexV274">01</span><small>/ 06</small>
+                </div>
+            </header>
+
+            <nav class="as-special-tabs-v274" id="asSpecialTabsV274" aria-label="Ankilozan Spondilit özel içerik sekmeleri">
+                <button type="button" class="is-active-v274" data-as-special-tab-v274="overview"><span>✦</span><strong>Hastalığı Tanıyın</strong><small>Neden • belirtiler</small></button>
+                <button type="button" data-as-special-tab-v274="diagnosis"><span>⌕</span><strong>Tanı Süreci</strong><small>Muayene • görüntüleme</small></button>
+                <button type="button" data-as-special-tab-v274="treatment"><span>＋</span><strong>Tedavi Yaklaşımı</strong><small>Hafifleme • plan</small></button>
+                <button type="button" data-as-special-tab-v274="movement"><span>↔</span><strong>Egzersiz &amp; Yaşam</strong><small>Hareket • rutin</small></button>
+                <button type="button" data-as-special-tab-v274="faq"><span>?</span><strong>Merak Edilen Sorular</strong><small>Soru &amp; cevap</small></button>
+                <button type="button" data-as-special-tab-v274="herbs"><span>≋</span><strong>Bitkisel Destekler</strong><small>Fitoterapi</small></button>
+            </nav>
+
+            <main class="as-special-content-v274" id="asSpecialContentV274" aria-live="polite"></main>
+        </div>
+    </section>
+
+
+    <!-- V279: ROMATOİD + DİĞER TEDAVİ ALANLARI İÇİN BAĞIMSIZ ÖZEL İÇERİK SAYFASI -->
+    <section class="treatment-special-view-v279" id="treatmentSpecialViewV279" aria-hidden="true">
+        <div class="as-special-shell-v274">
+            <header class="as-special-head-v274">
+                <button type="button" class="as-special-back-v274" id="treatmentSpecialBackV279">
+                    <span aria-hidden="true">←</span>
+                    <strong>Tedavi Alanı Ana Sayfa</strong>
+                </button>
+
+                <div class="as-special-title-v274">
+                    <span class="as-special-kicker-v274" id="treatmentSpecialKickerV279">TEDAVİ ALANI • ÖZEL İÇERİK</span>
+                    <h2 id="treatmentSpecialTitleV279">Hastalığı Tanıyın</h2>
+                    <p id="treatmentSpecialDescV279">Seçtiğiniz hastalık için yalnızca ilgili özel içerik alanı burada gösterilir.</p>
+                </div>
+
+                <div class="as-special-index-v274" aria-hidden="true">
+                    <span id="treatmentSpecialIndexV279">01</span><small>/ 06</small>
+                </div>
+            </header>
+
+            <nav class="as-special-tabs-v274" id="treatmentSpecialTabsV279" aria-label="Tedavi alanı özel içerik sekmeleri">
+                <button type="button" class="is-active-v274" data-treatment-special-tab-v279="overview"><span>✦</span><strong>Hastalığı Tanıyın</strong><small>Neden • belirtiler</small></button>
+                <button type="button" data-treatment-special-tab-v279="diagnosis"><span>⌕</span><strong>Tanı Süreci</strong><small>Muayene • görüntüleme</small></button>
+                <button type="button" data-treatment-special-tab-v279="treatment"><span>＋</span><strong>Tedavi Yaklaşımı</strong><small>Hafifleme • plan</small></button>
+                <button type="button" data-treatment-special-tab-v279="movement"><span>↔</span><strong>Egzersiz &amp; Yaşam</strong><small>Hareket • rutin</small></button>
+                <button type="button" data-treatment-special-tab-v279="faq"><span>?</span><strong>Merak Edilen Sorular</strong><small>Soru &amp; cevap</small></button>
+                <button type="button" data-treatment-special-tab-v279="herbs"><span>≋</span><strong>Bitkisel Destekler</strong><small>Fitoterapi</small></button>
+            </nav>
+
+            <main class="as-special-content-v274" id="treatmentSpecialContentV279" aria-live="polite"></main>
+        </div>
+    </section>
+
+
+    <!-- V271: YOUTUBE VIDEO ONAY PENCERESİ -->
+    <div
+        class="osteo-video-confirm-v271"
+        id="osteoVideoConfirmV271"
+        aria-hidden="true"
+    >
+        <button
+            type="button"
+            class="osteo-video-confirm-backdrop-v271"
+            id="osteoVideoConfirmBackdropV271"
+            aria-label="Video penceresini kapat"
+        ></button>
+
+        <div
+            class="osteo-video-confirm-card-v271"
+            role="dialog"
+            aria-modal="true"
+            aria-labelledby="osteoVideoConfirmTitleV271"
+            aria-describedby="osteoVideoConfirmTextV271"
+        >
+            <button
+                type="button"
+                class="osteo-video-confirm-close-v271"
+                id="osteoVideoConfirmCloseV271"
+                aria-label="Kapat"
+            >×</button>
+
+            <div class="osteo-video-confirm-icon-v271" aria-hidden="true">▶</div>
+
+            <span class="osteo-video-confirm-kicker-v271">YOUTUBE VİDEOSU</span>
+
+            <h3 id="osteoVideoConfirmTitleV271">
+                Videoyu izlemek istiyor musunuz?
+            </h3>
+
+            <p id="osteoVideoConfirmTextV271">
+                Bu video YouTube üzerinde açılacaktır.
+            </p>
+
+            <div class="osteo-video-confirm-actions-v271">
+                <button
+                    type="button"
+                    class="osteo-video-confirm-cancel-v271"
+                    id="osteoVideoConfirmCancelV271"
+                >
+                    Vazgeç
+                </button>
+
+                <button
+                    type="button"
+                    class="osteo-video-confirm-go-v271"
+                    id="osteoVideoConfirmGoV271"
+                >
+                    Evet, YouTube'da İzle
+                    <span aria-hidden="true">↗</span>
+                </button>
+            </div>
+        </div>
+    </div>
+
+    <script src="script.js?v=290"></script>
 
 </body>
 

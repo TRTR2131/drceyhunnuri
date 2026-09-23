@@ -1,4 +1,5 @@
-/* V203 - Romatoid Artrit hero konu başlıkları güncellendi */
+/* V258 - Osteopati bağımsız premium sekme sistemi */
+/* V254 - Alt sayfalarda gereksiz dikey boşluklar temizlendi */
 * {
     margin: 0;
     padding: 0;
@@ -31221,7 +31222,11 @@ body.ankilozan-page-open-v87 #ankilozanFaqSectionV85 {
     color:#12395c;
 }
 body.romatoid-page-open-v198 .romatoid-page-v198{display:block!important}
+body.romatoid-page-open-v198 #siteHeader,
 body.romatoid-page-open-v198 .hero.hero-v31,
+body.romatoid-page-open-v198 .home-stats-v137,
+body.romatoid-page-open-v198 .general-featured-page-v124,
+body.romatoid-page-open-v198 .home-social-dock-v132,
 body.romatoid-page-open-v198 .treatment-page,
 body.romatoid-page-open-v198 .pain-page,
 body.romatoid-page-open-v198 .media-page-v48,
@@ -36939,4 +36944,5818 @@ body.site-transition-running-v110 {
     background: #eaf7fd;
     outline: none;
     box-shadow: 0 10px 22px rgba(13, 99, 143, .09);
+}
+
+
+/* =========================================================
+   V246 - TEDAVİ ALANLARI: AS BENZERİ DİNAMİK HASTALIK SAYFALARI
+   ========================================================= */
+
+.condition-disease-page-v246 {
+    display: none;
+    min-height: 100vh;
+    background: #f5f9fc;
+    color: #16384e;
+}
+
+body.condition-disease-page-open-v246 .condition-disease-page-v246 {
+    display: block !important;
+}
+
+body.condition-disease-page-open-v246 #siteHeader,
+body.condition-disease-page-open-v246 .hero.hero-v31,
+body.condition-disease-page-open-v246 .home-stats-v137,
+body.condition-disease-page-open-v246 .general-featured-page-v124,
+body.condition-disease-page-open-v246 .home-social-dock-v132,
+body.condition-disease-page-open-v246 .treatment-page,
+body.condition-disease-page-open-v246 .pain-page,
+body.condition-disease-page-open-v246 .media-page-v48,
+body.condition-disease-page-open-v246 .about-page-v47,
+body.condition-disease-page-open-v246 .legal-page-v56,
+body.condition-disease-page-open-v246 .treatment-detail-page-v71,
+body.condition-disease-page-open-v246 .general-health-detail-page-v75,
+body.condition-disease-page-open-v246 .ankilozan-page-v87,
+body.condition-disease-page-open-v246 .romatoid-page-v198,
+body.condition-disease-page-open-v246 #infoGuidePageV143,
+body.condition-disease-page-open-v246 .device-detail-page-v157 {
+    display: none !important;
+}
+
+.condition-disease-nav-v246 {
+    position: sticky;
+    top: 12px;
+    z-index: 90;
+    width: min(1280px, calc(100% - 30px));
+    min-height: 70px;
+    margin: 12px auto 0;
+    padding: 8px 12px;
+    display: flex;
+    align-items: center;
+    gap: 9px;
+    border: 1px solid rgba(93, 158, 199, .18);
+    border-radius: 24px;
+    background: rgba(248, 253, 255, .94);
+    box-shadow: 0 18px 44px rgba(25, 72, 103, .12);
+    backdrop-filter: blur(20px) saturate(145%);
+    -webkit-backdrop-filter: blur(20px) saturate(145%);
+}
+
+.condition-brand-v246 {
+    margin-right: auto;
+}
+
+.condition-nav-btn-v246 {
+    appearance: none;
+    border: 1px solid rgba(56, 132, 179, .12);
+    min-height: 50px;
+    padding: 0 18px;
+    border-radius: 16px;
+    background: rgba(255,255,255,.86);
+    color: #174765;
+    font-weight: 850;
+    cursor: pointer;
+    transition: transform .2s ease, box-shadow .2s ease, background .2s ease;
+}
+
+.condition-nav-btn-v246:hover,
+.condition-nav-btn-v246:focus-visible {
+    outline: none;
+    transform: translateY(-1px);
+    box-shadow: 0 10px 22px rgba(28, 91, 132, .10);
+}
+
+.condition-nav-btn-v246.is-primary {
+    border-color: rgba(27, 147, 207, .34);
+    background: linear-gradient(135deg,#289bd7,#147ec0);
+    color: #fff;
+}
+
+.condition-hero-v246 {
+    width: min(1240px, calc(100% - 34px));
+    margin: 28px auto 0;
+    padding: clamp(28px, 4vw, 54px);
+    display: grid;
+    grid-template-columns: minmax(0, 1.08fr) minmax(340px, .92fr);
+    gap: 38px;
+    align-items: center;
+    border-radius: 34px;
+    overflow: hidden;
+    background:
+        radial-gradient(circle at 88% 12%, rgba(74, 188, 232, .20), transparent 30%),
+        radial-gradient(circle at 10% 88%, rgba(119, 221, 199, .12), transparent 30%),
+        linear-gradient(135deg, #082f4b 0%, #0c5572 60%, #0a7181 120%);
+    box-shadow: 0 30px 70px rgba(7, 51, 76, .18);
+}
+
+.condition-hero-copy-v246 > span {
+    display: inline-block;
+    margin-bottom: 12px;
+    color: #85ddf4;
+    font-size: 12px;
+    font-weight: 900;
+    letter-spacing: .16em;
+}
+
+.condition-hero-copy-v246 h1 {
+    margin: 0 0 18px;
+    max-width: 760px;
+    color: #fff;
+    font-family: "Times New Roman", Times, serif;
+    font-size: clamp(42px, 5.5vw, 68px);
+    line-height: .99;
+}
+
+.condition-hero-copy-v246 p {
+    margin: 0;
+    max-width: 760px;
+    color: rgba(239,249,255,.86);
+    font-size: 17px;
+    line-height: 1.72;
+}
+
+.condition-hero-pills-v246 {
+    margin-top: 22px;
+    display: flex;
+    flex-wrap: wrap;
+    gap: 9px;
+}
+
+.condition-hero-pills-v246 span {
+    padding: 9px 13px;
+    border-radius: 999px;
+    background: rgba(255,255,255,.10);
+    border: 1px solid rgba(255,255,255,.16);
+    color: #eaf9ff;
+    font-size: 12px;
+    font-weight: 800;
+}
+
+.condition-hero-media-v246 {
+    position: relative;
+    margin: 0;
+    min-height: 410px;
+    overflow: hidden;
+    border-radius: 28px;
+    background: #dfeef6;
+    box-shadow: 0 18px 44px rgba(3, 35, 56, .20);
+}
+
+.condition-hero-media-v246 img {
+    display: block;
+    width: 100%;
+    height: 410px;
+    object-fit: cover;
+}
+
+.condition-hero-media-v246 figcaption {
+    position: absolute;
+    left: 16px;
+    right: 16px;
+    bottom: 16px;
+    padding: 12px 14px;
+    border-radius: 14px;
+    background: rgba(7, 42, 63, .78);
+    border: 1px solid rgba(255,255,255,.16);
+    color: #fff;
+    font-size: 12px;
+    font-weight: 800;
+    backdrop-filter: blur(12px);
+}
+
+.condition-main-v246 {
+    width: min(1240px, calc(100% - 34px));
+    margin: 28px auto 0;
+    padding-bottom: 56px;
+}
+
+.condition-overview-v246,
+.condition-route-v246 {
+    margin-bottom: 28px;
+    padding: clamp(24px, 3.5vw, 38px);
+    border-radius: 28px;
+    background: #fff;
+    border: 1px solid rgba(55, 125, 166, .10);
+    box-shadow: 0 18px 44px rgba(22, 69, 100, .07);
+}
+
+.condition-section-head-v246 > span,
+.condition-route-badge-v246 {
+    color: #168bc4;
+    font-size: 11px;
+    font-weight: 900;
+    letter-spacing: .15em;
+}
+
+.condition-section-head-v246 h2,
+.condition-route-v246 h2 {
+    margin: 8px 0 10px;
+    color: #133f5b;
+    font-family: "Times New Roman", Times, serif;
+    font-size: clamp(30px, 3.6vw, 44px);
+}
+
+.condition-section-head-v246 p,
+.condition-route-v246 > p {
+    margin: 0;
+    color: #627b8c;
+    line-height: 1.7;
+}
+
+.condition-info-grid-v246 {
+    margin-top: 24px;
+    display: grid;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 15px;
+}
+
+.condition-info-card-v246 {
+    padding: 22px;
+    border-radius: 20px;
+    background: linear-gradient(145deg,#f8fcff,#edf6fb);
+    border: 1px solid rgba(31, 119, 169, .10);
+}
+
+.condition-info-card-v246 > span {
+    display: inline-grid;
+    place-items: center;
+    width: 34px;
+    height: 34px;
+    margin-bottom: 13px;
+    border-radius: 11px;
+    background: #168bc4;
+    color: #fff;
+    font-size: 12px;
+    font-weight: 900;
+}
+
+.condition-info-card-v246 h3 {
+    margin: 0 0 9px;
+    color: #164a68;
+    font-size: 18px;
+}
+
+.condition-info-card-v246 p {
+    margin: 0;
+    color: #607989;
+    line-height: 1.65;
+}
+
+.condition-route-points-v246 {
+    margin-top: 22px;
+    display: grid;
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+    gap: 13px;
+}
+
+.condition-route-points-v246 article {
+    padding: 18px;
+    border-radius: 18px;
+    background: #f5fafc;
+    border: 1px solid rgba(30, 117, 164, .10);
+}
+
+.condition-route-points-v246 strong,
+.condition-route-points-v246 span {
+    display: block;
+}
+
+.condition-route-points-v246 strong {
+    margin-bottom: 6px;
+    color: #174c6b;
+}
+
+.condition-route-points-v246 span {
+    color: #6a8290;
+    font-size: 14px;
+    line-height: 1.55;
+}
+
+.condition-herbal-focus-v246 {
+    margin-top: 28px !important;
+}
+
+.condition-herbal-focus-v246 .phyto-herbal-card-v232 img {
+    height: 170px;
+    object-fit: cover;
+}
+
+.phyto-disease-links-v246 {
+    max-width: 960px;
+}
+
+.phyto-disease-links-v246 .phyto-disease-chip-btn-v232 {
+    cursor: pointer;
+}
+
+@media (max-width: 980px) {
+    .condition-hero-v246 {
+        grid-template-columns: 1fr;
+    }
+    .condition-hero-media-v246,
+    .condition-hero-media-v246 img {
+        min-height: 300px;
+        height: 300px;
+    }
+    .condition-route-points-v246 {
+        grid-template-columns: 1fr;
+    }
+}
+
+@media (max-width: 760px) {
+    .condition-disease-nav-v246 {
+        top: 7px;
+        width: calc(100% - 14px);
+        overflow-x: auto;
+        border-radius: 18px;
+    }
+    .condition-brand-v246 {
+        display: none !important;
+    }
+    .condition-nav-btn-v246 {
+        flex: 0 0 auto;
+        min-height: 46px;
+        padding: 0 13px;
+        font-size: 12px;
+    }
+    .condition-hero-v246,
+    .condition-main-v246 {
+        width: calc(100% - 18px);
+    }
+    .condition-hero-v246 {
+        padding: 24px 20px;
+        border-radius: 24px;
+    }
+    .condition-info-grid-v246 {
+        grid-template-columns: 1fr;
+    }
+}
+
+
+/* V248 - Hastalık detay sayfalarında üstte görünen hero alanını kaldır */
+body.condition-disease-page-open-v246 .condition-hero-v246 {
+    display: none !important;
+}
+
+body.condition-disease-page-open-v246 .condition-main-v246 {
+    margin-top: 20px;
+}
+
+
+/* =========================================================
+   V249 - TEDAVİ ALANLARI HASTALIKLARI = ANKİLOZAN TASARIM DİLİ
+   AS ve RA mevcut özel sayfaları korunur. Diğer 6 hastalık aynı
+   özel sayfa düzeninde dinamik olarak açılır.
+   ========================================================= */
+
+body.condition-disease-page-open-v246 .condition-as-page-v249 {
+    display: block !important;
+    min-height: 100vh;
+    padding: 0 0 96px;
+    background: linear-gradient(180deg, #f6fbff 0%, #ffffff 100%);
+}
+
+.condition-page-nav-v249 {
+    position: sticky;
+    top: 12px;
+    z-index: 17050;
+    width: min(1480px, calc(100vw - 38px));
+    min-height: 78px;
+    margin: 12px auto 18px;
+    padding: 10px 14px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 8px;
+    border: 1px solid rgba(116,178,215,.20);
+    border-radius: 28px;
+    background: rgba(247,252,255,.97);
+    box-shadow: 0 22px 52px rgba(32,83,116,.16), inset 0 1px 0 rgba(255,255,255,.96);
+    backdrop-filter: blur(22px) saturate(145%);
+    -webkit-backdrop-filter: blur(22px) saturate(145%);
+}
+
+.condition-brand-v249 {
+    flex: 0 0 auto;
+    margin-right: 8px;
+}
+
+.condition-nav-menu-v249 {
+    position: relative;
+}
+
+.condition-nav-btn-v249 {
+    min-height: 54px;
+    height: 54px;
+    padding: 0 18px;
+    border: 1px solid rgba(74,137,176,.10);
+    border-radius: 17px;
+    background: rgba(255,255,255,.82);
+    color: #123957;
+    box-shadow: 0 7px 18px rgba(31,83,117,.05), inset 0 1px 0 rgba(255,255,255,.98);
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: 8px;
+    font-size: 14px;
+    font-weight: 850;
+    white-space: nowrap;
+    cursor: pointer;
+    transition: .2s ease;
+}
+
+.condition-nav-btn-v249 > span {
+    display: inline-grid;
+    place-items: center;
+    width: 32px;
+    height: 32px;
+    border-radius: 999px;
+    background: #eaf5fb;
+    color: #367da6;
+}
+
+.condition-nav-btn-v249:hover,
+.condition-nav-btn-v249:focus-visible {
+    outline: none;
+    transform: translateY(-1px);
+    color: #0879b7;
+    border-color: rgba(29,145,208,.18);
+    background: rgba(255,255,255,.98);
+    box-shadow: 0 12px 26px rgba(28,100,145,.10);
+}
+
+.condition-nav-btn-v249.is-primary {
+    border-color: rgba(44,161,224,.42);
+    background: linear-gradient(135deg,#289bd7 0%,#1686c7 100%);
+    color: #fff;
+    box-shadow: 0 12px 24px rgba(22,133,199,.25), inset 0 1px 0 rgba(255,255,255,.22);
+}
+
+.condition-nav-btn-v249.is-primary > span {
+    background: rgba(255,255,255,.16);
+    color: #fff;
+}
+
+.condition-nav-dropdown-v249 {
+    position: absolute;
+    display: none;
+    top: calc(100% + 12px);
+    left: 0;
+    width: 300px;
+    padding: 12px;
+    border: 1px solid rgba(100,191,241,.18);
+    border-radius: 22px;
+    background: linear-gradient(180deg, rgba(12,48,69,.995), rgba(8,35,52,.995));
+    box-shadow: 0 28px 68px rgba(5,28,44,.34), inset 0 1px 0 rgba(255,255,255,.05);
+}
+
+.condition-nav-menu-v249.open .condition-nav-dropdown-v249 {
+    display: grid;
+    gap: 6px;
+}
+
+.condition-nav-dropdown-v249 a {
+    min-height: 48px;
+    padding: 0 14px;
+    border-radius: 13px;
+    color: #f5fbff;
+    text-decoration: none;
+    display: flex;
+    align-items: center;
+    font-weight: 800;
+}
+
+.condition-nav-dropdown-v249 a:hover {
+    background: linear-gradient(135deg,rgba(37,151,214,.94),rgba(18,103,164,.88));
+}
+
+.condition-overview-poster-v249 {
+    position: relative;
+    width: min(1510px, calc(100% - 44px));
+    margin: 18px auto 30px;
+    padding: 44px 46px 34px;
+    display: grid;
+    grid-template-columns: minmax(0, 1.08fr) minmax(380px, .92fr);
+    gap: 34px 42px;
+    align-items: center;
+    border-radius: 36px;
+    overflow: hidden;
+    background:
+        radial-gradient(circle at 88% 12%, rgba(71,180,230,.17), transparent 29%),
+        radial-gradient(circle at 8% 88%, rgba(114,222,198,.12), transparent 29%),
+        linear-gradient(135deg,#fafdff 0%,#eff8fd 100%);
+    border: 1px solid rgba(38,126,183,.12);
+    box-shadow: 0 24px 62px rgba(24,78,113,.10);
+}
+
+.condition-overview-copy-v249 {
+    padding: 8px 6px 8px 4px;
+}
+
+.condition-overview-kicker-v249 {
+    display: inline-block;
+    margin-bottom: 12px;
+    color: #1688cb;
+    font-size: 12px;
+    font-weight: 900;
+    letter-spacing: .17em;
+    text-transform: uppercase;
+}
+
+.condition-overview-copy-v249 h1 {
+    margin: 0 0 16px;
+    color: #113c5d;
+    font-size: clamp(38px,4.8vw,68px);
+    line-height: 1.02;
+    letter-spacing: -.035em;
+}
+
+.condition-overview-copy-v249 p {
+    margin: 0;
+    max-width: 760px;
+    color: #607b8f;
+    font-size: 16px;
+    line-height: 1.75;
+}
+
+.condition-overview-pills-v249 {
+    margin-top: 20px;
+    display: flex;
+    flex-wrap: wrap;
+    gap: 8px;
+}
+
+.condition-overview-pills-v249 span {
+    padding: 9px 13px;
+    border-radius: 999px;
+    background: #e9f6fc;
+    color: #176d9d;
+    border: 1px solid rgba(36,142,201,.11);
+    font-size: 12px;
+    font-weight: 850;
+}
+
+.condition-overview-media-v249 {
+    position: relative;
+    margin: 0;
+    min-height: 380px;
+    border-radius: 30px;
+    overflow: hidden;
+    background: #e8f3f9;
+    box-shadow: 0 18px 44px rgba(16,71,108,.14);
+}
+
+.condition-overview-media-v249 img {
+    display: block;
+    width: 100%;
+    height: 380px;
+    object-fit: cover;
+}
+
+.condition-overview-media-v249 figcaption {
+    position: absolute;
+    left: 16px;
+    right: 16px;
+    bottom: 16px;
+    padding: 12px 14px;
+    border-radius: 14px;
+    background: rgba(7,42,63,.80);
+    border: 1px solid rgba(255,255,255,.16);
+    color: #fff;
+    font-size: 12px;
+    font-weight: 800;
+    backdrop-filter: blur(12px);
+}
+
+.condition-overview-actions-v249 {
+    grid-column: 1 / -1;
+    display: grid;
+    grid-template-columns: repeat(4, minmax(0,1fr));
+    gap: 14px;
+}
+
+.condition-overview-actions-v249 button {
+    min-height: 150px;
+    padding: 20px;
+    border: 1px solid rgba(38,126,183,.12);
+    border-radius: 24px;
+    background: rgba(255,255,255,.92);
+    color: #173f5b;
+    text-align: left;
+    cursor: pointer;
+    box-shadow: 0 12px 30px rgba(24,78,113,.06);
+    transition: transform .2s ease, box-shadow .2s ease, border-color .2s ease;
+}
+
+.condition-overview-actions-v249 button:hover,
+.condition-overview-actions-v249 button:focus-visible {
+    outline: none;
+    transform: translateY(-3px);
+    border-color: rgba(36,148,212,.30);
+    box-shadow: 0 18px 36px rgba(21,98,145,.12);
+}
+
+.condition-overview-actions-v249 button > span {
+    display: inline-grid;
+    place-items: center;
+    width: 38px;
+    height: 38px;
+    margin-bottom: 14px;
+    border-radius: 13px;
+    background: #e9f6fc;
+    color: #1688cb;
+    font-weight: 900;
+}
+
+.condition-overview-actions-v249 strong,
+.condition-overview-actions-v249 small {
+    display: block;
+}
+
+.condition-overview-actions-v249 strong {
+    margin-bottom: 7px;
+    font-size: 18px;
+}
+
+.condition-overview-actions-v249 small {
+    color: #698294;
+    line-height: 1.55;
+    font-size: 13px;
+}
+
+.condition-detail-hub-v249 {
+    scroll-margin-top: 110px;
+}
+
+.condition-faq-inner-v249 {
+    width: min(1240px, calc(100% - 40px));
+    padding: 64px 0 82px;
+}
+
+.condition-faq-inner-v249 .ankilozan-faq-heading-v85 {
+    padding: 0 8px;
+}
+
+.condition-faq-inner-v249 .ankilozan-faq-heading-v85 h2 {
+    color: #103f70;
+    letter-spacing: -.035em;
+}
+
+.condition-faq-inner-v249 .ankilozan-faq-item-v85 {
+    border: 1px solid rgba(39,136,205,.12);
+    background: rgba(255,255,255,.98);
+    box-shadow: 0 14px 38px rgba(22,82,126,.075);
+}
+
+.condition-herbal-focus-v249 {
+    width: min(1510px, calc(100% - 44px));
+    margin: 0 auto !important;
+}
+
+.condition-herbal-focus-v249 .phyto-herbal-card-v232 img {
+    height: 180px;
+    object-fit: cover;
+}
+
+@media (max-width: 1180px) {
+    .condition-page-nav-v249 {
+        justify-content: flex-start;
+        overflow-x: auto;
+    }
+    .condition-brand-v249 {
+        display: none !important;
+    }
+    .condition-overview-poster-v249 {
+        grid-template-columns: 1fr;
+    }
+    .condition-overview-actions-v249 {
+        grid-template-columns: repeat(2, minmax(0,1fr));
+    }
+}
+
+@media (max-width: 760px) {
+    .condition-page-nav-v249 {
+        top: 7px;
+        width: calc(100% - 14px);
+        min-height: 62px;
+        padding: 7px;
+        border-radius: 18px;
+    }
+    .condition-nav-btn-v249 {
+        flex: 0 0 auto;
+        min-height: 48px;
+        height: 48px;
+        padding: 0 13px;
+        border-radius: 14px;
+        font-size: 12px;
+    }
+    .condition-nav-btn-v249 > span {
+        width: 27px;
+        height: 27px;
+    }
+    .condition-nav-dropdown-v249 {
+        position: fixed;
+        top: 68px;
+        left: 10px;
+        right: 10px;
+        width: auto;
+    }
+    .condition-overview-poster-v249 {
+        width: calc(100% - 18px);
+        margin-top: 12px;
+        padding: 24px 20px;
+        border-radius: 26px;
+    }
+    .condition-overview-media-v249,
+    .condition-overview-media-v249 img {
+        min-height: 280px;
+        height: 280px;
+    }
+    .condition-overview-actions-v249 {
+        grid-template-columns: 1fr;
+    }
+    .condition-overview-actions-v249 button {
+        min-height: 0;
+    }
+    .condition-faq-inner-v249,
+    .condition-herbal-focus-v249 {
+        width: calc(100% - 24px);
+    }
+}
+
+
+/* =========================================================
+   V250 - HASTALIKLAR ARASI MODERN HIZLI GEÇİŞ
+   AS, RA ve diğer tedavi alanı hastalıklarında ortak kullanılır.
+   ========================================================= */
+.disease-switcher-v250 {
+    position: relative;
+    z-index: 80;
+    width: min(1510px, calc(100% - 44px));
+    margin-left: auto;
+    margin-right: auto;
+    padding: 18px;
+    border: 1px solid rgba(36, 132, 190, .14);
+    border-radius: 28px;
+    background:
+        radial-gradient(circle at 92% 0%, rgba(72, 189, 233, .14), transparent 27%),
+        linear-gradient(135deg, rgba(255,255,255,.97), rgba(241,249,253,.98));
+    box-shadow: 0 18px 46px rgba(18, 73, 108, .10), inset 0 1px 0 rgba(255,255,255,.96);
+    overflow: hidden;
+}
+
+.disease-switcher-v250::before {
+    content: "";
+    position: absolute;
+    left: 0;
+    top: 0;
+    bottom: 0;
+    width: 5px;
+    background: linear-gradient(180deg, #20a8e5, #1689cb 52%, #29c0a4);
+}
+
+.disease-switcher-head-v250 {
+    display: flex;
+    align-items: flex-end;
+    justify-content: space-between;
+    gap: 18px;
+    margin-bottom: 14px;
+    padding: 0 4px 0 8px;
+}
+
+.disease-switcher-head-v250 > div {
+    display: flex;
+    align-items: baseline;
+    gap: 12px;
+    flex-wrap: wrap;
+}
+
+.disease-switcher-head-v250 span {
+    color: #168bc4;
+    font-size: 10px;
+    font-weight: 950;
+    letter-spacing: .16em;
+}
+
+.disease-switcher-head-v250 strong {
+    color: #123f5e;
+    font-size: 18px;
+    font-weight: 900;
+    letter-spacing: -.015em;
+}
+
+.disease-switcher-head-v250 small {
+    color: #7892a3;
+    font-size: 12px;
+    font-weight: 700;
+    text-align: right;
+}
+
+.disease-switch-grid-v250 {
+    display: grid;
+    grid-template-columns: repeat(4, minmax(0, 1fr));
+    gap: 10px;
+}
+
+.disease-switch-card-v250 {
+    appearance: none;
+    width: 100%;
+    min-height: 62px;
+    padding: 8px 10px 8px 9px;
+    border: 1px solid rgba(39, 127, 181, .13);
+    border-radius: 18px;
+    background: rgba(255,255,255,.90);
+    color: #174663;
+    box-shadow: 0 8px 18px rgba(25, 77, 109, .055);
+    display: grid;
+    grid-template-columns: 36px minmax(0, 1fr) 32px;
+    align-items: center;
+    gap: 10px;
+    text-align: left;
+    cursor: pointer;
+    transition: transform .20s ease, border-color .20s ease, box-shadow .20s ease, background .20s ease, color .20s ease;
+}
+
+.disease-switch-card-v250:hover,
+.disease-switch-card-v250:focus-visible {
+    outline: none;
+    transform: translateY(-2px);
+    border-color: rgba(23, 145, 205, .34);
+    background: #fff;
+    box-shadow: 0 14px 28px rgba(25, 89, 128, .11);
+}
+
+.disease-switch-code-v250,
+.disease-switch-arrow-v250 {
+    display: grid;
+    place-items: center;
+    width: 32px;
+    height: 32px;
+    border-radius: 11px;
+    background: #edf7fb;
+    color: #1687c5;
+    font-size: 10px;
+    font-weight: 950;
+}
+
+.disease-switch-card-v250 strong {
+    min-width: 0;
+    font-size: 14px;
+    font-weight: 900;
+    line-height: 1.18;
+}
+
+.disease-switch-arrow-v250 {
+    justify-self: end;
+    border-radius: 999px;
+    font-size: 13px;
+    transition: transform .20s ease;
+}
+
+.disease-switch-card-v250:hover .disease-switch-arrow-v250,
+.disease-switch-card-v250:focus-visible .disease-switch-arrow-v250 {
+    transform: translate(2px,-2px);
+}
+
+.disease-switch-card-v250.is-active {
+    border-color: rgba(37, 160, 220, .50);
+    background: linear-gradient(135deg,#168dcc 0%,#1678b8 58%,#126b9d 100%);
+    color: #fff;
+    box-shadow: 0 13px 28px rgba(19, 124, 183, .22), inset 0 1px 0 rgba(255,255,255,.22);
+    cursor: default;
+}
+
+.disease-switch-card-v250.is-active .disease-switch-code-v250,
+.disease-switch-card-v250.is-active .disease-switch-arrow-v250 {
+    background: rgba(255,255,255,.16);
+    color: #fff;
+}
+
+/* AS özel sayfasında mevcut üst nav gizli olduğu için geçiş alanı sayfanın üstünden başlar. */
+body.ankilozan-page-open-v87 .disease-switcher-as-v250 {
+    margin-top: 18px;
+    margin-bottom: 18px;
+}
+
+/* RA üst nav sabit olduğu için switcher navın altında başlar; hero boşluğu tekrar etmez. */
+body.romatoid-page-open-v198 .disease-switcher-ra-v250 {
+    margin-top: 104px;
+    margin-bottom: 18px;
+}
+body.romatoid-page-open-v198 .ra-hero-v198 {
+    margin-top: 18px;
+}
+
+/* Dinamik hastalık sayfalarında kendi sticky navı zaten akışta. */
+body.condition-disease-page-open-v246 .disease-switcher-condition-v250 {
+    margin-top: 0;
+    margin-bottom: 18px;
+}
+body.condition-disease-page-open-v246 .condition-overview-poster-v249 {
+    margin-top: 0;
+}
+
+@media (max-width: 1100px) {
+    .disease-switch-grid-v250 {
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+    }
+}
+
+@media (max-width: 760px) {
+    .disease-switcher-v250 {
+        width: calc(100% - 16px);
+        padding: 14px;
+        border-radius: 22px;
+    }
+    .disease-switcher-head-v250 {
+        align-items: flex-start;
+        flex-direction: column;
+        gap: 5px;
+        margin-bottom: 12px;
+    }
+    .disease-switcher-head-v250 small {
+        text-align: left;
+    }
+    .disease-switch-grid-v250 {
+        display: flex;
+        overflow-x: auto;
+        gap: 9px;
+        padding-bottom: 4px;
+        scroll-snap-type: x proximity;
+        scrollbar-width: thin;
+    }
+    .disease-switch-card-v250 {
+        flex: 0 0 235px;
+        min-height: 58px;
+        scroll-snap-align: start;
+    }
+    body.romatoid-page-open-v198 .disease-switcher-ra-v250 {
+        margin-top: 92px;
+    }
+}
+
+
+/* =========================================================
+   V253 - FİTOTERAPİ: HASTALIK BUTONLARI VE ALT İÇERİĞİ YUKARI AL
+   Sadece dikey boşluklar sıkılaştırıldı.
+   ========================================================= */
+@media (min-width: 641px) {
+    .phytotherapy-page-v127 .phyto-hero-v127 {
+        padding-top: 22px !important;
+        padding-bottom: 22px !important;
+    }
+
+    .phytotherapy-page-v127 .phyto-disease-chips-v127 {
+        margin-top: 10px !important;
+    }
+
+    .phytotherapy-page-v127 .phyto-guide-v127 {
+        margin-top: 10px !important;
+    }
+}
+
+/* =========================================================
+   V254 - TÜM ALT SAYFALARDA GEREKSİZ DİKEY BOŞLUKLARI TEMİZLE
+   Sabit üst menü boşluğu yalnızca sayfa kabuğunda bırakılır.
+   İç hero / detail bloklarının ikinci kez üstten boşluk üretmesi engellenir.
+   ========================================================= */
+
+/* 1) Liste sayfaları: sabit menünün altında tek bir güvenli boşluk */
+body.treatment-page-open #tedaviAlanlariPage,
+body.pain-page-open #agriPage,
+body.media-page-open #medyaPage,
+body.about-page-open #hakkimdaPage,
+body.general-health-detail-open-v75 #generalHealthDetailPageV75 {
+    padding-top: 96px !important;
+}
+
+/* Tedavi Alanları ve Ağrı sayfalarında başlık/breadcrumb zaten gizli.
+   Boş kalan eski hero bandını tamamen kaldır. */
+body.treatment-page-open .treatment-page-hero,
+body.pain-page-open .pain-page-hero {
+    display: none !important;
+    min-height: 0 !important;
+    height: 0 !important;
+    padding: 0 !important;
+    margin: 0 !important;
+}
+
+/* Medya: içerik var; fakat ikinci bir 118px üst boşluk oluşturmasın. */
+body.media-page-open .media-page-hero-v48 {
+    min-height: 0 !important;
+    height: auto !important;
+    padding: 18px 20px 22px !important;
+    margin: 0 !important;
+}
+
+/* Hakkımda yeni sekmeli yapı kendi başlığını taşıyor. Eski hero görünürse boşluk üretmesin. */
+body.about-page-open .about-page-hero-v47 {
+    display: none !important;
+    min-height: 0 !important;
+    height: 0 !important;
+    padding: 0 !important;
+    margin: 0 !important;
+}
+
+/* 2) Tedavi detayları: dış sayfa zaten fixed nav için üst boşluğu bırakıyor.
+   Osteopati / Fitoterapi / Damar Yolu / İğne içinde ikinci kez 100+px boşluk verme. */
+body.treatment-detail-open-v71 #treatmentDetailPageV71 {
+    padding-top: 96px !important;
+}
+
+body.treatment-detail-open-v71 .treatment-detail-content-v71,
+body.treatment-detail-open-v71 .injection-view-v71,
+body.treatment-detail-open-v71 .phyto-page-shell-v127 {
+    padding-top: 20px !important;
+}
+
+/* İç sayfa min-height'ları içerik bittikten sonra gereksiz boş ekran bırakmasın. */
+body.treatment-detail-open-v71 .treatment-detail-view-v71.active,
+body.treatment-detail-open-v71 .osteopathy-page-v95.active,
+body.treatment-detail-open-v71 .phytotherapy-page-v127.active,
+body.treatment-detail-open-v71 .injection-view-v71.active,
+body.treatment-detail-open-v71 .vascular-view-v72.active {
+    min-height: 0 !important;
+    height: auto !important;
+}
+
+/* Osteopati yeni sayfa düzeni */
+body.treatment-detail-open-v71 .osteopathy-page-v95 .osteopathy-page-hero-v95 {
+    min-height: 0 !important;
+    height: auto !important;
+    padding-top: 26px !important;
+    padding-bottom: 26px !important;
+}
+
+body.treatment-detail-open-v71 .osteopathy-page-v95 .osteopathy-page-content-v95 {
+    padding-top: 18px !important;
+}
+
+/* Fitoterapi: V253 sıkılaştırmasına ek olarak sayfa kabuğundaki 118px'i kaldır. */
+body.treatment-detail-open-v71 .phytotherapy-page-v127 .phyto-page-shell-v127 {
+    padding-top: 20px !important;
+    padding-bottom: 28px !important;
+}
+
+body.treatment-detail-open-v71 .phytotherapy-page-v127 .phyto-hero-v127 {
+    margin-top: 0 !important;
+}
+
+/* Damar yolu / iğne kart sayfaları */
+body.treatment-detail-open-v71 .injection-view-v71 {
+    padding-top: 20px !important;
+    padding-bottom: 42px !important;
+}
+
+body.treatment-detail-open-v71 .injection-header-v71 {
+    margin-top: 0 !important;
+    margin-bottom: 24px !important;
+}
+
+/* Serum "Bilgi Edin" alt sayfaları: dış üst boşluk zaten mevcut. */
+body.treatment-detail-open-v71 .vitamin-c-detail-v234.vitamin-c-special-tab-v235,
+body.treatment-detail-open-v71 .ozone-special-tab-v239,
+body.treatment-detail-open-v71 .major-ozone-special-tab-v240,
+body.treatment-detail-open-v71 .glutathione-special-tab-v241,
+body.treatment-detail-open-v71 .nad-special-tab-v242,
+body.treatment-detail-open-v71 .karnitin-special-tab-v243,
+body.treatment-detail-open-v71 .selenium-special-tab-v244 {
+    min-height: 0 !important;
+    padding-top: 8px !important;
+    padding-bottom: 28px !important;
+}
+
+body.treatment-detail-open-v71 .vitamin-c-special-nav-v235 {
+    margin-bottom: 12px !important;
+}
+
+body.treatment-detail-open-v71 .vitamin-c-special-intro-v235 {
+    margin-bottom: 12px !important;
+    padding-top: 30px !important;
+    padding-bottom: 30px !important;
+}
+
+/* 3) Genel Sağlık / Beslenme: fixed nav boşluğu + içerik boşluğu çakışmasın. */
+body.general-health-detail-open-v75 .general-health-detail-page-v75 {
+    padding-top: 0 !important;
+}
+
+body.general-health-detail-open-v75 .general-health-view-v75.active {
+    padding-top: 12px !important;
+}
+
+body.general-health-detail-open-v75 .general-health-detail-nav-v75 {
+    margin-bottom: 14px !important;
+}
+
+body.general-health-detail-open-v75 .nutrition-view-v174 {
+    min-height: 0 !important;
+    height: auto !important;
+    padding-bottom: 42px !important;
+}
+
+body.general-health-detail-open-v75 .nutrition-hero-v174 {
+    padding-top: 18px !important;
+    padding-bottom: 18px !important;
+}
+
+body.general-health-detail-open-v75 .nutrition-intro-v174 {
+    padding-top: 18px !important;
+}
+
+/* 4) Sayfa içindeki büyük boş kart / placeholder yüksekliklerini içerik kadar tut. */
+body.general-health-detail-open-v75 .general-health-empty-card-v75 {
+    min-height: 220px !important;
+}
+
+body.media-page-open .media-page-content-v48 {
+    min-height: 0 !important;
+}
+
+/* 5) Mobil: menü daha kısa olduğu için üst güvenli boşluğu da küçült. */
+@media (max-width: 760px) {
+    body.treatment-page-open #tedaviAlanlariPage,
+    body.pain-page-open #agriPage,
+    body.media-page-open #medyaPage,
+    body.about-page-open #hakkimdaPage,
+    body.general-health-detail-open-v75 #generalHealthDetailPageV75,
+    body.treatment-detail-open-v71 #treatmentDetailPageV71 {
+        padding-top: 74px !important;
+    }
+
+    body.media-page-open .media-page-hero-v48 {
+        padding: 12px 12px 16px !important;
+    }
+
+    body.treatment-detail-open-v71 .treatment-detail-content-v71,
+    body.treatment-detail-open-v71 .injection-view-v71,
+    body.treatment-detail-open-v71 .phyto-page-shell-v127 {
+        padding-top: 12px !important;
+    }
+
+    body.treatment-detail-open-v71 .osteopathy-page-v95 .osteopathy-page-hero-v95 {
+        padding-top: 18px !important;
+        padding-bottom: 18px !important;
+    }
+
+    body.general-health-detail-open-v75 .nutrition-hero-v174 {
+        padding-top: 12px !important;
+    }
+}
+
+
+/* =========================================================
+   V255 - Fitoterapi hastalık butonları kompaktlaştırıldı
+   Kullanıcı talebi: butonlar biraz küçülsün ama aktif seçim
+   hâlâ belirgin ve güçlü görünsün.
+   ========================================================= */
+.phyto-disease-chips-v232 {
+    gap: 10px !important;
+}
+
+.phyto-disease-chip-btn-v232 {
+    min-height: 60px;
+    padding: 10px 22px !important;
+    font-size: clamp(14px, 1.08vw, 18px);
+    line-height: 1.15;
+    box-shadow: 0 8px 18px rgba(6, 57, 94, .05) !important;
+}
+
+.phyto-disease-chip-btn-v232:hover,
+.phyto-disease-chip-btn-v232:focus-visible {
+    transform: translateY(-2px);
+    box-shadow: 0 12px 24px rgba(10, 61, 99, .11) !important;
+}
+
+.phyto-disease-chip-btn-v232.is-active {
+    padding: 10px 22px !important;
+    background: linear-gradient(135deg, #0d6fa6 0%, #13a7d8 100%) !important;
+    color: #fff !important;
+    border-color: rgba(10, 122, 181, .05) !important;
+    box-shadow: 0 18px 34px rgba(10, 93, 146, .28), 0 0 0 2px rgba(19, 167, 216, .12) !important;
+}
+
+.phyto-disease-chip-btn-v232 span[aria-hidden="true"] {
+    display: inline-grid;
+    place-items: center;
+    width: 38px;
+    height: 38px;
+    margin-left: 10px;
+    border-radius: 999px;
+    border: 1px solid rgba(27, 111, 94, .17);
+    background: rgba(255,255,255,.42);
+    font-size: 19px;
+    line-height: 1;
+    flex: 0 0 38px;
+}
+
+.phyto-disease-chip-btn-v232.is-active span[aria-hidden="true"] {
+    border-color: rgba(255,255,255,.28);
+    background: rgba(255,255,255,.16);
+}
+
+@media (max-width: 1100px) {
+    .phyto-disease-chip-btn-v232 {
+        min-height: 56px;
+        padding: 9px 18px !important;
+        font-size: 15px;
+    }
+
+    .phyto-disease-chip-btn-v232 span[aria-hidden="true"] {
+        width: 34px;
+        height: 34px;
+        flex-basis: 34px;
+        margin-left: 8px;
+        font-size: 17px;
+    }
+}
+
+@media (max-width: 760px) {
+    .phyto-disease-chips-v232 {
+        gap: 8px !important;
+    }
+
+    .phyto-disease-chip-btn-v232 {
+        min-height: 52px;
+        padding: 9px 14px !important;
+        font-size: 14px;
+        justify-content: space-between;
+    }
+
+    .phyto-disease-chip-btn-v232 span[aria-hidden="true"] {
+        width: 32px;
+        height: 32px;
+        flex-basis: 32px;
+        margin-left: 8px;
+        font-size: 16px;
+    }
+}
+
+
+/* =========================================================
+   V256 - Fitoterapi hastalık butonları DAHA KOMPAKT + AKTİF HİS
+   Amaç: hastalık bağlantıları belirgin kalsın; daha küçük, daha
+   modern ve tıklanabilir olduğu animasyonla anlaşılsın.
+   ========================================================= */
+.phyto-disease-chips-v232 {
+    gap: 8px 9px !important;
+    align-items: center;
+}
+
+.phyto-disease-chip-btn-v232 {
+    position: relative;
+    isolation: isolate;
+    overflow: hidden;
+
+    min-height: 44px !important;
+    padding: 6px 8px 6px 14px !important;
+
+    display: inline-flex !important;
+    align-items: center !important;
+    justify-content: center;
+    gap: 7px !important;
+
+    border: 1px solid rgba(25, 116, 157, .20) !important;
+    border-radius: 999px !important;
+    background: linear-gradient(180deg, rgba(255,255,255,.96), rgba(247,252,250,.92)) !important;
+    color: #123f5a !important;
+
+    font-size: 14px !important;
+    line-height: 1.05 !important;
+    font-weight: 850 !important;
+    letter-spacing: 0 !important;
+
+    box-shadow:
+        0 5px 12px rgba(14, 72, 104, .055),
+        inset 0 1px 0 rgba(255,255,255,.98) !important;
+
+    cursor: pointer;
+    transform: translateZ(0);
+    transition:
+        transform .18s ease,
+        border-color .18s ease,
+        box-shadow .18s ease,
+        color .18s ease,
+        background .18s ease !important;
+}
+
+/* Hafif parlama: butonun tıklanabilir olduğu ilk bakışta anlaşılır */
+.phyto-disease-chip-btn-v232::before {
+    content: "";
+    position: absolute;
+    z-index: -1;
+    inset: 0;
+    background: linear-gradient(
+        110deg,
+        transparent 0%,
+        transparent 38%,
+        rgba(48, 181, 207, .09) 48%,
+        rgba(48, 181, 207, .14) 52%,
+        transparent 62%,
+        transparent 100%
+    );
+    transform: translateX(-135%);
+    pointer-events: none;
+    animation: phytoButtonSheenV256 5.2s ease-in-out infinite;
+}
+
+/* Sağdaki ok küçük ama canlı */
+.phyto-disease-chip-btn-v232 span[aria-hidden="true"] {
+    width: 30px !important;
+    height: 30px !important;
+    min-width: 30px !important;
+    flex: 0 0 30px !important;
+    margin-left: 3px !important;
+
+    display: inline-grid !important;
+    place-items: center !important;
+
+    border-radius: 50% !important;
+    border: 1px solid rgba(28, 126, 109, .18) !important;
+    background: rgba(255,255,255,.82) !important;
+    color: #177262 !important;
+
+    font-size: 14px !important;
+    line-height: 1 !important;
+
+    box-shadow: 0 3px 8px rgba(17, 89, 77, .06);
+    transition:
+        transform .18s ease,
+        background .18s ease,
+        color .18s ease,
+        box-shadow .18s ease !important;
+
+    animation: phytoArrowHintV256 2.8s ease-in-out infinite;
+}
+
+/* Hover / klavye focus: belirgin ama abartısız */
+.phyto-disease-chip-btn-v232:hover,
+.phyto-disease-chip-btn-v232:focus-visible {
+    transform: translateY(-2px) scale(1.015) !important;
+    outline: none !important;
+    color: #0b6f98 !important;
+    border-color: rgba(18, 137, 187, .42) !important;
+    background: linear-gradient(180deg, #ffffff, #f3fbff) !important;
+    box-shadow:
+        0 10px 22px rgba(11, 88, 128, .13),
+        0 0 0 3px rgba(35, 161, 207, .06),
+        inset 0 1px 0 #fff !important;
+}
+
+.phyto-disease-chip-btn-v232:hover span[aria-hidden="true"],
+.phyto-disease-chip-btn-v232:focus-visible span[aria-hidden="true"] {
+    transform: translate(2px, -2px) scale(1.05) !important;
+    background: #168bc1 !important;
+    color: #fff !important;
+    border-color: #168bc1 !important;
+    box-shadow: 0 6px 14px rgba(22, 139, 193, .22) !important;
+    animation-play-state: paused;
+}
+
+/* Gerçek aktif/seçili buton: mavi ve hafif nabız efekti */
+.phyto-disease-chip-btn-v232.is-active {
+    transform: translateY(-1px) !important;
+    background: linear-gradient(135deg, #0e78ad 0%, #15a6cf 100%) !important;
+    color: #fff !important;
+    border-color: rgba(13, 119, 171, .10) !important;
+    box-shadow:
+        0 10px 22px rgba(10, 101, 151, .24),
+        0 0 0 3px rgba(27, 171, 213, .10),
+        inset 0 1px 0 rgba(255,255,255,.24) !important;
+    animation: phytoActivePulseV256 2.4s ease-in-out infinite;
+}
+
+.phyto-disease-chip-btn-v232.is-active::before {
+    animation: none !important;
+    background: linear-gradient(110deg, transparent, rgba(255,255,255,.12), transparent);
+    transform: translateX(0);
+}
+
+.phyto-disease-chip-btn-v232.is-active span[aria-hidden="true"] {
+    background: rgba(255,255,255,.18) !important;
+    color: #fff !important;
+    border-color: rgba(255,255,255,.30) !important;
+    box-shadow: inset 0 1px 0 rgba(255,255,255,.22) !important;
+}
+
+@keyframes phytoButtonSheenV256 {
+    0%, 72% { transform: translateX(-135%); }
+    84% { transform: translateX(135%); }
+    100% { transform: translateX(135%); }
+}
+
+@keyframes phytoArrowHintV256 {
+    0%, 78%, 100% { transform: translate(0,0); }
+    84% { transform: translate(2px,-2px); }
+    90% { transform: translate(0,0); }
+    95% { transform: translate(1px,-1px); }
+}
+
+@keyframes phytoActivePulseV256 {
+    0%, 100% {
+        box-shadow:
+            0 10px 22px rgba(10, 101, 151, .24),
+            0 0 0 3px rgba(27, 171, 213, .10),
+            inset 0 1px 0 rgba(255,255,255,.24);
+    }
+    50% {
+        box-shadow:
+            0 12px 26px rgba(10, 101, 151, .28),
+            0 0 0 6px rgba(27, 171, 213, .055),
+            inset 0 1px 0 rgba(255,255,255,.24);
+    }
+}
+
+@media (max-width: 1100px) {
+    .phyto-disease-chip-btn-v232 {
+        min-height: 42px !important;
+        padding: 6px 7px 6px 12px !important;
+        font-size: 13.5px !important;
+    }
+
+    .phyto-disease-chip-btn-v232 span[aria-hidden="true"] {
+        width: 28px !important;
+        height: 28px !important;
+        min-width: 28px !important;
+        flex-basis: 28px !important;
+        font-size: 13px !important;
+    }
+}
+
+@media (max-width: 760px) {
+    .phyto-disease-chips-v232 {
+        gap: 7px !important;
+    }
+
+    .phyto-disease-chip-btn-v232 {
+        width: auto !important;
+        min-height: 40px !important;
+        padding: 5px 6px 5px 11px !important;
+        font-size: 13px !important;
+        justify-content: flex-start !important;
+    }
+
+    .phyto-disease-chip-btn-v232 span[aria-hidden="true"] {
+        width: 27px !important;
+        height: 27px !important;
+        min-width: 27px !important;
+        flex-basis: 27px !important;
+        margin-left: 2px !important;
+        font-size: 12px !important;
+    }
+}
+
+/* Hareket azaltma tercihine saygı */
+@media (prefers-reduced-motion: reduce) {
+    .phyto-disease-chip-btn-v232,
+    .phyto-disease-chip-btn-v232::before,
+    .phyto-disease-chip-btn-v232 span[aria-hidden="true"] {
+        animation: none !important;
+        transition-duration: .01ms !important;
+    }
+}
+
+/* =========================================================
+   V257 - OSTEOPATİ SIGNATURE EXPERIENCE
+   Osteopati sayfası sitenin yıldız bölümü olarak yeniden işlendi:
+   premium koyu hero, hareket haritası, güçlü CTA'lar, modern kartlar.
+   ========================================================= */
+
+body.treatment-detail-open-v71 .osteopathy-page-v95 {
+    background:
+        radial-gradient(circle at 88% 8%, rgba(40, 168, 221, .08), transparent 22%),
+        linear-gradient(180deg, #f6fbfe 0%, #ffffff 34%, #f7fbfd 100%) !important;
+}
+
+body.treatment-detail-open-v71 .osteopathy-page-v95 .osteo-signature-hero-v257 {
+    position: relative !important;
+    min-height: 0 !important;
+    padding: 42px 34px 0 !important;
+    display: block !important;
+    overflow: hidden !important;
+    border-radius: 0 0 42px 42px;
+    background:
+        radial-gradient(circle at 78% 20%, rgba(55, 188, 236, .22), transparent 24%),
+        radial-gradient(circle at 16% 88%, rgba(31, 142, 198, .16), transparent 27%),
+        linear-gradient(135deg, #071d2a 0%, #0b2b3e 45%, #0b3f57 100%) !important;
+    box-shadow: 0 30px 70px rgba(8, 40, 58, .18);
+}
+
+.osteo-hero-orb-v257 {
+    position: absolute;
+    border-radius: 50%;
+    pointer-events: none;
+    filter: blur(3px);
+    opacity: .55;
+}
+
+.osteo-hero-orb-one-v257 {
+    width: 420px;
+    height: 420px;
+    right: -120px;
+    top: -170px;
+    background: radial-gradient(circle, rgba(60, 211, 255, .25), rgba(60, 211, 255, 0) 68%);
+}
+
+.osteo-hero-orb-two-v257 {
+    width: 360px;
+    height: 360px;
+    left: -150px;
+    bottom: -190px;
+    background: radial-gradient(circle, rgba(25, 137, 205, .22), rgba(25, 137, 205, 0) 70%);
+}
+
+.osteo-signature-shell-v257 {
+    position: relative;
+    z-index: 2;
+    width: min(1500px, 100%);
+    margin: 0 auto;
+    display: grid;
+    grid-template-columns: minmax(0, 1.05fr) minmax(430px, .95fr);
+    gap: 58px;
+    align-items: center;
+}
+
+.osteo-signature-copy-v257 {
+    padding: 34px 0 52px;
+}
+
+.osteopathy-page-v95 .osteo-signature-kicker-v257 {
+    display: inline-flex;
+    align-items: center;
+    gap: 10px;
+    margin: 0 0 20px;
+    color: #7fdcff !important;
+    font-size: 12px !important;
+    font-weight: 900;
+    letter-spacing: .18em;
+}
+
+.osteo-signature-kicker-v257 i {
+    width: 9px;
+    height: 9px;
+    border-radius: 50%;
+    background: #69dcff;
+    box-shadow: 0 0 0 7px rgba(105, 220, 255, .10), 0 0 24px rgba(105, 220, 255, .55);
+    animation: osteoSignalV257 2.3s ease-in-out infinite;
+}
+
+.osteopathy-page-v95 .osteo-signature-copy-v257 h1 {
+    margin: 0 0 22px !important;
+    color: #ffffff !important;
+    font-size: clamp(66px, 7.1vw, 112px) !important;
+    line-height: .86 !important;
+    letter-spacing: -.065em !important;
+    font-weight: 900 !important;
+    text-shadow: 0 10px 38px rgba(0,0,0,.18);
+}
+
+.osteopathy-page-v95 .osteo-signature-lead-v257 {
+    max-width: 760px !important;
+    margin: 0 !important;
+    color: rgba(224, 242, 250, .78) !important;
+    font-size: clamp(16px, 1.18vw, 20px) !important;
+    line-height: 1.72 !important;
+}
+
+.osteo-pillar-list-v257 {
+    margin-top: 28px;
+    display: flex;
+    flex-wrap: wrap;
+    gap: 10px;
+}
+
+.osteo-pillar-list-v257 span {
+    min-height: 42px;
+    padding: 0 15px 0 8px;
+    display: inline-flex;
+    align-items: center;
+    gap: 10px;
+    border: 1px solid rgba(153, 222, 247, .16);
+    border-radius: 999px;
+    background: rgba(255,255,255,.055);
+    color: #dff6ff;
+    font-size: 13px;
+    font-weight: 800;
+    box-shadow: inset 0 1px 0 rgba(255,255,255,.05);
+    backdrop-filter: blur(12px);
+}
+
+.osteo-pillar-list-v257 b {
+    width: 28px;
+    height: 28px;
+    display: grid;
+    place-items: center;
+    border-radius: 50%;
+    background: linear-gradient(135deg, #61d5ff, #218bcf);
+    color: #062134;
+    font-size: 10px;
+    font-weight: 950;
+}
+
+.osteo-hero-actions-v257 {
+    margin-top: 30px;
+    display: flex;
+    flex-wrap: wrap;
+    gap: 12px;
+}
+
+.osteo-hero-action-v257 {
+    min-height: 54px;
+    padding: 0 18px 0 22px;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: 13px;
+    border-radius: 16px;
+    cursor: pointer;
+    font: inherit;
+    font-size: 14px;
+    font-weight: 900;
+    transition: transform .22s ease, box-shadow .22s ease, border-color .22s ease, background .22s ease;
+}
+
+.osteo-hero-action-v257 > span {
+    width: 30px;
+    height: 30px;
+    display: grid;
+    place-items: center;
+    border-radius: 10px;
+    font-size: 15px;
+    transition: transform .22s ease;
+}
+
+.osteo-hero-action-primary-v257 {
+    border: 1px solid rgba(111, 218, 255, .45);
+    background: linear-gradient(135deg, #4bc9f5 0%, #1b8fd4 100%);
+    color: #06253a;
+    box-shadow: 0 18px 36px rgba(22, 145, 205, .28), inset 0 1px 0 rgba(255,255,255,.28);
+}
+
+.osteo-hero-action-primary-v257 > span {
+    background: rgba(4, 39, 58, .14);
+}
+
+.osteo-hero-action-secondary-v257 {
+    border: 1px solid rgba(188, 231, 247, .17);
+    background: rgba(255,255,255,.07);
+    color: #eefaff;
+    box-shadow: inset 0 1px 0 rgba(255,255,255,.07);
+}
+
+.osteo-hero-action-secondary-v257 > span {
+    background: rgba(255,255,255,.08);
+}
+
+.osteo-hero-action-v257:hover,
+.osteo-hero-action-v257:focus-visible {
+    transform: translateY(-3px);
+    outline: none;
+}
+
+.osteo-hero-action-primary-v257:hover,
+.osteo-hero-action-primary-v257:focus-visible,
+.osteo-hero-action-primary-v257.active {
+    box-shadow: 0 24px 42px rgba(22, 145, 205, .34), 0 0 0 4px rgba(75, 201, 245, .08);
+}
+
+.osteo-hero-action-secondary-v257:hover,
+.osteo-hero-action-secondary-v257:focus-visible,
+.osteo-hero-action-secondary-v257.active {
+    border-color: rgba(127, 220, 255, .36);
+    background: rgba(255,255,255,.11);
+}
+
+.osteo-hero-action-v257:hover > span,
+.osteo-hero-action-v257:focus-visible > span {
+    transform: translate(2px, 2px);
+}
+
+.osteo-hero-note-v257 {
+    display: block;
+    margin-top: 18px;
+    color: rgba(203, 228, 239, .52);
+    font-size: 11.5px;
+    line-height: 1.55;
+}
+
+.osteo-signature-visual-v257 {
+    position: relative;
+    min-height: 510px;
+    margin-top: 12px;
+    overflow: hidden;
+    border: 1px solid rgba(151, 223, 248, .16);
+    border-radius: 34px 34px 0 0;
+    background:
+        radial-gradient(circle at 52% 43%, rgba(63, 185, 230, .14), transparent 32%),
+        linear-gradient(180deg, rgba(255,255,255,.075), rgba(255,255,255,.025));
+    box-shadow: inset 0 1px 0 rgba(255,255,255,.07), 0 24px 58px rgba(2, 20, 31, .22);
+    backdrop-filter: blur(18px);
+}
+
+.osteo-visual-topline-v257 {
+    position: absolute;
+    z-index: 4;
+    left: 22px;
+    right: 22px;
+    top: 20px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 14px;
+}
+
+.osteo-visual-topline-v257 > span {
+    color: #8ee6ff;
+    font-size: 11px;
+    font-weight: 950;
+    letter-spacing: .18em;
+}
+
+.osteo-visual-topline-v257 > small {
+    color: rgba(210, 238, 248, .45);
+    font-size: 9px;
+    font-weight: 800;
+    letter-spacing: .11em;
+}
+
+.osteo-anatomy-stage-v257 {
+    position: absolute;
+    inset: 48px 20px 72px;
+    display: grid;
+    place-items: center;
+}
+
+.osteo-anatomy-stage-v257 svg {
+    width: min(92%, 430px);
+    height: 100%;
+    overflow: visible;
+}
+
+.osteo-body-line-v257,
+.osteo-shoulder-line-v257,
+.osteo-pelvis-line-v257 {
+    fill: none;
+    stroke: rgba(194, 233, 246, .14);
+    stroke-width: 2.2;
+    stroke-linecap: round;
+}
+
+.osteo-body-line-right-v257 {
+    opacity: .82;
+}
+
+.osteo-spine-path-v257 {
+    fill: none;
+    stroke-width: 5.5;
+    stroke-linecap: round;
+    stroke-linejoin: round;
+    stroke-dasharray: 9 8;
+    animation: osteoSpineFlowV257 7s linear infinite;
+}
+
+.osteo-vertebrae-v257 circle {
+    fill: url(#osteoNodeGradientV257);
+    stroke: rgba(255,255,255,.4);
+    stroke-width: 1.2;
+    filter: drop-shadow(0 0 7px rgba(86, 205, 247, .38));
+}
+
+.osteo-focus-ring-v257 {
+    fill: none;
+    stroke: rgba(90, 212, 255, .26);
+    stroke-width: 1.4;
+    stroke-dasharray: 5 7;
+    transform-box: fill-box;
+    transform-origin: center;
+    animation: osteoRingPulseV257 3.8s ease-in-out infinite;
+}
+
+.osteo-ring-thorax-v257 { animation-delay: .7s; }
+.osteo-ring-pelvis-v257 { animation-delay: 1.4s; }
+
+.osteo-map-label-v257 {
+    position: absolute;
+    z-index: 3;
+    min-width: 78px;
+    padding: 8px 11px;
+    border: 1px solid rgba(135, 219, 248, .18);
+    border-radius: 12px;
+    background: rgba(6, 34, 50, .72);
+    color: #cdeffc;
+    font-size: 11px;
+    font-weight: 850;
+    text-align: center;
+    box-shadow: 0 10px 22px rgba(2, 18, 27, .16);
+    backdrop-filter: blur(10px);
+}
+
+.osteo-map-label-v257::before {
+    content: "";
+    position: absolute;
+    top: 50%;
+    width: 28px;
+    height: 1px;
+    background: linear-gradient(90deg, rgba(107, 214, 250, .5), rgba(107, 214, 250, .08));
+}
+
+.osteo-map-neck-v257 { left: 7%; top: 22%; }
+.osteo-map-thorax-v257 { right: 3%; top: 46%; }
+.osteo-map-pelvis-v257 { left: 5%; bottom: 20%; }
+.osteo-map-neck-v257::before,
+.osteo-map-pelvis-v257::before { left: 100%; }
+.osteo-map-thorax-v257::before { right: 100%; transform: rotate(180deg); }
+
+.osteo-visual-caption-v257 {
+    position: absolute;
+    z-index: 5;
+    left: 18px;
+    right: 18px;
+    bottom: 18px;
+    min-height: 58px;
+    padding: 10px 14px;
+    display: grid;
+    grid-template-columns: 38px 1fr;
+    align-items: center;
+    gap: 11px;
+    border: 1px solid rgba(155, 224, 248, .16);
+    border-radius: 17px;
+    background: rgba(5, 29, 43, .72);
+    box-shadow: 0 14px 30px rgba(2, 16, 24, .18);
+    backdrop-filter: blur(12px);
+}
+
+.osteo-visual-caption-icon-v257 {
+    width: 38px;
+    height: 38px;
+    display: grid;
+    place-items: center;
+    border-radius: 12px;
+    background: linear-gradient(135deg, rgba(91, 215, 255, .24), rgba(21, 126, 184, .14));
+    color: #8fe7ff;
+    font-size: 18px;
+}
+
+.osteo-visual-caption-v257 strong {
+    display: block;
+    margin-bottom: 3px;
+    color: #f2fbff;
+    font-size: 13px;
+}
+
+.osteo-visual-caption-v257 small {
+    display: block;
+    color: rgba(208, 235, 245, .57);
+    font-size: 10.5px;
+    line-height: 1.45;
+}
+
+.osteo-signature-steps-v257 {
+    position: relative;
+    z-index: 3;
+    width: min(1500px, 100%);
+    margin: 0 auto;
+    display: grid;
+    grid-template-columns: repeat(3, minmax(0,1fr));
+    border-top: 1px solid rgba(155, 224, 248, .12);
+    background: linear-gradient(180deg, rgba(255,255,255,.025), rgba(255,255,255,.05));
+}
+
+.osteo-signature-steps-v257 article {
+    min-height: 82px;
+    padding: 16px 22px;
+    display: grid;
+    grid-template-columns: 38px 1fr;
+    align-items: center;
+    gap: 12px;
+    border-right: 1px solid rgba(155, 224, 248, .10);
+}
+
+.osteo-signature-steps-v257 article:last-child { border-right: 0; }
+
+.osteo-signature-steps-v257 article > span {
+    width: 36px;
+    height: 36px;
+    display: grid;
+    place-items: center;
+    border-radius: 12px;
+    background: rgba(76, 194, 237, .10);
+    color: #76ddff;
+    font-size: 11px;
+    font-weight: 950;
+    border: 1px solid rgba(117, 217, 251, .13);
+}
+
+.osteo-signature-steps-v257 strong,
+.osteo-signature-steps-v257 small {
+    display: block;
+}
+
+.osteo-signature-steps-v257 strong {
+    margin-bottom: 3px;
+    color: #eefaff;
+    font-size: 13px;
+}
+
+.osteo-signature-steps-v257 small {
+    color: rgba(205, 234, 244, .49);
+    font-size: 10.5px;
+}
+
+/* İçerik hero ile birleşsin, nav cam panel gibi hafif yukarı taşsın */
+body.treatment-detail-open-v71 .osteopathy-page-v95 .osteopathy-page-content-v95 {
+    position: relative;
+    padding: 0 28px 88px !important;
+    background:
+        radial-gradient(circle at 8% 8%, rgba(45, 159, 211, .055), transparent 22%),
+        linear-gradient(180deg, #f7fbfe 0%, #ffffff 24%, #f8fbfd 100%) !important;
+}
+
+.osteopathy-page-v95 .osteo-local-nav-v105 {
+    position: sticky;
+    top: 92px;
+    z-index: 140;
+    width: min(1460px, calc(100% - 10px));
+    margin: 0 auto 28px !important;
+    transform: translateY(-18px);
+    padding: 11px !important;
+    gap: 10px !important;
+    border: 1px solid rgba(188, 218, 236, .82) !important;
+    border-radius: 24px !important;
+    background: rgba(250, 253, 255, .88) !important;
+    box-shadow: 0 20px 44px rgba(17, 61, 93, .11), inset 0 1px 0 rgba(255,255,255,.98) !important;
+    backdrop-filter: blur(22px) saturate(140%) !important;
+}
+
+.osteopathy-page-v95 .osteo-local-nav-v105 button {
+    min-height: 50px !important;
+    padding: 0 15px !important;
+    border-radius: 15px !important;
+    font-size: 13px !important;
+}
+
+.osteopathy-page-v95 .osteo-local-nav-v105 button::before {
+    width: 8px !important;
+    height: 8px !important;
+    box-shadow: 0 0 0 4px rgba(39, 157, 226, 0.09) !important;
+}
+
+/* İçerik kartları */
+.osteopathy-page-v95 .osteo-section-v105 {
+    position: relative;
+    overflow: hidden;
+    margin-bottom: 24px;
+    padding: 34px 36px 36px;
+    border: 1px solid rgba(200, 222, 235, .85);
+    border-radius: 30px;
+    background:
+        radial-gradient(circle at 96% 2%, rgba(38, 151, 207, .055), transparent 23%),
+        linear-gradient(180deg, #ffffff 0%, #fbfdff 100%);
+    box-shadow: 0 18px 44px rgba(19, 62, 89, .07), inset 0 1px 0 rgba(255,255,255,.98);
+}
+
+.osteopathy-page-v95 .osteo-section-v105::before {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 34px;
+    width: 74px;
+    height: 3px;
+    border-radius: 0 0 999px 999px;
+    background: linear-gradient(90deg, #35b8ea, #147fc4);
+    box-shadow: 0 4px 16px rgba(43, 167, 220, .28);
+}
+
+.osteopathy-page-v95 .osteo-section-heading-v105 > span {
+    color: #138ac8;
+    font-size: 11px;
+    letter-spacing: .18em;
+}
+
+.osteopathy-page-v95 .osteo-section-heading-v105 h2 {
+    color: #0d344e;
+    font-size: clamp(30px, 2.5vw, 43px);
+    letter-spacing: -.045em;
+}
+
+.osteopathy-page-v95 .osteo-chiro-video-card-v108 {
+    gap: 18px;
+}
+
+.osteopathy-page-v95 .osteo-chiro-video-v108 {
+    min-height: 470px;
+    border-radius: 25px;
+    border-color: rgba(188, 216, 232, .72);
+    box-shadow: 0 20px 44px rgba(17, 59, 84, .12);
+}
+
+.osteopathy-page-v95 .osteo-chiro-video-v108::after {
+    content: "";
+    position: absolute;
+    inset: 0;
+    pointer-events: none;
+    background: linear-gradient(180deg, transparent 58%, rgba(6, 29, 43, .20));
+}
+
+.osteopathy-page-v95 .osteo-chiro-video-badge-v108 {
+    z-index: 3;
+    border: 1px solid rgba(255,255,255,.14);
+    background: rgba(5, 34, 50, .74);
+    box-shadow: 0 10px 24px rgba(2, 20, 31, .14);
+}
+
+.osteopathy-page-v95 .osteo-chiro-video-copy-v108 {
+    position: relative;
+    overflow: hidden;
+    padding: 34px 30px;
+    border-radius: 25px;
+    background:
+        radial-gradient(circle at 100% 0%, rgba(49, 172, 223, .11), transparent 31%),
+        linear-gradient(180deg, #f9fdff, #eef8fc);
+}
+
+.osteopathy-page-v95 .osteo-chiro-video-copy-v108::after {
+    content: "✦";
+    position: absolute;
+    right: 24px;
+    bottom: 18px;
+    color: rgba(31, 143, 199, .12);
+    font-size: 68px;
+}
+
+.osteopathy-page-v95 .osteo-chiro-video-copy-v108 h3 {
+    font-size: clamp(25px, 2vw, 31px);
+    letter-spacing: -.03em;
+}
+
+.osteopathy-page-v95 .osteo-chiro-tags-v108 span {
+    border: 1px solid rgba(39, 142, 195, .12);
+    border-radius: 999px;
+    background: rgba(233, 247, 253, .92);
+}
+
+.osteopathy-page-v95 .osteo-faq-item-v105,
+.osteopathy-page-v95 .osteo-article-grid-v105 article,
+.osteopathy-page-v95 .osteo-video-card-v105,
+.osteopathy-page-v95 .osteo-sports-grid-v105 article {
+    border-color: rgba(199, 222, 235, .82);
+    box-shadow: 0 10px 24px rgba(17, 59, 84, .045);
+}
+
+.osteopathy-page-v95 .osteo-faq-item-v105 {
+    border-radius: 19px;
+    transition: transform .2s ease, border-color .2s ease, box-shadow .2s ease;
+}
+
+.osteopathy-page-v95 .osteo-faq-item-v105:hover,
+.osteopathy-page-v95 .osteo-faq-item-v105.open {
+    transform: translateY(-2px);
+    border-color: rgba(44, 151, 207, .28);
+    box-shadow: 0 16px 30px rgba(17, 75, 108, .08);
+}
+
+.osteopathy-page-v95 .osteo-faq-item-v105 > button {
+    min-height: 66px;
+    background: linear-gradient(180deg, #ffffff, #fbfdff);
+}
+
+.osteopathy-page-v95 .osteo-faq-item-v105 > button span {
+    width: 34px;
+    height: 34px;
+    display: grid;
+    place-items: center;
+    border-radius: 11px;
+    background: #eaf7fd;
+    font-size: 20px;
+}
+
+.osteopathy-page-v95 .osteo-article-grid-v105 article,
+.osteopathy-page-v95 .osteo-video-card-v105,
+.osteopathy-page-v95 .osteo-sports-grid-v105 article {
+    position: relative;
+    overflow: hidden;
+    transition: transform .24s ease, box-shadow .24s ease, border-color .24s ease;
+}
+
+.osteopathy-page-v95 .osteo-article-grid-v105 article:hover,
+.osteopathy-page-v95 .osteo-video-card-v105:hover,
+.osteopathy-page-v95 .osteo-sports-grid-v105 article:hover {
+    transform: translateY(-5px);
+    border-color: rgba(38, 148, 204, .28);
+    box-shadow: 0 20px 38px rgba(17, 73, 106, .10);
+}
+
+.osteopathy-page-v95 .osteo-article-grid-v105 article::before,
+.osteopathy-page-v95 .osteo-sports-grid-v105 article::before {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 3px;
+    background: linear-gradient(90deg, #4cc9f4, rgba(76, 201, 244, 0));
+    opacity: .75;
+}
+
+.osteopathy-page-v95 .osteo-video-cover-v105 {
+    overflow: hidden;
+}
+
+.osteopathy-page-v95 .osteo-video-cover-v105::after {
+    content: "";
+    position: absolute;
+    inset: -20% -45%;
+    background: linear-gradient(110deg, transparent 37%, rgba(255,255,255,.48) 50%, transparent 63%);
+    transform: translateX(-65%);
+    transition: transform .7s ease;
+}
+
+.osteopathy-page-v95 .osteo-video-card-v105:hover .osteo-video-cover-v105::after {
+    transform: translateX(65%);
+}
+
+.osteopathy-page-v95 .osteo-video-play-v105 {
+    transition: transform .22s ease, box-shadow .22s ease;
+}
+
+.osteopathy-page-v95 .osteo-video-card-v105:hover .osteo-video-play-v105 {
+    transform: scale(1.08);
+    box-shadow: 0 16px 36px rgba(12,80,120,.22);
+}
+
+@keyframes osteoSignalV257 {
+    0%, 100% { transform: scale(1); opacity: .85; }
+    50% { transform: scale(1.22); opacity: 1; }
+}
+
+@keyframes osteoSpineFlowV257 {
+    to { stroke-dashoffset: -68; }
+}
+
+@keyframes osteoRingPulseV257 {
+    0%, 100% { transform: scale(.94); opacity: .35; }
+    50% { transform: scale(1.08); opacity: .75; }
+}
+
+@media (max-width: 1150px) {
+    .osteo-signature-shell-v257 {
+        grid-template-columns: minmax(0, 1fr) minmax(360px, .78fr);
+        gap: 34px;
+    }
+
+    .osteopathy-page-v95 .osteo-signature-copy-v257 h1 {
+        font-size: clamp(62px, 8vw, 90px) !important;
+    }
+
+    .osteo-signature-visual-v257 {
+        min-height: 460px;
+    }
+}
+
+@media (max-width: 900px) {
+    body.treatment-detail-open-v71 .osteopathy-page-v95 .osteo-signature-hero-v257 {
+        padding: 28px 18px 0 !important;
+        border-radius: 0 0 30px 30px;
+    }
+
+    .osteo-signature-shell-v257 {
+        grid-template-columns: 1fr;
+        gap: 10px;
+    }
+
+    .osteo-signature-copy-v257 {
+        padding: 28px 6px 20px;
+    }
+
+    .osteopathy-page-v95 .osteo-signature-copy-v257 h1 {
+        font-size: clamp(58px, 15vw, 88px) !important;
+    }
+
+    .osteo-signature-visual-v257 {
+        width: min(650px, 100%);
+        min-height: 440px;
+        margin: 0 auto;
+        border-radius: 28px 28px 0 0;
+    }
+
+    .osteo-signature-steps-v257 {
+        grid-template-columns: 1fr;
+    }
+
+    .osteo-signature-steps-v257 article {
+        min-height: 66px;
+        border-right: 0;
+        border-bottom: 1px solid rgba(155, 224, 248, .10);
+    }
+
+    .osteo-signature-steps-v257 article:last-child { border-bottom: 0; }
+
+    .osteopathy-page-v95 .osteo-local-nav-v105 {
+        top: 76px;
+        transform: translateY(-12px);
+    }
+
+    .osteopathy-page-v95 .osteo-chiro-video-v108 {
+        min-height: 380px;
+    }
+}
+
+@media (max-width: 650px) {
+    body.treatment-detail-open-v71 .osteopathy-page-v95 .osteo-signature-hero-v257 {
+        padding: 18px 10px 0 !important;
+    }
+
+    .osteopathy-page-v95 .osteo-signature-kicker-v257 {
+        font-size: 10px !important;
+        letter-spacing: .12em;
+    }
+
+    .osteopathy-page-v95 .osteo-signature-copy-v257 h1 {
+        font-size: clamp(54px, 17vw, 74px) !important;
+        letter-spacing: -.07em !important;
+    }
+
+    .osteopathy-page-v95 .osteo-signature-lead-v257 {
+        font-size: 15px !important;
+    }
+
+    .osteo-pillar-list-v257 {
+        gap: 7px;
+    }
+
+    .osteo-pillar-list-v257 span {
+        min-height: 38px;
+        padding-right: 12px;
+        font-size: 11.5px;
+    }
+
+    .osteo-hero-actions-v257 {
+        display: grid;
+        grid-template-columns: 1fr;
+    }
+
+    .osteo-hero-action-v257 {
+        width: 100%;
+        justify-content: space-between;
+    }
+
+    .osteo-signature-visual-v257 {
+        min-height: 400px;
+        border-radius: 24px 24px 0 0;
+    }
+
+    .osteo-visual-topline-v257 > small {
+        display: none;
+    }
+
+    .osteo-map-label-v257 {
+        min-width: 66px;
+        padding: 7px 9px;
+        font-size: 10px;
+    }
+
+    body.treatment-detail-open-v71 .osteopathy-page-v95 .osteopathy-page-content-v95 {
+        padding: 0 10px 62px !important;
+    }
+
+    .osteopathy-page-v95 .osteo-local-nav-v105 {
+        width: calc(100% - 4px);
+        margin-bottom: 14px !important;
+        border-radius: 19px !important;
+    }
+
+    .osteopathy-page-v95 .osteo-section-v105 {
+        padding: 26px 18px 28px;
+        border-radius: 23px;
+    }
+
+    .osteopathy-page-v95 .osteo-section-v105::before {
+        left: 18px;
+        width: 56px;
+    }
+
+    .osteopathy-page-v95 .osteo-chiro-video-v108 {
+        min-height: 250px;
+        border-radius: 20px;
+    }
+
+    .osteopathy-page-v95 .osteo-chiro-video-copy-v108 {
+        padding: 24px 20px;
+        border-radius: 20px;
+    }
+}
+
+@media (prefers-reduced-motion: reduce) {
+    .osteo-signature-kicker-v257 i,
+    .osteo-spine-path-v257,
+    .osteo-focus-ring-v257 {
+        animation: none !important;
+    }
+}
+
+/* =========================================================
+   V258 - OSTEOPATİ PREMIUM SEKME MİMARİSİ
+   Her içerik kendi sekmesinde; ilgisiz başlıklar karıştırılmaz.
+   ========================================================= */
+.osteopathy-page-v95 .osteo-tabs-v258 {
+    display: grid !important;
+    grid-template-columns: repeat(6, minmax(0, 1fr));
+    gap: 9px !important;
+    padding: 10px !important;
+}
+
+.osteopathy-page-v95 .osteo-tabs-v258 > button {
+    position: relative;
+    min-width: 0;
+    min-height: 72px !important;
+    padding: 10px 12px !important;
+    display: grid !important;
+    grid-template-columns: 36px minmax(0, 1fr);
+    align-items: center;
+    gap: 10px;
+    text-align: left;
+    border: 1px solid rgba(171, 207, 227, .58) !important;
+    border-radius: 17px !important;
+    background: linear-gradient(180deg, rgba(255,255,255,.96), rgba(246,251,254,.92)) !important;
+    color: #163f58 !important;
+    box-shadow: 0 7px 18px rgba(17, 62, 91, .05) !important;
+    overflow: hidden;
+    transition: transform .22s ease, border-color .22s ease, box-shadow .22s ease, background .22s ease, color .22s ease !important;
+}
+
+.osteopathy-page-v95 .osteo-tabs-v258 > button::before {
+    display: none !important;
+}
+
+.osteopathy-page-v95 .osteo-tabs-v258 > button::after {
+    content: "";
+    position: absolute;
+    left: 12px;
+    right: 12px;
+    bottom: 0;
+    height: 3px;
+    border-radius: 999px 999px 0 0;
+    background: linear-gradient(90deg, #42c7f1, #1c8bd0);
+    transform: scaleX(0);
+    transform-origin: left;
+    transition: transform .28s ease;
+}
+
+.osteo-tab-icon-v258 {
+    width: 36px;
+    height: 36px;
+    display: grid;
+    place-items: center;
+    border-radius: 12px;
+    border: 1px solid rgba(41, 151, 207, .12);
+    background: #eaf7fd;
+    color: #1188c6;
+    font-size: 15px;
+    font-weight: 950;
+    transition: transform .22s ease, background .22s ease, color .22s ease;
+}
+
+.osteo-tab-copy-v258 {
+    min-width: 0;
+    display: block;
+}
+
+.osteo-tab-copy-v258 strong,
+.osteo-tab-copy-v258 small {
+    display: block;
+}
+
+.osteo-tab-copy-v258 strong {
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+    color: inherit;
+    font-size: 12.5px;
+    line-height: 1.15;
+    font-weight: 900;
+}
+
+.osteo-tab-copy-v258 small {
+    margin-top: 4px;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+    color: #7b98aa;
+    font-size: 9.5px;
+    line-height: 1.1;
+    font-weight: 700;
+}
+
+.osteopathy-page-v95 .osteo-tabs-v258 > button:hover {
+    transform: translateY(-2px) !important;
+    border-color: rgba(38, 154, 211, .28) !important;
+    box-shadow: 0 13px 26px rgba(18, 77, 111, .09) !important;
+}
+
+.osteopathy-page-v95 .osteo-tabs-v258 > button:hover .osteo-tab-icon-v258 {
+    transform: scale(1.05);
+}
+
+.osteopathy-page-v95 .osteo-tabs-v258 > button.is-active-v258,
+.osteopathy-page-v95 .osteo-tabs-v258 > button[aria-selected="true"] {
+    background: linear-gradient(135deg, #0b405f 0%, #0e6f9f 58%, #1598cb 100%) !important;
+    color: #fff !important;
+    border-color: rgba(68, 194, 240, .36) !important;
+    box-shadow: 0 16px 30px rgba(9, 85, 126, .22), inset 0 1px 0 rgba(255,255,255,.13) !important;
+}
+
+.osteopathy-page-v95 .osteo-tabs-v258 > button.is-active-v258::after,
+.osteopathy-page-v95 .osteo-tabs-v258 > button[aria-selected="true"]::after {
+    transform: scaleX(1);
+}
+
+.osteopathy-page-v95 .osteo-tabs-v258 > button.is-active-v258 .osteo-tab-icon-v258,
+.osteopathy-page-v95 .osteo-tabs-v258 > button[aria-selected="true"] .osteo-tab-icon-v258 {
+    background: rgba(255,255,255,.14);
+    border-color: rgba(255,255,255,.16);
+    color: #9de9ff;
+    box-shadow: 0 0 0 5px rgba(95, 211, 250, .06);
+}
+
+.osteopathy-page-v95 .osteo-tabs-v258 > button.is-active-v258 .osteo-tab-copy-v258 small,
+.osteopathy-page-v95 .osteo-tabs-v258 > button[aria-selected="true"] .osteo-tab-copy-v258 small {
+    color: rgba(224, 246, 255, .66);
+}
+
+.osteo-tab-status-v258 {
+    width: min(1430px, calc(100% - 28px));
+    margin: -12px auto 18px;
+    padding: 0 8px;
+    min-height: 34px;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    color: #638397;
+}
+
+.osteo-tab-status-dot-v258 {
+    width: 8px;
+    height: 8px;
+    flex: 0 0 8px;
+    border-radius: 50%;
+    background: #28b9eb;
+    box-shadow: 0 0 0 5px rgba(40, 185, 235, .09), 0 0 18px rgba(40, 185, 235, .32);
+    animation: osteoTabDotV258 2.3s ease-in-out infinite;
+}
+
+.osteo-tab-status-v258 p {
+    margin: 0;
+    display: flex;
+    align-items: baseline;
+    gap: 10px;
+    flex-wrap: wrap;
+    font-size: 11px;
+}
+
+.osteo-tab-status-v258 strong {
+    color: #164661;
+    font-size: 11.5px;
+}
+
+.osteo-tab-status-v258 span:not(.osteo-tab-status-dot-v258) {
+    color: #7893a4;
+}
+
+.osteopathy-page-v95 .osteo-tab-panel-v258 {
+    display: none;
+    margin-bottom: 0 !important;
+}
+
+.osteopathy-page-v95 .osteo-tab-panel-v258.is-active-v258 {
+    display: block;
+    animation: osteoPanelEnterV258 .42s cubic-bezier(.2,.7,.2,1) both;
+}
+
+.osteopathy-page-v95 .osteo-tab-panel-v258[hidden] {
+    display: none !important;
+}
+
+/* Ağrı sekmesi */
+.osteo-pain-grid-v258 {
+    display: grid;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 14px;
+}
+
+.osteo-pain-grid-v258 article {
+    min-height: 104px;
+    padding: 18px;
+    display: grid;
+    grid-template-columns: 42px minmax(0, 1fr);
+    align-items: center;
+    gap: 14px;
+    border: 1px solid rgba(191, 219, 234, .78);
+    border-radius: 20px;
+    background: linear-gradient(180deg, #fff, #f8fcfe);
+    box-shadow: 0 10px 24px rgba(17, 67, 96, .045);
+    transition: transform .22s ease, border-color .22s ease, box-shadow .22s ease;
+}
+
+.osteo-pain-grid-v258 article:hover {
+    transform: translateY(-3px);
+    border-color: rgba(40, 157, 211, .28);
+    box-shadow: 0 16px 30px rgba(17, 73, 106, .08);
+}
+
+.osteo-pain-grid-v258 article > span {
+    width: 42px;
+    height: 42px;
+    display: grid;
+    place-items: center;
+    border-radius: 13px;
+    background: #e8f7fd;
+    color: #138bc7;
+    font-size: 11px;
+    font-weight: 950;
+}
+
+.osteo-pain-grid-v258 strong,
+.osteo-pain-grid-v258 small {
+    display: block;
+}
+
+.osteo-pain-grid-v258 strong {
+    color: #123f59;
+    font-size: 15px;
+}
+
+.osteo-pain-grid-v258 small {
+    margin-top: 5px;
+    color: #728d9d;
+    font-size: 11px;
+    line-height: 1.4;
+}
+
+.osteo-pain-cta-v258 {
+    margin-top: 16px;
+    padding: 18px 20px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 18px;
+    border-radius: 20px;
+    background: linear-gradient(135deg, #0d344e, #0d597d);
+    box-shadow: 0 16px 34px rgba(11, 62, 91, .16);
+}
+
+.osteo-pain-cta-v258 span,
+.osteo-pain-cta-v258 strong {
+    display: block;
+}
+
+.osteo-pain-cta-v258 > div > span {
+    margin-bottom: 5px;
+    color: #76d8f8;
+    font-size: 9px;
+    font-weight: 950;
+    letter-spacing: .16em;
+}
+
+.osteo-pain-cta-v258 > div > strong {
+    color: #f4fbff;
+    font-size: 13px;
+}
+
+.osteo-pain-cta-v258 > button {
+    min-height: 44px;
+    padding: 0 16px;
+    display: inline-flex;
+    align-items: center;
+    gap: 9px;
+    flex: 0 0 auto;
+    border: 1px solid rgba(255,255,255,.14);
+    border-radius: 14px;
+    background: linear-gradient(135deg, #28aee5, #1588c4);
+    color: #fff;
+    font: inherit;
+    font-size: 11.5px;
+    font-weight: 900;
+    cursor: pointer;
+    box-shadow: 0 10px 24px rgba(8, 83, 125, .22);
+    transition: transform .2s ease, box-shadow .2s ease;
+}
+
+.osteo-pain-cta-v258 > button:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 14px 28px rgba(8, 83, 125, .30);
+}
+
+@keyframes osteoPanelEnterV258 {
+    from { opacity: 0; transform: translateY(12px); }
+    to { opacity: 1; transform: translateY(0); }
+}
+
+@keyframes osteoTabDotV258 {
+    0%,100% { transform: scale(.92); opacity: .72; }
+    50% { transform: scale(1.12); opacity: 1; }
+}
+
+@media (max-width: 1250px) {
+    .osteopathy-page-v95 .osteo-tabs-v258 {
+        grid-template-columns: repeat(3, minmax(0, 1fr));
+    }
+}
+
+@media (max-width: 760px) {
+    .osteopathy-page-v95 .osteo-tabs-v258 {
+        position: relative;
+        top: auto;
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+        transform: translateY(-10px);
+        gap: 7px !important;
+        border-radius: 18px !important;
+    }
+
+    .osteopathy-page-v95 .osteo-tabs-v258 > button {
+        min-height: 62px !important;
+        grid-template-columns: 30px minmax(0, 1fr);
+        gap: 8px;
+        padding: 8px 9px !important;
+        border-radius: 14px !important;
+    }
+
+    .osteo-tab-icon-v258 {
+        width: 30px;
+        height: 30px;
+        border-radius: 10px;
+        font-size: 13px;
+    }
+
+    .osteo-tab-copy-v258 strong {
+        font-size: 10.5px;
+    }
+
+    .osteo-tab-copy-v258 small {
+        font-size: 8.5px;
+    }
+
+    .osteo-tab-status-v258 {
+        width: calc(100% - 12px);
+        margin-top: -5px;
+        margin-bottom: 10px;
+    }
+
+    .osteo-pain-grid-v258 {
+        grid-template-columns: 1fr;
+    }
+
+    .osteo-pain-cta-v258 {
+        align-items: stretch;
+        flex-direction: column;
+    }
+
+    .osteo-pain-cta-v258 > button {
+        width: 100%;
+        justify-content: space-between;
+    }
+}
+
+@media (prefers-reduced-motion: reduce) {
+    .osteo-tab-status-dot-v258,
+    .osteopathy-page-v95 .osteo-tab-panel-v258.is-active-v258 {
+        animation: none !important;
+    }
+}
+
+
+/* =========================================================
+   V259 - OSTEOPATİ ÖZEL ALT GÖRÜNÜM
+   Hero'nun altında içerik gösterilmez. Hero butonları bağımsız
+   Osteopati içerik ekranını açar; geri butonu hero'ya döndürür.
+   ========================================================= */
+
+/* Normal Osteopati açılışında yalnızca imza hero görünür. */
+.osteopathy-page-v95 .osteo-special-view-v259[hidden] {
+    display: none !important;
+}
+
+/* Özel görünüm açıldığında hero tamamen yerini içerik ekranına bırakır. */
+.osteopathy-page-v95.is-special-view-open-v259 .osteopathy-page-hero-v95 {
+    display: none !important;
+}
+
+body.treatment-detail-open-v71 .osteopathy-page-v95 .osteo-special-view-v259 {
+    position: relative;
+    min-height: calc(100vh - 96px);
+    padding: 24px 28px 88px !important;
+    overflow: hidden;
+    background:
+        radial-gradient(circle at 8% 4%, rgba(43, 174, 225, .10), transparent 24%),
+        radial-gradient(circle at 94% 0%, rgba(22, 111, 161, .08), transparent 22%),
+        linear-gradient(180deg, #f4faff 0%, #ffffff 28%, #f7fbfd 100%) !important;
+    animation: osteoSpecialViewEnterV259 .48s cubic-bezier(.2,.75,.2,1) both;
+}
+
+.osteo-special-head-v259 {
+    position: relative;
+    width: min(1460px, calc(100% - 10px));
+    min-height: 150px;
+    margin: 0 auto 18px;
+    padding: 26px 30px;
+    display: grid;
+    grid-template-columns: auto minmax(0, 1fr) auto;
+    align-items: center;
+    gap: 26px;
+    overflow: hidden;
+    border: 1px solid rgba(115, 196, 232, .22);
+    border-radius: 28px;
+    background:
+        radial-gradient(circle at 88% 10%, rgba(70, 205, 245, .16), transparent 26%),
+        linear-gradient(135deg, #082d43 0%, #0a4869 56%, #0d668c 100%);
+    box-shadow: 0 24px 55px rgba(8, 52, 78, .18), inset 0 1px 0 rgba(255,255,255,.08);
+}
+
+.osteo-special-head-v259::after {
+    content: "";
+    position: absolute;
+    width: 300px;
+    height: 300px;
+    right: -110px;
+    top: -170px;
+    border-radius: 50%;
+    border: 1px solid rgba(124, 225, 255, .10);
+    box-shadow: 0 0 0 46px rgba(84, 204, 242, .035), 0 0 0 94px rgba(84, 204, 242, .022);
+    pointer-events: none;
+}
+
+.osteo-special-back-v259 {
+    position: relative;
+    z-index: 2;
+    min-height: 48px;
+    padding: 0 16px 0 10px;
+    display: inline-flex;
+    align-items: center;
+    gap: 9px;
+    border: 1px solid rgba(151, 226, 250, .17);
+    border-radius: 15px;
+    background: rgba(255,255,255,.075);
+    color: #eaf9ff;
+    font: inherit;
+    font-size: 12px;
+    font-weight: 900;
+    cursor: pointer;
+    backdrop-filter: blur(12px);
+    transition: transform .2s ease, background .2s ease, border-color .2s ease;
+}
+
+.osteo-special-back-v259 > span:first-child {
+    width: 30px;
+    height: 30px;
+    display: grid;
+    place-items: center;
+    border-radius: 10px;
+    background: rgba(83, 206, 246, .14);
+    color: #8ce5ff;
+    font-size: 17px;
+}
+
+.osteo-special-back-v259:hover {
+    transform: translateX(-2px);
+    background: rgba(255,255,255,.11);
+    border-color: rgba(151, 226, 250, .30);
+}
+
+.osteo-special-title-v259 {
+    position: relative;
+    z-index: 2;
+    min-width: 0;
+}
+
+.osteo-special-kicker-v259 {
+    display: block;
+    margin-bottom: 7px;
+    color: #79dcfb;
+    font-size: 10px;
+    font-weight: 950;
+    letter-spacing: .19em;
+}
+
+.osteo-special-title-v259 h2 {
+    margin: 0;
+    color: #fff;
+    font-size: clamp(29px, 2.55vw, 44px);
+    line-height: 1.03;
+    letter-spacing: -.035em;
+}
+
+.osteo-special-title-v259 p {
+    max-width: 760px;
+    margin: 8px 0 0;
+    color: rgba(215, 240, 249, .68);
+    font-size: 12.5px;
+    line-height: 1.55;
+}
+
+.osteo-special-index-v259 {
+    position: relative;
+    z-index: 2;
+    min-width: 86px;
+    min-height: 86px;
+    display: flex;
+    align-items: baseline;
+    justify-content: center;
+    gap: 4px;
+    border: 1px solid rgba(130, 221, 249, .14);
+    border-radius: 24px;
+    background: rgba(4, 32, 48, .22);
+    box-shadow: inset 0 1px 0 rgba(255,255,255,.05);
+}
+
+.osteo-special-index-v259 span {
+    color: #92e6ff;
+    font-size: 28px;
+    font-weight: 950;
+}
+
+.osteo-special-index-v259 small {
+    color: rgba(221, 245, 252, .42);
+    font-size: 10px;
+    font-weight: 900;
+}
+
+/* Özel görünümde sekme menüsü artık hero'nun altındaki cam şerit değil,
+   yeni ekranın kendi navigasyonudur. */
+.osteopathy-page-v95.is-special-view-open-v259 .osteo-tabs-v258 {
+    position: sticky !important;
+    top: 92px !important;
+    z-index: 145 !important;
+    width: min(1460px, calc(100% - 10px)) !important;
+    margin: 0 auto 18px !important;
+    transform: none !important;
+    border-radius: 22px !important;
+    background: rgba(250, 253, 255, .94) !important;
+    box-shadow: 0 16px 38px rgba(17, 61, 93, .10), inset 0 1px 0 #fff !important;
+}
+
+.osteopathy-page-v95.is-special-view-open-v259 .osteo-tab-status-v258 {
+    width: min(1430px, calc(100% - 28px));
+    margin: -4px auto 16px;
+}
+
+.osteopathy-page-v95.is-special-view-open-v259 .osteo-workspace-v105 {
+    width: min(1460px, calc(100% - 10px));
+    margin: 0 auto;
+}
+
+.osteopathy-page-v95.is-special-view-open-v259 .osteo-main-v105 {
+    width: 100%;
+}
+
+.osteopathy-page-v95.is-special-view-open-v259 .osteo-section-v105 {
+    margin-top: 0 !important;
+    border: 1px solid rgba(186, 218, 234, .70);
+    box-shadow: 0 18px 46px rgba(15, 68, 98, .07);
+}
+
+@keyframes osteoSpecialViewEnterV259 {
+    from { opacity: 0; transform: translateY(14px); }
+    to { opacity: 1; transform: translateY(0); }
+}
+
+@media (max-width: 900px) {
+    body.treatment-detail-open-v71 .osteopathy-page-v95 .osteo-special-view-v259 {
+        padding: 14px 12px 62px !important;
+    }
+
+    .osteo-special-head-v259 {
+        width: 100%;
+        min-height: 0;
+        padding: 18px;
+        grid-template-columns: 1fr auto;
+        gap: 14px;
+        border-radius: 22px;
+    }
+
+    .osteo-special-back-v259 {
+        grid-column: 1 / -1;
+        width: max-content;
+    }
+
+    .osteo-special-index-v259 {
+        min-width: 70px;
+        min-height: 70px;
+        border-radius: 19px;
+    }
+
+    .osteo-special-index-v259 span {
+        font-size: 23px;
+    }
+
+    .osteopathy-page-v95.is-special-view-open-v259 .osteo-tabs-v258,
+    .osteopathy-page-v95.is-special-view-open-v259 .osteo-workspace-v105 {
+        width: 100% !important;
+    }
+}
+
+@media (max-width: 560px) {
+    .osteo-special-head-v259 {
+        grid-template-columns: 1fr;
+    }
+
+    .osteo-special-index-v259 {
+        display: none;
+    }
+
+    .osteo-special-title-v259 h2 {
+        font-size: 31px;
+    }
+
+    .osteopathy-page-v95.is-special-view-open-v259 .osteo-tabs-v258 {
+        top: 72px !important;
+    }
+}
+
+@media (prefers-reduced-motion: reduce) {
+    body.treatment-detail-open-v71 .osteopathy-page-v95 .osteo-special-view-v259 {
+        animation: none !important;
+    }
+}
+
+
+/* =========================================================
+   V260 - OSTEOPATİ DETAYLARI ARTIK GERÇEKTEN BAĞIMSIZ SAYFA
+   Hero'nun altında akmaz. Açıldığında viewport'u kaplayan,
+   kendi scroll'u ve navigasyonu olan özel içerik ekranıdır.
+   ========================================================= */
+#osteoSpecialViewV259[hidden] {
+    display: none !important;
+}
+
+body.osteo-standalone-open-v260 {
+    overflow: hidden !important;
+}
+
+body.osteo-standalone-open-v260 .osteopathy-page-v95 {
+    pointer-events: none !important;
+}
+
+body.treatment-detail-open-v71.osteo-standalone-open-v260 #osteoSpecialViewV259 {
+    position: fixed !important;
+    inset: 0 !important;
+    z-index: 18000 !important;
+    display: block !important;
+    width: 100vw !important;
+    height: 100dvh !important;
+    min-height: 100dvh !important;
+    margin: 0 !important;
+    padding: 112px 28px 56px !important;
+    overflow-x: hidden !important;
+    overflow-y: auto !important;
+    overscroll-behavior: contain;
+    background:
+        radial-gradient(circle at 8% 2%, rgba(57, 181, 231, .10), transparent 24%),
+        radial-gradient(circle at 94% 14%, rgba(39, 133, 191, .08), transparent 23%),
+        linear-gradient(180deg, #f5fbff 0%, #ffffff 44%, #f7fbfd 100%) !important;
+    animation: osteoStandaloneEnterV260 .34s cubic-bezier(.2,.75,.2,1) both !important;
+}
+
+body.treatment-detail-open-v71.osteo-standalone-open-v260 #osteoSpecialViewV259::before {
+    content: "";
+    position: fixed;
+    inset: 0;
+    pointer-events: none;
+    background-image:
+        linear-gradient(rgba(18, 89, 129, .025) 1px, transparent 1px),
+        linear-gradient(90deg, rgba(18, 89, 129, .025) 1px, transparent 1px);
+    background-size: 38px 38px;
+    mask-image: linear-gradient(to bottom, rgba(0,0,0,.25), transparent 72%);
+}
+
+#osteoSpecialViewV259 > * {
+    position: relative;
+    z-index: 1;
+}
+
+#osteoSpecialViewV259 .osteo-special-head-v259 {
+    width: min(1460px, calc(100% - 12px)) !important;
+    margin: 0 auto 14px !important;
+}
+
+#osteoSpecialViewV259 .osteo-tabs-v258 {
+    position: sticky !important;
+    top: 96px !important;
+    z-index: 18120 !important;
+    width: min(1460px, calc(100% - 12px)) !important;
+    margin: 0 auto 18px !important;
+    transform: none !important;
+    border-radius: 22px !important;
+    background: rgba(250, 253, 255, .95) !important;
+    box-shadow: 0 16px 38px rgba(17, 61, 93, .10), inset 0 1px 0 #fff !important;
+    backdrop-filter: blur(20px) saturate(140%) !important;
+    -webkit-backdrop-filter: blur(20px) saturate(140%) !important;
+}
+
+#osteoSpecialViewV259 .osteo-tab-status-v258 {
+    width: min(1430px, calc(100% - 28px)) !important;
+    margin: -4px auto 16px !important;
+}
+
+#osteoSpecialViewV259 .osteo-workspace-v105 {
+    width: min(1460px, calc(100% - 12px)) !important;
+    margin: 0 auto !important;
+}
+
+#osteoSpecialViewV259 .osteo-main-v105 {
+    width: 100% !important;
+}
+
+#osteoSpecialViewV259 .osteo-section-v105 {
+    margin-top: 0 !important;
+    border: 1px solid rgba(186, 218, 234, .70) !important;
+    box-shadow: 0 18px 46px rgba(15, 68, 98, .07) !important;
+}
+
+@keyframes osteoStandaloneEnterV260 {
+    from { opacity: 0; transform: translateY(8px) scale(.995); }
+    to { opacity: 1; transform: translateY(0) scale(1); }
+}
+
+@media (max-width: 900px) {
+    body.treatment-detail-open-v71.osteo-standalone-open-v260 #osteoSpecialViewV259 {
+        padding: 82px 12px 42px !important;
+    }
+
+    #osteoSpecialViewV259 .osteo-special-head-v259,
+    #osteoSpecialViewV259 .osteo-tabs-v258,
+    #osteoSpecialViewV259 .osteo-workspace-v105 {
+        width: 100% !important;
+    }
+
+    #osteoSpecialViewV259 .osteo-tabs-v258 {
+        top: 72px !important;
+    }
+}
+
+@media (max-width: 560px) {
+    body.treatment-detail-open-v71.osteo-standalone-open-v260 #osteoSpecialViewV259 {
+        padding: 78px 8px 34px !important;
+    }
+}
+
+@media (prefers-reduced-motion: reduce) {
+    body.treatment-detail-open-v71.osteo-standalone-open-v260 #osteoSpecialViewV259 {
+        animation: none !important;
+    }
+}
+
+
+/* =========================================================
+   V261 - OSTEOPATİ HERO HIZLI GEÇİŞ KARTLARI
+   Ana vitrindeki boş alan, bağımsız özel sayfadaki 6 içerik
+   başlığıyla dolduruldu. Her kart doğrudan ilgili sekmeyi açar.
+   ========================================================= */
+.osteo-hero-launch-grid-v261 {
+    margin-top: 28px;
+    display: grid;
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+    gap: 10px;
+    max-width: 760px;
+}
+
+.osteo-hero-launch-card-v261 {
+    position: relative;
+    min-width: 0;
+    min-height: 74px;
+    padding: 10px 11px;
+    display: grid;
+    grid-template-columns: 38px minmax(0,1fr) 26px;
+    align-items: center;
+    gap: 9px;
+    border: 1px solid rgba(156, 220, 247, .16);
+    border-radius: 17px;
+    background: linear-gradient(145deg, rgba(255,255,255,.075), rgba(255,255,255,.035));
+    color: #eefaff;
+    text-align: left;
+    cursor: pointer;
+    overflow: hidden;
+    box-shadow: inset 0 1px 0 rgba(255,255,255,.06), 0 10px 22px rgba(0,0,0,.08);
+    backdrop-filter: blur(12px);
+    -webkit-backdrop-filter: blur(12px);
+    transition: transform .22s ease, border-color .22s ease, background .22s ease, box-shadow .22s ease;
+}
+
+.osteo-hero-launch-card-v261::before {
+    content: "";
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(110deg, transparent 20%, rgba(104,215,255,.10) 48%, transparent 76%);
+    transform: translateX(-130%);
+    transition: transform .55s ease;
+    pointer-events: none;
+}
+
+.osteo-hero-launch-card-v261:hover,
+.osteo-hero-launch-card-v261:focus-visible {
+    transform: translateY(-3px);
+    outline: none;
+    border-color: rgba(104,215,255,.42);
+    background: linear-gradient(145deg, rgba(25,138,192,.26), rgba(255,255,255,.055));
+    box-shadow: 0 16px 30px rgba(3,24,36,.18), 0 0 0 3px rgba(77,198,241,.055), inset 0 1px 0 rgba(255,255,255,.10);
+}
+
+.osteo-hero-launch-card-v261:hover::before,
+.osteo-hero-launch-card-v261:focus-visible::before {
+    transform: translateX(130%);
+}
+
+.osteo-hero-launch-card-v261.is-featured-v261 {
+    border-color: rgba(87,210,255,.33);
+    background: linear-gradient(135deg, rgba(31,155,210,.36), rgba(19,102,151,.20));
+    box-shadow: 0 14px 28px rgba(10,83,124,.18), inset 0 1px 0 rgba(255,255,255,.12);
+}
+
+.osteo-hero-launch-icon-v261 {
+    width: 38px;
+    height: 38px;
+    display: grid;
+    place-items: center;
+    border-radius: 12px;
+    border: 1px solid rgba(118,217,255,.18);
+    background: rgba(64,185,231,.12);
+    color: #7ee2ff;
+    font-size: 15px;
+    font-weight: 950;
+    transition: transform .22s ease, background .22s ease, color .22s ease;
+}
+
+.osteo-hero-launch-copy-v261 {
+    min-width: 0;
+    display: block;
+}
+
+.osteo-hero-launch-copy-v261 strong,
+.osteo-hero-launch-copy-v261 small {
+    display: block;
+}
+
+.osteo-hero-launch-copy-v261 strong {
+    color: #f3fbff;
+    font-size: 12.5px;
+    line-height: 1.15;
+    font-weight: 900;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+
+.osteo-hero-launch-copy-v261 small {
+    margin-top: 4px;
+    color: rgba(193,224,237,.56);
+    font-size: 9.5px;
+    line-height: 1.1;
+    font-weight: 700;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+
+.osteo-hero-launch-arrow-v261 {
+    width: 26px;
+    height: 26px;
+    display: grid;
+    place-items: center;
+    border-radius: 9px;
+    background: rgba(255,255,255,.06);
+    color: #79ddff;
+    font-size: 13px;
+    font-weight: 900;
+    transition: transform .22s ease, background .22s ease;
+}
+
+.osteo-hero-launch-card-v261:hover .osteo-hero-launch-icon-v261,
+.osteo-hero-launch-card-v261:focus-visible .osteo-hero-launch-icon-v261 {
+    transform: scale(1.06);
+    background: rgba(83,204,247,.20);
+    color: #b7efff;
+}
+
+.osteo-hero-launch-card-v261:hover .osteo-hero-launch-arrow-v261,
+.osteo-hero-launch-card-v261:focus-visible .osteo-hero-launch-arrow-v261 {
+    transform: translate(2px,-2px);
+    background: rgba(255,255,255,.10);
+}
+
+@media (max-width: 1180px) {
+    .osteo-hero-launch-grid-v261 {
+        grid-template-columns: repeat(2, minmax(0,1fr));
+        max-width: none;
+    }
+}
+
+@media (max-width: 760px) {
+    .osteo-hero-launch-grid-v261 {
+        margin-top: 22px;
+        grid-template-columns: 1fr;
+        gap: 8px;
+    }
+
+    .osteo-hero-launch-card-v261 {
+        min-height: 62px;
+        grid-template-columns: 34px minmax(0,1fr) 26px;
+        padding: 9px 10px;
+        border-radius: 15px;
+    }
+
+    .osteo-hero-launch-icon-v261 {
+        width: 34px;
+        height: 34px;
+        border-radius: 10px;
+    }
+
+    .osteo-hero-launch-copy-v261 strong {
+        font-size: 12px;
+    }
+}
+
+@media (prefers-reduced-motion: reduce) {
+    .osteo-hero-launch-card-v261,
+    .osteo-hero-launch-card-v261::before,
+    .osteo-hero-launch-icon-v261,
+    .osteo-hero-launch-arrow-v261 {
+        transition: none !important;
+    }
+}
+
+
+/* =========================================================
+   V262 - OSTEOPATİ HERO ALT ŞERİDİ KALDIRILDI
+   ve bağımsız özel sayfa başlığı kompaktlaştırıldı
+   ========================================================= */
+
+/* Eski 01-02-03 Değerlendirme / Manuel Yaklaşım / Hareket Planı şeridi
+   HTML'den kaldırıldı; eski cache durumuna karşı CSS ile de gizlenir. */
+.osteo-signature-steps-v257 {
+    display: none !important;
+}
+
+/* Özel içerik ekranı üst başlığını daha kompakt yap */
+#osteoSpecialViewV259 .osteo-special-head-v259,
+.osteo-special-head-v259 {
+    min-height: 112px !important;
+    padding: 17px 22px !important;
+    gap: 20px !important;
+    margin-bottom: 10px !important;
+    border-radius: 24px !important;
+}
+
+#osteoSpecialViewV259 .osteo-special-back-v259,
+.osteo-special-back-v259 {
+    min-height: 42px !important;
+    padding: 0 14px 0 8px !important;
+    border-radius: 13px !important;
+    font-size: 11.5px !important;
+}
+
+#osteoSpecialViewV259 .osteo-special-back-v259 > span:first-child,
+.osteo-special-back-v259 > span:first-child {
+    width: 27px !important;
+    height: 27px !important;
+    border-radius: 9px !important;
+    font-size: 15px !important;
+}
+
+#osteoSpecialViewV259 .osteo-special-kicker-v259,
+.osteo-special-kicker-v259 {
+    margin-bottom: 5px !important;
+    font-size: 9.5px !important;
+    letter-spacing: .17em !important;
+}
+
+#osteoSpecialViewV259 .osteo-special-title-v259 h2,
+.osteo-special-title-v259 h2 {
+    font-size: clamp(27px, 2.15vw, 37px) !important;
+    line-height: 1 !important;
+}
+
+#osteoSpecialViewV259 .osteo-special-title-v259 p,
+.osteo-special-title-v259 p {
+    margin-top: 6px !important;
+    font-size: 11.5px !important;
+    line-height: 1.42 !important;
+}
+
+#osteoSpecialViewV259 .osteo-special-index-v259,
+.osteo-special-index-v259 {
+    min-width: 72px !important;
+    min-height: 72px !important;
+    border-radius: 20px !important;
+}
+
+#osteoSpecialViewV259 .osteo-special-index-v259 span,
+.osteo-special-index-v259 span {
+    font-size: 25px !important;
+}
+
+#osteoSpecialViewV259 .osteo-special-index-v259 small,
+.osteo-special-index-v259 small {
+    font-size: 9px !important;
+}
+
+/* Başlık küçüldüğü için sekmeleri biraz daha yukarı toparla */
+body.treatment-detail-open-v71.osteo-standalone-open-v260 #osteoSpecialViewV259 {
+    padding-top: 100px !important;
+}
+
+#osteoSpecialViewV259 .osteo-tabs-v258 {
+    margin-bottom: 14px !important;
+}
+
+@media (max-width: 900px) {
+    #osteoSpecialViewV259 .osteo-special-head-v259,
+    .osteo-special-head-v259 {
+        min-height: 0 !important;
+        padding: 14px 16px !important;
+        gap: 11px !important;
+        border-radius: 20px !important;
+    }
+
+    #osteoSpecialViewV259 .osteo-special-index-v259,
+    .osteo-special-index-v259 {
+        min-width: 62px !important;
+        min-height: 62px !important;
+        border-radius: 17px !important;
+    }
+
+    #osteoSpecialViewV259 .osteo-special-index-v259 span,
+    .osteo-special-index-v259 span {
+        font-size: 21px !important;
+    }
+
+    body.treatment-detail-open-v71.osteo-standalone-open-v260 #osteoSpecialViewV259 {
+        padding-top: 78px !important;
+    }
+}
+
+@media (max-width: 560px) {
+    #osteoSpecialViewV259 .osteo-special-title-v259 h2,
+    .osteo-special-title-v259 h2 {
+        font-size: 28px !important;
+    }
+}
+
+
+/* =========================================================
+   V263 - OSTEOPATİ ÖZEL SAYFA SEKME MENÜSÜ ARTIK STICKY DEĞİL
+   Scroll yapılınca kullanıcıyı takip etmez; bulunduğu yerde kalır.
+   ========================================================= */
+
+#osteoSpecialViewV259 .osteo-tabs-v258,
+.osteopathy-page-v95.is-special-view-open-v259 .osteo-tabs-v258 {
+    position: relative !important;
+    top: auto !important;
+    left: auto !important;
+    right: auto !important;
+    bottom: auto !important;
+    z-index: 2 !important;
+    transform: none !important;
+}
+
+/* Mobilde eski sticky top değerlerini de kesin olarak iptal et */
+@media (max-width: 900px) {
+    #osteoSpecialViewV259 .osteo-tabs-v258,
+    .osteopathy-page-v95.is-special-view-open-v259 .osteo-tabs-v258 {
+        position: relative !important;
+        top: auto !important;
+    }
+}
+
+@media (max-width: 560px) {
+    #osteoSpecialViewV259 .osteo-tabs-v258,
+    .osteopathy-page-v95.is-special-view-open-v259 .osteo-tabs-v258 {
+        position: relative !important;
+        top: auto !important;
+    }
+}
+
+
+/* =========================================================
+   V264 - OSTEOPATİ ÖZEL İÇERİKTE SAĞ BOŞLUKLAR DOLDURULDU
+   Özel görünüm tek kolon tam genişlikte çalışır ve her sekmede
+   aynı içerik tipleriyle daha fazla kart gösterilir.
+   ========================================================= */
+#osteoSpecialViewV259 .osteo-workspace-v105 {
+    grid-template-columns: minmax(0, 1fr) !important;
+    width: min(1760px, calc(100% - 12px)) !important;
+    gap: 0 !important;
+}
+
+#osteoSpecialViewV259 .osteo-main-v105 {
+    width: 100% !important;
+    max-width: none !important;
+}
+
+#osteoSpecialViewV259 .osteo-section-v105 {
+    width: 100% !important;
+}
+
+#osteoSpecialViewV259 .osteo-video-grid-v105,
+#osteoSpecialViewV259 .osteo-pain-grid-v258,
+#osteoSpecialViewV259 .osteo-sports-grid-v105,
+#osteoSpecialViewV259 .osteo-article-grid-v105 {
+    width: 100% !important;
+}
+
+#osteoSpecialViewV259 .osteo-article-grid-v264 {
+    grid-template-columns: repeat(3, minmax(0, 1fr)) !important;
+}
+
+#osteoSpecialViewV259 .osteo-video-grid-v105 {
+    grid-template-columns: repeat(4, minmax(0, 1fr)) !important;
+}
+
+#osteoSpecialViewV259 .osteo-sports-grid-v264,
+#osteoSpecialViewV259 .osteo-pain-grid-v264 {
+    grid-template-columns: repeat(3, minmax(0, 1fr)) !important;
+}
+
+#osteoSpecialViewV259 .osteo-faq-v105 {
+    display: grid !important;
+    grid-template-columns: repeat(2, minmax(0, 1fr)) !important;
+    gap: 16px !important;
+}
+
+.osteo-manual-grid-v264 {
+    margin-top: 18px;
+    display: grid;
+    grid-template-columns: repeat(4, minmax(0, 1fr));
+    gap: 14px;
+}
+
+.osteo-manual-card-v264 {
+    min-width: 0;
+    padding: 20px 18px;
+    border: 1px solid rgba(177, 212, 229, .9);
+    border-radius: 22px;
+    background: linear-gradient(180deg, rgba(249,253,255,.96), rgba(240,248,252,.96));
+    box-shadow: 0 12px 28px rgba(16, 70, 102, .06);
+}
+
+.osteo-manual-card-v264 span {
+    display: inline-grid;
+    place-items: center;
+    width: 42px;
+    height: 42px;
+    margin-bottom: 12px;
+    border-radius: 14px;
+    background: linear-gradient(135deg, #1e9add, #0f7fc4);
+    color: #fff;
+    font-size: 15px;
+    font-weight: 900;
+}
+
+.osteo-manual-card-v264 h3 {
+    margin: 0 0 8px;
+    color: #143e5d;
+    font-size: 24px;
+    line-height: 1.08;
+}
+
+.osteo-manual-card-v264 p {
+    margin: 0;
+    color: #648195;
+    font-size: 14px;
+    line-height: 1.65;
+}
+
+.osteo-video-cover-fourth-v264 {
+    background: linear-gradient(135deg, #d1e9f8 0%, #b8ece3 100%) !important;
+}
+
+@media (max-width: 1500px) {
+    #osteoSpecialViewV259 .osteo-video-grid-v105 {
+        grid-template-columns: repeat(2, minmax(0, 1fr)) !important;
+    }
+    .osteo-manual-grid-v264 {
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+    }
+}
+
+@media (max-width: 1100px) {
+    #osteoSpecialViewV259 .osteo-article-grid-v264,
+    #osteoSpecialViewV259 .osteo-sports-grid-v264,
+    #osteoSpecialViewV259 .osteo-pain-grid-v264,
+    #osteoSpecialViewV259 .osteo-faq-v105 {
+        grid-template-columns: repeat(2, minmax(0, 1fr)) !important;
+    }
+}
+
+@media (max-width: 760px) {
+    #osteoSpecialViewV259 .osteo-video-grid-v105,
+    #osteoSpecialViewV259 .osteo-article-grid-v264,
+    #osteoSpecialViewV259 .osteo-sports-grid-v264,
+    #osteoSpecialViewV259 .osteo-pain-grid-v264,
+    #osteoSpecialViewV259 .osteo-faq-v105,
+    .osteo-manual-grid-v264 {
+        grid-template-columns: 1fr !important;
+    }
+}
+
+
+/* =========================================================
+   V265 - OSTEOPATİ AĞRI REHBERİ 6 KARTIN TAMAMI TIKLANABİLİR
+   ========================================================= */
+#osteoSpecialViewV259 .osteo-pain-links-v265 .osteo-pain-link-v265 {
+    appearance: none;
+    width: 100%;
+    min-width: 0;
+    min-height: 128px;
+    position: relative;
+    display: grid;
+    grid-template-columns: 54px minmax(0, 1fr) 38px;
+    align-items: center;
+    gap: 16px;
+    padding: 24px 22px;
+    border: 1px solid rgba(167, 211, 235, .78);
+    border-radius: 24px;
+    background: linear-gradient(180deg, rgba(255,255,255,.98), rgba(247,252,255,.96));
+    color: #123f5d;
+    text-align: left;
+    font: inherit;
+    cursor: pointer;
+    box-shadow: 0 10px 28px rgba(17, 72, 104, .045);
+    transition: transform .22s ease, border-color .22s ease, box-shadow .22s ease, background .22s ease;
+}
+
+#osteoSpecialViewV259 .osteo-pain-links-v265 .osteo-pain-link-v265:hover,
+#osteoSpecialViewV259 .osteo-pain-links-v265 .osteo-pain-link-v265:focus-visible {
+    transform: translateY(-4px);
+    outline: none;
+    border-color: rgba(32, 157, 218, .50);
+    background: linear-gradient(135deg, #ffffff 0%, #eef9ff 100%);
+    box-shadow: 0 18px 38px rgba(16, 103, 153, .13);
+}
+
+#osteoSpecialViewV259 .osteo-pain-links-v265 .osteo-pain-link-v265 > span {
+    display: grid;
+    place-items: center;
+    width: 54px;
+    height: 54px;
+    border-radius: 17px;
+    background: #e7f6fd;
+    color: #0787ca;
+    font-size: 14px;
+    font-weight: 900;
+    transition: background .22s ease, color .22s ease, transform .22s ease;
+}
+
+#osteoSpecialViewV259 .osteo-pain-links-v265 .osteo-pain-link-v265 strong,
+#osteoSpecialViewV259 .osteo-pain-links-v265 .osteo-pain-link-v265 small {
+    display: block;
+}
+
+#osteoSpecialViewV259 .osteo-pain-links-v265 .osteo-pain-link-v265 strong {
+    margin-bottom: 6px;
+    color: #123f5d;
+    font-size: 19px;
+    line-height: 1.15;
+}
+
+#osteoSpecialViewV259 .osteo-pain-links-v265 .osteo-pain-link-v265 small {
+    color: #668398;
+    font-size: 13px;
+    line-height: 1.42;
+}
+
+#osteoSpecialViewV259 .osteo-pain-links-v265 .osteo-pain-link-v265 > i {
+    display: grid;
+    place-items: center;
+    width: 36px;
+    height: 36px;
+    border: 1px solid rgba(15, 139, 202, .15);
+    border-radius: 12px;
+    background: rgba(229, 247, 255, .78);
+    color: #0787ca;
+    font-style: normal;
+    font-size: 18px;
+    transition: transform .22s ease, background .22s ease, color .22s ease;
+}
+
+#osteoSpecialViewV259 .osteo-pain-links-v265 .osteo-pain-link-v265:hover > span,
+#osteoSpecialViewV259 .osteo-pain-links-v265 .osteo-pain-link-v265:focus-visible > span {
+    background: linear-gradient(135deg, #20a4e2, #0b7dbd);
+    color: #fff;
+    transform: scale(1.04);
+}
+
+#osteoSpecialViewV259 .osteo-pain-links-v265 .osteo-pain-link-v265:hover > i,
+#osteoSpecialViewV259 .osteo-pain-links-v265 .osteo-pain-link-v265:focus-visible > i {
+    transform: translate(3px, -3px);
+    background: #138fcf;
+    color: #fff;
+}
+
+@media (max-width: 760px) {
+    #osteoSpecialViewV259 .osteo-pain-links-v265 .osteo-pain-link-v265 {
+        min-height: 104px;
+        grid-template-columns: 46px minmax(0, 1fr) 34px;
+        gap: 12px;
+        padding: 18px 16px;
+        border-radius: 20px;
+    }
+    #osteoSpecialViewV259 .osteo-pain-links-v265 .osteo-pain-link-v265 > span {
+        width: 46px;
+        height: 46px;
+        border-radius: 14px;
+    }
+    #osteoSpecialViewV259 .osteo-pain-links-v265 .osteo-pain-link-v265 strong { font-size: 17px; }
+    #osteoSpecialViewV259 .osteo-pain-links-v265 .osteo-pain-link-v265 small { font-size: 12px; }
+}
+
+
+/* =========================================================
+   V266 - OSTEOPATİ BİLİMSEL YAYIN KARTLARINA GERÇEK KAYNAKLAR
+   ========================================================= */
+#osteoSpecialViewV259 .osteo-article-grid-v105 article {
+    display: flex !important;
+    flex-direction: column !important;
+}
+
+#osteoSpecialViewV259 .osteo-article-grid-v105 article > p {
+    margin-bottom: 14px !important;
+}
+
+.osteo-source-meta-v266 {
+    margin-top: auto;
+    margin-bottom: 10px;
+    padding-top: 12px;
+    border-top: 1px solid rgba(143, 190, 215, .24);
+    color: #6b8799;
+    font-size: 11px;
+    font-weight: 750;
+    line-height: 1.45;
+}
+
+.osteo-source-link-v266 {
+    display: inline-flex !important;
+    align-items: center;
+    gap: 7px;
+    width: fit-content;
+    text-decoration: none !important;
+    color: #0b83c7 !important;
+    font-weight: 900 !important;
+    transition: transform .2s ease, color .2s ease, opacity .2s ease;
+}
+
+.osteo-source-link-v266:hover,
+.osteo-source-link-v266:focus-visible {
+    color: #076aa2 !important;
+    transform: translateX(3px);
+    outline: none;
+}
+
+.osteo-source-link-v266 span {
+    transition: transform .2s ease;
+}
+
+.osteo-source-link-v266:hover span,
+.osteo-source-link-v266:focus-visible span {
+    transform: translate(2px, -2px);
+}
+
+
+/* =========================================================
+   V267 - OSTEOPATİ EGZERSİZ VİDEOLARINA YOUTUBE BAĞLANTILARI
+   ========================================================= */
+.osteo-youtube-card-v267 {
+    overflow: hidden;
+}
+
+.osteo-video-youtube-link-v267 {
+    display: block;
+    text-decoration: none;
+    color: inherit;
+}
+
+.osteo-video-thumb-v267 {
+    position: relative;
+    overflow: hidden;
+    background: #d8edf8 !important;
+}
+
+.osteo-video-thumb-v267 > img {
+    position: absolute;
+    inset: 0;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    object-position: center;
+    transition: transform .35s ease, filter .35s ease;
+}
+
+.osteo-video-thumb-v267::after {
+    content: "";
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(180deg, rgba(6,37,57,.04), rgba(6,37,57,.18));
+    pointer-events: none;
+}
+
+.osteo-video-thumb-v267 .osteo-video-play-v105,
+.osteo-video-thumb-v267 .osteo-video-badge-v105 {
+    z-index: 2;
+}
+
+.osteo-youtube-card-v267:hover .osteo-video-thumb-v267 > img {
+    transform: scale(1.035);
+    filter: saturate(1.06) contrast(1.02);
+}
+
+.osteo-youtube-card-v267:hover .osteo-video-play-v105 {
+    transform: translate(-50%, -50%) scale(1.08);
+}
+
+.osteo-video-watch-v267 {
+    display: inline-flex;
+    align-items: center;
+    gap: 7px;
+    margin-top: 13px;
+    color: #0b84c8;
+    text-decoration: none;
+    font-size: 13px;
+    font-weight: 900;
+}
+
+.osteo-video-watch-v267 span {
+    transition: transform .2s ease;
+}
+
+.osteo-video-watch-v267:hover span,
+.osteo-video-watch-v267:focus-visible span {
+    transform: translate(2px, -2px);
+}
+
+.osteo-video-coming-v267 {
+    opacity: .78;
+}
+
+.osteo-video-coming-v267 .osteo-video-play-v105 {
+    font-size: 25px;
+}
+
+
+/* =========================================================
+   V268 - OSTEOPATİ EGZERSİZ VİDEOLARI SİTE İÇİNDE OYNATILIR
+   Thumbnail tıklanınca YouTube privacy-enhanced iframe aynı kartta açılır.
+   ========================================================= */
+
+.osteo-inline-video-v268 {
+    cursor: pointer;
+    isolation: isolate;
+}
+
+.osteo-inline-video-v268:focus-visible {
+    outline: 3px solid rgba(22, 135, 201, .30);
+    outline-offset: -3px;
+}
+
+.osteo-inline-hint-v268 {
+    position: absolute;
+    right: 14px;
+    bottom: 13px;
+    z-index: 3;
+    padding: 7px 10px;
+    border-radius: 999px;
+    background: rgba(8, 48, 71, .82);
+    color: #fff;
+    font-size: 10px;
+    font-weight: 850;
+    letter-spacing: .02em;
+    backdrop-filter: blur(8px);
+    -webkit-backdrop-filter: blur(8px);
+}
+
+.osteo-inline-video-v268:hover .osteo-inline-hint-v268 {
+    background: rgba(10, 126, 184, .94);
+}
+
+.osteo-video-inline-button-v268 {
+    appearance: none;
+    border: 0;
+    background: transparent;
+    padding: 0;
+    cursor: pointer;
+    font-family: inherit;
+}
+
+.osteo-video-inline-button-v268:hover,
+.osteo-video-inline-button-v268:focus-visible {
+    outline: none;
+    color: #076aa2 !important;
+}
+
+.osteo-video-inline-button-v268 span {
+    font-size: .9em;
+}
+
+.osteo-inline-player-wrap-v268 {
+    position: absolute;
+    inset: 0;
+    z-index: 8;
+    background: #071f2d;
+}
+
+.osteo-inline-player-wrap-v268 iframe {
+    display: block;
+    width: 100%;
+    height: 100%;
+    border: 0;
+}
+
+.osteo-inline-video-v268.is-playing-v268 {
+    cursor: default;
+    padding: 0 !important;
+}
+
+.osteo-inline-video-v268.is-playing-v268::after,
+.osteo-inline-video-v268.is-playing-v268 > img,
+.osteo-inline-video-v268.is-playing-v268 > .osteo-video-play-v105,
+.osteo-inline-video-v268.is-playing-v268 > .osteo-video-badge-v105,
+.osteo-inline-video-v268.is-playing-v268 > .osteo-inline-hint-v268 {
+    display: none !important;
+}
+
+/* 16:9 görüntüyü daha doğal göster */
+#osteoSpecialViewV259 .osteo-video-thumb-v267 {
+    aspect-ratio: 16 / 9;
+    min-height: 0 !important;
+}
+
+@media (max-width: 760px) {
+    .osteo-inline-hint-v268 {
+        right: 10px;
+        bottom: 10px;
+        padding: 6px 9px;
+        font-size: 9px;
+    }
+}
+
+
+/* =========================================================
+   V269 - YOUTUBE ERROR 153 DÜZELTME / LOCAL PREVIEW BİLGİSİ
+   ========================================================= */
+.osteo-local-preview-note-v269 {
+    position: absolute;
+    inset: 0;
+    z-index: 9;
+    display: grid;
+    place-items: center;
+    padding: 20px;
+    text-align: center;
+    background:
+        radial-gradient(circle at 50% 35%, rgba(39,136,188,.20), transparent 34%),
+        linear-gradient(135deg, #08293b, #061d2b);
+    color: #fff;
+}
+
+.osteo-local-preview-note-v269 > div {
+    max-width: 360px;
+}
+
+.osteo-local-preview-note-v269 strong {
+    display: block;
+    margin-bottom: 8px;
+    font-size: 17px;
+}
+
+.osteo-local-preview-note-v269 p {
+    margin: 0;
+    color: #c9e3f1;
+    font-size: 12px;
+    line-height: 1.55;
+}
+
+.osteo-local-preview-note-v269 small {
+    display: block;
+    margin-top: 9px;
+    color: #76ccef;
+    font-size: 10px;
+}
+
+
+/* =========================================================
+   V271 - OSTEOPATİ VİDEO YOUTUBE YÖNLENDİRME ONAYI
+   İlk tık: özel onay penceresi
+   İkinci tık: YouTube videosunu aç
+   ========================================================= */
+
+/* Inline oynatıcı artık kullanılmıyor; video kapakları tıklanabilir kart olarak kalır. */
+.osteo-inline-video-v268 {
+    cursor: pointer !important;
+}
+
+.osteo-inline-video-v268.is-playing-v268 {
+    cursor: pointer !important;
+}
+
+.osteo-inline-video-v268.is-playing-v268::after,
+.osteo-inline-video-v268.is-playing-v268 > img,
+.osteo-inline-video-v268.is-playing-v268 > .osteo-video-play-v105,
+.osteo-inline-video-v268.is-playing-v268 > .osteo-video-badge-v105,
+.osteo-inline-video-v268.is-playing-v268 > .osteo-inline-hint-v268 {
+    display: initial !important;
+}
+
+.osteo-inline-player-wrap-v268,
+.osteo-local-preview-note-v269 {
+    display: none !important;
+}
+
+.osteo-video-confirm-v271 {
+    position: fixed;
+    inset: 0;
+    z-index: 999999;
+    display: grid;
+    place-items: center;
+    padding: 22px;
+    opacity: 0;
+    visibility: hidden;
+    pointer-events: none;
+    transition: opacity .22s ease, visibility .22s ease;
+}
+
+.osteo-video-confirm-v271.is-open-v271 {
+    opacity: 1;
+    visibility: visible;
+    pointer-events: auto;
+}
+
+.osteo-video-confirm-backdrop-v271 {
+    position: absolute;
+    inset: 0;
+    width: 100%;
+    height: 100%;
+    border: 0;
+    background: rgba(4, 20, 31, .72);
+    backdrop-filter: blur(10px);
+    -webkit-backdrop-filter: blur(10px);
+    cursor: pointer;
+}
+
+.osteo-video-confirm-card-v271 {
+    position: relative;
+    z-index: 2;
+    width: min(520px, calc(100vw - 34px));
+    padding: 34px;
+    overflow: hidden;
+    border: 1px solid rgba(116, 205, 245, .24);
+    border-radius: 28px;
+    background:
+        radial-gradient(circle at 88% 12%, rgba(35, 169, 228, .20), transparent 30%),
+        linear-gradient(145deg, #0b3045 0%, #071f2e 100%);
+    color: #fff;
+    box-shadow: 0 34px 90px rgba(0, 14, 24, .45);
+    transform: translateY(12px) scale(.985);
+    transition: transform .24s ease;
+}
+
+.osteo-video-confirm-v271.is-open-v271 .osteo-video-confirm-card-v271 {
+    transform: translateY(0) scale(1);
+}
+
+.osteo-video-confirm-close-v271 {
+    position: absolute;
+    top: 15px;
+    right: 15px;
+    width: 38px;
+    height: 38px;
+    display: grid;
+    place-items: center;
+    border: 1px solid rgba(255,255,255,.12);
+    border-radius: 12px;
+    background: rgba(255,255,255,.07);
+    color: #d9f3ff;
+    font-size: 23px;
+    line-height: 1;
+    cursor: pointer;
+}
+
+.osteo-video-confirm-close-v271:hover {
+    background: rgba(255,255,255,.13);
+}
+
+.osteo-video-confirm-icon-v271 {
+    width: 58px;
+    height: 58px;
+    margin-bottom: 18px;
+    display: grid;
+    place-items: center;
+    border-radius: 18px;
+    background: linear-gradient(135deg, #39bdec, #1688cb);
+    color: #062b3e;
+    font-size: 22px;
+    box-shadow: 0 14px 32px rgba(26, 159, 218, .25);
+}
+
+.osteo-video-confirm-kicker-v271 {
+    display: block;
+    margin-bottom: 8px;
+    color: #71d9ff;
+    font-size: 10px;
+    font-weight: 900;
+    letter-spacing: .18em;
+}
+
+.osteo-video-confirm-card-v271 h3 {
+    margin: 0;
+    color: #fff;
+    font-size: clamp(25px, 3vw, 34px);
+    line-height: 1.08;
+    letter-spacing: -.035em;
+}
+
+.osteo-video-confirm-card-v271 p {
+    margin: 12px 0 0;
+    color: #b7d3e1;
+    font-size: 14px;
+    line-height: 1.6;
+}
+
+.osteo-video-confirm-actions-v271 {
+    margin-top: 26px;
+    display: grid;
+    grid-template-columns: .8fr 1.2fr;
+    gap: 10px;
+}
+
+.osteo-video-confirm-actions-v271 button {
+    min-height: 52px;
+    padding: 0 17px;
+    border-radius: 15px;
+    font-family: inherit;
+    font-size: 13px;
+    font-weight: 900;
+    cursor: pointer;
+    transition: transform .2s ease, background .2s ease, border-color .2s ease;
+}
+
+.osteo-video-confirm-cancel-v271 {
+    border: 1px solid rgba(255,255,255,.14);
+    background: rgba(255,255,255,.07);
+    color: #e5f6ff;
+}
+
+.osteo-video-confirm-go-v271 {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: 8px;
+    border: 1px solid rgba(80, 205, 255, .28);
+    background: linear-gradient(135deg, #32b9ea, #1489cc);
+    color: #052b3e;
+    box-shadow: 0 14px 30px rgba(20, 137, 204, .24);
+}
+
+.osteo-video-confirm-actions-v271 button:hover,
+.osteo-video-confirm-actions-v271 button:focus-visible {
+    transform: translateY(-2px);
+    outline: none;
+}
+
+body.osteo-video-confirm-open-v271 {
+    overflow: hidden !important;
+}
+
+@media (max-width: 560px) {
+    .osteo-video-confirm-card-v271 {
+        padding: 27px 20px 20px;
+        border-radius: 22px;
+    }
+
+    .osteo-video-confirm-actions-v271 {
+        grid-template-columns: 1fr;
+    }
+
+    .osteo-video-confirm-go-v271 {
+        order: -1;
+    }
+}
+
+
+/* =========================================================
+   V272 - OSTEOPATİ HIZLI KARTLAR -> ÖZEL SAYFA GEÇİŞ ANİMASYONU
+   Kart tıklanınca premium geçiş ekranı ve hedef sekme animasyonu.
+   ========================================================= */
+
+.osteo-hero-launch-card-v261 {
+    overflow: hidden;
+    transform-origin: center;
+}
+
+.osteo-hero-launch-card-v261::before {
+    content: "";
+    position: absolute;
+    inset: -45%;
+    z-index: 0;
+    background:
+        linear-gradient(
+            115deg,
+            transparent 32%,
+            rgba(116, 221, 255, .04) 42%,
+            rgba(116, 221, 255, .22) 50%,
+            rgba(116, 221, 255, .04) 58%,
+            transparent 68%
+        );
+    transform: translateX(-120%) rotate(8deg);
+    transition: transform .55s ease;
+    pointer-events: none;
+}
+
+.osteo-hero-launch-card-v261:hover::before,
+.osteo-hero-launch-card-v261:focus-visible::before {
+    transform: translateX(120%) rotate(8deg);
+}
+
+.osteo-hero-launch-card-v261 > * {
+    position: relative;
+    z-index: 1;
+}
+
+.osteo-hero-launch-card-v261.is-launching-v272 {
+    pointer-events: none;
+    animation: osteoCardLaunchV272 .55s cubic-bezier(.2,.85,.25,1) forwards;
+}
+
+@keyframes osteoCardLaunchV272 {
+    0% {
+        transform: translateY(0) scale(1);
+        box-shadow: 0 10px 24px rgba(4, 37, 57, .08);
+    }
+    42% {
+        transform: translateY(-4px) scale(1.025);
+        box-shadow: 0 18px 38px rgba(22, 156, 214, .23);
+    }
+    100% {
+        transform: translateY(2px) scale(.97);
+        opacity: .70;
+    }
+}
+
+/* Tam ekran geçiş katmanı */
+.osteo-route-transition-v272 {
+    position: fixed;
+    inset: 0;
+    z-index: 999998;
+    display: grid;
+    place-items: center;
+    padding: 24px;
+    opacity: 0;
+    visibility: hidden;
+    pointer-events: none;
+    overflow: hidden;
+    background:
+        radial-gradient(circle at 50% 45%, rgba(34, 169, 226, .18), transparent 28%),
+        linear-gradient(135deg, rgba(5,31,45,.985), rgba(7,53,76,.985));
+    transition: opacity .20s ease, visibility .20s ease;
+}
+
+.osteo-route-transition-v272.is-visible-v272 {
+    opacity: 1;
+    visibility: visible;
+}
+
+.osteo-route-transition-v272::before,
+.osteo-route-transition-v272::after {
+    content: "";
+    position: absolute;
+    border-radius: 50%;
+    border: 1px solid rgba(102, 215, 255, .17);
+}
+
+.osteo-route-transition-v272::before {
+    width: min(62vw, 780px);
+    height: min(62vw, 780px);
+    animation: osteoRouteRingV272 1.1s ease-out infinite;
+}
+
+.osteo-route-transition-v272::after {
+    width: min(42vw, 520px);
+    height: min(42vw, 520px);
+    animation: osteoRouteRingV272 1.1s .18s ease-out infinite;
+}
+
+@keyframes osteoRouteRingV272 {
+    0% { transform: scale(.72); opacity: 0; }
+    28% { opacity: .60; }
+    100% { transform: scale(1.14); opacity: 0; }
+}
+
+.osteo-route-card-v272 {
+    position: relative;
+    z-index: 2;
+    min-width: min(410px, calc(100vw - 42px));
+    padding: 28px 32px;
+    border: 1px solid rgba(103, 211, 251, .20);
+    border-radius: 27px;
+    background:
+        linear-gradient(145deg, rgba(14,59,82,.94), rgba(7,36,52,.94));
+    box-shadow:
+        0 32px 90px rgba(0, 14, 24, .42),
+        inset 0 1px 0 rgba(255,255,255,.07);
+    text-align: center;
+    transform: translateY(16px) scale(.96);
+    opacity: 0;
+}
+
+.osteo-route-transition-v272.is-visible-v272 .osteo-route-card-v272 {
+    animation: osteoRouteCardInV272 .42s .05s cubic-bezier(.2,.8,.2,1) forwards;
+}
+
+@keyframes osteoRouteCardInV272 {
+    to {
+        transform: translateY(0) scale(1);
+        opacity: 1;
+    }
+}
+
+.osteo-route-icon-v272 {
+    width: 58px;
+    height: 58px;
+    margin: 0 auto 15px;
+    display: grid;
+    place-items: center;
+    border-radius: 18px;
+    background: linear-gradient(135deg, #5fd6ff, #1c9edc);
+    color: #08324a;
+    font-size: 25px;
+    font-weight: 900;
+    box-shadow: 0 14px 34px rgba(27, 164, 221, .24);
+}
+
+.osteo-route-kicker-v272 {
+    display: block;
+    margin-bottom: 7px;
+    color: #77dcff;
+    font-size: 10px;
+    font-weight: 900;
+    letter-spacing: .18em;
+}
+
+.osteo-route-title-v272 {
+    margin: 0;
+    color: #fff;
+    font-size: clamp(24px, 3vw, 34px);
+    line-height: 1.05;
+    letter-spacing: -.035em;
+}
+
+.osteo-route-line-v272 {
+    position: relative;
+    width: 122px;
+    height: 3px;
+    margin: 17px auto 0;
+    overflow: hidden;
+    border-radius: 999px;
+    background: rgba(127, 218, 255, .14);
+}
+
+.osteo-route-line-v272::after {
+    content: "";
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(90deg, #61d8ff, #1597d6);
+    transform: translateX(-100%);
+    animation: osteoRouteProgressV272 .68s .08s ease-out forwards;
+}
+
+@keyframes osteoRouteProgressV272 {
+    to { transform: translateX(0); }
+}
+
+/* Hedef özel sayfa açılırken içerik hafif yukarı gelsin */
+#osteoSpecialViewV259.is-entering-v272 .osteo-special-head-v259 {
+    animation: osteoSpecialHeadInV272 .45s cubic-bezier(.2,.8,.2,1) both;
+}
+
+#osteoSpecialViewV259.is-entering-v272 .osteo-tabs-v258 {
+    animation: osteoSpecialTabsInV272 .48s .08s cubic-bezier(.2,.8,.2,1) both;
+}
+
+#osteoSpecialViewV259.is-entering-v272 .osteo-tab-status-v258 {
+    animation: osteoSpecialTabsInV272 .48s .14s cubic-bezier(.2,.8,.2,1) both;
+}
+
+#osteoSpecialViewV259.is-entering-v272 .osteo-section-v105.is-active-v258 {
+    animation: osteoSpecialPanelInV272 .52s .16s cubic-bezier(.2,.8,.2,1) both;
+}
+
+@keyframes osteoSpecialHeadInV272 {
+    from { opacity: 0; transform: translateY(-12px); }
+    to   { opacity: 1; transform: translateY(0); }
+}
+
+@keyframes osteoSpecialTabsInV272 {
+    from { opacity: 0; transform: translateY(13px); }
+    to   { opacity: 1; transform: translateY(0); }
+}
+
+@keyframes osteoSpecialPanelInV272 {
+    from { opacity: 0; transform: translateY(22px) scale(.992); }
+    to   { opacity: 1; transform: translateY(0) scale(1); }
+}
+
+@media (prefers-reduced-motion: reduce) {
+    .osteo-hero-launch-card-v261.is-launching-v272,
+    .osteo-route-transition-v272::before,
+    .osteo-route-transition-v272::after,
+    .osteo-route-transition-v272.is-visible-v272 .osteo-route-card-v272,
+    .osteo-route-line-v272::after,
+    #osteoSpecialViewV259.is-entering-v272 .osteo-special-head-v259,
+    #osteoSpecialViewV259.is-entering-v272 .osteo-tabs-v258,
+    #osteoSpecialViewV259.is-entering-v272 .osteo-tab-status-v258,
+    #osteoSpecialViewV259.is-entering-v272 .osteo-section-v105.is-active-v258 {
+        animation: none !important;
+    }
+}
+
+@media (max-width: 560px) {
+    .osteo-route-card-v272 {
+        min-width: 0;
+        width: min(360px, calc(100vw - 28px));
+        padding: 24px 20px;
+        border-radius: 22px;
+    }
+
+    .osteo-route-transition-v272::before {
+        width: 92vw;
+        height: 92vw;
+    }
+
+    .osteo-route-transition-v272::after {
+        width: 66vw;
+        height: 66vw;
+    }
+}
+
+
+/* =========================================================
+   V273 - TEDAVİ ALANLARI HASTALIK SAYFALARI İNCE AYARLAR
+   - Hastalık sayfasına girince kahraman/hero alanı doğrudan görünür
+   - Hastalıklar arası hızlı geçiş bloğu hero alanının altına taşınır
+   - SSS alanları başlık halinde kapalı başlar
+   ========================================================= */
+.ankilozan-faq-section-v85 .disease-switcher-v250,
+.romatoid-page-v198 .disease-switcher-v250,
+#conditionDiseasePageV246 .disease-switcher-v250 {
+    margin-top: 26px;
+}
+
+@media (max-width: 900px) {
+    .ankilozan-faq-section-v85 .disease-switcher-v250,
+    .romatoid-page-v198 .disease-switcher-v250,
+    #conditionDiseasePageV246 .disease-switcher-v250 {
+        margin-top: 18px;
+    }
+}
+
+
+/* =========================================================
+   V274 - ANKİLOZAN SPONDİLİT / OSTEOPATİ BENZERİ ÖZEL SEKME SİSTEMİ
+   ========================================================= */
+
+/* Ana AS sayfasında eski uzun içerikleri göstermiyoruz; özel sayfada çağrılıyor. */
+#ankilozanFaqSectionV85 > #ankilozanDetailHubV196,
+#ankilozanFaqSectionV85 > .ankilozan-faq-inner-v85,
+#ankilozanFaqSectionV85 > #ankilozanHerbalSupportV233 {
+    display: none !important;
+}
+
+.as-launcher-v274 {
+    width: min(1820px, calc(100% - 56px));
+    margin: 20px auto 0;
+    padding: 18px;
+    border: 1px solid rgba(87, 175, 224, .20);
+    border-radius: 30px;
+    background:
+        radial-gradient(circle at 90% 10%, rgba(77, 196, 244, .13), transparent 24%),
+        linear-gradient(135deg, #082d42 0%, #0b3c56 100%);
+    box-shadow: 0 22px 54px rgba(10, 48, 70, .14);
+}
+
+.as-launcher-head-v274 {
+    display: flex;
+    align-items: end;
+    justify-content: space-between;
+    gap: 20px;
+    padding: 2px 10px 14px;
+}
+
+.as-launcher-head-v274 span {
+    color: #65d4ff;
+    font-size: 10px;
+    font-weight: 900;
+    letter-spacing: .18em;
+}
+
+.as-launcher-head-v274 h2 {
+    margin: 5px 0 0;
+    color: #fff;
+    font-size: clamp(24px, 2vw, 34px);
+    line-height: 1.05;
+}
+
+.as-launcher-head-v274 p {
+    margin: 0 2px 3px 0;
+    color: #9ec1d3;
+    font-size: 13px;
+}
+
+.as-launcher-grid-v274 {
+    display: grid;
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+    gap: 12px;
+}
+
+.as-launch-card-v274 {
+    position: relative;
+    display: grid;
+    grid-template-columns: 48px minmax(0, 1fr) 34px;
+    align-items: center;
+    gap: 12px;
+    min-height: 88px;
+    padding: 13px 14px;
+    overflow: hidden;
+    border: 1px solid rgba(145, 209, 240, .17);
+    border-radius: 20px;
+    background: rgba(255,255,255,.055);
+    color: #fff;
+    text-align: left;
+    font-family: inherit;
+    cursor: pointer;
+    box-shadow: inset 0 1px 0 rgba(255,255,255,.035);
+    transition: transform .22s ease, border-color .22s ease, background .22s ease, box-shadow .22s ease;
+}
+
+.as-launch-card-v274::after {
+    content: "";
+    position: absolute;
+    inset: -60% -30%;
+    background: linear-gradient(110deg, transparent 35%, rgba(117, 226, 255, .18) 50%, transparent 65%);
+    transform: translateX(-70%);
+    transition: transform .5s ease;
+    pointer-events: none;
+}
+
+.as-launch-card-v274:hover,
+.as-launch-card-v274:focus-visible {
+    transform: translateY(-3px);
+    border-color: rgba(78, 198, 247, .48);
+    background: rgba(30, 130, 180, .16);
+    box-shadow: 0 15px 34px rgba(0, 18, 29, .18);
+    outline: none;
+}
+
+.as-launch-card-v274:hover::after,
+.as-launch-card-v274:focus-visible::after {
+    transform: translateX(70%);
+}
+
+.as-launch-card-v274.is-primary-v274 {
+    background: linear-gradient(135deg, rgba(34, 165, 221, .98), rgba(15, 113, 170, .96));
+    border-color: rgba(100, 219, 255, .62);
+    box-shadow: 0 14px 34px rgba(14, 119, 176, .25), inset 0 1px 0 rgba(255,255,255,.16);
+}
+
+.as-launch-icon-v274 {
+    position: relative;
+    z-index: 1;
+    display: grid;
+    place-items: center;
+    width: 48px;
+    height: 48px;
+    border-radius: 15px;
+    background: rgba(78, 193, 241, .12);
+    border: 1px solid rgba(113, 215, 255, .17);
+    color: #72ddff;
+    font-size: 19px;
+    font-weight: 900;
+}
+
+.as-launch-card-v274.is-primary-v274 .as-launch-icon-v274 {
+    color: #075071;
+    background: rgba(255,255,255,.80);
+}
+
+.as-launch-copy-v274 {
+    position: relative;
+    z-index: 1;
+    min-width: 0;
+    display: flex;
+    flex-direction: column;
+    gap: 3px;
+}
+
+.as-launch-copy-v274 strong {
+    overflow: hidden;
+    color: #f8fcff;
+    font-size: 15px;
+    font-weight: 850;
+    white-space: nowrap;
+    text-overflow: ellipsis;
+}
+
+.as-launch-copy-v274 small {
+    color: #87a9bb;
+    font-size: 10px;
+    font-weight: 700;
+}
+
+.as-launch-card-v274.is-primary-v274 .as-launch-copy-v274 small {
+    color: rgba(235,249,255,.72);
+}
+
+.as-launch-arrow-v274 {
+    position: relative;
+    z-index: 1;
+    display: grid;
+    place-items: center;
+    width: 34px;
+    height: 34px;
+    border-radius: 12px;
+    background: rgba(74, 184, 232, .10);
+    color: #71d9ff;
+    font-size: 14px;
+    transition: transform .22s ease;
+}
+
+.as-launch-card-v274:hover .as-launch-arrow-v274 {
+    transform: translate(2px, -2px);
+}
+
+/* Bağımsız özel sayfa */
+.as-special-view-v274 {
+    position: fixed;
+    inset: 0;
+    z-index: 99970;
+    display: none;
+    overflow-y: auto;
+    overscroll-behavior: contain;
+    padding: 112px 28px 34px;
+    background:
+        radial-gradient(circle at 85% 8%, rgba(43, 163, 218, .13), transparent 28%),
+        linear-gradient(180deg, #edf8fd 0%, #f8fcfe 34%, #f4fafe 100%);
+}
+
+body.as-special-open-v274 .as-special-view-v274 {
+    display: block;
+}
+
+body.as-special-open-v274 {
+    overflow: hidden !important;
+}
+
+.as-special-shell-v274 {
+    width: min(1780px, 100%);
+    margin: 0 auto;
+}
+
+.as-special-head-v274 {
+    position: relative;
+    display: grid;
+    grid-template-columns: auto minmax(0, 1fr) auto;
+    align-items: center;
+    gap: 28px;
+    min-height: 126px;
+    padding: 20px 24px;
+    overflow: hidden;
+    border: 1px solid rgba(91, 177, 221, .18);
+    border-radius: 28px;
+    background:
+        radial-gradient(circle at 92% 8%, rgba(62, 190, 240, .14), transparent 28%),
+        linear-gradient(135deg, #0a3045 0%, #102d3d 100%);
+    box-shadow: 0 24px 60px rgba(18, 73, 102, .15);
+}
+
+.as-special-back-v274 {
+    display: inline-flex;
+    align-items: center;
+    gap: 10px;
+    min-height: 48px;
+    padding: 0 14px 0 8px;
+    border: 1px solid rgba(136, 213, 246, .18);
+    border-radius: 15px;
+    background: rgba(255,255,255,.055);
+    color: #eefaff;
+    font-family: inherit;
+    cursor: pointer;
+}
+
+.as-special-back-v274 > span {
+    display: grid;
+    place-items: center;
+    width: 30px;
+    height: 30px;
+    border-radius: 10px;
+    background: rgba(65, 181, 229, .15);
+    color: #78ddff;
+}
+
+.as-special-title-v274 {
+    min-width: 0;
+}
+
+.as-special-kicker-v274 {
+    display: block;
+    margin-bottom: 5px;
+    color: #77dcff;
+    font-size: 9.5px;
+    font-weight: 900;
+    letter-spacing: .17em;
+}
+
+.as-special-title-v274 h2 {
+    margin: 0;
+    color: #fff;
+    font-size: clamp(28px, 2.4vw, 42px);
+    line-height: 1;
+    letter-spacing: -.035em;
+}
+
+.as-special-title-v274 p {
+    margin: 7px 0 0;
+    color: #9fbdcc;
+    font-size: 12px;
+    line-height: 1.45;
+}
+
+.as-special-index-v274 {
+    min-width: 82px;
+    min-height: 82px;
+    display: flex;
+    align-items: baseline;
+    justify-content: center;
+    gap: 4px;
+    padding-top: 17px;
+    border: 1px solid rgba(117, 204, 243, .17);
+    border-radius: 23px;
+    background: rgba(255,255,255,.025);
+    color: #78ddff;
+}
+
+.as-special-index-v274 span {
+    font-size: 29px;
+    font-weight: 950;
+}
+
+.as-special-index-v274 small {
+    color: #7f9cac;
+    font-size: 9px;
+    font-weight: 900;
+}
+
+.as-special-tabs-v274 {
+    display: grid;
+    grid-template-columns: repeat(6, minmax(0, 1fr));
+    gap: 10px;
+    margin: 12px 0 18px;
+    padding: 10px;
+    border: 1px solid rgba(84, 169, 213, .20);
+    border-radius: 24px;
+    background: rgba(250, 253, 255, .90);
+    box-shadow: 0 16px 34px rgba(24, 80, 111, .09);
+}
+
+.as-special-tabs-v274 button {
+    min-width: 0;
+    min-height: 78px;
+    display: grid;
+    grid-template-columns: 38px minmax(0, 1fr);
+    grid-template-rows: auto auto;
+    align-items: center;
+    column-gap: 9px;
+    padding: 10px;
+    border: 1px solid rgba(109, 181, 219, .13);
+    border-radius: 17px;
+    background: #f3f9fc;
+    color: #123f5e;
+    font-family: inherit;
+    text-align: left;
+    cursor: pointer;
+    transition: .22s ease;
+}
+
+.as-special-tabs-v274 button > span {
+    grid-row: 1 / 3;
+    display: grid;
+    place-items: center;
+    width: 38px;
+    height: 38px;
+    border-radius: 12px;
+    background: #e8f6fc;
+    color: #0b8acb;
+    border: 1px solid rgba(93, 185, 229, .15);
+    font-weight: 900;
+}
+
+.as-special-tabs-v274 button strong {
+    overflow: hidden;
+    font-size: 13px;
+    font-weight: 900;
+    white-space: nowrap;
+    text-overflow: ellipsis;
+}
+
+.as-special-tabs-v274 button small {
+    color: #7d9bad;
+    font-size: 9px;
+    font-weight: 700;
+}
+
+.as-special-tabs-v274 button:hover,
+.as-special-tabs-v274 button:focus-visible {
+    transform: translateY(-2px);
+    border-color: rgba(34, 151, 209, .34);
+    outline: none;
+}
+
+.as-special-tabs-v274 button.is-active-v274 {
+    border-color: rgba(24, 147, 207, .36);
+    background: linear-gradient(135deg, #168fcf, #0d72ad);
+    color: #fff;
+    box-shadow: 0 12px 28px rgba(15, 119, 176, .20);
+}
+
+.as-special-tabs-v274 button.is-active-v274 > span {
+    background: rgba(255,255,255,.16);
+    color: #d8f7ff;
+    border-color: rgba(255,255,255,.18);
+}
+
+.as-special-tabs-v274 button.is-active-v274 small {
+    color: rgba(231,248,255,.70);
+}
+
+.as-special-content-v274 {
+    min-height: 420px;
+    padding-bottom: 24px;
+}
+
+.as-special-panel-v274 {
+    animation: asPanelInV274 .40s cubic-bezier(.2,.8,.2,1) both;
+}
+
+@keyframes asPanelInV274 {
+    from { opacity: 0; transform: translateY(18px) scale(.994); }
+    to { opacity: 1; transform: translateY(0) scale(1); }
+}
+
+.as-special-panel-head-v274 {
+    margin: 8px 0 18px;
+    padding: 0 4px;
+}
+
+.as-special-panel-head-v274 span {
+    color: #1287c7;
+    font-size: 10px;
+    font-weight: 900;
+    letter-spacing: .16em;
+}
+
+.as-special-panel-head-v274 h3 {
+    margin: 5px 0 6px;
+    color: #103c5a;
+    font-size: clamp(30px, 3vw, 48px);
+    line-height: 1.02;
+}
+
+.as-special-panel-head-v274 p {
+    margin: 0;
+    max-width: 900px;
+    color: #66849a;
+    font-size: 14px;
+    line-height: 1.65;
+}
+
+.as-special-topic-stack-v274 {
+    display: grid;
+    gap: 18px;
+}
+
+.as-special-view-v274 .as-cloned-detail-v274 {
+    display: block !important;
+    width: 100%;
+    padding: 28px;
+    border: 1px solid rgba(108, 180, 218, .23);
+    border-radius: 28px;
+    background: rgba(255,255,255,.94);
+    box-shadow: 0 16px 36px rgba(24, 80, 111, .08);
+}
+
+.as-special-view-v274 .as-cloned-detail-v274[hidden] {
+    display: block !important;
+}
+
+.as-special-view-v274 .ankilozan-faq-inner-v85,
+.as-special-view-v274 .phyto-herbal-focus-v232 {
+    display: block !important;
+    width: 100% !important;
+    max-width: none !important;
+    margin: 0 !important;
+}
+
+.as-special-view-v274 .ankilozan-faq-heading-v85 h2,
+.as-special-view-v274 .phyto-focus-head-v232 h2 {
+    font-size: clamp(30px, 3vw, 46px) !important;
+}
+
+.as-special-view-v274 .ankilozan-faq-list-v85 {
+    display: grid;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 12px;
+}
+
+.as-special-view-v274 .ankilozan-faq-item-v85 {
+    margin: 0 !important;
+    align-self: start;
+}
+
+.as-special-view-v274 .ankilozan-faq-answer-v85[hidden] {
+    display: none !important;
+}
+
+.as-special-view-v274 .ankilozan-faq-item-v85.is-open .ankilozan-faq-answer-v85 {
+    display: block !important;
+}
+
+/* Açılışta eski detay bölümlerinden kaynaklanan büyük boşlukları yok et */
+body.ankilozan-page-open-v87 #ankilozanFaqSectionV85 {
+    padding-bottom: 24px !important;
+}
+
+@media (max-width: 1200px) {
+    .as-launcher-grid-v274 { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+    .as-special-tabs-v274 { grid-template-columns: repeat(3, minmax(0, 1fr)); }
+}
+
+@media (max-width: 760px) {
+    .as-launcher-v274 {
+        width: calc(100% - 18px);
+        padding: 12px;
+        border-radius: 22px;
+    }
+    .as-launcher-head-v274 { display: block; padding: 4px 3px 12px; }
+    .as-launcher-head-v274 p { margin-top: 8px; }
+    .as-launcher-grid-v274 { grid-template-columns: 1fr; gap: 8px; }
+    .as-launch-card-v274 { min-height: 72px; grid-template-columns: 42px minmax(0,1fr) 30px; border-radius: 16px; }
+    .as-launch-icon-v274 { width: 42px; height: 42px; border-radius: 13px; }
+
+    .as-special-view-v274 { padding: 82px 8px 18px; }
+    .as-special-head-v274 {
+        grid-template-columns: 1fr auto;
+        gap: 10px;
+        min-height: 0;
+        padding: 14px;
+        border-radius: 20px;
+    }
+    .as-special-back-v274 { grid-column: 1 / -1; width: fit-content; }
+    .as-special-title-v274 h2 { font-size: 28px; }
+    .as-special-index-v274 { min-width: 62px; min-height: 62px; padding-top: 11px; border-radius: 17px; }
+    .as-special-index-v274 span { font-size: 22px; }
+    .as-special-tabs-v274 {
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+        gap: 7px;
+        padding: 7px;
+        border-radius: 18px;
+    }
+    .as-special-tabs-v274 button { min-height: 68px; padding: 8px; grid-template-columns: 32px minmax(0,1fr); border-radius: 14px; }
+    .as-special-tabs-v274 button > span { width: 32px; height: 32px; border-radius: 10px; }
+    .as-special-tabs-v274 button strong { font-size: 11px; }
+    .as-special-view-v274 .ankilozan-faq-list-v85 { grid-template-columns: 1fr; }
+    .as-special-view-v274 .as-cloned-detail-v274 { padding: 18px; border-radius: 20px; }
+}
+
+/* V274: eski görsel hotspotları artık gizli detay alanına gitmesin; navigasyon aşağıdaki özel kartlardan yapılır. */
+#ankilozanFaqSectionV85 .ankilozan-overview-v195 .ankilozan-card-hotspot-v196 {
+    pointer-events: none !important;
+}
+
+
+/* =========================================================
+   V275 - ANKİLOZAN ANA SAYFA YERLEŞİMİ
+   1) Özel bölüm butonları üstte
+   2) Ankilozan ana görseli hemen altında
+   3) Eski "Temel Bilgiler" görseli kaldırıldı
+   4) Hastalıklar arası hızlı geçiş ana görselin altında
+   ========================================================= */
+
+/* Eski Temel Bilgiler posteri artık ana sayfada görünmez. */
+#ankilozanFaqSectionV85 .ankilozan-overview-v195 {
+    display: none !important;
+}
+
+/* Özel bölüm launcher'ı sayfanın güçlü ilk alanı olarak kullan. */
+#ankilozanFaqSectionV85 .as-launcher-v274 {
+    width: min(1840px, calc(100% - 20px));
+    margin: 18px auto 18px !important;
+}
+
+/* V275 ana Ankilozan hero görseli */
+.as-main-hero-v275 {
+    position: relative;
+    width: 100%;
+    margin: 0 auto;
+    overflow: hidden;
+    background: #dff3ff;
+    border-top: 1px solid rgba(111, 183, 224, .18);
+    border-bottom: 1px solid rgba(111, 183, 224, .18);
+    box-shadow: 0 20px 54px rgba(39, 105, 145, .08);
+}
+
+.as-main-hero-v275 img {
+    display: block;
+    width: 100%;
+    height: auto;
+    min-height: 390px;
+    max-height: 650px;
+    object-fit: cover;
+    object-position: center;
+}
+
+/* Hero ile hızlı geçiş birbirine yakın ve düzenli dursun. */
+#ankilozanFaqSectionV85 .disease-switcher-as-v250 {
+    width: min(1840px, calc(100% - 20px));
+    margin: 18px auto 26px !important;
+}
+
+@media (max-width: 900px) {
+    #ankilozanFaqSectionV85 .as-launcher-v274,
+    #ankilozanFaqSectionV85 .disease-switcher-as-v250 {
+        width: calc(100% - 12px);
+    }
+
+    .as-main-hero-v275 img {
+        min-height: 280px;
+        max-height: 480px;
+    }
+}
+
+@media (max-width: 600px) {
+    #ankilozanFaqSectionV85 .as-launcher-v274 {
+        margin-top: 10px !important;
+    }
+
+    .as-main-hero-v275 img {
+        min-height: 215px;
+        object-position: 58% center;
+    }
+
+    #ankilozanFaqSectionV85 .disease-switcher-as-v250 {
+        margin-top: 12px !important;
+    }
+}
+
+
+/* =========================================================
+   V278 - TEDAVİ ALANLARI / ANKİLOZAN ANA VİTRİNİ
+   Osteopati eski haliyle korunur.
+   AS özel bölüm butonları artık ana görselin ÜZERİNDE durur.
+   ========================================================= */
+#ankilozanFaqSectionV85 .as-main-hero-v275 {
+    position: relative;
+    width: min(1900px, 100%);
+    min-height: 680px;
+    margin: 0 auto;
+    overflow: hidden;
+    border-radius: 0 0 34px 34px;
+    background: #dff3ff;
+    box-shadow: 0 24px 62px rgba(27, 88, 127, .12);
+    isolation: isolate;
+}
+
+#ankilozanFaqSectionV85 .as-main-hero-v275::after {
+    content: "";
+    position: absolute;
+    inset: 0;
+    z-index: 1;
+    pointer-events: none;
+    background:
+        linear-gradient(180deg, transparent 0%, transparent 48%, rgba(4, 34, 51, .08) 62%, rgba(3, 28, 43, .34) 100%);
+}
+
+#ankilozanFaqSectionV85 .as-main-hero-v275 > img {
+    position: absolute;
+    inset: 0;
+    z-index: 0;
+    width: 100%;
+    height: 100%;
+    min-height: 0;
+    max-height: none;
+    object-fit: cover;
+    object-position: center;
+}
+
+/* V274 launcher artık ayrı koyu kutu değil; hero üstünde cam panel. */
+#ankilozanFaqSectionV85 .as-main-hero-v275 > .as-launcher-v274 {
+    position: absolute !important;
+    left: 26px;
+    right: 26px;
+    bottom: 24px;
+    z-index: 4;
+    width: auto !important;
+    margin: 0 !important;
+    padding: 15px !important;
+    border: 1px solid rgba(180, 229, 250, .24);
+    border-radius: 28px;
+    background:
+        linear-gradient(135deg, rgba(5, 42, 61, .78), rgba(8, 67, 92, .66));
+    box-shadow:
+        0 24px 60px rgba(0, 24, 39, .28),
+        inset 0 1px 0 rgba(255,255,255,.08);
+    backdrop-filter: blur(18px) saturate(135%);
+    -webkit-backdrop-filter: blur(18px) saturate(135%);
+}
+
+#ankilozanFaqSectionV85 .as-main-hero-v275 .as-launcher-head-v274 {
+    min-height: 48px;
+    padding: 0 8px 11px;
+    align-items: center;
+}
+
+#ankilozanFaqSectionV85 .as-main-hero-v275 .as-launcher-head-v274 span {
+    color: #7edcff;
+    font-size: 9px;
+}
+
+#ankilozanFaqSectionV85 .as-main-hero-v275 .as-launcher-head-v274 h2 {
+    margin-top: 3px;
+    font-size: clamp(20px, 1.55vw, 27px);
+}
+
+#ankilozanFaqSectionV85 .as-main-hero-v275 .as-launcher-head-v274 p {
+    color: rgba(222, 242, 250, .72);
+    font-size: 11px;
+}
+
+#ankilozanFaqSectionV85 .as-main-hero-v275 .as-launcher-grid-v274 {
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+    gap: 10px;
+}
+
+#ankilozanFaqSectionV85 .as-main-hero-v275 .as-launch-card-v274 {
+    min-height: 76px;
+    padding: 10px 12px;
+    grid-template-columns: 42px minmax(0,1fr) 30px;
+    gap: 10px;
+    border-radius: 18px;
+    background: rgba(7, 42, 61, .68);
+    border-color: rgba(142, 218, 247, .18);
+    box-shadow: inset 0 1px 0 rgba(255,255,255,.04);
+}
+
+#ankilozanFaqSectionV85 .as-main-hero-v275 .as-launch-card-v274:hover,
+#ankilozanFaqSectionV85 .as-main-hero-v275 .as-launch-card-v274:focus-visible {
+    transform: translateY(-3px);
+    background: linear-gradient(135deg, rgba(25, 143, 199, .94), rgba(12, 87, 131, .92));
+    border-color: rgba(105, 218, 255, .48);
+    box-shadow: 0 15px 34px rgba(0, 23, 36, .22);
+}
+
+#ankilozanFaqSectionV85 .as-main-hero-v275 .as-launch-card-v274.is-primary-v274 {
+    background: linear-gradient(135deg, #28a7df 0%, #117daf 100%);
+    border-color: rgba(153, 231, 255, .60);
+    box-shadow: 0 16px 36px rgba(5, 90, 132, .32), inset 0 1px 0 rgba(255,255,255,.15);
+}
+
+#ankilozanFaqSectionV85 .as-main-hero-v275 .as-launch-icon-v274 {
+    width: 42px;
+    height: 42px;
+    border-radius: 13px;
+}
+
+#ankilozanFaqSectionV85 .as-main-hero-v275 .as-launch-copy-v274 strong {
+    font-size: 14px;
+}
+
+#ankilozanFaqSectionV85 .as-main-hero-v275 .as-launch-copy-v274 small {
+    font-size: 9px;
+    color: rgba(206, 231, 242, .65);
+}
+
+#ankilozanFaqSectionV85 .as-main-hero-v275 .as-launch-arrow-v274 {
+    width: 30px;
+    height: 30px;
+    border-radius: 10px;
+}
+
+/* Hastalıklar arası hızlı geçiş hero'nun hemen altında kalır. */
+#ankilozanFaqSectionV85 .disease-switcher-as-v250 {
+    margin-top: 16px !important;
+}
+
+@media (max-width: 1180px) {
+    #ankilozanFaqSectionV85 .as-main-hero-v275 {
+        min-height: 790px;
+    }
+
+    #ankilozanFaqSectionV85 .as-main-hero-v275 .as-launcher-grid-v274 {
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+    }
+}
+
+@media (max-width: 760px) {
+    #ankilozanFaqSectionV85 .as-main-hero-v275 {
+        display: flex;
+        flex-direction: column;
+        min-height: 0;
+        border-radius: 0 0 24px 24px;
+    }
+
+    #ankilozanFaqSectionV85 .as-main-hero-v275::after {
+        display: none;
+    }
+
+    #ankilozanFaqSectionV85 .as-main-hero-v275 > img {
+        position: relative;
+        inset: auto;
+        height: auto;
+        min-height: 250px;
+        object-position: 58% center;
+    }
+
+    #ankilozanFaqSectionV85 .as-main-hero-v275 > .as-launcher-v274 {
+        position: relative !important;
+        left: auto;
+        right: auto;
+        bottom: auto;
+        width: calc(100% - 12px) !important;
+        margin: -18px auto 8px !important;
+        border-radius: 22px;
+        background: linear-gradient(135deg, #082d42 0%, #0b3c56 100%);
+    }
+
+    #ankilozanFaqSectionV85 .as-main-hero-v275 .as-launcher-head-v274 {
+        align-items: flex-start;
+    }
+
+    #ankilozanFaqSectionV85 .as-main-hero-v275 .as-launcher-head-v274 p {
+        display: none;
+    }
+
+    #ankilozanFaqSectionV85 .as-main-hero-v275 .as-launcher-grid-v274 {
+        grid-template-columns: 1fr;
+    }
+}
+
+
+/* =========================================================
+   V279 - ROMATOİD + DİĞER TEDAVİ ALANLARI İÇİN ÖZEL SEKME GÖRÜNÜMÜ
+   ========================================================= */
+#romatoidFaqSectionV198 .treatment-launcher-v279,
+#conditionDiseasePageV246 .treatment-launcher-v279 {
+    width: min(1340px, calc(100% - 24px));
+    margin: 22px auto 18px;
+}
+
+.treatment-special-view-v279 {
+    position: fixed;
+    inset: 0;
+    z-index: 99968;
+    display: none;
+    overflow-y: auto;
+    overscroll-behavior: contain;
+    padding: 112px 28px 34px;
+    background:
+        radial-gradient(circle at 85% 8%, rgba(43, 163, 218, .13), transparent 28%),
+        linear-gradient(180deg, #edf8fd 0%, #f8fcfe 34%, #f4fafe 100%);
+}
+
+body.treatment-special-open-v279 .treatment-special-view-v279 {
+    display: block;
+}
+
+body.treatment-special-open-v279 {
+    overflow: hidden !important;
+}
+
+.treatment-special-view-v279 .as-cloned-detail-v274 {
+    display: block !important;
+    width: 100%;
+    padding: 28px;
+    border: 1px solid rgba(108, 180, 218, .23);
+    border-radius: 28px;
+    background: rgba(255,255,255,.94);
+    box-shadow: 0 16px 36px rgba(24, 80, 111, .08);
+}
+
+.treatment-special-view-v279 .as-cloned-detail-v274[hidden] {
+    display: block !important;
+}
+
+.treatment-special-view-v279 .ankilozan-faq-inner-v85,
+.treatment-special-view-v279 .phyto-herbal-focus-v232 {
+    display: block !important;
+    width: 100% !important;
+    max-width: none !important;
+    margin: 0 !important;
+}
+
+.treatment-special-view-v279 .ankilozan-faq-heading-v85 h2,
+.treatment-special-view-v279 .phyto-focus-head-v232 h2 {
+    font-size: clamp(30px, 3vw, 46px) !important;
+}
+
+.treatment-special-view-v279 .ankilozan-faq-list-v85 {
+    display: grid;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 12px;
+}
+
+.treatment-special-view-v279 .ankilozan-faq-item-v85 {
+    margin: 0 !important;
+    align-self: start;
+}
+
+.treatment-special-view-v279 .ankilozan-faq-answer-v85[hidden] {
+    display: none !important;
+}
+
+.treatment-special-view-v279 .ankilozan-faq-item-v85.is-open .ankilozan-faq-answer-v85 {
+    display: block !important;
+}
+
+@media (max-width: 760px) {
+    #romatoidFaqSectionV198 .treatment-launcher-v279,
+    #conditionDiseasePageV246 .treatment-launcher-v279 {
+        width: calc(100% - 18px);
+        margin: 14px auto 14px;
+    }
+
+    .treatment-special-view-v279 {
+        padding: 82px 8px 18px;
+    }
+
+    .treatment-special-view-v279 .ankilozan-faq-list-v85 {
+        grid-template-columns: 1fr;
+    }
+
+    .treatment-special-view-v279 .as-cloned-detail-v274 {
+        padding: 18px;
+        border-radius: 20px;
+    }
+}
+
+
+/* =========================================================
+   V280 - ANKİLOZAN'DAKİ HERO + BUTON YAPISINI DİĞER TEDAVİ ALANLARINA YANSIT
+   ========================================================= */
+#conditionDiseasePageV246.condition-layout-v280,
+#romatoidFaqSectionV198.ra-layout-v280 {
+    display: block;
+}
+
+/* -------- DİNAMİK TEDAVİ ALANI HASTALIK SAYFALARI -------- */
+#conditionDiseasePageV246 .condition-hero-v280 {
+    position: relative;
+    width: min(1520px, calc(100% - 44px));
+    min-height: 520px;
+    margin: 18px auto 14px;
+    padding: 0;
+    display: block;
+    border-radius: 34px;
+    overflow: hidden;
+    background: #dfeef7;
+    border: 1px solid rgba(87, 162, 203, .18);
+    box-shadow: 0 24px 60px rgba(18, 70, 104, .10);
+}
+
+#conditionDiseasePageV246 .condition-hero-v280::after {
+    content: "";
+    position: absolute;
+    inset: 0;
+    z-index: 1;
+    background:
+        linear-gradient(180deg, rgba(4, 28, 43, .04) 0%, rgba(4, 28, 43, .02) 40%, rgba(4, 28, 43, .22) 74%, rgba(3, 25, 39, .42) 100%);
+    pointer-events: none;
+}
+
+#conditionDiseasePageV246 .condition-hero-v280 .condition-overview-copy-v249,
+#conditionDiseasePageV246 .condition-hero-v280 .condition-overview-actions-v249 {
+    display: none !important;
+}
+
+#conditionDiseasePageV246 .condition-hero-v280 .condition-overview-media-v249 {
+    position: absolute;
+    inset: 0;
+    z-index: 0;
+    min-height: 100%;
+    height: 100%;
+    border-radius: 0;
+    overflow: hidden;
+    box-shadow: none;
+    background: transparent;
+}
+
+#conditionDiseasePageV246 .condition-hero-v280 .condition-overview-media-v249 img {
+    width: 100%;
+    height: 100%;
+    min-height: 520px;
+    object-fit: cover;
+    object-position: center;
+}
+
+#conditionDiseasePageV246 .condition-hero-v280 .condition-overview-media-v249 figcaption {
+    position: absolute;
+    right: 28px;
+    left: auto;
+    bottom: 188px;
+    max-width: 360px;
+    padding: 10px 14px;
+    border-radius: 16px;
+    background: rgba(6, 44, 63, .44);
+    border: 1px solid rgba(255,255,255,.16);
+    color: rgba(241, 250, 255, .92);
+    font-size: 12px;
+    font-weight: 700;
+    text-align: right;
+    backdrop-filter: blur(10px);
+    -webkit-backdrop-filter: blur(10px);
+    z-index: 2;
+}
+
+#conditionDiseasePageV246 .condition-hero-v280 > .treatment-launcher-v279 {
+    position: absolute !important;
+    left: 18px;
+    right: 18px;
+    bottom: 16px;
+    z-index: 3;
+    width: auto !important;
+    margin: 0 !important;
+    padding: 14px !important;
+    border-radius: 24px;
+    border: 1px solid rgba(180, 229, 250, .22);
+    background: linear-gradient(135deg, rgba(7, 45, 64, .80), rgba(8, 64, 89, .68));
+    box-shadow: 0 24px 56px rgba(0, 23, 37, .26), inset 0 1px 0 rgba(255,255,255,.08);
+    backdrop-filter: blur(16px) saturate(130%);
+    -webkit-backdrop-filter: blur(16px) saturate(130%);
+}
+
+#conditionDiseasePageV246 .condition-hero-v280 > .treatment-launcher-v279 .as-launcher-head-v274 {
+    min-height: 46px;
+    padding: 0 6px 10px;
+    align-items: center;
+}
+
+#conditionDiseasePageV246 .condition-hero-v280 > .treatment-launcher-v279 .as-launcher-head-v274 span {
+    color: #7edcff;
+    font-size: 10px;
+}
+
+#conditionDiseasePageV246 .condition-hero-v280 > .treatment-launcher-v279 .as-launcher-head-v274 h2 {
+    margin-top: 3px;
+    font-size: clamp(18px, 1.55vw, 28px);
+    color: #f8fdff;
+}
+
+#conditionDiseasePageV246 .condition-hero-v280 > .treatment-launcher-v279 .as-launcher-head-v274 p {
+    color: rgba(226, 242, 249, .74);
+    font-size: 11px;
+}
+
+#conditionDiseasePageV246 .condition-hero-v280 > .treatment-launcher-v279 .as-launcher-grid-v274 {
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+    gap: 10px;
+}
+
+#conditionDiseasePageV246 .condition-hero-v280 > .treatment-launcher-v279 .as-launch-card-v274 {
+    min-height: 74px;
+    padding: 10px 12px;
+    grid-template-columns: 42px minmax(0,1fr) 30px;
+    gap: 10px;
+    border-radius: 18px;
+    background: rgba(7, 42, 61, .68);
+    border-color: rgba(142, 218, 247, .18);
+    box-shadow: inset 0 1px 0 rgba(255,255,255,.04);
+}
+
+#conditionDiseasePageV246 .condition-hero-v280 > .treatment-launcher-v279 .as-launch-card-v274:hover,
+#conditionDiseasePageV246 .condition-hero-v280 > .treatment-launcher-v279 .as-launch-card-v274:focus-visible {
+    transform: translateY(-3px);
+    background: linear-gradient(135deg, rgba(25, 143, 199, .94), rgba(12, 87, 131, .92));
+    border-color: rgba(105, 218, 255, .48);
+    box-shadow: 0 15px 34px rgba(0, 23, 36, .22);
+}
+
+#conditionDiseasePageV246 .condition-hero-v280 > .treatment-launcher-v279 .as-launch-card-v274.is-primary-v274 {
+    background: linear-gradient(135deg, #28a7df 0%, #117daf 100%);
+    border-color: rgba(153, 231, 255, .60);
+    box-shadow: 0 16px 36px rgba(5, 90, 132, .32), inset 0 1px 0 rgba(255,255,255,.15);
+}
+
+#conditionDiseasePageV246 .condition-hero-v280 > .treatment-launcher-v279 .as-launch-icon-v274 {
+    width: 42px;
+    height: 42px;
+    border-radius: 13px;
+}
+
+#conditionDiseasePageV246 .condition-hero-v280 > .treatment-launcher-v279 .as-launch-copy-v274 strong {
+    font-size: 14px;
+    color: #f9fcff;
+}
+
+#conditionDiseasePageV246 .condition-hero-v280 > .treatment-launcher-v279 .as-launch-copy-v274 small {
+    font-size: 9px;
+    color: rgba(206, 231, 242, .65);
+}
+
+#conditionDiseasePageV246 .condition-hero-v280 > .treatment-launcher-v279 .as-launch-arrow-v274 {
+    width: 30px;
+    height: 30px;
+    border-radius: 10px;
+}
+
+#conditionDiseasePageV246 .disease-switcher-condition-v250 {
+    width: min(1520px, calc(100% - 44px));
+    margin: 14px auto 26px !important;
+}
+
+/* -------- ROMATOİD ARTRİT SAYFASI -------- */
+#romatoidFaqSectionV198 .ra-hero-v280 {
+    position: relative;
+    width: min(1520px, calc(100% - 44px));
+    min-height: 520px;
+    margin: 18px auto 14px;
+    padding: 0;
+    display: block;
+    border-radius: 34px;
+    overflow: hidden;
+    background: #dcecf5;
+    border: 1px solid rgba(87, 162, 203, .18);
+    box-shadow: 0 24px 60px rgba(18, 70, 104, .10);
+}
+
+#romatoidFaqSectionV198 .ra-hero-v280::after {
+    content: "";
+    position: absolute;
+    inset: 0;
+    z-index: 1;
+    background: linear-gradient(180deg, rgba(4, 28, 43, .04) 0%, rgba(4, 28, 43, .02) 40%, rgba(4, 28, 43, .22) 74%, rgba(3, 25, 39, .42) 100%);
+    pointer-events: none;
+}
+
+#romatoidFaqSectionV198 .ra-hero-v280 .ra-hero-copy-v198 {
+    display: none !important;
+}
+
+#romatoidFaqSectionV198 .ra-hero-v280 .ra-hero-media-v198 {
+    position: absolute;
+    inset: 0;
+    z-index: 0;
+    margin: 0;
+    display: block;
+    border-radius: 0;
+    overflow: hidden;
+}
+
+#romatoidFaqSectionV198 .ra-hero-v280 .ra-hero-media-v198 img {
+    width: 100%;
+    height: 100%;
+    min-height: 520px;
+    object-fit: cover;
+    object-position: center;
+}
+
+#romatoidFaqSectionV198 .ra-hero-v280 .ra-hero-quote-v198 {
+    position: absolute;
+    right: 28px;
+    bottom: 188px;
+    max-width: 360px;
+    padding: 12px 14px;
+    border-radius: 16px;
+    background: rgba(6, 44, 63, .44);
+    border: 1px solid rgba(255,255,255,.16);
+    color: rgba(241,250,255,.94);
+    backdrop-filter: blur(10px);
+    -webkit-backdrop-filter: blur(10px);
+    z-index: 2;
+}
+
+#romatoidFaqSectionV198 .ra-hero-v280 > .treatment-launcher-v279 {
+    position: absolute !important;
+    left: 18px;
+    right: 18px;
+    bottom: 16px;
+    z-index: 3;
+    width: auto !important;
+    margin: 0 !important;
+    padding: 14px !important;
+    border-radius: 24px;
+    border: 1px solid rgba(180, 229, 250, .22);
+    background: linear-gradient(135deg, rgba(7, 45, 64, .80), rgba(8, 64, 89, .68));
+    box-shadow: 0 24px 56px rgba(0, 23, 37, .26), inset 0 1px 0 rgba(255,255,255,.08);
+    backdrop-filter: blur(16px) saturate(130%);
+    -webkit-backdrop-filter: blur(16px) saturate(130%);
+}
+
+#romatoidFaqSectionV198 .ra-hero-v280 > .treatment-launcher-v279 .as-launcher-head-v274 {
+    min-height: 46px;
+    padding: 0 6px 10px;
+    align-items: center;
+}
+
+#romatoidFaqSectionV198 .ra-hero-v280 > .treatment-launcher-v279 .as-launcher-head-v274 span {
+    color: #7edcff;
+    font-size: 10px;
+}
+
+#romatoidFaqSectionV198 .ra-hero-v280 > .treatment-launcher-v279 .as-launcher-head-v274 h2 {
+    margin-top: 3px;
+    font-size: clamp(18px, 1.55vw, 28px);
+    color: #f8fdff;
+}
+
+#romatoidFaqSectionV198 .ra-hero-v280 > .treatment-launcher-v279 .as-launcher-head-v274 p {
+    color: rgba(226, 242, 249, .74);
+    font-size: 11px;
+}
+
+#romatoidFaqSectionV198 .ra-hero-v280 > .treatment-launcher-v279 .as-launcher-grid-v274 {
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+    gap: 10px;
+}
+
+#romatoidFaqSectionV198 .ra-hero-v280 > .treatment-launcher-v279 .as-launch-card-v274 {
+    min-height: 74px;
+    padding: 10px 12px;
+    grid-template-columns: 42px minmax(0,1fr) 30px;
+    gap: 10px;
+    border-radius: 18px;
+    background: rgba(7, 42, 61, .68);
+    border-color: rgba(142, 218, 247, .18);
+    box-shadow: inset 0 1px 0 rgba(255,255,255,.04);
+}
+
+#romatoidFaqSectionV198 .ra-hero-v280 > .treatment-launcher-v279 .as-launch-card-v274:hover,
+#romatoidFaqSectionV198 .ra-hero-v280 > .treatment-launcher-v279 .as-launch-card-v274:focus-visible {
+    transform: translateY(-3px);
+    background: linear-gradient(135deg, rgba(25, 143, 199, .94), rgba(12, 87, 131, .92));
+    border-color: rgba(105, 218, 255, .48);
+    box-shadow: 0 15px 34px rgba(0, 23, 36, .22);
+}
+
+#romatoidFaqSectionV198 .ra-hero-v280 > .treatment-launcher-v279 .as-launch-card-v274.is-primary-v274 {
+    background: linear-gradient(135deg, #28a7df 0%, #117daf 100%);
+    border-color: rgba(153, 231, 255, .60);
+    box-shadow: 0 16px 36px rgba(5, 90, 132, .32), inset 0 1px 0 rgba(255,255,255,.15);
+}
+
+#romatoidFaqSectionV198 .ra-hero-v280 > .treatment-launcher-v279 .as-launch-icon-v274 {
+    width: 42px;
+    height: 42px;
+    border-radius: 13px;
+}
+
+#romatoidFaqSectionV198 .ra-hero-v280 > .treatment-launcher-v279 .as-launch-copy-v274 strong {
+    font-size: 14px;
+    color: #f9fcff;
+}
+
+#romatoidFaqSectionV198 .ra-hero-v280 > .treatment-launcher-v279 .as-launch-copy-v274 small {
+    font-size: 9px;
+    color: rgba(206, 231, 242, .65);
+}
+
+#romatoidFaqSectionV198 .ra-hero-v280 > .treatment-launcher-v279 .as-launch-arrow-v274 {
+    width: 30px;
+    height: 30px;
+    border-radius: 10px;
+}
+
+#romatoidFaqSectionV198 .disease-switcher-ra-v250 {
+    width: min(1520px, calc(100% - 44px));
+    margin: 14px auto 26px !important;
+}
+
+@media (max-width: 1180px) {
+    #conditionDiseasePageV246 .condition-hero-v280,
+    #romatoidFaqSectionV198 .ra-hero-v280 {
+        min-height: 700px;
+    }
+
+    #conditionDiseasePageV246 .condition-hero-v280 > .treatment-launcher-v279 .as-launcher-grid-v274,
+    #romatoidFaqSectionV198 .ra-hero-v280 > .treatment-launcher-v279 .as-launcher-grid-v274 {
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+    }
+
+    #conditionDiseasePageV246 .condition-hero-v280 .condition-overview-media-v249 img,
+    #romatoidFaqSectionV198 .ra-hero-v280 .ra-hero-media-v198 img {
+        min-height: 700px;
+    }
+}
+
+@media (max-width: 760px) {
+    #conditionDiseasePageV246 .condition-hero-v280,
+    #romatoidFaqSectionV198 .ra-hero-v280 {
+        min-height: 0;
+        border-radius: 0 0 24px 24px;
+    }
+
+    #conditionDiseasePageV246 .condition-hero-v280::after,
+    #romatoidFaqSectionV198 .ra-hero-v280::after {
+        display: none;
+    }
+
+    #conditionDiseasePageV246 .condition-hero-v280 .condition-overview-media-v249,
+    #romatoidFaqSectionV198 .ra-hero-v280 .ra-hero-media-v198 {
+        position: relative;
+        inset: auto;
+        height: auto;
+        min-height: 0;
+    }
+
+    #conditionDiseasePageV246 .condition-hero-v280 .condition-overview-media-v249 img,
+    #romatoidFaqSectionV198 .ra-hero-v280 .ra-hero-media-v198 img {
+        min-height: 260px;
+        height: auto;
+    }
+
+    #conditionDiseasePageV246 .condition-hero-v280 .condition-overview-media-v249 figcaption,
+    #romatoidFaqSectionV198 .ra-hero-v280 .ra-hero-quote-v198 {
+        position: relative;
+        right: auto;
+        left: auto;
+        bottom: auto;
+        max-width: none;
+        margin: -14px 10px 8px;
+        text-align: left;
+        border-radius: 18px;
+        background: linear-gradient(135deg, #0c3c58 0%, #0a3047 100%);
+    }
+
+    #conditionDiseasePageV246 .condition-hero-v280 > .treatment-launcher-v279,
+    #romatoidFaqSectionV198 .ra-hero-v280 > .treatment-launcher-v279 {
+        position: relative !important;
+        left: auto;
+        right: auto;
+        bottom: auto;
+        width: calc(100% - 12px) !important;
+        margin: -14px auto 8px !important;
+        border-radius: 22px;
+        background: linear-gradient(135deg, #082d42 0%, #0b3c56 100%);
+    }
+
+    #conditionDiseasePageV246 .condition-hero-v280 > .treatment-launcher-v279 .as-launcher-head-v274,
+    #romatoidFaqSectionV198 .ra-hero-v280 > .treatment-launcher-v279 .as-launcher-head-v274 {
+        align-items: flex-start;
+    }
+
+    #conditionDiseasePageV246 .condition-hero-v280 > .treatment-launcher-v279 .as-launcher-head-v274 p,
+    #romatoidFaqSectionV198 .ra-hero-v280 > .treatment-launcher-v279 .as-launcher-head-v274 p {
+        display: none;
+    }
+
+    #conditionDiseasePageV246 .disease-switcher-condition-v250,
+    #romatoidFaqSectionV198 .disease-switcher-ra-v250 {
+        width: calc(100% - 18px);
+        margin: 12px auto 18px !important;
+    }
+}
+
+
+/* =========================================================
+   V281 - TEDAVİ ALANI HASTALIKLARINDA ALT YAZI BLOKLARINI KAPAT
+   Hero + launcher + hastalık geçişleri kalsın.
+   ========================================================= */
+#romatoidFaqSectionV198.ra-compact-v281 .ra-summary-v198,
+#romatoidFaqSectionV198.ra-compact-v281 .ra-detail-hub-v198,
+#romatoidFaqSectionV198.ra-compact-v281 .ra-visual-band-v198,
+#romatoidFaqSectionV198.ra-compact-v281 .ra-faq-shell-v198 {
+    display: none !important;
+}
+
+#conditionDiseasePageV246.condition-compact-v281 .condition-detail-hub-v249,
+#conditionDiseasePageV246.condition-compact-v281 .condition-faq-inner-v249,
+#conditionDiseasePageV246.condition-compact-v281 .condition-herbal-focus-v249 {
+    display: none !important;
+}
+
+#romatoidFaqSectionV198.ra-compact-v281 .disease-switcher-ra-v250,
+#conditionDiseasePageV246.condition-compact-v281 .disease-switcher-condition-v250 {
+    margin-bottom: 24px !important;
+}
+
+
+/* =========================================================
+   V282 - GENEL SAĞLIK / BESLENME TAM BAĞIMSIZ SAYFA
+   Beslenme, Supplementler, Kürler veya Egzersizler açıldığında
+   Tedavi Alanları ve hastalık sayfaları arkada görünmez.
+   ========================================================= */
+
+body.general-health-detail-open-v75 #generalHealthDetailPageV75 {
+    display: block !important;
+    position: relative;
+    z-index: 1;
+}
+
+body.general-health-detail-open-v75 #tedaviAlanlariPage,
+body.general-health-detail-open-v75 #agriPage,
+body.general-health-detail-open-v75 #hakkimdaPage,
+body.general-health-detail-open-v75 #medyaPage,
+body.general-health-detail-open-v75 #legalPageV56,
+body.general-health-detail-open-v75 #treatmentDetailPageV71,
+body.general-health-detail-open-v75 #ankilozanFaqSectionV85,
+body.general-health-detail-open-v75 #romatoidFaqSectionV198,
+body.general-health-detail-open-v75 #conditionDiseasePageV246,
+body.general-health-detail-open-v75 #ankilozanSpecialViewV274,
+body.general-health-detail-open-v75 #treatmentSpecialViewV279,
+body.general-health-detail-open-v75 #osteoSpecialViewV259,
+body.general-health-detail-open-v75 #infoGuidePageV143,
+body.general-health-detail-open-v75 #deviceDetailPageV157 {
+    display: none !important;
+}
+
+/* Genel sağlıkta yalnız aktif içerik görünür. */
+body.general-health-detail-open-v75 #generalHealthDetailPageV75 .general-health-view-v75 {
+    display: none !important;
+}
+
+body.general-health-detail-open-v75 #generalHealthDetailPageV75 .general-health-view-v75.active {
+    display: block !important;
+}
+
+
+/* =========================================================
+   V284 - HASTALIK SAYFALARI ÜST ÜSTE BİNMESİN
+   Görünüm V282'deki eski halindedir.
+   Sadece aktif hastalık sayfası görünür.
+   ========================================================= */
+
+body.romatoid-page-open-v198 #ankilozanFaqSectionV85,
+body.romatoid-page-open-v198 #conditionDiseasePageV246 {
+    display: none !important;
+}
+
+body.ankilozan-page-open-v87 #romatoidFaqSectionV198,
+body.ankilozan-page-open-v87 #conditionDiseasePageV246 {
+    display: none !important;
+}
+
+body.condition-disease-page-open-v246 #ankilozanFaqSectionV85,
+body.condition-disease-page-open-v246 #romatoidFaqSectionV198 {
+    display: none !important;
+}
+
+
+/* =========================================================
+   V285 - AĞRI SAYFASI TAM BAĞIMSIZ
+   Ağrı açıldığında Tedavi Alanları / hastalık sayfaları arkada veya üstte kalmaz.
+   ========================================================= */
+
+body.pain-page-open #tedaviAlanlariPage,
+body.pain-page-open #treatmentDetailPageV71,
+body.pain-page-open #ankilozanFaqSectionV85,
+body.pain-page-open #romatoidFaqSectionV198,
+body.pain-page-open #conditionDiseasePageV246,
+body.pain-page-open #ankilozanSpecialViewV274,
+body.pain-page-open #treatmentSpecialViewV279,
+body.pain-page-open #osteoSpecialViewV259 {
+    display: none !important;
+}
+
+/* Ağrı sayfası aktifken kendisi net biçimde görünür kalsın. */
+body.pain-page-open #agriPage {
+    display: block !important;
+}
+
+
+/* =========================================================
+   V286 - Ağrı açıkken Tedavi Alanları hızlı geçiş bloğunu gizle
+   Kullanıcı sadece "Tedavi Alanları" butonuna basınca görsün.
+   ========================================================= */
+body.pain-page-open .disease-switcher-v250,
+body.pain-page-open .disease-switcher-as-v250,
+body.pain-page-open .disease-switcher-ra-v250,
+body.pain-page-open .disease-switcher-condition-v250 {
+    display: none !important;
+}
+
+
+/* =========================================================
+   V287 - TEDAVİ ALANLARI / AĞRI AYRIMI
+   Tedavi Alanları ana gridinden Baş Ağrısı & Migren ile
+   Bel & Sırt Ağrısı kartları çıkarıldı.
+   Ağrı başlıkları Ağrı bölümünde tutulur.
+   ========================================================= */
+
+
+/* =========================================================
+   V289 - TEDAVİ ALANLARI ANA SAYFASI TEMİZ KALSIN
+   Ankilozan / Romatoid / diğer hastalık detayları yalnızca
+   ilgili karta basıldığında görünür.
+   ========================================================= */
+
+/* Tedavi Alanları ana ekranındayken detay sayfaları kesinlikle görünmez. */
+body.treatment-page-open #ankilozanFaqSectionV85,
+body.treatment-page-open #romatoidFaqSectionV198,
+body.treatment-page-open #conditionDiseasePageV246,
+body.treatment-page-open #ankilozanSpecialViewV274,
+body.treatment-page-open #treatmentSpecialViewV279 {
+    display: none !important;
+}
+
+/* Ankilozan detay ekranı yalnız kendi sayfa durumu aktifken gösterilir. */
+body:not(.ankilozan-page-open-v87) #ankilozanFaqSectionV85 {
+    display: none !important;
 }

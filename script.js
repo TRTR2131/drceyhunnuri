@@ -1,3 +1,6 @@
+// V258 - Osteopati bağımsız premium sekme sistemi.
+// V257 - Osteopati signature tasarımı; mevcut etkileşimler korunur.
+// V254 - Dikey boşluk düzeltmesi CSS tarafında yapıldı; mevcut davranış korunur.
 // V207 - Hakkımda içerik görünürlüğü CSS ile düzeltildi; mevcut davranış korunur.
 // V206 - Eğitim ve Görevler paneli kısa ekran görünümü düzeltildi
 // V205 - Üst menü yalnızca CSS ile kompakt/hizalı güncellendi; mevcut animasyonlar korunur.
@@ -1773,6 +1776,52 @@ function openTreatmentPage() {
     ) {
         heroHealthMenu.classList.remove("open");
     }
+
+    // V288: Tedavi Alanları ana sayfası açılırken
+    // hastalık özel sayfaları / ağrı / medya / bilgi katmanları arkada kalmasın.
+    document.body.classList.remove(
+        "pain-page-open",
+        "pain-nav-scrolled",
+        "media-page-open",
+        "media-nav-scrolled",
+        "about-page-open",
+        "about-nav-scrolled",
+        "legal-page-open-v56",
+        "treatment-detail-open-v71",
+        "treatment-detail-nav-scrolled-v71",
+        "general-health-detail-open-v75",
+        "ankilozan-page-open-v87",
+        "romatoid-page-open-v198",
+        "condition-disease-page-open-v246",
+        "as-special-open-v274",
+        "treatment-special-open-v279",
+        "osteo-standalone-open-v260",
+        "device-detail-page-open-v157",
+        "general-featured-open-v124"
+    );
+
+    [
+        "agriPage",
+        "medyaPage",
+        "hakkimdaPage",
+        "legalPageV56",
+        "treatmentDetailPageV71",
+        "generalHealthDetailPageV75",
+        "ankilozanFaqSectionV85",
+        "romatoidFaqSectionV198",
+        "conditionDiseasePageV246",
+        "ankilozanSpecialViewV274",
+        "treatmentSpecialViewV279",
+        "osteoSpecialViewV259",
+        "deviceDetailPageV157",
+        "generalFeaturedPageV124",
+        "infoGuidePageV143"
+    ].forEach(function (id) {
+        const el = document.getElementById(id);
+        if (el) {
+            el.setAttribute("aria-hidden", "true");
+        }
+    });
 
     document.body.classList.add(
         "treatment-page-open"
@@ -3597,7 +3646,23 @@ window.addEventListener("load", async () => {
             "media-nav-scrolled",
             "legal-page-open-v56",
             "treatment-detail-open-v71",
-            "general-health-detail-open-v75"
+            "treatment-detail-nav-scrolled-v71",
+            "general-health-detail-open-v75",
+
+            /* V282: hastalık özel sayfalarını da tamamen kapat */
+            "ankilozan-page-open-v87",
+            "romatoid-page-open-v198",
+            "condition-disease-page-open-v246",
+
+            /* Açık kalmış bağımsız özel içerik ekranlarını kapat */
+            "as-special-open-v274",
+            "treatment-special-open-v279",
+            "osteo-standalone-open-v260",
+
+            /* Diğer tam ekran detay sayfaları */
+            "info-guide-page-open-v143",
+            "device-detail-page-open-v157",
+            "general-featured-open-v124"
         );
 
         [
@@ -3607,7 +3672,21 @@ window.addEventListener("load", async () => {
             document.getElementById("medyaPage"),
             document.getElementById("legalPageV56"),
             document.getElementById("treatmentDetailPageV71"),
-            document.getElementById("generalHealthDetailPageV75")
+            document.getElementById("generalHealthDetailPageV75"),
+
+            /* V282: tedavi alanlarındaki açık hastalık sayfalarını kapat */
+            document.getElementById("ankilozanFaqSectionV85"),
+            document.getElementById("romatoidFaqSectionV198"),
+            document.getElementById("conditionDiseasePageV246"),
+
+            /* Açık olabilecek bağımsız özel içerik ekranları */
+            document.getElementById("ankilozanSpecialViewV274"),
+            document.getElementById("treatmentSpecialViewV279"),
+            document.getElementById("osteoSpecialViewV259"),
+
+            /* Diğer tam ekran detaylar */
+            document.getElementById("infoGuidePageV143"),
+            document.getElementById("deviceDetailPageV157")
         ].forEach(page => {
             if (page) {
                 page.setAttribute("aria-hidden", "true");
@@ -3972,14 +4051,22 @@ window.addEventListener("load", async () => {
             "about-nav-scrolled",
             "legal-page-open-v56",
             "treatment-detail-open-v71",
-            "general-health-detail-open-v75"
+            "general-health-detail-open-v75",
+
+            /* V284: başka hastalık sayfası arkada kalmasın */
+            "romatoid-page-open-v198",
+            "condition-disease-page-open-v246"
         );
 
         const otherPages = [
             document.getElementById("tedaviAlanlariPage"),
             document.getElementById("agriPage"),
             document.getElementById("medyaPage"),
-            document.getElementById("hakkimdaPage")
+            document.getElementById("hakkimdaPage"),
+
+            /* V284: RA / diğer hastalık sayfaları da kapanır */
+            document.getElementById("romatoidFaqSectionV198"),
+            document.getElementById("conditionDiseasePageV246")
         ];
 
         otherPages.forEach(item => {
@@ -4003,6 +4090,10 @@ window.addEventListener("load", async () => {
             "aria-hidden",
             "false"
         );
+
+        if (typeof window.updateDiseaseSwitcherV250 === 'function') {
+            window.updateDiseaseSwitcherV250('as');
+        }
 
         history.pushState(
             { page: "ankilozan-spondilit" },
@@ -6267,13 +6358,14 @@ window.addEventListener("load", async () => {
   if(!page) return;
 
   function closeKnown(){
-    document.body.classList.remove('treatment-page-open','treatment-nav-scrolled','pain-page-open','pain-nav-scrolled','media-page-open','media-nav-scrolled','about-page-open','about-nav-scrolled','legal-page-open-v56','treatment-detail-open-v71','general-health-detail-open-v75','ankilozan-page-open-v87','info-guide-page-open-v143','device-detail-page-open-v157');
-    ['tedaviAlanlariPage','agriPage','medyaPage','hakkimdaPage','legalPageV56','treatmentDetailPageV71','generalHealthDetailPageV75','ankilozanFaqSectionV85','infoGuidePageV143'].forEach(id=>{const e=document.getElementById(id);if(e)e.setAttribute('aria-hidden','true')});
+    document.body.classList.remove('treatment-page-open','treatment-nav-scrolled','pain-page-open','pain-nav-scrolled','media-page-open','media-nav-scrolled','about-page-open','about-nav-scrolled','legal-page-open-v56','treatment-detail-open-v71','general-health-detail-open-v75','ankilozan-page-open-v87','condition-disease-page-open-v246','info-guide-page-open-v143','device-detail-page-open-v157','general-featured-open-v124');
+    ['tedaviAlanlariPage','agriPage','medyaPage','hakkimdaPage','legalPageV56','treatmentDetailPageV71','generalHealthDetailPageV75','ankilozanFaqSectionV85','conditionDiseasePageV246','infoGuidePageV143'].forEach(id=>{const e=document.getElementById(id);if(e)e.setAttribute('aria-hidden','true')});
   }
   function openRA(push=true){
     closeKnown();
     document.body.classList.add('romatoid-page-open-v198');
     page.setAttribute('aria-hidden','false');
+    if (typeof window.updateDiseaseSwitcherV250 === 'function') window.updateDiseaseSwitcherV250('ra');
     if(push) history.pushState({page:'romatoid-artrit'},'','#romatoid-artrit');
     window.scrollTo({top:0,behavior:'smooth'});
   }
@@ -6651,7 +6743,97 @@ window.addEventListener("load", async () => {
             approachText: 'Şikâyete göre ergonomi, kullanım önerileri ve hareket planlaması ile günlük işlevlerin desteklenmesi amaçlanır.',
             approachTags: ['Kavrama Fonksiyonu', 'Ergonomi', 'Mobilite', 'Günlük Kullanım']
         }
-    };;
+    };
+
+    // V265 - Osteopati Ağrı Rehberi için doğrudan açılan birleşik ağrı başlıkları.
+    data['boyun-ense'] = {
+        title: 'Boyun & Ense Ağrısı',
+        lead: 'Boyun ve ense yakınmaları; servikal hareketlilik, omuz kuşağı, postür ve günlük yüklenmelerle birlikte değerlendirilir.',
+        summaryTitle: 'Boyun ve ense bölgesi baş, omuz ve sırtla birlikte çalışır.',
+        summaryText: 'Ağrının baş hareketleriyle ilişkisi, masa başı çalışma, uyku pozisyonu ve omuz kuşağı gerginliği birlikte sorgulanır.',
+        summaryCards: [
+            ['Servikal Hareket', 'Boynun dönme, eğilme ve doğrulma hareketleri gözden geçirilir.'],
+            ['Omuz Kuşağı', 'Skapula ve üst trapez bölgesindeki yüklenmeler değerlendirilir.'],
+            ['Postür', 'Başın öne taşınması ve uzun süreli çalışma pozisyonları incelenir.']
+        ],
+        symptomsTitle: 'Boyun ve ense bölgesinde öne çıkan belirtiler',
+        symptomsLead: 'Hareket kısıtlılığı, tutukluk ve omuzlara yayılan gerginlik hissi eşlik edebilir.',
+        symptoms: ['Boyun veya ense bölgesinde ağrı ve tutukluk','Başı çevirirken hareket kısıtlılığı','Omuz kuşağına yayılan gerginlik','Uzun masa başı çalışma sonrası artan rahatsızlık'],
+        whoTitle: 'Boyun & Ense Ağrısı kimlerde görülebilir?',
+        whoText: 'Uzun süre ekran karşısında çalışanlarda, aynı pozisyonda kalanlarda ve baş-boyun postüründe zorlanma yaşayanlarda görülebilir.',
+        evalTitle: 'Boyun ve ense için değerlendirme',
+        evalText: 'Servikal hareket açıklığı, omuz kuşağı, torakal bölge ve postür ilişkisi birlikte ele alınır.',
+        evalCards: [['Hareket','Boyun hareket açıklığı değerlendirilir.'],['Postür','Baş-boyun ve omuz hizalanması gözlenir.'],['Hareket Zinciri','Toraks ve skapula ile ilişkiler incelenir.']],
+        approachTitle: 'Boyun ve ense ağrısında yaklaşım',
+        approachText: 'Amaç; zorlayıcı günlük alışkanlıkları belirlemek, hareket kalitesini desteklemek ve kişiye uygun yönlendirme oluşturmaktır.',
+        approachTags: ['Boyun Mobilitesi','Postür','Omuz Kuşağı','Günlük Ergonomi']
+    };
+
+    data['bel-sirt'] = {
+        ...data['bel'],
+        title: 'Bel & Sırt Ağrısı',
+        lead: 'Bel ve sırt ağrısı; omurga hareketliliği, postür, pelvis ve günlük yüklenme paternleri birlikte değerlendirilerek ele alınır.',
+        summaryTitle: 'Bel ve sırt bölgesi bütün bir omurga zinciri olarak değerlendirilir.',
+        summaryText: 'Uzun oturma, eğilme, dönme, ayakta kalma ve çalışma düzeninin bel-sırt bölgesindeki yakınmalarla ilişkisi incelenir.',
+        symptomsTitle: 'Bel ve sırt ağrısında sık görülen belirtiler',
+        symptomsLead: 'Tutukluk, hareketle artan rahatsızlık ve uzun pozisyonlarda zorlanma öne çıkabilir.',
+        whoTitle: 'Bel & Sırt Ağrısı kimlerde görülebilir?',
+        evalTitle: 'Bel ve sırt için değerlendirme',
+        approachTitle: 'Bel ve sırt ağrısında yaklaşım',
+        approachTags: ['Omurga Hareketi','Postür','Pelvis','Günlük Yüklenme']
+    };
+
+    data['omuz-kol'] = {
+        ...data['omuz'],
+        title: 'Omuz & Kol Ağrısı',
+        lead: 'Omuz ve kol ağrısında omuz eklemi, skapula, boyun ilişkisi ve üst ekstremite kullanım paterni birlikte değerlendirilir.',
+        summaryTitle: 'Omuz ve kol hareketleri aynı fonksiyonel zincirin parçalarıdır.',
+        summaryText: 'Kol kaldırma, uzanma, taşıma ve tekrarlayıcı kullanım sırasında oluşan yakınmalar birlikte değerlendirilir.',
+        symptomsTitle: 'Omuz ve kol bölgesinde öne çıkan belirtiler',
+        symptomsLead: 'Kolu kaldırırken zorlanma, hareket kısıtlılığı ve yayılan rahatsızlık görülebilir.',
+        whoTitle: 'Omuz & Kol Ağrısı kimlerde görülebilir?',
+        evalTitle: 'Omuz ve kol için değerlendirme',
+        approachTitle: 'Omuz ve kol ağrısında yaklaşım',
+        approachTags: ['Omuz Hareketi','Skapula','Boyun İlişkisi','Üst Ekstremite']
+    };
+
+    data['kalca-diz'] = {
+        ...data['kalca'],
+        title: 'Kalça & Diz Ağrısı',
+        lead: 'Kalça ve diz ağrısında pelvis, kalça eklemi, diz ve ayak hattındaki yük aktarımı birlikte değerlendirilir.',
+        summaryTitle: 'Kalça ve diz alt ekstremite hareket zincirinin temel parçalarıdır.',
+        summaryText: 'Yürüme, merdiven, oturup kalkma ve çömelme gibi hareketlerde yükün kalça-diz hattında nasıl aktarıldığı incelenir.',
+        symptomsTitle: 'Kalça ve diz bölgesinde öne çıkan belirtiler',
+        symptomsLead: 'Yürüme ve yüklenme ile artan yakınmalar, hareket kısıtlılığı veya tutukluk görülebilir.',
+        whoTitle: 'Kalça & Diz Ağrısı kimlerde görülebilir?',
+        evalTitle: 'Kalça ve diz için değerlendirme',
+        approachTitle: 'Kalça ve diz ağrısında yaklaşım',
+        approachTags: ['Pelvis','Kalça','Diz','Yük Aktarımı']
+    };
+
+    data['cene-bas'] = {
+        title: 'Çene & Baş Ağrısı',
+        lead: 'Çene ve baş bölgesi yakınmalarında temporomandibular eklem, çiğneme kasları, boyun postürü ve baş-boyun ilişkisi birlikte değerlendirilir.',
+        summaryTitle: 'Çene, baş ve boyun bölgesi yakınmaları birbiriyle ilişkili olabilir.',
+        summaryText: 'Çiğneme, ağız açma-kapama, diş sıkma öyküsü, baş-boyun postürü ve günlük stres faktörleri birlikte sorgulanır.',
+        summaryCards: [
+            ['TME', 'Çene eklemi hareketi ve açma-kapama paterni değerlendirilir.'],
+            ['Çiğneme Kasları', 'Çene çevresi kas gerginliği ve hassasiyet alanları incelenir.'],
+            ['Baş-Boyun İlişkisi', 'Servikal postür ve üst çapraz paternler gözden geçirilir.']
+        ],
+        symptomsTitle: 'Çene ve baş bölgesinde öne çıkan belirtiler',
+        symptomsLead: 'Çene hareketinde rahatsızlık, baş çevresinde gerginlik veya boyun eşlikli yakınmalar görülebilir.',
+        symptoms: ['Çene ekleminde ağrı veya hassasiyet','Ağız açarken klik veya zorlanma hissi','Şakak ve baş çevresinde gerginlik','Boyun ve çene yakınmalarının birlikte artması'],
+        whoTitle: 'Çene & Baş Ağrısı kimlerde görülebilir?',
+        whoText: 'Diş sıkma öyküsü olanlarda, çene ekleminde rahatsızlık yaşayanlarda ve baş-boyun postüründe zorlanma bulunan kişilerde görülebilir.',
+        evalTitle: 'Çene ve baş bölgesi için değerlendirme',
+        evalText: 'TME hareketi, çiğneme kasları, boyun hareketliliği ve postür ilişkisi birlikte değerlendirilir.',
+        evalCards: [['TME Hareketi','Çenenin açma-kapama ve yan hareketleri gözlenir.'],['Kaslar','Çiğneme ve boyun çevresi kaslar değerlendirilir.'],['Postür','Baş-boyun hizalanması ve günlük alışkanlıklar incelenir.']],
+        approachTitle: 'Çene ve baş yakınmalarında yaklaşım',
+        approachText: 'Yaklaşım; değerlendirme bulgularına göre çene-boyun ilişkisini ve günlük kullanım alışkanlıklarını dikkate alacak şekilde planlanır.',
+        approachTags: ['TME','Baş-Boyun','Çiğneme Kasları','Postür']
+    };
+
     const title=document.getElementById('painFullTitleV215');
     const lead=document.getElementById('painFullLeadV215');
     const image=document.getElementById('painFullImageV215');
@@ -6688,6 +6870,12 @@ window.addEventListener("load", async () => {
       const img=card.querySelector('img');
       if(img) painImageMap[card.dataset.pain]=img.getAttribute('src')||img.src;
     });
+    // V265: Osteopati ağrı kartları için uygun mevcut ağrı görsellerini yeniden kullan.
+    painImageMap['boyun-ense'] = painImageMap['omuz'] || painImageMap['sirt'] || '';
+    painImageMap['bel-sirt'] = painImageMap['bel'] || painImageMap['sirt'] || '';
+    painImageMap['omuz-kol'] = painImageMap['omuz'] || '';
+    painImageMap['kalca-diz'] = painImageMap['kalca'] || painImageMap['diz'] || '';
+    painImageMap['cene-bas'] = './disease-bas-agrisi-migren-v77.png?v=150';
     quickImages.forEach(img=>{
       const key=img.dataset.painQuickImageV219;
       if(painImageMap[key]) img.src=painImageMap[key];
@@ -6828,15 +7016,19 @@ window.addEventListener("load", async () => {
     window.openPainFullDetailV215=openDetail;
     window.closePainFullDetailV215=closeDetail;
 
-    const match=location.hash.match(/^#agri-(diz|ayak-ayak-bilegi|kalca|bel|sirt|dirsek|omuz|el-bilegi)$/);
-    if(match) {
-      const card=cards.find(c=>c.dataset.pain===match[1]);
-      if(card) openDetail(match[1],card,false);
+    const painHashPattern=/^#agri-(diz|ayak-ayak-bilegi|kalca|bel|sirt|dirsek|omuz|el-bilegi|boyun-ense|bel-sirt|omuz-kol|kalca-diz|cene-bas)$/;
+    const match=location.hash.match(painHashPattern);
+    if(match && data[match[1]]) {
+      const card=cards.find(c=>c.dataset.pain===match[1]) || null;
+      openDetail(match[1],card,false);
     }
 
     window.addEventListener('popstate',()=>{
-      const m=location.hash.match(/^#agri-(diz|ayak-ayak-bilegi|kalca|bel|sirt|dirsek|omuz|el-bilegi)$/);
-      if(m) { const card=cards.find(c=>c.dataset.pain===m[1]); if(card) openDetail(m[1],card,false); }
+      const m=location.hash.match(painHashPattern);
+      if(m && data[m[1]]) {
+        const card=cards.find(c=>c.dataset.pain===m[1]) || null;
+        openDetail(m[1],card,false);
+      }
       else if(location.hash==='#agri' && document.body.classList.contains('pain-full-detail-open-v215')) closeDetail(false);
     });
 })();
@@ -7744,4 +7936,2011 @@ window.addEventListener("load", async () => {
             closeSeleniumTab();
         }
     });
+})();
+
+
+
+// =========================================================
+// V249 - TEDAVİ ALANLARI HASTALIKLARI = ANKİLOZAN SAYFA DÜZENİ
+// AS ve RA mevcut özel sayfalarını korur; diğer 6 hastalık dinamik
+// olarak aynı görsel dilde ayrı sayfa deneyimiyle açılır.
+// =========================================================
+(function () {
+    const page = document.getElementById('conditionDiseasePageV246');
+    if (!page) return;
+
+    const title = document.getElementById('conditionTitleV249');
+    const kicker = document.getElementById('conditionKickerV249');
+    const summary = document.getElementById('conditionSummaryV249');
+    const image = document.getElementById('conditionImageV249');
+    const imageCaption = document.getElementById('conditionImageCaptionV249');
+    const pills = document.getElementById('conditionPillsV249');
+    const quickCause = document.getElementById('conditionQuickCauseV249');
+    const quickSymptoms = document.getElementById('conditionQuickSymptomsV249');
+    const quickDiagnosis = document.getElementById('conditionQuickDiagnosisV249');
+    const quickTreatment = document.getElementById('conditionQuickTreatmentV249');
+
+    const detailHub = document.getElementById('conditionDetailHubV249');
+    const detailKicker = document.getElementById('conditionDetailKickerV249');
+    const detailTitle = document.getElementById('conditionDetailTitleV249');
+    const detailDesc = document.getElementById('conditionDetailDescV249');
+    const detailGrid = document.getElementById('conditionDetailGridV249');
+    const detailNote = document.getElementById('conditionDetailNoteV249');
+    const topicButtons = Array.from(page.querySelectorAll('[data-condition-topic-v249]'));
+
+    const faqTitle = document.getElementById('conditionFaqTitleV249');
+    const faqList = document.getElementById('conditionFaqListV249');
+    const herbKicker = document.getElementById('conditionHerbKickerV249');
+    const herbTitle = document.getElementById('conditionHerbTitleV249');
+    const herbGrid = document.getElementById('conditionHerbGridV249');
+    const herbNote = document.getElementById('conditionHerbNoteV249');
+
+    const homeBrand = document.getElementById('conditionHomeV249');
+    const homeButton = document.getElementById('conditionNavHomeV249');
+    const areasButton = document.getElementById('conditionAreasV249');
+    const painButton = document.getElementById('conditionPainV249');
+    const mediaButton = document.getElementById('conditionMediaV249');
+    const infoButton = document.getElementById('conditionInfoV249');
+    const healthMenu = document.getElementById('conditionHealthMenuV249');
+    const healthButton = document.getElementById('conditionHealthButtonV249');
+    const healthDropdown = document.getElementById('conditionHealthDropdownV249');
+
+    const labels = {
+        'neden': ['NEDEN OLUR?', 'Neden Olur?'],
+        'belirtiler': ['BELİRTİLER', 'Belirtiler'],
+        'nasil-gecer': ['NASIL HAFİFLER?', 'Nasıl Hafifler?'],
+        'kimlerde': ['KİMLERDE GÖRÜLÜR?', 'Kimlerde Görülür?'],
+        'tani': ['TANI SÜRECİ', 'Tanı Süreci'],
+        'tedavi': ['TEDAVİ YAKLAŞIMI', 'Tedavi Yaklaşımı'],
+        'egzersiz': ['EGZERSİZ & HAREKET', 'Egzersiz & Hareket'],
+        'gunluk': ['GÜNLÜK YAŞAM', 'Günlük Yaşam']
+    };
+
+    const diseaseData = {
+        'bas-agrisi-migren': {
+            title: 'Baş Ağrısı ve Migren',
+            kicker: 'BAŞ • BOYUN • SİNİR SİSTEMİ',
+            image: './disease-bas-agrisi-migren-v77.png?v=150',
+            alt: 'Baş ağrısı ve migreni temsil eden medikal görsel',
+            caption: 'Baş • Boyun • Tetikleyiciler • Nörolojik Değerlendirme',
+            summary: 'Baş ağrısı ve migren; ağrının tipi, süresi, tetikleyicileri, boyun-kas ilişkisi ve eşlik eden nörolojik belirtiler birlikte değerlendirilerek ele alınmalıdır.',
+            pills: ['Tetikleyiciler', 'Boyun & Postür', 'Uyku & Stres', 'Nörolojik Belirtiler'],
+            neden: [['Genetik yatkınlık','Migren ailelerde daha sık görülebilir; tek başına genetik bir hastalık değildir.'],['Sinir sistemi hassasiyeti','Ağrı işleme ve trigeminal sistemdeki hassasiyet ataklara katkıda bulunabilir.'],['Tetikleyiciler','Uyku düzensizliği, açlık, sıvı kaybı ve stres bazı kişilerde atağı başlatabilir.'],['Boyun-kas etkisi','Boyun ve omuz kuşağı gerginliği bazı baş ağrısı tiplerinde tabloya eşlik edebilir.']],
+            belirtiler: [['Baş ağrısı','Tek veya iki taraflı, zonklayıcı ya da baskı tarzında ağrı görülebilir.'],['Bulantı','Migren atağında bulantı ve bazen kusma eşlik edebilir.'],['Işık-ses hassasiyeti','Işık, ses ve koku hassasiyeti sık görülen eşlikçi bulgulardandır.'],['Aura','Bazı kişilerde görsel, duysal veya konuşma ile ilgili geçici aura belirtileri olabilir.']],
+            'nasil-gecer': [['Atak planı','Hekimin önerdiği atak tedavisini erken dönemde uygulamak önemlidir.'],['Uyku düzeni','Düzenli uyku ve öğün ritmi atak eşiğini olumlu etkileyebilir.'],['Tetikleyici takibi','Baş ağrısı günlüğü kişisel tetikleyicileri fark etmeye yardımcı olur.'],['Boyun rahatlığı','Uygun kişilerde boyun hareketliliği ve postür çalışmaları destekleyici olabilir.']],
+            kimlerde: [['Aile öyküsü','Ailesinde migren bulunanlarda görülme olasılığı artabilir.'],['Hormonal dönemler','Bazı kişilerde hormonal değişimler atak sıklığını etkileyebilir.'],['Yoğun stres','Stres, uykusuzluk ve düzensiz yaşam ritmi atağı kolaylaştırabilir.'],['Duyusal hassasiyet','Işık, ses veya kokuya hassas kişilerde tetiklenme daha belirgin olabilir.']],
+            tani: [['Ağrı öyküsü','Süre, sıklık, yer ve ağrının karakteri ayrıntılı sorgulanır.'],['Eşlik eden bulgular','Bulantı, aura ve nörolojik belirtiler değerlendirilir.'],['Muayene','Nörolojik muayene ve gerektiğinde boyun-kas sistemi değerlendirmesi yapılır.'],['Görüntüleme gerekliliği','Her baş ağrısında görüntüleme gerekmez; kırmızı bayrak varsa hekim karar verir.']],
+            tedavi: [['Atak tedavisi','Atak sırasında kullanılan ilaçlar kişiye göre hekim tarafından planlanır.'],['Koruyucu yaklaşım','Sık veya ağır ataklarda koruyucu tedaviler değerlendirilebilir.'],['Yaşam düzeni','Uyku, sıvı, öğün ve stres yönetimi planın önemli parçasıdır.'],['Destekleyici yaklaşım','Boyun-postür, gevşeme ve egzersiz uygun hastalarda destekleyici olabilir.']],
+            egzersiz: [['Düzenli aerobik hareket','Yürüyüş ve benzeri düzenli egzersizler genel sağlık ve stres yönetimini destekler.'],['Boyun mobilitesi','Ağrıyı tetiklemeyen kontrollü hareketler boyun gerginliğini azaltmaya yardımcı olabilir.'],['Aşırı yükten kaçınma','Atak döneminde yoğun egzersiz bazı kişilerde yakınmaları artırabilir.'],['Kademeli ilerleme','Egzersiz sıklığı ve şiddeti kişisel toleransa göre artırılmalıdır.']],
+            gunluk: [['Baş ağrısı günlüğü','Atak zamanı, uyku, beslenme ve tetikleyicileri kaydetmek örüntüyü gösterir.'],['Düzenli öğün','Uzun açlık dönemlerinden kaçınmak bazı kişilerde faydalı olabilir.'],['Ekran ve ışık','Uzun ekran kullanımında mola vermek ve ışık düzenini ayarlamak yararlı olabilir.'],['Acil uyarılar','Ani ve yaşamın en şiddetli baş ağrısı gibi yeni belirtilerde acil değerlendirme gerekir.']],
+            notes: {neden:'Migren tek bir nedene indirgenmez; biyolojik yatkınlık ve kişisel tetikleyiciler birlikte değerlendirilir.', belirtiler:'Yeni, ani veya alışılmadık şiddette baş ağrısı tıbbi değerlendirme gerektirir.', tani:'Tanı çoğunlukla klinik öykü ve muayeneye dayanır; tetkikler gerektiğinde kullanılır.'},
+            herbs: [['Zencefil','phyto-zencefil-v131.jpg','Bulantı ve genel inflamatuar süreçler açısından araştırılmıştır; migren tedavisinin yerine geçmez.'],['Zerdeçal (Kurkumin)','phyto-zerdecal-v131.jpg','Antioksidan ve inflamasyon yolları açısından değerlendirilebilir; doğrudan migren kanıtı sınırlıdır.'],['Biberiye','phyto-biberiye-v131.jpg','Geleneksel kullanım alanı vardır; baş ağrısında klinik etkinlik kanıtı sınırlıdır.'],['Omega-3','phyto-omega3-v131.jpg','Genel antiinflamatuar beslenme düzeninin bir parçası olarak değerlendirilebilir.']],
+            herbNote:'Migren bazı bitki ve gıdalardan etkilenebilir. Özellikle düzenli ilaç kullananlarda bitkisel ürünler hekim görüşü olmadan başlanmamalıdır.'
+        },
+        'bel-sirt-agrisi': {
+            title:'Bel ve Sırt Ağrısı', kicker:'OMURGA • KAS • POSTÜR', image:'./disease-bel-sirt-agrisi-v77.png?v=150', alt:'Bel ve sırt ağrısını temsil eden omurga görseli', caption:'Omurga • Kas Dengesi • Hareket • Postür',
+            summary:'Bel ve sırt ağrısı; kaslar, eklemler, diskler, postür, günlük yüklenme ve bazı sistemik nedenlerin birlikte değerlendirilmesini gerektiren çok nedenli bir yakınmadır.', pills:['Omurga','Kas Dengesi','Postür','Hareket'],
+            neden:[['Kas ve yumuşak doku','Aşırı yüklenme, hareketsizlik veya kas dengesizlikleri ağrıya katkıda bulunabilir.'],['Disk ve eklem yapıları','Omurga diskleri ve faset eklemler bazı ağrı tiplerinde rol oynayabilir.'],['Postür ve ergonomi','Uzun oturma, tekrarlayan eğilme ve uygunsuz çalışma pozisyonları yakınmaları artırabilir.'],['Sistemik nedenler','Daha nadir olarak inflamatuar, enfeksiyöz veya diğer sistemik nedenler araştırılabilir.']],
+            belirtiler:[['Bölgesel ağrı','Bel veya sırt bölgesinde lokal ağrı ve hassasiyet görülebilir.'],['Sertlik','Uzun oturma veya sabah saatlerinde sertlik hissi olabilir.'],['Yayılım','Bazı durumlarda ağrı kalçaya, bacağa veya gövdeye yayılabilir.'],['Nörolojik bulgular','Uyuşma, kuvvet kaybı veya idrar-dışkı kontrol sorunu varsa acil değerlendirme gerekir.']],
+            'nasil-gecer':[['Hareketi sürdürmek','Uygun düzeyde hareket çoğu mekanik ağrıda uzun süreli yatak istirahatinden daha yararlıdır.'],['Ergonomi','Oturma, çalışma ve kaldırma tekniklerinin düzenlenmesi yükü azaltabilir.'],['Kademeli güçlendirme','Gövde, kalça ve sırt kaslarının kontrollü güçlendirilmesi destekleyici olabilir.'],['Tıbbi değerlendirme','Uzayan veya şiddetlenen ağrıda nedenin belirlenmesi gerekir.']],
+            kimlerde:[['Masa başı çalışanlar','Uzun süre oturma ve düşük hareket düzeyi riski artırabilir.'],['Fiziksel yükü yüksek işler','Tekrarlayan kaldırma ve dönme hareketleri yakınmaları artırabilir.'],['Hareketsizlik','Düşük kas dayanıklılığı ve esneklik ağrı riskine katkı sağlayabilir.'],['Önceki yaralanmalar','Geçmiş bel-sırt yaralanmaları bazı kişilerde tekrar eden yakınmalarla ilişkili olabilir.']],
+            tani:[['Öykü','Ağrının başlangıcı, süresi ve hareketle ilişkisi sorgulanır.'],['Fizik muayene','Omurga hareketi, kas kuvveti, refleksler ve sinir germe testleri değerlendirilebilir.'],['Kırmızı bayraklar','Travma, ateş, kilo kaybı veya nörolojik kayıp gibi bulgular araştırılır.'],['Görüntüleme','Her bel ağrısında gerekli değildir; klinik gerekliliğe göre planlanır.']],
+            tedavi:[['Aktif yaklaşım','Hareket, egzersiz ve günlük aktivitenin korunması çoğu durumda temel yaklaşımdır.'],['Ağrı yönetimi','İlaç ve diğer tıbbi yöntemler kişisel duruma göre hekimce planlanır.'],['Manuel/osteopatik destek','Uygun hastalarda hareket ve kas-iskelet sistemi planına destek olarak değerlendirilebilir.'],['Takip','Devam eden veya değişen belirtiler yeniden değerlendirilmelidir.']],
+            egzersiz:[['Yürüyüş','Düşük-orta tempolu yürüyüş hareket toleransını artırabilir.'],['Gövde stabilizasyonu','Karın-bel-kalça kaslarını kontrollü güçlendirmek faydalı olabilir.'],['Mobilite','Kalça ve torakal omurga hareketliliği kişiye uygun şekilde çalışılabilir.'],['Ağrı sınırı','Keskin veya yayılan ağrıyı artıran hareketler zorlanmamalıdır.']],
+            gunluk:[['Mola verin','Uzun oturmada düzenli aralıklarla pozisyon değiştirin.'],['Yükü yakın tutun','Kaldırırken yükü gövdeye yakın taşımak mekanik stresi azaltır.'],['Uyku pozisyonu','Kişiye rahat gelen nötr omurga pozisyonu tercih edilmelidir.'],['Belirti takibi','Yeni uyuşma, güç kaybı veya kontrol kaybında gecikmeden değerlendirme alınmalıdır.']],
+            notes:{belirtiler:'Kuvvet kaybı, yaygın uyuşma veya idrar-dışkı kontrol sorunu acil değerlendirme gerektirir.', tani:'Görüntüleme kararı ağrının süresi, muayene ve kırmızı bayraklara göre verilir.'},
+            herbs:[['Zerdeçal (Kurkumin)','phyto-zerdecal-v131.jpg','İnflamasyon yolları üzerindeki etkileri nedeniyle destekleyici beslenme kapsamında değerlendirilebilir.'],['Boswellia (Akgünlük)','phyto-boswellia-v131.jpg','Eklem ve yumuşak doku rahatlığı bağlamında araştırılmış bitkisel içeriklerden biridir.'],['Zencefil','phyto-zencefil-v131.jpg','Genel ağrı ve inflamasyon mekanizmaları açısından araştırılmaktadır.'],['Omega-3','phyto-omega3-v131.jpg','İnflamatuar yükü azaltmaya yönelik dengeli beslenme planının bir parçası olabilir.']], herbNote:'Bel ve sırt ağrısında bitkisel ürünler altta yatan nedeni ortadan kaldırmaz. Ağrının kaynağının değerlendirilmesi ve hareket planı önceliklidir.'
+        },
+        'fibromiyalji': {
+            title:'Fibromiyalji', kicker:'YAYGIN AĞRI • UYKU • YORGUNLUK', image:'./disease-fibromiyalji-v77.png?v=150', alt:'Fibromiyaljide yaygın ağrı bölgelerini gösteren medikal görsel', caption:'Yaygın Ağrı • Uyku • Enerji • Günlük Yaşam',
+            summary:'Fibromiyalji; yaygın ağrı, hassasiyet, uyku bozukluğu, yorgunluk ve bilişsel yakınmaların birlikte görülebildiği kronik bir ağrı sendromudur.', pills:['Yaygın Ağrı','Uyku','Yorgunluk','Hareket'],
+            neden:[['Ağrı işleme hassasiyeti','Merkezi sinir sisteminin ağrıyı işleme biçimindeki hassasiyet önemli rol oynar.'],['Uyku bozukluğu','Dinlendirmeyen uyku ağrı ve yorgunluğu artırabilir.'],['Stres yanıtı','Yoğun stres belirtilerin alevlenmesiyle ilişkili olabilir.'],['Tek bir neden yok','Genetik, biyolojik ve çevresel faktörler birlikte etkili olabilir.']],
+            belirtiler:[['Yaygın ağrı','Vücudun farklı bölgelerinde uzun süreli ağrı görülebilir.'],['Yorgunluk','Dinlenmeye rağmen devam eden enerji düşüklüğü sık görülür.'],['Uyku sorunu','Uyku süresi yeterli olsa bile dinlenmiş hissetmeme olabilir.'],['Bilişsel yakınmalar','Dikkat ve odaklanmada güçlük bazı kişilerde belirgin olabilir.']],
+            'nasil-gecer':[['Kademeli egzersiz','Düzenli ve düşük-orta yoğunlukta hareket belirtileri yönetmeye yardımcı olabilir.'],['Uyku düzeni','Uyku ritmini düzeltmek temel yaklaşımlardan biridir.'],['Stres yönetimi','Gevşeme ve psikolojik destek bazı kişilerde yararlı olabilir.'],['Kişisel tedavi planı','İlaçlar ve destekleyici yöntemler kişiye göre planlanmalıdır.']],
+            kimlerde:[['Kadınlarda daha sık','Fibromiyalji kadınlarda daha sık tanınmaktadır.'],['Uyku sorunu olanlar','Kronik uyku bozuklukları belirtilerle ilişkili olabilir.'],['Uzun süreli stres','Stresli dönemler yakınmaların şiddetini etkileyebilir.'],['Eşlik eden ağrı sendromları','Migren veya irritabl bağırsak gibi durumlar eşlik edebilir.']],
+            tani:[['Klinik değerlendirme','Tanı öykü ve muayene temelinde konur.'],['Yaygın ağrı örüntüsü','Ağrının dağılımı ve süresi değerlendirilir.'],['Eşlik eden belirtiler','Uyku, yorgunluk ve bilişsel belirtiler sorgulanır.'],['Ayırıcı tanı','Benzer yakınma yapan tiroid, romatizmal veya diğer durumlar gerektiğinde dışlanır.']],
+            tedavi:[['Eğitim','Hastalığın mekanizmasını anlamak tedavi uyumunu artırabilir.'],['Egzersiz','Düzenli aerobik ve güçlendirme programları önemli yer tutar.'],['Uyku ve stres','Uyku hijyeni ve stres yönetimi planın parçasıdır.'],['Medikal destek','Gerektiğinde ilaçlar hekim tarafından kişiye göre planlanabilir.']],
+            egzersiz:[['Düşük tempolu başlangıç','Yürüyüş, bisiklet veya su egzersizleri düşük yoğunlukta başlanabilir.'],['Kademeli artış','Yoğunluk yavaş artırılmalıdır; aşırı yüklenme alevlenmeye yol açabilir.'],['Güçlendirme','Hafif direnç egzersizleri zamanla programa eklenebilir.'],['Esneme','Nazik esneme ve mobilite çalışmaları rahatlık sağlayabilir.']],
+            gunluk:[['Enerji planlaması','Gün içindeki işleri enerji düzeyine göre bölmek yararlı olabilir.'],['Düzenli ritim','Uyku ve aktivite saatlerini olabildiğince düzenli tutmak önemlidir.'],['Aşırı yükten kaçının','İyi günlerde aşırı aktivite, sonraki günlerde alevlenmeyi artırabilir.'],['Belirti günlüğü','Uyku, aktivite ve ağrı ilişkisini takip etmek kişisel örüntüyü gösterir.']],
+            notes:{tedavi:'Fibromiyaljide tek bir uygulama yerine düzenli ve çok bileşenli yaklaşım daha gerçekçidir.'},
+            herbs:[['Zerdeçal (Kurkumin)','phyto-zerdecal-v131.jpg','İnflamatuar yollar açısından araştırılmaktadır; fibromiyalji için tek başına tedavi değildir.'],['Zencefil','phyto-zencefil-v131.jpg','Genel antioksidan ve inflamasyon süreçleri bağlamında destekleyici olarak değerlendirilebilir.'],['Omega-3','phyto-omega3-v131.jpg','Dengeli beslenme planının bir parçası olarak değerlendirilebilen yağ asidi kaynaklarındandır.'],['Biberiye','phyto-biberiye-v131.jpg','Antioksidan polifenoller içerir; fibromiyaljide doğrudan klinik kanıt sınırlıdır.']], herbNote:'Fibromiyaljide bitkisel ürünlerden mucizevi ve hızlı sonuç beklenmemelidir. Uyku, hareket ve kişiye uygun tıbbi plan temel yaklaşımdır.'
+        },
+        'huzursuz-bacak': {
+            title:'Huzursuz Bacak Sendromu', kicker:'BACAKLAR • UYKU • SİNİR SİSTEMİ', image:'./disease-huzursuz-bacak-v77.png?v=150', alt:'Huzursuz bacak sendromunu temsil eden medikal görsel', caption:'Gece Yakınmaları • Uyku • Demir Durumu • Sinir Sistemi',
+            summary:'Huzursuz Bacak Sendromu; özellikle dinlenme sırasında bacakları hareket ettirme ihtiyacı, rahatsız edici duyumlar ve uyku bozukluğu ile seyredebilir.', pills:['Gece Yakınmaları','Uyku','Demir Durumu','İlaçlar'],
+            neden:[['Demir durumu','Düşük demir depoları bazı kişilerde belirtilerle ilişkili olabilir.'],['Sinir sistemi','Dopaminerjik sistem ve sinir sistemi mekanizmaları rol oynayabilir.'],['Gebelik','Gebelik döneminde geçici olarak daha sık görülebilir.'],['Eşlik eden durumlar','Böbrek hastalıkları ve bazı ilaçlar belirtileri etkileyebilir.']],
+            belirtiler:[['Hareket ettirme isteği','Bacaklarda güçlü hareket ettirme ihtiyacı oluşabilir.'],['Dinlenmede artış','Yakınmalar oturma veya uzanma sırasında belirginleşir.'],['Hareketle rahatlama','Yürüme veya bacakları oynatma geçici rahatlama sağlayabilir.'],['Gece artışı','Belirtiler akşam ve gece saatlerinde daha belirgin olabilir.']],
+            'nasil-gecer':[['Demir eksikliğini düzeltme','Eksiklik varsa hekim kontrolünde yerine koyma planlanabilir.'],['Kafein azaltma','Özellikle akşam saatlerinde kafein bazı kişilerde yakınmaları artırabilir.'],['Uyku düzeni','Düzenli uyku ve gevşeme rutini yararlı olabilir.'],['Tıbbi tedavi','Orta-ağır olgularda uygun ilaç seçenekleri hekim tarafından değerlendirilir.']],
+            kimlerde:[['Aile öyküsü','Bazı kişilerde ailesel yatkınlık bulunabilir.'],['Gebeler','Özellikle gebeliğin ilerleyen dönemlerinde görülebilir.'],['Demir eksikliği olanlar','Düşük ferritin ile HBS arasında ilişki olabilir.'],['Bazı kronik hastalıklar','Böbrek hastalığı gibi durumlarda görülme sıklığı artabilir.']],
+            tani:[['Klinik ölçütler','Tanı tipik belirtiler ve zamanlama örüntüsüne dayanır.'],['Demir değerlendirmesi','Ferritin ve demir durumu gerektiğinde incelenir.'],['İlaç gözden geçirme','Bazı ilaçlar belirtileri artırabileceği için kullanım listesi değerlendirilir.'],['Ayırıcı tanı','Kramp, nöropati ve dolaşım sorunları gibi durumlar ayrılır.']],
+            tedavi:[['Nedeni düzeltme','Demir eksikliği veya tetikleyici ilaç gibi etkenler öncelikle ele alınır.'],['Uyku-hijyen planı','Akşam rutinleri ve kafein kullanımı düzenlenir.'],['İlaç tedavisi','Gerekli olgularda nörolojik ilaçlar hekim tarafından planlanabilir.'],['Takip','Belirti sıklığı ve uyku üzerindeki etkisi izlenir.']],
+            egzersiz:[['Hafif yürüyüş','Akşam saatlerinde hafif yürüyüş bazı kişilerde rahatlatıcı olabilir.'],['Esneme','Baldır ve uyluk kaslarına nazik esneme uygulanabilir.'],['Aşırı egzersizden kaçınma','Geç saatte yoğun egzersiz bazı kişilerde belirtileri artırabilir.'],['Düzenlilik','Günlük hafif-orta hareket genel uyku düzenini destekleyebilir.']],
+            gunluk:[['Kafein takibi','Kahve, çay ve enerji içeceklerinin etkisi gözlenebilir.'],['Akşam rutini','Ilık duş, hafif esneme ve düzenli saatler yararlı olabilir.'],['Uzun oturma','Uzun yolculuklarda düzenli hareket molaları vermek faydalıdır.'],['İlaç danışmanlığı','Belirtileri artırabilecek ilaçlar hekimle görüşülmeden kesilmemelidir.']],
+            notes:{tani:'Huzursuz Bacak Sendromu tanısı çoğunlukla tipik klinik belirtilere dayanır; demir durumu sık değerlendirilir.'},
+            herbs:[['Zencefil','phyto-zencefil-v131.jpg','Genel beslenme desteği olarak değerlendirilebilir; huzursuz bacak için doğrudan etkinlik kanıtı sınırlıdır.'],['Biberiye','phyto-biberiye-v131.jpg','Geleneksel kullanım alanı vardır; huzursuz bacak tedavisi olarak kabul edilmez.'],['Kekik','phyto-kekik-v131.jpg','Antioksidan bileşenler içerir; HBS için doğrudan klinik kanıt bulunmamaktadır.'],['Civanperçemi','phyto-civanpercemi-v131.jpg','Geleneksel kullanım geçmişi vardır; huzursuz bacak için kanıt sınırlıdır ve ilaç etkileşimleri dikkate alınmalıdır.']], herbNote:'Huzursuz Bacak Sendromunda bitkisel ürünlerin doğrudan etkinliğine ilişkin kanıt sınırlıdır. Demir eksikliği ve diğer nedenlerin araştırılması önceliklidir.'
+        },
+        'iltihabi-bagirsak': {
+            title:'İltihabi Bağırsak Hastalıkları', kicker:'BAĞIRSAK • ENFLAMASYON • BESLENME', image:'./disease-iltihabi-bagirsak-v77.png?v=150', alt:'İltihabi bağırsak hastalıklarını temsil eden medikal görsel', caption:'Bağırsak • Beslenme • Enflamasyon • Takip',
+            summary:'İltihabi bağırsak hastalıkları, bağırsak duvarında kronik iltihapla seyreden ve gastroenteroloji takibi gerektiren hastalık grubudur; beslenme ve destekler tedavinin yerine geçmez.', pills:['Bağırsak','Beslenme','Alevlenme','Gastroenteroloji'],
+            neden:[['Genetik yatkınlık','Aile öyküsü ve genetik faktörler hastalık riskine katkı sağlayabilir.'],['Bağışıklık yanıtı','Bağırsak dokusunda uygunsuz veya aşırı bağışıklık yanıtı rol oynar.'],['Mikrobiyota','Bağırsak mikrobiyotasındaki değişiklikler araştırılan mekanizmalardandır.'],['Çevresel etkenler','Sigara, yaşam tarzı ve çevresel faktörlerin etkisi hastalık tipine göre değişebilir.']],
+            belirtiler:[['İshal','Uzun süren veya tekrarlayan ishal görülebilir.'],['Karın ağrısı','Karın ağrısı ve kramp sık yakınmalardandır.'],['Kanama','Dışkıda kan özellikle ülseratif kolitte görülebilir ve değerlendirme gerektirir.'],['Kilo-yorgunluk','Kilo kaybı, iştahsızlık ve yorgunluk eşlik edebilir.']],
+            'nasil-gecer':[['Hastalık kontrolü','Temel amaç bağırsak inflamasyonunu medikal tedaviyle kontrol etmektir.'],['Beslenme desteği','Alevlenme ve sakin döneme göre kişiselleştirilmiş beslenme planlanabilir.'],['Eksiklikleri düzeltme','Demir, B12, D vitamini gibi eksiklikler gerektiğinde değerlendirilir.'],['Düzenli takip','Semptomlar, laboratuvarlar ve gerekirse endoskopi ile hastalık aktivitesi izlenir.']],
+            kimlerde:[['Aile öyküsü olanlar','Birinci derece yakınlarda İBH bulunması riski artırabilir.'],['Genç erişkinler','Hastalık sıklıkla genç erişkinlik döneminde başlayabilir.'],['Sigara etkisi','Sigaranın Crohn ve ülseratif kolit üzerindeki etkisi farklıdır; genel olarak bırakılması önerilir.'],['Bağışıklık ilişkili durumlar','Bazı eklem, göz ve cilt bulguları İBH ile birlikte görülebilir.']],
+            tani:[['Öykü ve muayene','Belirti süresi, kanama, kilo kaybı ve sistemik bulgular değerlendirilir.'],['Laboratuvar','Kan ve dışkı testleri inflamasyon ve anemi açısından kullanılabilir.'],['Endoskopi','Kolonoskopi ve biyopsi tanıda önemli rol oynar.'],['Görüntüleme','Crohn hastalığında ince bağırsak değerlendirmesi için görüntüleme gerekebilir.']],
+            tedavi:[['Gastroenteroloji takibi','Tedavi hastalık tipi, yeri ve aktivitesine göre uzman tarafından planlanır.'],['İlaç tedavisi','Anti-inflamatuar, immün düzenleyici ve biyolojik tedaviler kullanılabilir.'],['Beslenme','Beslenme destekleyicidir; tek başına medikal tedavinin yerine geçmez.'],['Cerrahi','Bazı komplikasyonlarda veya seçilmiş olgularda cerrahi gerekebilir.']],
+            egzersiz:[['Hafif-orta hareket','Sakin dönemde yürüyüş ve benzeri aktiviteler genel sağlığı destekler.'],['Alevlenmede uyarlama','Aktif alevlenmede yoğunluk semptomlara göre azaltılmalıdır.'],['Kemik sağlığı','Direnç egzersizleri uygun kişilerde kemik ve kas sağlığını destekleyebilir.'],['Sıvı dengesi','İshal dönemlerinde sıvı-elektrolit kaybına dikkat edilmelidir.']],
+            gunluk:[['Semptom takibi','Dışkılama sıklığı, ağrı ve kanama değişimleri izlenmelidir.'],['Besin toleransı','Kişisel tetikleyiciler değişebilir; gereksiz geniş eliminasyon diyetlerinden kaçınılmalıdır.'],['İlaç uyumu','İlaçlar hekim önerisi olmadan kesilmemelidir.'],['Acil uyarılar','Şiddetli karın ağrısı, yüksek ateş veya yoğun kanamada hızlı değerlendirme gerekir.']],
+            notes:{tedavi:'Bitkisel ve beslenme destekleri gastroenteroloji tedavisinin yerine geçmez.', gunluk:'Alevlenme döneminde yeni takviye veya bitkisel ürün başlamadan önce hekim görüşü alınmalıdır.'},
+            herbs:[['Zerdeçal (Kurkumin)','phyto-zerdecal-v131.jpg','İnflamatuar bağırsak süreçlerinde araştırılmıştır; tedavinin yerine geçmez ve uygunluk hekimce değerlendirilmelidir.'],['Zencefil','phyto-zencefil-v131.jpg','Sindirim sistemi yakınmaları açısından geleneksel kullanımı vardır; aktif hastalıkta tolerans kişiden kişiye değişebilir.'],['Boswellia (Akgünlük)','phyto-boswellia-v131.jpg','İnflamatuar yollar açısından araştırılmıştır; klinik kanıt ve ürün standardizasyonu sınırlıdır.'],['Omega-3','phyto-omega3-v131.jpg','Genel antiinflamatuar beslenme kapsamında değerlendirilebilir; sonuçlar hastalık ve kişiye göre değişebilir.']], herbNote:'İltihabi bağırsak hastalıklarında bitkisel ürünler alevlenme döneminde uygun olmayabilir. Gastroenteroloji tedavisini değiştirmeden önce mutlaka hekime danışılmalıdır.'
+        },
+        'kronik-yorgunluk': {
+            title:'Kronik Yorgunluk', kicker:'ENERJİ • UYKU • METABOLİK DENGE', image:'./disease-kronik-yorgunluk-v77.png?v=150', alt:'Kronik yorgunluğu temsil eden medikal görsel', caption:'Enerji • Uyku • Beslenme • Sistemik Değerlendirme',
+            summary:'Uzun süren yorgunluk tek başına bir tanı değildir; uyku, beslenme, anemi, tiroid, enfeksiyonlar, ilaçlar, psikolojik yük ve diğer tıbbi nedenler birlikte değerlendirilmelidir.', pills:['Enerji','Uyku','Tiroid','Beslenme'],
+            neden:[['Uyku bozuklukları','Yetersiz veya kalitesiz uyku uzun süreli yorgunluğun sık nedenlerindendir.'],['Anemi ve eksiklikler','Demir, B12 veya diğer besin eksiklikleri enerji düzeyini etkileyebilir.'],['Tiroid ve metabolizma','Tiroid ve bazı metabolik bozukluklar yorgunluğa yol açabilir.'],['Enfeksiyon ve stres','Enfeksiyon sonrası dönem, yoğun stres veya bazı ilaçlar tabloya katkı sağlayabilir.']],
+            belirtiler:[['Enerji düşüklüğü','Dinlenmeyle tam düzelmeyen günlük enerji kaybı olabilir.'],['Düşük efor toleransı','Daha önce kolay olan aktiviteler zorlayıcı hale gelebilir.'],['Odaklanma güçlüğü','Dikkat ve zihinsel dayanıklılıkta azalma görülebilir.'],['Uyku düzensizliği','Aşırı uyuma veya dinlendirmeyen uyku eşlik edebilir.']],
+            'nasil-gecer':[['Nedeni bulmak','Öncelik altta yatan tıbbi veya yaşam tarzı nedenini belirlemektir.'],['Uyku düzeni','Düzenli uyku ve ışık-maruziyet ritmi önemlidir.'],['Beslenme','Yeterli protein, enerji ve mikrobesin alımı desteklenmelidir.'],['Kademeli aktivite','Nedene ve toleransa göre hareket kademeli planlanmalıdır.']],
+            kimlerde:[['Yoğun stres yaşayanlar','Uzun süreli fiziksel veya psikolojik yük enerji düzeyini etkileyebilir.'],['Uyku sorunu olanlar','Uyku apnesi ve diğer uyku bozuklukları önemli nedenler olabilir.'],['Eksiklik riski olanlar','Yetersiz beslenme veya kan kaybı gibi durumlarda yorgunluk gelişebilir.'],['Kronik hastalığı olanlar','Enfeksiyon, endokrin veya inflamatuar hastalıklar yorgunlukla seyredebilir.']],
+            tani:[['Ayrıntılı öykü','Süre, uyku, ilaçlar ve eşlik eden belirtiler sorgulanır.'],['Fizik muayene','Genel ve sistemik bulgular değerlendirilir.'],['Laboratuvar','Gerektiğinde kan sayımı, demir, tiroid ve diğer testler istenebilir.'],['Uyku değerlendirmesi','Horlama, gündüz uykululuğu ve uyku kalitesi özellikle sorgulanabilir.']],
+            tedavi:[['Nedene yönelik plan','Tedavi, saptanan temel nedene göre değişir.'],['Uyku ve yaşam düzeni','Ritim, stres ve günlük yük planlanır.'],['Eksikliklerin düzeltilmesi','Kanıtlanmış eksiklikler uygun şekilde yerine konur.'],['Takip','Devam eden yorgunlukta yeni belirtiler ve işlev kaybı izlenir.']],
+            egzersiz:[['Toleransa göre başlangıç','Hafif yürüyüş veya esneme düşük düzeyde başlanabilir.'],['Kademeli artış','Aktivite artışı kişisel toleransa göre yapılmalıdır.'],['Aşırı efordan kaçınma','Aktivite sonrası belirgin kötüleşme varsa program yeniden değerlendirilmelidir.'],['Düzenlilik','Kısa ve sürdürülebilir hareket periyotları çoğu kişi için daha uygulanabilirdir.']],
+            gunluk:[['Enerji günlüğü','Uyku, beslenme ve enerji düzeyini takip etmek örüntüyü göstermeye yardımcı olur.'],['Görevleri bölmek','Büyük işleri küçük parçalara ayırmak enerji yönetimini kolaylaştırabilir.'],['Sıvı ve öğün düzeni','Düzenli sıvı ve öğün ritmi genel enerjiyi destekler.'],['Yeni belirtiler','Kilo kaybı, ateş veya belirgin nefes darlığı gibi bulgular varsa değerlendirme gerekir.']],
+            notes:{neden:'Kronik yorgunluk tek bir hastalık adı değildir; farklı nedenlerin ortak belirtisi olabilir.', tedavi:'Serum veya takviye başlamadan önce altta yatan nedenin değerlendirilmesi önemlidir.'},
+            herbs:[['Zencefil','phyto-zencefil-v131.jpg','Genel beslenme ve antioksidan destek kapsamında değerlendirilebilir; kronik yorgunluğun nedenini tedavi etmez.'],['Biberiye','phyto-biberiye-v131.jpg','Geleneksel olarak zindelik amacıyla kullanılır; klinik kanıt sınırlıdır.'],['Yeşil Çay (EGCG)','phyto-yesil-cay-v131.jpg','Polifenol içerir; kafein hassasiyeti ve uyku sorunları olanlarda dikkatli kullanılmalıdır.'],['Omega-3','phyto-omega3-v131.jpg','Dengeli beslenme planında değerlendirilebilir; doğrudan kronik yorgunluk tedavisi değildir.']], herbNote:'Uzun süren yorgunlukta bitkisel veya serum desteklerinden önce altta yatan tıbbi nedenlerin araştırılması önemlidir.'
+        }
+    };
+
+    const diseaseKeys = new Set(Object.keys(diseaseData));
+    let activeDisease = null;
+    let activeTopic = 'neden';
+
+    window.conditionDiseaseDataV279 = diseaseData;
+    window.getConditionDiseaseStateV279 = function () {
+        return {
+            key: activeDisease,
+            topic: activeTopic,
+            title: title?.textContent || '',
+            summary: summary?.textContent || ''
+        };
+    };
+
+    function hideKnownPages() {
+        document.body.classList.remove(
+            'treatment-page-open','treatment-nav-scrolled','pain-page-open','pain-nav-scrolled',
+            'media-page-open','media-nav-scrolled','about-page-open','about-nav-scrolled',
+            'legal-page-open-v56','treatment-detail-open-v71','treatment-detail-nav-scrolled-v71',
+            'general-health-detail-open-v75','ankilozan-page-open-v87','romatoid-page-open-v198',
+            'info-guide-page-open-v143','device-detail-page-open-v157','general-featured-open-v124'
+        );
+        ['tedaviAlanlariPage','agriPage','medyaPage','hakkimdaPage','legalPageV56','treatmentDetailPageV71','generalHealthDetailPageV75','ankilozanFaqSectionV85','romatoidFaqSectionV198','infoGuidePageV143','deviceDetailPageV157','generalFeaturedPageV124'].forEach(id => {
+            document.getElementById(id)?.setAttribute('aria-hidden','true');
+        });
+    }
+
+    function topicIntro(data, topic) {
+        const common = {
+            neden: `${data.title} tek bir etkene indirgenmeden; biyolojik, mekanik ve yaşam tarzı faktörleri birlikte değerlendirilir.`,
+            belirtiler: `${data.title} farklı kişilerde farklı belirti örüntüleri oluşturabilir. Süre, şiddet ve günlük yaşama etkisi birlikte ele alınır.`,
+            'nasil-gecer': `Yakınmaları hafifletmek için tek bir uygulama yerine, nedeni ve kişisel tetikleyicileri hedefleyen çok bileşenli yaklaşım tercih edilir.`,
+            kimlerde: `${data.title} için risk veya eşlik eden faktörler kişiden kişiye değişir; tek bir özellik hastalık gelişeceği anlamına gelmez.`,
+            tani: `Tanı ve değerlendirme; öykü, fizik muayene ve gerekli görülen testlerin birlikte yorumlanmasına dayanır.`,
+            tedavi: `Tedavi planı belirtilerin şiddeti, eşlik eden hastalıklar ve kişinin günlük işlevine göre kişiselleştirilir.`,
+            egzersiz: `Hareket ve egzersiz programı hastalığın dönemine, toleransa ve kişinin mevcut kapasitesine göre kademeli planlanmalıdır.`,
+            gunluk: `Günlük yaşam alışkanlıkları belirtilerin kontrolünde ve genel iyilik halinde önemli rol oynayabilir.`
+        };
+        return common[topic] || data.summary;
+    }
+
+    function topicNote(data, topic) {
+        if (data.notes && data.notes[topic]) return data.notes[topic];
+        const defaults = {
+            neden:'Tek bir risk faktörü tek başına tanı koydurmaz.',
+            belirtiler:'Belirtilerin yeni, hızlı ilerleyen veya alışılmadık olması durumunda tıbbi değerlendirme gerekir.',
+            'nasil-gecer':'Destekleyici yöntemler, gerektiğinde temel tıbbi tedavinin yerine değil yanında değerlendirilmelidir.',
+            kimlerde:'Risk faktörü bulunması hastalığın mutlaka gelişeceği anlamına gelmez.',
+            tani:'Tanı kararı tek bir test sonucuna göre verilmemelidir.',
+            tedavi:'Tedavi seçenekleri kişisel riskler ve ilaç etkileşimleri dikkate alınarak hekim tarafından planlanmalıdır.',
+            egzersiz:'Egzersiz sırasında yeni nörolojik belirti, göğüs ağrısı veya belirgin kötüleşme olursa program durdurulup değerlendirme alınmalıdır.',
+            gunluk:'Yeni veya hızla kötüleşen belirtilerde destek yöntemleriyle oyalanmadan tıbbi değerlendirme alınmalıdır.'
+        };
+        return defaults[topic];
+    }
+
+    function renderTopic(topic, scroll = false) {
+        if (!activeDisease) return;
+        const data = diseaseData[activeDisease];
+        const items = data[topic] || data.neden;
+        activeTopic = topic;
+        const label = labels[topic] || labels.neden;
+
+        detailKicker.textContent = label[0];
+        detailTitle.textContent = `${data.title}: ${label[1]}`;
+        detailDesc.textContent = topicIntro(data, topic);
+        detailGrid.innerHTML = items.map(([heading,text]) => `<div class="ankilozan-detail-mini-v196"><strong>${heading}</strong><p>${text}</p></div>`).join('');
+        detailNote.innerHTML = `<strong>Önemli:</strong> ${topicNote(data, topic)}`;
+        detailNote.classList.toggle('is-warning', topic === 'tani' || topic === 'belirtiler');
+
+        topicButtons.forEach(button => {
+            const selected = button.dataset.conditionTopicV249 === topic;
+            button.classList.toggle('is-active', selected);
+            if (button.getAttribute('role') === 'tab') button.setAttribute('aria-selected', String(selected));
+        });
+
+        if (scroll) detailHub.scrollIntoView({behavior:'smooth', block:'start'});
+    }
+
+    window.renderConditionDiseaseTopicV279 = renderTopic;
+
+    function buildFaq(data) {
+        const faq = [
+            [`${data.title} nedir?`, data.summary],
+            [`${data.title} neden olur?`, topicIntro(data,'neden') + ' ' + data.neden.slice(0,2).map(item => item[1]).join(' ')],
+            ['Belirtileri nelerdir?', data.belirtiler.map(item => item[1]).join(' ')],
+            ['Tanı ve değerlendirme nasıl yapılır?', data.tani.map(item => item[1]).join(' ')],
+            ['Günlük yaşamda nelere dikkat edilir?', data.gunluk.slice(0,3).map(item => item[1]).join(' ')]
+        ];
+        faqList.innerHTML = faq.map(([q,a],i) => `<article class="ankilozan-faq-item-v85${i===0?' is-open':''}"><button type="button" class="ankilozan-faq-question-v85" aria-expanded="${i===0?'true':'false'}"><span>${q}</span><span class="ankilozan-faq-plus-v85">+</span></button><div class="ankilozan-faq-answer-v85"${i===0?'':' hidden'}><p>${a}</p></div></article>`).join('');
+    }
+
+    function renderDisease(key) {
+        const data = diseaseData[key];
+        if (!data) return false;
+        activeDisease = key;
+        page.dataset.activeDisease = key;
+
+        title.textContent = data.title;
+        kicker.textContent = data.kicker;
+        summary.textContent = data.summary;
+        image.src = data.image;
+        image.alt = data.alt;
+        imageCaption.textContent = data.caption;
+        pills.innerHTML = data.pills.map(item => `<span>${item}</span>`).join('');
+
+        quickCause.textContent = data.neden[0][0] + ' • ' + data.neden[1][0];
+        quickSymptoms.textContent = data.belirtiler[0][0] + ' • ' + data.belirtiler[1][0];
+        quickDiagnosis.textContent = data.tani[0][0] + ' • ' + data.tani[1][0];
+        quickTreatment.textContent = data.tedavi[0][0] + ' • ' + data.tedavi[1][0];
+
+        faqTitle.textContent = `${data.title} Hakkında Sık Sorulanlar`;
+        buildFaq(data);
+
+        herbKicker.textContent = `${data.title.toUpperCase()} • FİTOTERAPİ`;
+        herbTitle.textContent = `${data.title} için Değerlendirilebilecek Bitkisel Destekler`;
+        herbGrid.innerHTML = data.herbs.map(([name,img,text],i) => `<article class="phyto-herbal-card-v232"><img src="${img}" alt="${name} görseli" loading="lazy" decoding="async"><div><span>${String(i+1).padStart(2,'0')}</span><h3>${name}</h3><p>${text}</p></div></article>`).join('');
+        herbNote.textContent = data.herbNote;
+
+        renderTopic('neden', false);
+        return true;
+    }
+
+    function openDisease(key, push = true) {
+        if (!renderDisease(key)) return;
+        hideKnownPages();
+        document.body.classList.add('condition-disease-page-open-v246');
+        page.setAttribute('aria-hidden','false');
+        if (typeof window.updateDiseaseSwitcherV250 === 'function') window.updateDiseaseSwitcherV250(key);
+        if (push) history.pushState({page:'condition-disease-v249', disease:key}, '', '#' + key);
+        window.scrollTo({top:0, behavior:'smooth'});
+    }
+
+    function closeDisease() {
+        document.body.classList.remove('condition-disease-page-open-v246');
+        page.setAttribute('aria-hidden','true');
+        healthMenu?.classList.remove('open');
+        healthButton?.setAttribute('aria-expanded','false');
+        healthDropdown?.setAttribute('aria-hidden','true');
+    }
+
+    window.openConditionDiseaseV246 = openDisease;
+    window.openConditionDiseaseV249 = openDisease;
+
+    document.querySelectorAll('.condition-card-link-v246').forEach(card => {
+        card.addEventListener('click', event => {
+            event.preventDefault();
+            openDisease(card.dataset.disease, true);
+        });
+    });
+
+    const phytoLinks = document.getElementById('phytoDiseaseLinksV246');
+    if (phytoLinks) {
+        phytoLinks.addEventListener('click', event => {
+            const button = event.target.closest('[data-phyto-disease]');
+            if (!button) return;
+            event.preventDefault();
+            event.stopPropagation();
+            event.stopImmediatePropagation();
+            const key = button.dataset.phytoDisease;
+            if (key === 'as') {
+                if (typeof window.openAnkilozanPageV87 === 'function') window.openAnkilozanPageV87();
+                else document.querySelector('.ankilozan-card-link-v87')?.click();
+                return;
+            }
+            if (key === 'ra') {
+                if (typeof window.openRomatoidPageV198 === 'function') window.openRomatoidPageV198(true);
+                else document.querySelector('.romatoid-card-link-v198')?.click();
+                return;
+            }
+            openDisease(key, true);
+        }, true);
+    }
+
+    topicButtons.forEach(button => {
+        button.addEventListener('click', () => renderTopic(button.dataset.conditionTopicV249, true));
+    });
+
+    faqList.addEventListener('click', event => {
+        const question = event.target.closest('.ankilozan-faq-question-v85');
+        if (!question) return;
+        const item = question.closest('.ankilozan-faq-item-v85');
+        const answer = item.querySelector('.ankilozan-faq-answer-v85');
+        const willOpen = !item.classList.contains('is-open');
+        faqList.querySelectorAll('.ankilozan-faq-item-v85').forEach(other => {
+            other.classList.remove('is-open');
+            other.querySelector('.ankilozan-faq-question-v85')?.setAttribute('aria-expanded','false');
+            const otherAnswer = other.querySelector('.ankilozan-faq-answer-v85');
+            if (otherAnswer) otherAnswer.hidden = true;
+        });
+        if (willOpen) {
+            item.classList.add('is-open');
+            question.setAttribute('aria-expanded','true');
+            if (answer) answer.hidden = false;
+        }
+    });
+
+    function goHome() {
+        closeDisease();
+        history.pushState({page:'home'}, '', location.pathname + location.search);
+        window.scrollTo({top:0, behavior:'smooth'});
+    }
+    homeBrand?.addEventListener('click', goHome);
+    homeButton?.addEventListener('click', goHome);
+
+    areasButton?.addEventListener('click', () => {
+        closeDisease();
+        if (typeof openTreatmentPage === 'function') openTreatmentPage();
+        else {
+            document.body.classList.add('treatment-page-open');
+            document.getElementById('tedaviAlanlariPage')?.setAttribute('aria-hidden','false');
+            history.pushState({page:'tedavi-alanlari'}, '', '#tedavi-alanlari');
+            window.scrollTo({top:0,behavior:'smooth'});
+        }
+    });
+
+    painButton?.addEventListener('click', () => {
+        closeDisease();
+        document.body.classList.add('pain-page-open');
+        document.getElementById('agriPage')?.setAttribute('aria-hidden','false');
+        history.pushState({page:'agri'}, '', '#agri');
+        window.scrollTo({top:0,behavior:'smooth'});
+    });
+
+    mediaButton?.addEventListener('click', () => {
+        closeDisease();
+        const media = document.getElementById('medyaPage');
+        if (media) {
+            document.body.classList.add('media-page-open');
+            media.setAttribute('aria-hidden','false');
+            history.pushState({page:'medya'}, '', '#medya');
+            window.scrollTo({top:0,behavior:'smooth'});
+        }
+    });
+
+    infoButton?.addEventListener('click', () => {
+        closeDisease();
+        const about = document.getElementById('hakkimdaPage');
+        if (about) {
+            document.body.classList.add('about-page-open');
+            about.setAttribute('aria-hidden','false');
+            history.pushState({page:'hakkimda'}, '', '#hakkimda');
+            window.scrollTo({top:0,behavior:'smooth'});
+        }
+    });
+
+    healthButton?.addEventListener('click', event => {
+        event.stopPropagation();
+        const open = healthMenu.classList.toggle('open');
+        healthButton.setAttribute('aria-expanded', String(open));
+        healthDropdown.setAttribute('aria-hidden', String(!open));
+    });
+
+    document.addEventListener('click', event => {
+        if (healthMenu && !healthMenu.contains(event.target)) {
+            healthMenu.classList.remove('open');
+            healthButton?.setAttribute('aria-expanded','false');
+            healthDropdown?.setAttribute('aria-hidden','true');
+        }
+    });
+
+    document.addEventListener('keydown', event => {
+        if (event.key === 'Escape' && document.body.classList.contains('condition-disease-page-open-v246')) {
+            areasButton?.click();
+        }
+    });
+
+    const initialHash = location.hash.replace('#','');
+    if (diseaseKeys.has(initialHash)) {
+        window.setTimeout(() => openDisease(initialHash, false), 0);
+    }
+})();
+
+
+
+// =========================================================
+// V250 - TÜM TEDAVİ ALANI HASTALIKLARI ARASI HIZLI GEÇİŞ
+// =========================================================
+(function () {
+    const dynamicKeys = new Set([
+        'bas-agrisi-migren',
+        'bel-sirt-agrisi',
+        'fibromiyalji',
+        'huzursuz-bacak',
+        'iltihabi-bagirsak',
+        'kronik-yorgunluk'
+    ]);
+
+    function updateActive(key) {
+        document.querySelectorAll('[data-disease-switch-v250]').forEach((button) => {
+            const active = button.dataset.diseaseSwitchV250 === key;
+            button.classList.toggle('is-active', active);
+            if (active) button.setAttribute('aria-current', 'page');
+            else button.removeAttribute('aria-current');
+        });
+    }
+
+    window.updateDiseaseSwitcherV250 = updateActive;
+
+    function closeDiseasePagesBeforeSwitch() {
+        document.body.classList.remove(
+            'ankilozan-page-open-v87',
+            'romatoid-page-open-v198',
+            'condition-disease-page-open-v246'
+        );
+
+        document.getElementById('ankilozanFaqSectionV85')?.setAttribute('aria-hidden', 'true');
+        document.getElementById('romatoidFaqSectionV198')?.setAttribute('aria-hidden', 'true');
+        document.getElementById('conditionDiseasePageV246')?.setAttribute('aria-hidden', 'true');
+    }
+
+    function openTarget(key) {
+        closeDiseasePagesBeforeSwitch();
+
+        if (key === 'as') {
+            if (typeof window.openAnkilozanPageV87 === 'function') {
+                window.openAnkilozanPageV87();
+            } else {
+                document.querySelector('.ankilozan-card-link-v87')?.click();
+            }
+            return;
+        }
+
+        if (key === 'ra') {
+            if (typeof window.openRomatoidPageV198 === 'function') {
+                window.openRomatoidPageV198(true);
+            } else {
+                document.querySelector('.romatoid-card-link-v198')?.click();
+            }
+            return;
+        }
+
+        if (dynamicKeys.has(key) && typeof window.openConditionDiseaseV249 === 'function') {
+            window.openConditionDiseaseV249(key, true);
+        }
+    }
+
+    document.addEventListener('click', (event) => {
+        const button = event.target.closest('[data-disease-switch-v250]');
+        if (!button) return;
+
+        event.preventDefault();
+        const key = button.dataset.diseaseSwitchV250;
+        if (!key || button.classList.contains('is-active')) return;
+
+        updateActive(key);
+        openTarget(key);
+    });
+})();
+
+// =========================================================
+// V261 - OSTEOPATİ BAĞIMSIZ ÖZEL SAYFA / SEKME SİSTEMİ
+// İçerik artık Osteopati article'ının altında değildir.
+// Tam ekran, bağımsız bir özel sayfa olarak açılır.
+// =========================================================
+(function () {
+    const page = document.querySelector('.osteopathy-page-v95');
+    const specialView = document.getElementById('osteoSpecialViewV259');
+    if (!page || !specialView) return;
+
+    const tabs = Array.from(specialView.querySelectorAll('[data-osteo-tab]'));
+    const panels = Array.from(specialView.querySelectorAll('[data-osteo-panel]'));
+    const heroLaunchers = Array.from(page.querySelectorAll('[data-osteo-tab-target]'));
+    const backButton = document.getElementById('osteoSpecialBackV259');
+    const tabNav = specialView.querySelector('.osteo-tabs-v258');
+
+    const statusTitle = document.getElementById('osteoTabStatusTitleV258');
+    const statusText = document.getElementById('osteoTabStatusTextV258');
+    const specialTitle = document.getElementById('osteoSpecialTitleV259');
+    const specialText = document.getElementById('osteoSpecialTextV259');
+    const specialIndex = document.getElementById('osteoSpecialIndexV259');
+
+    if (!tabs.length || !panels.length) return;
+
+    const tabMeta = {
+        manual: { title: 'Manuel Uygulamalar', text: 'Kayropraktik ve eklem hareketliliğine yönelik içerikler.', index: '01' },
+        exercise: { title: 'Egzersiz & Hareket', text: 'Hareket kapasitesi ve kişiye uygun egzersiz başlıkları.', index: '02' },
+        sports: { title: 'Spor Yaralanmaları', text: 'Spor yüklenmesi, hareket zinciri ve fonksiyon başlıkları.', index: '03' },
+        pain: { title: 'Ağrı Rehberi', text: 'Ağrı bölgeleri ayrı bir içerik alanında incelenir.', index: '04' },
+        faq: { title: 'Soru & Cevap', text: 'Osteopati hakkında sık sorulan sorular ve kısa yanıtlar.', index: '05' },
+        articles: { title: 'Bilimsel Yayınlar', text: 'Akademik makaleler ve bilimsel kaynak arşivi.', index: '06' }
+    };
+
+    function activateTab(key, options = {}) {
+        const targetTab = tabs.find(tab => tab.dataset.osteoTab === key);
+        const targetPanel = panels.find(panel => panel.dataset.osteoPanel === key);
+        if (!targetTab || !targetPanel) return;
+
+        tabs.forEach(tab => {
+            const active = tab === targetTab;
+            tab.classList.toggle('is-active-v258', active);
+            tab.classList.toggle('active', active);
+            tab.setAttribute('aria-selected', active ? 'true' : 'false');
+            tab.setAttribute('tabindex', active ? '0' : '-1');
+        });
+
+        panels.forEach(panel => {
+            const active = panel === targetPanel;
+            panel.classList.toggle('is-active-v258', active);
+            panel.hidden = !active;
+        });
+
+        const meta = tabMeta[key];
+        if (meta) {
+            if (statusTitle) statusTitle.textContent = meta.title;
+            if (statusText) statusText.textContent = meta.text;
+            if (specialTitle) specialTitle.textContent = meta.title;
+            if (specialText) specialText.textContent = meta.text;
+            if (specialIndex) specialIndex.textContent = meta.index;
+        }
+
+        if (options.focus) targetTab.focus({ preventScroll: true });
+        if (options.scrollToNav && tabNav) {
+            specialView.scrollTo({
+                top: Math.max(0, tabNav.offsetTop - 118),
+                behavior: 'smooth'
+            });
+        }
+    }
+
+    function openSpecialView(key) {
+        activateTab(key || 'manual');
+        specialView.hidden = false;
+        specialView.setAttribute('aria-hidden', 'false');
+        page.classList.add('is-special-view-open-v259');
+        document.body.classList.add('osteo-standalone-open-v260');
+        specialView.scrollTop = 0;
+
+        requestAnimationFrame(() => {
+            const focusTarget = specialView.querySelector('.osteo-special-back-v259');
+            if (focusTarget) focusTarget.focus({ preventScroll: true });
+        });
+    }
+
+    function closeSpecialView(options = {}) {
+        document.body.classList.remove('osteo-standalone-open-v260');
+        page.classList.remove('is-special-view-open-v259');
+        specialView.hidden = true;
+        specialView.setAttribute('aria-hidden', 'true');
+
+        if (options.returnFocus !== false) {
+            const firstLauncher = page.querySelector('[data-osteo-tab-target="manual"]');
+            if (firstLauncher) firstLauncher.focus({ preventScroll: true });
+        }
+    }
+
+    tabs.forEach((tab, index) => {
+        tab.addEventListener('click', () => activateTab(tab.dataset.osteoTab));
+        tab.addEventListener('keydown', event => {
+            if (!['ArrowRight', 'ArrowLeft', 'Home', 'End'].includes(event.key)) return;
+            event.preventDefault();
+            let nextIndex = index;
+            if (event.key === 'ArrowRight') nextIndex = (index + 1) % tabs.length;
+            if (event.key === 'ArrowLeft') nextIndex = (index - 1 + tabs.length) % tabs.length;
+            if (event.key === 'Home') nextIndex = 0;
+            if (event.key === 'End') nextIndex = tabs.length - 1;
+            activateTab(tabs[nextIndex].dataset.osteoTab, { focus: true });
+        });
+    });
+
+    const launchIconMapV272 = {
+        manual: '✦',
+        exercise: '↗',
+        sports: '◎',
+        pain: '＋',
+        faq: '?',
+        articles: '≡'
+    };
+
+    let routeTransitionV272 = null;
+    let routeTransitionBusyV272 = false;
+
+    function ensureRouteTransitionV272() {
+        if (routeTransitionV272) return routeTransitionV272;
+
+        routeTransitionV272 = document.createElement('div');
+        routeTransitionV272.className = 'osteo-route-transition-v272';
+        routeTransitionV272.setAttribute('aria-hidden', 'true');
+        routeTransitionV272.innerHTML = `
+            <div class="osteo-route-card-v272">
+                <div class="osteo-route-icon-v272" id="osteoRouteIconV272" aria-hidden="true">✦</div>
+                <span class="osteo-route-kicker-v272">OSTEOPATİ • ÖZEL İÇERİK</span>
+                <h3 class="osteo-route-title-v272" id="osteoRouteTitleV272">Manuel Uygulamalar</h3>
+                <div class="osteo-route-line-v272" aria-hidden="true"></div>
+            </div>
+        `;
+        document.body.appendChild(routeTransitionV272);
+        return routeTransitionV272;
+    }
+
+    function animatedOpenSpecialViewV272(button) {
+        if (routeTransitionBusyV272) return;
+
+        const key = button.dataset.osteoTabTarget || 'manual';
+        const meta = tabMeta[key] || tabMeta.manual;
+        const reducedMotion = window.matchMedia &&
+            window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+
+        if (reducedMotion) {
+            openSpecialView(key);
+            return;
+        }
+
+        routeTransitionBusyV272 = true;
+        button.classList.add('is-launching-v272');
+
+        const overlay = ensureRouteTransitionV272();
+        const routeTitle = overlay.querySelector('#osteoRouteTitleV272');
+        const routeIcon = overlay.querySelector('#osteoRouteIconV272');
+
+        if (routeTitle) routeTitle.textContent = meta.title;
+        if (routeIcon) routeIcon.textContent = launchIconMapV272[key] || '✦';
+
+        overlay.classList.add('is-visible-v272');
+        overlay.setAttribute('aria-hidden', 'false');
+        document.body.classList.add('osteo-route-transition-open-v272');
+
+        window.setTimeout(() => {
+            openSpecialView(key);
+            specialView.classList.add('is-entering-v272');
+
+            requestAnimationFrame(() => {
+                overlay.classList.remove('is-visible-v272');
+                overlay.setAttribute('aria-hidden', 'true');
+            });
+
+            window.setTimeout(() => {
+                specialView.classList.remove('is-entering-v272');
+                button.classList.remove('is-launching-v272');
+                document.body.classList.remove('osteo-route-transition-open-v272');
+                routeTransitionBusyV272 = false;
+            }, 560);
+        }, 620);
+    }
+
+    heroLaunchers.forEach(button => {
+        button.addEventListener('click', () => animatedOpenSpecialViewV272(button));
+    });
+
+    if (backButton) backButton.addEventListener('click', () => closeSpecialView());
+
+    // ESC ile de bağımsız özel sayfadan Osteopati ana vitrininə dön.
+    document.addEventListener('keydown', event => {
+        if (event.key === 'Escape' && document.body.classList.contains('osteo-standalone-open-v260')) {
+            closeSpecialView();
+        }
+    });
+
+    // Ana üst menüden başka bir sayfaya gidilirse özel ekran açık kalmasın.
+    document.addEventListener('click', event => {
+        if (!document.body.classList.contains('osteo-standalone-open-v260')) return;
+        const navAway = event.target.closest('[data-treatment-top], [data-treatment-detail], #treatmentDetailHomeV71, #treatmentDetailAreasV71, #treatmentDetailPainV71, #treatmentDetailMediaV71');
+        if (navAway && !navAway.closest('#osteoSpecialViewV259')) {
+            closeSpecialView({ returnFocus: false });
+        }
+    }, true);
+
+    activateTab('manual');
+    specialView.hidden = true;
+    specialView.setAttribute('aria-hidden', 'true');
+    document.body.classList.remove('osteo-standalone-open-v260');
+    page.classList.remove('is-special-view-open-v259');
+})();
+
+
+// =========================================================
+// V265 - OSTEOPATİ AĞRI REHBERİ KARTLARI -> DOĞRUDAN İLGİLİ AĞRI DETAYI
+// Ağrı ana sayfasına uğramadan seçilen bölge açılır.
+// =========================================================
+(function () {
+    const buttons = Array.from(document.querySelectorAll('[data-osteo-pain-target-v265]'));
+    if (!buttons.length) return;
+
+    buttons.forEach(button => {
+        button.addEventListener('click', () => {
+            const key = button.dataset.osteoPainTargetV265;
+            if (!key || typeof window.openPainFullDetailV215 !== 'function') return;
+
+            // Osteopati özel ekranını kapat; Ağrı detay sayfası tek başına açılsın.
+            const specialView = document.getElementById('osteoSpecialViewV259');
+            const osteoPage = document.querySelector('.osteopathy-page-v95');
+            if (specialView) {
+                specialView.hidden = true;
+                specialView.setAttribute('aria-hidden', 'true');
+            }
+            if (osteoPage) osteoPage.classList.remove('is-special-view-open-v259');
+            document.body.classList.remove('osteo-standalone-open-v260');
+
+            window.openPainFullDetailV215(key, null, true);
+        });
+    });
+})();
+
+// =========================================================
+// V271 - OSTEOPATİ VİDEO YOUTUBE ONAY AKIŞI
+// İlk tıkta sor, ikinci tıkta YouTube'a yönlendir.
+// =========================================================
+(function () {
+    const modal = document.getElementById("osteoVideoConfirmV271");
+    const backdrop = document.getElementById("osteoVideoConfirmBackdropV271");
+    const closeButton = document.getElementById("osteoVideoConfirmCloseV271");
+    const cancelButton = document.getElementById("osteoVideoConfirmCancelV271");
+    const goButton = document.getElementById("osteoVideoConfirmGoV271");
+    const title = document.getElementById("osteoVideoConfirmTitleV271");
+    const text = document.getElementById("osteoVideoConfirmTextV271");
+
+    let pendingYoutubeUrl = "";
+    let lastFocusedElement = null;
+
+    function closeVideoConfirmV271() {
+        if (!modal) return;
+
+        modal.classList.remove("is-open-v271");
+        modal.setAttribute("aria-hidden", "true");
+        document.body.classList.remove("osteo-video-confirm-open-v271");
+
+        pendingYoutubeUrl = "";
+
+        if (lastFocusedElement && typeof lastFocusedElement.focus === "function") {
+            lastFocusedElement.focus();
+        }
+    }
+
+    function openVideoConfirmV271(videoId, triggerElement) {
+        if (!modal || !videoId) return;
+
+        const card = triggerElement.closest(".osteo-youtube-card-v267");
+        const cardTitle = card?.querySelector(".osteo-video-body-v105 h3")?.textContent?.trim();
+
+        pendingYoutubeUrl =
+            "https://www.youtube.com/watch?v=" +
+            encodeURIComponent(videoId);
+
+        lastFocusedElement = triggerElement;
+
+        if (title) {
+            title.textContent = "Videoyu izlemek istiyor musunuz?";
+        }
+
+        if (text) {
+            text.textContent = cardTitle
+                ? `"${cardTitle}" YouTube üzerinde açılacaktır. Devam etmek istiyor musunuz?`
+                : "Bu video YouTube üzerinde açılacaktır. Devam etmek istiyor musunuz?";
+        }
+
+        modal.classList.add("is-open-v271");
+        modal.setAttribute("aria-hidden", "false");
+        document.body.classList.add("osteo-video-confirm-open-v271");
+
+        requestAnimationFrame(() => {
+            goButton?.focus();
+        });
+    }
+
+    document.addEventListener("click", function (event) {
+        const trigger = event.target.closest(
+            ".osteo-inline-video-v268, .osteo-video-inline-button-v268"
+        );
+
+        if (!trigger) return;
+
+        const videoId = trigger.dataset.youtubeId;
+        if (!videoId) return;
+
+        event.preventDefault();
+        openVideoConfirmV271(videoId, trigger);
+    });
+
+    document.addEventListener("keydown", function (event) {
+        if (
+            (event.key === "Enter" || event.key === " ") &&
+            event.target.closest(".osteo-inline-video-v268")
+        ) {
+            const trigger = event.target.closest(".osteo-inline-video-v268");
+            const videoId = trigger?.dataset.youtubeId;
+
+            if (!videoId) return;
+
+            event.preventDefault();
+            openVideoConfirmV271(videoId, trigger);
+            return;
+        }
+
+        if (
+            event.key === "Escape" &&
+            modal?.classList.contains("is-open-v271")
+        ) {
+            closeVideoConfirmV271();
+        }
+    });
+
+    [backdrop, closeButton, cancelButton].forEach((element) => {
+        element?.addEventListener("click", closeVideoConfirmV271);
+    });
+
+    goButton?.addEventListener("click", function () {
+        if (!pendingYoutubeUrl) return;
+
+        const youtubeUrl = pendingYoutubeUrl;
+        closeVideoConfirmV271();
+
+        window.open(
+            youtubeUrl,
+            "_blank",
+            "noopener,noreferrer"
+        );
+    });
+})();
+
+
+// =========================================================
+// V273 - TEDAVİ ALANLARI HASTALIK SAYFALARI DÜZENİ
+// - Hastalık kartına girince hero alanına yumuşak geçiş
+// - Hızlı geçiş bloğunu hero alanının altına taşı
+// - SSS alanlarını başlıklar kapalı gelecek şekilde başlat
+// =========================================================
+(function () {
+    function moveSectionAfter(pageSelector, moverSelector, anchorSelector) {
+        const page = document.querySelector(pageSelector);
+        if (!page) return;
+        const mover = page.querySelector(moverSelector);
+        const anchor = page.querySelector(anchorSelector);
+        if (!mover || !anchor || mover.dataset.v273Moved === '1') return;
+        anchor.insertAdjacentElement('afterend', mover);
+        mover.dataset.v273Moved = '1';
+    }
+
+    function collapseFaqItems(root, itemSelector, buttonSelector, answerSelector) {
+        if (!root) return;
+        root.querySelectorAll(itemSelector).forEach((item) => {
+            item.classList.remove('is-open');
+            const button = item.querySelector(buttonSelector);
+            if (button) button.setAttribute('aria-expanded', 'false');
+            const answer = item.querySelector(answerSelector);
+            if (answer && answer.hasAttribute('hidden') === false && answerSelector === '.ankilozan-faq-answer-v85') {
+                answer.hidden = true;
+            }
+        });
+    }
+
+    function expandFaqAnswer(itemSelector, answerSelector) {
+        document.querySelectorAll(itemSelector).forEach((item) => {
+            const answer = item.querySelector(answerSelector);
+            if (!answer) return;
+            if (item.classList.contains('is-open')) answer.hidden = false;
+            else answer.hidden = true;
+        });
+    }
+
+    function initCollapsedFaqState() {
+        collapseFaqItems(document.getElementById('ankilozanFaqSectionV85'), '.ankilozan-faq-item-v85', '.ankilozan-faq-question-v85', '.ankilozan-faq-answer-v85');
+        collapseFaqItems(document.getElementById('conditionFaqListV249'), '.ankilozan-faq-item-v85', '.ankilozan-faq-question-v85', '.ankilozan-faq-answer-v85');
+        collapseFaqItems(document.getElementById('romatoidFaqSectionV198'), '.ra-faq-item-v198', '.ra-faq-question-v198', '.ra-faq-answer-v198');
+    }
+
+    function syncGenericFaqHiddenState() {
+        expandFaqAnswer('#ankilozanFaqSectionV85 .ankilozan-faq-item-v85, #conditionFaqListV249 .ankilozan-faq-item-v85', '.ankilozan-faq-answer-v85');
+        document.querySelectorAll('#romatoidFaqSectionV198 .ra-faq-item-v198').forEach((item) => {
+            const answer = item.querySelector('.ra-faq-answer-v198');
+            if (!answer) return;
+            answer.style.display = item.classList.contains('is-open') ? 'block' : 'none';
+        });
+    }
+
+    function scrollToTarget(selector) {
+        const target = document.querySelector(selector);
+        if (!target) return;
+        window.requestAnimationFrame(() => {
+            window.setTimeout(() => {
+                target.scrollIntoView({ behavior: 'smooth', block: 'start' });
+            }, 80);
+        });
+    }
+
+    function initLayoutAdjustments() {
+        moveSectionAfter('#ankilozanFaqSectionV85', '.disease-switcher-v250', '.ankilozan-overview-v195');
+        moveSectionAfter('#romatoidFaqSectionV198', '.disease-switcher-v250', '.ra-hero-v198');
+        moveSectionAfter('#conditionDiseasePageV246', '.disease-switcher-v250', '.condition-overview-poster-v249');
+        initCollapsedFaqState();
+        syncGenericFaqHiddenState();
+    }
+
+    if (document.readyState === 'loading') {
+        document.addEventListener('DOMContentLoaded', initLayoutAdjustments, { once: true });
+    } else {
+        initLayoutAdjustments();
+    }
+
+    if (typeof window.openAnkilozanPageV87 === 'function' && !window.openAnkilozanPageV87.__v273Wrapped) {
+        const originalOpenAnkilozan = window.openAnkilozanPageV87;
+        window.openAnkilozanPageV87 = function (options = {}) {
+            const result = originalOpenAnkilozan({ ...options, skipScroll: true });
+            syncGenericFaqHiddenState();
+            scrollToTarget('#ankilozanFaqSectionV85 .ankilozan-overview-v195');
+            return result;
+        };
+        window.openAnkilozanPageV87.__v273Wrapped = true;
+    }
+
+    if (typeof window.openRomatoidPageV198 === 'function' && !window.openRomatoidPageV198.__v273Wrapped) {
+        const originalOpenRA = window.openRomatoidPageV198;
+        window.openRomatoidPageV198 = function (push = true) {
+            const result = originalOpenRA(push);
+            syncGenericFaqHiddenState();
+            scrollToTarget('#romatoidFaqSectionV198 .ra-hero-v198');
+            return result;
+        };
+        window.openRomatoidPageV198.__v273Wrapped = true;
+    }
+
+    if (typeof window.openConditionDiseaseV249 === 'function' && !window.openConditionDiseaseV249.__v273Wrapped) {
+        const originalOpenCondition = window.openConditionDiseaseV249;
+        window.openConditionDiseaseV249 = function (key, push = true) {
+            const result = originalOpenCondition(key, push);
+            initCollapsedFaqState();
+            syncGenericFaqHiddenState();
+            scrollToTarget('#conditionDiseasePageV246 .condition-overview-poster-v249');
+            return result;
+        };
+        window.openConditionDiseaseV249.__v273Wrapped = true;
+        window.openConditionDiseaseV246 = window.openConditionDiseaseV249;
+    }
+
+    document.addEventListener('click', (event) => {
+        const ankQuestion = event.target.closest('#ankilozanFaqSectionV85 .ankilozan-faq-question-v85, #conditionFaqListV249 .ankilozan-faq-question-v85');
+        if (ankQuestion) {
+            window.setTimeout(syncGenericFaqHiddenState, 0);
+            return;
+        }
+        const raQuestion = event.target.closest('#romatoidFaqSectionV198 .ra-faq-question-v198');
+        if (raQuestion) {
+            window.setTimeout(syncGenericFaqHiddenState, 0);
+        }
+    });
+})();
+
+
+// =========================================================
+// V274 - ANKİLOZAN SPONDİLİT BAĞIMSIZ ÖZEL SEKME SİSTEMİ
+// Osteopati mantığı: ana vitrinden seç -> ayrı sayfa -> yalnız seçilen içerik.
+// =========================================================
+(function () {
+    const mainPage = document.getElementById('ankilozanFaqSectionV85');
+    const launcher = document.getElementById('asLauncherV274');
+    const specialView = document.getElementById('asSpecialViewV274');
+    const specialContent = document.getElementById('asSpecialContentV274');
+    const specialTitle = document.getElementById('asSpecialTitleV274');
+    const specialDesc = document.getElementById('asSpecialDescV274');
+    const specialIndex = document.getElementById('asSpecialIndexV274');
+    const backButton = document.getElementById('asSpecialBackV274');
+    const tabButtons = Array.from(document.querySelectorAll('[data-as-special-tab-v274]'));
+    const launchButtons = Array.from(document.querySelectorAll('[data-as-special-target-v274]'));
+
+    if (!mainPage || !launcher || !specialView || !specialContent) return;
+
+    const switcher = mainPage.querySelector('.disease-switcher-v250');
+    const overview = mainPage.querySelector('.ankilozan-overview-v195');
+    if (overview && launcher.previousElementSibling !== overview) {
+        overview.insertAdjacentElement('afterend', launcher);
+    }
+    if (switcher) launcher.insertAdjacentElement('afterend', switcher);
+
+    const meta = {
+        overview: {
+            index: '01',
+            title: 'Hastalığı Tanıyın',
+            desc: 'Nedenleri, belirtileri ve kimlerde görüldüğünü birlikte inceleyin.',
+            kicker: 'GENEL BAKIŞ',
+            heading: 'Ankilozan Spondiliti Tanıyın',
+            intro: 'Hastalığın nedenleri, tipik belirtileri ve kimlerde daha sık görülebildiğine ilişkin mevcut içerikler.',
+            topics: ['neden', 'belirtiler', 'kimlerde']
+        },
+        diagnosis: {
+            index: '02',
+            title: 'Tanı Süreci',
+            desc: 'Öykü, muayene, görüntüleme ve laboratuvar değerlendirmelerini inceleyin.',
+            kicker: 'TANI & DEĞERLENDİRME',
+            heading: 'Tanı Süreci Nasıl İlerler?',
+            intro: 'Tanıda tek bir test yerine öykü, fizik muayene, görüntüleme ve laboratuvar verileri birlikte değerlendirilir.',
+            topics: ['tani']
+        },
+        treatment: {
+            index: '03',
+            title: 'Tedavi Yaklaşımı',
+            desc: 'Yakınmaların hafifletilmesi ve kişiye özel tedavi yaklaşımını inceleyin.',
+            kicker: 'TEDAVİ & TAKİP',
+            heading: 'Tedavi Yaklaşımı',
+            intro: 'Nasıl hafifleyebileceği ve tedavi planında değerlendirilebilecek başlıklar bu bölümde bir araya gelir.',
+            topics: ['nasil-gecer', 'tedavi']
+        },
+        movement: {
+            index: '04',
+            title: 'Egzersiz & Günlük Yaşam',
+            desc: 'Hareket, postür ve günlük yaşam düzenlemelerini tek yerde inceleyin.',
+            kicker: 'HAREKET & YAŞAM',
+            heading: 'Egzersiz ve Günlük Yaşam',
+            intro: 'Omurga hareketliliğini, postürü ve günlük yaşam kalitesini desteklemeye yönelik mevcut içerikler.',
+            topics: ['egzersiz', 'gunluk']
+        },
+        faq: {
+            index: '05',
+            title: 'Merak Edilen Sorular',
+            desc: 'Sorular başlık halinde görünür; istediğiniz soruya basınca yanıt açılır.',
+            kicker: 'SORU & CEVAP',
+            heading: 'Ankilozan Spondilit Hakkında Merak Edilenler',
+            intro: 'Sadece merak ettiğiniz soruya basın; yanıtı o başlığın altında açılsın.'
+        },
+        herbs: {
+            index: '06',
+            title: 'Bitkisel Destekler',
+            desc: 'Fitoterapi başlıklarını ve güvenli kullanım notlarını inceleyin.',
+            kicker: 'FİTOTERAPİ & DESTEK',
+            heading: 'Değerlendirilebilecek Bitkisel Destekler',
+            intro: 'Mevcut bitkisel destek içerikleri, ilaç etkileşimleri ve hekim kontrolü uyarılarıyla birlikte bu özel alanda gösterilir.'
+        }
+    };
+
+    let activeKey = 'overview';
+
+    function cleanClone(node) {
+        if (!node) return null;
+        const clone = node.cloneNode(true);
+        clone.removeAttribute('id');
+        clone.querySelectorAll('[id]').forEach(el => el.removeAttribute('id'));
+        clone.querySelectorAll('[aria-labelledby], [aria-controls]').forEach(el => {
+            el.removeAttribute('aria-labelledby');
+            el.removeAttribute('aria-controls');
+        });
+        return clone;
+    }
+
+    function makePanelHead(data) {
+        const head = document.createElement('div');
+        head.className = 'as-special-panel-head-v274';
+        head.innerHTML = `<span>${data.kicker}</span><h3>${data.heading}</h3><p>${data.intro}</p>`;
+        return head;
+    }
+
+    function cloneTopic(topicKey) {
+        const source = mainPage.querySelector(`[data-ank-panel-v196="${topicKey}"]`);
+        const clone = cleanClone(source);
+        if (!clone) return null;
+        clone.hidden = false;
+        clone.classList.add('as-cloned-detail-v274');
+        clone.classList.add('is-active');
+        return clone;
+    }
+
+    function renderTopics(data) {
+        const wrapper = document.createElement('section');
+        wrapper.className = 'as-special-panel-v274';
+        wrapper.appendChild(makePanelHead(data));
+
+        const stack = document.createElement('div');
+        stack.className = 'as-special-topic-stack-v274';
+        (data.topics || []).forEach(key => {
+            const clone = cloneTopic(key);
+            if (clone) stack.appendChild(clone);
+        });
+        wrapper.appendChild(stack);
+        return wrapper;
+    }
+
+    function renderFaq(data) {
+        const wrapper = document.createElement('section');
+        wrapper.className = 'as-special-panel-v274';
+        wrapper.appendChild(makePanelHead(data));
+
+        const source = mainPage.querySelector('.ankilozan-faq-inner-v85');
+        const clone = cleanClone(source);
+        if (clone) {
+            clone.querySelectorAll('.ankilozan-faq-item-v85').forEach(item => {
+                item.classList.remove('is-open');
+                const button = item.querySelector('.ankilozan-faq-question-v85');
+                const answer = item.querySelector('.ankilozan-faq-answer-v85');
+                button?.setAttribute('aria-expanded', 'false');
+                if (answer) answer.hidden = true;
+            });
+            wrapper.appendChild(clone);
+        }
+        return wrapper;
+    }
+
+    function renderHerbs(data) {
+        const wrapper = document.createElement('section');
+        wrapper.className = 'as-special-panel-v274';
+        wrapper.appendChild(makePanelHead(data));
+
+        const source = document.getElementById('ankilozanHerbalSupportV233');
+        const clone = cleanClone(source);
+        if (clone) wrapper.appendChild(clone);
+        return wrapper;
+    }
+
+    function renderSpecial(key) {
+        const data = meta[key] || meta.overview;
+        activeKey = key in meta ? key : 'overview';
+
+        specialTitle.textContent = data.title;
+        specialDesc.textContent = data.desc;
+        specialIndex.textContent = data.index;
+
+        tabButtons.forEach(button => {
+            const active = button.dataset.asSpecialTabV274 === activeKey;
+            button.classList.toggle('is-active-v274', active);
+            button.setAttribute('aria-selected', active ? 'true' : 'false');
+        });
+
+        specialContent.innerHTML = '';
+        let panel;
+        if (activeKey === 'faq') panel = renderFaq(data);
+        else if (activeKey === 'herbs') panel = renderHerbs(data);
+        else panel = renderTopics(data);
+        specialContent.appendChild(panel);
+        specialView.scrollTo({ top: 0, behavior: 'smooth' });
+    }
+
+    function openSpecial(key) {
+        renderSpecial(key);
+        document.body.classList.add('as-special-open-v274');
+        specialView.setAttribute('aria-hidden', 'false');
+        history.pushState({ page: 'ankilozan-special-v274', tab: key }, '', `#ankilozan-${key}`);
+        window.setTimeout(() => specialView.focus?.(), 20);
+    }
+
+    function closeSpecial(push = true) {
+        document.body.classList.remove('as-special-open-v274');
+        specialView.setAttribute('aria-hidden', 'true');
+        if (push) history.pushState({ page: 'ankilozan-spondilit' }, '', '#ankilozan-spondilit');
+        window.setTimeout(() => {
+            hero.scrollIntoView({ behavior: 'smooth', block: 'start' });
+        }, 30);
+    }
+
+    launchButtons.forEach(button => {
+        button.addEventListener('click', () => openSpecial(button.dataset.asSpecialTargetV274 || 'overview'));
+    });
+
+    tabButtons.forEach(button => {
+        button.addEventListener('click', () => renderSpecial(button.dataset.asSpecialTabV274 || 'overview'));
+    });
+
+    backButton?.addEventListener('click', () => closeSpecial(true));
+
+    specialContent.addEventListener('click', event => {
+        const question = event.target.closest('.ankilozan-faq-question-v85');
+        if (!question) return;
+        const item = question.closest('.ankilozan-faq-item-v85');
+        const list = question.closest('.ankilozan-faq-list-v85');
+        if (!item || !list) return;
+
+        const willOpen = !item.classList.contains('is-open');
+        list.querySelectorAll('.ankilozan-faq-item-v85').forEach(other => {
+            other.classList.remove('is-open');
+            other.querySelector('.ankilozan-faq-question-v85')?.setAttribute('aria-expanded', 'false');
+            const answer = other.querySelector('.ankilozan-faq-answer-v85');
+            if (answer) answer.hidden = true;
+        });
+
+        if (willOpen) {
+            item.classList.add('is-open');
+            question.setAttribute('aria-expanded', 'true');
+            const answer = item.querySelector('.ankilozan-faq-answer-v85');
+            if (answer) answer.hidden = false;
+        }
+    });
+
+    document.addEventListener('keydown', event => {
+        if (event.key === 'Escape' && document.body.classList.contains('as-special-open-v274')) {
+            closeSpecial(true);
+        }
+    });
+
+    window.addEventListener('popstate', () => {
+        const hash = location.hash.replace('#', '');
+        const match = hash.match(/^ankilozan-(overview|diagnosis|treatment|movement|faq|herbs)$/);
+        if (match) {
+            renderSpecial(match[1]);
+            document.body.classList.add('as-special-open-v274');
+            specialView.setAttribute('aria-hidden', 'false');
+        } else if (document.body.classList.contains('as-special-open-v274')) {
+            document.body.classList.remove('as-special-open-v274');
+            specialView.setAttribute('aria-hidden', 'true');
+        }
+    });
+})();
+
+
+// =========================================================
+// V275 - ANKİLOZAN ANA SAYFA SIRALAMASI
+// Launcher -> ana görsel -> hızlı hastalık geçişi
+// Eski Temel Bilgiler posteri ana vitrinden kaldırıldı.
+// =========================================================
+(function () {
+    const page = document.getElementById('ankilozanFaqSectionV85');
+    if (!page) return;
+
+    const nav = page.querySelector('.ankilozan-page-nav-v87');
+    const launcher = document.getElementById('asLauncherV274');
+    const switcher = page.querySelector('.disease-switcher-as-v250');
+    const oldOverview = page.querySelector('.ankilozan-overview-v195');
+
+    if (oldOverview) {
+        oldOverview.setAttribute('aria-hidden', 'true');
+    }
+
+    let hero = document.getElementById('asMainHeroV275');
+    if (!hero) {
+        hero = document.createElement('section');
+        hero.className = 'as-main-hero-v275';
+        hero.id = 'asMainHeroV275';
+        hero.setAttribute('aria-label', 'Ankilozan Spondilit ana bilgilendirme görseli');
+        hero.innerHTML = `
+            <img
+                src="./disease-ankilozan-spondilit-v77.png?v=150"
+                alt="Ankilozan Spondilit; omurga ve sakroiliak eklem bölgesini anlatan ana bilgilendirme görseli"
+                loading="eager"
+                decoding="async"
+            >
+        `;
+    }
+
+    function placeMainSectionsV275() {
+        if (!nav || !launcher || !switcher) return;
+
+        // V278: Osteopatiye dokunmadan yalnızca Tedavi Alanları /
+        // Ankilozan Spondilit ana vitrini düzenlendi. Özel bölüm
+        // butonları artık ana görselin üzerinde overlay olarak durur.
+        nav.insertAdjacentElement('afterend', hero);
+        if (launcher.parentElement !== hero) {
+            hero.appendChild(launcher);
+        }
+        hero.insertAdjacentElement('afterend', switcher);
+    }
+
+    placeMainSectionsV275();
+
+    // Ankilozan sayfası açıldığında artık eski gizlenen postere değil,
+    // özel butonlar + ana görsel vitrininin başına gelsin.
+    document.addEventListener('click', (event) => {
+        const opener = event.target.closest('.ankilozan-card-link-v87, .js-open-ankilozan-v85, #ankilozanHeroButtonV85');
+        if (!opener) return;
+        window.setTimeout(() => {
+            placeMainSectionsV275();
+            hero.scrollIntoView({ behavior: 'smooth', block: 'start' });
+        }, 120);
+    }, true);
+
+    window.addEventListener('popstate', () => {
+        if (location.hash === '#ankilozan-spondilit') {
+            window.setTimeout(() => {
+                placeMainSectionsV275();
+                hero.scrollIntoView({ behavior: 'smooth', block: 'start' });
+            }, 80);
+        }
+    });
+})();
+
+
+// =========================================================
+// V279 - ANKİLOZAN'DAKİ ÖZEL SEKME MANTIĞINI
+// ROMATOİD ARTRİT VE DİĞER TEDAVİ ALANLARINA DA UYGULA
+// =========================================================
+(function () {
+    const raPage = document.getElementById('romatoidFaqSectionV198');
+    const conditionPage = document.getElementById('conditionDiseasePageV246');
+    const specialView = document.getElementById('treatmentSpecialViewV279');
+    if (!specialView) return;
+
+    const specialContent = document.getElementById('treatmentSpecialContentV279');
+    const specialTitle = document.getElementById('treatmentSpecialTitleV279');
+    const specialDesc = document.getElementById('treatmentSpecialDescV279');
+    const specialIndex = document.getElementById('treatmentSpecialIndexV279');
+    const specialKicker = document.getElementById('treatmentSpecialKickerV279');
+    const backButton = document.getElementById('treatmentSpecialBackV279');
+    const tabButtons = Array.from(specialView.querySelectorAll('[data-treatment-special-tab-v279]'));
+    const launchButtons = Array.from(document.querySelectorAll('[data-treatment-launch-source-v279] [data-treatment-special-target-v279]'));
+
+    const meta = {
+        overview: {
+            index: '01',
+            title: 'Hastalığı Tanıyın',
+            desc: 'Nedenleri, belirtileri ve kimlerde görüldüğünü birlikte inceleyin.',
+            kicker: 'GENEL BAKIŞ',
+            heading: 'Hastalığı Tanıyın',
+            intro: 'Bu bölümde hastalığın temel yapısı, belirtileri ve kimlerde daha sık görülebileceğine ilişkin başlıklar bir araya getirilir.',
+            topics: ['neden', 'belirtiler', 'kimlerde']
+        },
+        diagnosis: {
+            index: '02',
+            title: 'Tanı Süreci',
+            desc: 'Öykü, muayene, görüntüleme ve laboratuvar değerlendirmelerini inceleyin.',
+            kicker: 'TANI & DEĞERLENDİRME',
+            heading: 'Tanı Süreci',
+            intro: 'Tanı çoğu zaman tek bir testten değil; ayrıntılı öykü, fizik muayene ve gerekli görülen testlerin birlikte değerlendirilmesinden oluşur.',
+            topics: ['tani']
+        },
+        treatment: {
+            index: '03',
+            title: 'Tedavi Yaklaşımı',
+            desc: 'Yakınmaların hafifletilmesi ve kişiye özel tedavi planını inceleyin.',
+            kicker: 'TEDAVİ & TAKİP',
+            heading: 'Tedavi Yaklaşımı',
+            intro: 'Bu alanda hem yakınmaları hafifletmeye yardımcı başlıklar hem de hekim değerlendirmesiyle planlanan tedavi yaklaşımı birlikte gösterilir.',
+            topics: ['nasil-gecer', 'tedavi']
+        },
+        movement: {
+            index: '04',
+            title: 'Egzersiz & Günlük Yaşam',
+            desc: 'Hareket, egzersiz ve günlük yaşam düzenlemelerini tek yerde inceleyin.',
+            kicker: 'HAREKET & YAŞAM',
+            heading: 'Egzersiz ve Günlük Yaşam',
+            intro: 'Egzersiz planı ve günlük yaşamda dikkat edilebilecek başlıklar bu özel içerik alanında bir araya gelir.',
+            topics: ['egzersiz', 'gunluk']
+        },
+        faq: {
+            index: '05',
+            title: 'Merak Edilen Sorular',
+            desc: 'Sorular başlık halinde görünür; istediğiniz soruya basınca yanıt açılır.',
+            kicker: 'SORU & CEVAP',
+            heading: 'Sık Sorulan Sorular',
+            intro: 'Sadece görmek istediğiniz soruya basın; yanıtı o başlığın altında açılsın.'
+        },
+        herbs: {
+            index: '06',
+            title: 'Bitkisel Destekler',
+            desc: 'Fitoterapi başlıklarını ve güvenli kullanım notlarını inceleyin.',
+            kicker: 'FİTOTERAPİ & DESTEK',
+            heading: 'Bitkisel Destekler',
+            intro: 'Bitkisel içerikler; tanı ve temel tedavinin yerine geçmeyen, hekim kontrolünde değerlendirilebilecek destek başlıkları olarak ele alınmalıdır.'
+        }
+    };
+
+    const raHerbs = [
+        ['Zerdeçal (Kurkumin)', 'phyto-zerdecal-v131.jpg', 'İnflamasyonla ilişkili süreçler açısından destekleyici içerikler arasında en sık değerlendirilen başlıklardan biridir.'],
+        ['Boswellia (Akgünlük)', 'phyto-boswellia-v131.jpg', 'Eklem rahatlığı bağlamında araştırılan bitkisel desteklerden biridir; ilaçların yerine geçmez.'],
+        ['Zencefil', 'phyto-zencefil-v131.jpg', 'Geleneksel kullanım alanı bulunan bu bitki, kişisel uygunluk ve mide hassasiyeti açısından değerlendirilmelidir.'],
+        ['Çörek Otu', 'phyto-corek-otu-v131.jpg', 'Bazı destek protokollerinde gündeme gelebilir; düzenli ilaç kullanan kişilerde hekim görüşü önemlidir.']
+    ];
+
+    let activeSource = 'condition';
+    let activeKey = 'overview';
+
+    function cleanClone(node) {
+        if (!node) return null;
+        const clone = node.cloneNode(true);
+        clone.removeAttribute('id');
+        clone.querySelectorAll('[id]').forEach((el) => el.removeAttribute('id'));
+        clone.querySelectorAll('[aria-labelledby], [aria-controls]').forEach((el) => {
+            el.removeAttribute('aria-labelledby');
+            el.removeAttribute('aria-controls');
+        });
+        return clone;
+    }
+
+    function getCurrentTitle() {
+        if (activeSource === 'ra') return 'Romatoid Artrit';
+        return window.getConditionDiseaseStateV279?.().title || 'Tedavi Alanı';
+    }
+
+    function getCurrentSlug() {
+        if (activeSource === 'ra') return 'romatoid-artrit';
+        return window.getConditionDiseaseStateV279?.().key || 'tedavi-alani';
+    }
+
+    function makePanelHead(data) {
+        const title = getCurrentTitle();
+        const head = document.createElement('div');
+        head.className = 'as-special-panel-head-v274';
+        head.innerHTML = `<span>${title.toUpperCase()} • ${data.kicker}</span><h3>${title}: ${data.heading}</h3><p>${data.intro}</p>`;
+        return head;
+    }
+
+    function cloneConditionTopic(topicKey) {
+        const getState = typeof window.getConditionDiseaseStateV279 === 'function' ? window.getConditionDiseaseStateV279 : null;
+        const renderTopic = typeof window.renderConditionDiseaseTopicV279 === 'function' ? window.renderConditionDiseaseTopicV279 : null;
+        const stateBefore = getState ? getState() : null;
+        if (!stateBefore?.key || !renderTopic) return null;
+
+        renderTopic(topicKey, false);
+        const clone = cleanClone(document.getElementById('conditionDetailPanelV249'));
+        if (stateBefore.topic) renderTopic(stateBefore.topic, false);
+
+        if (clone) {
+            clone.hidden = false;
+            clone.classList.add('as-cloned-detail-v274', 'is-active');
+        }
+        return clone;
+    }
+
+    function cloneRaTopic(topicKey) {
+        const source = raPage?.querySelector(`[data-ra-panel-v198="${topicKey}"]`);
+        const clone = cleanClone(source);
+        if (clone) {
+            clone.hidden = false;
+            clone.classList.add('as-cloned-detail-v274', 'is-active');
+        }
+        return clone;
+    }
+
+    function renderTopics(data) {
+        const wrapper = document.createElement('section');
+        wrapper.className = 'as-special-panel-v274';
+        wrapper.appendChild(makePanelHead(data));
+
+        const stack = document.createElement('div');
+        stack.className = 'as-special-topic-stack-v274';
+
+        (data.topics || []).forEach((topicKey) => {
+            const clone = activeSource === 'ra' ? cloneRaTopic(topicKey) : cloneConditionTopic(topicKey);
+            if (clone) stack.appendChild(clone);
+        });
+
+        if (!stack.children.length) {
+            const empty = document.createElement('article');
+            empty.className = 'ankilozan-detail-panel-v196 as-cloned-detail-v274 is-active';
+            empty.innerHTML = '<div class="ankilozan-detail-panel-copy-v196"><span class="ankilozan-detail-kicker-v196">BİLGİ</span><h3>İçerik hazırlanıyor</h3><p>Bu bölüm için özel içerik kısa süre içinde eklenecektir.</p></div>';
+            stack.appendChild(empty);
+        }
+
+        wrapper.appendChild(stack);
+        return wrapper;
+    }
+
+    function buildFaqSection(data, items) {
+        const wrapper = document.createElement('section');
+        wrapper.className = 'as-special-panel-v274';
+        wrapper.appendChild(makePanelHead(data));
+
+        const faqBox = document.createElement('div');
+        faqBox.className = 'ankilozan-faq-inner-v85';
+        faqBox.innerHTML = `
+            <div class="ankilozan-faq-heading-v85">
+                <span class="ankilozan-faq-kicker-v85">BİLGİ ALANI</span>
+                <h2>${getCurrentTitle()} Hakkında Sık Sorulanlar</h2>
+                <p>Sadece görmek istediğiniz soruya basın; cevap tek başına açılsın.</p>
+            </div>
+            <div class="ankilozan-faq-list-v85">
+                ${items.map((item, index) => `
+                    <article class="ankilozan-faq-item-v85${index === 0 ? ' is-open' : ''}">
+                        <button type="button" class="ankilozan-faq-question-v85" aria-expanded="${index === 0 ? 'true' : 'false'}">
+                            <span>${item.question}</span>
+                            <span class="ankilozan-faq-plus-v85">+</span>
+                        </button>
+                        <div class="ankilozan-faq-answer-v85"${index === 0 ? '' : ' hidden'}>
+                            <p>${item.answer}</p>
+                        </div>
+                    </article>
+                `).join('')}
+            </div>
+        `;
+
+        wrapper.appendChild(faqBox);
+        return wrapper;
+    }
+
+    function renderFaq(data) {
+        if (activeSource === 'ra') {
+            const items = Array.from(raPage?.querySelectorAll('.ra-faq-item-v198') || []).map((item) => ({
+                question: item.querySelector('.ra-faq-question-v198 span')?.textContent?.trim() || 'Soru',
+                answer: item.querySelector('.ra-faq-answer-v198 p')?.textContent?.trim() || ''
+            }));
+            return buildFaqSection(data, items);
+        }
+
+        const items = Array.from(conditionPage?.querySelectorAll('#conditionFaqListV249 .ankilozan-faq-item-v85') || []).map((item) => ({
+            question: item.querySelector('.ankilozan-faq-question-v85 span')?.textContent?.trim() || 'Soru',
+            answer: item.querySelector('.ankilozan-faq-answer-v85 p')?.textContent?.trim() || ''
+        }));
+        return buildFaqSection(data, items);
+    }
+
+    function renderConditionHerbs(data) {
+        const wrapper = document.createElement('section');
+        wrapper.className = 'as-special-panel-v274';
+        wrapper.appendChild(makePanelHead(data));
+
+        const source = document.getElementById('conditionHerbalSupportV249');
+        const clone = cleanClone(source);
+        if (clone) wrapper.appendChild(clone);
+        return wrapper;
+    }
+
+    function renderRaHerbs(data) {
+        const wrapper = document.createElement('section');
+        wrapper.className = 'as-special-panel-v274';
+        wrapper.appendChild(makePanelHead(data));
+
+        const section = document.createElement('section');
+        section.className = 'phyto-herbal-focus-v232';
+        section.innerHTML = `
+            <div class="phyto-focus-head-v232">
+                <div>
+                    <span>ROMATOİD ARTRİT • FİTOTERAPİ</span>
+                    <h2>Romatoid Artritte Değerlendirilebilecek Bitkisel Destekler</h2>
+                </div>
+                <p>
+                    Aşağıdaki içerikler tedavinin yerine geçen ürünler olarak değil; ilaç etkileşimleri,
+                    mide-bağırsak hassasiyeti ve eşlik eden hastalıklar göz önünde bulundurularak hekim kontrolünde
+                    değerlendirilebilecek destek başlıkları olarak düşünülmelidir.
+                </p>
+            </div>
+            <div class="phyto-herbal-grid-v232">
+                ${raHerbs.map(([name, img, text], index) => `
+                    <article class="phyto-herbal-card-v232">
+                        <img src="${img}" alt="${name} görseli" loading="lazy" decoding="async">
+                        <div>
+                            <span>${String(index + 1).padStart(2, '0')}</span>
+                            <h3>${name}</h3>
+                            <p>${text}</p>
+                        </div>
+                    </article>
+                `).join('')}
+            </div>
+            <div class="phyto-focus-note-v232">
+                <strong>Önemli Not:</strong>
+                <p>Romatoid artritte bitkisel içerikler, düzenli romatoloji takibinin ve reçeteli tedavilerin yerine geçmez. Özellikle karaciğer, böbrek ve kan sulandırıcı ilaç kullananlarda mutlaka hekim görüşü gereklidir.</p>
+            </div>
+        `;
+
+        wrapper.appendChild(section);
+        return wrapper;
+    }
+
+    function renderHerbs(data) {
+        return activeSource === 'ra' ? renderRaHerbs(data) : renderConditionHerbs(data);
+    }
+
+    function updateTabButtons() {
+        tabButtons.forEach((button) => {
+            const active = button.dataset.treatmentSpecialTabV279 === activeKey;
+            button.classList.toggle('is-active-v274', active);
+            button.setAttribute('aria-selected', active ? 'true' : 'false');
+        });
+    }
+
+    function renderSpecial(key) {
+        activeKey = key in meta ? key : 'overview';
+        const data = meta[activeKey];
+        const currentTitle = getCurrentTitle();
+
+        specialKicker.textContent = `${currentTitle.toUpperCase()} • ÖZEL İÇERİK`;
+        specialTitle.textContent = `${currentTitle} • ${data.title}`;
+        specialDesc.textContent = data.desc;
+        specialIndex.textContent = data.index;
+        const backStrong = backButton?.querySelector('strong');
+        if (backStrong) backStrong.textContent = `${currentTitle} Ana Sayfa`;
+        updateTabButtons();
+
+        specialContent.innerHTML = '';
+        let panel;
+        if (activeKey === 'faq') panel = renderFaq(data);
+        else if (activeKey === 'herbs') panel = renderHerbs(data);
+        else panel = renderTopics(data);
+
+        specialContent.appendChild(panel);
+        specialView.scrollTo({ top: 0, behavior: 'smooth' });
+    }
+
+    function openSpecial(source, key, push = true) {
+        activeSource = source === 'ra' ? 'ra' : 'condition';
+        renderSpecial(key || 'overview');
+        document.body.classList.add('treatment-special-open-v279');
+        specialView.setAttribute('aria-hidden', 'false');
+        if (push) {
+            const slug = getCurrentSlug();
+            history.pushState({ page: 'treatment-special-v279', source: activeSource, disease: slug, tab: activeKey }, '', `#${slug}-${activeKey}-ozel`);
+        }
+        window.setTimeout(() => backButton?.focus({ preventScroll: true }), 30);
+    }
+
+    function closeSpecial(push = true) {
+        document.body.classList.remove('treatment-special-open-v279');
+        specialView.setAttribute('aria-hidden', 'true');
+        if (push) {
+            const slug = getCurrentSlug();
+            history.pushState({ page: activeSource === 'ra' ? 'romatoid-artrit' : 'condition-disease-v249', disease: slug }, '', activeSource === 'ra' ? '#romatoid-artrit' : `#${slug}`);
+        }
+        const target = activeSource === 'ra'
+            ? raPage?.querySelector('.ra-hero-v198')
+            : conditionPage?.querySelector('.condition-overview-poster-v249');
+        window.setTimeout(() => target?.scrollIntoView({ behavior: 'smooth', block: 'start' }), 40);
+    }
+
+    launchButtons.forEach((button) => {
+        button.addEventListener('click', () => {
+            const source = button.closest('[data-treatment-launch-source-v279]')?.dataset.treatmentLaunchSourceV279 || 'condition';
+            openSpecial(source, button.dataset.treatmentSpecialTargetV279 || 'overview', true);
+        });
+    });
+
+    tabButtons.forEach((button) => {
+        button.addEventListener('click', () => {
+            renderSpecial(button.dataset.treatmentSpecialTabV279 || 'overview');
+            const slug = getCurrentSlug();
+            history.replaceState({ page: 'treatment-special-v279', source: activeSource, disease: slug, tab: activeKey }, '', `#${slug}-${activeKey}-ozel`);
+        });
+    });
+
+    backButton?.addEventListener('click', () => closeSpecial(true));
+
+    specialContent.addEventListener('click', (event) => {
+        const question = event.target.closest('.ankilozan-faq-question-v85');
+        if (!question) return;
+        const item = question.closest('.ankilozan-faq-item-v85');
+        const list = question.closest('.ankilozan-faq-list-v85');
+        if (!item || !list) return;
+
+        const willOpen = !item.classList.contains('is-open');
+        list.querySelectorAll('.ankilozan-faq-item-v85').forEach((other) => {
+            other.classList.remove('is-open');
+            other.querySelector('.ankilozan-faq-question-v85')?.setAttribute('aria-expanded', 'false');
+            const answer = other.querySelector('.ankilozan-faq-answer-v85');
+            if (answer) answer.hidden = true;
+        });
+
+        if (willOpen) {
+            item.classList.add('is-open');
+            question.setAttribute('aria-expanded', 'true');
+            const answer = item.querySelector('.ankilozan-faq-answer-v85');
+            if (answer) answer.hidden = false;
+        }
+    });
+
+    document.addEventListener('keydown', (event) => {
+        if (event.key === 'Escape' && document.body.classList.contains('treatment-special-open-v279')) {
+            closeSpecial(true);
+        }
+    });
+
+    window.addEventListener('popstate', () => {
+        const hash = location.hash.replace('#', '');
+        const match = hash.match(/^(romatoid-artrit|bas-agrisi-migren|bel-sirt-agrisi|fibromiyalji|huzursuz-bacak|iltihabi-bagirsak|kronik-yorgunluk)-(overview|diagnosis|treatment|movement|faq|herbs)-ozel$/);
+
+        if (match) {
+            const diseaseSlug = match[1];
+            const tab = match[2];
+            if (diseaseSlug === 'romatoid-artrit') {
+                if (typeof window.openRomatoidPageV198 === 'function') window.openRomatoidPageV198(false);
+                openSpecial('ra', tab, false);
+            } else {
+                if (typeof window.openConditionDiseaseV249 === 'function') window.openConditionDiseaseV249(diseaseSlug, false);
+                openSpecial('condition', tab, false);
+            }
+            return;
+        }
+
+        if (document.body.classList.contains('treatment-special-open-v279')) {
+            document.body.classList.remove('treatment-special-open-v279');
+            specialView.setAttribute('aria-hidden', 'true');
+        }
+    });
+
+    window.closeTreatmentSpecialV279 = closeSpecial;
+})();
+
+
+// =========================================================
+// V280 - ANKİLOZAN SAYFA KURGUSUNU TÜM TEDAVİ ALANLARINA YAKLAŞTIR
+// Hero görselin üstünde aktif butonlar + altında hastalık geçişleri
+// =========================================================
+(function () {
+    function arrangeConditionHeroV280() {
+        const page = document.getElementById('conditionDiseasePageV246');
+        const poster = page?.querySelector('.condition-overview-poster-v249');
+        const launcher = document.getElementById('conditionLauncherV279');
+        const switcher = page?.querySelector('.disease-switcher-condition-v250');
+        const media = poster?.querySelector('.condition-overview-media-v249');
+        if (!page || !poster || !launcher || !switcher || !media) return;
+
+        page.classList.add('condition-layout-v280');
+        poster.classList.add('condition-hero-v280');
+
+        if (!poster.contains(launcher)) {
+            poster.appendChild(launcher);
+        }
+        if (poster.nextElementSibling !== switcher) {
+            poster.insertAdjacentElement('afterend', switcher);
+        }
+
+        const currentTitle = document.getElementById('conditionTitleV249')?.textContent?.trim() || 'Tedavi Alanı';
+        const currentSummary = document.getElementById('conditionSummaryV249')?.textContent?.trim() || 'Bir başlık seçin; yalnızca seçtiğiniz özel içerik alanı açılsın.';
+        const headKicker = launcher.querySelector('.as-launcher-head-v274 span');
+        const headTitle = launcher.querySelector('.as-launcher-head-v274 h2');
+        const headDesc = launcher.querySelector('.as-launcher-head-v274 p');
+        if (headKicker) headKicker.textContent = currentTitle.toUpperCase();
+        if (headTitle) headTitle.textContent = 'Merak Ettiğiniz Bölüme Geçin';
+        if (headDesc) headDesc.textContent = 'Bir başlık seçin; yalnızca seçtiğiniz özel içerik alanı açılsın.';
+
+        const img = media.querySelector('img');
+        if (img) {
+            img.setAttribute('alt', `${currentTitle} bilgilendirme görseli`);
+        }
+        const cap = media.querySelector('figcaption');
+        if (cap) {
+            cap.textContent = currentSummary;
+        }
+    }
+
+    function arrangeRaHeroV280() {
+        const page = document.getElementById('romatoidFaqSectionV198');
+        const hero = page?.querySelector('.ra-hero-v198');
+        const launcher = document.getElementById('raLauncherV279');
+        const switcher = page?.querySelector('.disease-switcher-ra-v250');
+        const media = hero?.querySelector('.ra-hero-media-v198');
+        if (!page || !hero || !launcher || !switcher || !media) return;
+
+        page.classList.add('ra-layout-v280');
+        hero.classList.add('ra-hero-v280');
+
+        if (!hero.contains(launcher)) {
+            hero.appendChild(launcher);
+        }
+        if (hero.nextElementSibling !== switcher) {
+            hero.insertAdjacentElement('afterend', switcher);
+        }
+
+        const headKicker = launcher.querySelector('.as-launcher-head-v274 span');
+        const headTitle = launcher.querySelector('.as-launcher-head-v274 h2');
+        const headDesc = launcher.querySelector('.as-launcher-head-v274 p');
+        if (headKicker) headKicker.textContent = 'ROMATOİD ARTRİT';
+        if (headTitle) headTitle.textContent = 'Merak Ettiğiniz Bölüme Geçin';
+        if (headDesc) headDesc.textContent = 'Bir başlık seçin; yalnızca seçtiğiniz özel içerik alanı açılsın.';
+    }
+
+    function initTreatmentHeroLayoutV280() {
+        arrangeConditionHeroV280();
+        arrangeRaHeroV280();
+    }
+
+    if (document.readyState === 'loading') {
+        document.addEventListener('DOMContentLoaded', initTreatmentHeroLayoutV280, { once: true });
+    } else {
+        initTreatmentHeroLayoutV280();
+    }
+
+    if (typeof window.openConditionDiseaseV249 === 'function' && !window.openConditionDiseaseV249.__v280HeroWrapped) {
+        const originalOpenCondition = window.openConditionDiseaseV249;
+        window.openConditionDiseaseV249 = function (key, push = true) {
+            const result = originalOpenCondition(key, push);
+            window.requestAnimationFrame(() => {
+                arrangeConditionHeroV280();
+            });
+            return result;
+        };
+        window.openConditionDiseaseV249.__v280HeroWrapped = true;
+    }
+
+    if (typeof window.openRomatoidPageV198 === 'function' && !window.openRomatoidPageV198.__v280HeroWrapped) {
+        const originalOpenRA = window.openRomatoidPageV198;
+        window.openRomatoidPageV198 = function (push = true) {
+            const result = originalOpenRA(push);
+            window.requestAnimationFrame(() => {
+                arrangeRaHeroV280();
+            });
+            return result;
+        };
+        window.openRomatoidPageV198.__v280HeroWrapped = true;
+    }
+})();
+
+
+// =========================================================
+// V281 - TEDAVİ ALANI HASTALIK SAYFALARINDA ALT BİLGİ BLOKLARINI GİZLE
+// Sadece üst hero + aktif butonlar + hastalıklar arası hızlı geçiş kalsın.
+// Özel içerik butonları yine treatmentSpecialView içinde açılır.
+// =========================================================
+(function () {
+    function compactTreatmentDiseasePagesV281() {
+        const conditionPage = document.getElementById('conditionDiseasePageV246');
+        const raPage = document.getElementById('romatoidFaqSectionV198');
+        conditionPage?.classList.add('condition-compact-v281');
+        raPage?.classList.add('ra-compact-v281');
+    }
+
+    if (document.readyState === 'loading') {
+        document.addEventListener('DOMContentLoaded', compactTreatmentDiseasePagesV281, { once: true });
+    } else {
+        compactTreatmentDiseasePagesV281();
+    }
+})();
+
+
+// =========================================================
+// V285 - AĞRI'YA GEÇERKEN TEDAVİ HASTALIK SAYFALARINI KAPAT
+// CSS izolasyonuna ek güvenlik.
+// =========================================================
+(function () {
+    function closeTreatmentDiseaseLayersV285() {
+        document.body.classList.remove(
+            'treatment-page-open',
+            'treatment-nav-scrolled',
+            'treatment-detail-open-v71',
+            'treatment-detail-nav-scrolled-v71',
+            'ankilozan-page-open-v87',
+            'romatoid-page-open-v198',
+            'condition-disease-page-open-v246',
+            'as-special-open-v274',
+            'treatment-special-open-v279',
+            'osteo-standalone-open-v260'
+        );
+
+        [
+            'tedaviAlanlariPage',
+            'treatmentDetailPageV71',
+            'ankilozanFaqSectionV85',
+            'romatoidFaqSectionV198',
+            'conditionDiseasePageV246',
+            'ankilozanSpecialViewV274',
+            'treatmentSpecialViewV279',
+            'osteoSpecialViewV259'
+        ].forEach((id) => {
+            const el = document.getElementById(id);
+            if (el) el.setAttribute('aria-hidden', 'true');
+        });
+    }
+
+    document.addEventListener('click', function (event) {
+        const painTrigger = event.target.closest(
+            '#heroPainButton, #treatmentPagePainButton, #painPageButton, #osteoGlobalPainButtonV107, ' +
+            '#conditionPainV249, #raPainV198, [href="#agri"]'
+        );
+
+        if (!painTrigger) return;
+
+        closeTreatmentDiseaseLayersV285();
+
+        window.setTimeout(() => {
+            document.body.classList.add('pain-page-open');
+            const painPage = document.getElementById('agriPage');
+            if (painPage) painPage.setAttribute('aria-hidden', 'false');
+        }, 0);
+    }, true);
+
+    window.addEventListener('popstate', function () {
+        if (location.hash !== '#agri') return;
+        closeTreatmentDiseaseLayersV285();
+        document.body.classList.add('pain-page-open');
+        const painPage = document.getElementById('agriPage');
+        if (painPage) painPage.setAttribute('aria-hidden', 'false');
+    });
+})();
+
+
+// =========================================================
+// V286 - Ağrı butonları düzeltmesi
+// Ankilozan / Romatoid / Dinamik hastalık sayfalarından
+// Ağrı'ya geçince Tedavi Alanları katmanları kapansın.
+// =========================================================
+(function () {
+    function closeTreatmentDiseaseLayersV286() {
+        document.body.classList.remove(
+            'treatment-page-open',
+            'treatment-nav-scrolled',
+            'treatment-detail-open-v71',
+            'treatment-detail-nav-scrolled-v71',
+            'ankilozan-page-open-v87',
+            'romatoid-page-open-v198',
+            'condition-disease-page-open-v246',
+            'ankilozan-special-open-v274',
+            'treatment-special-open-v279',
+            'osteo-standalone-open-v260'
+        );
+
+        [
+            'tedaviAlanlariPage',
+            'treatmentDetailPageV71',
+            'ankilozanFaqSectionV85',
+            'romatoidFaqSectionV198',
+            'conditionDiseasePageV246',
+            'ankilozanSpecialViewV274',
+            'treatmentSpecialViewV279',
+            'osteoSpecialViewV259'
+        ].forEach((id) => {
+            const el = document.getElementById(id);
+            if (el) el.setAttribute('aria-hidden', 'true');
+        });
+    }
+
+    document.addEventListener('click', function (event) {
+        const painTrigger = event.target.closest(
+            '#heroPainButton, #treatmentPagePainButton, #painPageButton, #osteoGlobalPainButtonV107, ' +
+            '#conditionPainV249, #ankilozanPainButtonV87, #romatoidPainButtonV198, [href="#agri"]'
+        );
+
+        if (!painTrigger) return;
+
+        closeTreatmentDiseaseLayersV286();
+
+        window.setTimeout(() => {
+            document.body.classList.add('pain-page-open');
+            const painPage = document.getElementById('agriPage');
+            if (painPage) painPage.setAttribute('aria-hidden', 'false');
+        }, 0);
+    }, true);
+})();
+
+
+// =========================================================
+// V288 - TEDAVİ ALANLARI ANA SAYFASINI TEMİZ AÇ
+// Üstte kalan hastalık özel katmanlarını kapat.
+// =========================================================
+
+
+// =========================================================
+// V289 - TEDAVİ ALANLARI ANA EKRANINA DÖNERKEN
+// TÜM HASTALIK DETAY DURUMLARINI TEMİZLE
+// =========================================================
+(function () {
+    function resetDiseasePagesForTreatmentMainV289() {
+        document.body.classList.remove(
+            'ankilozan-page-open-v87',
+            'romatoid-page-open-v198',
+            'condition-disease-page-open-v246',
+            'as-special-open-v274',
+            'treatment-special-open-v279'
+        );
+
+        [
+            'ankilozanFaqSectionV85',
+            'romatoidFaqSectionV198',
+            'conditionDiseasePageV246',
+            'ankilozanSpecialViewV274',
+            'treatmentSpecialViewV279'
+        ].forEach((id) => {
+            const el = document.getElementById(id);
+            if (el) el.setAttribute('aria-hidden', 'true');
+        });
+    }
+
+    /* Tedavi Alanları ana sayfasını açan tüm bilinen düğmeler */
+    document.addEventListener('click', function (event) {
+        const trigger = event.target.closest(
+            '#heroDiseasesButton, ' +
+            '#painPageTreatmentAreasButton, ' +
+            '#aboutPageTreatmentAreasButton, ' +
+            '#mediaPageTreatmentAreasButton, ' +
+            '#ankilozanTreatmentAreasButtonV87, ' +
+            '#romatoidTreatmentAreasButtonV198, ' +
+            '#conditionAreasV249'
+        );
+
+        if (!trigger) return;
+        resetDiseasePagesForTreatmentMainV289();
+    }, true);
+
+    /* Hash ile ana Tedavi Alanları sayfasına dönüldüğünde de temizle */
+    window.addEventListener('popstate', function () {
+        if (location.hash === '#tedavi-alanlari') {
+            resetDiseasePagesForTreatmentMainV289();
+        }
+    });
+
+    window.resetDiseasePagesForTreatmentMainV289 = resetDiseasePagesForTreatmentMainV289;
 })();
