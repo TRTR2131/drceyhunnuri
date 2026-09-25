@@ -3259,7 +3259,7 @@ window.addEventListener("load", async () => {
         document.getElementById("treatmentDetailMediaV71");
 
     const validTreatments =
-        new Set(["osteopati", "fitoterapi", "robotik-lazer", "geleneksel-tedavi", "diger-cihazlar", "igne", "estetik", "damar-yolu"]);
+        new Set(["osteopati", "fitoterapi", "cihaz-uygulamalari", "robotik-lazer", "diger-cihazlar", "geleneksel-tedavi", "igne", "estetik", "damar-yolu"]);
 
     function hideOtherPagesV71() {
 
@@ -3274,7 +3274,15 @@ window.addEventListener("load", async () => {
             "media-nav-scrolled",
             "legal-page-open-v56",
             "ankilozan-page-open-v87",
-            "general-health-detail-open-v75"
+            "romatoid-page-open-v198",
+            "condition-disease-page-open-v246",
+            "as-special-open-v274",
+            "treatment-special-open-v279",
+            "osteo-standalone-open-v260",
+            "general-health-detail-open-v75",
+            "info-guide-page-open-v143",
+            "device-detail-page-open-v157",
+            "general-featured-open-v124"
         );
 
         const pages = [
@@ -3284,7 +3292,15 @@ window.addEventListener("load", async () => {
             document.getElementById("medyaPage"),
             document.getElementById("legalPageV56"),
             document.getElementById("ankilozanFaqSectionV85"),
-            document.getElementById("generalHealthDetailPageV75")
+            document.getElementById("romatoidFaqSectionV198"),
+            document.getElementById("conditionDiseasePageV246"),
+            document.getElementById("ankilozanSpecialViewV274"),
+            document.getElementById("treatmentSpecialViewV279"),
+            document.getElementById("osteoSpecialViewV259"),
+            document.getElementById("generalHealthDetailPageV75"),
+            document.getElementById("infoGuidePageV143"),
+            document.getElementById("deviceDetailPageV157"),
+            document.getElementById("generalFeaturedPageV124")
         ];
 
         pages.forEach(page => {
@@ -3296,8 +3312,13 @@ window.addEventListener("load", async () => {
 
     function setTreatmentViewV71(name) {
 
+        const aliasesV293 = {
+            "robotik-lazer": "cihaz-uygulamalari",
+            "diger-cihazlar": "cihaz-uygulamalari"
+        };
+        const normalized = aliasesV293[name] || name;
         const selected =
-            validTreatments.has(name) ? name : "osteopati";
+            validTreatments.has(normalized) ? normalized : "osteopati";
 
         detailViews.forEach(view => {
             view.classList.toggle(
@@ -3975,38 +3996,96 @@ window.addEventListener("load", async () => {
 
 
 // =========================================================
-// V202 - ANA HERO: DOKTOR -> ANKİLOZAN -> ROMATOİD ARTRİT
+// V309 - ANA HERO: DOKTOR + TÜM TEDAVİ ALANI HASTALIKLARI
+// Doktor -> AS -> RA -> Baş Ağrısı -> Bel/Sırt -> Fibromiyalji
+// -> Huzursuz Bacak -> İltihabi Bağırsak -> Kronik Yorgunluk
 // =========================================================
 (function () {
     const slider = document.getElementById("heroSliderV86");
     if (!slider) return;
 
-    const doctorSlide = slider.querySelector('[data-hero-slide="doctor"]');
-    const asSlide = slider.querySelector('[data-hero-slide="ankilozan"]');
-    const raSlide = slider.querySelector('[data-hero-slide="romatoid"]');
+    const slides = Array.from(slider.querySelectorAll('.hero-slide-v86'));
+    if (!slides.length) return;
 
-    const doctorNext = document.getElementById("heroNextV86");
-    const asPrev = document.getElementById("heroPrevV86");
-    const asNext = document.getElementById("heroNextRomatoidV202");
-    const raPrev = document.getElementById("heroPrevRomatoidV202");
+    let activeIndex = Math.max(0, slides.findIndex(slide => slide.classList.contains('is-active')));
 
-    if (!doctorSlide || !asSlide || !raSlide) return;
+    function activateByIndex(index) {
+        const normalized = (index + slides.length) % slides.length;
+        activeIndex = normalized;
 
-    function activate(slide) {
-        [doctorSlide, asSlide, raSlide].forEach(item => {
-            const active = item === slide;
-            item.classList.toggle("is-active", active);
-            if (active) item.removeAttribute("aria-hidden");
-            else item.setAttribute("aria-hidden", "true");
+        slides.forEach((slide, i) => {
+            const active = i === normalized;
+            slide.classList.toggle('is-active', active);
+            if (active) slide.removeAttribute('aria-hidden');
+            else slide.setAttribute('aria-hidden', 'true');
         });
     }
 
-    if (doctorNext) doctorNext.addEventListener("click", () => activate(asSlide));
-    if (asPrev) asPrev.addEventListener("click", () => activate(doctorSlide));
-    if (asNext) asNext.addEventListener("click", () => activate(raSlide));
-    if (raPrev) raPrev.addEventListener("click", () => activate(asSlide));
+    slider.addEventListener('click', event => {
+        const next = event.target.closest('[data-hero-next-v309]');
+        if (next) {
+            event.preventDefault();
+            event.stopPropagation();
+            activateByIndex(activeIndex + 1);
+            return;
+        }
 
-    activate(doctorSlide);
+        const prev = event.target.closest('[data-hero-prev-v309]');
+        if (prev) {
+            event.preventDefault();
+            event.stopPropagation();
+            activateByIndex(activeIndex - 1);
+        }
+    });
+
+    activateByIndex(activeIndex);
+})();
+
+
+// =========================================================
+// V309 - ANA HERO'DAKİ 6 DİĞER HASTALIĞIN DETAY SAYFASINA GEÇİŞİ
+// =========================================================
+(function () {
+    const slider = document.getElementById('heroSliderV86');
+    if (!slider) return;
+
+    function openDisease(disease, topic = null) {
+        if (!disease) return;
+
+        if (typeof window.openConditionDiseaseV249 === 'function') {
+            window.openConditionDiseaseV249(disease, true);
+        } else if (typeof window.openConditionDiseaseV246 === 'function') {
+            window.openConditionDiseaseV246(disease, true);
+        } else {
+            const card = document.querySelector(`.condition-card-link-v246[data-disease="${disease}"]`);
+            card?.click();
+        }
+
+        if (topic) {
+            window.setTimeout(() => {
+                if (typeof window.renderConditionDiseaseTopicV279 === 'function') {
+                    window.renderConditionDiseaseTopicV279(topic, true);
+                }
+            }, 80);
+        }
+    }
+
+    slider.addEventListener('click', event => {
+        const topicButton = event.target.closest('[data-condition-hero-topic-v309]');
+        if (topicButton) {
+            event.preventDefault();
+            event.stopPropagation();
+            openDisease(topicButton.dataset.conditionDiseaseV309, topicButton.dataset.conditionHeroTopicV309);
+            return;
+        }
+
+        const openButton = event.target.closest('[data-condition-hero-open-v309]');
+        if (openButton) {
+            event.preventDefault();
+            event.stopPropagation();
+            openDisease(openButton.dataset.conditionHeroOpenV309);
+        }
+    });
 })();
 
 
@@ -4636,7 +4715,7 @@ window.addEventListener("load", async () => {
     });
 
     const faqItems = Array.from(
-        osteoPage.querySelectorAll('.osteo-faq-item-v105')
+        document.querySelectorAll('.osteo-faq-item-v105')
     );
 
     faqItems.forEach(item => {
@@ -4803,10 +4882,15 @@ window.addEventListener("load", async () => {
             title: "FitoTerapi-Bitkisel",
             subtitle: "Bitkisel destekler, beslenme ve kişiye özel değerlendirme"
         },
+        "cihaz-uygulamalari": {
+            kicker: "TEDAVİ",
+            title: "Cihaz Uygulamaları",
+            subtitle: "Modern teknoloji ile destekleyici cihaz uygulamaları"
+        },
         "robotik-lazer": {
             kicker: "TEDAVİ",
-            title: "Robotik Lazer",
-            subtitle: "Modern cihaz desteği ve kişiye özel klinik planlama"
+            title: "Cihaz Uygulamaları",
+            subtitle: "Modern teknoloji ile destekleyici cihaz uygulamaları"
         },
         "geleneksel-tedavi": {
             kicker: "TEDAVİ",
@@ -5859,17 +5943,17 @@ window.addEventListener("load", async () => {
     const tabs=page.querySelectorAll("[data-device-detail-tab]");
     const panels=page.querySelectorAll("[data-device-detail-panel]");
     const openers=document.querySelectorAll("[data-device-detail-open]");
-    const meta={ems:{title:"EMS Yatak",hash:"#cihaz-ems-yatak"},magneto:{title:"Magneto",hash:"#cihaz-magneto"},induktif:{title:"İndüktif Magneto",hash:"#cihaz-induktif-magneto"},lenf:{title:"Lenf Drenaj",hash:"#cihaz-lenf-drenaj"}};
+    const meta={ems:{title:"EMS Yatak",hash:"#cihaz-ems-yatak"},magneto:{title:"Magneto",hash:"#cihaz-magneto"},induktif:{title:"İndüktif Magneto",hash:"#cihaz-induktif-magneto"},lenf:{title:"Lenf Drenaj",hash:"#cihaz-lenf-drenaj"},robotik:{title:"Robotik Lazer",hash:"#cihaz-robotik-lazer"}};
     function setDevice(name){const selected=meta[name]?name:"ems";tabs.forEach(b=>{const a=b.dataset.deviceDetailTab===selected;b.classList.toggle("active",a);b.setAttribute("aria-current",a?"page":"false")});panels.forEach(p=>{const a=p.dataset.deviceDetailPanel===selected;p.classList.toggle("active",a);p.hidden=!a});title.textContent=meta[selected].title;breadcrumbTitle.textContent=meta[selected].title;return selected}
     function hideKnown(){document.body.classList.remove("treatment-page-open","treatment-nav-scrolled","pain-page-open","pain-nav-scrolled","about-page-open","about-nav-scrolled","media-page-open","media-nav-scrolled","legal-page-open-v56","treatment-detail-open-v71","treatment-detail-nav-scrolled-v71","general-health-detail-open-v75","ankilozan-page-open-v87","info-guide-page-open-v143");["tedaviAlanlariPage","agriPage","hakkimdaPage","medyaPage","legalPageV56","treatmentDetailPageV71","generalHealthDetailPageV75","ankilozanFaqSectionV85","infoGuidePageV143"].forEach(id=>{const e=document.getElementById(id);if(e)e.setAttribute("aria-hidden","true")})}
     function openDevice(name,push=true){hideKnown();const selected=setDevice(name);document.body.classList.add("device-detail-page-open-v157");page.setAttribute("aria-hidden","false");if(push)history.pushState({page:"device-detail",device:selected},"",meta[selected].hash);window.scrollTo({top:0,behavior:"smooth"})}
-    function openOther(push=true){document.body.classList.remove("device-detail-page-open-v157");page.setAttribute("aria-hidden","true");const t=document.getElementById("treatmentDetailPageV71");if(t){document.body.classList.add("treatment-detail-open-v71");t.setAttribute("aria-hidden","false");t.querySelectorAll("[data-treatment-detail-view]").forEach(v=>v.classList.toggle("active",v.dataset.treatmentDetailView==="diger-cihazlar"));t.querySelectorAll("[data-treatment-top]").forEach(b=>b.classList.toggle("is-current-v74",b.dataset.treatmentTop==="diger-cihazlar"))}if(push)history.pushState({page:"treatment-detail",treatment:"diger-cihazlar"},"","#diger-cihazlar");window.scrollTo({top:0,behavior:"smooth"})}
+    function openOther(push=true){document.body.classList.remove("device-detail-page-open-v157");page.setAttribute("aria-hidden","true");const t=document.getElementById("treatmentDetailPageV71");if(t){document.body.classList.add("treatment-detail-open-v71");t.setAttribute("aria-hidden","false");t.querySelectorAll("[data-treatment-detail-view]").forEach(v=>v.classList.toggle("active",v.dataset.treatmentDetailView==="cihaz-uygulamalari"));t.querySelectorAll("[data-treatment-top]").forEach(b=>b.classList.toggle("is-current-v74",b.dataset.treatmentTop==="cihaz-uygulamalari"))}if(push)history.pushState({page:"treatment-detail",treatment:"cihaz-uygulamalari"},"","#cihaz-uygulamalari");window.scrollTo({top:0,behavior:"smooth"})}
     function goHome(){document.body.classList.remove("device-detail-page-open-v157","treatment-detail-open-v71");page.setAttribute("aria-hidden","true");const t=document.getElementById("treatmentDetailPageV71");if(t)t.setAttribute("aria-hidden","true");history.pushState({page:"home"},"",location.pathname+location.search);window.scrollTo({top:0,behavior:"smooth"})}
     openers.forEach(o=>o.addEventListener("click",e=>{e.preventDefault();openDevice(o.dataset.deviceDetailOpen)}));
     tabs.forEach(b=>b.addEventListener("click",()=>openDevice(b.dataset.deviceDetailTab)));
     if(homeButton)homeButton.addEventListener("click",goHome);if(backButton)backButton.addEventListener("click",()=>openOther());if(breadcrumbBack)breadcrumbBack.addEventListener("click",()=>openOther());
     function resolve(){const found=Object.entries(meta).find(([,v])=>v.hash===location.hash);if(found){openDevice(found[0],false);return true}return false}
-    window.addEventListener("popstate",()=>{if(resolve())return;if(location.hash==="#diger-cihazlar")openOther(false);else{document.body.classList.remove("device-detail-page-open-v157");page.setAttribute("aria-hidden","true")}});
+    window.addEventListener("popstate",()=>{if(resolve())return;if(location.hash==="#cihaz-uygulamalari" || location.hash==="#diger-cihazlar" || location.hash==="#robotik-lazer")openOther(false);else{document.body.classList.remove("device-detail-page-open-v157");page.setAttribute("aria-hidden","true")}});
     resolve();
 })();
 
@@ -5957,7 +6041,12 @@ window.addEventListener("load", async () => {
             view.setAttribute('aria-hidden', active ? 'false' : 'true');
         });
         if (updateHash && history.replaceState) {
-            history.replaceState(history.state, '', name === 'hacamat' ? '#geleneksel-hacamat' : '#geleneksel-suluk');
+            const hashes = {
+                akupunktur: '#geleneksel-akupunktur',
+                suluk: '#geleneksel-suluk',
+                hacamat: '#geleneksel-hacamat'
+            };
+            history.replaceState(history.state, '', hashes[name] || '#geleneksel-tedavi');
         }
         window.scrollTo({ top: 0, behavior: 'smooth' });
     }
@@ -5984,15 +6073,15 @@ window.addEventListener("load", async () => {
     });
 
     function resolveTraditionalHashV168() {
-        if (location.hash === '#geleneksel-hacamat') {
-            showDetailV168('hacamat', false);
-            return true;
-        }
-        if (location.hash === '#geleneksel-suluk') {
-            showDetailV168('suluk', false);
-            return true;
-        }
-        return false;
+        const routes = {
+            '#geleneksel-akupunktur': 'akupunktur',
+            '#geleneksel-suluk': 'suluk',
+            '#geleneksel-hacamat': 'hacamat'
+        };
+        const target = routes[location.hash];
+        if (!target) return false;
+        showDetailV168(target, false);
+        return true;
     }
 
     window.addEventListener('popstate', resolveTraditionalHashV168);
@@ -6164,29 +6253,8 @@ window.addEventListener("load", async () => {
 
 
 // =========================================================
-// V185 - CİHAZ DESTEKLİ UYGULAMALAR ROUTE GÜVENLİĞİ
-// Robotik Lazer içindeki butonların beyaz ekran vermesini engeller.
+// V293 - Eski diger-cihazlar route güvenliği kaldırıldı; cihaz-uygulamalari ana route kullanılır.
 // =========================================================
-(function () {
-    const hub = document.querySelector('[data-treatment-detail-view="diger-cihazlar"]');
-    const page = document.getElementById('treatmentDetailPageV71');
-    if (!hub || !page) return;
-
-    document.querySelectorAll('[data-treatment-detail="diger-cihazlar"]').forEach(link => {
-        link.addEventListener('click', function () {
-            // Ana V72 handler aynı eventte çalışır; bu mikro görev sadece görünürlüğü garanti eder.
-            window.setTimeout(() => {
-                if (location.hash !== '#diger-cihazlar') return;
-                document.body.classList.add('treatment-detail-open-v71');
-                page.setAttribute('aria-hidden', 'false');
-                page.querySelectorAll('[data-treatment-detail-view]').forEach(view => {
-                    view.classList.toggle('active', view === hub);
-                });
-            }, 0);
-        });
-    });
-})();
-
 
 /* =========================================================
    V191 - ANA SAYFA ÜST MENÜ PREMIUM TIKLAMA ANİMASYONU
@@ -8454,6 +8522,18 @@ window.addEventListener("load", async () => {
     const heroLaunchers = Array.from(page.querySelectorAll('[data-osteo-tab-target]'));
     const backButton = document.getElementById('osteoSpecialBackV259');
     const tabNav = specialView.querySelector('.osteo-tabs-v258');
+    const treatmentTopNavV308 = document.querySelector('.treatment-detail-nav-modern-v160');
+
+    /* V308: Üst site menüsü Osteopati özel sekmelerinde scroll ile birlikte yukarı çıkar;
+       artık viewport'a yapışıp kullanıcıyla birlikte gelmez. */
+    function syncOsteoTopNavV308() {
+        if (!treatmentTopNavV308) return;
+        const maxShift = Math.max(86, treatmentTopNavV308.offsetHeight + 28);
+        const shift = -Math.min(specialView.scrollTop, maxShift);
+        treatmentTopNavV308.style.setProperty('--osteo-nav-shift-v308', `${shift}px`);
+    }
+
+    specialView.addEventListener('scroll', syncOsteoTopNavV308, { passive: true });
 
     const statusTitle = document.getElementById('osteoTabStatusTitleV258');
     const statusText = document.getElementById('osteoTabStatusTextV258');
@@ -8464,7 +8544,7 @@ window.addEventListener("load", async () => {
     if (!tabs.length || !panels.length) return;
 
     const tabMeta = {
-        manual: { title: 'Manuel Uygulamalar', text: 'Kayropraktik ve eklem hareketliliğine yönelik içerikler.', index: '01' },
+        manual: { title: 'Manuel Uygulamalar', text: 'Osteopati ve eklem hareketliliğine yönelik içerikler.', index: '01' },
         exercise: { title: 'Egzersiz & Hareket', text: 'Hareket kapasitesi ve kişiye uygun egzersiz başlıkları.', index: '02' },
         sports: { title: 'Spor Yaralanmaları', text: 'Spor yüklenmesi, hareket zinciri ve fonksiyon başlıkları.', index: '03' },
         pain: { title: 'Ağrı Rehberi', text: 'Ağrı bölgeleri ayrı bir içerik alanında incelenir.', index: '04' },
@@ -8511,11 +8591,17 @@ window.addEventListener("load", async () => {
 
     function openSpecialView(key) {
         activateTab(key || 'manual');
+
+        /* V304: bağımsız Osteopati ekranı gerçek viewport üzerinde açılsın. */
+        document.body.classList.add('treatment-detail-open-v71');
         specialView.hidden = false;
         specialView.setAttribute('aria-hidden', 'false');
         page.classList.add('is-special-view-open-v259');
         document.body.classList.add('osteo-standalone-open-v260');
+
+        window.scrollTo({ top: 0, left: 0, behavior: 'auto' });
         specialView.scrollTop = 0;
+        if (treatmentTopNavV308) treatmentTopNavV308.style.setProperty('--osteo-nav-shift-v308', '0px');
 
         requestAnimationFrame(() => {
             const focusTarget = specialView.querySelector('.osteo-special-back-v259');
@@ -8528,6 +8614,8 @@ window.addEventListener("load", async () => {
         page.classList.remove('is-special-view-open-v259');
         specialView.hidden = true;
         specialView.setAttribute('aria-hidden', 'true');
+        if (treatmentTopNavV308) treatmentTopNavV308.style.removeProperty('--osteo-nav-shift-v308');
+        window.scrollTo({ top: 0, left: 0, behavior: 'auto' });
 
         if (options.returnFocus !== false) {
             const firstLauncher = page.querySelector('[data-osteo-tab-target="manual"]');
@@ -9943,4 +10031,763 @@ window.addEventListener("load", async () => {
     });
 
     window.resetDiseasePagesForTreatmentMainV289 = resetDiseasePagesForTreatmentMainV289;
+})();
+
+
+// =========================================================
+// V292 - TEDAVİ UYGULAMASI AÇILIRKEN HASTALIK SAYFALARINI KAPAT
+// =========================================================
+(function () {
+    function closeDiseaseLayersV292() {
+        document.body.classList.remove(
+            'ankilozan-page-open-v87',
+            'romatoid-page-open-v198',
+            'condition-disease-page-open-v246',
+            'as-special-open-v274',
+            'treatment-special-open-v279'
+        );
+
+        [
+            'ankilozanFaqSectionV85',
+            'romatoidFaqSectionV198',
+            'conditionDiseasePageV246',
+            'ankilozanSpecialViewV274',
+            'treatmentSpecialViewV279'
+        ].forEach((id) => {
+            const el = document.getElementById(id);
+            if (!el) return;
+            el.setAttribute('aria-hidden', 'true');
+        });
+    }
+
+    document.addEventListener('click', function (event) {
+        const treatmentTrigger = event.target.closest('[data-treatment-detail], [data-treatment-top]');
+        if (!treatmentTrigger) return;
+        closeDiseaseLayersV292();
+    }, true);
+
+    window.closeDiseaseLayersV292 = closeDiseaseLayersV292;
+})();
+
+
+// =========================================================
+// V293 - CİHAZ UYGULAMALARI ANA SAYFA DAVRANIŞI
+// =========================================================
+(function () {
+    const explore = document.getElementById('deviceAppsExploreV293');
+    const grid = document.getElementById('deviceAppsGridV293');
+    if (explore && grid) {
+        explore.addEventListener('click', () => {
+            grid.scrollIntoView({ behavior: 'smooth', block: 'center' });
+        });
+    }
+
+    // Eski URL'ler yeni cihaz uygulamaları sayfasına yönlensin.
+    const oldHash = location.hash;
+    if (oldHash === '#robotik-lazer' || oldHash === '#diger-cihazlar') {
+        window.setTimeout(() => {
+            const trigger = document.querySelector('[data-treatment-detail="cihaz-uygulamalari"]');
+            if (trigger) trigger.click();
+        }, 40);
+    }
+})();
+
+
+
+// =========================================================
+// V316 - PERSONELLER SEKME / ANİMASYONLU KARTLAR
+// =========================================================
+(function () {
+    const grid = document.getElementById('aboutTeamGridV316');
+    if (!grid) return;
+
+    const PERSONEL_IMG_01_V317 = 'data:image/jpeg;base64,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';
+    const PERSONEL_IMG_02_V317 = 'data:image/jpeg;base64,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';
+
+    const staff = [
+        {name:'Dr. Ceyhun Nuri', role:'Klinik Kurucu', type:'Hekim', img:PERSONEL_IMG_01_V317, desc:'Osteopati, fitoterapi ve bütüncül değerlendirme yaklaşımıyla klinik planlamaya liderlik eder.', tags:['Osteopati','Fitoterapi','Muayene'], extra:'Tanı, değerlendirme ve kişiye özel tedavi planlaması süreçlerinin merkezinde yer alır.'},
+        {name:'Dr. Mustafa İkizek', role:'Hekim', type:'Hekim', img:PERSONEL_IMG_02_V317, desc:'Klinik değerlendirme, hasta takibi ve hekimlik bakış açısını destekleyen ekip yapılanmasının önemli yüzlerinden biridir.', tags:['Değerlendirme','Takip','Klinik'], extra:'Klinik akışta danışan yönetimi ve hekimlik koordinasyonu tarafını güçlendiren örnek profil kartıdır.'},
+        {name:'Klinik Koordinasyon', role:'Operasyon Sorumlusu', type:'Koordinasyon', img:null, desc:'Randevu akışı, danışan yönlendirmesi ve günlük işleyişin düzenli ilerlemesine destek olur.', tags:['Planlama','Akış','Koordinasyon'], extra:'Yoğun günlerde ekibin eşgüdümünü sağlar ve hastanın doğru alana yönlendirilmesine yardımcı olur.'},
+        {name:'Danışan Karşılama', role:'Resepsiyon', type:'Karşılama', img:null, desc:'İlk temas noktası olarak danışan kabulü, bilgilendirme ve yönlendirme süreçlerini yürütür.', tags:['Karşılama','Bilgi','Yönlendirme'], extra:'Hasta deneyiminin sıcak ve güven verici başlaması için ön yüz görevini üstlenir.'},
+        {name:'Muayene Destek', role:'Klinik Asistan', type:'Destek', img:null, desc:'Muayene öncesi hazırlık, oda düzeni ve danışan bilgilendirme süreçlerine katkı sağlar.', tags:['Hazırlık','Destek','Düzen'], extra:'Hekim görüşmesi öncesinde klinik düzenin sorunsuz ilerlemesine yardımcı olur.'},
+        {name:'Osteopati Destek', role:'Uygulama Asistanı', type:'Uygulama', img:null, desc:'Osteopati ve manuel uygulama akışında ekip düzenine ve hasta konforuna destek sunar.', tags:['Osteopati','Mobilite','Konfor'], extra:'Tedavi odasının akışını destekleyen ve süreç konforunu artıran örnek karttır.'},
+        {name:'GETAT Uygulama', role:'Uygulama Destek', type:'GETAT', img:null, desc:'Tamamlayıcı uygulamalar sırasında düzen, hazırlık ve takip disiplinini destekler.', tags:['GETAT','Takip','Hazırlık'], extra:'Ozon, hacamat veya benzer destek uygulamaları öncesinde operasyonel destek sunar.'},
+        {name:'Fitoterapi Danışma', role:'Bilgilendirme', type:'Danışma', img:null, desc:'Bitkisel destek yaklaşımına yönelik süreçlerin organizasyonu ve bilgilendirme akışında yer alır.', tags:['Fitoterapi','İçerik','Danışma'], extra:'Hasta eğitim materyallerinin doğru iletilmesi ve süreç takibi için destek sağlar.'},
+        {name:'Damar Yolu Destek', role:'IV Uygulama Koordinasyon', type:'IV', img:null, desc:'Damar yolu destek süreçlerinde hazırlık ve operasyon düzenini destekleyen örnek profil.', tags:['IV','Hazırlık','Kontrol'], extra:'Uygulama alanı düzeni, hasta hazırlığı ve ekip içi koordinasyon tarafını temsil eder.'},
+        {name:'Sosyal Medya & İçerik', role:'Dijital Destek', type:'Medya', img:null, desc:'Klinik bilgilendirmeleri, içerik akışı ve dijital görünürlük başlıklarına destek olur.', tags:['İçerik','Medya','Tanıtım'], extra:'Hastaların kliniği daha iyi tanımasını sağlayan dijital yüzü güçlendirir.'},
+        {name:'Randevu Takip', role:'Danışan İletişimi', type:'İletişim', img:null, desc:'Randevu hatırlatma, ilk bilgi paylaşımı ve takip planlamasına yardımcı olur.', tags:['Randevu','Takip','İletişim'], extra:'Danışan ile klinik arasındaki düzenli iletişimi destekleyen başlangıç kartıdır.'},
+        {name:'Hasta Deneyimi', role:'Geri Bildirim', type:'Destek', img:null, desc:'Danışan memnuniyeti, geri bildirim ve süreç iyileştirme alanında örnek temsil kartı.', tags:['Memnuniyet','Geri Bildirim','Süreç'], extra:'Hizmet kalitesini yükseltmeye yönelik geri bildirim akışlarını destekler.'},
+        {name:'Klinik Düzen', role:'Operasyon Destek', type:'Operasyon', img:null, desc:'İç alanların düzenli, temiz ve akışa uygun kalmasını sağlayan destek alanı.', tags:['Düzen','Operasyon','Akış'], extra:'Klinik deneyimin profesyonel ve konforlu görünümünü destekleyen arka plan rolüdür.'},
+        {name:'Uygulama Sonrası Takip', role:'Hasta Bilgilendirme', type:'Takip', img:null, desc:'Uygulama sonrasında dikkat edilmesi gerekenlerin aktarımı ve yönlendirme desteği sunar.', tags:['Takip','Bilgilendirme','Destek'], extra:'Danışanların süreç sonrası yönlendirmeleri daha net takip edebilmesi için örnek karttır.'}
+    ];
+
+    grid.innerHTML = staff.map((item, idx) => `
+        <article class="team-card-v316" tabindex="0" role="button" aria-expanded="false" aria-label="${item.name} detaylarını göster">
+            <div class="team-card-media-v316 ${item.img ? 'has-photo-v317' : 'is-placeholder-v317'}">
+                ${item.img
+                    ? `<img src="${item.img}" alt="${item.name}">`
+                    : `<div class="team-card-placeholder-v317" aria-hidden="true"><span>${String(idx + 1).padStart(2,'0')}</span><strong>PERSONEL</strong><small>Fotoğraf eklenecek</small></div>`}
+                <span class="team-card-badge-v316">${item.type}</span>
+            </div>
+            <div class="team-card-body-v316">
+                <span class="team-card-kicker-v316">${String(idx + 1).padStart(2,'0')} · ${item.role}</span>
+                <h3>${item.name}</h3>
+                <p>${item.desc}</p>
+                <div class="team-card-tags-v316">${item.tags.map(tag => `<span>${tag}</span>`).join('')}</div>
+                <div class="team-card-hint-v316"><span>Detayı görmek için tıklayın</span><i>⌄</i></div>
+                <div class="team-card-extra-v316"><div>${item.extra}</div></div>
+            </div>
+        </article>
+    `).join('');
+
+    const cards = Array.from(grid.querySelectorAll('.team-card-v316'));
+    const toggleCard = (card) => {
+        const shouldOpen = !card.classList.contains('is-active');
+        cards.forEach(c => {
+            c.classList.remove('is-active');
+            c.setAttribute('aria-expanded','false');
+        });
+        if (shouldOpen) {
+            card.classList.add('is-active');
+            card.setAttribute('aria-expanded','true');
+        }
+    };
+
+    cards.forEach(card => {
+        card.addEventListener('click', () => toggleCard(card));
+        card.addEventListener('keydown', (event) => {
+            if (event.key === 'Enter' || event.key === ' ') {
+                event.preventDefault();
+                toggleCard(card);
+            }
+        });
+    });
+})();
+
+
+// =========================================================
+// V321 - PERSONEL FOTOĞRAFLARI / PARALLAX + REVEAL + CLICK POP
+// =========================================================
+(function () {
+    const panel = document.getElementById('aboutPanelTeamV316');
+    if (!panel) return;
+
+    const setupAnimations = () => {
+        const cards = Array.from(panel.querySelectorAll('.team-card-v316'));
+        if (!cards.length) return false;
+
+        const reduceMotion = window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+
+        cards.forEach((card, index) => {
+            card.style.setProperty('--revealDelay', `${Math.min(index * 55, 420)}ms`);
+
+            const media = card.querySelector('.team-card-media-v316.has-photo-v317');
+            if (!media || reduceMotion) return;
+
+            media.addEventListener('pointermove', (event) => {
+                const rect = media.getBoundingClientRect();
+                const px = Math.max(0, Math.min(1, (event.clientX - rect.left) / rect.width));
+                const py = Math.max(0, Math.min(1, (event.clientY - rect.top) / rect.height));
+                const tiltY = (px - .5) * 6;
+                const tiltX = (.5 - py) * 5;
+                const photoX = (px - .5) * -7;
+                const photoY = (py - .5) * -5;
+
+                card.style.setProperty('--tiltX', `${tiltX.toFixed(2)}deg`);
+                card.style.setProperty('--tiltY', `${tiltY.toFixed(2)}deg`);
+                card.style.setProperty('--photoX', `${photoX.toFixed(2)}px`);
+                card.style.setProperty('--photoY', `${photoY.toFixed(2)}px`);
+                card.classList.add('is-photo-hover-v321');
+            });
+
+            media.addEventListener('pointerleave', () => {
+                card.style.setProperty('--tiltX', '0deg');
+                card.style.setProperty('--tiltY', '0deg');
+                card.style.setProperty('--photoX', '0px');
+                card.style.setProperty('--photoY', '0px');
+                card.classList.remove('is-photo-hover-v321');
+            });
+
+            card.addEventListener('click', () => {
+                card.classList.remove('photo-pop-v321');
+                void card.offsetWidth;
+                card.classList.add('photo-pop-v321');
+                window.setTimeout(() => card.classList.remove('photo-pop-v321'), 680);
+            });
+        });
+
+        if (reduceMotion) {
+            cards.forEach(card => card.classList.add('is-revealed-v321'));
+            return true;
+        }
+
+        if ('IntersectionObserver' in window) {
+            const observer = new IntersectionObserver((entries, obs) => {
+                entries.forEach(entry => {
+                    if (!entry.isIntersecting) return;
+                    entry.target.classList.add('is-revealed-v321');
+                    obs.unobserve(entry.target);
+                });
+            }, { threshold: .12, rootMargin: '0px 0px -4% 0px' });
+            cards.forEach(card => observer.observe(card));
+        } else {
+            cards.forEach(card => card.classList.add('is-revealed-v321'));
+        }
+        return true;
+    };
+
+    if (!setupAnimations()) {
+        const watcher = new MutationObserver(() => {
+            if (setupAnimations()) watcher.disconnect();
+        });
+        watcher.observe(panel, { childList: true, subtree: true });
+    }
+})();
+
+// =========================================================
+// V327 - GENEL SAĞLIK / TEDAVİ UYGULAMALARI ÜST DROPDOWN
+// =========================================================
+(function () {
+    const menu = document.getElementById('healthTreatmentMenuV327');
+    const button = document.getElementById('healthTreatmentMenuButtonV327');
+    const panel = document.getElementById('healthTreatmentMenuPanelV327');
+    if (!menu || !button || !panel) return;
+
+    const closeMenu = () => {
+        menu.classList.remove('open');
+        button.setAttribute('aria-expanded', 'false');
+        panel.setAttribute('aria-hidden', 'true');
+    };
+
+    button.addEventListener('click', (event) => {
+        event.preventDefault();
+        event.stopPropagation();
+        const willOpen = !menu.classList.contains('open');
+        document.querySelectorAll('.health-treatment-menu-v327.open').forEach(item => item.classList.remove('open'));
+        if (willOpen) {
+            menu.classList.add('open');
+            button.setAttribute('aria-expanded', 'true');
+            panel.setAttribute('aria-hidden', 'false');
+        } else {
+            closeMenu();
+        }
+    });
+
+    panel.addEventListener('click', (event) => {
+        if (event.target.closest('[data-treatment-detail]')) closeMenu();
+    });
+
+    document.addEventListener('click', (event) => {
+        if (!menu.contains(event.target)) closeMenu();
+    });
+
+    document.addEventListener('keydown', (event) => {
+        if (event.key === 'Escape') closeMenu();
+    });
+})();
+
+
+
+// =========================================================
+// V331 - GELENEKSEL TEDAVİ / GERÇEK ÖZEL ALT SAYFA MİMARİSİ
+// Hero içindeki 3 buton aşağıdaki içerikleri açmaz; seçilen konu
+// ayrı bir özel görünüm olarak açılır. Alt sayfadan uygulamaya geri dönülür.
+// =========================================================
+(function () {
+    const treatmentView = document.querySelector('[data-treatment-detail-view="geleneksel-tedavi"]');
+    if (!treatmentView) return;
+
+    const detailViews = Array.from(treatmentView.querySelectorAll('[data-traditional-detail]'));
+
+    const applicationLabels = {
+        akupunktur: 'Akupunktur',
+        suluk: 'Sülük Uygulaması',
+        hacamat: 'Hacamat'
+    };
+
+    const sectionDescriptions = {
+        degerlendirme: 'Uygulamanın hangi başlıklarda değerlendirilebileceğini ayrı bir içerik alanında inceleyin.',
+        dikkat: 'Uygulama öncesinde göz önünde bulundurulması gereken güvenlik ve uygunluk başlıklarını inceleyin.',
+        sss: 'Uygulama hakkında sık sorulan soruları ve kısa yanıtları ayrı bir içerik alanında inceleyin.'
+    };
+
+    function getTopicKey(tabName) {
+        if (tabName.endsWith('-dikkat')) return 'dikkat';
+        if (tabName.endsWith('-sss')) return 'sss';
+        return 'degerlendirme';
+    }
+
+    function setPanels(detailView, tabName) {
+        const buttons = Array.from(detailView.querySelectorAll('[data-traditional-tab]'));
+        const panels = Array.from(detailView.querySelectorAll('[data-traditional-panel]'));
+        const targetPanel = panels.find(panel => panel.dataset.traditionalPanel === tabName);
+        if (!targetPanel) return null;
+
+        buttons.forEach(button => {
+            const active = button.dataset.traditionalTab === tabName;
+            button.classList.toggle('is-active', active);
+            button.setAttribute('aria-selected', active ? 'true' : 'false');
+        });
+        panels.forEach(panel => {
+            const active = panel === targetPanel;
+            panel.classList.toggle('is-active', active);
+            panel.setAttribute('aria-hidden', active ? 'false' : 'true');
+        });
+        return targetPanel;
+    }
+
+    function closeSubPage(detailView, shouldScroll) {
+        if (!detailView) return;
+        detailView.classList.remove('is-traditional-subpage-open-v331');
+        const hero = detailView.querySelector('.traditional-detail-hero-v330');
+        const stage = detailView.querySelector('.traditional-tabs-stage-v330');
+        if (hero) hero.setAttribute('aria-hidden', 'false');
+        if (stage) stage.setAttribute('aria-hidden', 'true');
+
+        detailView.querySelectorAll('[data-traditional-panel]').forEach(panel => {
+            panel.classList.remove('is-active');
+            panel.setAttribute('aria-hidden', 'true');
+        });
+        detailView.querySelectorAll('[data-traditional-tab]').forEach(button => {
+            button.classList.remove('is-active');
+            button.setAttribute('aria-selected', 'false');
+        });
+
+        if (shouldScroll !== false) {
+            window.setTimeout(() => detailView.scrollIntoView({ behavior: 'smooth', block: 'start' }), 30);
+        }
+    }
+
+    function openSubPage(detailView, tabName) {
+        if (!detailView || !tabName) return;
+        const targetPanel = setPanels(detailView, tabName);
+        if (!targetPanel) return;
+
+        detailView.classList.add('is-traditional-subpage-open-v331');
+        const hero = detailView.querySelector('.traditional-detail-hero-v330');
+        const stage = detailView.querySelector('.traditional-tabs-stage-v330');
+        if (hero) hero.setAttribute('aria-hidden', 'true');
+        if (stage) stage.setAttribute('aria-hidden', 'false');
+
+        window.setTimeout(() => detailView.scrollIntoView({ behavior: 'smooth', block: 'start' }), 30);
+    }
+
+    function buildSubPageHeader(detailView, panel, applicationName, buttons) {
+        if (panel.querySelector('.traditional-subpage-header-v331')) return;
+        const panelName = panel.dataset.traditionalPanel || '';
+        const sourceButton = buttons.find(button => button.dataset.traditionalTab === panelName);
+        const title = sourceButton ? sourceButton.querySelector('b')?.textContent.trim() : 'Özel İçerik';
+        const topicKey = getTopicKey(panelName);
+
+        const header = document.createElement('header');
+        header.className = 'traditional-subpage-header-v331';
+        header.innerHTML = `
+            <div class="traditional-subpage-top-v331">
+                <button type="button" class="traditional-subpage-back-v331" data-traditional-sub-back>
+                    <span>←</span><b>${applicationName}</b>
+                </button>
+                <span class="traditional-subpage-eyebrow-v331">GELENEKSEL & TAMAMLAYICI TIP · ÖZEL İÇERİK</span>
+            </div>
+            <div class="traditional-subpage-title-row-v331">
+                <div>
+                    <h1>${title}</h1>
+                    <p>${sectionDescriptions[topicKey]}</p>
+                </div>
+                <div class="traditional-subpage-index-v331">${sourceButton ? sourceButton.querySelector('span')?.textContent.trim() : '01'}<small>/03</small></div>
+            </div>
+            <nav class="traditional-subpage-switcher-v331" aria-label="${applicationName} özel içerik geçişleri"></nav>
+        `;
+
+        const switcher = header.querySelector('.traditional-subpage-switcher-v331');
+        buttons.forEach(button => {
+            const clone = document.createElement('button');
+            clone.type = 'button';
+            clone.dataset.traditionalSubSwitch = button.dataset.traditionalTab;
+            clone.innerHTML = `<span>${button.querySelector('span')?.textContent.trim() || ''}</span><b>${button.querySelector('b')?.textContent.trim() || ''}</b>`;
+            if (button.dataset.traditionalTab === panelName) clone.classList.add('is-active');
+            switcher.appendChild(clone);
+        });
+
+        panel.prepend(header);
+    }
+
+    detailViews.forEach(detailView => {
+        const appKey = detailView.dataset.traditionalDetail || '';
+        const applicationName = applicationLabels[appKey] || 'Geleneksel Tedavi';
+        const heroButtons = Array.from(detailView.querySelectorAll('.traditional-hero-tabs-v330 [data-traditional-tab]'));
+        const panels = Array.from(detailView.querySelectorAll('[data-traditional-panel]'));
+        const stage = detailView.querySelector('.traditional-tabs-stage-v330');
+
+        if (stage) stage.setAttribute('aria-hidden', 'true');
+        panels.forEach(panel => {
+            panel.classList.remove('is-active');
+            panel.setAttribute('aria-hidden', 'true');
+            buildSubPageHeader(detailView, panel, applicationName, heroButtons);
+        });
+        heroButtons.forEach(button => {
+            button.classList.remove('is-active');
+            button.setAttribute('aria-selected', 'false');
+            button.addEventListener('click', event => {
+                event.preventDefault();
+                openSubPage(detailView, button.dataset.traditionalTab);
+            });
+        });
+
+        detailView.addEventListener('click', event => {
+            const back = event.target.closest('[data-traditional-sub-back]');
+            if (back) {
+                event.preventDefault();
+                closeSubPage(detailView, true);
+                return;
+            }
+            const switchButton = event.target.closest('[data-traditional-sub-switch]');
+            if (switchButton) {
+                event.preventDefault();
+                openSubPage(detailView, switchButton.dataset.traditionalSubSwitch);
+            }
+        });
+    });
+
+    // Uygulama kartından yeni detay sayfasına her girişte yalnızca giriş/hero görünür.
+    treatmentView.querySelectorAll('[data-traditional-open]').forEach(opener => {
+        opener.addEventListener('click', () => {
+            const name = opener.dataset.traditionalOpen;
+            const detailView = detailViews.find(view => view.dataset.traditionalDetail === name);
+            if (detailView) window.setTimeout(() => closeSubPage(detailView, false), 20);
+        });
+    });
+
+    // Ana geleneksel tedaviye dönüşte alt sayfa durumlarını temizle.
+    treatmentView.querySelectorAll('[data-traditional-back]').forEach(back => {
+        back.addEventListener('click', () => {
+            detailViews.forEach(view => closeSubPage(view, false));
+        });
+    });
+})();
+
+
+// =========================================================
+// V332 - SİTE İLE İLGİLİ ÖNERİLER
+// =========================================================
+(function(){
+    const page=document.getElementById('siteFeedbackPageV332');
+    const openButtons=document.querySelectorAll('.site-feedback-open-v332');
+    const home=document.getElementById('siteFeedbackHomeV332');
+    const brand=document.getElementById('siteFeedbackBrandV332');
+    const form=document.getElementById('siteFeedbackFormV332');
+    const name=document.getElementById('siteFeedbackNameV332');
+    const category=document.getElementById('siteFeedbackCategoryV332');
+    const message=document.getElementById('siteFeedbackMessageV332');
+    const count=document.getElementById('siteFeedbackCountV332');
+    const emailBtn=document.getElementById('siteFeedbackEmailV332');
+    if(!page||!openButtons.length)return;
+
+    function closeInfoMenus(){
+        document.querySelectorAll('.info-menu-v54').forEach(menu=>{
+            menu.classList.remove('open','kvkk-open');
+            const main=menu.querySelector('.info-menu-button-v54');
+            const panel=menu.querySelector('.info-menu-panel-v54');
+            const kvkk=menu.querySelector('.info-kvkk-button-v54');
+            const sub=menu.querySelector('.info-kvkk-submenu-v54');
+            if(main)main.setAttribute('aria-expanded','false');
+            if(panel)panel.setAttribute('aria-hidden','true');
+            if(kvkk)kvkk.setAttribute('aria-expanded','false');
+            if(sub)sub.setAttribute('aria-hidden','true');
+        });
+    }
+
+    function hideOtherPages(){
+        document.body.classList.remove('treatment-page-open','treatment-nav-scrolled','pain-page-open','pain-nav-scrolled','about-page-open','about-nav-scrolled','media-page-open','media-nav-scrolled','legal-page-open-v56','treatment-detail-open-v71','treatment-detail-nav-scrolled-v71','ankilozan-page-open-v87','general-health-detail-open-v75','general-featured-open-v124','info-guide-open-v143');
+        ['tedaviAlanlariPage','agriPage','hakkimdaPage','medyaPage','legalPageV56','treatmentDetailPageV71','ankilozanFaqSectionV85','romatoidFaqSectionV198','generalHealthDetailPageV75','generalFeaturedPageV124','infoGuidePageV143','deviceDetailPageV157','conditionDiseasePageV246'].forEach(id=>{const el=document.getElementById(id);if(el)el.setAttribute('aria-hidden','true')});
+    }
+
+    function openFeedback(){
+        hideOtherPages(); closeInfoMenus();
+        document.body.classList.add('site-feedback-open-v332');
+        page.setAttribute('aria-hidden','false');
+        history.pushState({page:'site-feedback'},'','#site-onerileri');
+        window.scrollTo({top:0,behavior:'smooth'});
+    }
+    function closeFeedback(){
+        document.body.classList.remove('site-feedback-open-v332');
+        page.setAttribute('aria-hidden','true');
+        history.pushState({page:'home'},'','#anasayfa');
+        window.scrollTo({top:0,behavior:'smooth'});
+    }
+    openButtons.forEach(btn=>btn.addEventListener('click',e=>{e.preventDefault();e.stopPropagation();openFeedback()}));
+    [home,brand].forEach(btn=>{if(btn)btn.addEventListener('click',e=>{e.preventDefault();closeFeedback()})});
+
+    function buildText(){
+        const n=(name&&name.value.trim())||'Belirtilmedi';
+        const c=(category&&category.value)||'Diğer';
+        const m=(message&&message.value.trim())||'';
+        return `Site ile ilgili öneri\n\nİsim: ${n}\nKonu: ${c}\n\nÖneri:\n${m}`;
+    }
+    if(message&&count){
+        const sync=()=>count.textContent=String(message.value.length);
+        message.addEventListener('input',sync);sync();
+    }
+    if(form){
+        form.addEventListener('submit',e=>{
+            e.preventDefault();
+            if(!message||!message.value.trim()){message&&message.focus();return;}
+            const url='https://wa.me/905349309880?text='+encodeURIComponent(buildText());
+            window.open(url,'_blank','noopener,noreferrer');
+        });
+    }
+    if(emailBtn){
+        emailBtn.addEventListener('click',()=>{
+            if(!message||!message.value.trim()){message&&message.focus();return;}
+            const subject='Web Sitesi Görüş ve Önerisi';
+            window.location.href='mailto:info@doktorceyhunnuri.com?subject='+encodeURIComponent(subject)+'&body='+encodeURIComponent(buildText());
+        });
+    }
+    if(location.hash==='#site-onerileri')openFeedback();
+})();
+
+
+// =========================================================
+// V334 - DAMAR YOLU SERUMLARI: TEK DETAY + DİĞER SERUMLAR
+// =========================================================
+(function () {
+    const vascularView = document.querySelector('[data-treatment-detail-view="damar-yolu"]');
+    if (!vascularView) return;
+
+    const serumMap = [
+        {
+            key: 'ozone',
+            label: 'Ozonlu Serum',
+            short: 'Ozon',
+            openId: 'openOzoneDetailV239',
+            closeId: 'closeOzoneDetailV239',
+            detailId: 'ozoneDetailV239'
+        },
+        {
+            key: 'vitamin-c',
+            label: 'C Vitamini Serumu',
+            short: 'C Vitamini',
+            openId: 'openVitaminCDetailV234',
+            closeId: 'closeVitaminCDetailV235',
+            detailId: 'vitaminCDetailV234'
+        },
+        {
+            key: 'karnitin',
+            label: 'L-Karnitin Serumu',
+            short: 'L-Karnitin',
+            openId: 'openKarnitinDetailV243',
+            closeId: 'closeKarnitinDetailV243',
+            detailId: 'karnitinDetailV243'
+        },
+        {
+            key: 'selenium',
+            label: 'Selenyum Serumu',
+            short: 'Selenyum',
+            openId: 'openSeleniumDetailV244',
+            closeId: 'closeSeleniumDetailV244',
+            detailId: 'seleniumDetailV244'
+        },
+        {
+            key: 'nad',
+            label: 'IV NAD+ Serumu',
+            short: 'NAD+',
+            openId: 'openNadDetailV242',
+            closeId: 'closeNadDetailV242',
+            detailId: 'nadDetailV242'
+        },
+        {
+            key: 'glutathione',
+            label: 'Glutatyon Serumu',
+            short: 'Glutatyon',
+            openId: 'openGlutathioneDetailV241',
+            closeId: 'closeGlutathioneDetailV241',
+            detailId: 'glutathioneDetailV241'
+        },
+        {
+            key: 'major-ozone',
+            label: 'Majör Ozon',
+            short: 'Majör Ozon',
+            openId: 'openMajorOzoneDetailV240',
+            closeId: 'closeMajorOzoneDetailV240',
+            detailId: 'majorOzoneDetailV240'
+        }
+    ];
+
+    const oldStateClasses = [
+        'vitamin-c-tab-open-v235',
+        'ozone-tab-open-v239',
+        'major-ozone-tab-open-v240',
+        'glutathione-tab-open-v241',
+        'nad-tab-open-v242',
+        'karnitin-tab-open-v243',
+        'selenium-tab-open-v244'
+    ];
+
+    function hideAllDetails() {
+        serumMap.forEach((item) => {
+            const section = document.getElementById(item.detailId);
+            if (section) {
+                section.setAttribute('aria-hidden', 'true');
+            }
+        });
+    }
+
+    function enforceSingleDetail(key) {
+        const current = serumMap.find((item) => item.key === key);
+        if (!current) return;
+
+        oldStateClasses.forEach((className) => vascularView.classList.remove(className));
+        hideAllDetails();
+
+        vascularView.classList.add('serum-focus-v334');
+        vascularView.setAttribute('data-active-serum-v334', key);
+
+        const section = document.getElementById(current.detailId);
+        if (section) {
+            section.setAttribute('aria-hidden', 'false');
+        }
+    }
+
+    function exitSingleDetail() {
+        vascularView.classList.remove('serum-focus-v334');
+        vascularView.removeAttribute('data-active-serum-v334');
+        hideAllDetails();
+    }
+
+    function openSerum(key) {
+        const item = serumMap.find((serum) => serum.key === key);
+        if (!item) return;
+
+        enforceSingleDetail(key);
+
+        // Eski mevcut açma fonksiyonları varsa onların içerik hazırlama davranışını da koru.
+        const openButton = document.getElementById(item.openId);
+        if (openButton && !openButton.matches(':active')) {
+            // Programatik geçişlerde eski click eventleri de çalışsın.
+            openButton.click();
+        }
+
+        // Eski event zincirlerinden sonra tek-detay durumunu tekrar garanti et.
+        window.requestAnimationFrame(() => {
+            enforceSingleDetail(key);
+
+            const top = vascularView.getBoundingClientRect().top + window.scrollY - 10;
+            window.scrollTo({
+                top: Math.max(0, top),
+                behavior: 'smooth'
+            });
+        });
+    }
+
+    function buildOtherSerums(currentKey) {
+        const currentSection = document.getElementById(
+            serumMap.find((item) => item.key === currentKey)?.detailId || ''
+        );
+        if (!currentSection) return;
+
+        const editorial = currentSection.querySelector('.vitamin-c-editorial-v234');
+        if (!editorial || editorial.querySelector('.other-serums-v334')) return;
+
+        const others = serumMap.filter((item) => item.key !== currentKey);
+
+        const wrapper = document.createElement('section');
+        wrapper.className = 'other-serums-v334';
+        wrapper.setAttribute('aria-label', 'Diğer damar yolu serumları');
+
+        wrapper.innerHTML = `
+            <div class="other-serums-head-v334">
+                <div>
+                    <span class="other-serums-kicker-v334">DİĞER DAMAR YOLU UYGULAMALARI</span>
+                    <h3>Diğer Serumları İnceleyin</h3>
+                </div>
+                <p>Başka bir serumun bilgi sayfasına geçmek için seçim yapabilirsiniz.</p>
+            </div>
+            <div class="other-serums-grid-v334">
+                ${others.map((item, index) => `
+                    <button
+                        type="button"
+                        class="other-serum-button-v334"
+                        data-serum-switch-v334="${item.key}"
+                        aria-label="${item.label} bilgi sayfasını aç"
+                    >
+                        <span class="other-serum-index-v334">${String(index + 1).padStart(2, '0')}</span>
+                        <span class="other-serum-copy-v334">
+                            <strong>${item.short}</strong>
+                            <span>Bilgi sayfasına geç →</span>
+                        </span>
+                    </button>
+                `).join('')}
+            </div>
+        `;
+
+        editorial.appendChild(wrapper);
+    }
+
+    // Her serumun yazılarının altına diğer serum geçişlerini ekle.
+    serumMap.forEach((item) => buildOtherSerums(item.key));
+
+    // Ana karttan "Bilgi Edin" tıklandığında yalnızca seçilen serum açık kalsın.
+    serumMap.forEach((item) => {
+        const openButton = document.getElementById(item.openId);
+        if (openButton) {
+            openButton.addEventListener('click', () => {
+                window.requestAnimationFrame(() => enforceSingleDetail(item.key));
+            });
+        }
+
+        const closeButton = document.getElementById(item.closeId);
+        if (closeButton) {
+            closeButton.addEventListener('click', () => {
+                window.requestAnimationFrame(exitSingleDetail);
+            });
+        }
+    });
+
+    // Alt kısımdaki diğer serum butonları
+    vascularView.addEventListener('click', (event) => {
+        const switchButton = event.target.closest('[data-serum-switch-v334]');
+        if (!switchButton) return;
+
+        const targetKey = switchButton.getAttribute('data-serum-switch-v334');
+        const target = serumMap.find((item) => item.key === targetKey);
+        if (!target) return;
+
+        // Önce seçilen görünümü garanti et, sonra mevcut açma düğmesinin işlevini çalıştır.
+        enforceSingleDetail(targetKey);
+
+        const targetOpenButton = document.getElementById(target.openId);
+        if (targetOpenButton) {
+            targetOpenButton.click();
+        }
+
+        window.requestAnimationFrame(() => {
+            enforceSingleDetail(targetKey);
+            const top = vascularView.getBoundingClientRect().top + window.scrollY - 10;
+            window.scrollTo({ top: Math.max(0, top), behavior: 'smooth' });
+        });
+    });
+
+    // Hastalık sayfasına veya başka tedavi alanına geçerken serum odak durumunu temizle.
+    document.addEventListener('click', (event) => {
+        if (
+            event.target.closest('[data-treatment-detail]') ||
+            event.target.closest('[data-karnitin-disease-link]') ||
+            event.target.closest('[data-selenium-disease-link]') ||
+            event.target.closest('[data-vitamin-c-disease-link]') ||
+            event.target.closest('[data-ozone-disease-link]') ||
+            event.target.closest('[data-major-ozone-disease-link]') ||
+            event.target.closest('[data-glutathione-disease-link]') ||
+            event.target.closest('[data-nad-disease-link]')
+        ) {
+            const detailLink = event.target.closest('[data-treatment-detail]');
+            if (!detailLink || detailLink.getAttribute('data-treatment-detail') !== 'damar-yolu') {
+                exitSingleDetail();
+            }
+        }
+    }, true);
+
+    document.addEventListener('keydown', (event) => {
+        if (event.key === 'Escape' && vascularView.classList.contains('serum-focus-v334')) {
+            exitSingleDetail();
+        }
+    });
 })();
