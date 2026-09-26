@@ -3259,7 +3259,7 @@ window.addEventListener("load", async () => {
         document.getElementById("treatmentDetailMediaV71");
 
     const validTreatments =
-        new Set(["osteopati", "fitoterapi", "cihaz-uygulamalari", "robotik-lazer", "diger-cihazlar", "geleneksel-tedavi", "igne", "estetik", "damar-yolu"]);
+        new Set(["osteopati", "fitoterapi", "cihaz-uygulamalari", "robotik-lazer", "diger-cihazlar", "geleneksel-tedavi", "igne", "estetik", "damar-yolu", "ozon-tedavisi"]);
 
     function hideOtherPagesV71() {
 
@@ -4911,6 +4911,11 @@ window.addEventListener("load", async () => {
             kicker: "TEDAVİ",
             title: "Damar Yolu Uygulamaları",
             subtitle: "Serum ve destek amaçlı damar yolu uygulamaları"
+        },
+        "ozon-tedavisi": {
+            kicker: "TEDAVİ",
+            title: "Ozon Tedavisi",
+            subtitle: "Ozon uygulamalarına ayrılan yeni tedavi bölümü"
         }
     };
 
@@ -10790,4 +10795,71 @@ window.addEventListener("load", async () => {
             exitSingleDetail();
         }
     });
+})();
+
+
+// =========================================================
+// V344 - OZON HIZLI GEÇİŞ / NET BUTON -> NET BAŞLIK
+// Anchor/hash yok: her buton sadece data hedefindeki bölüme kaydırır.
+// =========================================================
+(function () {
+    const quickNav = document.querySelector('.ozone-quick-index-v341');
+    if (!quickNav) return;
+
+    const buttons = Array.from(quickNav.querySelectorAll('[data-ozone-jump-v344]'));
+    if (!buttons.length) return;
+
+    const targets = buttons
+        .map((button) => document.getElementById(button.dataset.ozoneJumpV344))
+        .filter(Boolean);
+
+    let clickLockUntil = 0;
+
+    function setActive(targetId) {
+        buttons.forEach((button) => {
+            button.classList.toggle('is-active-v344', button.dataset.ozoneJumpV344 === targetId);
+        });
+    }
+
+    function getFixedOffset() {
+        const nav = document.querySelector('.treatment-detail-nav-modern-v160');
+        if (!nav) return 24;
+        const rect = nav.getBoundingClientRect();
+        return Math.max(24, rect.height + 30);
+    }
+
+    buttons.forEach((button) => {
+        button.addEventListener('click', () => {
+            const targetId = button.dataset.ozoneJumpV344;
+            const target = document.getElementById(targetId);
+            if (!target) return;
+
+            clickLockUntil = performance.now() + 1000;
+            setActive(targetId);
+
+            const top = target.getBoundingClientRect().top + window.scrollY - getFixedOffset();
+            window.scrollTo({
+                top: Math.max(0, top),
+                behavior: 'smooth'
+            });
+        });
+    });
+
+    if (!('IntersectionObserver' in window)) return;
+
+    const observer = new IntersectionObserver((entries) => {
+        if (performance.now() < clickLockUntil) return;
+
+        const visible = entries
+            .filter((entry) => entry.isIntersecting)
+            .sort((a, b) => Math.abs(a.boundingClientRect.top - getFixedOffset()));
+
+        if (visible.length) setActive(visible[0].target.id);
+    }, {
+        root: null,
+        rootMargin: '-12% 0px -70% 0px',
+        threshold: 0
+    });
+
+    targets.forEach((target) => observer.observe(target));
 })();

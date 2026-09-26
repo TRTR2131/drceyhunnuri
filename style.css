@@ -49891,3 +49891,1542 @@ body.treatment-detail-open-v71 .vitamin-c-special-intro-v235,
         flex-basis: 34px !important;
     }
 }
+
+
+/* =========================================================
+   V337 - OZON TEDAVİSİ / YENİ TEDAVİ UYGULAMASI
+   Şimdilik sekme + ayrı sayfa kabuğu. İçerik sonraki adımda.
+   ========================================================= */
+.ozone-treatment-view-v337 {
+    padding: 18px 22px 36px;
+}
+
+.ozone-treatment-shell-v337 {
+    position: relative;
+    min-height: min(650px, calc(100vh - 142px));
+    overflow: hidden;
+    display: grid;
+    grid-template-columns: minmax(280px, .82fr) minmax(0, 1.18fr);
+    align-items: center;
+    gap: clamp(34px, 6vw, 92px);
+    padding: clamp(34px, 5vw, 80px);
+    border: 1px solid rgba(93, 203, 246, .22);
+    border-radius: 34px;
+    background:
+        radial-gradient(circle at 18% 32%, rgba(66, 205, 248, .19), transparent 27%),
+        radial-gradient(circle at 88% 10%, rgba(68, 164, 226, .13), transparent 30%),
+        linear-gradient(135deg, #072a3d 0%, #0a3d58 50%, #0b526e 100%);
+    box-shadow: 0 26px 62px rgba(9, 62, 91, .15);
+}
+
+.ozone-treatment-shell-v337::before,
+.ozone-treatment-shell-v337::after {
+    content: "";
+    position: absolute;
+    border: 1px solid rgba(117, 218, 251, .10);
+    border-radius: 50%;
+    pointer-events: none;
+}
+
+.ozone-treatment-shell-v337::before {
+    width: 440px;
+    height: 440px;
+    right: -220px;
+    top: -235px;
+    box-shadow: 0 0 0 58px rgba(86, 201, 241, .024);
+}
+
+.ozone-treatment-shell-v337::after {
+    width: 300px;
+    height: 300px;
+    left: -180px;
+    bottom: -190px;
+}
+
+.ozone-treatment-visual-v337 {
+    position: relative;
+    z-index: 2;
+    display: grid;
+    place-items: center;
+}
+
+.ozone-treatment-orbit-v337 {
+    position: relative;
+    width: min(330px, 64vw);
+    aspect-ratio: 1;
+    display: grid;
+    place-items: center;
+    border: 1px solid rgba(148, 232, 255, .30);
+    border-radius: 50%;
+    box-shadow:
+        inset 0 0 70px rgba(53, 208, 250, .10),
+        0 0 75px rgba(32, 188, 236, .10);
+}
+
+.ozone-treatment-orbit-v337::before,
+.ozone-treatment-orbit-v337::after {
+    content: "";
+    position: absolute;
+    inset: 17%;
+    border: 1px solid rgba(145, 232, 255, .23);
+    border-radius: 50%;
+    transform: rotate(54deg) scaleY(.47);
+}
+
+.ozone-treatment-orbit-v337::after {
+    transform: rotate(-54deg) scaleY(.47);
+}
+
+.ozone-treatment-orbit-v337 strong {
+    position: relative;
+    z-index: 2;
+    width: 120px;
+    height: 120px;
+    display: grid;
+    place-items: center;
+    border-radius: 50%;
+    background: linear-gradient(145deg, #38bfee, #117ab4);
+    color: #fff;
+    box-shadow: 0 0 40px rgba(66, 216, 255, .34);
+    font-family: "Manrope", Arial, sans-serif;
+    font-size: 43px;
+    font-weight: 800;
+    letter-spacing: -.05em;
+}
+
+.ozone-dot-v337 {
+    position: absolute;
+    width: 17px;
+    height: 17px;
+    border-radius: 50%;
+    background: #8de9ff;
+    box-shadow: 0 0 22px #5edcff;
+}
+
+.ozone-dot-v337.d1 { top: 8%; left: 48%; }
+.ozone-dot-v337.d2 { top: 47%; right: 7%; }
+.ozone-dot-v337.d3 { bottom: 8%; left: 48%; }
+.ozone-dot-v337.d4 { top: 47%; left: 7%; }
+
+.ozone-treatment-copy-v337 {
+    position: relative;
+    z-index: 2;
+    max-width: 760px;
+}
+
+.ozone-treatment-kicker-v337 {
+    display: inline-block;
+    margin-bottom: 12px;
+    color: #75dfff;
+    font-family: "Manrope", Arial, sans-serif;
+    font-size: 12px;
+    font-weight: 800;
+    letter-spacing: .18em;
+}
+
+.ozone-treatment-copy-v337 h1 {
+    margin: 0 0 18px;
+    color: #fff;
+    font-family: "Manrope", Arial, sans-serif;
+    font-size: clamp(48px, 6vw, 88px);
+    line-height: .98;
+    font-weight: 800;
+    letter-spacing: -.05em;
+}
+
+.ozone-treatment-copy-v337 > p {
+    max-width: 690px;
+    margin: 0;
+    color: rgba(234, 248, 255, .84);
+    font-family: "Inter", Arial, sans-serif;
+    font-size: clamp(15px, 1.4vw, 19px);
+    line-height: 1.65;
+}
+
+.ozone-treatment-ready-v337 {
+    width: min(570px, 100%);
+    margin-top: 32px;
+    padding: 14px 16px;
+    display: flex;
+    align-items: center;
+    gap: 14px;
+    border: 1px solid rgba(121, 220, 252, .20);
+    border-radius: 18px;
+    background: rgba(4, 36, 53, .42);
+    backdrop-filter: blur(12px);
+}
+
+.ozone-treatment-ready-v337 > span {
+    flex: 0 0 48px;
+    width: 48px;
+    height: 48px;
+    display: grid;
+    place-items: center;
+    border-radius: 14px;
+    background: rgba(65, 192, 238, .16);
+    color: #7be4ff;
+    font-family: "Manrope", Arial, sans-serif;
+    font-size: 14px;
+    font-weight: 800;
+}
+
+.ozone-treatment-ready-v337 strong,
+.ozone-treatment-ready-v337 small {
+    display: block;
+}
+
+.ozone-treatment-ready-v337 strong {
+    color: #fff;
+    font-family: "Manrope", Arial, sans-serif;
+    font-size: 15px;
+    font-weight: 800;
+}
+
+.ozone-treatment-ready-v337 small {
+    margin-top: 3px;
+    color: rgba(224, 243, 251, .66);
+    font-family: "Inter", Arial, sans-serif;
+    font-size: 12px;
+    line-height: 1.45;
+}
+
+@media (max-width: 850px) {
+    .ozone-treatment-view-v337 {
+        padding: 10px;
+    }
+
+    .ozone-treatment-shell-v337 {
+        min-height: auto;
+        grid-template-columns: 1fr;
+        gap: 26px;
+        padding: 30px 20px 36px;
+        border-radius: 24px;
+    }
+
+    .ozone-treatment-orbit-v337 {
+        width: min(230px, 64vw);
+    }
+
+    .ozone-treatment-orbit-v337 strong {
+        width: 90px;
+        height: 90px;
+        font-size: 33px;
+    }
+
+    .ozone-treatment-copy-v337 h1 {
+        font-size: clamp(42px, 14vw, 64px);
+    }
+}
+
+
+/* =========================================================
+   V338 - OZON TEDAVİSİ / DR. CEYHUN NURİ EDİTORYAL SAYFA
+   ========================================================= */
+
+.ozone-treatment-view-v338 {
+    padding-bottom: 54px;
+    background:
+        radial-gradient(circle at 8% 12%, rgba(31, 168, 223, .06), transparent 24%),
+        linear-gradient(180deg, #f8fcff 0%, #eef7fb 100%);
+}
+
+.ozone-treatment-shell-v338 {
+    min-height: min(610px, calc(100vh - 155px));
+    margin-bottom: 22px;
+}
+
+.ozone-treatment-copy-v338 > p {
+    max-width: 760px;
+}
+
+.ozone-topic-nav-v338 {
+    width: min(760px, 100%);
+    margin-top: 28px;
+    display: grid;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 10px;
+}
+
+.ozone-topic-nav-v338 a {
+    min-width: 0;
+    min-height: 70px;
+    display: grid;
+    grid-template-columns: 42px minmax(0, 1fr);
+    align-items: center;
+    gap: 11px;
+    padding: 11px 14px;
+    border: 1px solid rgba(129, 222, 251, .17);
+    border-radius: 17px;
+    background: rgba(4, 39, 58, .42);
+    color: #f6fcff;
+    text-decoration: none;
+    box-shadow: inset 0 1px 0 rgba(255,255,255,.045);
+    backdrop-filter: blur(10px);
+    transition: transform .2s ease, background .2s ease, border-color .2s ease;
+}
+
+.ozone-topic-nav-v338 a:hover {
+    transform: translateY(-2px);
+    border-color: rgba(118, 224, 255, .38);
+    background: rgba(13, 81, 111, .64);
+}
+
+.ozone-topic-nav-v338 a > span {
+    width: 42px;
+    height: 42px;
+    display: grid;
+    place-items: center;
+    border-radius: 13px;
+    background: linear-gradient(145deg, rgba(63, 197, 239, .25), rgba(22, 115, 164, .25));
+    color: #7de6ff;
+    font-family: "Manrope", Arial, sans-serif;
+    font-size: 12px;
+    font-weight: 800;
+}
+
+.ozone-topic-nav-v338 strong {
+    min-width: 0;
+    color: #fff;
+    font-family: "Manrope", Arial, sans-serif;
+    font-size: 13px;
+    line-height: 1.3;
+    font-weight: 800;
+}
+
+.ozone-editorial-v338 {
+    width: min(1480px, calc(100% - 44px));
+    margin: 0 auto;
+    display: grid;
+    gap: 18px;
+}
+
+.ozone-article-v338 {
+    scroll-margin-top: 118px;
+    overflow: hidden;
+    display: grid;
+    grid-template-columns: minmax(280px, .46fr) minmax(0, 1.54fr);
+    border: 1px solid rgba(38, 139, 193, .13);
+    border-radius: 27px;
+    background: rgba(255,255,255,.94);
+    box-shadow: 0 16px 36px rgba(24, 77, 107, .055);
+}
+
+.ozone-article-head-v338 {
+    position: relative;
+    padding: 30px 27px;
+    display: flex;
+    align-items: flex-start;
+    gap: 14px;
+    background:
+        radial-gradient(circle at 15% 10%, rgba(64, 197, 237, .12), transparent 34%),
+        linear-gradient(155deg, #f3fbff 0%, #e6f5fb 100%);
+    border-right: 1px solid rgba(38, 139, 193, .11);
+}
+
+.ozone-article-no-v338 {
+    flex: 0 0 47px;
+    width: 47px;
+    height: 47px;
+    display: grid;
+    place-items: center;
+    border-radius: 14px;
+    background: linear-gradient(145deg, #28a4dd, #1185c3);
+    color: #fff;
+    box-shadow: 0 9px 20px rgba(24, 144, 203, .20);
+    font-family: "Manrope", Arial, sans-serif;
+    font-size: 13px;
+    font-weight: 800;
+}
+
+.ozone-article-kicker-v338 {
+    display: block;
+    margin: 2px 0 8px;
+    color: #188fca;
+    font-family: "Manrope", Arial, sans-serif;
+    font-size: 9px;
+    font-weight: 800;
+    letter-spacing: .15em;
+}
+
+.ozone-article-head-v338 h2 {
+    margin: 0;
+    color: #123d59;
+    font-family: "Manrope", Arial, sans-serif;
+    font-size: clamp(23px, 2vw, 34px);
+    line-height: 1.12;
+    font-weight: 800;
+    letter-spacing: -.03em;
+}
+
+.ozone-article-body-v338 {
+    padding: 30px 34px 32px;
+    color: #425f72;
+    font-family: "Inter", Arial, sans-serif;
+}
+
+.ozone-article-body-v338 p {
+    margin: 0 0 15px;
+    font-size: 15px;
+    line-height: 1.75;
+}
+
+.ozone-article-body-v338 p:last-child {
+    margin-bottom: 0;
+}
+
+.ozone-article-body-v338 strong {
+    color: #183f58;
+    font-weight: 700;
+}
+
+.ozone-lead-v338 {
+    color: #2d5369;
+    font-size: 16px !important;
+}
+
+.ozone-emphasis-v338,
+.ozone-safety-v338 {
+    margin: 20px 0;
+    padding: 18px 20px;
+    border-radius: 18px;
+}
+
+.ozone-emphasis-v338 {
+    border: 1px solid rgba(40, 156, 211, .17);
+    background: linear-gradient(135deg, #edf9fe 0%, #f7fcff 100%);
+}
+
+.ozone-emphasis-v338 span {
+    display: block;
+    margin-bottom: 7px;
+    color: #1493cf;
+    font-family: "Manrope", Arial, sans-serif;
+    font-size: 9px;
+    font-weight: 800;
+    letter-spacing: .16em;
+}
+
+.ozone-emphasis-v338 strong {
+    display: block;
+    color: #113d58;
+    font-family: "Manrope", Arial, sans-serif;
+    font-size: 17px;
+    line-height: 1.55;
+    font-weight: 800;
+}
+
+.ozone-safety-v338 {
+    display: grid;
+    grid-template-columns: 150px minmax(0, 1fr);
+    gap: 15px;
+    align-items: center;
+    border: 1px solid rgba(26, 126, 177, .12);
+    background: #0f4d6b;
+}
+
+.ozone-safety-v338 > strong {
+    color: #77dfff;
+    font-family: "Manrope", Arial, sans-serif;
+    font-size: 12px;
+    font-weight: 800;
+    text-transform: uppercase;
+    letter-spacing: .09em;
+}
+
+.ozone-safety-v338 p,
+.ozone-safety-v338 p strong {
+    margin: 0;
+    color: #effaff;
+}
+
+.ozone-quote-v338 {
+    margin: 20px 0 0;
+    padding: 18px 20px 18px 23px;
+    border: 0;
+    border-left: 4px solid #30abe1;
+    border-radius: 0 17px 17px 0;
+    background: #0c3a55;
+}
+
+.ozone-quote-v338 span {
+    display: block;
+    margin-bottom: 6px;
+    color: #73ddff;
+    font-family: "Manrope", Arial, sans-serif;
+    font-size: 9px;
+    font-weight: 800;
+    letter-spacing: .16em;
+    text-transform: uppercase;
+}
+
+.ozone-quote-v338 p {
+    margin: 0;
+    color: #fff;
+    font-family: "Manrope", Arial, sans-serif;
+    font-size: 17px;
+    line-height: 1.55;
+    font-weight: 700;
+}
+
+.ozone-quote-wide-v338 {
+    margin-bottom: 20px;
+}
+
+.ozone-method-grid-v338 {
+    margin: 20px 0;
+    display: grid;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 12px;
+}
+
+.ozone-method-card-v338 {
+    padding: 18px;
+    border: 1px solid rgba(31, 145, 200, .13);
+    border-radius: 17px;
+    background: #f7fcff;
+}
+
+.ozone-method-card-v338 > span {
+    display: inline-flex;
+    margin-bottom: 8px;
+    color: #168fc9;
+    font-family: "Manrope", Arial, sans-serif;
+    font-size: 9px;
+    font-weight: 800;
+    letter-spacing: .13em;
+}
+
+.ozone-method-card-v338 h3 {
+    margin: 0 0 7px;
+    color: #163f59;
+    font-family: "Manrope", Arial, sans-serif;
+    font-size: 17px;
+    font-weight: 800;
+}
+
+.ozone-method-card-v338 p {
+    margin: 0;
+    font-size: 13px;
+    line-height: 1.65;
+}
+
+.ozone-signature-line-v338 {
+    margin-top: 20px;
+    padding: 15px 18px;
+    border-radius: 16px;
+    background: linear-gradient(135deg, #168ecb, #0f6f9f);
+    color: #fff;
+    font-family: "Manrope", Arial, sans-serif;
+    font-size: 18px;
+    font-weight: 800;
+    text-align: center;
+    box-shadow: 0 10px 22px rgba(17, 119, 169, .16);
+}
+
+.ozone-medical-note-v338 {
+    padding: 15px 18px;
+    display: grid;
+    grid-template-columns: 120px minmax(0, 1fr);
+    gap: 16px;
+    align-items: center;
+    border: 1px solid rgba(29, 134, 187, .12);
+    border-radius: 18px;
+    background: #e8f6fc;
+}
+
+.ozone-medical-note-v338 span {
+    color: #147fab;
+    font-family: "Manrope", Arial, sans-serif;
+    font-size: 10px;
+    font-weight: 800;
+    letter-spacing: .10em;
+    text-transform: uppercase;
+}
+
+.ozone-medical-note-v338 p {
+    margin: 0;
+    color: #496a7e;
+    font-family: "Inter", Arial, sans-serif;
+    font-size: 12px;
+    line-height: 1.55;
+}
+
+@media (max-width: 1050px) {
+    .ozone-article-v338 {
+        grid-template-columns: 1fr;
+    }
+
+    .ozone-article-head-v338 {
+        border-right: 0;
+        border-bottom: 1px solid rgba(38, 139, 193, .11);
+    }
+}
+
+@media (max-width: 700px) {
+    .ozone-treatment-shell-v338 {
+        margin-bottom: 12px;
+    }
+
+    .ozone-topic-nav-v338 {
+        grid-template-columns: 1fr;
+    }
+
+    .ozone-editorial-v338 {
+        width: calc(100% - 20px);
+        gap: 12px;
+    }
+
+    .ozone-article-v338 {
+        border-radius: 20px;
+    }
+
+    .ozone-article-head-v338 {
+        padding: 20px 17px;
+    }
+
+    .ozone-article-body-v338 {
+        padding: 20px 17px 22px;
+    }
+
+    .ozone-article-body-v338 p {
+        font-size: 14px;
+        line-height: 1.68;
+    }
+
+    .ozone-method-grid-v338,
+    .ozone-safety-v338,
+    .ozone-medical-note-v338 {
+        grid-template-columns: 1fr;
+    }
+
+    .ozone-emphasis-v338 strong,
+    .ozone-quote-v338 p {
+        font-size: 15px;
+    }
+}
+
+
+/* =========================================================
+   V339 - OZON TEDAVİSİ / SADE EDİTORYAL DÜZEN
+   ========================================================= */
+
+.ozone-treatment-view-v339 {
+    padding: 28px 14px 54px;
+    background:
+        radial-gradient(circle at 10% 12%, rgba(33, 165, 218, .07), transparent 22%),
+        linear-gradient(180deg, #f6fbfe 0%, #edf6fb 100%);
+}
+
+.ozone-classic-shell-v339 {
+    width: min(1380px, 100%);
+    margin: 0 auto;
+    padding: 28px;
+    border: 1px solid rgba(31, 138, 190, .12);
+    border-radius: 32px;
+    background: rgba(255, 255, 255, .93);
+    box-shadow: 0 18px 40px rgba(18, 73, 103, .06);
+}
+
+.ozone-classic-header-v339 {
+    padding-bottom: 24px;
+    border-bottom: 1px solid rgba(25, 126, 173, .12);
+}
+
+.ozone-classic-kicker-v339,
+.ozone-classic-section-kicker-v339,
+.ozone-classic-quote-v339 span,
+.ozone-classic-disclaimer-v339 span {
+    display: inline-block;
+    color: #1a91ca;
+    font-family: "Manrope", Arial, sans-serif;
+    font-size: 11px;
+    font-weight: 800;
+    letter-spacing: .18em;
+    text-transform: uppercase;
+}
+
+.ozone-classic-header-v339 h1 {
+    margin: 12px 0 14px;
+    color: #173f5a;
+    font-family: "Manrope", Arial, sans-serif;
+    font-size: clamp(42px, 5vw, 78px);
+    line-height: .98;
+    letter-spacing: -.05em;
+    font-weight: 800;
+}
+
+.ozone-classic-header-v339 > p {
+    max-width: 980px;
+    margin: 0;
+    color: #58748a;
+    font-family: "Inter", Arial, sans-serif;
+    font-size: 20px;
+    line-height: 1.7;
+}
+
+.ozone-classic-nav-v339 {
+    margin-top: 24px;
+    display: flex;
+    flex-wrap: wrap;
+    gap: 10px;
+}
+
+.ozone-classic-nav-v339 a {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    min-height: 48px;
+    padding: 11px 18px;
+    border: 1px solid rgba(27, 141, 193, .14);
+    border-radius: 999px;
+    background: #f4fbff;
+    color: #1a4b67;
+    text-decoration: none;
+    font-family: "Manrope", Arial, sans-serif;
+    font-size: 14px;
+    font-weight: 800;
+    transition: transform .2s ease, border-color .2s ease, box-shadow .2s ease, background .2s ease;
+}
+
+.ozone-classic-nav-v339 a:hover {
+    transform: translateY(-1px);
+    border-color: rgba(22, 151, 207, .34);
+    background: #ffffff;
+    box-shadow: 0 10px 20px rgba(20, 121, 171, .08);
+}
+
+.ozone-classic-content-v339 {
+    padding-top: 10px;
+}
+
+.ozone-classic-section-v339 {
+    padding: 30px 0 34px;
+    border-bottom: 1px solid rgba(27, 126, 175, .10);
+    scroll-margin-top: 110px;
+}
+
+.ozone-classic-section-v339:last-of-type {
+    border-bottom: 0;
+}
+
+.ozone-classic-section-v339 h2 {
+    margin: 10px 0 18px;
+    color: #173f5a;
+    font-family: "Manrope", Arial, sans-serif;
+    font-size: clamp(29px, 2.7vw, 44px);
+    line-height: 1.1;
+    letter-spacing: -.035em;
+    font-weight: 800;
+}
+
+
+.ozone-main-number-v343 {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    min-width: 56px;
+    height: 42px;
+    margin-right: 14px;
+    margin-bottom: 10px;
+    padding: 0 14px;
+    border-radius: 14px;
+    background: linear-gradient(135deg, #178cd0 0%, #0d679e 100%);
+    color: #ffffff;
+    font-size: 18px;
+    font-weight: 800;
+    line-height: 1;
+    box-shadow: 0 14px 28px rgba(12, 102, 153, .18);
+    vertical-align: middle;
+}
+
+.ozone-classic-section-v339 h2 .ozone-main-number-v343 {
+    position: relative;
+    top: -2px;
+}
+
+.ozone-classic-section-v339 p {
+    max-width: 1180px;
+    margin: 0 0 16px;
+    color: #5c7688;
+    font-family: "Inter", Arial, sans-serif;
+    font-size: 18px;
+    line-height: 1.8;
+}
+
+.ozone-classic-section-v339 p strong,
+.ozone-classic-highlight-v339 strong,
+.ozone-classic-note-v339 strong {
+    color: #193f58;
+}
+
+.ozone-classic-lead-v339 {
+    color: #47667b !important;
+    font-size: 20px !important;
+}
+
+.ozone-classic-highlight-v339,
+.ozone-classic-note-v339 {
+    margin: 24px 0;
+    padding: 22px 24px;
+    border-radius: 24px;
+}
+
+.ozone-classic-highlight-v339 {
+    border: 1px solid rgba(33, 150, 205, .14);
+    background: linear-gradient(135deg, #f2fbff 0%, #fbfdff 100%);
+}
+
+.ozone-classic-highlight-v339 strong,
+.ozone-classic-note-v339 strong {
+    display: block;
+    margin-bottom: 8px;
+    font-family: "Manrope", Arial, sans-serif;
+    font-size: 21px;
+    line-height: 1.45;
+    font-weight: 800;
+}
+
+.ozone-classic-highlight-v339 p,
+.ozone-classic-note-v339 p {
+    margin: 0;
+}
+
+.ozone-classic-note-v339 {
+    border: 1px solid rgba(18, 93, 129, .10);
+    background: #edf8fd;
+}
+
+.ozone-classic-quote-v339 {
+    margin: 26px 0 0;
+    padding: 22px 24px;
+    border-left: 4px solid #27a8df;
+    border-radius: 0 22px 22px 0;
+    background: #0f3c57;
+}
+
+.ozone-classic-quote-v339 p {
+    margin: 10px 0 0;
+    color: #ffffff;
+    font-family: "Manrope", Arial, sans-serif;
+    font-size: 22px;
+    line-height: 1.55;
+    font-weight: 700;
+}
+
+.ozone-classic-quote-wide-v339 {
+    max-width: 1120px;
+}
+
+.ozone-classic-methods-v339 {
+    margin: 22px 0;
+    display: grid;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 14px;
+}
+
+.ozone-classic-method-v339 {
+    padding: 22px 24px;
+    border: 1px solid rgba(29, 136, 190, .12);
+    border-radius: 24px;
+    background: #f9fcff;
+}
+
+.ozone-classic-method-v339 h3 {
+    margin: 0 0 10px;
+    color: #18415c;
+    font-family: "Manrope", Arial, sans-serif;
+    font-size: 22px;
+    line-height: 1.25;
+    font-weight: 800;
+}
+
+.ozone-classic-method-v339 p {
+    margin: 0;
+    font-size: 16px;
+    line-height: 1.7;
+}
+
+.ozone-classic-signature-v339 {
+    display: inline-flex;
+    margin-top: 8px;
+    padding: 14px 18px;
+    border-radius: 16px;
+    background: linear-gradient(135deg, #1497d6, #0f6d9b);
+    color: #ffffff;
+    font-family: "Manrope", Arial, sans-serif;
+    font-size: 18px;
+    font-weight: 800;
+}
+
+.ozone-classic-disclaimer-v339 {
+    margin-top: 6px;
+    padding: 24px;
+    border-radius: 24px;
+    border: 1px solid rgba(28, 134, 186, .11);
+    background: #eaf7fc;
+}
+
+.ozone-classic-disclaimer-v339 p {
+    margin: 10px 0 0;
+    color: #587286;
+    font-family: "Inter", Arial, sans-serif;
+    font-size: 16px;
+    line-height: 1.75;
+}
+
+@media (max-width: 900px) {
+    .ozone-classic-shell-v339 {
+        padding: 20px 18px;
+        border-radius: 24px;
+    }
+
+    .ozone-classic-header-v339 > p {
+        font-size: 17px;
+        line-height: 1.65;
+    }
+
+    .ozone-classic-methods-v339 {
+        grid-template-columns: 1fr;
+    }
+
+    .ozone-classic-section-v339 h2 {
+        font-size: 32px;
+    }
+
+    .ozone-main-number-v343 {
+        min-width: 50px;
+        height: 38px;
+        margin-right: 10px;
+        padding: 0 12px;
+        font-size: 16px;
+        border-radius: 12px;
+    }
+
+    .ozone-classic-section-v339 p,
+    .ozone-classic-lead-v339 {
+        font-size: 16px !important;
+        line-height: 1.72;
+    }
+
+    .ozone-classic-highlight-v339 strong,
+    .ozone-classic-note-v339 strong,
+    .ozone-classic-method-v339 h3 {
+        font-size: 18px;
+    }
+
+    .ozone-classic-quote-v339 p {
+        font-size: 18px;
+    }
+}
+
+@media (max-width: 640px) {
+    .ozone-treatment-view-v339 {
+        padding: 14px 10px 42px;
+    }
+
+    .ozone-classic-header-v339 h1 {
+        font-size: clamp(34px, 12vw, 48px);
+    }
+
+    .ozone-classic-section-v339 {
+        padding: 24px 0 28px;
+    }
+
+    .ozone-classic-nav-v339 a {
+        width: 100%;
+        justify-content: flex-start;
+    }
+
+    .ozone-classic-highlight-v339,
+    .ozone-classic-note-v339,
+    .ozone-classic-quote-v339,
+    .ozone-classic-method-v339,
+    .ozone-classic-disclaimer-v339 {
+        padding: 18px;
+        border-radius: 18px;
+    }
+}
+
+
+/* =========================================================
+   V340 - OZON TEDAVİSİ / 21 EK BAŞLIK
+   ========================================================= */
+.ozone-more-topics-v340 {
+    margin-top: 18px;
+    padding-top: 8px;
+    border-top: 1px solid rgba(28, 132, 185, .10);
+}
+.ozone-more-topics-head-v340 {
+    padding: 26px 0 18px;
+}
+.ozone-more-topics-head-v340 > span {
+    display: inline-block;
+    color: #168fca;
+    font-family: "Manrope", Arial, sans-serif;
+    font-size: 10px;
+    font-weight: 800;
+    letter-spacing: .17em;
+}
+.ozone-more-topics-head-v340 h2 {
+    max-width: 920px;
+    margin: 9px 0 10px;
+    color: #173f5a;
+    font-family: "Manrope", Arial, sans-serif;
+    font-size: clamp(28px, 2.6vw, 42px);
+    line-height: 1.1;
+    letter-spacing: -.035em;
+}
+.ozone-more-topics-head-v340 p {
+    max-width: 980px;
+    margin: 0;
+    color: #607a8c;
+    font-family: "Inter", Arial, sans-serif;
+    font-size: 16px;
+    line-height: 1.7;
+}
+.ozone-topic-v340 {
+    padding: 27px 0 30px;
+    border-top: 1px solid rgba(28, 132, 185, .10);
+    scroll-margin-top: 105px;
+}
+.ozone-topic-v340 h3 {
+    margin: 0 0 16px;
+    display: flex;
+    align-items: flex-start;
+    gap: 10px;
+    color: #173f5a;
+    font-family: "Manrope", Arial, sans-serif;
+    font-size: clamp(22px, 2vw, 31px);
+    line-height: 1.2;
+    letter-spacing: -.025em;
+    font-weight: 800;
+}
+.ozone-topic-v340 h3 > span,
+.ozone-mechanism-grid-v340 h4 > span {
+    color: #1594cf;
+    font-weight: 800;
+    white-space: nowrap;
+}
+.ozone-topic-v340 p {
+    max-width: 1180px;
+    margin: 0 0 13px;
+    color: #5c7688;
+    font-family: "Inter", Arial, sans-serif;
+    font-size: 17px;
+    line-height: 1.76;
+}
+.ozone-topic-v340 p strong,
+.ozone-topic-v340 li strong {
+    color: #183f58;
+}
+.ozone-topic-note-v340,
+.ozone-topic-emphasis-v340 {
+    max-width: 1160px;
+    margin: 18px 0 4px;
+    padding: 17px 19px;
+    border-radius: 18px;
+    font-family: "Inter", Arial, sans-serif;
+    font-size: 16px;
+    line-height: 1.65;
+}
+.ozone-topic-note-v340 {
+    border: 1px solid rgba(27, 139, 194, .13);
+    background: #eff9fd;
+    color: #486b7f;
+}
+.ozone-topic-emphasis-v340 {
+    display: inline-block;
+    background: linear-gradient(135deg, #128fcb, #0f6f9f);
+    color: #fff;
+    font-family: "Manrope", Arial, sans-serif;
+    font-size: 18px;
+    font-weight: 800;
+}
+.ozone-topic-note-v340 strong {
+    color: #173f5a;
+}
+.ozone-topic-feature-v340 {
+    margin-top: 8px;
+    padding: 30px 24px 26px;
+    border: 1px solid rgba(23, 139, 194, .12);
+    border-radius: 24px;
+    background: linear-gradient(180deg, #fbfeff 0%, #f4fbff 100%);
+}
+.ozone-mechanism-grid-v340 {
+    margin-top: 20px;
+    display: grid;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 14px;
+}
+.ozone-mechanism-grid-v340 section {
+    padding: 20px;
+    border: 1px solid rgba(27, 139, 194, .12);
+    border-radius: 18px;
+    background: rgba(255,255,255,.96);
+}
+.ozone-mechanism-grid-v340 h4 {
+    margin: 0 0 11px;
+    display: flex;
+    gap: 8px;
+    color: #17415c;
+    font-family: "Manrope", Arial, sans-serif;
+    font-size: 18px;
+    line-height: 1.3;
+    font-weight: 800;
+}
+.ozone-mechanism-grid-v340 p {
+    margin-bottom: 10px;
+    font-size: 15px;
+    line-height: 1.68;
+}
+.ozone-mechanism-wide-v340 {
+    grid-column: 1 / -1;
+}
+.ozone-question-list-v340 {
+    max-width: 980px;
+    margin: 14px 0 16px;
+    padding-left: 22px;
+    color: #557487;
+    font-family: "Inter", Arial, sans-serif;
+}
+.ozone-question-list-v340 li {
+    margin-bottom: 8px;
+    font-size: 17px;
+    line-height: 1.65;
+}
+@media (max-width: 820px) {
+    .ozone-mechanism-grid-v340 {
+        grid-template-columns: 1fr;
+    }
+    .ozone-mechanism-wide-v340 {
+        grid-column: auto;
+    }
+    .ozone-topic-feature-v340 {
+        padding: 24px 16px 20px;
+        border-radius: 20px;
+    }
+}
+@media (max-width: 640px) {
+    .ozone-topic-v340 {
+        padding: 22px 0 24px;
+    }
+    .ozone-topic-v340 h3 {
+        font-size: 22px;
+    }
+    .ozone-topic-v340 p,
+    .ozone-question-list-v340 li {
+        font-size: 15px;
+        line-height: 1.7;
+    }
+    .ozone-topic-note-v340,
+    .ozone-topic-emphasis-v340 {
+        font-size: 15px;
+    }
+}
+
+
+/* =========================================================
+   V341 - OZON TEDAVİSİ / MİNİMAL HIZLI BAŞLIK BUTONLARI
+   ========================================================= */
+
+.ozone-quick-index-v341 {
+    margin: 18px 0 8px;
+    padding: 13px 14px 14px;
+    border: 1px solid rgba(26, 138, 190, .11);
+    border-radius: 20px;
+    background: linear-gradient(180deg, rgba(248,253,255,.98), rgba(239,248,252,.96));
+    box-shadow: 0 8px 20px rgba(18, 81, 114, .035);
+}
+
+.ozone-quick-index-head-v341 {
+    margin-bottom: 10px;
+    display: flex;
+    align-items: flex-end;
+    justify-content: space-between;
+    gap: 16px;
+}
+
+.ozone-quick-index-head-v341 > div {
+    display: flex;
+    align-items: baseline;
+    gap: 9px;
+    min-width: 0;
+}
+
+.ozone-quick-index-head-v341 span {
+    color: #1a91c9;
+    font-family: "Manrope", Arial, sans-serif;
+    font-size: 8px;
+    font-weight: 800;
+    letter-spacing: .16em;
+    white-space: nowrap;
+}
+
+.ozone-quick-index-head-v341 strong {
+    color: #17435e;
+    font-family: "Manrope", Arial, sans-serif;
+    font-size: 14px;
+    line-height: 1.2;
+    font-weight: 800;
+}
+
+.ozone-quick-index-head-v341 small {
+    color: #7892a2;
+    font-family: "Inter", Arial, sans-serif;
+    font-size: 10px;
+    line-height: 1.3;
+    white-space: nowrap;
+}
+
+.ozone-quick-index-track-v341 {
+    display: grid;
+    grid-auto-flow: column;
+    grid-template-rows: repeat(2, 38px);
+    grid-auto-columns: minmax(180px, 228px);
+    gap: 7px;
+    overflow-x: auto;
+    overflow-y: hidden;
+    padding: 1px 2px 5px;
+    scrollbar-width: thin;
+    scrollbar-color: rgba(39,157,209,.32) transparent;
+    scroll-snap-type: x proximity;
+}
+
+.ozone-quick-index-track-v341::-webkit-scrollbar {
+    height: 5px;
+}
+
+.ozone-quick-index-track-v341::-webkit-scrollbar-thumb {
+    border-radius: 99px;
+    background: rgba(39,157,209,.30);
+}
+
+.ozone-quick-index-track-v341 a {
+    min-width: 0;
+    height: 38px;
+    display: flex;
+    align-items: center;
+    gap: 7px;
+    padding: 5px 9px 5px 6px;
+    border: 1px solid rgba(24, 137, 188, .10);
+    border-radius: 11px;
+    background: rgba(255,255,255,.88);
+    color: #204c67;
+    text-decoration: none;
+    box-shadow: 0 3px 9px rgba(16, 76, 107, .025);
+    scroll-snap-align: start;
+    transition: transform .16s ease, border-color .16s ease, background .16s ease, box-shadow .16s ease;
+}
+
+.ozone-quick-index-track-v341 a:hover,
+.ozone-quick-index-track-v341 a:focus-visible,
+.ozone-quick-index-track-v341 a.is-active-v341 {
+    transform: translateY(-1px);
+    border-color: rgba(23, 151, 209, .30);
+    background: #ffffff;
+    box-shadow: 0 7px 14px rgba(18, 103, 145, .07);
+    outline: none;
+}
+
+.ozone-quick-index-track-v341 a.is-active-v341 {
+    background: linear-gradient(135deg, #edf9fe, #ffffff);
+}
+
+.ozone-quick-index-track-v341 b {
+    flex: 0 0 25px;
+    width: 25px;
+    height: 25px;
+    display: grid;
+    place-items: center;
+    border-radius: 8px;
+    background: #e8f6fc;
+    color: #168dca;
+    font-family: "Manrope", Arial, sans-serif;
+    font-size: 8px;
+    font-weight: 800;
+}
+
+.ozone-quick-index-track-v341 a.is-active-v341 b {
+    background: #1999d5;
+    color: #fff;
+}
+
+.ozone-quick-index-track-v341 a > span {
+    min-width: 0;
+    overflow: hidden;
+    color: inherit;
+    font-family: "Manrope", Arial, sans-serif;
+    font-size: 10px;
+    line-height: 1.15;
+    font-weight: 750;
+    white-space: nowrap;
+    text-overflow: ellipsis;
+}
+
+/* Başlığa gelindiğinde sabit menünün altında kaybolmaması için */
+.ozone-topic-v340 {
+    scroll-margin-top: 118px;
+}
+
+@media (max-width: 760px) {
+    .ozone-quick-index-v341 {
+        margin-top: 12px;
+        padding: 11px 10px 12px;
+        border-radius: 16px;
+    }
+
+    .ozone-quick-index-head-v341 {
+        align-items: flex-start;
+        flex-direction: column;
+        gap: 3px;
+        margin-bottom: 8px;
+    }
+
+    .ozone-quick-index-head-v341 > div {
+        gap: 7px;
+    }
+
+    .ozone-quick-index-head-v341 small {
+        display: none;
+    }
+
+    .ozone-quick-index-track-v341 {
+        grid-template-rows: 38px;
+        grid-auto-columns: minmax(174px, 210px);
+    }
+}
+
+
+/* =========================================================
+   V342 - OZON HIZLI GEÇİŞ / KAYDIRMA KARARLILIĞI
+   ========================================================= */
+.ozone-quick-index-track-v341 {
+    overscroll-behavior-inline: contain;
+    scroll-behavior: smooth;
+}
+
+.ozone-classic-section-v339,
+.ozone-long-section-v340 {
+    scroll-margin-top: 18px;
+}
+
+
+/* =========================================================
+   V344 - OZON HIZLI GEÇİŞ / SIRA VE HEDEF DÜZELTMESİ
+   01-06 ilk satır, sonra 07-12... Her buton doğrudan kendi bölümüne gider.
+   ========================================================= */
+.ozone-quick-index-track-v344 {
+    display: grid !important;
+    grid-template-columns: repeat(6, minmax(0, 1fr)) !important;
+    grid-template-rows: none !important;
+    grid-auto-flow: row !important;
+    grid-auto-columns: auto !important;
+    gap: 7px !important;
+    overflow: visible !important;
+    padding: 1px 2px 3px !important;
+    scroll-snap-type: none !important;
+}
+
+.ozone-quick-index-track-v344 .ozone-quick-jump-v344 {
+    appearance: none;
+    min-width: 0;
+    width: 100%;
+    height: 40px;
+    display: flex;
+    align-items: center;
+    gap: 7px;
+    padding: 5px 9px 5px 6px;
+    border: 1px solid rgba(24, 137, 188, .10);
+    border-radius: 11px;
+    background: rgba(255,255,255,.9);
+    color: #204c67;
+    text-align: left;
+    cursor: pointer;
+    box-shadow: 0 3px 9px rgba(16, 76, 107, .025);
+    transition: transform .16s ease, border-color .16s ease, background .16s ease, box-shadow .16s ease;
+}
+
+.ozone-quick-index-track-v344 .ozone-quick-jump-v344:hover,
+.ozone-quick-index-track-v344 .ozone-quick-jump-v344:focus-visible,
+.ozone-quick-index-track-v344 .ozone-quick-jump-v344.is-active-v344 {
+    transform: translateY(-1px);
+    border-color: rgba(23, 151, 209, .30);
+    background: #fff;
+    box-shadow: 0 7px 14px rgba(18, 103, 145, .07);
+    outline: none;
+}
+
+.ozone-quick-index-track-v344 .ozone-quick-jump-v344.is-active-v344 {
+    background: linear-gradient(135deg, #edf9fe, #ffffff);
+}
+
+.ozone-quick-index-track-v344 .ozone-quick-jump-v344 b {
+    flex: 0 0 25px;
+    width: 25px;
+    height: 25px;
+    display: grid;
+    place-items: center;
+    border-radius: 8px;
+    background: #e8f6fc;
+    color: #168dca;
+    font-family: "Manrope", Arial, sans-serif;
+    font-size: 8px;
+    font-weight: 800;
+}
+
+.ozone-quick-index-track-v344 .ozone-quick-jump-v344.is-active-v344 b {
+    background: #1999d5;
+    color: #fff;
+}
+
+.ozone-quick-index-track-v344 .ozone-quick-jump-v344 > span {
+    min-width: 0;
+    overflow: hidden;
+    color: inherit;
+    font-family: "Manrope", Arial, sans-serif;
+    font-size: 10px;
+    line-height: 1.15;
+    font-weight: 750;
+    white-space: nowrap;
+    text-overflow: ellipsis;
+}
+
+/* Sabit üst menü başlığı kapatmasın. */
+#ozon-nedir-v339,
+#ozon-nasil-v339,
+#major-otohemoterapi-v339,
+#minor-otohemoterapi-v339,
+.ozone-topic-v340 {
+    scroll-margin-top: 128px !important;
+}
+
+@media (max-width: 1320px) {
+    .ozone-quick-index-track-v344 {
+        grid-template-columns: repeat(4, minmax(0, 1fr)) !important;
+    }
+}
+
+@media (max-width: 900px) {
+    .ozone-quick-index-track-v344 {
+        grid-template-columns: repeat(3, minmax(0, 1fr)) !important;
+    }
+}
+
+@media (max-width: 640px) {
+    .ozone-quick-index-track-v344 {
+        grid-template-columns: repeat(2, minmax(0, 1fr)) !important;
+        gap: 6px !important;
+    }
+    .ozone-quick-index-track-v344 .ozone-quick-jump-v344 {
+        height: 42px;
+        padding-right: 7px;
+    }
+    .ozone-quick-index-track-v344 .ozone-quick-jump-v344 > span {
+        font-size: 9px;
+    }
+}
+
+
+/* =========================================================
+   V345 - OZON HIZLI GEÇİŞ / BAŞLIKSIZ MİNİMAL BUTONLAR
+   Üst açıklama kaldırıldı; butonlar daha küçük, dengeli ve sade.
+   ========================================================= */
+
+.ozone-quick-index-v341 {
+    margin: 12px 0 6px !important;
+    padding: 8px 9px !important;
+    border-radius: 16px !important;
+    border-color: rgba(25, 138, 190, .09) !important;
+    background: linear-gradient(180deg, rgba(249,253,255,.94), rgba(242,249,252,.92)) !important;
+    box-shadow: 0 5px 14px rgba(18, 81, 114, .025) !important;
+}
+
+.ozone-quick-index-head-v341 {
+    display: none !important;
+}
+
+.ozone-quick-index-track-v344 {
+    gap: 5px !important;
+    padding: 0 !important;
+}
+
+.ozone-quick-index-track-v344 .ozone-quick-jump-v344 {
+    height: 32px !important;
+    gap: 5px !important;
+    padding: 3px 7px 3px 4px !important;
+    border-radius: 9px !important;
+    border-color: rgba(24, 137, 188, .08) !important;
+    background: rgba(255,255,255,.76) !important;
+    box-shadow: none !important;
+}
+
+.ozone-quick-index-track-v344 .ozone-quick-jump-v344:hover,
+.ozone-quick-index-track-v344 .ozone-quick-jump-v344:focus-visible,
+.ozone-quick-index-track-v344 .ozone-quick-jump-v344.is-active-v344 {
+    transform: translateY(-1px) !important;
+    border-color: rgba(23, 151, 209, .24) !important;
+    background: #ffffff !important;
+    box-shadow: 0 4px 10px rgba(18, 103, 145, .05) !important;
+}
+
+.ozone-quick-index-track-v344 .ozone-quick-jump-v344.is-active-v344 {
+    background: linear-gradient(135deg, #eef9fe 0%, #ffffff 100%) !important;
+}
+
+.ozone-quick-index-track-v344 .ozone-quick-jump-v344 b {
+    flex: 0 0 21px !important;
+    width: 21px !important;
+    height: 21px !important;
+    border-radius: 7px !important;
+    font-size: 7px !important;
+    background: #edf7fb !important;
+    color: #168dca !important;
+}
+
+.ozone-quick-index-track-v344 .ozone-quick-jump-v344.is-active-v344 b {
+    background: #1797d1 !important;
+    color: #ffffff !important;
+}
+
+.ozone-quick-index-track-v344 .ozone-quick-jump-v344 > span {
+    font-size: 8.5px !important;
+    line-height: 1.08 !important;
+    font-weight: 750 !important;
+    letter-spacing: -.01em !important;
+}
+
+@media (max-width: 1320px) {
+    .ozone-quick-index-track-v344 {
+        grid-template-columns: repeat(5, minmax(0, 1fr)) !important;
+    }
+}
+
+@media (max-width: 980px) {
+    .ozone-quick-index-v341 {
+        padding: 7px !important;
+        border-radius: 14px !important;
+    }
+    .ozone-quick-index-track-v344 {
+        grid-template-columns: repeat(4, minmax(0, 1fr)) !important;
+    }
+}
+
+@media (max-width: 720px) {
+    .ozone-quick-index-track-v344 {
+        grid-template-columns: repeat(3, minmax(0, 1fr)) !important;
+        gap: 4px !important;
+    }
+    .ozone-quick-index-track-v344 .ozone-quick-jump-v344 {
+        height: 31px !important;
+        padding-right: 5px !important;
+    }
+    .ozone-quick-index-track-v344 .ozone-quick-jump-v344 > span {
+        font-size: 8px !important;
+    }
+}
+
+@media (max-width: 480px) {
+    .ozone-quick-index-track-v344 {
+        grid-template-columns: repeat(2, minmax(0, 1fr)) !important;
+    }
+}
