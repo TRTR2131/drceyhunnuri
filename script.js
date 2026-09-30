@@ -8322,17 +8322,29 @@ window.addEventListener("load", async () => {
             event.stopPropagation();
             event.stopImmediatePropagation();
             const key = button.dataset.phytoDisease;
+
+            const openHerbSection = (source) => {
+                window.setTimeout(() => {
+                    if (typeof window.openPhytoTreatmentHerbHubV352 === 'function') {
+                        window.openPhytoTreatmentHerbHubV352(source, key);
+                    }
+                }, 90);
+            };
+
             if (key === 'as') {
                 if (typeof window.openAnkilozanPageV87 === 'function') window.openAnkilozanPageV87();
                 else document.querySelector('.ankilozan-card-link-v87')?.click();
+                openHerbSection('as');
                 return;
             }
             if (key === 'ra') {
                 if (typeof window.openRomatoidPageV198 === 'function') window.openRomatoidPageV198(true);
                 else document.querySelector('.romatoid-card-link-v198')?.click();
+                openHerbSection('ra');
                 return;
             }
             openDisease(key, true);
+            openHerbSection('condition');
         }, true);
     }
 
@@ -10862,4 +10874,1199 @@ window.addEventListener("load", async () => {
     });
 
     targets.forEach((target) => observer.observe(target));
+})();
+
+// =========================================================
+// V350 - Fitoterapi bitki sekmeleri + detay modalı + hastalığa göre 6'lı bitki listeleri
+// =========================================================
+(function () {
+    const mainGrid = document.querySelector('.phyto-grid-v127');
+    const guideHead = document.querySelector('.phyto-guide-v127 .phyto-guide-head-v127');
+    const conditionHerbGrid = document.getElementById('conditionHerbGridV249');
+    const conditionHerbTitle = document.getElementById('conditionHerbTitleV249');
+    const conditionHerbNote = document.getElementById('conditionHerbNoteV249');
+    const conditionHerbKicker = document.getElementById('conditionHerbKickerV249');
+
+    const herbCatalog = {
+        zerdecal: {
+            name: 'Zerdeçal', subtitle: 'Kurkumin', image: 'phyto-zerdecal-v131.jpg',
+            intro: 'Kurkumin içeriği sayesinde eklem ve yumuşak doku hassasiyeti yaşayan kişilerde destekleyici olarak en sık konuşulan bitkisel başlıklardan biridir.',
+            benefits: ['Sabah sertliği hissini hafifletmeye destek olabilir.', 'Eklem çevresindeki hassasiyet ve hareket tutukluğunu yatıştırmaya yardımcı olabilir.', 'Günlük yüklenme sonrası vücut konforunu destekleyebilir.'],
+            tags: ['Eklem rahatlığı','Sabah sertliği','Genel konfor'],
+            caution: 'Kan sulandırıcı kullananlarda, safra yolu problemi olanlarda ve yoğun ilaç tedavisi alan kişilerde hekime danışmadan başlanmamalıdır.'
+        },
+        boswellia: {
+            name: 'Boswellia', subtitle: 'Akgünlük', image: 'phyto-boswellia-v131.jpg',
+            intro: 'Akgünlük, rahat hareket etmeyi güçleştiren kas-eklem yakınmaları ve bağırsak hassasiyetinde destekleyici olarak değerlendirilebilen reçine kökenli bir içeriktir.',
+            benefits: ['Uzun süre oturma sonrası oluşan katılık hissine destek olabilir.', 'Yumuşak doku gerginliğini azaltmaya yardımcı olabilir.', 'Vücudun rahatlama hissini destekleyebilir.'],
+            tags: ['Kas-eklem rahatlığı','Hareket konforu','Bölgesel hassasiyet'],
+            caution: 'Düzenli ilaç kullananlarda ve mide hassasiyeti olan kişilerde ürün tercihi ile doz mutlaka hekimle birlikte planlanmalıdır.'
+        },
+        omega3: {
+            name: 'Omega-3', subtitle: 'Balık Yağı', image: 'phyto-omega3-v131.jpg',
+            intro: 'Omega-3 yağ asitleri klasik bir bitki olmasa da fitoterapi-beslenme yaklaşımında sık değerlendirilir ve genel toparlanma planının bir parçası olabilir.',
+            benefits: ['Sabahları bedende oluşan sertlik hissini azaltmaya destek olabilir.', 'Gün içinde hareket etmeyi zorlaştıran yaygın hassasiyet hissine yardımcı olabilir.', 'Genel enerji dengesi ve toparlanma sürecini destekleyebilir.'],
+            tags: ['Toparlanma','Genel rahatlık','Beslenme desteği'],
+            caution: 'Kan sulandırıcı kullananlarda ve bazı kronik hastalıklarda uygun formun hekim kontrolünde seçilmesi önemlidir.'
+        },
+        isirgan: {
+            name: 'Isırgan Otu', subtitle: 'Urtica dioica', image: 'phyto-isirgan-v131.jpg',
+            intro: 'Isırgan otu geleneksel kullanımı yaygın olan bir bitkidir; vücuttaki genel ağırlık, tutulma ve dolaşım rahatlığı başlıklarında gündeme gelebilir.',
+            benefits: ['Bacaklarda ağırlık ve dolgunluk hissini hafifletmeye destek olabilir.', 'Gün boyu oluşan yorgunluk hissinde rahatlatıcı bir destek olabilir.', 'Vücudun genel sıvı-dolaşım dengesini desteklemeye yardımcı olabilir.'],
+            tags: ['Bacak rahatlığı','Dolaşım desteği','Günlük konfor'],
+            caution: 'İdrar söktürücü, tansiyon veya şeker ilacı kullanan kişilerde kontrolsüz kullanılmamalıdır.'
+        },
+        sarimsak: {
+            name: 'Sarımsak', subtitle: 'Allium sativum', image: 'phyto-sarimsak-v131.jpg',
+            intro: 'Sarımsak, beslenme desteği tarafında hem dolaşım hem de genel canlılık yaklaşımı içinde değerlendirilebilen güçlü bileşenler içerir.',
+            benefits: ['Günlük yorgunluk ve bitkinlik hissinde beslenme desteği olabilir.', 'Bedende ağırlık yapan dolaşım yavaşlığı hissini rahatlatmaya yardımcı olabilir.', 'Genel savunma ve toparlanma hissini destekleyebilir.'],
+            tags: ['Canlılık','Dolaşım','Savunma desteği'],
+            caution: 'Kan sulandırıcı ilaç kullananlar ve mide hassasiyeti olanlar dikkatli olmalıdır.'
+        },
+        civanpercemi: {
+            name: 'Civanperçemi', subtitle: 'Achillea millefolium', image: 'phyto-civanpercemi-v131.jpg',
+            intro: 'Civanperçemi daha çok genel rahatlama, sindirim dengesi ve yumuşak doku konforu başlıklarında geleneksel olarak kullanılan bitkiler arasındadır.',
+            benefits: ['Bedende gerginlik ve kasılma hissini yumuşatmaya destek olabilir.', 'Sindirimle birlikte artan huzursuzluk hissini dengelemeye yardımcı olabilir.', 'Gün sonunda vücudu sakinleştiren bir destek olarak değerlendirilebilir.'],
+            tags: ['Rahatlama','Sindirim konforu','Kas gevşemesi'],
+            caution: 'Papatyagiller ailesine alerjisi olanlarda dikkatli kullanılmalıdır.'
+        },
+        zencefil: {
+            name: 'Zencefil', subtitle: 'Ginger', image: 'phyto-zencefil-v131.jpg',
+            intro: 'Zencefil; mide rahatlığı, bulantı eğilimi ve genel bedensel hassasiyet için en çok başvurulan doğal desteklerden biridir.',
+            benefits: ['Bulantı ve mide dalgalanmasını azaltmaya destek olabilir.', 'Soğukluk ve dolaşım yavaşlığı hissini hafifletmeye yardımcı olabilir.', 'Baş bölgesindeki huzursuzluk ve hassasiyet dönemlerinde destek olarak düşünülebilir.'],
+            tags: ['Bulantı','Mide konforu','Dolaşım'],
+            caution: 'Kan sulandırıcı kullananlar ve mide yanması yaşayanlar için uygunluk kişiye göre değerlendirilmelidir.'
+        },
+        yesilcay: {
+            name: 'Yeşil Çay', subtitle: 'EGCG', image: 'phyto-yesil-cay-v131.jpg',
+            intro: 'Yeşil çay, polifenol zenginliği nedeniyle hem genel canlılık hem de metabolik toparlanma başlıklarında öne çıkar.',
+            benefits: ['Zihinsel yorgunluk ve odak dağınıklığına destek olabilir.', 'Gün boyu süren bitkinlik hissini hafifletmeye yardımcı olabilir.', 'Vücudun hafif ve dinç hissetmesine katkı sağlayabilir.'],
+            tags: ['Dinçlik','Odak','Antioksidan destek'],
+            caution: 'Kafein hassasiyeti, çarpıntı veya uyku problemi olan kişilerde kontrollü kullanılmalıdır.'
+        },
+        kekik: {
+            name: 'Kekik', subtitle: 'Timol & karvakrol', image: 'phyto-kekik-v131.jpg',
+            intro: 'Kekik; solunum, sindirim ve genel beden rahatlığı başlıklarında kullanılan aromatik bir bitkidir.',
+            benefits: ['Sindirim sonrası şişkinlik hissini dengelemeye yardımcı olabilir.', 'Vücutta ağırlık yapan halsizlik dönemlerinde canlandırıcı olabilir.', 'Genel kas rahatlığı ve gevşeme hissini destekleyebilir.'],
+            tags: ['Sindirim','Canlandırıcı etki','Kas rahatlığı'],
+            caution: 'Yoğun uçucu yağ içeren formları hassas bünyelerde mide ve cilt iritasyonu yapabilir.'
+        },
+        corekotu: {
+            name: 'Çörek Otu', subtitle: 'Nigella sativa', image: 'phyto-corek-otu-v131.jpg',
+            intro: 'Çörek otu, hem bağırsak hassasiyeti hem de genel bağışıklık-destek yaklaşımında sık konuşulan tohumlardan biridir.',
+            benefits: ['Karın bölgesinde hassasiyet ve şişkinlik hissine destek olabilir.', 'Vücudun toparlanma ve dayanıklılık hissini artırmaya yardımcı olabilir.', 'Genel rahatlama ve nefes açma hissi sağlayabilir.'],
+            tags: ['Karın konforu','Toparlanma','Genel destek'],
+            caution: 'Şeker ve tansiyon ilaçları kullanan kişilerde kontrolsüz başlanmamalıdır.'
+        },
+        kusburnu: {
+            name: 'Kuşburnu', subtitle: 'Rosa canina', image: 'phyto-civanpercemi-v131.jpg',
+            intro: 'Kuşburnu C vitamini ve polifenol içeriği nedeniyle toparlanma ve günlük canlılık yaklaşımında değerlendirilebilir.',
+            benefits: ['Hafif yorgunluk ve isteksizlik hissinde destek olabilir.', 'Eklem çevresindeki genel rahatsızlık hissini yatıştırmaya yardımcı olabilir.', 'Mevsim geçişlerinde vücudun direnç hissini destekleyebilir.'],
+            tags: ['Canlılık','Eklem konforu','Mevsim desteği'],
+            caution: 'Mide hassasiyeti olanlarda uygun form tercih edilmelidir.'
+        },
+        beyazsogut: {
+            name: 'Beyaz Söğüt', subtitle: 'Söğüt kabuğu', image: 'phyto-isirgan-v131.jpg',
+            intro: 'Beyaz söğüt kabuğu daha çok baş, boyun ve kas-eklem hattındaki rahatsızlık hissi için geleneksel olarak bilinir.',
+            benefits: ['Baş bölgesindeki zonklayıcı rahatsızlık hissini hafifletmeye destek olabilir.', 'Boyun ve omuz hattındaki gerginliği yumuşatmaya yardımcı olabilir.', 'Hareketi zorlaştıran ağrı algısında rahatlatıcı destek sunabilir.'],
+            tags: ['Baş-boyun konforu','Kas-eklem','Gerginlik'],
+            caution: 'Aspirin duyarlılığı olanlarda, ülser öyküsü bulunanlarda ve kan sulandırıcı kullananlarda hekime danışılmalıdır.'
+        },
+        papatya: {
+            name: 'Papatya', subtitle: 'Matricaria chamomilla', image: 'phyto-civanpercemi-v131.jpg',
+            intro: 'Papatya sakinleştirici ve yumuşatıcı yapısı nedeniyle hem sindirim hem de gevşeme odaklı desteklerde öne çıkar.',
+            benefits: ['Bedensel huzursuzluk ve rahatlayamama hissini azaltmaya destek olabilir.', 'Karın bölgesindeki sıkışma ve hassasiyeti hafifletmeye yardımcı olabilir.', 'Uykuya geçişte gevşeme hissi sağlayabilir.'],
+            tags: ['Sakinleşme','Uykuya geçiş','Karın rahatlığı'],
+            caution: 'Papatyagiller alerjisi olan kişiler dikkatli olmalıdır.'
+        },
+        biberiye: {
+            name: 'Biberiye', subtitle: 'Rosmarinus officinalis', image: 'phyto-biberiye-v131.jpg',
+            intro: 'Biberiye, zihinsel toparlanma ve dolaşım hissiyle ilişkilendirilen aromatik desteklerden biridir.',
+            benefits: ['Baş bölgesindeki dolgunluk ve baskı hissine destek olabilir.', 'Zihinsel yorgunluk ve odak kaybını hafifletmeye yardımcı olabilir.', 'Kaslarda hissedilen ağırlık ve hantallık hissini canlandırabilir.'],
+            tags: ['Odak','Canlılık','Baş konforu'],
+            caution: 'Yüksek tansiyon, gebelik veya nöbet öyküsü olanlarda yoğun formları hekime danışılarak kullanılmalıdır.'
+        },
+        melisa: {
+            name: 'Melisa', subtitle: 'Oğulotu', image: 'phyto-yesil-cay-v131.jpg',
+            intro: 'Melisa; zihni sakinleştiren, karın bölgesini rahatlatan ve gevşemeyi destekleyen bitkiler arasında yer alır.',
+            benefits: ['İç huzursuzluk ve gerginlik hissini yatıştırmaya destek olabilir.', 'Bacaklarda dinlenirken artan huzursuz histe gevşemeye yardımcı olabilir.', 'Karın rahatlığı ve yumuşak sindirim konforunu destekleyebilir.'],
+            tags: ['Sakinleşme','Bacak rahatlığı','Sindirim'],
+            caution: 'Tiroit ilaçları kullananlarda ve yoğun sakinleştirici alan kişilerde hekim görüşü alınmalıdır.'
+        },
+        atescicegi: {
+            name: 'Ateş Çiçeği', subtitle: 'Feverfew', image: 'phyto-biberiye-v131.jpg',
+            intro: 'Ateş çiçeği daha çok tekrarlayan baş hassasiyeti yaşayan kişilerde destek amaçlı araştırılan bitkisel başlıklardandır.',
+            benefits: ['Sık tekrarlayan baş bölgesi hassasiyetinde destek olabilir.', 'Işık ve sesle artan rahatsızlık hissinin hafifletilmesine yardımcı olabilir.', 'Ataklar arası genel dengeyi korumayı destekleyebilir.'],
+            tags: ['Baş hassasiyeti','Denge','Atak arası destek'],
+            caution: 'Kan sulandırıcı kullananlarda, ağız içi hassasiyet yaşayanlarda ve gebelerde uygun olmayabilir.'
+        },
+        lavanta: {
+            name: 'Lavanta', subtitle: 'Lavandula', image: 'phyto-biberiye-v131.jpg',
+            intro: 'Lavanta, gevşeme ve sakinleşme hissi oluşturan aromatik yapısıyla özellikle stres eşlik eden yakınmalarda değerlendirilebilir.',
+            benefits: ['Uyku öncesi gevşemeyi ve sakinleşmeyi destekleyebilir.', 'Baş-boyun hattındaki gerginliği hafifletmeye yardımcı olabilir.', 'Yaygın vücut hassasiyetinde rahatlatıcı bir his sağlayabilir.'],
+            tags: ['Gevşeme','Uyku','Stres'],
+            caution: 'Yoğun yağ formları hassas ciltte iritasyon yapabilir; ağızdan kullanımlarda uygun ürün seçimi önemlidir.'
+        },
+        ashwagandha: {
+            name: 'Ashwagandha', subtitle: 'Hint ginsengi', image: 'phyto-kekik-v131.jpg',
+            intro: 'Ashwagandha; stres yükü, düşük enerji ve toparlanma güçlüğü yaşayan kişilerde destek başlığı olarak sık anılır.',
+            benefits: ['Sürekli yorgun ve tükenmiş hissetme durumunda destek olabilir.', 'Strese bağlı kas gerginliği ve toparlanma güçlüğünü hafifletmeye yardımcı olabilir.', 'Genel dayanıklılık hissini destekleyebilir.'],
+            tags: ['Stres dengesi','Toparlanma','Dayanıklılık'],
+            caution: 'Tiroid hastalığı, otoimmün tablolar ve gebelik durumunda hekim görüşü gerektirir.'
+        },
+        pasiflora: {
+            name: 'Pasiflora', subtitle: 'Çarkıfelek', image: 'phyto-civanpercemi-v131.jpg',
+            intro: 'Pasiflora özellikle bedensel huzursuzluk, uykuya dalma güçlüğü ve gevşeme ihtiyacında öne çıkan bitkisel seçeneklerdendir.',
+            benefits: ['Gece artan huzursuzluk ve kıpırdanma hissini azaltmaya destek olabilir.', 'Uykuya geçişte zihin ve bedeni sakinleştirmeye yardımcı olabilir.', 'Yaygın gerginlik hissini yumuşatabilir.'],
+            tags: ['Uyku','Huzursuzluk','Sakinleşme'],
+            caution: 'Uyku ilaçları veya sakinleştirici kullanan kişiler kontrolsüz birlikte kullanmamalıdır.'
+        },
+        ginkgo: {
+            name: 'Ginkgo Biloba', subtitle: 'Yaprak ekstresi', image: 'phyto-yesil-cay-v131.jpg',
+            intro: 'Ginkgo biloba daha çok dolaşım, zihinsel netlik ve bacak konforu başlıklarında değerlendirilen desteklerden biridir.',
+            benefits: ['Bacaklarda rahatsız eden dolaşım yavaşlığı hissini destekleyebilir.', 'Zihinsel bulanıklık ve dikkat dağınıklığını hafifletmeye yardımcı olabilir.', 'Gün içi enerji düşüşlerinde canlılığı destekleyebilir.'],
+            tags: ['Dolaşım','Zihin açıklığı','Bacak konforu'],
+            caution: 'Kan sulandırıcılarla etkileşebilir; ameliyat öncesi dönemde kullanılmamalıdır.'
+        },
+        kediotu: {
+            name: 'Kediotu', subtitle: 'Valeriana', image: 'phyto-isirgan-v131.jpg',
+            intro: 'Kediotu gevşeme ve uyku desteği yaklaşımında sık geçen bitkilerden biridir; özellikle gece artan huzursuzluk hissine eşlik eden durumlarda değerlendirilir.',
+            benefits: ['Uykuya geçişi zorlaştıran iç huzursuzluğu azaltmaya destek olabilir.', 'Gece belirginleşen bacak rahatsızlığında gevşeme hissi sağlayabilir.', 'Kaslarda dinlenirken hissedilen gerginliği yumuşatabilir.'],
+            tags: ['Uyku','Gece rahatlığı','Kas gevşemesi'],
+            caution: 'Sakinleştirici ilaçlarla birlikte kullanımı ancak hekim önerisiyle düşünülmelidir.'
+        },
+        rezene: {
+            name: 'Rezene', subtitle: 'Foeniculum vulgare', image: 'phyto-yesil-cay-v131.jpg',
+            intro: 'Rezene, bağırsak hareketleriyle ilişkili konfor başlıklarında en geleneksel bitkisel desteklerden biridir.',
+            benefits: ['Gaz, şişkinlik ve karında doluluk hissini hafifletmeye destek olabilir.', 'Sindirim sonrası kasılma ve rahatsızlık hissini azaltmaya yardımcı olabilir.', 'Yemeklerden sonra karın bölgesinde rahatlama sağlayabilir.'],
+            tags: ['Şişkinlik','Sindirim','Karın rahatlığı'],
+            caution: 'Hormon duyarlı durumlarda ve yoğun bitkisel ürün kullananlarda uygunluk değerlendirilmelidir.'
+        },
+        aloe: {
+            name: 'Aloe Vera', subtitle: 'Yaprak jeli', image: 'phyto-yesil-cay-v131.jpg',
+            intro: 'Aloe vera uygun formda kullanıldığında sindirim hattı ve doku yatıştırma başlıklarında değerlendirilebilir.',
+            benefits: ['Sindirim kanalındaki yanma ve hassasiyet hissini yatıştırmaya destek olabilir.', 'Dışkılama sonrası rahatlama hissini destekleyebilir.', 'Mide-bağırsak hattında serinletici bir konfor sağlayabilir.'],
+            tags: ['Yatıştırıcı etki','Sindirim hattı','Konfor'],
+            caution: 'Bazı formları barsak hareketlerini aşırı artırabilir; aktif yakınmalarda hekime danışılmadan kullanılmamalıdır.'
+        },
+        nane: {
+            name: 'Nane', subtitle: 'Mentha', image: 'phyto-biberiye-v131.jpg',
+            intro: 'Nane özellikle mide ve bağırsak rahatlığı ile baş-boyun çevresindeki ferahlama hissi için bilinen desteklerden biridir.',
+            benefits: ['Karın bölgesindeki sıkışma ve gaz hissini hafifletmeye yardımcı olabilir.', 'Bulantı ve mide dalgalanmasında destek olabilir.', 'Ferahlama hissi ile genel rahatlamayı destekleyebilir.'],
+            tags: ['Ferahlık','Mide rahatlığı','Gaz hissi'],
+            caution: 'Reflü yakınması olan kişilerde her form uygun olmayabilir.'
+        },
+        psyllium: {
+            name: 'Karnıyarık Otu', subtitle: 'Psyllium', image: 'phyto-isirgan-v131.jpg',
+            intro: 'Psyllium, bağırsak düzeni ve dışkılama konforunu destekleyen lif kaynakları içinde öne çıkar.',
+            benefits: ['Bağırsak hareketlerinde düzen hissini destekleyebilir.', 'Karın dolgunluğu ve düzensizlik hissini hafifletmeye yardımcı olabilir.', 'Dışkılama sonrası rahatlık hissini artırabilir.'],
+            tags: ['Lif desteği','Bağırsak düzeni','Karın konforu'],
+            caution: 'Yeterli su alınmadan kullanılmamalı; bağırsak tıkanıklığı öyküsü olanlarda hekime danışılmalıdır.'
+        },
+        rhodiola: {
+            name: 'Rhodiola', subtitle: 'Altın kök', image: 'phyto-kekik-v131.jpg',
+            intro: 'Rhodiola; zihinsel ve fiziksel yorgunluk dönemlerinde adaptasyon desteği amacıyla anılan bitkilerden biridir.',
+            benefits: ['Uzun süren bitkinlik ve motivasyon düşüklüğünde destek olabilir.', 'Zihinsel bulanıklık ve çabuk yorulma hissini hafifletmeye yardımcı olabilir.', 'Stresle birlikte gelen enerji düşüşünde toparlanmayı destekleyebilir.'],
+            tags: ['Enerji','Zihinsel toparlanma','Stres uyumu'],
+            caution: 'Çarpıntı, yüksek anksiyete veya bazı psikiyatrik ilaç kullanımlarında uygunluğu hekim belirlemelidir.'
+        },
+        ginseng: {
+            name: 'Ginseng', subtitle: 'Panax ginseng', image: 'phyto-zencefil-v131.jpg',
+            intro: 'Ginseng, fiziksel ve zihinsel canlılık desteği dendiğinde en sık öne çıkan desteklerden biridir.',
+            benefits: ['Sabah kalkarken yaşanan güçsüzlük hissine destek olabilir.', 'Gün içinde çabuk tükenme ve konsantrasyon düşüklüğünü hafifletmeye yardımcı olabilir.', 'Genel enerji ve dayanıklılık hissini destekleyebilir.'],
+            tags: ['Canlılık','Dayanıklılık','Odak'],
+            caution: 'Tansiyon, çarpıntı veya kan şekeri ilacı kullanan kişilerde uygunluğu kişiye göre değerlendirilmelidir.'
+        }
+    };
+
+    const diseaseSets = {
+        as: {
+            title: 'Ankilozan Spondilit için Bitkisel Destekler',
+            short: 'AS',
+            desc: 'Buradaki bitkiler hastalığın adından çok; sabah sertliği, omurga çevresi tutukluk, hareketle rahatlama ihtiyacı ve genel beden konforu gibi yakınmalar üzerinden düşünülmüştür.',
+            note: 'Bu içerikler tanı ve tedavinin yerine geçmez. Özellikle düzenli ilaç kullananlarda bitkisel ürünlerin uygunluğu hekim tarafından değerlendirilmelidir.',
+            herbs: ['zerdecal','boswellia','omega3','isirgan','sarimsak','civanpercemi']
+        },
+        ra: {
+            title: 'Romatoid Artrit için Bitkisel Destekler',
+            short: 'RA',
+            desc: 'Bu başlıkta seçimler; küçük eklemlerde hassasiyet, sabah el-parmak tutukluğu, genel rahatlama ihtiyacı ve günlük hareket konforu dikkate alınarak düzenlendi.',
+            note: 'Romatoloji ilaçlarını değiştirmeden önce mutlaka hekim görüşü alınmalıdır. Özellikle kan sulandırıcı ve bağışıklık sistemiyle ilişkili tedavilerde etkileşim riski önemlidir.',
+            herbs: ['zencefil','yesilcay','kekik','corekotu','kusburnu','beyazsogut']
+        },
+        'bas-agrisi-migren': {
+            title: 'Baş Ağrısı ve Migren için Bitkisel Destekler',
+            short: 'Migren',
+            desc: 'Seçimler; baş bölgesinde zonklama, mide dalgalanması, ışık-ses hassasiyeti ve stresle artan gerginlik gibi yakınmalar üzerinden hazırlanmıştır.',
+            note: 'Yeni başlayan, ani gelişen veya alışılmışın dışında şiddetli baş ağrılarında bitkisel ürünlerle oyalanmadan tıbbi değerlendirme gerekir.',
+            herbs: ['papatya','biberiye','melisa','atescicegi','lavanta','zencefil']
+        },
+        'bel-sirt-agrisi': {
+            title: 'Bel ve Sırt Ağrısı için Bitkisel Destekler',
+            short: 'Bel & Sırt',
+            desc: 'Bu seçimler; bel-sırt hattında gerginlik, hareket sonrası tutulma, kaslarda ağırlık hissi ve günlük toparlanma ihtiyacı gibi yakınmalar üzerinden düzenlendi.',
+            note: 'Uyuşma, kuvvet kaybı, ateş, travma veya giderek artan ağrı varsa bitkisel desteklerden önce tıbbi değerlendirme önceliklidir.',
+            herbs: ['beyazsogut','civanpercemi','kekik','ashwagandha','rhodiola','ginseng']
+        },
+        fibromiyalji: {
+            title: 'Fibromiyalji için Bitkisel Destekler',
+            short: 'Fibromiyalji',
+            desc: 'Bitkiler; yaygın vücut hassasiyeti, dinlenmeden kalkma hissi, uyku kalitesinin bozulması ve stres eşlik eden bedensel yorgunluk dikkate alınarak seçildi.',
+            note: 'Fibromiyaljide bitkisel destekler tek başına çözüm değildir; uyku, hareket, stres yönetimi ve kişiye özel tıbbi plan temel yaklaşımı oluşturur.',
+            herbs: ['ashwagandha','pasiflora','lavanta','biberiye','zerdecal','ginkgo']
+        },
+        'huzursuz-bacak': {
+            title: 'Huzursuz Bacak Sendromu için Bitkisel Destekler',
+            short: 'HBS',
+            desc: 'Seçimler; gece belirginleşen bacak huzursuzluğu, dinlenirken artan kıpırdanma ihtiyacı, gevşeyememe ve uykuya dalma güçlüğü üzerinde odaklanır.',
+            note: 'Huzursuz bacak hissi demir eksikliği ve farklı nedenlerle ilişkili olabilir. Bitkisel ürünlerden önce altta yatan nedenlerin araştırılması önceliklidir.',
+            herbs: ['kediotu','ginkgo','papatya','melisa','isirgan','pasiflora']
+        },
+        'iltihabi-bagirsak': {
+            title: 'İltihabi Bağırsak Yakınmaları için Bitkisel Destekler',
+            short: 'Bağırsak',
+            desc: 'Buradaki seçimlerde hastalık adından çok; karında huzursuzluk, gaz-şişkinlik, dışkılama düzeni ve bağırsak konforu gibi başlıklar öne çıkarıldı.',
+            note: 'Alevlenme dönemlerinde ya da aktif karın yakınmalarında bitkisel ürün seçimi mutlaka gastroenteroloji ve hekim kontrolüyle yapılmalıdır.',
+            herbs: ['rezene','aloe','nane','psyllium','boswellia','corekotu']
+        },
+        'kronik-yorgunluk': {
+            title: 'Kronik Yorgunluk için Bitkisel Destekler',
+            short: 'Yorgunluk',
+            desc: 'Bu set; çabuk tükenme, sabah dinlenemeden uyanma, zihinsel bulanıklık ve gün içinde enerjiyi sürdürememe yakınmaları temel alınarak hazırlandı.',
+            note: 'Uzun süren yorgunlukta kansızlık, tiroit, uyku sorunları ve diğer tıbbi nedenler araştırılmadan yalnızca takviye odaklı gidilmemelidir.',
+            herbs: ['rhodiola','ginseng','yesilcay','kusburnu','omega3','sarimsak']
+        }
+    };
+
+    const diseaseOrder = ['as','ra','bas-agrisi-migren','bel-sirt-agrisi','fibromiyalji','huzursuz-bacak','iltihabi-bagirsak','kronik-yorgunluk'];
+    let activeMainDisease = 'as';
+
+    function cardHTML(herbId, index) {
+        const herb = herbCatalog[herbId];
+        if (!herb) return '';
+        return `
+            <button type="button" class="phyto-card-v127 phyto-card-button-v350" data-herb-id-v350="${herbId}" aria-label="${herb.name} detayını aç">
+                <span class="phyto-number-v127">${String(index + 1).padStart(2, '0')}</span>
+                <img src="${herb.image}" alt="${herb.name} görseli" loading="lazy" decoding="async" onerror="this.onerror=null;this.src='phyto-biberiye-v131.jpg';">
+                <div class="phyto-card-body-v127">
+                    <h3>${herb.name}${herb.subtitle ? ` <small>(${herb.subtitle})</small>` : ''}</h3>
+                    <div class="phyto-tags-v127"><span>${herb.tags[0] || 'Destek'}</span><span>${herb.tags[1] || 'Konfor'}</span></div>
+                    <p>${herb.intro}</p>
+                </div>
+            </button>
+        `;
+    }
+
+    function renderMainDisease(key) {
+        if (!mainGrid || !diseaseSets[key]) return;
+        activeMainDisease = key;
+        const data = diseaseSets[key];
+        mainGrid.innerHTML = data.herbs.map((id, index) => cardHTML(id, index)).join('');
+        const descNode = document.getElementById('phytoCurrentDescV350');
+        if (descNode) descNode.textContent = data.desc;
+        document.querySelectorAll('.phyto-disease-tab-v350').forEach(btn => {
+            btn.classList.toggle('is-active', btn.dataset.phytoDiseaseV350 === key);
+        });
+        wireHerbTriggers(mainGrid);
+    }
+
+    function ensureMainPhytoFilters() {
+        if (!mainGrid || !guideHead || document.getElementById('phytoDiseaseTabsV350')) return;
+        const wrap = document.createElement('div');
+        wrap.className = 'phyto-disease-switch-v350';
+        wrap.innerHTML = `
+            <div class="phyto-disease-tabs-v350" id="phytoDiseaseTabsV350" aria-label="Fitoterapi hastalık sekmeleri">
+                ${diseaseOrder.map(key => `<button type="button" class="phyto-disease-tab-v350${key === activeMainDisease ? ' is-active' : ''}" data-phyto-disease-v350="${key}">${diseaseSets[key].short}</button>`).join('')}
+            </div>
+            <p class="phyto-current-desc-v350" id="phytoCurrentDescV350"></p>
+        `;
+        guideHead.appendChild(wrap);
+        wrap.addEventListener('click', function (event) {
+            const btn = event.target.closest('[data-phyto-disease-v350]');
+            if (!btn) return;
+            renderMainDisease(btn.dataset.phytoDiseaseV350);
+        });
+        renderMainDisease(activeMainDisease);
+    }
+
+    function ensureModal() {
+        if (document.getElementById('phytoModalV350')) return;
+        const modal = document.createElement('div');
+        modal.className = 'phyto-modal-v350';
+        modal.id = 'phytoModalV350';
+        modal.setAttribute('aria-hidden', 'true');
+        modal.innerHTML = `
+            <div class="phyto-modal-backdrop-v350" data-phyto-close-v350></div>
+            <div class="phyto-modal-card-v350" role="dialog" aria-modal="true" aria-labelledby="phytoModalTitleV350">
+                <button type="button" class="phyto-modal-close-v350" aria-label="Pencereyi kapat" data-phyto-close-v350>×</button>
+                <div class="phyto-modal-content-v350" id="phytoModalContentV350"></div>
+            </div>
+        `;
+        document.body.appendChild(modal);
+        modal.addEventListener('click', function (event) {
+            if (event.target.closest('[data-phyto-close-v350]')) closeModal();
+        });
+        document.addEventListener('keydown', function (event) {
+            if (event.key === 'Escape' && modal.classList.contains('is-open')) closeModal();
+        });
+    }
+
+    function openModal(herbId) {
+        ensureModal();
+        const herb = herbCatalog[herbId];
+        const modal = document.getElementById('phytoModalV350');
+        const content = document.getElementById('phytoModalContentV350');
+        if (!herb || !modal || !content) return;
+        content.innerHTML = `
+            <div class="phyto-modal-hero-v350">
+                <img src="${herb.image}" alt="${herb.name} görseli" onerror="this.onerror=null;this.src='phyto-biberiye-v131.jpg';">
+                <div class="phyto-modal-copy-v350">
+                    <small>DETAYLI BİTKİ BİLGİSİ</small>
+                    <h3 id="phytoModalTitleV350">${herb.name}${herb.subtitle ? ` <span>(${herb.subtitle})</span>` : ''}</h3>
+                    <p>${herb.intro}</p>
+                    <div class="phyto-benefit-tags-v350">${(herb.tags || []).map(tag => `<span>${tag}</span>`).join('')}</div>
+                </div>
+            </div>
+            <div class="phyto-modal-sections-v350">
+                <section class="phyto-modal-panel-v350">
+                    <h4>Destek olabileceği yakınmalar</h4>
+                    <ul>${herb.benefits.map(item => `<li>${item}</li>`).join('')}</ul>
+                </section>
+                <section class="phyto-modal-panel-v350">
+                    <h4>Nasıl düşünülmeli?</h4>
+                    <ul>
+                        <li>Bu başlık bir ilaç yerine değil, destek yaklaşımı olarak ele alınmalıdır.</li>
+                        <li>Kişinin kullandığı ilaçlar, mide-bağırsak yapısı ve eşlik eden hastalıkları birlikte değerlendirilmelidir.</li>
+                        <li>Uygun form, ürün kalitesi ve kullanım süresi hekimle birlikte planlanmalıdır.</li>
+                    </ul>
+                </section>
+            </div>
+            <div class="phyto-modal-warning-v350"><strong>Dikkat:</strong> ${herb.caution}</div>
+        `;
+        modal.classList.add('is-open');
+        modal.setAttribute('aria-hidden', 'false');
+        document.body.style.overflow = 'hidden';
+    }
+
+    function closeModal() {
+        const modal = document.getElementById('phytoModalV350');
+        if (!modal) return;
+        modal.classList.remove('is-open');
+        modal.setAttribute('aria-hidden', 'true');
+        document.body.style.overflow = '';
+    }
+
+    function normalizeHerbKey(title) {
+        const text = (title || '').toLowerCase();
+        if (text.includes('zerdeçal')) return 'zerdecal';
+        if (text.includes('boswellia') || text.includes('akgünlük')) return 'boswellia';
+        if (text.includes('omega')) return 'omega3';
+        if (text.includes('ısırgan')) return 'isirgan';
+        if (text.includes('sarımsak')) return 'sarimsak';
+        if (text.includes('civanperçemi')) return 'civanpercemi';
+        if (text.includes('zencefil')) return 'zencefil';
+        if (text.includes('yeşil çay')) return 'yesilcay';
+        if (text.includes('kekik')) return 'kekik';
+        if (text.includes('çörek otu')) return 'corekotu';
+        if (text.includes('kuşburnu')) return 'kusburnu';
+        if (text.includes('beyaz söğüt')) return 'beyazsogut';
+        if (text.includes('papatya')) return 'papatya';
+        if (text.includes('biberiye')) return 'biberiye';
+        if (text.includes('melisa') || text.includes('oğulotu')) return 'melisa';
+        if (text.includes('ateş çiçeği') || text.includes('feverfew')) return 'atescicegi';
+        if (text.includes('lavanta')) return 'lavanta';
+        if (text.includes('ashwagandha')) return 'ashwagandha';
+        if (text.includes('pasiflora') || text.includes('çarkıfelek')) return 'pasiflora';
+        if (text.includes('ginkgo')) return 'ginkgo';
+        if (text.includes('kediotu')) return 'kediotu';
+        if (text.includes('rezene')) return 'rezene';
+        if (text.includes('aloe')) return 'aloe';
+        if (text.includes('nane')) return 'nane';
+        if (text.includes('karnıyarık')) return 'psyllium';
+        if (text.includes('rhodiola')) return 'rhodiola';
+        if (text.includes('ginseng')) return 'ginseng';
+        return '';
+    }
+
+    function wireHerbTriggers(root) {
+        if (!root) return;
+        root.querySelectorAll('.phyto-card-button-v350[data-herb-id-v350]').forEach(card => {
+            if (card.dataset.wiredV350 === 'true') return;
+            card.dataset.wiredV350 = 'true';
+            card.addEventListener('click', function () {
+                openModal(card.dataset.herbIdV350);
+            });
+        });
+        root.querySelectorAll('.phyto-herbal-card-v232').forEach(card => {
+            if (card.dataset.wiredV350 === 'true') return;
+            const title = card.querySelector('h3')?.textContent || '';
+            const key = normalizeHerbKey(title);
+            if (!key || !herbCatalog[key]) return;
+            card.dataset.wiredV350 = 'true';
+            card.classList.add('is-clickable-v350');
+            card.setAttribute('tabindex', '0');
+            card.setAttribute('role', 'button');
+            card.setAttribute('aria-label', `${title.trim()} detayını aç`);
+            const opener = function () { openModal(key); };
+            card.addEventListener('click', opener);
+            card.addEventListener('keydown', function (event) {
+                if (event.key === 'Enter' || event.key === ' ') {
+                    event.preventDefault();
+                    opener();
+                }
+            });
+        });
+    }
+
+    function renderConditionHerbs(key) {
+        if (!conditionHerbGrid || !diseaseSets[key]) return;
+        const data = diseaseSets[key];
+        if (conditionHerbKicker) conditionHerbKicker.textContent = `${data.short.toUpperCase()} • FİTOTERAPİ`;
+        if (conditionHerbTitle) conditionHerbTitle.textContent = data.title;
+        conditionHerbGrid.innerHTML = data.herbs.map((id, index) => {
+            const herb = herbCatalog[id];
+            if (!herb) return '';
+            return `
+                <article class="phyto-herbal-card-v232 is-clickable-v350" data-herb-id-v350="${id}">
+                    <img src="${herb.image}" alt="${herb.name} görseli" loading="lazy" decoding="async" onerror="this.onerror=null;this.src='phyto-biberiye-v131.jpg';">
+                    <div>
+                        <span>${String(index + 1).padStart(2, '0')}</span>
+                        <h3>${herb.name}</h3>
+                        <p>${herb.intro}</p>
+                    </div>
+                </article>
+            `;
+        }).join('');
+        if (conditionHerbNote) conditionHerbNote.textContent = data.note;
+        wireHerbTriggers(conditionHerbGrid);
+    }
+
+    function patchConditionPage() {
+        if (typeof window.openConditionDiseaseV246 === 'function' && !window._phytoConditionPatchedV350) {
+            const original = window.openConditionDiseaseV246;
+            const wrapped = function (key, push) {
+                const result = original(key, push);
+                setTimeout(function () { renderConditionHerbs(key); }, 30);
+                return result;
+            };
+            window.openConditionDiseaseV246 = wrapped;
+            window.openConditionDiseaseV249 = wrapped;
+            window._phytoConditionPatchedV350 = true;
+        }
+    }
+
+    ensureMainPhytoFilters();
+    ensureModal();
+    wireHerbTriggers(document);
+    patchConditionPage();
+
+    const observer = new MutationObserver(function () {
+        wireHerbTriggers(document);
+    });
+    observer.observe(document.body, { childList: true, subtree: true });
+
+    // V351: Aynı fitoterapi verisini tedavi alanları özel sekmelerinde de kullan.
+    window.phytoHerbCatalogV350 = herbCatalog;
+    window.phytoDiseaseSetsV350 = diseaseSets;
+    window.phytoNormalizeHerbKeyV350 = normalizeHerbKey;
+})();
+
+
+// =========================================================
+// V351 - Tedavi Alanları Bitkisel Destek sekmesini düzelt +
+// bitki kartlarını Bel/Sırt ağrısı gibi ayrı özel sayfada aç.
+// =========================================================
+(function () {
+    const catalog = window.phytoHerbCatalogV350 || {};
+    const diseaseSets = window.phytoDiseaseSetsV350 || {};
+    const normalizeKey = window.phytoNormalizeHerbKeyV350 || function(){ return ''; };
+    const detailView = document.getElementById('phytoHerbDetailV351');
+    const detailTitle = document.getElementById('phytoHerbTitleV351');
+    const detailSubtitle = document.getElementById('phytoHerbSubtitleV351');
+    const detailImage = document.getElementById('phytoHerbImageV351');
+    const detailTags = document.getElementById('phytoHerbTagsV351');
+    const detailPanel = document.getElementById('phytoHerbPanelV351');
+    const backButton = document.getElementById('phytoHerbBackV351');
+    const detailTabs = Array.from(document.querySelectorAll('[data-phyto-herb-tab-v351]'));
+    let activeHerb = '';
+    let activeTab = 'overview';
+    let previousScrollY = 0;
+    let lastDiseaseKey = '';
+
+    if (!detailView || !detailPanel) return;
+
+    function escapeText(value) {
+        return String(value || '').replace(/[&<>\"]/g, ch => ({'&':'&amp;','<':'&lt;','>':'&gt;','\"':'&quot;'}[ch] || ch));
+    }
+
+    function findHerbKey(card) {
+        const direct = card?.dataset?.herbIdV350;
+        if (direct && catalog[direct]) return direct;
+        const title = card?.querySelector?.('h3')?.textContent || '';
+        const normalized = normalizeKey(title);
+        if (normalized && catalog[normalized]) return normalized;
+        const lower = title.toLocaleLowerCase('tr-TR');
+        return Object.keys(catalog).find(key => {
+            const herbName = (catalog[key]?.name || '').toLocaleLowerCase('tr-TR');
+            return herbName && lower.includes(herbName);
+        }) || '';
+    }
+
+    function renderDetail() {
+        const herb = catalog[activeHerb];
+        if (!herb) return;
+        detailTabs.forEach(btn => btn.classList.toggle('is-active', btn.dataset.phytoHerbTabV351 === activeTab));
+        detailTitle.textContent = herb.name || 'Bitki Detayı';
+        detailSubtitle.textContent = herb.subtitle ? `${herb.subtitle} • ayrıntılı bitkisel destek bilgisi` : 'Ayrıntılı bitkisel destek bilgisi';
+        detailImage.src = herb.image || 'phyto-biberiye-v131.jpg';
+        detailImage.alt = `${herb.name || 'Bitki'} görseli`;
+        detailImage.onerror = function(){ this.onerror=null; this.src='phyto-biberiye-v131.jpg'; };
+        detailTags.innerHTML = (herb.tags || []).map(tag => `<span>${escapeText(tag)}</span>`).join('');
+
+        if (activeTab === 'benefits') {
+            detailPanel.innerHTML = `
+                <span>HANGİ YAKINMALARDA DESTEK OLABİLİR?</span>
+                <h3>${escapeText(herb.name)}</h3>
+                <p>Bu bölüm hastalık adı vermekten çok, kişinin günlük yaşamda hissettiği yakınmalar üzerinden hazırlanmıştır.</p>
+                <ul class="phyto-herb-list-v351">${(herb.benefits || []).map(item => `<li>${escapeText(item)}</li>`).join('')}</ul>
+            `;
+        } else if (activeTab === 'usage') {
+            detailPanel.innerHTML = `
+                <span>KİŞİYE ÖZEL DEĞERLENDİRME</span>
+                <h3>Nasıl değerlendirilir?</h3>
+                <p>${escapeText(herb.intro)}</p>
+                <ul class="phyto-herb-list-v351">
+                    <li>Bitki veya bitkisel ürün, mevcut tıbbi tedavinin yerine geçecek şekilde düşünülmemelidir.</li>
+                    <li>Kullanılan ilaçlar, mide-bağırsak hassasiyeti, tansiyon, kan şekeri ve eşlik eden hastalıklar birlikte değerlendirilmelidir.</li>
+                    <li>Ürünün formu, içeriği ve kullanım süresi kişiye göre hekim tarafından planlanmalıdır.</li>
+                </ul>
+            `;
+        } else if (activeTab === 'caution') {
+            detailPanel.innerHTML = `
+                <span>GÜVENLİ KULLANIM</span>
+                <h3>Dikkat edilmesi gerekenler</h3>
+                <p>Bitkisel olması, herkes için ve her dozda güvenli olduğu anlamına gelmez.</p>
+                <div class="phyto-herb-warning-v351"><strong>Önemli:</strong> ${escapeText(herb.caution || 'Düzenli ilaç kullanan veya kronik hastalığı bulunan kişiler hekime danışmadan bitkisel ürün başlamamalıdır.')}</div>
+            `;
+        } else {
+            detailPanel.innerHTML = `
+                <span>GENEL BİLGİ</span>
+                <h3>${escapeText(herb.name)}${herb.subtitle ? ` <small>(${escapeText(herb.subtitle)})</small>` : ''}</h3>
+                <p>${escapeText(herb.intro)}</p>
+                <ul class="phyto-herb-list-v351">${(herb.benefits || []).slice(0,3).map(item => `<li>${escapeText(item)}</li>`).join('')}</ul>
+            `;
+        }
+    }
+
+    function openHerbDetail(key) {
+        if (!catalog[key]) return;
+        activeHerb = key;
+        activeTab = 'overview';
+        previousScrollY = window.scrollY || 0;
+        renderDetail();
+        document.body.classList.add('phyto-herb-detail-open-v351');
+        detailView.setAttribute('aria-hidden','false');
+        detailView.scrollTo({top:0, behavior:'auto'});
+        window.setTimeout(() => backButton?.focus({preventScroll:true}), 20);
+    }
+
+    function closeHerbDetail() {
+        document.body.classList.remove('phyto-herb-detail-open-v351');
+        detailView.setAttribute('aria-hidden','true');
+        window.scrollTo({top:previousScrollY, behavior:'auto'});
+    }
+
+    detailTabs.forEach(btn => btn.addEventListener('click', () => {
+        activeTab = btn.dataset.phytoHerbTabV351 || 'overview';
+        renderDetail();
+    }));
+    backButton?.addEventListener('click', closeHerbDetail);
+    document.addEventListener('keydown', event => {
+        if (event.key === 'Escape' && document.body.classList.contains('phyto-herb-detail-open-v351')) closeHerbDetail();
+    });
+
+    function diseaseKeyFromContext(source) {
+        if (source === 'as') return 'as';
+        if (source === 'ra') return 'ra';
+        const state = window.getConditionDiseaseStateV279?.();
+        if (state?.key && diseaseSets[state.key]) return state.key;
+        const hash = location.hash.replace('#','');
+        const match = hash.match(/^(bas-agrisi-migren|fibromiyalji|huzursuz-bacak|iltihabi-bagirsak|kronik-yorgunluk|bel-sirt-agrisi)/);
+        if (match && diseaseSets[match[1]]) return match[1];
+        return lastDiseaseKey && diseaseSets[lastDiseaseKey] ? lastDiseaseKey : '';
+    }
+
+    function herbHubHtml(key) {
+        const set = diseaseSets[key];
+        if (!set) return '';
+        return `
+            <section class="phyto-herbal-focus-v232 phyto-disease-hub-v351">
+                <div class="phyto-focus-head-v232">
+                    <div>
+                        <span>${escapeText(set.short || 'FİTOTERAPİ')} • BİTKİSEL DESTEK</span>
+                        <h2>${escapeText(set.title)}</h2>
+                    </div>
+                    <p>${escapeText(set.desc)}</p>
+                </div>
+                <div class="phyto-herbal-grid-v232">
+                    ${(set.herbs || []).map((id,index) => {
+                        const herb = catalog[id];
+                        if (!herb) return '';
+                        return `
+                            <article class="phyto-herbal-card-v232 is-clickable-v350" data-herb-id-v350="${id}" tabindex="0" role="button" aria-label="${escapeText(herb.name)} detayını aç">
+                                <img src="${escapeText(herb.image)}" alt="${escapeText(herb.name)} görseli" loading="lazy" decoding="async" onerror="this.onerror=null;this.src='phyto-biberiye-v131.jpg';">
+                                <div><span>${String(index+1).padStart(2,'0')}</span><h3>${escapeText(herb.name)}</h3><p>${escapeText(herb.intro)}</p></div>
+                            </article>`;
+                    }).join('')}
+                </div>
+                <div class="phyto-focus-note-v232"><strong>Önemli Not:</strong><p>${escapeText(set.note)}</p></div>
+            </section>`;
+    }
+
+    function renderTreatmentHerbHub(source, forcedKey = '') {
+        const key = forcedKey && diseaseSets[forcedKey] ? forcedKey : diseaseKeyFromContext(source);
+        if (!key || !diseaseSets[key]) return;
+        lastDiseaseKey = key;
+        const set = diseaseSets[key];
+        if (source === 'as') {
+            const content = document.getElementById('asSpecialContentV274');
+            if (!content) return;
+            content.innerHTML = `<section class="as-special-panel-v274"><div class="as-special-panel-head-v274"><span>FİTOTERAPİ & DESTEK</span><h3>${escapeText(set.title)}</h3><p>${escapeText(set.desc)}</p></div>${herbHubHtml(key)}</section>`;
+            document.body.classList.add('as-special-open-v274');
+            document.getElementById('asSpecialViewV274')?.setAttribute('aria-hidden','false');
+            const t = document.getElementById('asSpecialTitleV274'); if(t) t.textContent='Bitkisel Destekler';
+            const d = document.getElementById('asSpecialDescV274'); if(d) d.textContent='Fitoterapi başlıklarını aynı özel sayfa düzeninde inceleyin.';
+            const i = document.getElementById('asSpecialIndexV274'); if(i) i.textContent='06';
+        } else {
+            const content = document.getElementById('treatmentSpecialContentV279');
+            if (!content) return;
+            content.innerHTML = `<section class="as-special-panel-v274"><div class="as-special-panel-head-v274"><span>FİTOTERAPİ & DESTEK</span><h3>${escapeText(set.title)}</h3><p>${escapeText(set.desc)}</p></div>${herbHubHtml(key)}</section>`;
+            document.body.classList.add('treatment-special-open-v279');
+            document.getElementById('treatmentSpecialViewV279')?.setAttribute('aria-hidden','false');
+            const t = document.getElementById('treatmentSpecialTitleV279'); if(t) t.textContent=`${set.short} • Bitkisel Destekler`;
+            const d = document.getElementById('treatmentSpecialDescV279'); if(d) d.textContent='Fitoterapi sayfasındaki sistemin aynısı bu hastalık alanında da kullanılır.';
+            const i = document.getElementById('treatmentSpecialIndexV279'); if(i) i.textContent='06';
+        }
+    }
+
+    // V352: Fitoterapi ana hastalık düğmeleri de doğrudan aynı Bitkisel Destekler özel sayfasını açabilsin.
+    window.openPhytoTreatmentHerbHubV352 = function (source, forcedKey) {
+        renderTreatmentHerbHub(source || 'condition', forcedKey || '');
+    };
+    window.openPhytoHerbDetailV352 = openHerbDetail;
+
+    // Bitki kartlarında V350 modalı yerine artık tam ekran özel sayfa aç.
+    document.addEventListener('click', event => {
+        const card = event.target.closest('[data-herb-id-v350], .phyto-herbal-card-v232.is-clickable-v350, .phyto-card-button-v350');
+        if (!card || detailView.contains(card)) return;
+        const key = findHerbKey(card);
+        if (!key) return;
+        event.preventDefault();
+        event.stopImmediatePropagation();
+        openHerbDetail(key);
+    }, true);
+
+    document.addEventListener('keydown', event => {
+        if (event.key !== 'Enter' && event.key !== ' ') return;
+        const card = event.target.closest?.('[data-herb-id-v350], .phyto-herbal-card-v232.is-clickable-v350');
+        if (!card) return;
+        const key = findHerbKey(card);
+        if (!key) return;
+        event.preventDefault();
+        event.stopImmediatePropagation();
+        openHerbDetail(key);
+    }, true);
+
+    // Tedavi alanlarındaki Bitkisel Destekler butonunun her koşulda açılmasını garanti et.
+    document.addEventListener('click', event => {
+        const asLauncher = event.target.closest('[data-as-special-target-v274="herbs"]');
+        const asTab = event.target.closest('[data-as-special-tab-v274="herbs"]');
+        const treatmentLauncher = event.target.closest('[data-treatment-special-target-v279="herbs"]');
+        const treatmentTab = event.target.closest('[data-treatment-special-tab-v279="herbs"]');
+        if (!asLauncher && !asTab && !treatmentLauncher && !treatmentTab) return;
+
+        let source = 'condition';
+        if (asLauncher || asTab) source = 'as';
+        else if (treatmentLauncher) source = treatmentLauncher.closest('[data-treatment-launch-source-v279]')?.dataset.treatmentLaunchSourceV279 || 'condition';
+        else {
+            const h = location.hash;
+            source = h.includes('romatoid-artrit') || document.body.classList.contains('romatoid-page-open-v198') ? 'ra' : 'condition';
+        }
+        const stateKey = window.getConditionDiseaseStateV279?.()?.key || '';
+        window.setTimeout(() => renderTreatmentHerbHub(source, source === 'condition' ? stateKey : source), 35);
+    }, true);
+})();
+
+
+// =========================================================
+// V354 - Ozon başlık butonları aç / kapa
+// =========================================================
+(function () {
+    const shell = document.getElementById('ozoneIndexCollapseV354');
+    const toggle = document.getElementById('ozoneIndexToggleV354');
+    const panel = document.getElementById('ozoneIndexPanelV354');
+    if (!shell || !toggle || !panel) return;
+
+    const label = toggle.querySelector('.ozone-index-toggle-label-v354');
+
+    function setOpen(open) {
+        shell.classList.toggle('is-open-v354', open);
+        toggle.setAttribute('aria-expanded', open ? 'true' : 'false');
+        panel.setAttribute('aria-hidden', open ? 'false' : 'true');
+        if (label) label.textContent = open ? 'Başlıkları Gizle' : 'Başlıkları Aç';
+    }
+
+    toggle.addEventListener('click', function () {
+        setOpen(!shell.classList.contains('is-open-v354'));
+    });
+
+    setOpen(true);
+})();
+
+// =========================================================
+// V356 - Osteopati açıldığında doğrudan ana hero'yu viewport başına getir.
+// Önceki smooth-scroll davranışının sayfayı boş video alanında bırakmasını engeller.
+// =========================================================
+(function () {
+    const detailPage = document.getElementById('treatmentDetailPageV71');
+    const osteoView = document.querySelector('[data-treatment-detail-view="osteopati"]');
+
+    if (!detailPage || !osteoView) return;
+
+    function isOsteoOpenV356() {
+        return document.body.classList.contains('treatment-detail-open-v71') &&
+               osteoView.classList.contains('active') &&
+               detailPage.getAttribute('aria-hidden') !== 'true';
+    }
+
+    function syncOsteoStartV356(forceScroll) {
+        const open = isOsteoOpenV356();
+        document.body.classList.toggle('osteo-main-open-v356', open);
+        if (!open || !forceScroll) return;
+
+        const hero = osteoView.querySelector('.osteo-signature-hero-v257, .osteopathy-page-hero-v95');
+        if (!hero) return;
+
+        // CSS sınıfı uygulandıktan sonra gerçek hero konumunu al.
+        requestAnimationFrame(() => {
+            requestAnimationFrame(() => {
+                const top = hero.getBoundingClientRect().top + window.scrollY;
+                window.scrollTo({ top: Math.max(0, top), left: 0, behavior: 'auto' });
+            });
+        });
+    }
+
+    // Osteopati butonuna basıldığında eski smooth-scroll tamamlanmasını beklemeden
+    // ana hero'yu kesin olarak ekran başına al.
+    document.addEventListener('click', function (event) {
+        const trigger = event.target.closest('[data-treatment-detail="osteopati"], [data-treatment-top="osteopati"]');
+        if (!trigger) return;
+        setTimeout(() => syncOsteoStartV356(true), 0);
+        setTimeout(() => syncOsteoStartV356(true), 90);
+    }, true);
+
+    // Geri/ileri, hash ile giriş ve farklı menülerden açılışlarda da aynı davranış.
+    window.addEventListener('popstate', () => setTimeout(() => syncOsteoStartV356(true), 30));
+    window.addEventListener('hashchange', () => setTimeout(() => syncOsteoStartV356(true), 30));
+
+    const observer = new MutationObserver(() => {
+        const wasOpen = document.body.classList.contains('osteo-main-open-v356');
+        const open = isOsteoOpenV356();
+        document.body.classList.toggle('osteo-main-open-v356', open);
+        if (open && !wasOpen) setTimeout(() => syncOsteoStartV356(true), 0);
+    });
+
+    observer.observe(document.body, { attributes: true, attributeFilter: ['class'] });
+    observer.observe(osteoView, { attributes: true, attributeFilter: ['class'] });
+    observer.observe(detailPage, { attributes: true, attributeFilter: ['aria-hidden'] });
+
+    syncOsteoStartV356(location.hash === '#osteopati');
+})();
+
+// =========================================================
+// V357 - Osteopatiyi dış sayfa scroll'undan tamamen bağımsız aç.
+// Hero her açılışta kendi tam ekran kabının en üstünden başlar.
+// =========================================================
+(function () {
+    const detailPage = document.getElementById('treatmentDetailPageV71');
+    const osteoView = document.querySelector('[data-treatment-detail-view="osteopati"]');
+    if (!detailPage || !osteoView) return;
+
+    let wasOpen = false;
+
+    function osteoIsOpenV357() {
+        return document.body.classList.contains('treatment-detail-open-v71') &&
+            detailPage.getAttribute('aria-hidden') !== 'true' &&
+            osteoView.classList.contains('active');
+    }
+
+    function startVideoV357() {
+        const video = osteoView.querySelector('.osteo-bg-video-v355');
+        if (!video) return;
+        video.muted = true;
+        video.playsInline = true;
+        video.setAttribute('muted', '');
+        video.setAttribute('playsinline', '');
+        const promise = video.play();
+        if (promise && typeof promise.catch === 'function') promise.catch(() => {});
+    }
+
+    function syncV357(forceTop) {
+        const open = osteoIsOpenV357();
+        document.body.classList.toggle('osteo-main-fixed-v357', open);
+
+        if (!open) {
+            wasOpen = false;
+            return;
+        }
+
+        if (!wasOpen || forceTop) {
+            detailPage.scrollTop = 0;
+            osteoView.scrollTop = 0;
+            window.scrollTo({ top: 0, left: 0, behavior: 'auto' });
+
+            requestAnimationFrame(() => {
+                detailPage.scrollTop = 0;
+                startVideoV357();
+                requestAnimationFrame(() => {
+                    detailPage.scrollTop = 0;
+                    startVideoV357();
+                });
+            });
+        }
+
+        wasOpen = true;
+    }
+
+    document.addEventListener('click', function (event) {
+        const trigger = event.target.closest('[data-treatment-detail="osteopati"], [data-treatment-top="osteopati"]');
+        if (!trigger) return;
+        setTimeout(() => syncV357(true), 0);
+        setTimeout(() => syncV357(true), 60);
+        setTimeout(() => syncV357(true), 180);
+    }, true);
+
+    const observer = new MutationObserver(() => syncV357(false));
+    observer.observe(document.body, { attributes: true, attributeFilter: ['class'] });
+    observer.observe(detailPage, { attributes: true, attributeFilter: ['aria-hidden'] });
+    observer.observe(osteoView, { attributes: true, attributeFilter: ['class'] });
+
+    window.addEventListener('hashchange', () => setTimeout(() => syncV357(true), 20));
+    window.addEventListener('popstate', () => setTimeout(() => syncV357(true), 20));
+    document.addEventListener('visibilitychange', () => {
+        if (!document.hidden && osteoIsOpenV357()) startVideoV357();
+    });
+
+    syncV357(location.hash === '#osteopati');
+})();
+
+// =========================================================
+// V359 - Osteopati video arka planını aktif görünümde sürekli çalıştır.
+// =========================================================
+(function () {
+    const osteo = document.querySelector('[data-treatment-detail-view="osteopati"]');
+    if (!osteo) return;
+    const video = osteo.querySelector('.osteo-bg-video-v355');
+    if (!video) return;
+
+    function ensurePlayV359() {
+        if (!osteo.classList.contains('active')) return;
+        video.muted = true;
+        video.defaultMuted = true;
+        video.loop = true;
+        video.playsInline = true;
+        video.setAttribute('muted', '');
+        video.setAttribute('playsinline', '');
+        video.setAttribute('autoplay', '');
+        const p = video.play();
+        if (p && typeof p.catch === 'function') p.catch(() => {});
+    }
+
+    video.addEventListener('loadeddata', ensurePlayV359);
+    video.addEventListener('canplay', ensurePlayV359);
+    video.addEventListener('pause', () => {
+        if (osteo.classList.contains('active') && !document.hidden) setTimeout(ensurePlayV359, 120);
+    });
+
+    const obs = new MutationObserver(() => {
+        if (osteo.classList.contains('active')) {
+            requestAnimationFrame(ensurePlayV359);
+            setTimeout(ensurePlayV359, 160);
+            setTimeout(ensurePlayV359, 700);
+        }
+    });
+    obs.observe(osteo, { attributes: true, attributeFilter: ['class'] });
+
+    document.addEventListener('visibilitychange', () => {
+        if (!document.hidden) ensurePlayV359();
+    });
+
+    document.addEventListener('click', (event) => {
+        if (event.target.closest('[data-treatment-detail="osteopati"], [data-treatment-top="osteopati"]')) {
+            setTimeout(ensurePlayV359, 40);
+            setTimeout(ensurePlayV359, 300);
+        }
+    }, true);
+
+    ensurePlayV359();
+})();
+
+// =========================================================
+// V361 - OSTEOPATİ EGZERSİZ OYNATMA LİSTELERİ
+// Şimdilik kartlar kanalın Oynatma Listeleri sayfasına gider.
+// Özel playlist URL'leri geldiğinde aşağıdaki alanlara yazılması yeterlidir.
+// =========================================================
+(function () {
+    const playlistUrlsV361 = {
+        "boyun": "",
+        "omuz-kol": "",
+        "bel-sirt": "",
+        "kalca-diz": "",
+        "ayak-bilek": "",
+        "postur-esneme": ""
+    };
+
+    document.querySelectorAll('[data-playlist-slot-v361]').forEach(function (card) {
+        const key = card.getAttribute('data-playlist-slot-v361');
+        const url = playlistUrlsV361[key];
+        if (url) card.href = url;
+    });
+})();
+
+// =========================================================
+// V362 - İĞNELİ UYGULAMALAR: OZON / PROLOTERAPİ / NÖRAL TERAPİ / NÖRALPRO
+// Serum kartlarındaki mantıkla özel bilgi sayfası açar.
+// =========================================================
+(function () {
+    const view = document.querySelector('[data-treatment-detail-view="igne"]');
+    if (!view || view.dataset.injectionDetailV362 === 'true') return;
+    view.dataset.injectionDetailV362 = 'true';
+
+    const detailData = {
+        'Ozon': {
+            chip: 'LOKAL OZON ENJEKSİYONU',
+            title: 'Lokal Ozon Enjeksiyonu',
+            image: './injection-ozon-v80.png?v=150',
+            intro: 'Tıbbi ozon jeneratöründe medikal oksijenden hazırlanan kontrollü oksijen-ozon gaz karışımının, hekim tarafından seçilmiş eklem çevresi veya yumuşak doku bölgelerine lokal olarak uygulanmasını ifade eder.',
+            tags: ['Lokal uygulama', 'Eklem & yumuşak doku', 'Kişiye özel planlama'],
+            panels: [
+                {
+                    kicker: 'TEMEL BİLGİ',
+                    title: 'Ozonlu iğne nedir?',
+                    body: 'Burada uygulanan madde klasik anlamda bir ilaç ampulü değildir. Medikal ozon cihazında uygulama sırasında hazırlanan oksijen-ozon gaz karışımı steril enjektöre alınır ve hedef dokuya göre lokal enjeksiyon planlanır.'
+                },
+                {
+                    kicker: 'PLANLAMA',
+                    title: 'Nasıl uygulanır?',
+                    body: 'Önce ağrının kaynağı ve hedef anatomik bölge belirlenir. Cilt temizliği ve steril hazırlık sonrası, seçilmiş hastalarda eklem içi, eklem çevresi veya yumuşak doku düzeyinde lokal uygulama düşünülebilir. Gerektiğinde ultrason rehberliği kullanılabilir.'
+                },
+                {
+                    kicker: 'DEĞERLENDİRME',
+                    title: 'Hangi yakınmalarda gündeme gelebilir?',
+                    list: [
+                        'Eklem çevresinde ağrı, hassasiyet ve hareket kısıtlılığı görülen seçilmiş durumlar',
+                        'Kas-tendon-bağ kaynaklı bölgesel yakınmaların tamamlayıcı yönetimi',
+                        'Muayene ile hedef dokunun net olarak belirlendiği lokal kas-iskelet sistemi problemleri'
+                    ]
+                },
+                {
+                    kicker: 'MEKANİZMA',
+                    title: 'Nasıl etki göstermesi beklenir?',
+                    body: 'Lokal ozon uygulamalarının kontrollü oksidatif uyarı, redoks sinyalleri ve inflamatuvar süreçlerle ilişkili mekanizmaları araştırılmaktadır. Bu mekanizmaların klinik sonucu kişiye, hedef dokuya ve temel probleme göre değişebilir.'
+                }
+            ],
+            note: 'Lokal ozon enjeksiyonu, mevcut tanı ve temel tedavinin yerine geçmez. Uygulamanın yöntemi, konsantrasyonu ve seans planı hekim değerlendirmesine göre belirlenmelidir.',
+            safety: '<strong>Önemli güvenlik ayrımı:</strong> Burada anlatılan uygulama lokal enjeksiyondur. Ozon gazının doğrudan damar içine verilmesi aynı işlem değildir ve güvenli bir uygulama olarak değerlendirilmez.'
+        },
+        'Proloterapi': {
+            chip: 'REJENERATİF ENJEKSİYON',
+            title: 'Proloterapi',
+            image: './injection-proloterapi-v80.png?v=150',
+            intro: 'Proloterapi, özellikle bağ, tendon ve eklem çevresindeki seçilmiş kas-iskelet sistemi yakınmalarında kullanılan enjeksiyon temelli bir yaklaşımdır. En sık kullanılan solüsyonlardan biri hipertonik dekstrozdur.',
+            tags: ['Bağ & tendon', 'Entez bölgeleri', 'Doku iyileşme yanıtı'],
+            panels: [
+                { kicker: 'TEMEL BİLGİ', title: 'Proloterapi nedir?', body: 'Amaç yalnızca ağrıyı geçici olarak baskılamak değil; seçilmiş hedef dokuda vücudun iyileşme yanıtıyla ilişkili süreçleri uyarmaya çalışmaktır. Mekanizma tek bir yola indirgenemez.' },
+                { kicker: 'HEDEF DOKU', title: 'Nerelere uygulanabilir?', body: 'Muayene sonrasında bağ-tendon yapışma bölgeleri, eklem çevresi dokular veya belirli yumuşak doku hedefleri seçilebilir. Uygulama noktası şikâyetin yerine göre değil, klinik değerlendirmeye göre belirlenir.' },
+                { kicker: 'SÜREÇ', title: 'İlk günlerde ne olabilir?', list: ['Enjeksiyon bölgesinde geçici hassasiyet veya dolgunluk', 'İlk günlerde ağrıda kısa süreli artış', 'Kişiye göre değişen toparlanma süreci ve kontrollü hareket planı'] },
+                { kicker: 'PLANLAMA', title: 'Kaç seans gerekir?', body: 'Herkes için sabit bir seans sayısı yoktur. Tanı, hedef doku, şikâyetin süresi ve klinik yanıt birlikte değerlendirilir.' }
+            ],
+            note: 'Proloterapi her kas-iskelet sistemi ağrısına uygun değildir. Önce doğru tanı, ardından uygun hedef dokunun belirlenmesi gerekir.',
+            safety: '<strong>Dikkat:</strong> Kullanılan ilaçlar, kanama riski, aktif enfeksiyon ve genel sağlık durumu uygulama öncesinde hekime bildirilmelidir.'
+        },
+        'Nöral Terapi': {
+            chip: 'LOKAL ANESTEZİK TEMELLİ YAKLAŞIM',
+            title: 'Nöral Terapi',
+            image: './injection-noral-terapi-v80.png?v=150',
+            intro: 'Nöral terapi; seçilmiş deri, skar, tetik nokta veya belirli anatomik alanlara lokal anestezik içeren enjeksiyonların planlanabildiği tamamlayıcı bir yaklaşımdır.',
+            tags: ['Skar değerlendirmesi', 'Tetik noktalar', 'Ağrı modülasyonu'],
+            panels: [
+                { kicker: 'TEMEL BİLGİ', title: 'Nöral terapi nedir?', body: 'Uygulama genellikle düşük konsantrasyonlu lokal anesteziklerin belirlenmiş noktalara enjeksiyonuna dayanır. Hedef, ağrı ve otonom sinir sistemiyle ilişkili yanıtların klinik değerlendirme içinde ele alınmasıdır.' },
+                { kicker: 'DEĞERLENDİRME', title: 'Hangi bölgeler seçilebilir?', body: 'Skar dokuları, tetik noktalar, hassas cilt alanları veya anatomik değerlendirmeyle ilişkili seçilmiş bölgeler hekim tarafından belirlenebilir.' },
+                { kicker: 'KANIT', title: 'Ne beklenmeli?', body: 'Farklı yakınmalarda kullanımı bildirilmiş olsa da klinik kanıt düzeyi endikasyona göre değişir. Bu nedenle uygulama kişiye özel ve tamamlayıcı çerçevede değerlendirilmelidir.' },
+                { kicker: 'GÜVENLİK', title: 'Neler değerlendirilir?', list: ['Lokal anesteziklere karşı bilinen alerji', 'Kanama riski ve kullanılan ilaçlar', 'Uygulama bölgesinde enfeksiyon veya cilt problemi'] }
+            ],
+            note: 'Nöral terapi ana tanı ve tedavinin yerine geçmez. Uygunluk, hedef bölge ve içerik hekim değerlendirmesiyle planlanır.',
+            safety: '<strong>Dikkat:</strong> Lokal anesteziklere karşı geçmişte gelişmiş reaksiyonlar ve kullanılan tüm ilaçlar uygulama öncesinde hekime bildirilmelidir.'
+        },
+        'NöralPro': {
+            chip: 'KİŞİYE ÖZEL ENJEKSİYON PLANI',
+            title: 'NöralPro',
+            image: './injection-noralpro-v80.png?v=150',
+            intro: 'NöralPro, klinikte muayene ve hedef doku değerlendirmesi sonrasında kişiye özel planlanan enjeksiyon yaklaşımı olarak ele alınır. İçerik, bölge ve seans planı hastaya göre belirlenir.',
+            tags: ['Kişiye özel', 'Hedef doku', 'Klinik planlama'],
+            panels: [
+                { kicker: 'YAKLAŞIM', title: 'NöralPro nasıl düşünülmeli?', body: 'Bu başlık herkese aynı içerikle uygulanan sabit bir formül olarak değerlendirilmez. Öncelik, kişinin şikâyetini ve hedef dokuyu belirlemek, ardından uygun enjeksiyon planını oluşturmaktır.' },
+                { kicker: 'PLANLAMA', title: 'İçerik ve bölge nasıl belirlenir?', body: 'Muayene bulguları, mevcut hastalıklar, kullanılan ilaçlar ve hedeflenen klinik amaç birlikte değerlendirilir. Uygulama bölgesi ve kullanılacak içerik buna göre kişiselleştirilir.' },
+                { kicker: 'TAKİP', title: 'Tedavi yanıtı nasıl izlenir?', list: ['Ağrı ve hassasiyet düzeyi', 'Hareket kapasitesi ve günlük fonksiyon', 'Uygulama sonrası klinik değişim ve yeniden değerlendirme'] },
+                { kicker: 'SINIRLAR', title: 'Her hastaya uygun mudur?', body: 'Hayır. Enjeksiyon gereksinimi olmayan veya farklı tedavinin öncelikli olduğu kişilerde kullanılmayabilir. Uygunluk yalnızca klinik değerlendirme sonrasında belirlenir.' }
+            ],
+            note: 'NöralPro adı altında uygulanacak içerik ve yöntem kişiye göre değişebileceği için, web sayfasındaki bilgi genel çerçeve sunar; kişisel plan muayene sonrasında belirlenir.',
+            safety: '<strong>Güvenlik:</strong> Kullanılan tüm ilaçlar, alerji öyküsü, kanama riski ve eşlik eden hastalıklar enjeksiyon planlanmadan önce hekime bildirilmelidir.'
+        }
+    };
+
+    const cards = Array.from(view.querySelectorAll('.injection-card-v72'));
+    const supportedCards = cards.filter(card => detailData[(card.querySelector('h2')?.textContent || '').trim()]);
+    if (!supportedCards.length) return;
+
+    const detail = document.createElement('section');
+    detail.className = 'injection-special-detail-v362';
+    detail.id = 'injectionSpecialDetailV362';
+    detail.setAttribute('aria-hidden', 'true');
+    detail.innerHTML = `
+        <div class="injection-special-topbar-v362">
+            <button type="button" class="injection-special-back-v362" id="injectionSpecialBackV362">← İğne Uygulamalarına Dön</button>
+            <div class="injection-special-heading-v362">
+                <small>İĞNELİ UYGULAMA</small>
+                <strong id="injectionSpecialTopTitleV362">Detaylı Bilgi</strong>
+            </div>
+            <span class="injection-special-chip-v362" id="injectionSpecialTopChipV362">Bilgi Edin</span>
+        </div>
+        <div class="injection-special-shell-v362" id="injectionSpecialContentV362"></div>
+    `;
+    view.appendChild(detail);
+
+    const content = detail.querySelector('#injectionSpecialContentV362');
+    const topTitle = detail.querySelector('#injectionSpecialTopTitleV362');
+    const topChip = detail.querySelector('#injectionSpecialTopChipV362');
+    const backButton = detail.querySelector('#injectionSpecialBackV362');
+    let lastTrigger = null;
+
+    function render(key) {
+        const data = detailData[key];
+        if (!data) return;
+        topTitle.textContent = data.title;
+        topChip.textContent = data.chip;
+        content.innerHTML = `
+            <section class="injection-special-hero-v362">
+                <div class="injection-special-media-v362">
+                    <img src="${data.image}" alt="${data.title} uygulamasını temsil eden medikal görsel">
+                </div>
+                <div class="injection-special-copy-v362">
+                    <span>${data.chip}</span>
+                    <h1>${data.title}</h1>
+                    <p>${data.intro}</p>
+                    <div class="injection-special-tags-v362">${data.tags.map(tag => `<span>${tag}</span>`).join('')}</div>
+                </div>
+            </section>
+            <section class="injection-special-grid-v362">
+                ${data.panels.map(panel => `
+                    <article class="injection-special-panel-v362">
+                        <small>${panel.kicker}</small>
+                        <h2>${panel.title}</h2>
+                        ${panel.body ? `<p>${panel.body}</p>` : ''}
+                        ${panel.list ? `<ul>${panel.list.map(item => `<li>${item}</li>`).join('')}</ul>` : ''}
+                    </article>
+                `).join('')}
+            </section>
+            <div class="injection-special-note-v362"><strong>Klinik yaklaşım:</strong> ${data.note}</div>
+            <div class="injection-ozone-safety-v362">${data.safety}</div>
+        `;
+    }
+
+    function scrollViewTop() {
+        const top = view.getBoundingClientRect().top + window.scrollY - 8;
+        window.scrollTo({ top: Math.max(0, top), behavior: 'smooth' });
+    }
+
+    function openDetail(key, trigger) {
+        lastTrigger = trigger || null;
+        render(key);
+        view.classList.add('injection-detail-active-v362');
+        detail.setAttribute('aria-hidden', 'false');
+        requestAnimationFrame(scrollViewTop);
+    }
+
+    function closeDetail() {
+        view.classList.remove('injection-detail-active-v362');
+        detail.setAttribute('aria-hidden', 'true');
+        if (lastTrigger) {
+            requestAnimationFrame(() => {
+                lastTrigger.closest('.injection-card-v72')?.scrollIntoView({ behavior: 'smooth', block: 'center' });
+            });
+        }
+    }
+
+    supportedCards.forEach(card => {
+        const key = (card.querySelector('h2')?.textContent || '').trim();
+        card.classList.add('injection-detail-ready-v362');
+        card.dataset.injectionDetailKeyV362 = key;
+
+        const button = document.createElement('button');
+        button.type = 'button';
+        button.className = 'injection-detail-open-v362';
+        button.textContent = 'Bilgi Edin';
+        button.setAttribute('aria-label', `${key} hakkında detaylı bilgi aç`);
+        card.appendChild(button);
+
+        button.addEventListener('click', event => {
+            event.stopPropagation();
+            openDetail(key, button);
+        });
+
+        card.addEventListener('click', event => {
+            if (event.target.closest('button, a')) return;
+            openDetail(key, button);
+        });
+    });
+
+    backButton?.addEventListener('click', closeDetail);
+
+    document.addEventListener('keydown', event => {
+        if (event.key === 'Escape' && view.classList.contains('injection-detail-active-v362')) {
+            closeDetail();
+        }
+    });
+})();
+
+// =========================================================
+// V364 - Manuel uygulama kartları -> bağımsız detay sayfaları
+// =========================================================
+(function(){
+    const page=document.getElementById('osteoManualDetailPageV364');
+    const back=document.getElementById('osteoManualDetailBackV364');
+    if(!page) return;
+    const title=document.getElementById('osteoManualDetailTitleV364');
+    const kicker=document.getElementById('osteoManualDetailKickerV364');
+    const intro=document.getElementById('osteoManualDetailIntroV364');
+    const index=document.getElementById('osteoManualDetailIndexV364');
+    const views=[...page.querySelectorAll('[data-manual-view-v364]')];
+    const meta={
+        'postur':['01','OSTEOPATİ • POSTÜR ANALİZİ','Postür Analizi','Oturma, ayakta durma ve yürüyüş sırasında vücudun yükü nasıl taşıdığını görsel örneklerle inceleyin.'],
+        'somato-visseral':['02','OSTEOPATİ • FONKSİYONEL İLİŞKİLER','Somato-Visseral Bağlantı','Kas-iskelet sistemi ile gövde içi yapıların fonksiyonel ilişkilerine genel bakış.'],
+        'mobilizasyon':['03','OSTEOPATİ • KONTROLLÜ HAREKET','Mobilizasyon','Eklem hareket açıklığı ve kontrollü hareketi destekleyen manuel yaklaşımları inceleyin.'],
+        'pelvis-omurga':['04','OSTEOPATİ • HAREKET ZİNCİRİ','Pelvis & Omurga','Boyun, toraks, bel ve pelvis arasındaki hareket ve yük aktarımı ilişkilerini birlikte ele alın.']
+    };
+    let lastFocus=null;
+    function open(key,trigger){
+        if(!meta[key]) return;
+        lastFocus=trigger||document.activeElement;
+        const m=meta[key]; index.textContent=m[0]; kicker.textContent=m[1]; title.textContent=m[2]; intro.textContent=m[3];
+        views.forEach(v=>{const on=v.dataset.manualViewV364===key;v.hidden=!on;v.classList.toggle('is-active-v364',on)});
+        page.hidden=false; page.setAttribute('aria-hidden','false'); document.body.classList.add('osteo-manual-detail-open-v364'); page.scrollTop=0;
+    }
+    function close(){page.hidden=true;page.setAttribute('aria-hidden','true');document.body.classList.remove('osteo-manual-detail-open-v364'); if(lastFocus?.focus) lastFocus.focus();}
+    document.addEventListener('click',e=>{const b=e.target.closest('[data-osteo-manual-detail-v364]');if(!b)return;open(b.dataset.osteoManualDetailV364,b)});
+    back?.addEventListener('click',close);
+    document.addEventListener('keydown',e=>{if(e.key==='Escape'&&!page.hidden)close()});
 })();
