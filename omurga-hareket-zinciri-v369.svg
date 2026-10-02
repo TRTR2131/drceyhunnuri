@@ -1,0 +1,38 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 760" role="img" aria-labelledby="t d">
+<title id="t">Omurga hareket zinciri</title><desc id="d">Boyun, toraks, bel ve pelvis bölgelerinin birbiriyle ilişkisini gösteren modern medikal şema.</desc>
+<defs>
+  <linearGradient id="bg2" x1="0" y1="0" x2="1" y2="1"><stop stop-color="#fafdff"/><stop offset="1" stop-color="#e9f7fc"/></linearGradient>
+  <linearGradient id="sp" x1="0" y1="0" x2="0" y2="1"><stop stop-color="#62dcff"/><stop offset=".45" stop-color="#20a6dd"/><stop offset="1" stop-color="#0f7ebd"/></linearGradient>
+  <filter id="s"><feDropShadow dx="0" dy="8" stdDeviation="10" flood-color="#07527a" flood-opacity=".14"/></filter>
+</defs>
+<rect width="1200" height="760" rx="34" fill="url(#bg2)"/>
+<text x="60" y="70" font-family="Arial,sans-serif" font-size="26" font-weight="800" fill="#143e57">Omurga Hareket Zinciri</text>
+<text x="60" y="105" font-family="Arial,sans-serif" font-size="16" fill="#6d8998">Boyun, toraks, bel ve pelvis birbirini tamamlayan hareket bölgeleridir</text>
+<g opacity=".16" fill="#2aaadf"><ellipse cx="600" cy="405" rx="255" ry="300"/><ellipse cx="600" cy="415" rx="165" ry="300" fill="#fff"/></g>
+<g transform="translate(600 175)" filter="url(#s)">
+  <circle cx="0" cy="-18" r="62" fill="#dff3fb" stroke="#81c9e5" stroke-width="5"/>
+  <path d="M-90 52 C-160 88 -185 190 -165 310 C-150 400 -110 475 -90 520 L90 520 C110 475 150 400 165 310 C185 190 160 88 90 52 C55 34 35 24 0 24 C-35 24 -55 34 -90 52Z" fill="#eff9fd" stroke="#93d0e7" stroke-width="5"/>
+  <path d="M0 42 C-16 82 -10 112 0 142 C11 175 4 206 -4 238 C-13 275 -5 310 8 340 C20 370 13 405 2 440 C-7 468 -2 492 0 514" fill="none" stroke="url(#sp)" stroke-width="28" stroke-linecap="round"/>
+  <g fill="#fff" stroke="#1595cf" stroke-width="3">
+    <circle cx="0" cy="75" r="12"/><circle cx="-2" cy="110" r="12"/><circle cx="1" cy="145" r="13"/>
+    <circle cx="2" cy="185" r="14"/><circle cx="-2" cy="225" r="14"/><circle cx="-5" cy="265" r="15"/><circle cx="0" cy="306" r="15"/>
+    <circle cx="7" cy="350" r="16"/><circle cx="7" cy="395" r="17"/><circle cx="2" cy="440" r="18"/>
+  </g>
+  <path d="M-105 520 Q0 475 105 520 Q85 590 0 610 Q-85 590 -105 520Z" fill="#e7f5fa" stroke="#6dbfe0" stroke-width="6"/>
+</g>
+<!-- rotational arcs -->
+<g fill="none" stroke="#2aaee3" stroke-width="10" stroke-linecap="round">
+  <path d="M365 255 C440 205 510 210 555 250"/><path d="M835 255 C760 205 690 210 645 250"/>
+  <path d="M320 405 C410 345 500 350 552 390"/><path d="M880 405 C790 345 700 350 648 390"/>
+  <path d="M330 565 C415 510 505 515 555 550"/><path d="M870 565 C785 510 695 515 645 550"/>
+</g>
+<g fill="#2aaee3"><path d="M548 248 l-28 -4 15 25Z"/><path d="M652 248 l28 -4 -15 25Z"/><path d="M545 389 l-29 -3 16 25Z"/><path d="M655 389 l29 -3 -16 25Z"/><path d="M548 550 l-29 -3 16 25Z"/><path d="M652 550 l29 -3 -16 25Z"/></g>
+<!-- labels -->
+<g font-family="Arial,sans-serif" font-weight="800" font-size="18" fill="#173f58">
+  <rect x="90" y="200" width="200" height="56" rx="20" fill="#fff" stroke="#c8e5f0"/><text x="190" y="235" text-anchor="middle">Boyun</text>
+  <rect x="90" y="350" width="200" height="56" rx="20" fill="#fff" stroke="#c8e5f0"/><text x="190" y="385" text-anchor="middle">Toraks</text>
+  <rect x="910" y="440" width="200" height="56" rx="20" fill="#fff" stroke="#c8e5f0"/><text x="1010" y="475" text-anchor="middle">Bel</text>
+  <rect x="910" y="580" width="200" height="56" rx="20" fill="#fff" stroke="#c8e5f0"/><text x="1010" y="615" text-anchor="middle">Pelvis</text>
+</g>
+<g stroke="#9ed6ea" stroke-width="3"><line x1="290" y1="228" x2="470" y2="250"/><line x1="290" y1="378" x2="470" y2="385"/><line x1="910" y1="468" x2="710" y2="450"/><line x1="910" y1="608" x2="705" y2="600"/></g>
+</svg>

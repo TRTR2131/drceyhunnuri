@@ -1985,6 +1985,251 @@ if (
     }
 })();
 
+// V410 - Fitoterapi bitkiler üst alanı kompakt ve modern görünüme getirildi.
+// V411 - Ana sayfa CTA grubu ve site arama düğmesi ilk ekranda görünecek şekilde yukarı alındı.
+
+
+// =========================================================
+// V402 - TÜM SAYFALARDA ORTAK BAĞLANTI NOKTALARI MENÜSÜ
+// =========================================================
+(function () {
+    const nav = document.getElementById('globalConnectedNavV402');
+    if (!nav) return;
+
+    const menus = Array.from(nav.querySelectorAll('[data-v402-menu]'));
+    const routeButtons = Array.from(nav.querySelectorAll('[data-v402-route]'));
+    const brand = document.getElementById('globalConnectedBrandV402');
+    const legacySelector = [
+        '#siteHeader', '.hero-modern-nav-v82', '.general-featured-nav-v124',
+        '.ankilozan-page-nav-v87', '.treatment-page-nav', '.pain-page-nav',
+        '.treatment-detail-nav-modern-v160', '.device-detail-nav-v157',
+        '.about-page-nav-v47', '.general-health-detail-nav-v75',
+        '.media-page-nav-v48', '.pain-full-detail-nav-v215'
+    ].join(',');
+
+    function forceHideLegacyNavsV402() {
+        document.querySelectorAll(legacySelector).forEach(function (legacyNav) {
+            if (legacyNav === nav) return;
+            legacyNav.style.setProperty('display', 'none', 'important');
+            legacyNav.style.setProperty('visibility', 'hidden', 'important');
+            legacyNav.setAttribute('aria-hidden', 'true');
+        });
+    }
+
+    function setNavActiveV402(route) {
+        if (brand) brand.removeAttribute('aria-current');
+        nav.querySelectorAll('.global-connected-item-v402').forEach(function (button) {
+            button.removeAttribute('aria-current');
+        });
+
+        if (route === 'home') {
+            if (brand) brand.setAttribute('aria-current', 'page');
+            return;
+        }
+
+        let active = nav.querySelector('[data-v402-route="' + route + '"]');
+        if (!active) {
+            const menu = nav.querySelector('[data-v402-menu="' + route + '"]');
+            if (menu) active = menu.querySelector(':scope > .global-connected-item-v402');
+        }
+        if (active) active.setAttribute('aria-current', 'page');
+    }
+
+    function closeMenusV402(except) {
+        menus.forEach(function (menu) {
+            if (menu === except) return;
+            menu.classList.remove('open');
+            const button = menu.querySelector(':scope > .global-connected-item-v402');
+            const panel = menu.querySelector(':scope > .global-connected-panel-v402');
+            if (button) button.setAttribute('aria-expanded', 'false');
+            if (panel) panel.setAttribute('aria-hidden', 'true');
+        });
+    }
+
+    function toggleMenuV402(menu) {
+        const button = menu.querySelector(':scope > .global-connected-item-v402');
+        const panel = menu.querySelector(':scope > .global-connected-panel-v402');
+        const willOpen = !menu.classList.contains('open');
+        closeMenusV402(menu);
+        menu.classList.toggle('open', willOpen);
+        if (button) button.setAttribute('aria-expanded', willOpen ? 'true' : 'false');
+        if (panel) panel.setAttribute('aria-hidden', willOpen ? 'false' : 'true');
+    }
+
+    menus.forEach(function (menu) {
+        const button = menu.querySelector(':scope > .global-connected-item-v402');
+        if (!button) return;
+        button.addEventListener('click', function (event) {
+            event.preventDefault();
+            event.stopPropagation();
+            setNavActiveV402(menu.dataset.v402Menu || '');
+            toggleMenuV402(menu);
+        });
+    });
+
+    function clickExistingV402(selector, requestedRoute) {
+        const target = document.querySelector(selector);
+        if (!target) return false;
+        if (requestedRoute) {
+            setNavActiveV402(requestedRoute);
+            if (requestedRoute !== 'home') setPageModeV408(false);
+        }
+        target.click();
+        closeMenusV402();
+        return true;
+    }
+
+    function currentRouteV402() {
+        const body = document.body;
+        if (body.classList.contains('media-page-open')) return 'media';
+        if (body.classList.contains('pain-page-open') || body.classList.contains('pain-full-detail-open-v215')) return 'pain';
+        if (body.classList.contains('general-health-detail-open-v75')) return 'health';
+        if (
+            body.classList.contains('treatment-page-open') ||
+            body.classList.contains('ankilozan-page-open-v87') ||
+            body.classList.contains('romatoid-page-open-v198') ||
+            body.classList.contains('condition-disease-page-open-v246') ||
+            body.classList.contains('as-special-open-v274') ||
+            body.classList.contains('treatment-special-open-v279')
+        ) return 'areas';
+        if (
+            body.classList.contains('treatment-detail-open-v71') ||
+            body.classList.contains('device-detail-page-open-v157') ||
+            body.classList.contains('osteo-standalone-open-v260') ||
+            body.classList.contains('phyto-herb-detail-open-v351')
+        ) return 'treatments';
+        if (
+            body.classList.contains('about-page-open') ||
+            body.classList.contains('legal-page-open-v56') ||
+            body.classList.contains('info-guide-page-open-v143') ||
+            body.classList.contains('info-guide-open-v143') ||
+            body.classList.contains('site-feedback-open-v332')
+        ) return 'info';
+        return 'home';
+    }
+
+    function hasSubpageStateV408() {
+        return Array.from(document.body.classList).some(function (name) {
+            return /(?:page|detail|special|featured|standalone)-open/.test(name);
+        });
+    }
+
+    function setPageModeV408(isHome) {
+        document.body.classList.toggle('global-home-open-v408', isHome);
+        document.body.classList.toggle('global-subpage-open-v405', !isHome);
+        const motionLayer = document.querySelector('.hero-motion-layer-v407');
+        if (motionLayer) motionLayer.hidden = !isHome;
+    }
+
+    function updateActiveV402() {
+        forceHideLegacyNavsV402();
+        const route = currentRouteV402();
+        setPageModeV408(route === 'home' && !hasSubpageStateV408());
+        setNavActiveV402(route);
+    }
+
+    function goHomeV402() {
+        setPageModeV408(true);
+        setNavActiveV402('home');
+        const routes = [
+            ['general-health-detail-open-v75', '#healthDetailHomeV75'],
+            ['treatment-detail-open-v71', '#treatmentDetailHomeV71'],
+            ['device-detail-page-open-v157', '#deviceDetailHomeV157'],
+            ['pain-page-open', '#painPageHomeButton'],
+            ['treatment-page-open', '#treatmentPageHomeButton'],
+            ['media-page-open', '#mediaPageHomeButton'],
+            ['about-page-open', '#aboutPageHomeButton'],
+            ['ankilozan-page-open-v87', '#ankilozanHomeButtonV87'],
+            ['romatoid-page-open-v198', '#romatoidHomeButtonV198'],
+            ['legal-page-open-v56', '#legalHomeButtonV56'],
+            ['info-guide-page-open-v143', '#infoGuideHomeV143']
+        ];
+
+        for (const route of routes) {
+            if (document.body.classList.contains(route[0]) && clickExistingV402(route[1], 'home')) return;
+        }
+
+        const visibleHome = Array.from(document.querySelectorAll(
+            '#generalFeaturedHomeButtonV124,#ankilozanHomeButtonV87,#romatoidHomeButtonV198,' +
+            '#treatmentPageHomeButton,#painPageHomeButton,#legalHomeButtonV56,#infoGuideHomeV143,' +
+            '#treatmentDetailHomeV71,#deviceDetailHomeV157,#aboutPageHomeButton,#healthDetailHomeV75,#mediaPageHomeButton'
+        )).find(function (button) {
+            const page = button.closest('section');
+            return page && page.getAttribute('aria-hidden') !== 'true';
+        });
+
+        if (visibleHome) {
+            visibleHome.click();
+        } else {
+            document.querySelectorAll('section[aria-hidden="false"]').forEach(function (page) {
+                if (page.id !== 'anasayfa') page.setAttribute('aria-hidden', 'true');
+            });
+            document.body.className = document.body.className.split(/\s+/).filter(function (name) {
+                return !/(page-open|detail-open|special-open|featured-open|standalone-open)/.test(name);
+            }).join(' ');
+            history.pushState({ page: 'home' }, '', location.pathname + location.search);
+            window.scrollTo({ top: 0, behavior: 'smooth' });
+        }
+        closeMenusV402();
+        window.setTimeout(updateActiveV402, 30);
+    }
+
+    if (brand) brand.addEventListener('click', goHomeV402);
+
+    routeButtons.forEach(function (button) {
+        button.addEventListener('click', function () {
+            const route = button.dataset.v402Route;
+            setNavActiveV402(route);
+            if (route === 'areas') clickExistingV402('#heroDiseasesButton', 'areas');
+            if (route === 'pain') clickExistingV402('#heroPainButton', 'pain');
+            if (route === 'media') clickExistingV402('#heroMediaButton', 'media');
+        });
+    });
+
+    nav.querySelectorAll('[data-v402-treatment]').forEach(function (button) {
+        button.addEventListener('click', function () {
+            clickExistingV402('.hero-treatment-dropdown [data-treatment-detail="' + button.dataset.v402Treatment + '"]', 'treatments');
+        });
+    });
+
+    nav.querySelectorAll('[data-v402-health]').forEach(function (button) {
+        button.addEventListener('click', function () {
+            clickExistingV402('.hero-health-dropdown [data-health-detail="' + button.dataset.v402Health + '"]', 'health');
+        });
+    });
+
+    nav.querySelectorAll('[data-v402-guide]').forEach(function (button) {
+        button.addEventListener('click', function () {
+            clickExistingV402('.hero-info-menu-v54 [data-info-guide="' + button.dataset.v402Guide + '"]', 'info');
+        });
+    });
+
+    const feedback = nav.querySelector('[data-v402-feedback]');
+    if (feedback) feedback.addEventListener('click', function () {
+        clickExistingV402('.hero-info-menu-v54 .site-feedback-open-v332', 'info');
+    });
+
+    nav.querySelectorAll('[data-v402-legal]').forEach(function (button) {
+        button.addEventListener('click', function () {
+            clickExistingV402('.hero-info-menu-v54 [data-legal-doc="' + button.dataset.v402Legal + '"]', 'info');
+        });
+    });
+
+    document.addEventListener('click', function (event) {
+        if (!nav.contains(event.target)) closeMenusV402();
+    });
+    document.addEventListener('keydown', function (event) {
+        if (event.key === 'Escape') closeMenusV402();
+    });
+    window.addEventListener('popstate', function () { window.setTimeout(updateActiveV402, 30); });
+    window.addEventListener('hashchange', function () { window.setTimeout(updateActiveV402, 30); });
+    new MutationObserver(updateActiveV402).observe(document.body, { attributes: true, attributeFilter: ['class'] });
+
+    updateActiveV402();
+})();
+
+// V409 - Alt sayfalardaki eski menü payları temizlendi; içerik ortak menünün hemen altında başlar.
+
 
 // =========================================================
 // V42 - TEDAVİ ALANLARI SAYFASI ÜST MENÜLERİ
@@ -3337,7 +3582,7 @@ window.addEventListener("load", async () => {
         return selected;
     }
 
-    function openTreatmentDetailV71(name) {
+    function openTreatmentDetailV71(name, options = {}) {
 
         if (!detailPage) {
             return;
@@ -3378,14 +3623,16 @@ window.addEventListener("load", async () => {
             }
         }
 
-        history.pushState(
-            {
-                page: "treatment-detail",
-                treatment: selected
-            },
-            "",
-            "#" + selected
-        );
+        if (options.pushHistory !== false && location.hash !== "#" + selected) {
+            history.pushState(
+                {
+                    page: "treatment-detail",
+                    treatment: selected
+                },
+                "",
+                "#" + selected
+            );
+        }
 
         window.scrollTo({
             top: 0,
@@ -3598,8 +3845,24 @@ window.addEventListener("load", async () => {
         validTreatments.has(initialHash) &&
         detailPage
     ) {
-        openTreatmentDetailV71(initialHash);
+        openTreatmentDetailV71(initialHash, { pushHistory: false });
     }
+
+    // V368: Tarayıcı geri/ileri düğmeleri tedavi sekmelerini gerçekten geri yüklesin.
+    window.addEventListener("popstate", () => {
+        const route = location.hash.replace("#", "");
+
+        if (validTreatments.has(route)) {
+            openTreatmentDetailV71(route, { pushHistory: false });
+            return;
+        }
+
+        // Ana sayfaya geri dönüldüğünde açık tedavi katmanını kapat.
+        if (!location.hash && document.body.classList.contains("treatment-detail-open-v71")) {
+            closeTreatmentDetailV71();
+            window.scrollTo({ top: 0, left: 0, behavior: "auto" });
+        }
+    });
 
 })();
 
@@ -3996,9 +4259,9 @@ window.addEventListener("load", async () => {
 
 
 // =========================================================
-// V309 - ANA HERO: DOKTOR + TÜM TEDAVİ ALANI HASTALIKLARI
-// Doktor -> AS -> RA -> Baş Ağrısı -> Bel/Sırt -> Fibromiyalji
-// -> Huzursuz Bacak -> İltihabi Bağırsak -> Kronik Yorgunluk
+// V401 - ANA HERO OTOMATIK GEÇİŞ
+// Her 5 saniyede bir sonraki slide'a geçer.
+// Manuel ileri/geri tıklamasında sayaç yeniden 5 saniyeden başlar.
 // =========================================================
 (function () {
     const slider = document.getElementById("heroSliderV86");
@@ -4007,7 +4270,9 @@ window.addEventListener("load", async () => {
     const slides = Array.from(slider.querySelectorAll('.hero-slide-v86'));
     if (!slides.length) return;
 
+    const AUTO_DELAY_V401 = 5000;
     let activeIndex = Math.max(0, slides.findIndex(slide => slide.classList.contains('is-active')));
+    let autoTimerV401 = null;
 
     function activateByIndex(index) {
         const normalized = (index + slides.length) % slides.length;
@@ -4021,12 +4286,32 @@ window.addEventListener("load", async () => {
         });
     }
 
+    function stopAutoV401() {
+        if (!autoTimerV401) return;
+        window.clearInterval(autoTimerV401);
+        autoTimerV401 = null;
+    }
+
+    function startAutoV401() {
+        stopAutoV401();
+        if (slides.length < 2 || document.hidden) return;
+
+        autoTimerV401 = window.setInterval(() => {
+            activateByIndex(activeIndex + 1);
+        }, AUTO_DELAY_V401);
+    }
+
+    function restartAutoV401() {
+        startAutoV401();
+    }
+
     slider.addEventListener('click', event => {
         const next = event.target.closest('[data-hero-next-v309]');
         if (next) {
             event.preventDefault();
             event.stopPropagation();
             activateByIndex(activeIndex + 1);
+            restartAutoV401();
             return;
         }
 
@@ -4035,10 +4320,17 @@ window.addEventListener("load", async () => {
             event.preventDefault();
             event.stopPropagation();
             activateByIndex(activeIndex - 1);
+            restartAutoV401();
         }
     });
 
+    document.addEventListener('visibilitychange', () => {
+        if (document.hidden) stopAutoV401();
+        else startAutoV401();
+    });
+
     activateByIndex(activeIndex);
+    startAutoV401();
 })();
 
 
@@ -4933,7 +5225,7 @@ window.addEventListener("load", async () => {
         "kurler": {
             kicker: "GENEL SAĞLIK",
             title: "Detoks Kürleri",
-            subtitle: "Bütüncül detoks ve destek programları"
+            subtitle: "35 destekleyici tarif • arama ve kategori filtreleri"
         },
         "egzersizler": {
             kicker: "GENEL SAĞLIK",
@@ -8606,7 +8898,7 @@ window.addEventListener("load", async () => {
         }
     }
 
-    function openSpecialView(key) {
+    function openSpecialView(key, options = {}) {
         activateTab(key || 'manual');
 
         /* V304: bağımsız Osteopati ekranı gerçek viewport üzerinde açılsın. */
@@ -8615,6 +8907,16 @@ window.addEventListener("load", async () => {
         specialView.setAttribute('aria-hidden', 'false');
         page.classList.add('is-special-view-open-v259');
         document.body.classList.add('osteo-standalone-open-v260');
+
+        const activeKeyV368 = key || 'manual';
+        const routeHashV368 = '#osteopati-' + activeKeyV368;
+        if (options.pushHistory !== false && location.hash !== routeHashV368) {
+            history.pushState(
+                { page: 'osteopati-special', tab: activeKeyV368 },
+                '',
+                routeHashV368
+            );
+        }
 
         window.scrollTo({ top: 0, left: 0, behavior: 'auto' });
         specialView.scrollTop = 0;
@@ -8641,7 +8943,18 @@ window.addEventListener("load", async () => {
     }
 
     tabs.forEach((tab, index) => {
-        tab.addEventListener('click', () => activateTab(tab.dataset.osteoTab));
+        tab.addEventListener('click', () => {
+            const keyV368 = tab.dataset.osteoTab;
+            activateTab(keyV368);
+            const hashV368 = '#osteopati-' + keyV368;
+            if (location.hash !== hashV368) {
+                history.pushState(
+                    { page: 'osteopati-special', tab: keyV368 },
+                    '',
+                    hashV368
+                );
+            }
+        });
         tab.addEventListener('keydown', event => {
             if (!['ArrowRight', 'ArrowLeft', 'Home', 'End'].includes(event.key)) return;
             event.preventDefault();
@@ -8733,12 +9046,22 @@ window.addEventListener("load", async () => {
         button.addEventListener('click', () => animatedOpenSpecialViewV272(button));
     });
 
-    if (backButton) backButton.addEventListener('click', () => closeSpecialView());
+    if (backButton) backButton.addEventListener('click', () => {
+        if (/^#osteopati-(manual|exercise|sports|pain|faq|articles)$/.test(location.hash)) {
+            history.back();
+        } else {
+            closeSpecialView();
+        }
+    });
 
     // ESC ile de bağımsız özel sayfadan Osteopati ana vitrininə dön.
     document.addEventListener('keydown', event => {
         if (event.key === 'Escape' && document.body.classList.contains('osteo-standalone-open-v260')) {
-            closeSpecialView();
+            if (/^#osteopati-(manual|exercise|sports|pain|faq|articles)$/.test(location.hash)) {
+                history.back();
+            } else {
+                closeSpecialView();
+            }
         }
     });
 
@@ -8750,6 +9073,20 @@ window.addEventListener("load", async () => {
             closeSpecialView({ returnFocus: false });
         }
     }, true);
+
+    // V368: Geri/ileri ile Osteopati alt ekranları arasında gerçek geçmiş gezinmesi.
+    window.addEventListener('popstate', () => {
+        const matchV368 = location.hash.match(/^#osteopati-(manual|exercise|sports|pain|faq|articles)$/);
+
+        if (matchV368) {
+            openSpecialView(matchV368[1], { pushHistory: false });
+            return;
+        }
+
+        if (location.hash === '#osteopati' && document.body.classList.contains('osteo-standalone-open-v260')) {
+            closeSpecialView({ returnFocus: false });
+        }
+    });
 
     activateTab('manual');
     specialView.hidden = true;
@@ -12053,20 +12390,1263 @@ window.addEventListener("load", async () => {
     const views=[...page.querySelectorAll('[data-manual-view-v364]')];
     const meta={
         'postur':['01','OSTEOPATİ • POSTÜR ANALİZİ','Postür Analizi','Oturma, ayakta durma ve yürüyüş sırasında vücudun yükü nasıl taşıdığını görsel örneklerle inceleyin.'],
-        'somato-visseral':['02','OSTEOPATİ • FONKSİYONEL İLİŞKİLER','Somato-Visseral Bağlantı','Kas-iskelet sistemi ile gövde içi yapıların fonksiyonel ilişkilerine genel bakış.'],
-        'mobilizasyon':['03','OSTEOPATİ • KONTROLLÜ HAREKET','Mobilizasyon','Eklem hareket açıklığı ve kontrollü hareketi destekleyen manuel yaklaşımları inceleyin.'],
+        'somato-visseral':['02','OSTEOPATİ • FONKSİYONEL İLİŞKİLER','Somato-Visseral Bağlantı','Diyafram-solunum, karın-bel-pelvis ve stres-otonom sistem ilişkilerini üç başlıkta ayrıntılı inceleyin.'],
+        'mobilizasyon':['03','OSTEOPATİ • KONTROLLÜ HAREKET','Mobilizasyon','Eklem hareket açıklığı, omurga segmentleri ve aktif hareketle bütünleştirme yaklaşımını görsellerle inceleyin.'],
         'pelvis-omurga':['04','OSTEOPATİ • HAREKET ZİNCİRİ','Pelvis & Omurga','Boyun, toraks, bel ve pelvis arasındaki hareket ve yük aktarımı ilişkilerini birlikte ele alın.']
     };
     let lastFocus=null;
-    function open(key,trigger){
+    function open(key,trigger,options={}){
         if(!meta[key]) return;
         lastFocus=trigger||document.activeElement;
         const m=meta[key]; index.textContent=m[0]; kicker.textContent=m[1]; title.textContent=m[2]; intro.textContent=m[3];
         views.forEach(v=>{const on=v.dataset.manualViewV364===key;v.hidden=!on;v.classList.toggle('is-active-v364',on)});
         page.hidden=false; page.setAttribute('aria-hidden','false'); document.body.classList.add('osteo-manual-detail-open-v364'); page.scrollTop=0;
+        const hashV368='#osteopati-manual-'+key;
+        if(options.pushHistory!==false && location.hash!==hashV368){
+            history.pushState({page:'osteopati-manual-detail',detail:key},'',hashV368);
+        }
     }
     function close(){page.hidden=true;page.setAttribute('aria-hidden','true');document.body.classList.remove('osteo-manual-detail-open-v364'); if(lastFocus?.focus) lastFocus.focus();}
     document.addEventListener('click',e=>{const b=e.target.closest('[data-osteo-manual-detail-v364]');if(!b)return;open(b.dataset.osteoManualDetailV364,b)});
-    back?.addEventListener('click',close);
-    document.addEventListener('keydown',e=>{if(e.key==='Escape'&&!page.hidden)close()});
+    back?.addEventListener('click',()=>{
+        if(/^#osteopati-manual-(postur|somato-visseral|mobilizasyon|pelvis-omurga)$/.test(location.hash)){
+            history.back();
+        }else{
+            close();
+        }
+    });
+    document.addEventListener('keydown',e=>{
+        if(e.key==='Escape'&&!page.hidden){
+            if(/^#osteopati-manual-(postur|somato-visseral|mobilizasyon|pelvis-omurga)$/.test(location.hash)){
+                history.back();
+            }else{
+                close();
+            }
+        }
+    });
+    window.addEventListener('popstate',()=>{
+        const matchV368=location.hash.match(/^#osteopati-manual-(postur|somato-visseral|mobilizasyon|pelvis-omurga)$/);
+        if(matchV368){
+            open(matchV368[1],null,{pushHistory:false});
+            return;
+        }
+        if(!page.hidden){
+            close();
+        }
+    });
 })();
+// =========================================================
+// V368 - GERİ / İLERİ GEÇMİŞ KOORDİNASYONU
+// Örnek: Ana Sayfa -> Fitoterapi -> Osteopati -> Manuel Uygulamalar
+// Geri: Manuel Uygulamalar -> Osteopati -> Fitoterapi -> Ana Sayfa
+// =========================================================
+(function () {
+    const validTreatmentsV368 = new Set([
+        'osteopati','fitoterapi','cihaz-uygulamalari','robotik-lazer',
+        'diger-cihazlar','geleneksel-tedavi','igne','estetik','damar-yolu','ozon-tedavisi'
+    ]);
+
+    const detailPageV368 = document.getElementById('treatmentDetailPageV71');
+    const treatmentViewsV368 = detailPageV368
+        ? Array.from(detailPageV368.querySelectorAll('[data-treatment-detail-view]'))
+        : [];
+    const topButtonsV368 = Array.from(document.querySelectorAll('[data-treatment-top]'));
+    const manualDetailV368 = document.getElementById('osteoManualDetailPageV364');
+    const osteoSpecialV368 = document.getElementById('osteoSpecialViewV259');
+    const osteoPageV368 = document.querySelector('.osteopathy-page-v95');
+
+    function setTreatmentV368(name) {
+        if (!detailPageV368 || !validTreatmentsV368.has(name)) return false;
+
+        const aliases = {
+            'robotik-lazer': 'cihaz-uygulamalari',
+            'diger-cihazlar': 'cihaz-uygulamalari'
+        };
+        const selected = aliases[name] || name;
+
+        document.body.classList.add('treatment-detail-open-v71');
+        detailPageV368.setAttribute('aria-hidden', 'false');
+
+        treatmentViewsV368.forEach(view => {
+            view.classList.toggle('active', view.dataset.treatmentDetailView === selected);
+        });
+
+        topButtonsV368.forEach(button => {
+            button.classList.toggle('is-current-v74', button.dataset.treatmentTop === selected);
+        });
+
+        return true;
+    }
+
+    function closeManualV368() {
+        if (!manualDetailV368) return;
+        manualDetailV368.hidden = true;
+        manualDetailV368.setAttribute('aria-hidden', 'true');
+        document.body.classList.remove('osteo-manual-detail-open-v364');
+    }
+
+    function closeOsteoSpecialV368() {
+        if (!osteoSpecialV368) return;
+        document.body.classList.remove('osteo-standalone-open-v260');
+        if (osteoPageV368) osteoPageV368.classList.remove('is-special-view-open-v259');
+        osteoSpecialV368.hidden = true;
+        osteoSpecialV368.setAttribute('aria-hidden', 'true');
+    }
+
+    function syncRouteV368() {
+        const hash = location.hash;
+        const route = hash.replace('#', '');
+
+        if (/^osteopati-manual-(postur|somato-visseral|mobilizasyon|pelvis-omurga)$/.test(route)) {
+            setTreatmentV368('osteopati');
+            return;
+        }
+
+        if (/^osteopati-(manual|exercise|sports|pain|faq|articles)$/.test(route)) {
+            closeManualV368();
+            setTreatmentV368('osteopati');
+            return;
+        }
+
+        if (validTreatmentsV368.has(route)) {
+            closeManualV368();
+            closeOsteoSpecialV368();
+            setTreatmentV368(route);
+            window.scrollTo({ top: 0, left: 0, behavior: 'auto' });
+            return;
+        }
+
+        if (!hash) {
+            closeManualV368();
+            closeOsteoSpecialV368();
+            if (detailPageV368) detailPageV368.setAttribute('aria-hidden', 'true');
+            document.body.classList.remove('treatment-detail-open-v71');
+            window.scrollTo({ top: 0, left: 0, behavior: 'auto' });
+        }
+    }
+
+    window.addEventListener('popstate', () => {
+        // Eski modüllerin popstate işlemleri bittikten sonra son görünümü eşitle.
+        setTimeout(syncRouteV368, 0);
+    });
+
+    window.addEventListener('pageshow', () => {
+        setTimeout(syncRouteV368, 0);
+    });
+})();
+
+
+// =========================================================
+// V370 - Osteopati Soru & Cevap gelişmiş akordeon animasyonu
+// =========================================================
+(function(){
+    const section = document.getElementById('osteoFaqV105');
+    if (!section) return;
+
+    const items = Array.from(section.querySelectorAll('.osteo-faq-item-v370'));
+
+    function setHeight(answer, open){
+        if (!answer) return;
+        if (!open){
+            answer.style.maxHeight = null;
+            return;
+        }
+        requestAnimationFrame(() => {
+            answer.style.maxHeight = answer.scrollHeight + 'px';
+        });
+    }
+
+    items.forEach(item => {
+        const button = item.querySelector(':scope > button');
+        const answer = item.querySelector('.osteo-faq-answer-v105');
+        if (!button || !answer) return;
+
+        button.addEventListener('click', () => {
+            // Eski V105 dinleyicisi de çalıştığı için son görsel durumu bir sonraki frame'de eşitle.
+            requestAnimationFrame(() => {
+                items.forEach(other => {
+                    const otherAnswer = other.querySelector('.osteo-faq-answer-v105');
+                    const otherButton = other.querySelector(':scope > button');
+                    const open = other.classList.contains('open');
+                    if (otherButton) otherButton.setAttribute('aria-expanded', open ? 'true' : 'false');
+                    setHeight(otherAnswer, open);
+                });
+            });
+        });
+    });
+
+    window.addEventListener('resize', () => {
+        items.forEach(item => {
+            if (!item.classList.contains('open')) return;
+            setHeight(item.querySelector('.osteo-faq-answer-v105'), true);
+        });
+    }, {passive:true});
+})();
+
+
+// =========================================================
+// V371 - Osteopati SSS: bağımsız sütun yerleşimi
+// Sol sorunun açılması sağ sütunun satır yüksekliğini etkilemez.
+// Masaüstünde 1-3-5... solda, 2-4-6... sağda;
+// mobilde tekrar 1,2,3,4... doğal sıraya döner.
+// =========================================================
+(function(){
+    const section = document.getElementById('osteoFaqV105');
+    if (!section) return;
+
+    const grid = section.querySelector('.osteo-faq-grid-v370');
+    if (!grid) return;
+
+    const items = Array.from(grid.querySelectorAll(':scope > .osteo-faq-item-v370'));
+    if (!items.length) return;
+
+    items.forEach((item, index) => {
+        item.dataset.faqOrderV371 = String(index);
+    });
+
+    const left = document.createElement('div');
+    const right = document.createElement('div');
+    left.className = 'osteo-faq-column-v371 osteo-faq-column-left-v371';
+    right.className = 'osteo-faq-column-v371 osteo-faq-column-right-v371';
+
+    let mobile = null;
+
+    function resetAnswerHeightV371(item){
+        const answer = item.querySelector('.osteo-faq-answer-v105');
+        if (!answer) return;
+        if (item.classList.contains('open')) {
+            requestAnimationFrame(() => {
+                answer.style.maxHeight = answer.scrollHeight + 'px';
+            });
+        } else {
+            answer.style.maxHeight = null;
+        }
+    }
+
+    function arrangeV371(){
+        const nowMobile = window.matchMedia('(max-width: 980px)').matches;
+        if (mobile === nowMobile && grid.classList.contains('osteo-faq-independent-v371')) {
+            items.forEach(resetAnswerHeightV371);
+            return;
+        }
+        mobile = nowMobile;
+
+        const ordered = items.slice().sort((a,b) =>
+            Number(a.dataset.faqOrderV371) - Number(b.dataset.faqOrderV371)
+        );
+
+        grid.innerHTML = '';
+        grid.classList.add('osteo-faq-independent-v371');
+
+        if (nowMobile) {
+            ordered.forEach(item => grid.appendChild(item));
+        } else {
+            ordered.forEach((item, index) => {
+                (index % 2 === 0 ? left : right).appendChild(item);
+            });
+            grid.append(left, right);
+        }
+
+        ordered.forEach(resetAnswerHeightV371);
+    }
+
+    arrangeV371();
+
+    let resizeTimerV371 = null;
+    window.addEventListener('resize', () => {
+        clearTimeout(resizeTimerV371);
+        resizeTimerV371 = setTimeout(arrangeV371, 80);
+    }, {passive:true});
+})();
+
+
+// =========================================================
+// V372 - FİTOTERAPİ CANLI BİTKİ ARAMA
+// Bir harf/isim yazıldığında katalogdan eşleşen bitkileri gösterir;
+// sonuca tıklanınca mevcut V351 özel bitki detay sayfasını açar.
+// =========================================================
+(function () {
+    const root = document.getElementById('phytoSearchV372');
+    const input = document.getElementById('phytoSearchInputV372');
+    const searchButton = document.getElementById('phytoSearchButtonV372');
+    const clearButton = document.getElementById('phytoSearchClearV372');
+    const results = document.getElementById('phytoSearchResultsV372');
+    const grid = document.getElementById('phytoSearchResultGridV372');
+    const resultLabel = document.getElementById('phytoSearchResultLabelV372');
+    const resultCount = document.getElementById('phytoSearchResultCountV372');
+
+    if (!root || !input || !searchButton || !results || !grid) return;
+
+    const catalog = window.phytoHerbCatalogV350 || {};
+
+    function normalize(value) {
+        return String(value || '')
+            .toLocaleLowerCase('tr-TR')
+            .normalize('NFD')
+            .replace(/[\u0300-\u036f]/g, '')
+            .replace(/ı/g, 'i')
+            .replace(/ğ/g, 'g')
+            .replace(/ü/g, 'u')
+            .replace(/ş/g, 's')
+            .replace(/ö/g, 'o')
+            .replace(/ç/g, 'c')
+            .replace(/[^a-z0-9\s-]/g, ' ')
+            .replace(/\s+/g, ' ')
+            .trim();
+    }
+
+    function escapeHtml(value) {
+        return String(value || '').replace(/[&<>"']/g, ch => ({
+            '&':'&amp;',
+            '<':'&lt;',
+            '>':'&gt;',
+            '"':'&quot;',
+            "'":'&#39;'
+        })[ch]);
+    }
+
+    function searchableText(key, herb) {
+        return normalize([
+            key,
+            herb?.name,
+            herb?.subtitle,
+            ...(Array.isArray(herb?.tags) ? herb.tags : []),
+            ...(Array.isArray(herb?.benefits) ? herb.benefits : [])
+        ].filter(Boolean).join(' '));
+    }
+
+    const entries = Object.entries(catalog)
+        .filter(([, herb]) => herb && herb.name)
+        .map(([key, herb]) => ({
+            key,
+            herb,
+            nameNorm: normalize(herb.name),
+            subtitleNorm: normalize(herb.subtitle),
+            haystack: searchableText(key, herb)
+        }))
+        .sort((a,b) => a.herb.name.localeCompare(b.herb.name, 'tr'));
+
+    function findMatches(rawQuery) {
+        const q = normalize(rawQuery);
+        if (!q) return [];
+
+        // Kullanıcı "b" yazdığında önce B ile başlayan bitkiler görünür.
+        const starts = entries.filter(item =>
+            item.nameNorm.startsWith(q) ||
+            item.subtitleNorm.startsWith(q)
+        );
+
+        const includes = entries.filter(item =>
+            !starts.includes(item) && item.haystack.includes(q)
+        );
+
+        return [...starts, ...includes].slice(0, 12);
+    }
+
+    function render(rawQuery, forceOpen = false) {
+        const q = String(rawQuery || '').trim();
+        clearButton.hidden = !q;
+
+        if (!q) {
+            grid.innerHTML = '';
+            results.hidden = true;
+            input.setAttribute('aria-expanded', 'false');
+            return;
+        }
+
+        const matches = findMatches(q);
+        results.hidden = false;
+        input.setAttribute('aria-expanded', 'true');
+        if (resultLabel) resultLabel.textContent = `“${q}” için bitkiler`;
+        if (resultCount) resultCount.textContent = `${matches.length} sonuç`;
+
+        if (!matches.length) {
+            grid.innerHTML = `
+                <div class="phyto-search-empty-v372">
+                    <div>
+                        <strong>Eşleşen bitki bulunamadı.</strong>
+                        Farklı bir harf veya bitki adı deneyebilirsiniz.
+                    </div>
+                </div>`;
+            return;
+        }
+
+        grid.innerHTML = matches.map(({key, herb}) => `
+            <button
+                type="button"
+                class="phyto-search-result-card-v372"
+                data-phyto-search-herb-v372="${escapeHtml(key)}"
+                aria-label="${escapeHtml(herb.name)} detay sayfasını aç"
+            >
+                <img
+                    src="${escapeHtml(herb.image || 'phyto-biberiye-v131.jpg')}"
+                    alt=""
+                    loading="lazy"
+                    decoding="async"
+                    onerror="this.onerror=null;this.src='phyto-biberiye-v131.jpg';"
+                >
+                <span class="phyto-search-result-copy-v372">
+                    <strong>${escapeHtml(herb.name)}${herb.subtitle ? ` (${escapeHtml(herb.subtitle)})` : ''}</strong>
+                    <small>${escapeHtml((herb.tags || []).slice(0,3).join(' • ') || herb.intro || 'Bitkisel destek bilgisi')}</small>
+                </span>
+                <span class="phyto-search-result-arrow-v372" aria-hidden="true">↗</span>
+            </button>
+        `).join('');
+
+        if (forceOpen) {
+            const first = grid.querySelector('[data-phyto-search-herb-v372]');
+            if (first) first.focus({preventScroll:true});
+        }
+    }
+
+    function runSearch(focusFirst = false) {
+        render(input.value, focusFirst);
+    }
+
+    input.addEventListener('input', () => runSearch(false));
+    input.addEventListener('focus', () => {
+        if (input.value.trim()) runSearch(false);
+    });
+    input.addEventListener('keydown', event => {
+        if (event.key === 'Enter') {
+            event.preventDefault();
+            runSearch(true);
+        } else if (event.key === 'Escape') {
+            results.hidden = true;
+            input.setAttribute('aria-expanded','false');
+        } else if (event.key === 'ArrowDown' && !results.hidden) {
+            const first = grid.querySelector('[data-phyto-search-herb-v372]');
+            if (first) {
+                event.preventDefault();
+                first.focus();
+            }
+        }
+    });
+
+    searchButton.addEventListener('click', () => runSearch(true));
+
+    clearButton.addEventListener('click', () => {
+        input.value = '';
+        render('');
+        input.focus();
+    });
+
+    grid.addEventListener('keydown', event => {
+        const cards = Array.from(grid.querySelectorAll('[data-phyto-search-herb-v372]'));
+        const current = event.target.closest?.('[data-phyto-search-herb-v372]');
+        if (!current || !cards.length) return;
+        const index = cards.indexOf(current);
+        if (event.key === 'ArrowDown' || event.key === 'ArrowRight') {
+            event.preventDefault();
+            cards[(index + 1) % cards.length].focus();
+        } else if (event.key === 'ArrowUp' || event.key === 'ArrowLeft') {
+            event.preventDefault();
+            cards[(index - 1 + cards.length) % cards.length].focus();
+        } else if (event.key === 'Escape') {
+            results.hidden = true;
+            input.setAttribute('aria-expanded','false');
+            input.focus();
+        }
+    });
+
+    grid.addEventListener('click', event => {
+        const card = event.target.closest('[data-phyto-search-herb-v372]');
+        if (!card) return;
+        const key = card.dataset.phytoSearchHerbV372;
+        if (!key) return;
+
+        results.hidden = true;
+        input.setAttribute('aria-expanded','false');
+
+        if (typeof window.openPhytoHerbDetailV352 === 'function') {
+            window.openPhytoHerbDetailV352(key);
+        } else {
+            // Nadir bir yükleme sırası durumunda mevcut bitki kartını tetikle.
+            const fallback = document.querySelector(`[data-herb-id-v350="${CSS.escape(key)}"]`);
+            if (fallback) fallback.click();
+        }
+    });
+
+    // Arama alanının dışına tıklanınca sonuç kutusunu kapat.
+    document.addEventListener('click', event => {
+        if (!root.contains(event.target)) {
+            results.hidden = true;
+            input.setAttribute('aria-expanded','false');
+        }
+    });
+
+    // Fitoterapi sayfasına her yeniden girişte önceki arama açık kalmasın.
+    document.addEventListener('click', event => {
+        const target = event.target.closest?.('[data-treatment-detail], [data-treatment-top]');
+        if (!target) return;
+        if (target.dataset.treatmentDetail === 'fitoterapi' || target.dataset.treatmentTop === 'fitoterapi') return;
+        results.hidden = true;
+        input.setAttribute('aria-expanded','false');
+    }, true);
+})();
+
+
+// =========================================================
+// V373 - ANA SAYFA GENEL SİTE ARAMA
+// Not: Fitoterapi içindeki TEK TEK bitkiler bilerek indekslenmez.
+// Arama yalnızca site bölümleri, tedaviler, hastalık sayfaları ve bilgi alanlarını gösterir.
+// =========================================================
+(function(){
+    const root = document.getElementById('homeSiteSearchV373');
+    const input = document.getElementById('homeSiteSearchInputV373');
+    const submit = document.getElementById('homeSiteSearchSubmitV373');
+    const clear = document.getElementById('homeSiteSearchClearV373');
+    const results = document.getElementById('homeSiteSearchResultsV373');
+    const list = document.getElementById('homeSiteSearchListV373');
+    const count = document.getElementById('homeSiteSearchCountV373');
+
+    if (!root || !input || !results || !list) return;
+
+    function norm(value){
+        return String(value || '')
+            .toLocaleLowerCase('tr-TR')
+            .normalize('NFD')
+            .replace(/[\u0300-\u036f]/g,'')
+            .replace(/ı/g,'i')
+            .replace(/ğ/g,'g')
+            .replace(/ü/g,'u')
+            .replace(/ş/g,'s')
+            .replace(/ö/g,'o')
+            .replace(/ç/g,'c')
+            .replace(/[^a-z0-9\s&-]/g,' ')
+            .replace(/\s+/g,' ')
+            .trim();
+    }
+
+    const index = [
+        {title:'Osteopati', category:'Tedavi Uygulaması', desc:'Osteopati ana sayfası, manuel değerlendirme, hareket ve soru-cevap alanları.', keys:'osteopati manuel terapi hareket postür', steps:['[data-treatment-detail="osteopati"]'], icon:'O'},
+        {title:'Fitoterapi', category:'Tedavi Uygulaması', desc:'Fitoterapi ve bitkisel yaklaşım ana sayfası.', keys:'fitoterapi fito terapi bitkisel destek bitki', steps:['[data-treatment-detail="fitoterapi"]'], icon:'F'},
+        {title:'Damar Yolu Uygulamaları', category:'Tedavi Uygulaması', desc:'Serum ve damar yolu uygulamaları bilgi alanı.', keys:'damar yolu serum iv vitamin c l karnitin', steps:['[data-treatment-detail="damar-yolu"]'], icon:'IV'},
+        {title:'İğneli Uygulamalar', category:'Tedavi Uygulaması', desc:'Proloterapi, nöral terapi ve diğer enjeksiyon uygulamalarının bulunduğu alan.', keys:'igne iğne enjeksiyon proloterapi nöral terapi neural ozonlu igne', steps:['[data-treatment-detail="igne"]'], icon:'+'},
+        {title:'Ozon Tedavisi', category:'Tedavi Uygulaması', desc:'Ozon uygulamaları ve ayrıntılı bilgilendirme sayfası.', keys:'ozon major otohemoterapi minor otohemoterapi', steps:['[data-treatment-detail="ozon-tedavisi"]'], icon:'O₃'},
+        {title:'Cihaz Uygulamaları', category:'Tedavi Uygulaması', desc:'Klinikte kullanılan cihaz uygulamaları ve bilgi sayfaları.', keys:'cihaz magneto ems lenf drenaj', steps:['[data-treatment-detail="cihaz-uygulamalari"]'], icon:'C'},
+        {title:'Geleneksel Tedaviler', category:'Tedavi Uygulaması', desc:'Akupunktur, hacamat ve sülük uygulamaları.', keys:'geleneksel tedavi akupunktur hacamat suluk sülük hirudoterapi', steps:['[data-treatment-detail="geleneksel-tedavi"]'], icon:'G'},
+        {title:'Estetiğe Bakış', category:'Tedavi Uygulaması', desc:'Estetik ve tamamlayıcı yaklaşım bilgi alanı.', keys:'estetik cilt görünüm', steps:['[data-treatment-detail="estetik"]'], icon:'E'},
+
+        {title:'Tedavi Alanları', category:'Ana Bölüm', desc:'Hastalık ve klinik durumlara göre bilgi sayfalarını görüntüleyin.', keys:'tedavi alanlari hastalik hastalıklar', steps:['#heroDiseasesButton'], icon:'T'},
+        {title:'Ağrı', category:'Ana Bölüm', desc:'Boyun, sırt, bel, omuz, kalça, diz ve diğer ağrı bölgeleri.', keys:'agri ağrı bel boyun sirt sırt omuz kalca kalça diz', steps:['#heroPainButton'], icon:'A'},
+        {title:'Sosyal Medya', category:'Medya', desc:'YouTube, TV programları ve sosyal medya içerikleri.', keys:'medya sosyal medya youtube video tv instagram reels', steps:['#heroMediaButton'], icon:'▶'},
+        {title:'Hakkımda', category:'Kurumsal', desc:'Dr. Ceyhun Nuri, eğitimler, görevler, sağlık kurumu ve personeller.', keys:'hakkimda hakkımda ceyhun nuri egitim eğitim görev personel klinik kurum', steps:['#heroAboutButton'], icon:'Dr'},
+        {title:'Öne Çıkanlar', category:'Ana Bölüm', desc:'Sitedeki öne çıkan genel içeriklere hızlı erişim.', keys:'one cikanlar öne çıkanlar genel', steps:['#heroGeneralButtonV124'], icon:'★'},
+
+        {title:'Beslenme', category:'Genel Sağlık', desc:'Beslenme yaklaşımı ve genel sağlık içerikleri.', keys:'genel saglik sağlık beslenme diyet', steps:['[data-health-detail="beslenme"]'], icon:'B'},
+        {title:'Supplementler', category:'Genel Sağlık', desc:'Takviye edici ürünler hakkında bilgilendirme.', keys:'genel saglik sağlık supplement takviye vitamin mineral', steps:['[data-health-detail="supplementler"]'], icon:'S'},
+        {title:'Detoks Kürleri', category:'Genel Sağlık', desc:'35 tarif; mide, bağırsak, karaciğer, kalp, dalak ve kilo kontrolü filtreleri.', keys:'genel saglik sağlık detoks kur kür mide bağırsak karaciğer kalp dalak kilo tarif', steps:['[data-health-detail="kurler"]'], icon:'D'},
+
+        {title:'Ankilozan Spondilit', category:'Tedavi Alanı', desc:'Ankilozan spondilit özel bilgi sayfası.', keys:'as ankilozan spondilit sakroileit omurga', steps:['[data-phyto-disease="as"]'], icon:'AS'},
+        {title:'Romatoid Artrit', category:'Tedavi Alanı', desc:'Romatoid artrit özel bilgi sayfası.', keys:'ra romatoid artrit eklem', steps:['[data-phyto-disease="ra"]'], icon:'RA'},
+        {title:'Baş Ağrısı & Migren', category:'Tedavi Alanı', desc:'Baş ağrısı ve migren hakkında bilgi sayfası.', keys:'bas baş agrisi ağrısı migren', steps:['[data-phyto-disease="bas-agrisi-migren"]'], icon:'BA'},
+        {title:'Bel & Sırt Ağrısı', category:'Tedavi Alanı', desc:'Bel ve sırt ağrısı özel bilgi sayfası.', keys:'bel sirt sırt agrisi ağrısı bel agrisi', steps:['[data-phyto-disease="bel-sirt-agrisi"]'], icon:'BS'},
+        {title:'Fibromiyalji', category:'Tedavi Alanı', desc:'Fibromiyalji özel bilgi sayfası.', keys:'fibromiyalji yaygin ağrı yorgunluk hassasiyet', steps:['[data-phyto-disease="fibromiyalji"]'], icon:'F'},
+        {title:'Huzursuz Bacak', category:'Tedavi Alanı', desc:'Huzursuz bacak yakınmaları hakkında bilgi sayfası.', keys:'huzursuz bacak sendromu gece bacak', steps:['[data-phyto-disease="huzursuz-bacak"]'], icon:'HB'},
+        {title:'İltihabi Bağırsak', category:'Tedavi Alanı', desc:'İltihabi bağırsak hastalıkları bilgi sayfası.', keys:'iltihabi inflamatuar bagirsak bağırsak ibd', steps:['[data-phyto-disease="iltihabi-bagirsak"]'], icon:'İB'},
+        {title:'Kronik Yorgunluk', category:'Tedavi Alanı', desc:'Uzun süren yorgunluk ve enerji düşüklüğü hakkında bilgi sayfası.', keys:'kronik yorgunluk enerji halsizlik', steps:['[data-phyto-disease="kronik-yorgunluk"]'], icon:'KY'},
+
+        {title:'Postür Analizi', category:'Osteopati', desc:'Oturma, ayakta durma ve yürüyüş paternlerini inceleyen özel sayfa.', keys:'postur postür duruş oturus oturuş yuruyus yürüyüş analiz', steps:['[data-treatment-detail="osteopati"]','[data-osteo-tab-target="manual"]','[data-osteo-manual-detail-v364="postur"]'], icon:'P'},
+        {title:'Somato-Visseral Bağlantı', category:'Osteopati', desc:'Diyafram, solunum, gövde ve kas-iskelet ilişkileri.', keys:'somato visseral visceral diyafram solunum govde gövde', steps:['[data-treatment-detail="osteopati"]','[data-osteo-tab-target="manual"]','[data-osteo-manual-detail-v364="somato-visseral"]'], icon:'SV'},
+        {title:'Mobilizasyon', category:'Osteopati', desc:'Eklem ve omurga hareketliliğine yönelik manuel yaklaşım sayfası.', keys:'mobilizasyon eklem hareket omurga segmental', steps:['[data-treatment-detail="osteopati"]','[data-osteo-tab-target="manual"]','[data-osteo-manual-detail-v364="mobilizasyon"]'], icon:'M'},
+        {title:'Pelvis & Omurga', category:'Osteopati', desc:'Pelvis, boyun, toraks ve bel arasındaki hareket ve yük aktarımı ilişkileri.', keys:'pelvis omurga bel toraks boyun tilt yuk aktarimi', steps:['[data-treatment-detail="osteopati"]','[data-osteo-tab-target="manual"]','[data-osteo-manual-detail-v364="pelvis-omurga"]'], icon:'PO'},
+        {title:'Egzersiz & Hareket', category:'Osteopati', desc:'Bölgelere göre egzersiz videoları ve hareket içerikleri.', keys:'egzersiz hareket video boyun kol omuz bel diz', steps:['[data-treatment-detail="osteopati"]','[data-osteo-tab-target="exercise"]'], icon:'↗'},
+        {title:'Spor Yaralanmaları', category:'Osteopati', desc:'Spor ve yüklenmeyle ilişkili değerlendirme içerikleri.', keys:'spor yaralanma yuklenme yüklenme fonksiyon', steps:['[data-treatment-detail="osteopati"]','[data-osteo-tab-target="sports"]'], icon:'S'},
+        {title:'Osteopati Soru & Cevap', category:'Osteopati', desc:'Osteopati hakkında sık sorulan sorular ve ayrıntılı cevaplar.', keys:'osteopati soru cevap merak edilenler faq', steps:['[data-treatment-detail="osteopati"]','[data-osteo-tab-target="faq"]'], icon:'?'},
+        {title:'Bilimsel Yayınlar', category:'Osteopati', desc:'Osteopati ve hareket alanındaki akademik kaynaklar.', keys:'bilimsel yayin yayın makale akademik kaynak', steps:['[data-treatment-detail="osteopati"]','[data-osteo-tab-target="articles"]'], icon:'≡'}
+    ];
+
+    index.forEach(item => {
+        item._search = norm([item.title,item.category,item.desc,item.keys].join(' '));
+        item._title = norm(item.title);
+    });
+
+    function score(item, query){
+        if (!query) return 0;
+        const words = query.split(' ').filter(Boolean);
+        if (!words.every(word => item._search.includes(word))) return -1;
+        let value = 0;
+        if (item._title === query) value += 120;
+        if (item._title.startsWith(query)) value += 80;
+        if (item._title.includes(query)) value += 55;
+        words.forEach(word => {
+            if (item._title.startsWith(word)) value += 24;
+            else if (item._title.includes(word)) value += 15;
+            else value += 5;
+        });
+        return value;
+    }
+
+    function search(query){
+        const q = norm(query);
+        if (!q) return [];
+        return index
+            .map(item => ({item, score:score(item,q)}))
+            .filter(entry => entry.score >= 0)
+            .sort((a,b) => b.score - a.score || a.item.title.localeCompare(b.item.title,'tr'))
+            .slice(0,10)
+            .map(entry => entry.item);
+    }
+
+    function escapeHtml(value){
+        return String(value || '').replace(/[&<>"']/g, ch => ({
+            '&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'
+        }[ch]));
+    }
+
+    function render(query){
+        const q = query.trim();
+        clear.hidden = !q;
+        if (!q){
+            results.hidden = true;
+            input.setAttribute('aria-expanded','false');
+            list.innerHTML = '';
+            return;
+        }
+
+        const found = search(q);
+        count.textContent = found.length ? `${found.length} sonuç` : 'Sonuç bulunamadı';
+
+        if (!found.length){
+            list.innerHTML = `
+                <div class="home-site-search-empty-v373">
+                    <strong>Bu ifadeyle eşleşen bir bölüm bulamadım.</strong>
+                    “Osteopati”, “Fitoterapi”, “Sosyal Medya”, “Ağrı” veya bir hastalık adı deneyebilirsiniz.
+                </div>`;
+        } else {
+            list.innerHTML = found.map((item, i) => `
+                <button type="button" class="home-site-search-result-v373" data-home-search-result-v373="${i}">
+                    <span class="home-site-search-result-icon-v373" aria-hidden="true">${escapeHtml(item.icon || '↗')}</span>
+                    <span class="home-site-search-result-copy-v373">
+                        <span>${escapeHtml(item.category)}</span>
+                        <strong>${escapeHtml(item.title)}</strong>
+                        <small>${escapeHtml(item.desc)}</small>
+                    </span>
+                    <span class="home-site-search-result-arrow-v373" aria-hidden="true">↗</span>
+                </button>
+            `).join('');
+            Array.from(list.querySelectorAll('[data-home-search-result-v373]')).forEach((button, i) => {
+                button._homeSearchItemV373 = found[i];
+            });
+        }
+
+        results.hidden = false;
+        input.setAttribute('aria-expanded','true');
+    }
+
+    function clickSelector(selector){
+        const el = document.querySelector(selector);
+        if (!el) return false;
+        el.click();
+        return true;
+    }
+
+    function navigate(item){
+        if (!item || !Array.isArray(item.steps)) return;
+        results.hidden = true;
+        input.setAttribute('aria-expanded','false');
+        if (typeof window.closeHomeSiteSearchV400 === 'function') {
+            window.closeHomeSiteSearchV400(false);
+        }
+
+        let delay = 0;
+        item.steps.forEach((selector, idx) => {
+            window.setTimeout(() => {
+                const ok = clickSelector(selector);
+                if (!ok && idx === 0) {
+                    // Güvenli son seçenek: hash bağlantısı olan bir elemanı bul.
+                    const hashTarget = document.querySelector(`a[href="#${CSS.escape(norm(item.title).replace(/\s+/g,'-'))}"]`);
+                    hashTarget?.click();
+                }
+            }, delay);
+            delay += idx === 0 ? 120 : 140;
+        });
+    }
+
+    let timer = null;
+    input.addEventListener('input', () => {
+        window.clearTimeout(timer);
+        timer = window.setTimeout(() => render(input.value), 80);
+    });
+    input.addEventListener('focus', () => {
+        if (input.value.trim()) render(input.value);
+    });
+    input.addEventListener('keydown', event => {
+        if (event.key === 'Enter'){
+            event.preventDefault();
+            const first = list.querySelector('[data-home-search-result-v373]');
+            if (first && first._homeSearchItemV373) navigate(first._homeSearchItemV373);
+            else render(input.value);
+        } else if (event.key === 'Escape'){
+            results.hidden = true;
+            input.setAttribute('aria-expanded','false');
+        } else if (event.key === 'ArrowDown' && !results.hidden){
+            const first = list.querySelector('[data-home-search-result-v373]');
+            if (first){
+                event.preventDefault();
+                first.focus();
+            }
+        }
+    });
+
+    submit?.addEventListener('click', () => {
+        const first = list.querySelector('[data-home-search-result-v373]');
+        if (first && first._homeSearchItemV373) navigate(first._homeSearchItemV373);
+        else render(input.value);
+    });
+
+    clear?.addEventListener('click', () => {
+        input.value = '';
+        render('');
+        input.focus();
+    });
+
+    list.addEventListener('click', event => {
+        const button = event.target.closest('[data-home-search-result-v373]');
+        if (!button) return;
+        navigate(button._homeSearchItemV373);
+    });
+
+    root.addEventListener('click', event => {
+        const shortcut = event.target.closest?.('[data-site-search-shortcut-v400]');
+        if (!shortcut) return;
+        const title = shortcut.dataset.siteSearchShortcutV400 || '';
+        const item = index.find(entry => norm(entry.title) === norm(title));
+        if (item) navigate(item);
+    });
+
+    list.addEventListener('keydown', event => {
+        const buttons = Array.from(list.querySelectorAll('[data-home-search-result-v373]'));
+        const current = event.target.closest?.('[data-home-search-result-v373]');
+        if (!current || !buttons.length) return;
+        const indexNow = buttons.indexOf(current);
+        if (event.key === 'ArrowDown'){
+            event.preventDefault();
+            buttons[(indexNow + 1) % buttons.length].focus();
+        } else if (event.key === 'ArrowUp'){
+            event.preventDefault();
+            buttons[(indexNow - 1 + buttons.length) % buttons.length].focus();
+        } else if (event.key === 'Escape'){
+            results.hidden = true;
+            input.setAttribute('aria-expanded','false');
+            input.focus();
+        }
+    });
+
+    document.addEventListener('click', event => {
+        if (!root.contains(event.target)){
+            results.hidden = true;
+            input.setAttribute('aria-expanded','false');
+        }
+    });
+})();
+
+
+// V374: Ağrı ve Osteopati Ağrı kartları HTML içinde ayaktan yukarı sıralandı.
+// Ayrı Diz, Kalça, Bel ve Sırt kartları mevcut V215/V265 detay yönlendirmesini kullanır.
+
+
+// V375: Ana sayfa genel araması, menü gridinden çıkarılıp bağımsız üst-orta arama paneline taşındı.
+
+
+// V376: Genel arama fotoğraf üzerinden kaldırıldı ve ana hero sonrasındaki bağımsız bölüme taşındı.
+
+
+// =========================================================
+// V400 - TAM EKRAN SİTE ARAMA MODALI
+// Küçük "Sitede Ara" butonu korunur; tıklanınca büyük arama ekranı açılır.
+// =========================================================
+(function(){
+    const section = document.querySelector('.home-search-section-v376');
+    const toggle = document.getElementById('homeSearchToggleV377');
+    const label = document.getElementById('homeSearchToggleLabelV377');
+    const panel = document.getElementById('homeSiteSearchV373');
+    const input = document.getElementById('homeSiteSearchInputV373');
+    const results = document.getElementById('homeSiteSearchResultsV373');
+    const closeButton = document.getElementById('homeSiteSearchCloseV400');
+    if (!section || !toggle || !panel) return;
+
+    function setOpen(open, focusInput){
+        section.classList.toggle('is-open-v377', open);
+        document.body.classList.toggle('site-search-modal-open-v400', open);
+        toggle.setAttribute('aria-expanded', String(open));
+        panel.hidden = !open;
+        panel.setAttribute('aria-hidden', String(!open));
+        if (label) label.textContent = 'Sitede Ara';
+
+        if (!open && results) {
+            results.hidden = true;
+            input?.setAttribute('aria-expanded', 'false');
+        }
+        if (open && focusInput) {
+            window.setTimeout(() => input?.focus(), 120);
+        }
+    }
+
+    window.openHomeSiteSearchV400 = function(focusInput = true){
+        setOpen(true, focusInput);
+    };
+    window.closeHomeSiteSearchV400 = function(returnFocus = false){
+        setOpen(false, false);
+        if (returnFocus) window.setTimeout(() => toggle.focus(), 30);
+    };
+
+    toggle.addEventListener('click', () => setOpen(true, true));
+    closeButton?.addEventListener('click', () => window.closeHomeSiteSearchV400(true));
+
+    panel.addEventListener('click', event => {
+        if (event.target === panel) window.closeHomeSiteSearchV400(true);
+    });
+
+    document.addEventListener('keydown', event => {
+        if (event.key === 'Escape' && !panel.hidden) {
+            window.closeHomeSiteSearchV400(true);
+        }
+    });
+
+    setOpen(false, false);
+})();
+
+
+// V378: Açılır genel arama, ana görselde menü altındaki sol boş alana taşındı.
+
+
+// V379: Ana sayfa arama düğmesi sağ altta, hızlı iletişim düğmesinin soluna taşındı.
+
+// V380: Osteopati girişinde klinik video arka planı ve yeni uygulama görseli kullanıldı.
+
+// V381: Sağ kartta doktor fotoğrafı yerine bütüncül anatomik omurga-pelvis görseli kullanıldı.
+
+// V382: Osteopati ana açıklaması güncellendi; uygulama videosu altındaki üç rozet kaldırıldı.
+
+// V383: Osteopati ana açıklamasından eklem hareketliliği ifadesi kaldırıldı.
+
+// V384: Beslenme tanıtım alanı kaldırıldı; Hamilelik detayına alt alta 6 açıklamalı tarif eklendi.
+
+// V385: Hamilelik dışındaki yedi beslenme başlığına alt alta 6'şar açıklamalı tarif eklendi.
+
+(() => {
+    const sets = {
+        balanced: {
+            label: 'DENGELİ VE DOĞAL BESLENME • 6 PRATİK TARİF',
+            title: 'Günlük Dengeli Beslenme Tarifleri',
+            intro: 'Sebze, meyve, tam tahıl, kaliteli protein ve sağlıklı yağları aynı gün içinde çeşitlendirmeyi kolaylaştıran pratik öğün fikirleri.',
+            note: 'Porsiyonlar yaşa, aktiviteye, mevcut hastalıklara ve hedeflere göre değişir. Alerji, diyabet, böbrek hastalığı veya özel diyet gereksiniminde tarifleri hekim ve diyetisyenle kişiselleştirin.',
+            recipes: [
+                ['Akdeniz Kahvaltı Tabağı','GÜNE DENGELİ BAŞLANGIŞ','1 iyi pişmiş yumurta|Domates ve salatalık|Az tuzlu peynir|1 dilim tam tahıllı ekmek|4–5 zeytin','Yumurtayı tamamen pişirin; sebze, peynir, ekmek ve zeytinle birlikte tabağa yerleştirin.','Protein, lif, kompleks karbonhidrat ve sağlıklı yağları aynı öğünde bir araya getirir.','Sabah tokluğunu ve gün içindeki öğün dengesini destekleyebilir; tek başına kilo verme veya hastalık tedavisi sağlamaz.'],
+                ['Yoğurtlu Meyveli Yulaf Kasesi','LİFLİ ARA ÖĞÜN','4 yemek kaşığı yulaf|1 kâse yoğurt|1 küçük meyve|2 tam ceviz|Tarçın','Yulafı yoğurtla karıştırın; doğranmış meyve, ceviz ve tarçını ekleyin.','Yulaf ve meyve lif, yoğurt protein ve kalsiyum, ceviz sağlıklı yağ sağlar.','Tatlı isteğine daha dengeli bir alternatif olabilir; tokluk ve günlük lif alımını destekleyebilir.'],
+                ['Mercimekli Bulgur Kasesi','BİTKİSEL PROTEİN','5 yemek kaşığı haşlanmış yeşil mercimek|4 yemek kaşığı bulgur|Maydanoz ve roka|Limon|1 tatlı kaşığı zeytinyağı','Pişmiş mercimek ve bulguru yeşilliklerle karıştırın; limon ve zeytinyağı ekleyin.','Baklagil ve tam tahılı birleştirerek bitkisel protein, lif, folat ve demir çeşitliliği sağlar.','Daha uzun tokluk ve bağırsak düzenine katkı sağlayabilir; gaz yakınmasında porsiyonu küçük tutun.'],
+                ['Fırında Tavuk ve Renkli Sebzeler','PRATİK ANA ÖĞÜN','1 porsiyon tavuk göğsü|Kabak, biber ve havuç|1 tatlı kaşığı zeytinyağı|Kekik|Yanına yoğurt','Tavuk ve sebzeleri doğrayıp zeytinyağı ve kekikle fırında tamamen pişirin; yoğurtla servis edin.','Yağda kızartmadan protein ve sebze çeşitliliği sağlayan dengeli bir ana öğündür.','Kas dokusunu destekleyen protein alımına ve sebze tüketimini artırmaya yardımcı olabilir.'],
+                ['Zeytinyağlı Nohut Salatası','HIZLI ÖĞLE ÖĞÜNÜ','5 yemek kaşığı haşlanmış nohut|Domates ve salatalık|Maydanoz|Limon|1 tatlı kaşığı zeytinyağı','Tüm malzemeleri karıştırın; limon ve zeytinyağıyla servis edin.','Nohut protein ve lif; sebzeler mikrobesin çeşitliliği; zeytinyağı doymamış yağ sağlar.','Öğle öğününde tokluk sağlayabilir ve ultra işlenmiş atıştırmalıklara yönelmeyi azaltmaya yardımcı olabilir.'],
+                ['Fırında Balık ve Sebzeli Patates','HAFTALIK BALIK ÖĞÜNÜ','1 porsiyon balık|1 küçük patates|Brokoli veya kabak|Limon|1 tatlı kaşığı zeytinyağı','Balık, patates ve sebzeleri fırında tamamen pişirin; limonla servis edin.','Balık kaliteli protein, seçilen türe göre omega‑3; sebzeler lif ve vitamin çeşitliliği sağlar.','Haftalık protein çeşitliliğini artırabilir ve kızartma yerine daha dengeli bir pişirme yöntemi sunar.']
+            ]
+        },
+        children: {
+            label: 'BÜYÜME & GELİŞME • 6 ÇOCUK DOSTU TARİF',
+            title: 'Çocuklarda Beslenme Tarifleri',
+            intro: 'Yaşa uygun porsiyonlarla protein, demir, kalsiyum, sağlıklı yağ ve sebze-meyve çeşitliliğini artırmaya yardımcı olabilecek aile dostu tarifler.',
+            note: 'Porsiyonlar çocuğun yaşına, gelişimine ve iştahına göre ayarlanmalıdır. Boğulma riski taşıyan kuruyemiş, üzüm ve sert besinleri yaşa uygun hazırlayın; alerji ve büyüme sorunu varsa çocuk hekimi ve diyetisyen görüşü alın.',
+            recipes: [
+                ['Muzlu Yulaflı Mini Pankek','ŞEKERSİZ KAHVALTI','1 küçük muz|1 yumurta|3 yemek kaşığı yulaf unu|2 yemek kaşığı yoğurt|Az tarçın','Malzemeleri ezin; küçük parçalar halinde tavada iki tarafını tamamen pişirin.','Yumurta protein, yulaf lif, muz enerji ve potasyum katkısı sağlar; ilave şeker gerektirmez.','Kahvaltıda daha dengeli tokluk sağlayabilir ve paketli tatlı alternatiflerine ihtiyacı azaltabilir.'],
+                ['Sebzeli Kırmızı Mercimek Çorbası','YUMUŞAK VE BESLEYİCİ','Kırmızı mercimek|Havuç|Kabak|Az zeytinyağı|Su','Tüm malzemeleri iyice pişirin; yaşa uygun kıvam için ezin veya blenderdan geçirin.','Mercimek bitkisel protein, demir, folat ve lif; sebzeler vitamin çeşitliliği sağlar.','Sebzeyi doğrudan sevmeyen çocukların farklı tatlara alışmasına ve öğünün besin yoğunluğuna katkı sağlayabilir.'],
+                ['Yoğurtlu Meyve ve Yulaf Kupası','PRATİK ARA ÖĞÜN','1 küçük kâse yoğurt|Mevsim meyvesi|1–2 yemek kaşığı yulaf|Öğütülmüş ceviz','Meyveyi küçük doğrayın; yoğurt ve yulafla karıştırın. Cevizi yaşa uygun şekilde çok ince öğütün.','Yoğurt protein ve kalsiyum; meyve ve yulaf lif; ceviz sağlıklı yağ sağlar.','Kemik gelişimini destekleyen besinlerin ve meyve çeşitliliğinin günlük plana eklenmesini kolaylaştırabilir.'],
+                ['Fırında Sebzeli Mini Köfte','PROTEİNLİ ANA ÖĞÜN','Az yağlı kıyma|Rendelenmiş kabak ve havuç|Yumurta|Yulaf unu|Kimyon','Malzemeleri yoğurup küçük köfteler yapın; fırında içi tamamen pişene kadar pişirin.','Et protein, demir ve B12; sebzeler lif ve çeşitlilik sağlar.','Büyüme döneminde protein ve demir alımına katkı sağlayabilir; sebzeyi tanıdık bir formda sunar.'],
+                ['Fırında Balık Çubukları','BALIKLA TANIŞMA','Kılçıksız balık fileto|Yulaf unu|Yumurta|Az zeytinyağı|Yoğurtlu dip sos','Balığı çubuk kesin; yumurta ve yulaf ununa bulayıp fırında tamamen pişirin. Kılçık kontrolü yapın.','Balık protein ve seçilen türe göre omega‑3 sağlar; fırınlama kızartmaya göre daha dengeli bir seçenektir.','Protein çeşitliliğini artırabilir; balığa alışmayı kolaylaştırabilir.'],
+                ['Nohut Ezmesi ve Sebzeli Dürüm','BİTKİSEL ÖĞÜN','Haşlanmış nohut|Yoğurt veya tahin|Limon|İnce doğranmış sebzeler|Tam tahıllı lavaş','Nohudu ezip yoğurt veya az tahin ve limonla karıştırın; sebzelerle lavaşa ince sürüp sarın.','Nohut protein, lif, folat ve demir; tam tahıl ek enerji ve lif sağlar.','Okul öğününde daha dengeli tokluk sağlayabilir; baklagil tüketimini kolaylaştırabilir.']
+            ]
+        },
+        autoimmune: {
+            label: 'AS • RA • PsA • 6 AKDENİZ TİPİ TARİF',
+            title: 'Otoimmün Hastalıklarda Beslenme Tarifleri',
+            intro: 'Tek bir “mucize diyet” yerine sebze, baklagil, tam tahıl, zeytinyağı, kuruyemiş ve balık çeşitliliğini öne çıkaran Akdeniz tipi öğünler.',
+            note: 'Bu tarifler AS, RA veya PsA tedavisinin ve ilaçların yerine geçmez. Glutensiz, süt ürünsüz veya başka eliminasyon diyetleri yalnızca tıbbi gerekçe ve profesyonel takip varsa uygulanmalıdır.',
+            recipes: [
+                ['Somonlu Yeşil Kase','OMEGA‑3 VE SEBZE','1 porsiyon somon|Roka ve ıspanak|Brokoli|Bulgur veya karabuğday|Zeytinyağı ve limon','Somonu tamamen pişirin; tahıl ve sebzelerle kaseye alıp zeytinyağı-limon ekleyin.','Balık omega‑3 ve protein; sebzeler lif ve polifenol; tahıl enerji çeşitliliği sağlar.','Genel beslenme kalitesini ve kalp-damar dostu yağ alımını destekleyebilir; hastalık alevlenmesini tek başına kontrol etmez.'],
+                ['Zeytinyağlı Mercimek Salatası','BİTKİSEL ÇEŞİTLİLİK','Yeşil mercimek|Maydanoz ve roka|Kırmızı biber|Limon|Zeytinyağı','Haşlanmış mercimeği doğranmış sebzelerle karıştırıp limon ve zeytinyağı ekleyin.','Mercimek protein, lif, folat ve demir; renkli sebzeler antioksidan bileşen çeşitliliği sağlar.','Tokluk, bağırsak düzeni ve sürdürülebilir kilo yönetimine katkı sağlayabilir.'],
+                ['Sebzeli Nohut Güveci','TEK TENCERE ÖĞÜNÜ','Haşlanmış nohut|Patlıcan, kabak ve biber|Domates|Sarımsak|Zeytinyağı','Tüm malzemeleri fırın kabında veya tencerede sebzeler yumuşayana kadar pişirin.','Baklagil ve farklı renk sebzeleri aynı öğünde birleştirir; lif ve bitkisel protein sağlar.','İşlenmiş et yerine bitkisel protein çeşitliliğini artırabilir.'],
+                ['Cevizli Orman Meyveli Yulaf','ANTİOKSİDAN ÇEŞİTLİLİĞİ','Yulaf|Yoğurt veya uygun alternatif|Orman meyveleri|Ceviz|Tarçın','Yulafı yoğurtla karıştırın; meyve, ceviz ve tarçını ekleyin.','Meyveler polifenoller; yulaf lif; ceviz doymamış yağlar sağlar.','Kahvaltıda tokluk ve genel beslenme çeşitliliğini destekleyebilir; ağrıyı doğrudan tedavi etmez.'],
+                ['Zerdeçallı Sebze Çorbası','SICAK SEBZE ÖĞÜNÜ','Kabak, havuç ve brokoli|Kırmızı mercimek|Az zerdeçal|Karabiber|Zeytinyağı','Sebze ve mercimeği pişirin; az miktarda zerdeçal ve karabiber ekleyip blenderdan geçirin.','Sebze, baklagil ve baharat çeşitliliği sağlar. Zerdeçal burada gıda miktarında kullanılır.','Lif ve bitkisel protein alımını artırabilir; takviye dozunda zerdeçal yerine geçmez ve ilaçlarla etkileşim konusu hekimle değerlendirilmelidir.'],
+                ['Sardalyalı Tam Tahıllı Tost','KALSİYUM VE OMEGA‑3','Düşük tuzlu sardalya|Tam tahıllı ekmek|Domates|Roka|Limon','Sardalyayı ezip ekmek üzerine yayın; domates, roka ve limonla servis edin.','Sardalya protein, omega‑3 ve yenebilen kılçıklarıyla kalsiyum sağlayabilir.','Balık çeşitliliğini artırabilir; hipertansiyonda konserve ürünün tuz içeriğini kontrol edin.']
+            ]
+        },
+        digestion: {
+            label: 'BAĞIRSAK SAĞLIĞI • 6 HAFİF TARİF',
+            title: 'Sindirim Sistemi İçin Tarifler',
+            intro: 'Lif, sıvı ve tolere edilen fermente ürünleri öne çıkaran; kişisel hassasiyetlere göre uyarlanabilen yumuşak ve pratik öğünler.',
+            note: 'Reflü, IBS, çölyak, inflamatuar bağırsak hastalığı veya gastritte tetikleyiciler kişiye göre değişir. Şikâyeti artıran besini zorlamayın; uzun süren yakınmalarda gastroenteroloji ve diyetisyen değerlendirmesi alın.',
+            recipes: [
+                ['Muzlu Tarçınlı Yulaf Lapası','YUMUŞAK KAHVALTI','4 yemek kaşığı yulaf|Su veya süt|Yarım muz|Tarçın|İsteğe göre yoğurt','Yulafı sıvıyla yumuşayana kadar pişirin; muz ve tarçın ekleyin.','Yulaf çözünür lif sağlar; pişmiş ve yumuşak kıvam bazı kişilerce daha kolay tolere edilebilir.','Dışkı kıvamı ve tokluk üzerinde destekleyici olabilir; şişkinlikte porsiyonu yavaş artırın.'],
+                ['Yoğurtlu Kabak Çorbası','HAFİF SEBZE ÖĞÜNÜ','Kabak|Pirinç veya yulaf|Su|Yoğurt|Dereotu','Kabak ve tahılı pişirin. Ilıyınca yoğurdu ekleyin; dereotuyla servis edin.','Pişmiş kabak ve yumuşak tahıl hafif bir öğün; yoğurt tolere ediliyorsa protein ve fermente ürün çeşitliliği sağlar.','Hassas dönemlerde yağlı ve ağır öğünlere daha hafif alternatif olabilir.'],
+                ['Kefirli Meyve Kasesi','FERMENTE ARA ÖĞÜN','Pastörize kefir|Muz veya çilek|Yulaf|Öğütülmüş ceviz','Meyveyi doğrayıp kefir ve yulafla karıştırın; ceviz ekleyin.','Kefir fermente süt ürünü, meyve ve yulaf lif kaynağıdır.','Tolere ediliyorsa besin ve lif çeşitliliğini artırabilir; laktoz hassasiyetinde uygun alternatif seçin.'],
+                ['Havuçlu Patatesli Tavuk Çorbası','SADE ANA ÖĞÜN','Tavuk eti|Havuç|Patates|Pirinç|Su','Tavuğu tamamen pişirin; sebze ve pirinci ekleyip yumuşayana kadar kaynatın.','Protein ve iyi pişmiş sebzeleri yumuşak formda sunar.','İştahsız veya hassas sindirim dönemlerinde daha kolay tüketilen bir öğün olabilir; kalıcı şikâyette nedeni araştırılmalıdır.'],
+                ['Zeytinyağlı Pişmiş Sebze Tabağı','LİFİ KADEMELİ ARTIRMA','Kabak|Havuç|Ispanak|Az zeytinyağı|Yoğurt veya uygun alternatif','Sebzeleri buharda ya da az suda iyice pişirin; zeytinyağı ve tolere ediliyorsa yoğurt ekleyin.','Pişirme sebzelerin dokusunu yumuşatır; lif ve mikrobesin alımına katkı sağlar.','Çiğ sebzeye göre bazı kişilerde daha iyi tolere edilebilir; kişisel tetikleyiciler değişir.'],
+                ['Mercimekli Pirinç Çorbası','KÜÇÜK PORSİYON BAKLAGİL','Kırmızı mercimek|Pirinç|Havuç|Kimyon|Zeytinyağı','Mercimek ve pirinci çok iyi pişirin; az kimyon ve zeytinyağı ekleyin.','Baklagil protein ve lif, pirinç enerji sağlar; iyi pişirme daha yumuşak kıvam oluşturur.','Baklagil toleransını küçük porsiyonla denemeye yardımcı olabilir; gaz belirginse miktarı azaltın.']
+            ]
+        },
+        heart: {
+            label: 'KALP & DAMAR • 6 KALP DOSTU TARİF',
+            title: 'Kalp ve Damar Sağlığı Tarifleri',
+            intro: 'Sebze, meyve, tam tahıl, baklagil, balık, kuruyemiş ve zeytinyağını öne çıkaran; tuzu ve doymuş yağı azaltmaya yardımcı tarifler.',
+            note: 'Hipertansiyon, kalp yetmezliği, böbrek hastalığı veya kan sulandırıcı kullanımı varsa tuz, sıvı, potasyum ve bazı yeşil yapraklı sebzelerin miktarı kişiye özel planlanmalıdır.',
+            recipes: [
+                ['Cevizli Elmalı Yulaf','LİFLİ KAHVALTI','Yulaf|Elma|Ceviz|Tarçın|Süt veya su','Yulafı pişirin; elma, ceviz ve tarçın ekleyin.','Yulaf çözünür lif; ceviz doymamış yağ; elma meyve lifi sağlar.','Doymuş yağdan düşük bir kahvaltı düzenine ve genel kolesterol yönetimine katkı sağlayabilir.'],
+                ['Zeytinyağlı Kuru Fasulye Salatası','BAKLAGİL ÖĞÜNÜ','Haşlanmış kuru fasulye|Domates ve biber|Maydanoz|Limon|Zeytinyağı','Fasulyeyi sebzelerle karıştırıp limon ve ölçülü zeytinyağı ekleyin; tuz eklemeyin veya sınırlayın.','Baklagil lif ve bitkisel protein; zeytinyağı doymamış yağ sağlar.','Et ağırlıklı öğünlere alternatif olabilir ve toklukla birlikte kalp dostu beslenme çeşitliliğini destekleyebilir.'],
+                ['Fırında Somon ve Sebze','OMEGA‑3 ANA ÖĞÜN','Somon|Brokoli|Kabak|Limon|Zeytinyağı','Somon ve sebzeleri fırında tamamen pişirin; limon ve az zeytinyağı ekleyin.','Somon protein ve omega‑3; sebzeler lif ve potasyum sağlar.','Balık tüketimini artırabilir ve kızartılmış ana öğünlere daha dengeli alternatif sunabilir.'],
+                ['Tuzsuz Mercimek Sebze Çorbası','DASH UYUMLU SEÇENEK','Mercimek|Havuç ve kabak|Domates|Sarımsak|Baharatlar','Malzemeleri pişirin; tuz yerine kimyon, kekik ve limonla lezzetlendirin.','Lif, bitkisel protein ve sebze çeşitliliği sağlarken sodyumu sınırlamayı kolaylaştırır.','Tuzu azaltma alışkanlığına katkı sağlayabilir; tek başına tansiyon ilacının yerine geçmez.'],
+                ['Avokadolu Tam Tahıllı Tost','DOYMAMIŞ YAĞ','Tam tahıllı ekmek|Çeyrek avokado|Domates|Limon|Karabiber','Avokadoyu limonla ezin; ekmeğe sürüp domates ekleyin.','Tam tahıl lif, avokado doymamış yağ sağlar.','Tereyağı veya işlenmiş et içeren kahvaltılara daha kalp dostu alternatif olabilir; porsiyon enerji ihtiyacına göre ayarlanmalıdır.'],
+                ['Yoğurtlu Meyve ve Badem Kasesi','DENGELİ ARA ÖĞÜN','Yoğurt|Mevsim meyvesi|Tuzsuz badem|Yulaf|Tarçın','Meyveyi yoğurt ve yulafla karıştırın; tuzsuz badem ekleyin.','Protein, kalsiyum, lif ve doymamış yağları aynı ara öğünde buluşturur.','Şekerli paketli atıştırmalıklara daha dengeli alternatif olabilir.']
+            ]
+        },
+        weight: {
+            label: 'KİLO YÖNETİMİ • 6 TOK TUTAN TARİF',
+            title: 'Kilo Kontrolü ve Formda Kalma Tarifleri',
+            intro: 'Aşırı kısıtlamadan protein, lif, sebze ve porsiyon dengesini öne çıkaran; sürdürülebilir öğün planlamasını kolaylaştıran tarifler.',
+            note: 'Kilo yönetiminde hızlı ve aşırı kısıtlayıcı diyetler yerine sürdürülebilir enerji dengesi, uyku ve fiziksel aktivite önemlidir. Diyabet, yeme bozukluğu veya kronik hastalıkta kişisel planlama gerekir.',
+            recipes: [
+                ['Proteinli Sebzeli Omlet','TOK TUTAN KAHVALTI','2 yumurta|Ispanak ve biber|1 tatlı kaşığı zeytinyağı|Yanına domates|1 dilim tam tahıllı ekmek','Sebzeleri kısa süre pişirin; yumurtayı ekleyip tamamen pişirin. Ekmek ve domatesle servis edin.','Protein ve sebzeyi aynı öğünde birleştirir; tam tahıl kontrollü karbonhidrat sağlar.','Sabah tokluğunu uzatabilir ve plansız atıştırmayı azaltmaya yardımcı olabilir.'],
+                ['Yoğurtlu Yulaf ve Meyve','ÖLÇÜLÜ ARA ÖĞÜN','Yoğurt|3 yemek kaşığı yulaf|1 küçük meyve|Tarçın|2 tam ceviz','Tüm malzemeleri kâsede birleştirin.','Protein, lif ve sağlıklı yağ kombinasyonu sağlar.','Tatlı isteğini daha dengeli karşılayabilir; porsiyon fazlası yine toplam enerjiyi artırabilir.'],
+                ['Tavuklu Büyük Salata','HACİMLİ ANA ÖĞÜN','Izgara tavuk|Bol yeşillik|Domates ve salatalık|1 tatlı kaşığı zeytinyağı|Limon','Tavuğu tamamen pişirin; sebzelerle birleştirip ölçülü yağ ve limon ekleyin.','Yüksek sebze hacmi ve protein, daha düşük enerji yoğunluğuyla dengeli tokluk sağlayabilir.','Porsiyon kontrolünü kolaylaştırabilir; sadece salata tüketmek yerine yeterli protein eklemek önemlidir.'],
+                ['Mercimekli Sebzeli Bulgur','LİFLİ ÖĞÜN','Yeşil mercimek|Bulgur|Kabak ve biber|Domates|Zeytinyağı','Malzemeleri tek tencerede pişirin; yağı ölçülü kullanın.','Lif, bitkisel protein ve kompleks karbonhidrat sağlar.','Uzun süre tokluk ve düzenli öğün ritmine katkı sağlayabilir.'],
+                ['Sebze Çorbası ve Yoğurt','HAFİF AKŞAM','Kabak, havuç ve brokoli|Kırmızı mercimek|Yoğurt|Baharat|Su','Sebzeleri mercimekle pişirip blenderdan geçirin; yoğurtla servis edin.','Sebze ve baklagil hacim, lif ve protein sağlar.','Akşam öğününü hafifletmeye yardımcı olabilir; tek başına çok düşük kalorili beslenme planına dönüşmemelidir.'],
+                ['Elmalı Tarçınlı Yoğurt','TATLI ALTERNATİFİ','Yoğurt|Yarım elma|Tarçın|1 yemek kaşığı yulaf|2 tam ceviz','Elmayı doğrayıp yoğurt, tarçın ve yulafla karıştırın; ceviz ekleyin.','İlave şeker olmadan tatlı lezzet, protein, lif ve sağlıklı yağ sağlar.','Paketli tatlılara daha dengeli alternatif olabilir; kilo değişimi toplam beslenme ve hareket düzenine bağlıdır.']
+            ]
+        },
+        detox: {
+            label: 'KARACİĞER DOSTU • 6 DENGELİ TARİF',
+            title: 'Karaciğer Dostu Beslenme Tarifleri',
+            intro: '“Detoks” iddiası yerine sebze, baklagil, tam tahıl, balık ve doymamış yağları öne çıkaran; şekerli içecek ve aşırı doymuş yağı sınırlamaya yardımcı tarifler.',
+            note: 'Karaciğer vücudun doğal işleme ve arındırma organıdır; hiçbir kür veya tek besin karaciğeri “temizlemez”. Yağlı karaciğer, hepatit, siroz veya ilaç kullanımı varsa beslenme planını hekiminizle oluşturun; bitkisel takviyeleri gelişigüzel kullanmayın.',
+            recipes: [
+                ['Zeytinyağlı Enginar ve Bezelye','SEBZE ANA ÖĞÜNÜ','Enginar|Bezelye|Havuç|Dereotu|Ölçülü zeytinyağı','Sebzeleri az suyla yumuşayana kadar pişirin; zeytinyağı ve dereotu ekleyin.','Sebze, lif ve doymamış yağ sağlar; kızartma içermeyen hafif bir öğündür.','Sebze çeşitliliğini artırabilir; karaciğeri tek başına temizlediği iddia edilmemelidir.'],
+                ['Brokoli Karnabahar Çorbası','TURPGİL ÇEŞİTLİLİĞİ','Brokoli|Karnabahar|Soğan|Kırmızı mercimek|Zeytinyağı','Sebze ve mercimeği pişirip blenderdan geçirin; ölçülü zeytinyağı ekleyin.','Turpgiller, lif ve bitkisel bileşen çeşitliliği; mercimek protein sağlar.','Daha fazla sebze ve lif tüketimini kolaylaştırabilir; gaz yakınmasında porsiyonu azaltın.'],
+                ['Sarımsaklı Yoğurtlu Pancar Salatası','RENKLİ YAN ÖĞÜN','Haşlanmış pancar|Pastörize yoğurt|Az sarımsak|Ceviz|Limon','Pancarı rendeleyip yoğurt, sarımsak ve limonla karıştırın; ceviz ekleyin.','Pancar ve ceviz farklı bitkisel bileşenler, yoğurt protein ve kalsiyum sağlar.','Renkli sebze tüketimini artırabilir; “toksin atma” veya hastalık tedavisi sağlamaz.'],
+                ['Yeşillikli Mercimek Salatası','BİTKİSEL PROTEİN','Yeşil mercimek|Maydanoz ve roka|Kırmızı biber|Limon|Zeytinyağı','Haşlanmış mercimeği sebzelerle karıştırın; limon ve ölçülü zeytinyağı ekleyin.','Lif, bitkisel protein, folat ve demir çeşitliliği sağlar.','Tokluk ve sağlıklı kilo yönetimine katkı sağlayabilir; yağlı karaciğerde toplam enerji dengesi önemlidir.'],
+                ['Fırında Balık ve Yeşil Sebzeler','DOYMAMIŞ YAĞ SEÇİMİ','Balık|Brokoli veya ıspanak|Kabak|Limon|Zeytinyağı','Balık ve sebzeleri fırında tamamen pişirin; limonla servis edin.','Balık protein ve doymamış yağ; sebzeler lif sağlar.','Doymuş yağ oranı yüksek işlenmiş et öğünlerine alternatif olabilir.'],
+                ['Şekersiz Elmalı Yulaf','ŞEKERİ AZALTAN KAHVALTI','Yulaf|Elma|Tarçın|Yoğurt veya süt|Ceviz','Yulafı pişirin; elma, tarçın ve ceviz ekleyin. İlave şeker kullanmayın.','Tam tahıl, meyve, protein ve sağlıklı yağları birleştirir.','Şekerli kahvaltılık ve içecekleri azaltmaya yardımcı olabilir; karaciğer sağlığında sürdürülebilir kilo ve porsiyon dengesi belirleyicidir.']
+            ]
+        }
+    };
+
+    const safe = value => String(value).replace(/[&<>"']/g, char => ({
+        '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;', "'": '&#39;'
+    })[char]);
+
+    Object.entries(sets).forEach(([key, set]) => {
+        const detail = document.querySelector('[data-nutrition-detail="' + key + '"]');
+        if (!detail || detail.querySelector('.nutrition-program-v385')) return;
+        detail.classList.add('nutrition-recipes-converted-v385');
+        const shell = detail.querySelector('.nutrition-detail-shell-v175');
+        if (!shell) return;
+
+        const list = set.recipes.map((recipe, index) => {
+            const ingredients = recipe[2].split('|').map(item => '<li>' + safe(item) + '</li>').join('');
+            const imageSrc = 'recipe-' + key + '-' + String(index + 1).padStart(2, '0') + '-v386.jpg';
+            return '<article class="pregnancy-recipe-v384">' +
+                '<div class="pregnancy-recipe-media-v384 has-recipe-image-v386"><img src="' + imageSrc + '" alt="' + safe(recipe[0]) + '" loading="lazy" decoding="async"></div>' +
+                '<div class="pregnancy-recipe-content-v384">' +
+                    '<span class="pregnancy-recipe-kicker-v384">' + safe(recipe[1]) + '</span><h2>' + safe(recipe[0]) + '</h2>' +
+                    '<div class="pregnancy-recipe-columns-v384"><section><h3>Malzemeler</h3><ul>' + ingredients + '</ul></section><section><h3>Hazırlanışı</h3><p>' + safe(recipe[3]) + '</p></section></div>' +
+                    '<div class="pregnancy-recipe-why-v384"><h3>Neden tüketeyim?</h3><p>' + safe(recipe[4]) + '</p><strong>Ne değişebilir?</strong><p>' + safe(recipe[5]) + '</p></div>' +
+                '</div></article>';
+        }).join('');
+
+        const program = document.createElement('div');
+        program.className = 'nutrition-program-v385';
+        program.innerHTML =
+            '<div class="nutrition-program-head-v385"><span>' + safe(set.label) + '</span><h2>' + safe(set.title) + '</h2><p>' + safe(set.intro) + '</p></div>' +
+            '<div class="pregnancy-recipe-list-v384">' + list + '</div>' +
+            '<aside class="pregnancy-recipes-note-v384"><strong>Kişiye özel güvenlik notu</strong><p>' + safe(set.note) + ' Bu içerik genel bilgilendirme amaçlıdır; kişisel diyet reçetesi değildir.</p></aside>';
+        shell.prepend(program);
+    });
+})();
+/* =========================================================
+   V389 - SUPPLEMENT DETAYLARINI AC / KAPAT
+========================================================= */
+(function () {
+    const initSupplementDetailsV389 = () => {
+        document.querySelectorAll('[data-health-detail-view="supplementler"] .supplement-product-copy-v146').forEach((copy) => {
+            if (copy.querySelector('.supplement-detail-v389')) return;
+            const grid = copy.querySelector('.supplement-benefit-grid-v146');
+            const note = copy.querySelector('.supplement-note-v146');
+            if (!grid || !note) return;
+
+            const details = document.createElement('details');
+            details.className = 'supplement-detail-v389';
+            const summary = document.createElement('summary');
+            summary.innerHTML = '<span>Detaylı Bilgi</span><b aria-hidden="true">+</b>';
+            const body = document.createElement('div');
+            body.className = 'supplement-detail-body-v389';
+
+            grid.before(details);
+            body.append(grid, note);
+            details.append(summary, body);
+        });
+    };
+
+    if (document.readyState === 'loading') {
+        document.addEventListener('DOMContentLoaded', initSupplementDetailsV389, { once: true });
+    } else {
+        initSupplementDetailsV389();
+    }
+})();
+
+// =========================================================
+// V390 - DETOKS KÜRLERİ / 35 TARİF + ARAMA + KATEGORİ FİLTRE
+// İlk 10 tarifin görselleri bu sürümde site kartlarına işlendi.
+// Kalan tarifler için placeholder alanı korunur ve sonraki turda doldurulur.
+// =========================================================
+(function () {
+    const recipes = [
+        // MİDE
+        {id:'mide-01',category:'mide',categoryLabel:'Mide',icon:'☕',name:'Zencefil & Limon Ilık Su',support:'Mide ferahlığı, hafif bulantı hissi ve sıcak sıvı desteği için sade bir başlangıç içeceği olarak değerlendirilebilir.',ingredients:['1 su bardağı ılık su','2–3 ince dilim taze zencefil','2 ince dilim limon'],prep:'Zencefili ılık suda 5–10 dakika bekletin; limon dilimlerini ekleyip ılık olarak tüketin.',note:'Reflü, safra taşı veya kan sulandırıcı kullanımı varsa zencefil miktarını kişisel uygunlukla değerlendirin.',tags:['zencefil','limon','ılık içecek'],keywords:'mide zencefil limon bulanti bulantı ferahlik ferahlık hazimsizlik hazımsızlık',image:'./detox-mide-01-zencefil-limon-v391.png?v=391',imageAlt:'Zencefil ve limon dilimleriyle hazırlanmış mide dostu ılık içecek'},
+        {id:'mide-02',category:'mide',categoryLabel:'Mide',icon:'🌿',name:'Rezene & Nane Demlemesi',support:'Öğün sonrası gaz ve şişkinlik hissini azaltmaya yardımcı, sakin bir sindirim rutini oluşturmak için tercih edilebilir.',ingredients:['1 tatlı kaşığı rezene tohumu','5–6 taze nane yaprağı','1 su bardağı sıcak su'],prep:'Rezeneyi hafifçe ezin; nane ile birlikte 7–8 dakika demleyip süzün.',note:'Gebelik-emzirme döneminde ve yoğun bitkisel çay kullanımında hekim görüşü alın.',tags:['rezene','nane','şişkinlik'],keywords:'mide rezene nane gaz sislik şişkinlik sindirim',image:'./detox-mide-02-rezene-nane-v391.png?v=391',imageAlt:'Rezene tohumu ve taze nane ile hazırlanmış mide dostu demleme'},
+        {id:'mide-03',category:'mide',categoryLabel:'Mide',icon:'🍎',name:'Elma & Papatya Demlemesi',support:'Mideyi rahatlatmaya yönelik yumuşak içerikli bir içecek alternatifi olup hafif hassasiyet dönemlerinde kullanılabilir.',ingredients:['2 ince elma dilimi','1 tatlı kaşığı papatya','1 su bardağı sıcak su'],prep:'Papatya ve elma dilimlerini 6–8 dakika demleyin; süzerek ılık için.',note:'Papatyagiller alerjisinde uygun değildir; düzenli uzun süreli kullanım öncesi danışın.',tags:['elma','papatya','mide rahatlatma'],keywords:'mide elma papatya hafif hassasiyet sakinlestirici sakinleştirici',image:'./detox-mide-03-elma-papatya-v391.png?v=391',imageAlt:'Elma dilimleri ve papatya çiçekleriyle hazırlanmış mide dostu demleme'},
+        {id:'mide-04',category:'mide',categoryLabel:'Mide',icon:'🍐',name:'Tarçınlı Armut Kompostosu',support:'Hassas mide günlerinde sıcak ve yumuşak içerikli bir seçenek olarak sıvı desteğine eşlik edebilir.',ingredients:['1 küçük armut','1 küçük çubuk tarçın','1,5 su bardağı su'],prep:'Armut dilimleri ve tarçını 6–8 dakika hafifçe kaynatın; ılıtıp tüketin.',note:'Diyabette meyve porsiyonu ve toplam karbonhidrat planı göz önünde bulundurulmalıdır.',tags:['armut','tarçın','komposto'],keywords:'mide armut tarcin tarçın komposto hassas mide sindirim',image:'./detox-mide-04-tarcinli-armut-v391.png?v=391',imageAlt:'Armut ve tarçınla hazırlanmış mide dostu komposto'},
+        {id:'mide-05',category:'mide',categoryLabel:'Mide',icon:'🌼',name:'Melisa & Limon Kabuğu Çayı',support:'Stres kaynaklı mide hassasiyetinde sakin bir akşam rutini ve hafif sıcak sıvı desteği için değerlendirilebilir.',ingredients:['1 tatlı kaşığı melisa','az miktarda limon kabuğu','1 su bardağı sıcak su'],prep:'Melisa ve limon kabuğunu 5–6 dakika demleyin; çok sıcak olmadan için.',note:'Sedatif ilaç kullananlar ve turunçgil hassasiyeti olanlar hekim görüşü almalıdır.',tags:['melisa','limon kabuğu','akşam rutini'],keywords:'mide melisa limon kabugu kabuğu stres hassasiyet sakin aksam akşam',image:'./detox-mide-05-melisa-limon-v391.png?v=391',imageAlt:'Melisa ve limon kabuğu ile hazırlanmış mide dostu bitki çayı'},
+
+        // İNCE BAĞIRSAK
+        {id:'ince-01',category:'ince-bagirsak',categoryLabel:'İnce Bağırsak',icon:'🌿',name:'Rezene & Anason Çayı',support:'Şişkinlik ve sindirim rahatlığı için sıcak sıvı desteği sağlayan klasik bir bitkisel demleme alternatifi olabilir.',ingredients:['1 çay kaşığı rezene','1 çay kaşığı anason','1 su bardağı sıcak su'],prep:'Rezene ve anasonu 7–8 dakika demleyin; süzüp ılık tüketin.',note:'Aşırı tüketimden kaçının; gebelik ve düzenli ilaç kullanımında hekim görüşü alın.',tags:['rezene','anason','şişkinlik'],keywords:'ince bagirsak bağırsak rezene anason sislik şişkinlik sindirim gaz',image:'./detox-ince-01-rezene-anason-v391.png?v=391',imageAlt:'Rezene ve anason ile hazırlanmış ince bağırsak dostu bitki çayı'},
+        {id:'ince-02',category:'ince-bagirsak',categoryLabel:'İnce Bağırsak',icon:'🫚',name:'Nane & Zencefil Demlemesi',support:'Sindirimi rahatlatmaya, hafif gaz hissi ve bağırsak konforuna eşlik etmeye yönelik ılık bir seçenek sunar.',ingredients:['5–6 nane yaprağı','2–3 ince dilim zencefil','1 su bardağı sıcak su'],prep:'Nane ve zencefili 6–8 dakika demleyip süzün; ılık için.',note:'Safra taşı, reflü veya kan sulandırıcı kullanımında zencefil miktarını sınırlamak gerekebilir.',tags:['nane','zencefil','sindirim'],keywords:'ince bagirsak bağırsak nane zencefil gaz sislik şişkinlik rahatlik rahatlık',image:'./detox-ince-02-nane-zencefil-v391.png?v=391',imageAlt:'Nane ve zencefil ile hazırlanmış ince bağırsak dostu demleme'},
+        {id:'ince-03',category:'ince-bagirsak',categoryLabel:'İnce Bağırsak',icon:'🥛',name:'Kefirli Probiyotik Karışım',support:'Bağırsak florasını destekleyen, sindirim dengesi için küçük porsiyonlu ve fermente bir içecek alternatifi olabilir.',ingredients:['1 su bardağı sade kefir','az miktarda tarçın','isteğe göre çok az muz'],prep:'Malzemeleri karıştırıp soğuk veya oda ısısında tüketin.',note:'Laktoz intoleransı veya süt alerjisinde uygun değildir; fermente ürün toleransı kişiden kişiye değişir.',tags:['kefir','probiyotik','fermente'],keywords:'ince bagirsak bağırsak kefir probiyotik flora sindirim denge',image:'./detox-ince-03-kefir-probiyotik-v391.png?v=391',imageAlt:'Kefir bazlı probiyotik içecek ve tarçın ile hazırlanmış ince bağırsak destek görseli'},
+        {id:'ince-04',category:'ince-bagirsak',categoryLabel:'İnce Bağırsak',icon:'🍏',name:'Elma & Papatya İçeceği',support:'Hassas bağırsaklarda yumuşak içerik sunan ve sıcak sıvı rutiniyle sindirim rahatlığına eşlik eden bir seçenektir.',ingredients:['2 ince elma dilimi','1 tatlı kaşığı papatya','1 su bardağı sıcak su'],prep:'Elma ve papatyayı 6–8 dakika demleyin; süzüp ılık tüketin.',note:'Papatyagiller alerjisi olanlar kullanmamalıdır; şikâyet artırırsa bırakın.',tags:['elma','papatya','yumuşak içerik'],keywords:'ince bagirsak bağırsak elma papatya hassas bagirsak bağırsak sindirim',image:'./detox-ince-04-elma-papatya-v391.png?v=391',imageAlt:'Elma ve papatya ile hazırlanmış ince bağırsak dostu içecek'},
+        {id:'ince-05',category:'ince-bagirsak',categoryLabel:'İnce Bağırsak',icon:'🫙',name:'Kimyonlu Ilık Su',support:'Gaz ve şişkinlik hissinde sıcak sıvı desteği arayanlar için sade bir kullanım alternatifi olabilir.',ingredients:['1 çimdik kimyon','1 su bardağı ılık su'],prep:'Kimyonu ılık suda 5–6 dakika bekletin; süzüp yudumlayarak için.',note:'Yoğun bitki-baharat kullanımı herkese uygun olmayabilir; düzenli ilaç kullanımında içerikleri gözden geçirin.',tags:['kimyon','ılık su','gaz'],keywords:'ince bagirsak bağırsak kimyon ilik ılık gaz sislik şişkinlik',image:'./detox-ince-05-kimyonlu-ilik-su-v391.png?v=391',imageAlt:'Kimyonla hazırlanmış ince bağırsak dostu ılık su'},
+
+        // KALIN BAĞIRSAK
+        {id:'kalin-01',category:'kalin-bagirsak',categoryLabel:'Kalın Bağırsak',icon:'🫘',name:'Chia & Limon Bekletme Suyu',support:'Yeterli sıvıyla birlikte tüketildiğinde günlük lif alımını artırmaya ve bağırsak düzenini desteklemeye yardımcı olabilir.',ingredients:['1 tatlı kaşığı chia tohumu','1 su bardağı su','1–2 ince limon dilimi'],prep:'Chia tohumunu suda en az 20–30 dakika şişirin; limon dilimi ekleyip karıştırın.',note:'Kuru chia yutmayın. Yutma güçlüğü veya bağırsak darlığı öyküsünde kullanmayın; lif artışını yavaş yapın.',tags:['chia','lif','su'],keywords:'kalin kalın bagirsak bağırsak chia lif kabizlik kabızlık',image:'./detox-kalin-01-limon-chia-v392.png?v=392',imageAlt:'Limon dilimleri ve chia tohumu ile hazırlanmış kalın bağırsak dostu bekletme suyu'},
+        {id:'kalin-02',category:'kalin-bagirsak',categoryLabel:'Kalın Bağırsak',icon:'🫐',name:'Kuru Erik & Tarçın Kompostosu',support:'Kuru erik ve sıvı birlikteliği, bazı kişilerde dışkılama düzenini destekleyen besinsel bir seçenek olabilir.',ingredients:['3 adet kuru erik','1,5 su bardağı su','1 küçük parça çubuk tarçın'],prep:'Erikleri su ve tarçınla 6–8 dakika hafifçe kaynatın; ılık tüketin ve erikleri de yiyin.',note:'Diyabette kuru meyve porsiyonu önemlidir; ani veya açıklanamayan kabızlıkta tıbbi değerlendirme gerekir.',tags:['kuru erik','lif','bağırsak düzeni'],keywords:'kalin kalın bagirsak bağırsak kuru erik kabizlik kabızlık lif',image:'./detox-kalin-02-kuru-erik-tarcin-v392.png?v=392',imageAlt:'Kuru erik ve tarçın ile hazırlanmış kalın bağırsak dostu komposto'},
+        {id:'kalin-03',category:'kalin-bagirsak',categoryLabel:'Kalın Bağırsak',icon:'🌾',name:'Öğütülmüş Keten Tohumlu Yoğurt',support:'Lif ve yağ asidi içeren keten tohumu ile fermente yoğurdu bir araya getiren küçük porsiyonlu bir ara öğündür.',ingredients:['4 yemek kaşığı sade yoğurt','1 tatlı kaşığı taze öğütülmüş keten tohumu','2 yemek kaşığı su'],prep:'Malzemeleri karıştırın ve 5–10 dakika bekletin; yanında ayrıca su için.',note:'Bağırsak darlığı, şiddetli karın ağrısı veya yeni başlayan kabızlıkta kendi kendine lif yüklemeyin.',tags:['keten tohumu','yoğurt','lif'],keywords:'kalin kalın bagirsak bağırsak keten tohumu yogurt yoğurt lif',image:'./detox-kalin-03-yogurt-keten-v392.png?v=392',imageAlt:'Yoğurt ve öğütülmüş keten tohumu ile hazırlanmış kalın bağırsak dostu ara öğün'},
+        {id:'kalin-04',category:'kalin-bagirsak',categoryLabel:'Kalın Bağırsak',icon:'🍐',name:'Armut & Kivi Lif Smoothie',support:'Meyve posasını koruyan bir tarif olarak günlük lif çeşitliliğine katkı sağlayabilir.',ingredients:['½ armut','1 küçük kivi','½ su bardağı su','1 yemek kaşığı yulaf, isteğe bağlı'],prep:'Malzemeleri kabukları uygun şekilde temizlenmiş olarak blenderdan geçirin; süzmeden tüketin.',note:'Hassas bağırsakta kivi veya yüksek lifli porsiyonlar şişkinlik yapabilir; miktarı kişiselleştirin.',tags:['armut','kivi','lif'],keywords:'kalin kalın bagirsak bağırsak armut kivi lif posa',image:'./detox-kalin-04-armut-kivi-v392.png?v=392',imageAlt:'Armut, kivi ve yulaf ile hazırlanmış kalın bağırsak dostu smoothie'},
+        {id:'kalin-05',category:'kalin-bagirsak',categoryLabel:'Kalın Bağırsak',icon:'🍎',name:'Elma & Yulaf Kefir Karışımı',support:'Fermente içecek, meyve ve yulafı bir araya getirerek lif ve protein içeren dengeli bir ara öğün oluşturur.',ingredients:['¾ su bardağı sade kefir','½ küçük elma','1 yemek kaşığı yulaf','1 tutam tarçın'],prep:'Elmayı küçük doğrayın; kefir ve yulafla blenderdan geçirin, tarçın ekleyin.',note:'Laktoz intoleransı ve süt alerjisinde uygun alternatif gerekir.',tags:['elma','yulaf','kefir'],keywords:'kalin kalın bagirsak bağırsak elma yulaf kefir lif',image:'./detox-kalin-05-elma-yulaf-kefir-v392.png?v=392',imageAlt:'Elma, yulaf ve kefir ile hazırlanmış kalın bağırsak dostu karışım'},
+
+        // KARACİĞER
+        {id:'karaciger-01',category:'karaciger',categoryLabel:'Karaciğer',icon:'🥬',name:'Yeşil Elma, Salatalık & Maydanoz',support:'Sebze-meyve çeşitliliğini ve sıvı tüketimini artıran hafif bir tarif; “karaciğer temizleme” iddiası taşımaz.',ingredients:['½ yeşil elma','½ salatalık','1 küçük avuç maydanoz','¾ su bardağı su'],prep:'Tüm malzemeleri iyi yıkayıp suyla blenderdan geçirin; süzmeden küçük porsiyon tüketin.',note:'Böbrek hastalığı, potasyum kısıtlaması veya warfarin kullanımı varsa içerik seçimini hekiminizle planlayın.',tags:['yeşillik','maydanoz','sebze'],keywords:'karaciger karaciğer yesil yeşil elma salatalik salatalık maydanoz',image:'./detox-karaciger-01-yesil-elma-salatalik-v392.png?v=392',imageAlt:'Yeşil elma, salatalık ve maydanoz ile hazırlanmış karaciğer dostu yeşil içecek'},
+        {id:'karaciger-02',category:'karaciger',categoryLabel:'Karaciğer',icon:'🫜',name:'Pancar & Havuç Karışımı',support:'Renkli sebzelerden gelen çeşitli bitkisel bileşenleri günlük beslenmeye eklemek için kullanılabilecek küçük porsiyonlu bir seçenektir.',ingredients:['¼ küçük pancar','1 küçük havuç','½ küçük elma','¾ su bardağı su'],prep:'Malzemeleri blenderdan geçirin; posa kaybını azaltmak için süzmeden tüketin.',note:'Böbrek taşı eğilimi, potasyum kısıtlaması veya diyabette porsiyon kişiye göre ayarlanmalıdır.',tags:['pancar','havuç','renkli sebze'],keywords:'karaciger karaciğer pancar havuc havuç antioksidan sebze',image:'./detox-karaciger-02-pancar-havuc-v392.png?v=392',imageAlt:'Pancar, havuç ve elma ile hazırlanmış karaciğer dostu sebze karışımı'},
+        {id:'karaciger-03',category:'karaciger',categoryLabel:'Karaciğer',icon:'🫚',name:'Zerdeçal & Zencefil Ilık Demleme',support:'Şekerli içecekler yerine baharat aromalı, kalorisi düşük sıcak bir içecek alternatifi sunar.',ingredients:['¼ çay kaşığı zerdeçal','1 ince dilim zencefil','1 su bardağı sıcak su','1–2 damla limon, isteğe bağlı'],prep:'Zerdeçal ve zencefili 5 dakika sıcak suda bekletin; karıştırarak ılık tüketin.',note:'Safra taşı, kanama riski veya kan sulandırıcı kullanımı varsa yoğun zerdeçal-zencefil kullanmayın.',tags:['zerdeçal','zencefil','ılık içecek'],keywords:'karaciger karaciğer zerdecal zerdeçal zencefil sıcak ilik ılık',image:'./detox-karaciger-03-zerdecal-zencefil-v392.png?v=392',imageAlt:'Zerdeçal ve zencefil ile hazırlanmış karaciğer dostu ılık bitki çayı'},
+        {id:'karaciger-04',category:'karaciger',categoryLabel:'Karaciğer',icon:'🥦',name:'Brokoli & Salatalık Yeşil Karışımı',support:'Turpgil ve taze sebze tüketimini artırmaya yönelik, posa içeren tuzsuz bir sebze karışımıdır.',ingredients:['½ su bardağı kısa süre buharda pişmiş brokoli','½ salatalık','birkaç yaprak maydanoz','1 su bardağı su'],prep:'Brokoliyi soğuttuktan sonra diğer malzemelerle blenderdan geçirin; tuz eklemeyin.',note:'Gaz-şişkinlik eğiliminde brokoli miktarını düşük tutun.',tags:['brokoli','turpgil','posa'],keywords:'karaciger karaciğer brokoli salatalik salatalık turpgil posa',image:'./detox-karaciger-04-brokoli-salatalik-v392.png?v=392',imageAlt:'Brokoli ve salatalık ile hazırlanmış karaciğer dostu yeşil karışım'},
+        {id:'karaciger-05',category:'karaciger',categoryLabel:'Karaciğer',icon:'☕',name:'Şekersiz Tarçınlı Kahve Rutini',support:'Şekerli kahve içecekleri yerine sade kahve tercih etmek, toplam şeker ve enerji alımını azaltmaya yardımcı olabilir.',ingredients:['1 küçük fincan filtre kahve veya Türk kahvesi','1 küçük tutam tarçın','şeker eklemeden'],prep:'Kahveyi normal şekilde hazırlayın; içmeden önce çok az tarçın ekleyin.',note:'Çarpıntı, kontrolsüz hipertansiyon, reflü, gebelik veya uyku sorunu varsa kafein miktarını sınırlayın.',tags:['kahve','şekersiz','ölçülü tüketim'],keywords:'karaciger karaciğer kahve tarcin tarçın kafein sekersiz şekersiz',image:'./detox-karaciger-05-tarcinli-kahve-v392.png?v=392',imageAlt:'Tarçınlı şekersiz kahve ile hazırlanmış karaciğer rutini görseli'},
+
+        // KALP & DOLAŞIM
+        {id:'kalp-01',category:'kalp',categoryLabel:'Kalp & Dolaşım',icon:'❤️',name:'Nar & Kırmızı Meyve Suyu',support:'Renkli meyveleri küçük porsiyonda bir araya getirerek günlük beslenme çeşitliliğine katkı sağlar.',ingredients:['2 yemek kaşığı nar tanesi','½ su bardağı çilek veya yaban mersini','¾ su bardağı su'],prep:'Meyveleri suyla blenderdan geçirin; posa kaybını azaltmak için süzmeden tüketin.',note:'Diyabet veya ilaç kullanımı varsa meyve porsiyonunu kişisel planınıza göre ayarlayın.',tags:['nar','kırmızı meyve','meyve çeşitliliği'],keywords:'kalp dolasim dolaşım nar kirmizi kırmızı meyve yaban mersini',image:''},
+        {id:'kalp-02',category:'kalp',categoryLabel:'Kalp & Dolaşım',icon:'🌺',name:'Hibiskus & Tarçın Demlemesi',support:'Şeker eklemeden tüketilebilen aromatik bir bitki çayı alternatifi olarak günlük sıvı rutinine eşlik edebilir.',ingredients:['1 tatlı kaşığı kurutulmuş hibiskus','1 küçük parça çubuk tarçın','1 su bardağı sıcak su'],prep:'5–7 dakika demleyin, süzüp ılık veya soğuk tüketin.',note:'Düşük tansiyon, antihipertansif ilaç kullanımı, gebelik-emzirme döneminde düzenli kullanım öncesi hekim görüşü alın.',tags:['hibiskus','tarçın','şekersiz'],keywords:'kalp dolasim dolaşım hibiskus tarcin tarçın tansiyon',image:''},
+        {id:'kalp-03',category:'kalp',categoryLabel:'Kalp & Dolaşım',icon:'🌾',name:'Yulaf & Yaban Mersini Smoothie',support:'Yulafın çözünür lifi ile meyve çeşitliliğini bir araya getiren dengeli bir ara öğün seçeneğidir.',ingredients:['2 yemek kaşığı yulaf','½ su bardağı yaban mersini','¾ su bardağı kefir veya sade yoğurt-su karışımı'],prep:'Tüm malzemeleri blenderdan geçirin; ilave şeker kullanmayın.',note:'Süt ürünleri uygun değilse şekersiz, uygun bir alternatif tercih edin.',tags:['yulaf','yaban mersini','çözünür lif'],keywords:'kalp dolasim dolaşım yulaf beta glukan yaban mersini lif',image:''},
+        {id:'kalp-04',category:'kalp',categoryLabel:'Kalp & Dolaşım',icon:'🥜',name:'Ceviz & Kakao Kefir Karışımı',support:'Küçük porsiyonda ceviz, şekersiz kakao ve kefiri birleştiren doyurucu bir ara öğün alternatifi olabilir.',ingredients:['¾ su bardağı sade kefir','2 tam ceviz içi','1 çay kaşığı şekersiz kakao'],prep:'Malzemeleri blenderdan geçirin; şeker veya şurup eklemeyin.',note:'Kuruyemiş alerjisinde tüketilmemelidir; enerji yoğun olduğu için porsiyon önemlidir.',tags:['ceviz','kakao','kefir'],keywords:'kalp dolasim dolaşım ceviz kakao kefir ara ogun öğün',image:''},
+        {id:'kalp-05',category:'kalp',categoryLabel:'Kalp & Dolaşım',icon:'🍅',name:'Domates & Salatalık Tuzsuz Ayran',support:'Tuzlu hazır içecekler yerine sebze ve sade yoğurtla hazırlanmış, tuzsuz bir seçenek sunar.',ingredients:['½ su bardağı yoğurt','½ su bardağı su','½ küçük domates','¼ salatalık','birkaç nane yaprağı'],prep:'Tüm malzemeleri blenderdan geçirin; tuz eklemeden soğuk tüketin.',note:'Potasyum kısıtlaması gereken böbrek hastalarında içerikler kişiye göre ayarlanmalıdır.',tags:['tuzsuz','yoğurt','sebze'],keywords:'kalp dolasim dolaşım tuzsuz ayran domates salatalik salatalık',image:''},
+
+        // DALAK
+        {id:'dalak-01',category:'dalak',categoryLabel:'Dalak',icon:'🍎',name:'Şekersiz Elma & Tarçın Kompostosu',support:'Dalak için özel bir “temizleme” etkisi iddia etmeden, sıcak ve kolay tüketilen bir meyve alternatifi sunar.',ingredients:['½ elma','1 küçük parça çubuk tarçın','1,5 su bardağı su'],prep:'Elmayı tarçınla 6–8 dakika hafifçe kaynatın; şeker eklemeden ılık tüketin.',note:'Dalak hastalıkları beslenme kürüyle tedavi edilmez; büyüme veya ağrı varsa tıbbi değerlendirme gerekir.',tags:['elma','tarçın','ılık tarif'],keywords:'dalak elma tarcin tarçın komposto sıcak ilik ılık',image:''},
+        {id:'dalak-02',category:'dalak',categoryLabel:'Dalak',icon:'🎃',name:'Balkabağı & Yoğurt Karışımı',support:'Yumuşak dokulu, küçük porsiyonlu bir ara öğün olarak sebze çeşitliliği ve protein alımına katkı sağlayabilir.',ingredients:['3 yemek kaşığı pişmiş balkabağı','3 yemek kaşığı sade yoğurt','1 tutam tarçın'],prep:'Balkabağını ezin, yoğurtla karıştırın; şeker eklemeyin.',note:'Diyabette porsiyon planı; süt ürünlerine hassasiyette uygun alternatif gerekir.',tags:['balkabağı','yoğurt','yumuşak kıvam'],keywords:'dalak balkabagi balkabağı yogurt yoğurt tarcin tarçın',image:''},
+        {id:'dalak-03',category:'dalak',categoryLabel:'Dalak',icon:'🥕',name:'Havuç & Armut Ilık Püresi',support:'Meyve-sebze içeriğini yumuşak kıvamda sunan küçük porsiyonlu bir beslenme alternatifi olabilir.',ingredients:['½ küçük havuç','½ armut','½ su bardağı su','1 tutam tarçın'],prep:'Havuç ve armudu az suyla yumuşatın; blenderdan geçirip ılık tüketin.',note:'Bu tarif bir organ tedavisi değildir; kişisel enerji ve karbonhidrat ihtiyacına göre porsiyon belirlenmelidir.',tags:['havuç','armut','ılık'],keywords:'dalak havuc havuç armut püre ilik ılık',image:''},
+        {id:'dalak-04',category:'dalak',categoryLabel:'Dalak',icon:'🥣',name:'Kırmızı Mercimek & Havuç Mini Çorba',support:'Bitkisel protein, lif ve sebzeyi bir araya getiren küçük porsiyonlu sıcak bir tarif olarak genel beslenmeyi destekler.',ingredients:['2 yemek kaşığı kırmızı mercimek','½ küçük havuç','1,5 su bardağı su','kimyon, çok az'],prep:'Malzemeleri tamamen yumuşayana kadar pişirin; blenderdan geçirip tuzu sınırlı tutun.',note:'Gaz-şişkinlik eğiliminde porsiyonu küçük başlayın.',tags:['mercimek','bitkisel protein','sıcak tarif'],keywords:'dalak mercimek havuc havuç corba çorba protein lif',image:''},
+        {id:'dalak-05',category:'dalak',categoryLabel:'Dalak',icon:'🍐',name:'Armut & Yulaf Ilık Karışımı',support:'Çözünür lif içeren yulaf ile meyveyi bir araya getiren sıcak ve yumuşak kıvamlı bir ara öğün seçeneğidir.',ingredients:['½ armut','1 yemek kaşığı yulaf','¾ su bardağı su','1 tutam tarçın'],prep:'Armut ve yulafı suyla 5–6 dakika pişirin; ılık tüketin.',note:'Dalakla ilgili özel bir “detoks” etkisi beklenmemelidir; bu tarif genel beslenme içindir.',tags:['armut','yulaf','lif'],keywords:'dalak armut yulaf lif sıcak ilik ılık',image:''},
+
+        // KİLO KONTROLÜ
+        {id:'kilo-01',category:'kilo',categoryLabel:'Kilo Kontrolü',icon:'🥒',name:'Salatalık, Nane & Limon Suyu',support:'Kalorili içecekler yerine şekersiz aromalı su tercih etmeyi kolaylaştırarak günlük enerji kontrolüne dolaylı katkı sağlayabilir.',ingredients:['½ salatalık','6–8 nane yaprağı','2 ince limon dilimi','1 litre su'],prep:'Malzemeleri suya ekleyin; 1–2 saat buzdolabında bekletin ve gün içinde tüketin.',note:'Tek başına yağ yakmaz veya kilo verdirmez; kilo kaybı toplam enerji dengesiyle ilişkilidir.',tags:['şekersiz','sıvı','düşük enerji'],keywords:'kilo verme zayiflama zayıflama salatalik salatalık nane limon sivi sıvı',image:''},
+        {id:'kilo-02',category:'kilo',categoryLabel:'Kilo Kontrolü',icon:'🫘',name:'Yoğurt & Chia Tokluk Karışımı',support:'Protein ve lif içeren küçük porsiyonlu bir ara öğün olarak daha uzun süre tokluk hissine yardımcı olabilir.',ingredients:['4 yemek kaşığı sade yoğurt','1 tatlı kaşığı chia tohumu','2 yemek kaşığı su','1 tutam tarçın'],prep:'Karıştırıp chia tamamen şişene kadar en az 20 dakika bekletin.',note:'Enerjisi sıfır değildir; günlük toplam enerji planına dahil edilmelidir.',tags:['tokluk','chia','protein'],keywords:'kilo verme zayiflama zayıflama tokluk chia yogurt yoğurt protein lif',image:''},
+        {id:'kilo-03',category:'kilo',categoryLabel:'Kilo Kontrolü',icon:'🍏',name:'Yeşil Elma & Yulaf Smoothie',support:'Meyve ve yulafı kontrollü porsiyonda birleştirerek lif içeren dengeli bir ara öğün alternatifi sunar.',ingredients:['½ yeşil elma','1 yemek kaşığı yulaf','¾ su bardağı kefir veya su','tarçın, isteğe bağlı'],prep:'Malzemeleri blenderdan geçirin; ilave şeker veya bal eklemeyin.',note:'Smoothie sıvı olduğu için hızlı tüketilebilir; yavaş içmek ve porsiyonu küçük tutmak önemlidir.',tags:['yulaf','elma','ara öğün'],keywords:'kilo verme zayiflama zayıflama elma yulaf smoothie lif',image:''},
+        {id:'kilo-04',category:'kilo',categoryLabel:'Kilo Kontrolü',icon:'🥛',name:'Naneli Salatalıklı Ayran',support:'Şekerli içecekler yerine protein içeren, tuzu sınırlı bir içecek alternatifi olarak kullanılabilir.',ingredients:['½ su bardağı yoğurt','½ su bardağı su','¼ salatalık','4–5 nane yaprağı'],prep:'Tüm malzemeleri blenderdan geçirin; tuz eklemeyin veya çok az kullanın.',note:'Laktoz intoleransı veya süt alerjisinde uygun değildir.',tags:['ayran','protein','şekersiz'],keywords:'kilo verme zayiflama zayıflama ayran salatalik salatalık nane protein',image:''},
+        {id:'kilo-05',category:'kilo',categoryLabel:'Kilo Kontrolü',icon:'🍫',name:'Kakao & Kefir Ara Öğünü',support:'Tatlı isteğinde ilave şeker içeren içecekler yerine kontrollü porsiyonlu bir alternatif oluşturabilir.',ingredients:['¾ su bardağı sade kefir','1 çay kaşığı şekersiz kakao','¼ küçük muz, isteğe bağlı','tarçın, isteğe bağlı'],prep:'Malzemeleri blenderdan geçirin; bal, şurup veya şeker eklemeyin.',note:'Muz eklenirse toplam karbonhidrat ve enerji miktarı artar; porsiyonu günlük plana göre ayarlayın.',tags:['kakao','kefir','tatlı isteği'],keywords:'kilo verme zayiflama zayıflama kakao kefir tatli tatlı istegi isteği',image:''}
+    ];
+
+    window.detoxRecipesV390 = recipes;
+    window.detoxRecipesV391 = recipes;
+    window.detoxRecipesV392 = recipes;
+
+    const root = document.getElementById('detoxExplorerV390');
+    const grid = document.getElementById('detoxRecipeGridV390');
+    const tabs = document.getElementById('detoxCategoryTabsV390');
+    const input = document.getElementById('detoxSearchInputV390');
+    const searchButton = document.getElementById('detoxSearchButtonV390');
+    const clearButton = document.getElementById('detoxSearchClearV390');
+    const resetButton = document.getElementById('detoxResetV390');
+    const empty = document.getElementById('detoxEmptyV390');
+    const count = document.getElementById('detoxResultCountV390');
+    const activeLabel = document.getElementById('detoxActiveCategoryV390');
+    const totalCount = document.getElementById('detoxTotalCountV390');
+
+    if (!root || !grid || !tabs || !input) return;
+    if (totalCount) totalCount.textContent = String(recipes.length);
+
+    let activeCategory = 'all';
+    let query = '';
+
+    const categoryLabels = {
+        all:'Tüm kategoriler',
+        mide:'Mide',
+        'ince-bagirsak':'İnce Bağırsak',
+        'kalin-bagirsak':'Kalın Bağırsak',
+        karaciger:'Karaciğer',
+        kalp:'Kalp & Dolaşım',
+        dalak:'Dalak',
+        kilo:'Kilo Kontrolü'
+    };
+
+    function normalize(value) {
+        return String(value || '')
+            .toLocaleLowerCase('tr-TR')
+            .normalize('NFD')
+            .replace(/[\u0300-\u036f]/g, '')
+            .replace(/ı/g, 'i')
+            .replace(/ğ/g, 'g')
+            .replace(/ü/g, 'u')
+            .replace(/ş/g, 's')
+            .replace(/ö/g, 'o')
+            .replace(/ç/g, 'c')
+            .replace(/[^a-z0-9\s-]/g, ' ')
+            .replace(/\s+/g, ' ')
+            .trim();
+    }
+
+    function escapeHtml(value) {
+        return String(value || '').replace(/[&<>"']/g, ch => ({
+            '&':'&amp;',
+            '<':'&lt;',
+            '>':'&gt;',
+            '"':'&quot;',
+            "'":'&#39;'
+        })[ch]);
+    }
+
+    function searchable(recipe) {
+        return normalize([
+            recipe.name,
+            recipe.categoryLabel,
+            recipe.support,
+            recipe.keywords,
+            ...(recipe.tags || []),
+            ...(recipe.ingredients || [])
+        ].join(' '));
+    }
+
+    const indexed = recipes.map((recipe, index) => ({
+        ...recipe,
+        index,
+        haystack: searchable(recipe)
+    }));
+
+    function matchesCurrent(recipe) {
+        const categoryOkay = activeCategory === 'all' || recipe.category === activeCategory;
+        const q = normalize(query);
+        const queryOkay = !q || recipe.haystack.includes(q);
+        return categoryOkay && queryOkay;
+    }
+
+
+    function renderCard(recipe, position) {
+        const ingredients = (recipe.ingredients || [])
+            .map(item => `<li>${escapeHtml(item)}</li>`)
+            .join('');
+
+        const hasImage = !!(recipe.image && String(recipe.image).trim());
+        const media = hasImage
+            ? `<div class="detox-card-media-v391"><img src="${escapeHtml(recipe.image)}" alt="${escapeHtml(recipe.imageAlt || recipe.name)}" loading="lazy" decoding="async"><span class="detox-card-media-badge-v391">${escapeHtml(recipe.categoryLabel)}</span></div>`
+            : `<div class="detox-card-media-v391"><div class="detox-card-media-placeholder-v391"><strong>${escapeHtml(recipe.icon || '•')}</strong><span>Görsel eklenecek</span></div><span class="detox-card-media-badge-v391">${escapeHtml(recipe.categoryLabel)}</span></div>`;
+
+        const visualNote = hasImage
+            ? `<div class="detox-card-visual-note-v391"><i aria-hidden="true">✓</i><span>Görsel hazır</span></div>`
+            : `<div class="detox-card-visual-note-v391 is-pending"><i aria-hidden="true">○</i><span>Görsel sonraki turda eklenecek</span></div>`;
+
+        return `
+            <article class="detox-recipe-card-v390" data-category="${escapeHtml(recipe.category)}" data-detox-recipe-v390="${escapeHtml(recipe.id)}">
+                <div class="detox-card-top-v390">
+                    <span class="detox-card-icon-v390" aria-hidden="true">${escapeHtml(recipe.icon || '•')}</span>
+                    <span class="detox-card-number-v390">${String(position + 1).padStart(2,'0')}</span>
+                </div>
+                ${media}
+                <div class="detox-card-copy-v390">
+                    ${visualNote}
+                    <span class="detox-card-category-v390">${escapeHtml(recipe.categoryLabel)}</span>
+                    <h3>${escapeHtml(recipe.name)}</h3>
+                    <p class="detox-support-v390"><strong>Destek alanı:</strong> ${escapeHtml(recipe.support)}</p>
+                    <div class="detox-tags-v390">
+                        ${(recipe.tags || []).slice(0,3).map(tag => `<span>${escapeHtml(tag)}</span>`).join('')}
+                    </div>
+                    <details class="detox-recipe-detail-v390">
+                        <summary>Tarifi ve kullanım notunu gör</summary>
+                        <div class="detox-detail-body-v390">
+                            <strong>İçindekiler</strong>
+                            <ul class="detox-ingredient-list-v390">${ingredients}</ul>
+                            <p class="detox-prep-v390"><strong>Hazırlanışı:</strong> ${escapeHtml(recipe.prep)}</p>
+                            <p class="detox-card-note-v390"><strong>Dikkat:</strong> ${escapeHtml(recipe.note)}</p>
+                        </div>
+                    </details>
+                </div>
+            </article>`;
+    }
+
+    function render() {
+        const visible = indexed.filter(matchesCurrent);
+        grid.innerHTML = visible.map((recipe, index) => renderCard(recipe, index)).join('');
+
+        if (empty) empty.hidden = visible.length !== 0;
+        if (grid) grid.hidden = visible.length === 0;
+        if (count) count.textContent = `${visible.length} tarif gösteriliyor`;
+        if (activeLabel) activeLabel.textContent = categoryLabels[activeCategory] || 'Seçili kategori';
+        if (clearButton) clearButton.hidden = !input.value.trim();
+        if (resetButton) resetButton.hidden = activeCategory === 'all' && !input.value.trim();
+
+        tabs.querySelectorAll('[data-detox-category-v390]').forEach(button => {
+            const isActive = button.dataset.detoxCategoryV390 === activeCategory;
+            button.classList.toggle('active', isActive);
+            button.setAttribute('aria-selected', isActive ? 'true' : 'false');
+        });
+    }
+
+    function applySearch() {
+        query = input.value.trim();
+        render();
+    }
+
+    tabs.addEventListener('click', event => {
+        const button = event.target.closest('[data-detox-category-v390]');
+        if (!button) return;
+        activeCategory = button.dataset.detoxCategoryV390 || 'all';
+        render();
+        const y = root.getBoundingClientRect().top + window.scrollY - 110;
+        if (window.scrollY > y + 420) window.scrollTo({top:y,behavior:'smooth'});
+    });
+
+    input.addEventListener('input', applySearch);
+    input.addEventListener('keydown', event => {
+        if (event.key === 'Enter') {
+            event.preventDefault();
+            applySearch();
+        } else if (event.key === 'Escape') {
+            input.value = '';
+            query = '';
+            render();
+        }
+    });
+
+    searchButton?.addEventListener('click', () => {
+        applySearch();
+        const first = grid.querySelector('.detox-recipe-card-v390');
+        if (first) first.scrollIntoView({behavior:'smooth',block:'nearest'});
+    });
+
+    clearButton?.addEventListener('click', () => {
+        input.value = '';
+        query = '';
+        render();
+        input.focus();
+    });
+
+    resetButton?.addEventListener('click', () => {
+        activeCategory = 'all';
+        input.value = '';
+        query = '';
+        render();
+        input.focus({preventScroll:true});
+    });
+
+    // Genel sağlık sayfasından tekrar Detoks Kürleri'ne girildiğinde açık detayları kapat.
+    document.addEventListener('click', event => {
+        const trigger = event.target.closest?.('[data-health-detail="kurler"]');
+        if (!trigger) return;
+        grid.querySelectorAll('details[open]').forEach(detail => detail.removeAttribute('open'));
+    });
+
+    render();
+})();
+
+// V410 - Fitoterapi bitkiler üst alanı kompakt ve modern görünüme getirildi.

@@ -10,7 +10,7 @@
     <meta http-equiv="Cache-Control" content="no-cache, no-store, must-revalidate">
     <meta http-equiv="Pragma" content="no-cache">
     <meta http-equiv="Expires" content="0">
-    <meta name="site-version" content="352">
+    <meta name="site-version" content="411">
 
     <title>Doktor Ceyhun Nuri</title>
 
@@ -38,7 +38,7 @@
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Manrope:wght@600;700;800&display=swap" rel="stylesheet">
 
-    <link rel="stylesheet" href="style.css?v=362">
+    <link rel="stylesheet" href="style.css?v=411">
 
 <style id="treatmentNavCriticalV161">
 /* V161 critical: HTML içine gömülü, eski CSS bu menüyü geri çeviremez */
@@ -581,10 +581,98 @@ body.media-page-open .media-page-content-v48 {
         padding-top: 12px !important;
     }
 }
+
+/* V402: Eski sayfa menülerini kesin olarak gizle; yalnızca ortak menü görünür. */
+body #siteHeader,
+body .hero-modern-nav-v82,
+body .general-featured-nav-v124,
+body .ankilozan-page-nav-v87,
+body .treatment-page-nav,
+body .pain-page-nav,
+body .treatment-detail-nav-modern-v160,
+body .device-detail-nav-v157,
+body .about-page-nav-v47,
+body .general-health-detail-nav-v75,
+body .media-page-nav-v48,
+body .pain-full-detail-nav-v215{
+    display:none!important;
+    visibility:hidden!important;
+}
+</style>
+<style id="subpageGapFixV409">
+/* V409 - Ortak menü boşluğu body tarafından verilir; alt sayfalar ikinci kez boşluk bırakmaz. */
+body .legal-page-topnav-v56,
+body .info-guide-nav-v143,
+body .condition-disease-nav-v246,
+body .condition-page-nav-v249,
+body .site-feedback-nav-v332{
+    display:none!important;
+    visibility:hidden!important;
+}
+
+body.global-subpage-open-v405 #tedaviAlanlariPage,
+body.global-subpage-open-v405 #agriPage,
+body.global-subpage-open-v405 #medyaPage,
+body.global-subpage-open-v405 #hakkimdaPage,
+body.global-subpage-open-v405 #generalHealthDetailPageV75,
+body.global-subpage-open-v405 #treatmentDetailPageV71,
+body.global-subpage-open-v405 #generalFeaturedPageV124,
+body.global-subpage-open-v405 #ankilozanFaqSectionV85,
+body.global-subpage-open-v405 #romatoidFaqSectionV198,
+body.global-subpage-open-v405 #conditionDiseasePageV246,
+body.global-subpage-open-v405 #painFullDetailPageV215,
+body.global-subpage-open-v405 #legalPageV56,
+body.global-subpage-open-v405 #infoGuidePageV143,
+body.global-subpage-open-v405 #deviceDetailPageV157,
+body.global-subpage-open-v405 #siteFeedbackPageV332{
+    padding-top:0!important;
+}
+
+body.treatment-page-open .treatment-page-hero,
+body.pain-page-open .pain-page-hero{
+    display:none!important;
+    min-height:0!important;
+    height:0!important;
+    padding:0!important;
+    margin:0!important;
+}
+
+body.treatment-page-open .treatment-content,
+body.pain-page-open .pain-content{
+    padding-top:24px!important;
+}
+
+body.general-featured-open-v124 .general-featured-shell-v124{
+    padding-top:24px!important;
+}
+
+body.info-guide-open-v143 #infoGuidePageV143,
+body.site-feedback-open-v332 #siteFeedbackPageV332{
+    padding-top:16px!important;
+}
+
+body.romatoid-page-open-v198 .disease-switcher-ra-v250,
+body.romatoid-page-open-v198 .ra-hero-v198{
+    margin-top:18px!important;
+}
+
+@media(max-width:760px){
+    body.treatment-page-open .treatment-content,
+    body.pain-page-open .pain-content{
+        padding-top:16px!important;
+    }
+    body.general-featured-open-v124 .general-featured-shell-v124{
+        padding-top:16px!important;
+    }
+    body.info-guide-open-v143 #infoGuidePageV143,
+    body.site-feedback-open-v332 #siteFeedbackPageV332{
+        padding-top:10px!important;
+    }
+}
 </style>
 </head>
 
-<!-- BUILD: V53 / CACHE-BUST -->
+<!-- BUILD: V411 / HOME-CTA-AND-SEARCH-LIFTED -->
 <body class="v36-clean-hero-header">
 
     <a class="skip-link" href="#anasayfa">İçeriğe geç</a>
@@ -660,6 +748,84 @@ body.media-page-open .media-page-content-v48 {
 
     </header>
 
+    <!-- V402: BÜTÜN SAYFALARDA ORTAK BAĞLANTI NOKTALARI MENÜSÜ -->
+    <nav class="global-connected-nav-v402" id="globalConnectedNavV402" aria-label="Site ana bölümleri">
+        <button type="button" class="global-connected-brand-v402" id="globalConnectedBrandV402" aria-label="Dr. Ceyhun Nuri ana sayfa">
+            <span class="global-connected-brand-mark-v402" aria-hidden="true">
+                <svg viewBox="0 0 48 48" fill="none">
+                    <circle cx="24" cy="13" r="7" stroke="currentColor" stroke-width="2.5"/>
+                    <path d="M18 20v10c0 5 2.7 8 6 10 3.3-2 6-5 6-10V20" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"/>
+                    <path d="M14 9c-4 3-6 7-6 12 0 6 3 11 8 14M34 9c4 3 6 7 6 12 0 6-3 11-8 14" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"/>
+                </svg>
+            </span>
+            <span class="global-connected-brand-copy-v402">
+                <strong>Dr. Ceyhun Nuri</strong>
+                <small>DAHA SAĞLIKLI YARINLAR</small>
+            </span>
+        </button>
+
+        <div class="global-connected-track-v402">
+            <div class="global-connected-menu-v402" data-v402-menu="treatments">
+                <button type="button" class="global-connected-item-v402" aria-expanded="false" aria-controls="globalConnectedTreatmentsV402">
+                    <span class="global-connected-node-v402" aria-hidden="true">✚</span>
+                    <span>Tedavi Uygulamaları</span>
+                </button>
+                <div class="global-connected-panel-v402" id="globalConnectedTreatmentsV402" aria-hidden="true">
+                    <button type="button" data-v402-treatment="osteopati">Osteopati</button>
+                    <button type="button" data-v402-treatment="fitoterapi">Fitoterapi – Bitki</button>
+                    <button type="button" data-v402-treatment="damar-yolu">Damar Yolu Uygulamaları</button>
+                    <button type="button" data-v402-treatment="ozon-tedavisi">Ozon Tedavisi</button>
+                    <button type="button" data-v402-treatment="igne">İğneli Uygulamalar</button>
+                    <button type="button" data-v402-treatment="cihaz-uygulamalari">Cihaz Uygulamaları</button>
+                    <button type="button" data-v402-treatment="geleneksel-tedavi">Geleneksel Tedaviler</button>
+                    <button type="button" data-v402-treatment="estetik">Estetiğe Bakış</button>
+                </div>
+            </div>
+
+            <button type="button" class="global-connected-item-v402" data-v402-route="areas">
+                <span class="global-connected-node-v402" aria-hidden="true">▦</span>
+                <span>Tedavi Alanları</span>
+            </button>
+
+            <button type="button" class="global-connected-item-v402" data-v402-route="pain">
+                <span class="global-connected-node-v402" aria-hidden="true">♧</span>
+                <span>Ağrı</span>
+            </button>
+
+            <div class="global-connected-menu-v402" data-v402-menu="health">
+                <button type="button" class="global-connected-item-v402" aria-expanded="false" aria-controls="globalConnectedHealthV402">
+                    <span class="global-connected-node-v402" aria-hidden="true">♥</span>
+                    <span>Genel Sağlık</span>
+                </button>
+                <div class="global-connected-panel-v402" id="globalConnectedHealthV402" aria-hidden="true">
+                    <button type="button" data-v402-health="beslenme">Beslenme</button>
+                    <button type="button" data-v402-health="supplementler">Supplementler</button>
+                    <button type="button" data-v402-health="kurler">Detoks Kürleri</button>
+                    <button type="button" data-v402-health="egzersizler">Egzersizler</button>
+                </div>
+            </div>
+
+            <button type="button" class="global-connected-item-v402" data-v402-route="media">
+                <span class="global-connected-node-v402" aria-hidden="true">▶</span>
+                <span>Sosyal Medya</span>
+            </button>
+
+            <div class="global-connected-menu-v402" data-v402-menu="info">
+                <button type="button" class="global-connected-item-v402" aria-expanded="false" aria-controls="globalConnectedInfoV402">
+                    <span class="global-connected-node-v402" aria-hidden="true">i</span>
+                    <span>Bilgi</span>
+                </button>
+                <div class="global-connected-panel-v402 global-connected-info-panel-v402" id="globalConnectedInfoV402" aria-hidden="true">
+                    <button type="button" data-v402-guide="randevu-oncesi">Randevu Öncesi Rehber</button>
+                    <button type="button" data-v402-guide="uygulama-sonrasi">Uygulama Sonrası Rehber</button>
+                    <button type="button" data-v402-guide="randevu-gunu">Randevu Günü Bilgilendirmesi</button>
+                    <button type="button" data-v402-feedback>Site ile İlgili Öneriler</button>
+                    <button type="button" data-v402-legal="aydinlatma">KVKK Aydınlatma Metni</button>
+                </div>
+            </div>
+        </div>
+    </nav>
+
     <!-- ANA SAYFA -->
     <section class="hero hero-v31 hero-home-v85" id="anasayfa">
         <div class="hero-slider-v86" id="heroSliderV86">
@@ -668,7 +834,7 @@ body.media-page-open .media-page-content-v48 {
             <div class="hero-slide-v86 doctor-slide-v86 is-active" data-hero-slide="doctor">
                 <img
                     class="doctor-slide-image-v86"
-                    src="./hero-osteopati-ceyhun-v347.png?v=347"
+                    src="./hero-ceyhun-v400.png"
                     alt="Dr. Ceyhun Nuri osteopati kliniğinde"
                 >
                 <div class="doctor-slide-overlay-v86"></div>
@@ -1326,7 +1492,113 @@ body.media-page-open .media-page-content-v48 {
             </div>
         </div>
 
+
         </nav>
+
+
+
+        <!-- V378: GENEL ARAMA, KAPAK GÖRSELİNİN ALTINDA BAĞIMSIZ BÖLÜM -->
+        <section class="home-search-section-v376" aria-label="Site genelinde arama">
+        <div class="home-search-section-inner-v376">
+        <button type="button" class="home-search-toggle-v377" id="homeSearchToggleV377" aria-expanded="false" aria-controls="homeSiteSearchV373">
+            <span class="home-search-toggle-icon-v377" aria-hidden="true">
+                <svg viewBox="0 0 24 24" fill="none"><circle cx="11" cy="11" r="6.5"></circle><path d="m16 16 4.2 4.2"></path></svg>
+            </span>
+            <span class="home-search-toggle-copy-v377">
+                <small>SİTE GENELİNDE</small>
+                <strong id="homeSearchToggleLabelV377">Sitede Ara</strong>
+            </span>
+            <span class="home-search-toggle-arrow-v377" aria-hidden="true">⌄</span>
+        </button>
+        <div class="home-site-search-v373 home-site-search-dock-v375 site-search-overlay-v400" id="homeSiteSearchV373" role="search" aria-label="Site içinde ara" aria-hidden="true" hidden>
+            <div class="site-search-modal-v400" role="dialog" aria-modal="true" aria-labelledby="homeSiteSearchTitleV400">
+                <div class="site-search-modal-head-v400">
+                    <div>
+                        <span class="site-search-kicker-v400">SİTE REHBERİ · HIZLI ERİŞİM</span>
+                        <h2 id="homeSiteSearchTitleV400">Sitede ne aramak istiyorsunuz?</h2>
+                        <p>Aradığınız tedavi, hastalık, uygulama veya bilgi başlığını yazın; isterseniz aşağıdaki hızlı geçişlerden doğrudan bölüme gidin.</p>
+                    </div>
+                    <button type="button" class="site-search-close-v400" id="homeSiteSearchCloseV400" aria-label="Site aramasını kapat">×</button>
+                </div>
+
+                <div class="site-search-modal-body-v400">
+                    <div class="site-search-main-v400">
+                        <div class="home-site-search-heading-v375">
+                            <span class="home-site-search-kicker-v375">SİTE GENELİNDE ARAMA</span>
+                            <span class="home-site-search-note-v375">İstediğiniz başlığı yazın ve ilgili sayfaya doğrudan ulaşın</span>
+                        </div>
+                        <div class="home-site-search-box-v373">
+                            <span class="home-site-search-icon-v373" aria-hidden="true">
+                                <svg viewBox="0 0 24 24" fill="none">
+                                    <circle cx="11" cy="11" r="6.5"></circle>
+                                    <path d="m16 16 4.2 4.2"></path>
+                                </svg>
+                            </span>
+                            <input
+                                type="search"
+                                id="homeSiteSearchInputV373"
+                                autocomplete="off"
+                                spellcheck="false"
+                                placeholder="Örn. Osteopati, ankilozan spondilit, proloterapi, ozon..."
+                                aria-label="Site içinde ara"
+                                aria-controls="homeSiteSearchResultsV373"
+                                aria-expanded="false"
+                            >
+                            <button type="button" class="home-site-search-clear-v373" id="homeSiteSearchClearV373" aria-label="Aramayı temizle" hidden>×</button>
+                            <button type="button" class="home-site-search-submit-v373" id="homeSiteSearchSubmitV373">Ara</button>
+                        </div>
+                        <p class="home-site-search-example-v373">
+                            <strong>Örn:</strong> Osteopati, Fitoterapi, Sosyal Medya, Ağrı, Ozon, Postür Analizi, Detoks Kürleri…
+                        </p>
+                    </div>
+
+                    <section class="site-search-shortcuts-v400" aria-label="Hızlı geçişler">
+                        <div class="site-search-shortcuts-head-v400">
+                            <span>HIZLI GEÇİŞLER</span>
+                            <h3>En çok kullanılan bölümler</h3>
+                            <p>Siteye yeni girenler için ana bölümlere tek dokunuşla ulaşın.</p>
+                        </div>
+                        <div class="site-search-shortcut-grid-v400">
+                            <button type="button" class="site-search-shortcut-v400" data-site-search-shortcut-v400="Osteopati"><b>O</b><span><strong>Osteopati</strong><small>Manuel yaklaşım ve hareket</small></span><i>→</i></button>
+                            <button type="button" class="site-search-shortcut-v400" data-site-search-shortcut-v400="Fitoterapi"><b>F</b><span><strong>Fitoterapi</strong><small>Bitkisel yaklaşım</small></span><i>→</i></button>
+                            <button type="button" class="site-search-shortcut-v400" data-site-search-shortcut-v400="Tedavi Alanları"><b>T</b><span><strong>Tedavi Alanları</strong><small>Hastalık ve klinik durumlar</small></span><i>→</i></button>
+                            <button type="button" class="site-search-shortcut-v400" data-site-search-shortcut-v400="Ağrı"><b>A</b><span><strong>Ağrı</strong><small>Bölgelere göre ağrı içerikleri</small></span><i>→</i></button>
+                            <button type="button" class="site-search-shortcut-v400" data-site-search-shortcut-v400="Beslenme"><b>B</b><span><strong>Beslenme</strong><small>Genel sağlık ve tarifler</small></span><i>→</i></button>
+                            <button type="button" class="site-search-shortcut-v400" data-site-search-shortcut-v400="Detoks Kürleri"><b>D</b><span><strong>Detoks Kürleri</strong><small>35 destekleyici tarif</small></span><i>→</i></button>
+                            <button type="button" class="site-search-shortcut-v400" data-site-search-shortcut-v400="Damar Yolu Uygulamaları"><b>IV</b><span><strong>Damar Yolu</strong><small>Serum ve IV uygulamaları</small></span><i>→</i></button>
+                            <button type="button" class="site-search-shortcut-v400" data-site-search-shortcut-v400="İğneli Uygulamalar"><b>+</b><span><strong>İğneli Uygulamalar</strong><small>Proloterapi ve enjeksiyonlar</small></span><i>→</i></button>
+                            <button type="button" class="site-search-shortcut-v400" data-site-search-shortcut-v400="Cihaz Uygulamaları"><b>C</b><span><strong>Cihaz Uygulamaları</strong><small>Klinik cihaz uygulamaları</small></span><i>→</i></button>
+                            <button type="button" class="site-search-shortcut-v400" data-site-search-shortcut-v400="Sosyal Medya"><b>▶</b><span><strong>Sosyal Medya</strong><small>Video ve yayın içerikleri</small></span><i>→</i></button>
+                            <button type="button" class="site-search-shortcut-v400" data-site-search-shortcut-v400="Hakkımda"><b>Dr</b><span><strong>Hakkımda</strong><small>Dr. Ceyhun Nuri ve kurum</small></span><i>→</i></button>
+                            <button type="button" class="site-search-shortcut-v400" data-site-search-shortcut-v400="Supplementler"><b>S</b><span><strong>Supplementler</strong><small>Takviye içerikleri</small></span><i>→</i></button>
+                        </div>
+                    </section>
+
+                    <div class="home-site-search-results-v373 site-search-results-v400" id="homeSiteSearchResultsV373" hidden>
+                        <div class="home-site-search-results-head-v373">
+                            <strong id="homeSiteSearchCountV373">Sonuçlar</strong>
+                            <span>İlgili bölüme gitmek için tıklayın</span>
+                        </div>
+                        <div class="home-site-search-results-list-v373" id="homeSiteSearchListV373"></div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        </div>
+
+        <!-- V407: Gözle görülür, yüzü kapatmayan ana sayfa hareket katmanı -->
+        <div class="hero-motion-layer-v407" aria-hidden="true">
+            <span class="hero-motion-orb-v407 orb-one-v407"></span>
+            <span class="hero-motion-orb-v407 orb-two-v407"></span>
+            <span class="hero-motion-ring-v407"></span>
+            <i class="hero-motion-particle-v407 particle-one-v407"></i>
+            <i class="hero-motion-particle-v407 particle-two-v407"></i>
+            <i class="hero-motion-particle-v407 particle-three-v407"></i>
+            <i class="hero-motion-particle-v407 particle-four-v407"></i>
+            <i class="hero-motion-particle-v407 particle-five-v407"></i>
+            <i class="hero-motion-particle-v407 particle-six-v407"></i>
+        </div>
+    </section>
 
         <div class="home-social-dock-v132" aria-label="Sosyal medya bağlantıları">
 
@@ -1402,6 +1674,8 @@ body.media-page-open .media-page-content-v48 {
         </div>
 
 </section>
+
+
 
     <section class="home-stats-v137" id="homeStatsV137" aria-label="Klinik deneyim istatistikleri">
         <div class="home-stats-shell-v137">
@@ -3180,17 +3454,6 @@ body.media-page-open .media-page-content-v48 {
         <div class="pain-content">
             <div class="pain-grid pain-grid-v76">
 
-                <a class="pain-card pain-card-v76" href="#" data-pain="diz">
-                    <div class="pain-card-image-v76">
-                        <img src="./pain-diz-v76.png?v=150" alt="Diz ağrısını gösteren medikal görsel">
-                    </div>
-                    <div class="pain-card-body-v76">
-                        <h3>Diz Ağrısı</h3>
-                        <p>Diz bölgesindeki ağrı ve hareket kısıtlılıklarının değerlendirilmesi.</p>
-                        <span>Tam Sayfayı Aç ↗</span>
-                    </div>
-                </a>
-
                 <a class="pain-card pain-card-v76" href="#" data-pain="ayak-ayak-bilegi">
                     <div class="pain-card-image-v76">
                         <img src="./pain-ayak-bilegi-v76.png?v=150" alt="Ayak ve ayak bileği ağrısını gösteren medikal görsel">
@@ -3198,6 +3461,17 @@ body.media-page-open .media-page-content-v48 {
                     <div class="pain-card-body-v76">
                         <h3>Ayak - Ayak Bileği Ağrısı</h3>
                         <p>Ayak ve ayak bileği bölgesindeki ağrı, yüklenme ve hareket sorunlarının değerlendirilmesi.</p>
+                        <span>Tam Sayfayı Aç ↗</span>
+                    </div>
+                </a>
+
+                <a class="pain-card pain-card-v76" href="#" data-pain="diz">
+                    <div class="pain-card-image-v76">
+                        <img src="./pain-diz-v76.png?v=150" alt="Diz ağrısını gösteren medikal görsel">
+                    </div>
+                    <div class="pain-card-body-v76">
+                        <h3>Diz Ağrısı</h3>
+                        <p>Diz bölgesindeki ağrı ve hareket kısıtlılıklarının değerlendirilmesi.</p>
                         <span>Tam Sayfayı Aç ↗</span>
                     </div>
                 </a>
@@ -3235,6 +3509,17 @@ body.media-page-open .media-page-content-v48 {
                     </div>
                 </a>
 
+                <a class="pain-card pain-card-v76" href="#" data-pain="el-bilegi">
+                    <div class="pain-card-image-v76">
+                        <img src="./pain-el-bilegi-v76.png?v=150" alt="El bileği ağrısını gösteren medikal görsel">
+                    </div>
+                    <div class="pain-card-body-v76">
+                        <h3>El Bileği Ağrısı</h3>
+                        <p>El bileği bölgesindeki ağrı, hareket ve günlük kullanım sorunlarının değerlendirilmesi.</p>
+                        <span>Tam Sayfayı Aç ↗</span>
+                    </div>
+                </a>
+
                 <a class="pain-card pain-card-v76" href="#" data-pain="dirsek">
                     <div class="pain-card-image-v76">
                         <img src="./pain-dirsek-v76.png?v=150" alt="Dirsek ağrısını gösteren medikal görsel">
@@ -3253,17 +3538,6 @@ body.media-page-open .media-page-content-v48 {
                     <div class="pain-card-body-v76">
                         <h3>Omuz Ağrısı</h3>
                         <p>Omuz hareketleri, ağrı ve çevre kas yapılarının değerlendirilmesi.</p>
-                        <span>Tam Sayfayı Aç ↗</span>
-                    </div>
-                </a>
-
-                <a class="pain-card pain-card-v76" href="#" data-pain="el-bilegi">
-                    <div class="pain-card-image-v76">
-                        <img src="./pain-el-bilegi-v76.png?v=150" alt="El bileği ağrısını gösteren medikal görsel">
-                    </div>
-                    <div class="pain-card-body-v76">
-                        <h3>El Bileği Ağrısı</h3>
-                        <p>El bileği bölgesindeki ağrı, hareket ve günlük kullanım sorunlarının değerlendirilmesi.</p>
                         <span>Tam Sayfayı Aç ↗</span>
                     </div>
                 </a>
@@ -3293,14 +3567,14 @@ body.media-page-open .media-page-content-v48 {
             <div class="pain-full-top-switch-v218 pain-full-top-switch-v219" aria-label="Ağrı alanları hızlı geçiş">
                 <button type="button" class="pain-full-top-back-v218 pain-full-top-back-v219" id="painFullBackQuickV217">← Ağrı Alanlarına Dön</button>
                 <div class="pain-full-top-list-v218 pain-full-top-list-v219" role="navigation" aria-label="Diğer ağrı alanları">
-                    <button type="button" class="pain-full-top-item-v218 pain-full-top-item-v219" data-pain-quick-v217="diz"><span class="pain-full-top-thumb-v219"><img data-pain-quick-image-v219="diz" alt=""></span><span>Diz</span></button>
                     <button type="button" class="pain-full-top-item-v218 pain-full-top-item-v219" data-pain-quick-v217="ayak-ayak-bilegi"><span class="pain-full-top-thumb-v219"><img data-pain-quick-image-v219="ayak-ayak-bilegi" alt=""></span><span>Ayak / Ayak Bileği</span></button>
+                    <button type="button" class="pain-full-top-item-v218 pain-full-top-item-v219" data-pain-quick-v217="diz"><span class="pain-full-top-thumb-v219"><img data-pain-quick-image-v219="diz" alt=""></span><span>Diz</span></button>
                     <button type="button" class="pain-full-top-item-v218 pain-full-top-item-v219" data-pain-quick-v217="kalca"><span class="pain-full-top-thumb-v219"><img data-pain-quick-image-v219="kalca" alt=""></span><span>Kalça</span></button>
                     <button type="button" class="pain-full-top-item-v218 pain-full-top-item-v219" data-pain-quick-v217="bel"><span class="pain-full-top-thumb-v219"><img data-pain-quick-image-v219="bel" alt=""></span><span>Bel</span></button>
                     <button type="button" class="pain-full-top-item-v218 pain-full-top-item-v219" data-pain-quick-v217="sirt"><span class="pain-full-top-thumb-v219"><img data-pain-quick-image-v219="sirt" alt=""></span><span>Sırt</span></button>
+                    <button type="button" class="pain-full-top-item-v218 pain-full-top-item-v219" data-pain-quick-v217="el-bilegi"><span class="pain-full-top-thumb-v219"><img data-pain-quick-image-v219="el-bilegi" alt=""></span><span>El Bileği</span></button>
                     <button type="button" class="pain-full-top-item-v218 pain-full-top-item-v219" data-pain-quick-v217="dirsek"><span class="pain-full-top-thumb-v219"><img data-pain-quick-image-v219="dirsek" alt=""></span><span>Dirsek</span></button>
                     <button type="button" class="pain-full-top-item-v218 pain-full-top-item-v219" data-pain-quick-v217="omuz"><span class="pain-full-top-thumb-v219"><img data-pain-quick-image-v219="omuz" alt=""></span><span>Omuz</span></button>
-                    <button type="button" class="pain-full-top-item-v218 pain-full-top-item-v219" data-pain-quick-v217="el-bilegi"><span class="pain-full-top-thumb-v219"><img data-pain-quick-image-v219="el-bilegi" alt=""></span><span>El Bileği</span></button>
                 </div>
             </div>
         </header>
@@ -4072,8 +4346,8 @@ body.media-page-open .media-page-content-v48 {
 
             <div class="osteopathy-page-hero-v95 osteo-signature-hero-v257 osteo-video-hero-v355 osteo-clean-hero-v360">
                 <div class="osteo-video-background-v355 osteo-clean-video-v360" aria-hidden="true">
-                    <video class="osteo-bg-video-v355" autoplay muted loop playsinline preload="auto" poster="osteopati-background-poster-v360.jpg">
-                        <source src="osteopati-background-v360.mp4" type="video/mp4">
+                    <video class="osteo-bg-video-v355" autoplay muted loop playsinline preload="metadata" poster="osteopati-background-poster-v380.jpg">
+                        <source src="osteopati-background-v380.mp4" type="video/mp4">
                     </video>
                 </div>
                 <div class="osteo-clean-overlay-v360" aria-hidden="true"></div>
@@ -4082,7 +4356,7 @@ body.media-page-open .media-page-content-v48 {
                     <section class="osteo-clean-copy-v360">
                         <div class="osteo-clean-kicker-v360"><span aria-hidden="true"></span>OSTEOPATİ • BÜTÜNCÜL MANUEL DEĞERLENDİRME</div>
                         <h1>Osteopati</h1>
-                        <p class="osteo-clean-lead-v360">Kas-iskelet sistemi, eklem hareketliliği, postür ve hareket paternleri; kişinin öyküsü ve muayene bulgularıyla birlikte değerlendirilir.</p>
+                        <p class="osteo-clean-lead-v360">Kas-iskelet sistemi, postür ve hareket paternleri; iç organ bağlantıları ve bilinçaltı süreçlerle birlikte değerlendirilir.</p>
 
                         <div class="osteo-clean-grid-v360" aria-label="Osteopati içerik alanları">
                             <button type="button" class="osteo-clean-card-v360 is-featured-v360" data-osteo-tab-target="manual">
@@ -4120,30 +4394,13 @@ body.media-page-open .media-page-content-v48 {
                         <p class="osteo-clean-note-v360">Uygunluk ve uygulanacak teknikler hekim değerlendirmesi sonrasında belirlenir.</p>
                     </section>
 
-                    <aside class="osteo-clean-map-v360" aria-label="Omurga, postür ve hareket ilişkisini temsil eden osteopati görseli">
-                        <div class="osteo-clean-map-head-v360"><span>HAREKET HARİTASI</span><small>POSTÜR • OMURGA • PELVİS</small></div>
-                        <div class="osteo-clean-anatomy-v360" aria-hidden="true">
-                            <svg viewBox="0 0 420 520" role="img" aria-label="Stilize omurga ve postür şeması">
-                                <defs>
-                                    <linearGradient id="osteoSpineGradientV360" x1="0" y1="0" x2="0" y2="1">
-                                        <stop offset="0%" stop-color="#8de8ff"/><stop offset="52%" stop-color="#3ab8ec"/><stop offset="100%" stop-color="#1b79c6"/>
-                                    </linearGradient>
-                                    <filter id="osteoGlowV360" x="-50%" y="-50%" width="200%" height="200%"><feGaussianBlur stdDeviation="5" result="blur"/><feMerge><feMergeNode in="blur"/><feMergeNode in="SourceGraphic"/></feMerge></filter>
-                                </defs>
-                                <path class="osteo-clean-bodyline-v360" d="M210 58 C168 84 146 120 144 166 C141 220 160 264 158 315 C156 362 139 405 118 451"/>
-                                <path class="osteo-clean-bodyline-v360" d="M210 58 C252 84 274 120 276 166 C279 220 260 264 262 315 C264 362 281 405 302 451"/>
-                                <path class="osteo-clean-bodyline-v360" d="M125 145 C165 122 255 122 295 145"/>
-                                <path class="osteo-clean-bodyline-v360" d="M157 345 C180 365 240 365 263 345"/>
-                                <path class="osteo-clean-spine-v360" d="M211 92 C199 115 218 136 206 158 C195 180 217 200 205 221 C194 242 218 263 205 286 C193 308 217 329 204 351 C192 373 211 397 207 425" stroke="url(#osteoSpineGradientV360)" filter="url(#osteoGlowV360)"/>
-                                <g class="osteo-clean-vertebrae-v360">
-                                    <circle cx="210" cy="103" r="8"/><circle cx="205" cy="128" r="8"/><circle cx="210" cy="153" r="8"/><circle cx="204" cy="178" r="8"/><circle cx="209" cy="203" r="8"/><circle cx="203" cy="228" r="8"/><circle cx="208" cy="253" r="8"/><circle cx="202" cy="278" r="8"/><circle cx="207" cy="303" r="8"/><circle cx="201" cy="328" r="8"/><circle cx="206" cy="353" r="8"/><circle cx="202" cy="378" r="8"/><circle cx="207" cy="403" r="8"/>
-                                </g>
-                                <circle class="osteo-clean-ring-v360" cx="208" cy="128" r="34"/><circle class="osteo-clean-ring-v360" cx="205" cy="238" r="48"/><circle class="osteo-clean-ring-v360" cx="205" cy="355" r="52"/>
-                            </svg>
-                            <span class="osteo-clean-label-v360 label-neck">Boyun</span>
-                            <span class="osteo-clean-label-v360 label-thorax">Toraks</span>
-                            <span class="osteo-clean-label-v360 label-pelvis">Pelvis</span>
-                        </div>
+                    <aside class="osteo-clean-map-v360 osteo-clinic-visual-v380" aria-label="Omurga, göğüs kafesi ve pelvis ilişkisini gösteren anatomik görsel">
+                        <div class="osteo-clean-map-head-v360"><span>BÜTÜNCÜL ANATOMİ</span><small>BOYUN • OMURGA • PELVİS</small></div>
+                        <figure class="osteo-clinic-photo-v380">
+                            <img src="osteopati-anatomi-v381.png" alt="Boyun, omurga, göğüs kafesi ve pelvis ilişkisini gösteren modern anatomik görsel" loading="eager" decoding="async">
+                            <div class="osteo-clinic-photo-shade-v380" aria-hidden="true"></div>
+                            <figcaption class="osteo-clinic-badge-v380"><span aria-hidden="true">✦</span><strong>Birbiriyle bağlantılı hareket sistemi</strong></figcaption>
+                        </figure>
                         <div class="osteo-clean-caption-v360"><span aria-hidden="true">✦</span><div><strong>Bölgesel değil, ilişkisel bakış</strong><small>Hareket, postür ve eklem ilişkileri birlikte değerlendirilir.</small></div></div>
                     </aside>
                 </div>
@@ -4246,11 +4503,6 @@ body.media-page-open .media-page-content-v48 {
                                         Uygulanacak teknikler kişinin muayene bulgularına göre belirlenir.
                                     </p>
 
-                                    <div class="osteo-chiro-tags-v108">
-                                        <span>Omurga Mobilizasyonu</span>
-                                        <span>Eklem Hareketliliği</span>
-                                        <span>Postür & Hareket Zinciri</span>
-                                    </div>
                                 </div>
                             </div>
 
@@ -4290,12 +4542,14 @@ body.media-page-open .media-page-content-v48 {
                             </div>
 
                             <div class="osteo-pain-grid-v258 osteo-pain-grid-v264 osteo-pain-links-v265" aria-label="Ağrı bölgeleri">
-                                <button type="button" class="osteo-pain-link-v265" data-osteo-pain-target-v265="boyun-ense" aria-label="Boyun ve ense ağrısı detay sayfasını aç"><span>01</span><div><strong>Boyun &amp; Ense</strong><small>Boyun hareketi, omuz kuşağı ve postür ilişkisi</small></div><i aria-hidden="true">↗</i></button>
-                                <button type="button" class="osteo-pain-link-v265" data-osteo-pain-target-v265="bel-sirt" aria-label="Bel ve sırt ağrısı detay sayfasını aç"><span>02</span><div><strong>Bel &amp; Sırt</strong><small>Omurga hareketliliği ve günlük yüklenme paternleri</small></div><i aria-hidden="true">↗</i></button>
-                                <button type="button" class="osteo-pain-link-v265" data-osteo-pain-target-v265="omuz-kol" aria-label="Omuz ve kol ağrısı detay sayfasını aç"><span>03</span><div><strong>Omuz &amp; Kol</strong><small>Omuz kuşağı, skapula ve üst ekstremite hareketi</small></div><i aria-hidden="true">↗</i></button>
-                                <button type="button" class="osteo-pain-link-v265" data-osteo-pain-target-v265="kalca-diz" aria-label="Kalça ve diz ağrısı detay sayfasını aç"><span>04</span><div><strong>Kalça &amp; Diz</strong><small>Alt ekstremite yük aktarımı ve hareket zinciri</small></div><i aria-hidden="true">↗</i></button>
-                                <button type="button" class="osteo-pain-link-v265" data-osteo-pain-target-v265="cene-bas" aria-label="Çene ve baş ağrısı detay sayfasını aç"><span>05</span><div><strong>Çene &amp; Baş</strong><small>TME, baş-boyun ilişkisi ve üst çapraz paternler</small></div><i aria-hidden="true">↗</i></button>
-                                <button type="button" class="osteo-pain-link-v265" data-osteo-pain-target-v265="ayak-ayak-bilegi" aria-label="Ayak ve ayak bileği ağrısı detay sayfasını aç"><span>06</span><div><strong>Ayak &amp; Bilek</strong><small>Basış paterni, denge ve alt zincir yük aktarımı</small></div><i aria-hidden="true">↗</i></button>
+                                <button type="button" class="osteo-pain-link-v265" data-osteo-pain-target-v265="ayak-ayak-bilegi" aria-label="Ayak ve ayak bileği ağrısı detay sayfasını aç"><span>01</span><div><strong>Ayak &amp; Ayak Bileği</strong><small>Basış paterni, denge ve alt zincir yük aktarımı</small></div><i aria-hidden="true">↗</i></button>
+                                <button type="button" class="osteo-pain-link-v265" data-osteo-pain-target-v265="diz" aria-label="Diz ağrısı detay sayfasını aç"><span>02</span><div><strong>Diz</strong><small>Diz hareketi, eklem çevresi ve yük aktarımı</small></div><i aria-hidden="true">↗</i></button>
+                                <button type="button" class="osteo-pain-link-v265" data-osteo-pain-target-v265="kalca" aria-label="Kalça ağrısı detay sayfasını aç"><span>03</span><div><strong>Kalça</strong><small>Kalça hareketliliği, kas dengesi ve yürüyüş ilişkisi</small></div><i aria-hidden="true">↗</i></button>
+                                <button type="button" class="osteo-pain-link-v265" data-osteo-pain-target-v265="bel" aria-label="Bel ağrısı detay sayfasını aç"><span>04</span><div><strong>Bel</strong><small>Bel hareketi, duruş ve günlük yüklenme ilişkisi</small></div><i aria-hidden="true">↗</i></button>
+                                <button type="button" class="osteo-pain-link-v265" data-osteo-pain-target-v265="sirt" aria-label="Sırt ağrısı detay sayfasını aç"><span>05</span><div><strong>Sırt</strong><small>Omurga hareketliliği ve sırt kaslarının değerlendirilmesi</small></div><i aria-hidden="true">↗</i></button>
+                                <button type="button" class="osteo-pain-link-v265" data-osteo-pain-target-v265="omuz-kol" aria-label="Omuz ve kol ağrısı detay sayfasını aç"><span>06</span><div><strong>Omuz &amp; Kol</strong><small>Omuz kuşağı, skapula ve üst ekstremite hareketi</small></div><i aria-hidden="true">↗</i></button>
+                                <button type="button" class="osteo-pain-link-v265" data-osteo-pain-target-v265="boyun-ense" aria-label="Boyun ve ense ağrısı detay sayfasını aç"><span>07</span><div><strong>Boyun &amp; Ense</strong><small>Boyun hareketi, omuz kuşağı ve postür ilişkisi</small></div><i aria-hidden="true">↗</i></button>
+                                <button type="button" class="osteo-pain-link-v265" data-osteo-pain-target-v265="cene-bas" aria-label="Çene ve baş ağrısı detay sayfasını aç"><span>08</span><div><strong>Çene &amp; Baş</strong><small>TME, baş-boyun ilişkisi ve üst çapraz paternler</small></div><i aria-hidden="true">↗</i></button>
                             </div>
 
                             <div class="osteo-pain-cta-v258">
@@ -4308,72 +4562,356 @@ body.media-page-open .media-page-content-v48 {
                         </section>
 
                         <!-- SORU CEVAP -->
-                        <section class="osteo-section-v105 osteo-tab-panel-v258" id="osteoFaqV105" role="tabpanel" aria-labelledby="osteoTabFaqV258" data-osteo-panel="faq" hidden>
-                            <div class="osteo-section-heading-v105">
-                                <span>MERAK EDİLENLER</span>
-                                <h2>Osteopati Soru & Cevap</h2>
+                        <section class="osteo-section-v105 osteo-tab-panel-v258 osteo-faq-section-v370" id="osteoFaqV105" role="tabpanel" aria-labelledby="osteoTabFaqV258" data-osteo-panel="faq" hidden>
+                            <div class="osteo-faq-head-v370">
+                                <div class="osteo-section-heading-v105">
+                                    <span>MERAK EDİLENLER</span>
+                                    <h2>Osteopati Soru &amp; Cevap</h2>
+                                    <p>En sık sorulan konuları değerlendirme, uygulama, egzersiz ve güvenlik başlıklarıyla daha ayrıntılı şekilde inceleyin. Bir soruya dokunduğunuzda cevap yumuşak bir geçişle açılır.</p>
+                                </div>
+                                <div class="osteo-faq-count-v370" aria-label="15 soru">
+                                    <strong>15</strong>
+                                    <span>Soru<br>&amp; Cevap</span>
+                                </div>
                             </div>
 
-                            <div class="osteo-faq-v105">
-                                <article class="osteo-faq-item-v105">
-                                    <button type="button" aria-expanded="false">
-                                        Osteopati nedir?
-                                        <span>+</span>
-                                    </button>
-                                    <div class="osteo-faq-answer-v105">
-                                        <p>Osteopati; kas-iskelet sistemi, eklem hareketliliği, postür ve hareket ilişkilerini manuel değerlendirme içinde ele alan bir yaklaşımdır.</p>
-                                    </div>
-                                </article>
+                            <div class="osteo-faq-v105 osteo-faq-grid-v370">
 
-                                <article class="osteo-faq-item-v105">
+                                <article class="osteo-faq-item-v105 osteo-faq-item-v370">
                                     <button type="button" aria-expanded="false">
-                                        İlk değerlendirmede nelere bakılır?
-                                        <span>+</span>
+                                        <span class="osteo-faq-index-v370">01</span>
+                                        <span class="osteo-faq-question-v370">
+                                            <small>TEMEL BİLGİ</small>
+                                            <strong>Osteopati nedir?</strong>
+                                        </span>
+                                        <span class="osteo-faq-toggle-v370" aria-hidden="true">+</span>
                                     </button>
                                     <div class="osteo-faq-answer-v105">
-                                        <p>Şikâyetin öyküsü, hareket kapasitesi, postür, eklem hareketliliği ve kişinin genel sağlık durumu birlikte değerlendirilir.</p>
+                                        <div class="osteo-faq-answer-inner-v370">
+                                            <div class="osteo-faq-answer-lead-v370">
+                                                <span>KISA CEVAP</span>
+                                                <p>Osteopati; kas-iskelet sistemi, eklem hareketliliği, postür ve hareket ilişkilerini manuel değerlendirme içinde ele alan tamamlayıcı bir yaklaşımdır.</p>
+                                            </div>
+                                            <div class="osteo-faq-answer-points-v370">
+                                                <strong>Değerlendirmede önemli noktalar</strong>
+                                                <ul><li>Amaç yalnızca ağrılı bölgeye bakmak değil, hareket zincirini birlikte değerlendirmektir.</li><li>Muayene bulguları; kişinin öyküsü, günlük yüklenmesi ve mevcut tanılarıyla birlikte yorumlanır.</li><li>Tanı ve gerekli tıbbi tedavilerin yerine geçmez.</li></ul>
+                                            </div>
+                                        </div>
                                     </div>
                                 </article>
+                                <article class="osteo-faq-item-v105 osteo-faq-item-v370">
+                                    <button type="button" aria-expanded="false">
+                                        <span class="osteo-faq-index-v370">02</span>
+                                        <span class="osteo-faq-question-v370">
+                                            <small>DEĞERLENDİRME</small>
+                                            <strong>İlk değerlendirmede nelere bakılır?</strong>
+                                        </span>
+                                        <span class="osteo-faq-toggle-v370" aria-hidden="true">+</span>
+                                    </button>
+                                    <div class="osteo-faq-answer-v105">
+                                        <div class="osteo-faq-answer-inner-v370">
+                                            <div class="osteo-faq-answer-lead-v370">
+                                                <span>KISA CEVAP</span>
+                                                <p>İlk görüşmede şikâyetin ne zaman başladığı, hangi hareketlerle değiştiği ve günlük yaşamı nasıl etkilediği anlaşılmaya çalışılır.</p>
+                                            </div>
+                                            <div class="osteo-faq-answer-points-v370">
+                                                <strong>Değerlendirmede önemli noktalar</strong>
+                                                <ul><li>Postür, yürüyüş ve temel hareket paternleri gözlemlenebilir.</li><li>Boyun, omurga, pelvis ve ilgili eklemlerin hareket açıklığı değerlendirilir.</li><li>Gerekli durumlarda görüntüleme, laboratuvar sonuçları veya farklı uzmanlık değerlendirmeleri dikkate alınır.</li></ul>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </article>
+                                <article class="osteo-faq-item-v105 osteo-faq-item-v370">
+                                    <button type="button" aria-expanded="false">
+                                        <span class="osteo-faq-index-v370">03</span>
+                                        <span class="osteo-faq-question-v370">
+                                            <small>UYGUNLUK</small>
+                                            <strong>Osteopati hangi şikâyetlerde değerlendirilebilir?</strong>
+                                        </span>
+                                        <span class="osteo-faq-toggle-v370" aria-hidden="true">+</span>
+                                    </button>
+                                    <div class="osteo-faq-answer-v105">
+                                        <div class="osteo-faq-answer-inner-v370">
+                                            <div class="osteo-faq-answer-lead-v370">
+                                                <span>KISA CEVAP</span>
+                                                <p>Manuel değerlendirme; boyun, sırt, bel, omuz, kalça ve benzeri kas-iskelet sistemi yakınmalarında uygunluk açısından ele alınabilir.</p>
+                                            </div>
+                                            <div class="osteo-faq-answer-points-v370">
+                                                <strong>Değerlendirmede önemli noktalar</strong>
+                                                <ul><li>Yakınmanın kaynağı her zaman ağrının hissedildiği bölge olmayabilir.</li><li>Kas, eklem, yüklenme ve hareket kontrolü birlikte incelenir.</li><li>Her şikâyette osteopati uygun olmayabilir; önce güvenli ve doğru klinik değerlendirme gerekir.</li></ul>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </article>
+                                <article class="osteo-faq-item-v105 osteo-faq-item-v370">
+                                    <button type="button" aria-expanded="false">
+                                        <span class="osteo-faq-index-v370">04</span>
+                                        <span class="osteo-faq-question-v370">
+                                            <small>PLANLAMA</small>
+                                            <strong>Seans nasıl planlanır?</strong>
+                                        </span>
+                                        <span class="osteo-faq-toggle-v370" aria-hidden="true">+</span>
+                                    </button>
+                                    <div class="osteo-faq-answer-v105">
+                                        <div class="osteo-faq-answer-inner-v370">
+                                            <div class="osteo-faq-answer-lead-v370">
+                                                <span>KISA CEVAP</span>
+                                                <p>Seans planı kişiye göre değişir; standart bir teknik dizisi veya herkese uygulanan tek bir protokol yoktur.</p>
+                                            </div>
+                                            <div class="osteo-faq-answer-points-v370">
+                                                <strong>Değerlendirmede önemli noktalar</strong>
+                                                <ul><li>Önce değerlendirme yapılır, ardından uygun manuel teknikler seçilir.</li><li>Gerekirse egzersiz, günlük hareket düzeni ve yüklenme önerileri eklenir.</li><li>Sonraki seanslarda yanıt yeniden değerlendirilerek plan değiştirilebilir.</li></ul>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </article>
+                                <article class="osteo-faq-item-v105 osteo-faq-item-v370">
+                                    <button type="button" aria-expanded="false">
+                                        <span class="osteo-faq-index-v370">05</span>
+                                        <span class="osteo-faq-question-v370">
+                                            <small>KONFOR</small>
+                                            <strong>Osteopati ağrılı bir uygulama mıdır?</strong>
+                                        </span>
+                                        <span class="osteo-faq-toggle-v370" aria-hidden="true">+</span>
+                                    </button>
+                                    <div class="osteo-faq-answer-v105">
+                                        <div class="osteo-faq-answer-inner-v370">
+                                            <div class="osteo-faq-answer-lead-v370">
+                                                <span>KISA CEVAP</span>
+                                                <p>Uygulamanın rahatsızlık düzeyi kullanılan tekniğe, bölgenin hassasiyetine ve kişinin ağrı eşiğine göre değişebilir.</p>
+                                            </div>
+                                            <div class="osteo-faq-answer-points-v370">
+                                                <strong>Değerlendirmede önemli noktalar</strong>
+                                                <ul><li>Teknikler kontrollü ve kişinin toleransına göre uygulanmalıdır.</li><li>Keskin, beklenmeyen veya artan ağrı olduğunda uygulama yeniden değerlendirilir.</li><li>Hedef zorlamak değil, güvenli hareket ve doku yanıtını desteklemektir.</li></ul>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </article>
+                                <article class="osteo-faq-item-v105 osteo-faq-item-v370">
+                                    <button type="button" aria-expanded="false">
+                                        <span class="osteo-faq-index-v370">06</span>
+                                        <span class="osteo-faq-question-v370">
+                                            <small>SÜREÇ</small>
+                                            <strong>Kaç seans gerekir?</strong>
+                                        </span>
+                                        <span class="osteo-faq-toggle-v370" aria-hidden="true">+</span>
+                                    </button>
+                                    <div class="osteo-faq-answer-v105">
+                                        <div class="osteo-faq-answer-inner-v370">
+                                            <div class="osteo-faq-answer-lead-v370">
+                                                <span>KISA CEVAP</span>
+                                                <p>Herkes için geçerli sabit bir seans sayısı yoktur. Şikâyetin süresi, nedeni, fonksiyonel etkisi ve verilen yanıt planı belirler.</p>
+                                            </div>
+                                            <div class="osteo-faq-answer-points-v370">
+                                                <strong>Değerlendirmede önemli noktalar</strong>
+                                                <ul><li>Kısa süreli mekanik yakınmalar ile kronik durumların takip ihtiyacı farklı olabilir.</li><li>Her görüşmede ilerleme ve hedefler yeniden değerlendirilir.</li><li>Beklenen yanıt oluşmuyorsa planın değiştirilmesi veya başka değerlendirmeler gerekebilir.</li></ul>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </article>
+                                <article class="osteo-faq-item-v105 osteo-faq-item-v370">
+                                    <button type="button" aria-expanded="false">
+                                        <span class="osteo-faq-index-v370">07</span>
+                                        <span class="osteo-faq-question-v370">
+                                            <small>EGZERSİZ</small>
+                                            <strong>Egzersiz programı herkeste aynı mıdır?</strong>
+                                        </span>
+                                        <span class="osteo-faq-toggle-v370" aria-hidden="true">+</span>
+                                    </button>
+                                    <div class="osteo-faq-answer-v105">
+                                        <div class="osteo-faq-answer-inner-v370">
+                                            <div class="osteo-faq-answer-lead-v370">
+                                                <span>KISA CEVAP</span>
+                                                <p>Hayır. Egzersiz seçimi kişinin hareket kapasitesine, muayene bulgularına, yaşına, aktivite düzeyine ve hedeflerine göre kişiselleştirilmelidir.</p>
+                                            </div>
+                                            <div class="osteo-faq-answer-points-v370">
+                                                <strong>Değerlendirmede önemli noktalar</strong>
+                                                <ul><li>Aynı tanıya sahip iki kişinin ihtiyaçları farklı olabilir.</li><li>Egzersiz yoğunluğu kademeli artırılır.</li><li>Doğru teknik, tekrar sayısından veya zorlayıcılıktan daha önemlidir.</li></ul>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </article>
+                                <article class="osteo-faq-item-v105 osteo-faq-item-v370">
+                                    <button type="button" aria-expanded="false">
+                                        <span class="osteo-faq-index-v370">08</span>
+                                        <span class="osteo-faq-question-v370">
+                                            <small>GÜVENLİK</small>
+                                            <strong>Manuel uygulamalar kimlere uygun değildir?</strong>
+                                        </span>
+                                        <span class="osteo-faq-toggle-v370" aria-hidden="true">+</span>
+                                    </button>
+                                    <div class="osteo-faq-answer-v105">
+                                        <div class="osteo-faq-answer-inner-v370">
+                                            <div class="osteo-faq-answer-lead-v370">
+                                                <span>KISA CEVAP</span>
+                                                <p>Uygunluk; tıbbi öykü, mevcut hastalıklar, kullanılan ilaçlar ve muayene bulgularına göre belirlenir.</p>
+                                            </div>
+                                            <div class="osteo-faq-answer-points-v370">
+                                                <strong>Değerlendirmede önemli noktalar</strong>
+                                                <ul><li>Akut travma, kırık şüphesi, ciddi enfeksiyon veya yeni nörolojik bulgular varsa önce tıbbi değerlendirme gerekir.</li><li>Kemik yoğunluğu, kanama riski ve bazı sistemik hastalıklar teknik seçimini etkileyebilir.</li><li>Gerektiğinde ilgili uzmanlık alanına yönlendirme yapılmalıdır.</li></ul>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </article>
+                                <article class="osteo-faq-item-v105 osteo-faq-item-v370">
+                                    <button type="button" aria-expanded="false">
+                                        <span class="osteo-faq-index-v370">09</span>
+                                        <span class="osteo-faq-question-v370">
+                                            <small>OMURGA</small>
+                                            <strong>Boyun veya bel fıtığında osteopati uygulanabilir mi?</strong>
+                                        </span>
+                                        <span class="osteo-faq-toggle-v370" aria-hidden="true">+</span>
+                                    </button>
+                                    <div class="osteo-faq-answer-v105">
+                                        <div class="osteo-faq-answer-inner-v370">
+                                            <div class="osteo-faq-answer-lead-v370">
+                                                <span>KISA CEVAP</span>
+                                                <p>Fıtık tanısı tek başına hangi tekniğin uygulanacağını belirlemez. Klinik bulgular, nörolojik muayene ve görüntüleme sonuçları birlikte değerlendirilmelidir.</p>
+                                            </div>
+                                            <div class="osteo-faq-answer-points-v370">
+                                                <strong>Değerlendirmede önemli noktalar</strong>
+                                                <ul><li>Uyuşma, güç kaybı veya ilerleyici nörolojik bulgu varsa öncelik hekim değerlendirmesidir.</li><li>Uygunsa daha nazik mobilizasyon ve hareket eğitimi tercih edilebilir.</li><li>Amaç görüntüdeki fıtığı &#x27;yerine sokmak&#x27; değil, güvenli fonksiyonu desteklemektir.</li></ul>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </article>
+                                <article class="osteo-faq-item-v105 osteo-faq-item-v370">
+                                    <button type="button" aria-expanded="false">
+                                        <span class="osteo-faq-index-v370">10</span>
+                                        <span class="osteo-faq-question-v370">
+                                            <small>SPOR</small>
+                                            <strong>Sporcularda yaklaşım farklı mı planlanır?</strong>
+                                        </span>
+                                        <span class="osteo-faq-toggle-v370" aria-hidden="true">+</span>
+                                    </button>
+                                    <div class="osteo-faq-answer-v105">
+                                        <div class="osteo-faq-answer-inner-v370">
+                                            <div class="osteo-faq-answer-lead-v370">
+                                                <span>KISA CEVAP</span>
+                                                <p>Evet. Spor branşı, antrenman yükü, performans hedefi, önceki yaralanmalar ve dönüş zamanı değerlendirmeye dahil edilir.</p>
+                                            </div>
+                                            <div class="osteo-faq-answer-points-v370">
+                                                <strong>Değerlendirmede önemli noktalar</strong>
+                                                <ul><li>Sadece ağrı değil, hareket kalitesi ve yük toleransı da izlenir.</li><li>Spor spesifik hareketler ve kuvvet gereksinimleri plana eklenebilir.</li><li>Manuel uygulama, rehabilitasyon ve egzersizin yerine değil, gerektiğinde onların yanında kullanılır.</li></ul>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </article>
+                                <article class="osteo-faq-item-v105 osteo-faq-item-v370">
+                                    <button type="button" aria-expanded="false">
+                                        <span class="osteo-faq-index-v370">11</span>
+                                        <span class="osteo-faq-question-v370">
+                                            <small>POSTÜR</small>
+                                            <strong>Postür bozukluğu tek başına ağrı nedeni midir?</strong>
+                                        </span>
+                                        <span class="osteo-faq-toggle-v370" aria-hidden="true">+</span>
+                                    </button>
+                                    <div class="osteo-faq-answer-v105">
+                                        <div class="osteo-faq-answer-inner-v370">
+                                            <div class="osteo-faq-answer-lead-v370">
+                                                <span>KISA CEVAP</span>
+                                                <p>Hayır. Postür ile ağrı arasında tek yönlü ve basit bir neden-sonuç ilişkisi kurmak doğru değildir.</p>
+                                            </div>
+                                            <div class="osteo-faq-answer-points-v370">
+                                                <strong>Değerlendirmede önemli noktalar</strong>
+                                                <ul><li>Duruş; alışkanlık, yorgunluk, iş ortamı, hareket kapasitesi ve psikososyal etkenlerden etkilenebilir.</li><li>Tek bir &#x27;mükemmel postür&#x27; yoktur; önemli olan çeşitlilik ve yük toleransıdır.</li><li>Değerlendirmede postür, hareket ve kişinin şikâyeti birlikte ele alınır.</li></ul>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </article>
+                                <article class="osteo-faq-item-v105 osteo-faq-item-v370">
+                                    <button type="button" aria-expanded="false">
+                                        <span class="osteo-faq-index-v370">12</span>
+                                        <span class="osteo-faq-question-v370">
+                                            <small>SEANS SONRASI</small>
+                                            <strong>Seans sonrasında nelere dikkat edilir?</strong>
+                                        </span>
+                                        <span class="osteo-faq-toggle-v370" aria-hidden="true">+</span>
+                                    </button>
+                                    <div class="osteo-faq-answer-v105">
+                                        <div class="osteo-faq-answer-inner-v370">
+                                            <div class="osteo-faq-answer-lead-v370">
+                                                <span>KISA CEVAP</span>
+                                                <p>Seans sonrasında kişinin verdiği yanıta göre kısa süreli hassasiyet veya farklı bir hareket hissi oluşabilir.</p>
+                                            </div>
+                                            <div class="osteo-faq-answer-points-v370">
+                                                <strong>Değerlendirmede önemli noktalar</strong>
+                                                <ul><li>Aşırı yüklenmeden kaçınmak ve önerilen hareketleri kontrollü yapmak faydalı olabilir.</li><li>Uyku, sıvı alımı ve günlük aktivite dengesi genel toparlanmayı destekler.</li><li>Yeni veya belirgin şekilde artan şikâyetlerde klinikle iletişim kurulmalıdır.</li></ul>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </article>
+                                <article class="osteo-faq-item-v105 osteo-faq-item-v370">
+                                    <button type="button" aria-expanded="false">
+                                        <span class="osteo-faq-index-v370">13</span>
+                                        <span class="osteo-faq-question-v370">
+                                            <small>KARŞILAŞTIRMA</small>
+                                            <strong>Osteopati ile kayropraktik aynı şey midir?</strong>
+                                        </span>
+                                        <span class="osteo-faq-toggle-v370" aria-hidden="true">+</span>
+                                    </button>
+                                    <div class="osteo-faq-answer-v105">
+                                        <div class="osteo-faq-answer-inner-v370">
+                                            <div class="osteo-faq-answer-lead-v370">
+                                                <span>KISA CEVAP</span>
+                                                <p>İki yaklaşımın bazı manuel teknikleri benzer görünebilir; ancak eğitim gelenekleri, değerlendirme çerçeveleri ve uygulama tercihleri farklılık gösterebilir.</p>
+                                            </div>
+                                            <div class="osteo-faq-answer-points-v370">
+                                                <strong>Değerlendirmede önemli noktalar</strong>
+                                                <ul><li>Her iki alanda da tekniğin adı kadar, uygulayıcının eğitimi ve doğru hasta seçimi önemlidir.</li><li>Her seansta manipülasyon veya &#x27;kütletme&#x27; yapılması gerekmez.</li><li>Uygulama kişiye ve klinik ihtiyaca göre seçilmelidir.</li></ul>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </article>
+                                <article class="osteo-faq-item-v105 osteo-faq-item-v370">
+                                    <button type="button" aria-expanded="false">
+                                        <span class="osteo-faq-index-v370">14</span>
+                                        <span class="osteo-faq-question-v370">
+                                            <small>ROMATİZMA</small>
+                                            <strong>Romatizmal veya otoimmün hastalıklarda uygulanabilir mi?</strong>
+                                        </span>
+                                        <span class="osteo-faq-toggle-v370" aria-hidden="true">+</span>
+                                    </button>
+                                    <div class="osteo-faq-answer-v105">
+                                        <div class="osteo-faq-answer-inner-v370">
+                                            <div class="osteo-faq-answer-lead-v370">
+                                                <span>KISA CEVAP</span>
+                                                <p>Bu hastalıklarda manuel yaklaşım ancak mevcut hastalık aktivitesi, kullanılan ilaçlar ve dokuların durumu dikkate alınarak planlanabilir.</p>
+                                            </div>
+                                            <div class="osteo-faq-answer-points-v370">
+                                                <strong>Değerlendirmede önemli noktalar</strong>
+                                                <ul><li>Aktif inflamasyon döneminde teknik seçimi ve yüklenme düzeyi özellikle önemlidir.</li><li>Romatoloji veya ilgili branşın temel tedavisi devam eder; osteopati bunun yerine geçmez.</li><li>Amaç uygun hastada hareket, günlük fonksiyon ve konforu desteklemektir.</li></ul>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </article>
+                                <article class="osteo-faq-item-v105 osteo-faq-item-v370">
+                                    <button type="button" aria-expanded="false">
+                                        <span class="osteo-faq-index-v370">15</span>
+                                        <span class="osteo-faq-question-v370">
+                                            <small>KIRMIZI BAYRAKLAR</small>
+                                            <strong>Hangi durumlarda önce tıbbi değerlendirme gerekir?</strong>
+                                        </span>
+                                        <span class="osteo-faq-toggle-v370" aria-hidden="true">+</span>
+                                    </button>
+                                    <div class="osteo-faq-answer-v105">
+                                        <div class="osteo-faq-answer-inner-v370">
+                                            <div class="osteo-faq-answer-lead-v370">
+                                                <span>KISA CEVAP</span>
+                                                <p>Bazı belirtiler manuel uygulamadan önce hızlı tıbbi değerlendirme gerektirir.</p>
+                                            </div>
+                                            <div class="osteo-faq-answer-points-v370">
+                                                <strong>Değerlendirmede önemli noktalar</strong>
+                                                <ul><li>Yeni gelişen belirgin güç kaybı veya yaygın uyuşma</li><li>İdrar-dışkı kontrolünde yeni bozulma, ciddi travma, yüksek ateş veya açıklanamayan kilo kaybı</li><li>Ani ve çok şiddetli baş ağrısı, göğüs ağrısı, nefes darlığı veya hızla kötüleşen belirtiler</li></ul>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </article>
+                            </div>
 
-                                <article class="osteo-faq-item-v105">
-                                    <button type="button" aria-expanded="false">
-                                        Egzersiz programı herkeste aynı mıdır?
-                                        <span>+</span>
-                                    </button>
-                                    <div class="osteo-faq-answer-v105">
-                                        <p>Hayır. Egzersiz ve hareket önerileri kişinin muayene bulgularına, kapasitesine ve hedeflerine göre kişiselleştirilir.</p>
-                                    </div>
-                                </article>
-
-                                <article class="osteo-faq-item-v105">
-                                    <button type="button" aria-expanded="false">
-                                        Manuel uygulamalar kimlere uygun değildir?
-                                        <span>+</span>
-                                    </button>
-                                    <div class="osteo-faq-answer-v105">
-                                        <p>Uygunluk; kişinin tıbbi öyküsü, mevcut hastalıkları ve muayene bulgularına göre belirlenir. Gerektiğinde ilgili uzmanlık alanlarına yönlendirme yapılır.</p>
-                                    </div>
-                                </article>
-
-                                <article class="osteo-faq-item-v105">
-                                    <button type="button" aria-expanded="false">
-                                        Seans sonrasında nelere dikkat edilir?
-                                        <span>+</span>
-                                    </button>
-                                    <div class="osteo-faq-answer-v105">
-                                        <p>Günlük yüklenme, su tüketimi, önerilen hareketler ve kişisel durumunuza göre verilen tavsiyeler dikkate alınmalıdır.</p>
-                                    </div>
-                                </article>
-
-                                <article class="osteo-faq-item-v105">
-                                    <button type="button" aria-expanded="false">
-                                        Sporcularda yaklaşım farklı mı planlanır?
-                                        <span>+</span>
-                                    </button>
-                                    <div class="osteo-faq-answer-v105">
-                                        <p>Evet. Spor branşı, yüklenme tipi, performans hedefi ve yaralanma öyküsü değerlendirmeye ayrıca dahil edilir.</p>
-                                    </div>
-                                </article>
+                            <div class="osteo-faq-note-v370">
+                                <span aria-hidden="true">i</span>
+                                <p>Bu bölüm genel bilgilendirme amaçlıdır. Kişiye özel uygunluk; öykü, muayene bulguları ve gerektiğinde diğer tıbbi değerlendirmeler birlikte ele alınarak belirlenir.</p>
                             </div>
                         </section>
 
@@ -4623,18 +5161,197 @@ body.media-page-open .media-page-content-v48 {
                     </div>
 
                     <div class="osteo-manual-view-v364" data-manual-view-v364="somato-visseral" hidden>
-                        <section class="manual-text-hero-v364"><span>FONKSİYONEL İLİŞKİLER</span><h2>Somato-Visseral Bağlantı</h2><p>Kas-iskelet sistemi ile gövde içi yapıların sinirsel, mekanik ve solunumsal ilişkileri birlikte ele alınabilir. Bu yaklaşım, iç organ hastalıklarını manuel yöntemlerle tedavi etme iddiası değildir; amaç semptomları etkileyebilecek hareket, gerginlik ve solunum paternlerini klinik değerlendirme içinde anlamaktır.</p></section>
-                        <div class="manual-info-grid-v364"><article><strong>01</strong><h3>Solunum Mekaniği</h3><p>Diyafram, kaburgalar ve toraks hareketinin gövde konforuna katkısı değerlendirilir.</p></article><article><strong>02</strong><h3>Gövde Gerginliği</h3><p>Karın ve göğüs bölgesindeki doku gerginliklerinin hareketle ilişkisi incelenir.</p></article><article><strong>03</strong><h3>Sinirsel İlişkiler</h3><p>Yansıyan ağrı ihtimali ve nörolojik bulgular gerektiğinde tıbbi açıdan ayırt edilir.</p></article></div>
+                        <section class="posture-intro-v364 somato-intro-v365">
+                            <div>
+                                <span>SOMATO-VİSSERAL BAĞLANTI NEDİR?</span>
+                                <h2>Kas-iskelet sistemi ile gövde içi yapıların fonksiyonel ilişkilerine birlikte bakılır.</h2>
+                                <p>Somato-visseral değerlendirme; bir iç organ hastalığını manuel yöntemlerle “tedavi etmek” anlamına gelmez. Amaç; solunum, gövde hareketi, doku gerginliği ve otonom sinir sistemi gibi başlıkların kişinin duruşu, hareketi ve kas tonusuyla nasıl ilişkilenebileceğini klinik değerlendirme içinde anlamaktır.</p>
+                            </div>
+                            <aside>
+                                <strong>Birlikte değerlendirilen alanlar</strong>
+                                <span>Diyafram ve solunum</span>
+                                <span>Toraks ve kaburga hareketi</span>
+                                <span>Karın duvarı ve pelvis</span>
+                                <span>Boyun-omuz gerginliği</span>
+                                <span>Stres ve otonom yanıt</span>
+                            </aside>
+                        </section>
+
+                        <section class="posture-visual-section-v364 somato-section-v365">
+                            <div class="posture-copy-v364">
+                                <span class="posture-number-v364">01</span><small>DİYAFRAM • SOLUNUM • GÖVDE</small>
+                                <h2>Diyafram yalnızca nefes almakla ilgili değildir.</h2>
+                                <p>Diyafram; kaburga hareketi, toraks esnekliği ve gövde stabilitesiyle birlikte çalışır. Solunum yüzeyselleştiğinde veya göğüs kafesi hareketliliği azaldığında kişi boyun, sırt ve bel çevresinde daha fazla yük hissedebilir.</p>
+                                <ul>
+                                    <li>Göğüs kafesinin nefesle ne kadar genişlediği gözlenir.</li>
+                                    <li>Solunum sırasında boyun ve omuzların gereğinden fazla devreye girip girmediğine bakılır.</li>
+                                    <li>Diyafram, toraks ve gövde kontrolü birlikte değerlendirilir.</li>
+                                </ul>
+                            </div>
+                            <figure class="somato-figure-v365 somato-image-figure-v366">
+                                <img src="somato-diyafram-v366.png" alt="Nefes alma ve verme sırasında diyafram hareketini gösteren anatomik görsel" loading="lazy" decoding="async">
+                                <figcaption>Solunum sırasında diyaframın aşağı-yukarı hareketi ile göğüs kafesinin genişleme ve daralma ilişkisi görsel olarak gösterilir.</figcaption>
+                            </figure>
+                        </section>
+
+                        <section class="posture-visual-section-v364 is-reverse-v364 somato-section-v365">
+                            <div class="posture-copy-v364">
+                                <span class="posture-number-v364">02</span><small>SİNDİRİM • KARIN • DURUŞ</small>
+                                <h2>Karın bölgesi ile bel ve pelvis birbirinden bağımsız değildir.</h2>
+                                <p>Karın duvarındaki gerginlik, şişkinlik hissi, nefes paternindeki değişiklikler ve gövdenin öne kapanması; kişinin duruşunu ve hareket konforunu etkileyebilir. Bu nedenle yalnızca bel bölgesine değil, gövdenin tamamındaki yük aktarımına bakılır.</p>
+                                <ul>
+                                    <li>Karın bölgesindeki gerginlik ve gövde kapanma eğilimi gözlenir.</li>
+                                    <li>Bel-pelvis hizası ile nefes ve gövde hareketi birlikte değerlendirilir.</li>
+                                    <li>Uzun oturma, yemek sonrası rahatsızlık ve günlük hareket alışkanlıkları sorgulanır.</li>
+                                </ul>
+                            </div>
+                            <figure class="somato-figure-v365 somato-image-figure-v366">
+                                <img src="somato-karin-pelvis-v366.png" alt="Karın duvarı, omurga, diyafram ve pelvis ilişkisini gösteren anatomik görsel" loading="lazy" decoding="async">
+                                <figcaption>Karın duvarı, bel, diyafram ve pelvisin gövde stabilitesi ve yük aktarımı içindeki birlikte çalışması görselleştirilir.</figcaption>
+                            </figure>
+                        </section>
+
+                        <section class="posture-visual-section-v364 somato-section-v365">
+                            <div class="posture-copy-v364">
+                                <span class="posture-number-v364">03</span><small>STRES • OTONOM SİSTEM • BOYUN/SIRT</small>
+                                <h2>Stres yalnızca zihinsel değil, bedensel bir yanıt da oluşturabilir.</h2>
+                                <p>Stres yükü arttığında bazı kişiler fark etmeden omuzlarını yükseltebilir, boyun kaslarını sıkabilir veya daha yüzeysel nefes almaya başlayabilir. Bu durum kas tonusunu, hareket rahatlığını ve gövde postürünü etkileyebilir.</p>
+                                <ul>
+                                    <li>Boyun ve omuz çevresindeki koruyucu kasılmalar değerlendirilir.</li>
+                                    <li>Solunum ritmi ile gerginlik düzeyi arasındaki ilişki gözlenir.</li>
+                                    <li>Mekanik bulgular, stres ve otonom yanıtla birlikte yorumlanır.</li>
+                                </ul>
+                            </div>
+                            <figure class="somato-figure-v365 somato-image-figure-v366">
+                                <img src="somato-solunum-v366.png" alt="Göğüs kafesi genişlemesi ve solunum hareketini gösteren anatomik görsel" loading="lazy" decoding="async">
+                                <figcaption>Solunum paterni değiştiğinde göğüs kafesi, boyun-omuz çevresi ve gövde hareketi birlikte etkilenebilir; görsel bu mekanik ilişkiyi anlatır.</figcaption>
+                            </figure>
+                        </section>
+
+                        <section class="posture-clinic-note-v364 somato-clinic-note-v365">
+                            <div><span>KLİNİK YAKLAŞIM</span><h2>İç organ hastalıkları manuel değerlendirmeyle tanı konulan veya tedavi edilen durumlar değildir.</h2></div>
+                            <p>Yeni başlayan, şiddetli veya açıklanamayan karın, göğüs, nefes ya da sistemik yakınmalarda öncelik uygun tıbbi değerlendirmedir. Somato-visseral yaklaşım, gerekli tıbbi incelemelerin yerine geçmez; yalnızca hareket, solunum ve kas-iskelet sistemi ilişkilerini anlamaya yardımcı bir değerlendirme çerçevesidir.</p>
+                        </section>
                     </div>
 
                     <div class="osteo-manual-view-v364" data-manual-view-v364="mobilizasyon" hidden>
-                        <section class="manual-text-hero-v364"><span>KONTROLLÜ HAREKET</span><h2>Mobilizasyon</h2><p>Mobilizasyon; eklem ve çevre dokularda kontrollü, düşük hızda hareketlerle hareket konforunu desteklemeyi amaçlayan manuel yaklaşımlardan biridir. Kullanılacak teknik, bölgeye ve muayene bulgularına göre seçilir.</p></section>
-                        <div class="manual-info-grid-v364"><article><strong>01</strong><h3>Hareket Açıklığı</h3><p>Kısıtlı veya rahatsız edici hareket yönleri kontrollü olarak değerlendirilir.</p></article><article><strong>02</strong><h3>Doz ve Yön</h3><p>Uygulamanın şiddeti, yönü ve süresi kişiye göre ayarlanır.</p></article><article><strong>03</strong><h3>Aktif Hareket</h3><p>Manuel uygulama, uygun olduğunda egzersiz ve günlük hareket önerileriyle desteklenir.</p></article></div>
+                        <section class="posture-intro-v364 mobilization-intro-v367">
+                            <div>
+                                <span>MOBİLİZASYON NEDİR?</span>
+                                <h2>Hedef eklemi “zorlamak” değil; kontrollü hareketle hareket kalitesini değerlendirmek ve desteklemektir.</h2>
+                                <p>Mobilizasyon; eklem ve çevre dokulara düşük hızda, kontrollü ve tekrarlı hareketler uygulanabilen manuel terapi yaklaşımlarından biridir. Her ekleme aynı teknik uygulanmaz. Hareket yönü, uygulama şiddeti ve tekrar sayısı; kişinin şikâyeti, hareket açıklığı ve muayene bulgularına göre belirlenir.</p>
+                            </div>
+                            <aside><strong>Değerlendirmede neler gözlenir?</strong><span>Aktif ve pasif hareket açıklığı</span><span>Hareket sırasında ağrı ve direnç</span><span>Eklem çevresi kas kontrolü</span><span>Günlük hareket ve yüklenme paterni</span></aside>
+                        </section>
+
+                        <section class="posture-visual-section-v364 mobilization-visual-v367">
+                            <div class="posture-copy-v364">
+                                <span class="posture-number-v364">01</span><small>EKLEM HAREKETİ</small>
+                                <h2>Hareket açıklığı ve eklem yönü birlikte değerlendirilir</h2>
+                                <p>Bir eklemde hareketin azalması yalnızca “sertlik” anlamına gelmez. Kas koruması, ağrı, eklem kapsülü, çevre dokular veya kişinin hareketten kaçınması tabloya katkı sağlayabilir. Mobilizasyon planı yapılırken önce hangi yönde kısıtlılık veya rahatsızlık olduğu belirlenir.</p>
+                                <ul><li>Aktif hareket ile pasif hareket arasındaki fark gözlenir.</li><li>Hareketin hangi noktasında rahatsızlık veya direnç oluştuğuna bakılır.</li><li>Uygulama kişiye göre küçük ve kontrollü aralıklarda başlatılabilir.</li></ul>
+                            </div>
+                            <figure><img src="mobilizasyon-eklem-v367.svg" alt="Eklem hareket açıklığı ve kontrollü mobilizasyonu gösteren medikal şema"><figcaption>Mobilizasyonun yönü ve aralığı her eklem için farklıdır; görsel kontrollü hareket mantığını anlatmak amacıyla hazırlanmıştır.</figcaption></figure>
+                        </section>
+
+                        <section class="posture-visual-section-v364 is-reverse-v364 mobilization-visual-v367">
+                            <div class="posture-copy-v364">
+                                <span class="posture-number-v364">02</span><small>OMURGA &amp; SEGMENTAL HAREKET</small>
+                                <h2>Omurga tek parça değil, birbiriyle ilişkili segmentler halinde hareket eder</h2>
+                                <p>Boyun, toraks ve bel bölgelerinde görülen hareket kısıtlılığı her zaman aynı kaynaktan oluşmaz. Bir segmentteki azalmış hareket, komşu bölgelerin daha fazla çalışmasına neden olabilir. Bu nedenle uygulama yalnızca ağrının hissedildiği noktaya değil, hareket zincirinin tamamına göre planlanır.</p>
+                                <ul><li>Fleksiyon, ekstansiyon, rotasyon ve yana eğilme birlikte değerlendirilir.</li><li>Komşu segmentlerin telafi edici hareketleri gözlenir.</li><li>Manipülasyondan farklı olarak düşük hızlı, kontrollü hareketler kullanılabilir.</li></ul>
+                            </div>
+                            <figure><img src="mobilizasyon-omurga-v367.svg" alt="Omurgada segmental hareket ve rotasyon mobilizasyonunu gösteren medikal şema"><figcaption>Omurga mobilizasyonunda amaç yüksek kuvvet uygulamak değil, uygun segmentte kontrollü hareketi değerlendirmektir.</figcaption></figure>
+                        </section>
+
+                        <section class="posture-visual-section-v364 mobilization-visual-v367">
+                            <div class="posture-copy-v364">
+                                <span class="posture-number-v364">03</span><small>AKTİF HAREKETLE BÜTÜNLEŞTİRME</small>
+                                <h2>Manuel uygulamanın ardından hareketin kişi tarafından kullanılabilmesi önemlidir</h2>
+                                <p>Mobilizasyon tek başına kalıcı bir hareket alışkanlığı oluşturmaz. Uygun hastalarda manuel uygulamanın ardından aktif hareket, nefes, denge veya basit egzersizlerle yeni hareket aralığının günlük yaşama taşınması hedeflenebilir.</p>
+                                <ul><li>Kişi yeni hareket aralığını aktif olarak tekrar eder.</li><li>Kas kontrolü ve eklem stabilitesi uygun egzersizlerle desteklenebilir.</li><li>Günlük yaşamda zorlayan hareketler yeniden düzenlenebilir.</li></ul>
+                            </div>
+                            <figure><img src="mobilizasyon-aktif-hareket-v367.svg" alt="Mobilizasyon sonrası aktif hareket ve kas kontrolünü gösteren medikal şema"><figcaption>Mobilizasyon ve aktif hareket birbirinin alternatifi değil; uygun durumda birbirini tamamlayan iki farklı aşama olarak düşünülebilir.</figcaption></figure>
+                        </section>
+
+                        <section class="posture-clinic-note-v364 mobilization-clinic-note-v367">
+                            <div><span>KLİNİK YAKLAŞIM</span><h2>Mobilizasyon her ağrı veya hareket kısıtlılığında uygulanacak standart bir işlem değildir.</h2></div>
+                            <p>Akut travma, kırık şüphesi, ciddi nörolojik bulgu, enfeksiyon, ileri kemik kırılganlığı veya açıklanamayan şiddetli ağrı gibi durumlarda önce uygun tıbbi değerlendirme gerekir. Uygulama kararı, bölge ve teknik seçimi hekim değerlendirmesi sonrasında kişiye özel belirlenmelidir.</p>
+                        </section>
                     </div>
 
-                    <div class="osteo-manual-view-v364" data-manual-view-v364="pelvis-omurga" hidden>
-                        <section class="manual-text-hero-v364"><span>HAREKET ZİNCİRİ</span><h2>Pelvis &amp; Omurga</h2><p>Pelvis, bel omurgası, toraks ve boyun birbirinden bağımsız çalışmaz. Değerlendirmede yük aktarımı, gövde rotasyonu, kalça hareketi ve günlük hareket paternleri birlikte ele alınır.</p></section>
-                        <div class="manual-info-grid-v364"><article><strong>01</strong><h3>Pelvis Kontrolü</h3><p>Öne-arkaya tilt, sağ-sol yük aktarımı ve kalça hareketi değerlendirilir.</p></article><article><strong>02</strong><h3>Omurga Hareketi</h3><p>Fleksiyon, ekstansiyon, rotasyon ve yana eğilme paternleri birlikte gözlenir.</p></article><article><strong>03</strong><h3>Günlük Yüklenme</h3><p>Oturma, yürüme, kaldırma ve spor alışkanlıklarının bölgeye etkisi sorgulanır.</p></article></div>
+                    <div class="osteo-manual-view-v364 pelvis-spine-view-v369" data-manual-view-v364="pelvis-omurga" hidden>
+                        <section class="posture-intro-v364 pelvis-spine-intro-v369">
+                            <div>
+                                <span>PELVİS &amp; OMURGA NEDEN BİRLİKTE DEĞERLENDİRİLİR?</span>
+                                <h2>Pelvis, gövde ile alt ekstremite arasında yük aktarımının merkezlerinden biridir.</h2>
+                                <p>Bel omurgası, toraks, pelvis ve kalça birbirinden bağımsız çalışan parçalar değildir. Ayakta durma, oturma ve yürüme sırasında bu bölgeler sürekli birbirini dengeler. Değerlendirmede amaç tek bir “ideal hizayı” zorlamak değil; <strong>hareketin ne kadar rahat, kontrollü ve dengeli dağıldığını</strong> anlamaktır.</p>
+                            </div>
+                            <aside>
+                                <strong>Birlikte değerlendirilen alanlar</strong>
+                                <span>Pelvisin öne-arkaya eğimi</span>
+                                <span>Bel ve toraks hareketliliği</span>
+                                <span>Kalça hareket açıklığı</span>
+                                <span>Sağ-sol yük aktarımı</span>
+                                <span>Yürüyüş ve günlük hareketler</span>
+                            </aside>
+                        </section>
+
+                        <section class="posture-visual-section-v364 pelvis-spine-section-v369">
+                            <div class="posture-copy-v364">
+                                <span class="posture-number-v364">01</span><small>PELVİS POZİSYONU • TİLT</small>
+                                <h2>Pelvisin öne ve arkaya eğimi bel omurgasıyla birlikte değişir.</h2>
+                                <p>Pelvis öne veya arkaya doğru eğildiğinde bel kavsi ve gövdenin ağırlık merkezi de buna uyum sağlar. Bu değişikliklerin tek başına “bozukluk” anlamına gelmediğini özellikle vurgulamak gerekir. Önemli olan kişinin bu pozisyonlar arasında rahatça hareket edip edemediği ve günlük yaşamda hangi pozisyonu sürekli kullandığıdır.</p>
+                                <ul>
+                                    <li>Anterior, nötr ve posterior pelvis pozisyonları karşılaştırılır.</li>
+                                    <li>Bel kavsi ile pelvis hareketinin birlikte değişip değişmediğine bakılır.</li>
+                                    <li>Kalça çevresi ve karın-gövde kontrolü muayene bulgularıyla birlikte değerlendirilir.</li>
+                                </ul>
+                            </div>
+                            <figure class="pelvis-spine-figure-v369">
+                                <img src="pelvis-tilt-v369.svg" alt="Pelvisin öne eğim, nötr ve arkaya eğim pozisyonlarını gösteren modern medikal şema" loading="lazy" decoding="async">
+                                <figcaption>Pelvis pozisyonları kişiden kişiye değişebilir. Görsel, değerlendirmede karşılaştırılan temel yönleri anlatmak için hazırlanmıştır.</figcaption>
+                            </figure>
+                        </section>
+
+                        <section class="posture-visual-section-v364 is-reverse-v364 pelvis-spine-section-v369">
+                            <div class="posture-copy-v364">
+                                <span class="posture-number-v364">02</span><small>OMURGA BÖLGELERİ • HAREKET ZİNCİRİ</small>
+                                <h2>Boyun, toraks, bel ve pelvis hareketi birbirini tamamlar.</h2>
+                                <p>Omurganın bir bölgesinde hareket azaldığında vücut çoğu zaman başka bir bölgeden daha fazla hareket ederek denge kurmaya çalışır. Bu nedenle yalnızca ağrıyan bölgeye bakmak yeterli olmayabilir. Örneğin toraks hareketliliği, boyun ve bel bölgesinin yüklenme biçimini etkileyebilir.</p>
+                                <ul>
+                                    <li>Fleksiyon, ekstansiyon, yana eğilme ve rotasyon birlikte gözlenir.</li>
+                                    <li>Hareketin tek bir bölgeye yığılıp yığılmadığı değerlendirilir.</li>
+                                    <li>Boyun-toraks-bel-pelvis geçişlerinin uyumu muayeneyle birlikte yorumlanır.</li>
+                                </ul>
+                            </div>
+                            <figure class="pelvis-spine-figure-v369">
+                                <img src="omurga-hareket-zinciri-v369.svg" alt="Boyun toraks bel ve pelvis arasındaki hareket zincirini gösteren modern medikal şema" loading="lazy" decoding="async">
+                                <figcaption>Omurga tek bir blok gibi değil, birbiriyle ilişkili hareket segmentleri halinde çalışır.</figcaption>
+                            </figure>
+                        </section>
+
+                        <section class="posture-visual-section-v364 pelvis-spine-section-v369">
+                            <div class="posture-copy-v364">
+                                <span class="posture-number-v364">03</span><small>YÜRÜYÜŞ • YÜK AKTARIMI</small>
+                                <h2>Pelvis ve kalça, adım sırasında yükün sağdan sola aktarılmasına yardımcı olur.</h2>
+                                <p>Yürürken pelvis küçük miktarda rotasyon ve yana hareket yapar; kalça, diz ve ayak bileği bu harekete eşlik eder. Gövde ve karşı kol salınımı da dengeye katkı sağlar. Değerlendirmede yalnızca pelvisin görünüşüne değil, adım sırasında yükün nasıl taşındığına bakılır.</p>
+                                <ul>
+                                    <li>Sağ-sol adım ritmi ve pelvis rotasyonu gözlenir.</li>
+                                    <li>Kalça açılması, diz kontrolü ve ayak basışı birlikte değerlendirilir.</li>
+                                    <li>Gövdenin yana kaçması veya tek tarafa aşırı yüklenme olup olmadığı incelenir.</li>
+                                </ul>
+                            </div>
+                            <figure class="pelvis-spine-figure-v369">
+                                <img src="pelvis-yuk-aktarimi-v369.svg" alt="Yürüyüş sırasında pelvis kalça ve alt ekstremite yük aktarımını gösteren modern medikal şema" loading="lazy" decoding="async">
+                                <figcaption>Yük aktarımı bütün vücudu ilgilendiren dinamik bir süreçtir; tek bir eklem üzerinden yorumlanmaz.</figcaption>
+                            </figure>
+                        </section>
+
+                        <section class="posture-clinic-note-v364 pelvis-spine-note-v369">
+                            <div><span>KLİNİK YAKLAŞIM</span><h2>Pelvis asimetrisi veya omurga eğriliği tek başına ağrının nedeni olarak kabul edilmez.</h2></div>
+                            <p>Görsel farklılıklar; kişinin şikâyeti, hareket açıklığı, kas gücü, nörolojik bulgular, günlük yüklenme alışkanlıkları ve gerektiğinde görüntüleme sonuçlarıyla birlikte değerlendirilmelidir. Amaç yalnızca “düzeltmek” değil, kişinin daha rahat ve işlevsel hareket etmesini sağlamaktır.</p>
+                        </section>
                     </div>
                 </div>
             </div>
@@ -4657,6 +5374,45 @@ body.media-page-open .media-page-content-v48 {
                             bitkisel içerikler, hekim kontrolünde mevcut tedavi planına destek amacıyla
                             değerlendirilebilir. Aşağıdaki hastalık başlıkları kendi özel bilgi sayfalarına gider.
                         </p>
+
+                        <!-- V372: FİTOTERAPİ BİTKİ ARAMA -->
+                        <section class="phyto-search-v372" id="phytoSearchV372" aria-label="Fitoterapi bitki arama">
+                            <div class="phyto-search-copy-v372">
+                                <span>BİTKİ REHBERİ</span>
+                                <strong>Bitki ara</strong>
+                                <small>Bir harf veya bitki adı yazın; eşleşen bitkiler anında listelensin.</small>
+                            </div>
+
+                            <div class="phyto-search-box-v372">
+                                <div class="phyto-search-input-wrap-v372">
+                                    <span class="phyto-search-icon-v372" aria-hidden="true">
+                                        <svg viewBox="0 0 24 24"><circle cx="11" cy="11" r="6.5"></circle><path d="m16 16 4 4"></path></svg>
+                                    </span>
+                                    <input
+                                        type="search"
+                                        id="phytoSearchInputV372"
+                                        autocomplete="off"
+                                        spellcheck="false"
+                                        placeholder="Örn. biberiye, boswellia, zencefil..."
+                                        aria-label="Bitki adı yazın"
+                                        aria-controls="phytoSearchResultsV372"
+                                        aria-expanded="false"
+                                    >
+                                    <button type="button" class="phyto-search-clear-v372" id="phytoSearchClearV372" aria-label="Aramayı temizle" hidden>×</button>
+                                </div>
+                                <button type="button" class="phyto-search-button-v372" id="phytoSearchButtonV372">
+                                    <span>Ara</span><i aria-hidden="true">→</i>
+                                </button>
+                            </div>
+
+                            <div class="phyto-search-results-v372" id="phytoSearchResultsV372" aria-live="polite" hidden>
+                                <div class="phyto-search-results-head-v372">
+                                    <strong id="phytoSearchResultLabelV372">Arama sonuçları</strong>
+                                    <span id="phytoSearchResultCountV372">0 sonuç</span>
+                                </div>
+                                <div class="phyto-search-result-grid-v372" id="phytoSearchResultGridV372"></div>
+                            </div>
+                        </section>
 
                         <div class="phyto-disease-chips-v127 phyto-disease-chips-v232 phyto-disease-links-v246" id="phytoDiseaseLinksV246" role="navigation" aria-label="Fitoterapi hastalık sayfaları">
                             <button type="button" class="phyto-disease-chip-btn-v232 phyto-disease-link-v233" data-phyto-disease="as" aria-label="Ankilozan Spondilit özel sayfasını aç">AS • Ankilozan Spondilit <span aria-hidden="true">↗</span></button>
@@ -8190,24 +8946,6 @@ body.media-page-open .media-page-content-v48 {
         </nav>
 
         <article class="general-health-view-v75 nutrition-view-v174" data-health-detail-view="beslenme"><div class="nutrition-overview-v175 active" id="nutritionOverviewV175" aria-hidden="false">
-            <section class="nutrition-hero-v174" aria-label="Beslenme ile daha sağlıklı yarınlar">
-                <div class="nutrition-hero-copy-v174">
-                    <span class="nutrition-kicker-v174">BESLENME</span>
-                    <h1>Beslenme ile Daha Sağlıklı Yarınlar</h1>
-                    <p>
-                        Her yaşam evresi ve her sağlık ihtiyacında beslenme planı farklılaşabilir.
-                        Bu bölümde günlük dengeli beslenmeden gebeliğe, çocukluktan otoimmün hastalıklara
-                        kadar sık merak edilen başlıkları kısa ve anlaşılır şekilde topladık.
-                    </p>
-                    <div class="nutrition-hero-tags-v174">
-                        <span>Doğal</span><span>Dengeli</span><span>Kişiye Özel</span><span>Bilimsel Yaklaşım</span>
-                    </div>
-                </div>
-                <div class="nutrition-hero-art-v174">
-                    <img src="./beslenme_ile_sağlıklı_yarınlar.png?v=174" alt="Beslenme başlıklarını görsellerle özetleyen modern bilgilendirme tasarımı" loading="eager" decoding="async">
-                </div>
-            </section>
-
             <section class="nutrition-intro-v174">
                 <div>
                     <span>8 BESLENME BAŞLIĞI</span>
@@ -8352,36 +9090,72 @@ body.media-page-open .media-page-content-v48 {
   </div>
 </section>
 
-<section class="nutrition-detail-v175" data-nutrition-detail="pregnancy" aria-hidden="true">
-  <div class="nutrition-detail-hero-v175">
-    <div class="nutrition-detail-copy-v175">
-      <button type="button" class="nutrition-back-v175" data-nutrition-back>← Beslenme</button>
-      <span class="nutrition-detail-kicker-v175">ANNE & BEBEK</span>
-      <h1>Hamilelikte Beslenme</h1>
-      <p>Gebelikte enerji kadar folat, demir, iyot, kalsiyum, protein ve omega‑3 gibi besin öğelerinin yeterliliği önem kazanır.</p>
-      <div class="nutrition-detail-chips-v175"><span>Besin önerileri</span><span>Örnek tabak</span><span>Dikkat edilecekler</span></div>
-    </div>
-    <div class="nutrition-detail-image-v175"><img src="./nutrition-pregnancy-v174.png?v=175" alt="Hamilelikte Beslenme için beslenme görseli" loading="lazy" decoding="async"></div>
+<section class="nutrition-detail-v175 pregnancy-recipes-v384" data-nutrition-detail="pregnancy" aria-hidden="true">
+  <header class="pregnancy-recipes-head-v384">
+    <button type="button" class="nutrition-back-v175" data-nutrition-back>← Beslenme</button>
+    <span>ANNE &amp; BEBEK • 6 PRATİK TARİF</span>
+    <h1>Hamilelikte Beslenme Tarifleri</h1>
+    <p>Gebelik döneminde günlük beslenmeye çeşitlilik katabilecek tarifler. Her tarifin altında yalnızca nasıl hazırlandığı değil, hangi besin öğelerine katkı sağlayabileceği de açıklanmıştır.</p>
+    <div class="pregnancy-head-chips-v384"><b>Protein</b><b>Folat</b><b>Demir</b><b>Kalsiyum</b><b>Lif</b><b>Omega‑3</b></div>
+  </header>
+
+  <div class="pregnancy-recipe-list-v384">
+    <article class="pregnancy-recipe-v384">
+      <div class="pregnancy-recipe-media-v384 has-recipe-image-v386"><img src="recipe-pregnancy-01-v386.jpg" alt="Naneli Yoğurtlu Tuzlu Yulaf Kasesi" loading="lazy" decoding="async"></div>
+      <div class="pregnancy-recipe-content-v384">
+        <span class="pregnancy-recipe-kicker-v384">FERAH KAHVALTI</span><h2>Naneli Yoğurtlu Tuzlu Yulaf Kasesi</h2>
+        <div class="pregnancy-recipe-columns-v384"><section><h3>Malzemeler</h3><ul><li>4 yemek kaşığı yulaf ezmesi</li><li>1 kâse pastörize yoğurt</li><li>Yarım küçük salatalık</li><li>1 tatlı kaşığı zeytinyağı</li><li>Taze veya kuru nane</li></ul></section><section><h3>Hazırlanışı</h3><p>Yulafı az sıcak suyla 5 dakika yumuşatın. Soğuyunca yoğurt, rendelenmiş salatalık, zeytinyağı ve nane ile karıştırın.</p></section></div>
+        <div class="pregnancy-recipe-why-v384"><h3>Neden tüketeyim?</h3><p>Yulaf çözünür lif, yoğurt protein ve kalsiyum, zeytinyağı ise sağlıklı yağ sağlar. Dengeli bir ara öğün veya kahvaltı seçeneği oluşturabilir.</p><strong>Ne değişebilir?</strong><p>Tek başına mucize yaratmaz; düzenli beslenme içinde kullanıldığında tokluk hissini, günlük lif alımını ve bağırsak düzenini destekleyebilir. Reflünüz varsa naneyi azaltın.</p></div>
+      </div>
+    </article>
+
+    <article class="pregnancy-recipe-v384">
+      <div class="pregnancy-recipe-media-v384 has-recipe-image-v386"><img src="recipe-pregnancy-02-v386.jpg" alt="Ispanaklı Yumurta ve Tam Tahıllı Tost" loading="lazy" decoding="async"></div>
+      <div class="pregnancy-recipe-content-v384">
+        <span class="pregnancy-recipe-kicker-v384">PROTEİNLİ KAHVALTI</span><h2>Ispanaklı Yumurta ve Tam Tahıllı Tost</h2>
+        <div class="pregnancy-recipe-columns-v384"><section><h3>Malzemeler</h3><ul><li>1 adet yumurta</li><li>1 avuç iyi yıkanmış ıspanak</li><li>1 dilim tam tahıllı ekmek</li><li>1 tatlı kaşığı zeytinyağı</li><li>Az miktarda pastörize peynir</li></ul></section><section><h3>Hazırlanışı</h3><p>Ispanağı zeytinyağında kısa süre çevirin. Yumurtayı ekleyip sarısı ve beyazı tamamen pişene kadar pişirin; tam tahıllı ekmek ve pastörize peynirle servis edin.</p></section></div>
+        <div class="pregnancy-recipe-why-v384"><h3>Neden tüketeyim?</h3><p>İyi pişmiş yumurta protein ve kolin; ıspanak folat, tam tahıl ise lif katkısı sağlar.</p><strong>Ne değişebilir?</strong><p>Günün erken saatlerinde daha dengeli tokluk sağlayabilir ve artan protein gereksiniminin karşılanmasına katkıda bulunabilir. Yumurtanın tamamen pişmiş olması önemlidir.</p></div>
+      </div>
+    </article>
+
+    <article class="pregnancy-recipe-v384">
+      <div class="pregnancy-recipe-media-v384 has-recipe-image-v386"><img src="recipe-pregnancy-03-v386.jpg" alt="Limonlu Sebzeli Kırmızı Mercimek Çorbası" loading="lazy" decoding="async"></div>
+      <div class="pregnancy-recipe-content-v384">
+        <span class="pregnancy-recipe-kicker-v384">SICAK VE BESLEYİCİ</span><h2>Limonlu Sebzeli Kırmızı Mercimek Çorbası</h2>
+        <div class="pregnancy-recipe-columns-v384"><section><h3>Malzemeler</h3><ul><li>Yarım su bardağı kırmızı mercimek</li><li>1 küçük havuç</li><li>1 küçük kabak</li><li>1 tatlı kaşığı zeytinyağı</li><li>Servis için limon</li></ul></section><section><h3>Hazırlanışı</h3><p>Mercimek ve doğranmış sebzeleri iyice yumuşayana kadar pişirin. Zeytinyağını ekleyip blenderdan geçirin; servis sırasında limon sıkın.</p></section></div>
+        <div class="pregnancy-recipe-why-v384"><h3>Neden tüketeyim?</h3><p>Mercimek bitkisel protein, folat, demir ve lif içerir. Limonun C vitamini bitkisel demirin emilimine katkı sağlayabilir.</p><strong>Ne değişebilir?</strong><p>Öğünün besin yoğunluğunu artırabilir, uzun süre tok kalmaya ve lif alımına destek olabilir. Gaz yakınması varsa miktarı küçük başlayın.</p></div>
+      </div>
+    </article>
+
+    <article class="pregnancy-recipe-v384">
+      <div class="pregnancy-recipe-media-v384 has-recipe-image-v386"><img src="recipe-pregnancy-04-v386.jpg" alt="Fırında Somon, Bulgur ve Brokoli Kasesi" loading="lazy" decoding="async"></div>
+      <div class="pregnancy-recipe-content-v384">
+        <span class="pregnancy-recipe-kicker-v384">OMEGA‑3 ÖĞÜNÜ</span><h2>Fırında Somon, Bulgur ve Brokoli Kasesi</h2>
+        <div class="pregnancy-recipe-columns-v384"><section><h3>Malzemeler</h3><ul><li>1 küçük porsiyon somon</li><li>4–5 yemek kaşığı pişmiş bulgur</li><li>1 kâse brokoli</li><li>1 tatlı kaşığı zeytinyağı</li><li>Limon ve dereotu</li></ul></section><section><h3>Hazırlanışı</h3><p>Somonu içi tamamen pişene kadar fırınlayın. Haşlanmış brokoli ve pişmiş bulgurla birlikte servis edip zeytinyağı, limon ve dereotu ekleyin.</p></section></div>
+        <div class="pregnancy-recipe-why-v384"><h3>Neden tüketeyim?</h3><p>Somon protein ve omega‑3 yağ asitleri; brokoli folat ve lif; bulgur ise kompleks karbonhidrat sağlar.</p><strong>Ne değişebilir?</strong><p>Haftalık beslenmede düşük cıvalı balık çeşitliliğine katkı sağlayabilir ve dengeli bir ana öğün oluşturabilir. Balık sıklığını hekiminizin önerisine göre planlayın.</p></div>
+      </div>
+    </article>
+
+    <article class="pregnancy-recipe-v384">
+      <div class="pregnancy-recipe-media-v384 has-recipe-image-v386"><img src="recipe-pregnancy-05-v386.jpg" alt="Nohutlu Avokadolu Yoğurtlu Salata" loading="lazy" decoding="async"></div>
+      <div class="pregnancy-recipe-content-v384">
+        <span class="pregnancy-recipe-kicker-v384">DENGELİ ÖĞLE ÖĞÜNÜ</span><h2>Nohutlu Avokadolu Yoğurtlu Salata</h2>
+        <div class="pregnancy-recipe-columns-v384"><section><h3>Malzemeler</h3><ul><li>5 yemek kaşığı haşlanmış nohut</li><li>Çeyrek avokado</li><li>İyi yıkanmış yeşillikler</li><li>2 yemek kaşığı pastörize yoğurt</li><li>Limon ve zeytinyağı</li></ul></section><section><h3>Hazırlanışı</h3><p>Nohut, doğranmış avokado ve yeşillikleri karıştırın. Pastörize yoğurt, limon ve az zeytinyağıyla sos hazırlayıp üzerine ekleyin.</p></section></div>
+        <div class="pregnancy-recipe-why-v384"><h3>Neden tüketeyim?</h3><p>Nohut bitkisel protein, lif, folat ve demir; avokado sağlıklı yağ; yoğurt ise protein ve kalsiyum sağlar.</p><strong>Ne değişebilir?</strong><p>Öğle öğününde daha dengeli tokluk sağlayabilir ve aynı tabakta farklı besin gruplarını bir araya getirmeyi kolaylaştırabilir.</p></div>
+      </div>
+    </article>
+
+    <article class="pregnancy-recipe-v384">
+      <div class="pregnancy-recipe-media-v384 has-recipe-image-v386"><img src="recipe-pregnancy-06-v386.jpg" alt="Kefirli Orman Meyveli Cevizli Karışım" loading="lazy" decoding="async"></div>
+      <div class="pregnancy-recipe-content-v384">
+        <span class="pregnancy-recipe-kicker-v384">PRATİK ARA ÖĞÜN</span><h2>Kefirli Orman Meyveli Cevizli Karışım</h2>
+        <div class="pregnancy-recipe-columns-v384"><section><h3>Malzemeler</h3><ul><li>1 su bardağı pastörize kefir</li><li>Yarım küçük muz</li><li>Yarım su bardağı iyi yıkanmış orman meyvesi</li><li>2 tam ceviz içi</li><li>İsteğe göre 1 yemek kaşığı yulaf</li></ul></section><section><h3>Hazırlanışı</h3><p>Tüm malzemeleri blenderdan geçirip bekletmeden tüketin. İlave şeker eklemeyin ve kullanılan kefirin pastörize olduğundan emin olun.</p></section></div>
+        <div class="pregnancy-recipe-why-v384"><h3>Neden tüketeyim?</h3><p>Kefir protein ve kalsiyum; meyveler lif ve farklı mikrobesinler; ceviz ise sağlıklı yağ katkısı sağlar.</p><strong>Ne değişebilir?</strong><p>Tatlı isteğine daha dengeli bir alternatif olabilir ve günlük meyve-süt ürünü çeşitliliğini artırabilir. Gebelik diyabetinde meyve miktarı kişiye özel planlanmalıdır.</p></div>
+      </div>
+    </article>
   </div>
-  <div class="nutrition-detail-shell-v175">
-    <div class="nutrition-detail-head-v175"><span>ÖNERİLEN BESİNLER</span><h2>Bu başlıkta hangi besinler öne çıkar?</h2><p>Aşağıdaki örnekler genel bilgilendirme amaçlıdır; kişisel gereksinimler farklı olabilir.</p></div>
-    <div class="nutrition-food-grid-v175"><article class="nutrition-food-card-v175"><span class="nutrition-food-icon-v175">🥬</span><div><h3>Yeşil yapraklı sebzeler</h3><p>Ispanak, roka ve brokoli gibi seçenekler folat ve lif katkısı sağlar.</p></div></article>
-<article class="nutrition-food-card-v175"><span class="nutrition-food-icon-v175">🫘</span><div><h3>Mercimek ve nohut</h3><p>Folat, demir ve bitkisel protein açısından dengeli öğünlere eklenebilir.</p></div></article>
-<article class="nutrition-food-card-v175"><span class="nutrition-food-icon-v175">🥚</span><div><h3>Yumurta</h3><p>İyi pişmiş yumurta protein ve kolin gibi önemli besin öğeleri sağlar.</p></div></article>
-<article class="nutrition-food-card-v175"><span class="nutrition-food-icon-v175">🐟</span><div><h3>Düşük cıvalı balık</h3><p>Somon ve sardalya gibi düşük cıvalı seçenekler omega‑3 için değerlendirilebilir.</p></div></article>
-<article class="nutrition-food-card-v175"><span class="nutrition-food-icon-v175">🥛</span><div><h3>Pastörize süt ürünleri</h3><p>Yoğurt, kefir ve peynir kalsiyum ve protein sağlar; ürünlerin pastörize olması önemlidir.</p></div></article>
-<article class="nutrition-food-card-v175"><span class="nutrition-food-icon-v175">🍊</span><div><h3>Meyve ve tam tahıllar</h3><p>Turunçgiller, yulaf ve bulgur gibi seçenekler lif ve mikrobesin çeşitliliği sağlar.</p></div></article></div>
-    <div class="nutrition-detail-two-v175">
-      <article class="nutrition-plate-v175"><span>ÖRNEK TABAK / ÖĞÜN FİKRİ</span><h3>Pratik bir örnek</h3><p>Örnek öğün: iyi pişmiş yumurta veya balık + bol sebze + bulgur/tam tahıl + pastörize yoğurt/kefir + meyve.</p></article>
-      <article class="nutrition-caution-v175"><span>DİKKAT EDİLECEKLER</span><h3>Kişiye özel değerlendirme önemli</h3><p>Çiğ/az pişmiş et-yumurta-balık, pastörize edilmemiş süt ürünleri ve alkol gebelikte uygun değildir. Kafein ve takviyeler için hekiminizin önerisini izleyin.</p></article>
-    </div>
-    <div class="nutrition-faq-v175">
-      <details open><summary>Bu besinleri her gün tüketmek gerekir mi?</summary><p>Hayır. Amaç tek tek besinleri zorunlu hale getirmek değil, çeşitliliği ve genel beslenme kalitesini artırmaktır.</p></details>
-      <details><summary>Bu öneriler tedavi yerine geçer mi?</summary><p>Hayır. Beslenme önerileri tedavinin yerine geçmez; özellikle kronik hastalık, gebelik ve çocukluk döneminde kişisel planlama gerekir.</p></details>
-      <details><summary>Porsiyonlar nasıl belirlenir?</summary><p>Yaş, kilo, aktivite, hastalıklar, ilaçlar ve hedeflere göre değişir. Buradaki örnekler porsiyon reçetesi değildir.</p></details>
-    </div>
-    <p class="nutrition-detail-note-v175">Bu içerik genel bilgilendirme amaçlıdır; kişisel diyet reçetesi değildir. Özel sağlık durumlarında hekim ve diyetisyen değerlendirmesi gerekir.</p>
-  </div>
+
+  <aside class="pregnancy-recipes-note-v384"><strong>Gebelikte güvenlik notu</strong><p>Çiğ veya az pişmiş et, balık ve yumurta; pastörize edilmemiş süt ürünleri ve alkol gebelikte uygun değildir. Alerji, gebelik diyabeti, yoğun bulantı-kusma, reflü, anemi veya özel diyet gereksiniminde tarifleri hekiminiz ve diyetisyeninizle kişiselleştirin. Bu tarifler kişisel diyet reçetesi değildir.</p></aside>
 </section>
 
 <section class="nutrition-detail-v175" data-nutrition-detail="children" aria-hidden="true">
@@ -8587,72 +9361,65 @@ body.media-page-open .media-page-content-v48 {
                 </p>
             </div>
 
-            <section class="supplement-product-v146" aria-label="ZEO-B Zeolit ürün bilgisi">
-                <div class="supplement-product-media-v146">
-                    <div class="supplement-product-badge-v146">ÖNE ÇIKAN SUPPLEMENT</div>
-                    <img
-                        src="./supplement-zeo-b-v146.png?v=150"
-                        alt="ZEO-B zeolit takviye ürünü"
-                        loading="lazy"
-                        decoding="async"
-                    >
-                    <span class="supplement-product-caption-v146">ZEO-B · ZEOLİT</span>
+            <section class="supplement-product-v146 supplement-featured-v387" aria-label="Bentonit kili ürün bilgisi">
+                <div class="supplement-product-media-v146 supplement-product-media-v387">
+                    <div class="supplement-product-badge-v146">ÖNE ÇIKAN DOĞAL DESTEK</div>
+                    <img src="./supplement-bentonit-v387.jpg" alt="Bentonit kili" loading="lazy" decoding="async">
+                    <span class="supplement-product-caption-v146">BENTONİT KİLİ · MİNERAL KAYNAKLI</span>
                 </div>
 
                 <div class="supplement-product-copy-v146">
-                    <span class="supplement-mini-kicker-v146">MİNERAL TEMELLİ DESTEK</span>
-                    <h2>ZEO-B <em>Zeolit</em></h2>
-                    <p class="supplement-lead-v146">
-                        Zeolit; gözenekli mineral yapısıyla bilinen doğal bir aluminosilikat grubudur.
-                        Takviye ürünlerde destek amaçlı kullanılabilir; uygunluk ve kullanım şekli kişiye göre değişir.
-                    </p>
+                    <span class="supplement-mini-kicker-v146">ÜRÜN GÜVENLİĞİ ÖNCELİKLİ</span>
+                    <h2><em>Bentonit</em> Kili</h2>
+                    <p class="supplement-lead-v146">Bentonit, ağırlıklı olarak montmorillonit içeren doğal bir kil türüdür. Ağızdan kullanım düşünülüyorsa yalnızca bu amaç için üretilmiş, içerik ve ağır metal analizleri doğrulanmış ürünler değerlendirilmelidir.</p>
 
                     <div class="supplement-benefit-grid-v146">
-                        <article>
-                            <span>01</span>
-                            <div>
-                                <strong>Gözenekli Mineral Yapı</strong>
-                                <p>Zeolitler, yüzeylerinde bazı maddeleri adsorbe edebilen gözenekli bir mineral yapıya sahiptir.</p>
-                            </div>
-                        </article>
-
-                        <article>
-                            <span>02</span>
-                            <div>
-                                <strong>Sindirim Odaklı Destek</strong>
-                                <p>Takviye formunda, sindirim sistemi ve günlük destek rutini kapsamında değerlendirilebilir.</p>
-                            </div>
-                        </article>
-
-                        <article>
-                            <span>03</span>
-                            <div>
-                                <strong>Kişiye Özel Kullanım</strong>
-                                <p>Kullanım; yaş, beslenme, ilaçlar ve eşlik eden hastalıklara göre hekim değerlendirmesiyle planlanmalıdır.</p>
-                            </div>
-                        </article>
+                        <article><span>01</span><div><strong>Ürün Standardı</strong><p>Gıda kullanımına uygunluk, parti analizi, içerik saflığı ve ağır metal sonuçları kontrol edilmelidir.</p></div></article>
+                        <article><span>02</span><div><strong>İlaçlarla Birlikte Kullanım</strong><p>Adsorban yapısı bazı ilaç ve besin öğelerinin emilimini etkileyebileceğinden kullanım aralığı hekim veya eczacıyla planlanmalıdır.</p></div></article>
+                        <article><span>03</span><div><strong>Kişiye Özel Değerlendirme</strong><p>Gebelik, emzirme, çocukluk, böbrek hastalığı veya düzenli ilaç kullanımında gelişigüzel kullanılmamalıdır.</p></div></article>
                     </div>
 
-                    <div class="supplement-note-v146">
-                        <strong>Bilgilendirme Notu</strong>
-                        <p>
-                            Takviye edici gıdalar hastalıkların tanı veya tedavisi için kullanılmaz. Zeolit ürünleriyle ilgili
-                            klinik kanıt düzeyi kullanım amacına göre değişebilir. Özellikle düzenli ilaç kullananlar,
-                            gebeler/emzirenler ve kronik hastalığı olanlar kullanmadan önce hekime danışmalıdır.
-                        </p>
-                    </div>
+                    <div class="supplement-note-v146"><strong>Önemli güvenlik notu</strong><p>Bentonit ürünleri hastalıkların tanı veya tedavisi için kullanılmaz. Bazı ürünlerde kurşun gibi ağır metal sorunları bildirildiği için güvenilir üretici ve bağımsız analiz belgesi önemlidir.</p></div>
                 </div>
+            </section>
+
+            <section class="supplement-catalog-v387 supplement-catalog-v388" aria-label="Diğer takviye edici gıdalar">
+                <div class="supplement-catalog-head-v387"><span>5 FARKLI DESTEK</span><h2>Günlük Gereksinime Göre Değerlendirilebilecekler</h2><p>Her ürünün gerekliliği; beslenme, laboratuvar bulguları, kullanılan ilaçlar ve kişisel sağlık durumuna göre belirlenir.</p></div>
+                <div class="supplement-stack-v388">
+                    <article class="supplement-product-v146 supplement-stack-item-v388">
+                        <div class="supplement-product-media-v146 supplement-product-media-v387"><div class="supplement-product-badge-v146">SUPPLEMENT 02 / 06</div><img src="./supplement-magnezyum-v387.jpg" alt="Magnezyum takviyesi" loading="lazy" decoding="async"><span class="supplement-product-caption-v146">MAGNEZYUM · MİNERAL</span></div>
+                        <div class="supplement-product-copy-v146"><span class="supplement-mini-kicker-v146">TEMEL MİNERAL DESTEĞİ</span><h2><em>Magnezyum</em></h2><p class="supplement-lead-v146">Kas ve sinir işlevleri ile enerji metabolizmasında rol alan temel bir mineraldir. Takviye gereksinimi beslenme ve kişisel sağlık durumuna göre değerlendirilmelidir.</p><div class="supplement-benefit-grid-v146"><article><span>01</span><div><strong>Mineral Dengesi</strong><p>Vücuttaki çok sayıda enzimin normal çalışmasına katkı sağlayan temel minerallerden biridir.</p></div></article><article><span>02</span><div><strong>Forma Göre Seçim</strong><p>Sitrat, glisinat ve diğer formlar içerik, tolerans ve kullanım amacına göre farklılık gösterebilir.</p></div></article><article><span>03</span><div><strong>Kişisel Planlama</strong><p>Doz ve kullanım süresi beslenme, laboratuvar bulguları ve kullanılan ilaçlarla birlikte ele alınmalıdır.</p></div></article></div><div class="supplement-note-v146"><strong>Dikkat</strong><p>Böbrek hastalığında ve bazı ilaçlarla birlikte kullanımda hekim değerlendirmesi gerekir.</p></div></div>
+                    </article>
+                    <article class="supplement-product-v146 supplement-stack-item-v388">
+                        <div class="supplement-product-media-v146 supplement-product-media-v387"><div class="supplement-product-badge-v146">SUPPLEMENT 03 / 06</div><img src="./supplement-cinko-v387.jpg" alt="Çinko takviyesi" loading="lazy" decoding="async"><span class="supplement-product-caption-v146">ÇİNKO · MİNERAL</span></div>
+                        <div class="supplement-product-copy-v146"><span class="supplement-mini-kicker-v146">HÜCRESEL İŞLEVLER</span><h2><em>Çinko</em></h2><p class="supplement-lead-v146">Protein ve DNA sentezi, hücresel metabolizma ve normal bağışıklık işlevlerinde rol alan temel bir mineraldir.</p><div class="supplement-benefit-grid-v146"><article><span>01</span><div><strong>Temel Mineral</strong><p>Birçok enzimin çalışmasında ve normal hücresel süreçlerde görev alır.</p></div></article><article><span>02</span><div><strong>Beslenmeyle Birlikte</strong><p>Takviye kararı günlük beslenme kaynakları ve olası eksiklik riskiyle birlikte değerlendirilir.</p></div></article><article><span>03</span><div><strong>Doz Dengesi</strong><p>Uzun süreli yüksek doz yerine gereksinime uygun, kontrollü kullanım planlanmalıdır.</p></div></article></div><div class="supplement-note-v146"><strong>Dikkat</strong><p>Gereksiz yüksek doz ve uzun kullanım bakır eksikliğine; bazı antibiyotiklerle etkileşime yol açabilir.</p></div></div>
+                    </article>
+                    <article class="supplement-product-v146 supplement-stack-item-v388">
+                        <div class="supplement-product-media-v146 supplement-product-media-v387"><div class="supplement-product-badge-v146">SUPPLEMENT 04 / 06</div><img src="./supplement-omega3-v387.jpg" alt="Omega 3 takviyesi" loading="lazy" decoding="async"><span class="supplement-product-caption-v146">OMEGA‑3 · EPA &amp; DHA</span></div>
+                        <div class="supplement-product-copy-v146"><span class="supplement-mini-kicker-v146">TEMEL YAĞ ASİTLERİ</span><h2><em>Omega‑3</em></h2><p class="supplement-lead-v146">Balık veya alg yağı ürünlerinde bulunan EPA ve DHA, hücre zarlarının yapısına katılan uzun zincirli omega‑3 yağ asitleridir.</p><div class="supplement-benefit-grid-v146"><article><span>01</span><div><strong>Kaynak Seçimi</strong><p>Balık yağı, krill yağı veya alg yağı ürünlerinin içerikleri birbirinden farklı olabilir.</p></div></article><article><span>02</span><div><strong>EPA ve DHA Miktarı</strong><p>Toplam yağ miktarı yerine etiketteki EPA ve DHA değerleri birlikte incelenmelidir.</p></div></article><article><span>03</span><div><strong>Kalite Kontrolü</strong><p>Saflık, oksidasyon kontrolü ve güvenilir üretim standartları ürün seçiminde önemlidir.</p></div></article></div><div class="supplement-note-v146"><strong>Dikkat</strong><p>Kan sulandırıcı ilaç kullananlarda ve cerrahi öncesinde kullanım hekimle değerlendirilmelidir.</p></div></div>
+                    </article>
+                    <article class="supplement-product-v146 supplement-stack-item-v388">
+                        <div class="supplement-product-media-v146 supplement-product-media-v387"><div class="supplement-product-badge-v146">SUPPLEMENT 05 / 06</div><img src="./supplement-probiyotik-v387.jpg" alt="Probiyotik takviyesi" loading="lazy" decoding="async"><span class="supplement-product-caption-v146">PROBİYOTİK · MİKROBİYOTA</span></div>
+                        <div class="supplement-product-copy-v146"><span class="supplement-mini-kicker-v146">SUŞA ÖZEL DEĞERLENDİRME</span><h2><em>Probiyotik</em></h2><p class="supplement-lead-v146">Probiyotik ürünlerin özellikleri; içerdiği mikroorganizma suşuna, canlı mikroorganizma miktarına ve hedeflenen kullanım alanına göre değişir.</p><div class="supplement-benefit-grid-v146"><article><span>01</span><div><strong>Suş Bilgisi</strong><p>Yalnızca bakteri türü değil, etikette belirtilen suş kodu da ürün değerlendirmesinde önemlidir.</p></div></article><article><span>02</span><div><strong>Saklama Koşulu</strong><p>Canlı mikroorganizma içeriğini korumak için üreticinin sıcaklık ve saklama önerileri izlenmelidir.</p></div></article><article><span>03</span><div><strong>Kullanım Amacı</strong><p>Her probiyotik ürün aynı etkiyi göstermez; ürün seçimi kullanım amacına göre yapılmalıdır.</p></div></article></div><div class="supplement-note-v146"><strong>Dikkat</strong><p>Bağışıklığı ciddi baskılanmış kişilerde veya ağır hastalıkta hekim önerisi olmadan kullanılmamalıdır.</p></div></div>
+                    </article>
+                    <article class="supplement-product-v146 supplement-stack-item-v388">
+                        <div class="supplement-product-media-v146 supplement-product-media-v387"><div class="supplement-product-badge-v146">SUPPLEMENT 06 / 06</div><img src="./supplement-d3-v387.jpg" alt="D3 vitamini takviyesi" loading="lazy" decoding="async"><span class="supplement-product-caption-v146">D3 VİTAMİNİ · KOLEKALSİFEROL</span></div>
+                        <div class="supplement-product-copy-v146"><span class="supplement-mini-kicker-v146">VİTAMİN DESTEĞİ</span><h2><em>D3 Vitamini</em></h2><p class="supplement-lead-v146">D vitamini; kalsiyum metabolizması, kemik sağlığı ve normal kas işlevleri için önemli olan yağda çözünen bir vitamindir.</p><div class="supplement-benefit-grid-v146"><article><span>01</span><div><strong>Kan Düzeyi</strong><p>Takviye gereksinimi ve doz planı klinik durumla birlikte 25‑OH D düzeyine göre değerlendirilir.</p></div></article><article><span>02</span><div><strong>Kişisel Gereksinim</strong><p>Yaş, güneşlenme, beslenme, emilim ve eşlik eden hastalıklar gereksinimi etkileyebilir.</p></div></article><article><span>03</span><div><strong>Kontrollü Kullanım</strong><p>Yağda çözünen bir vitamin olduğu için yüksek doz ve uzun süreli kullanım izlem gerektirir.</p></div></article></div><div class="supplement-note-v146"><strong>Dikkat</strong><p>Doz; kan düzeyi, yaş ve sağlık durumuna göre belirlenmeli, yüksek doz gelişigüzel kullanılmamalıdır.</p></div></div>
+                    </article>
+                </div>
+                <div class="supplement-general-note-v387"><strong>Genel bilgilendirme</strong><p>Takviye edici gıdalar ilaç değildir ve dengeli beslenmenin yerine geçmez. Kullanım kararı ve doz kişiye göre değişir; gebeler, emzirenler, çocuklar, kronik hastalığı veya düzenli ilaç kullanımı olanlar hekime danışmalıdır.</p></div>
             </section>
         </article>
 
-<article class="general-health-view-v75 detox-view-v147" data-health-detail-view="kurler">
+<article class="general-health-view-v75 detox-view-v147 detox-view-v390" data-health-detail-view="kurler">
             <div class="general-health-hero-v75 detox-hero-v147">
                 <span class="general-health-kicker-v75">GENEL SAĞLIK</span>
                 <h1>Detoks Kürleri</h1>
                 <p>
-                    Bitkisel içeriklerle desteklenen, günlük yaşam rutinine eşlik edebilecek
-                    hafif ve modern detoks kürlerini bu alanda topladık. Amaç; daha dengeli,
-                    daha ferah ve sürdürülebilir bir yaklaşımı kısa bilgilerle sunmak.
+                    Mide, bağırsaklar, karaciğer, kalp-dolaşım, dalak başlığı ve kilo kontrolü için
+                    günlük beslenmeye eşlik edebilecek 35 destekleyici tarif. İlk 10 tarifin görseli sisteme
+                    eklendi; diğer görseller sırayla tamamlanacaktır. Kategori seçin veya arama alanına bir
+                    içerik, hedef ya da tarif adı yazın.
                 </p>
             </div>
 
@@ -8661,202 +9428,100 @@ body.media-page-open .media-page-content-v48 {
                     <span class="detox-mini-kicker-v147">KİŞİYE ÖZEL PLANLAMA</span>
                     <h2>Günlük yaşamı destekleyen doğal içerik önerileri</h2>
                     <p>
-                        Detoks kürleri bir tedavi yerine geçmez; daha çok sıvı dengesi, hafiflik hissi,
-                        antioksidan destek ve günlük iyi oluş rutini açısından değerlendirilebilir.
-                        Kronik hastalığı olanlar, düzenli ilaç kullananlar, gebeler ve emzirenler için
-                        içerik seçimi mutlaka hekim değerlendirmesiyle planlanmalıdır.
+                        “Detoks” ifadesi burada bir organı temizleme veya hastalık tedavi etme anlamında kullanılmaz.
+                        Tarifler; sıvı alımı, lif çeşitliliği, dengeli beslenme ve sürdürülebilir günlük rutin açısından
+                        değerlendirilir. Kronik hastalığı olanlar, düzenli ilaç kullananlar, gebeler ve emzirenler
+                        içerikleri kullanmadan önce hekim veya diyetisyen görüşü almalıdır.
                     </p>
                 </div>
                 <div class="detox-intro-points-v147">
                     <article>
-                        <strong>Ferahlık</strong>
-                        <p>Günlük sıvı alımını destekleyen, içimi kolay seçenekler.</p>
+                        <strong>35 Tarif</strong>
+                        <p>7 başlıkta, her kategori için 5 farklı tarif.</p>
                     </article>
                     <article>
-                        <strong>Denge</strong>
-                        <p>Hafif içeriklerle sürdürülebilir rutin oluşturmaya yardımcı yaklaşım.</p>
+                        <strong>Akıllı Filtre</strong>
+                        <p>Mide, bağırsak, karaciğer, kalp, dalak veya kilo kontrolünü tek tıkla süzün.</p>
                     </article>
                     <article>
-                        <strong>Bütüncül Yaklaşım</strong>
-                        <p>Beslenme, yaşam tarzı ve kişisel ihtiyaçlar birlikte değerlendirilir.</p>
+                        <strong>Destek Alanı</strong>
+                        <p>Her kartta tarifin hangi günlük ihtiyacı desteklemek üzere tasarlandığı açıkça yazılıdır.</p>
                     </article>
                 </div>
             </section>
 
-            
-            <section class="detox-liver-v173" aria-label="Karaciğer dostu beslenme seçimleri">
-                <div class="detox-liver-head-v173">
+            <!-- V390: DETOKS KÜRLERİ ARAMA + KATEGORİ FİLTRELERİ + 35 TARİF -->
+            <section class="detox-explorer-v390" id="detoxExplorerV390" aria-label="Detoks kürleri tarif rehberi">
+                <div class="detox-explorer-head-v390">
                     <div>
-                        <span class="detox-mini-kicker-v147">KARACİĞER DOSTU SEÇİMLER</span>
-                        <h2>Günlük beslenmeye eklenebilecek 4 doğal seçenek</h2>
-                        <p>
-                            Bu besinler tek başına “detoks” sağlamaz; ancak dengeli bir beslenme düzeni içinde
-                            antioksidan, sağlıklı yağ ve bitkisel bileşen desteği sunabilir. Porsiyon ve tüketim
-                            sıklığı kişinin sağlık durumuna göre değişebilir.
-                        </p>
+                        <span class="detox-mini-kicker-v147">TARİF REHBERİ</span>
+                        <h2>İhtiyacınıza göre kürleri filtreleyin</h2>
+                        <p>Bir kategori seçin veya “şişkinlik”, “lif”, “zencefil”, “tokluk” gibi bir kelime arayın. Görseli hazır olan tarifler kartların üst bölümünde gösterilir.</p>
                     </div>
-                    <div class="detox-liver-badge-v173">
-                        <strong>4</strong>
-                        <span>Doğal seçim</span>
+                    <div class="detox-total-v390" aria-label="Toplam tarif sayısı">
+                        <strong id="detoxTotalCountV390">35</strong>
+                        <span>Tarif</span>
                     </div>
                 </div>
 
-                <div class="detox-liver-grid-v173">
-                    <article class="detox-liver-card-v173">
-                        <div class="detox-liver-media-v173">
-                            <img src="./detox-zeytinyagi-v173.png?v=173" alt="Zeytinyağı ve zeytinlerden oluşan beslenme görseli" loading="lazy" decoding="async">
-                            <span class="detox-liver-index-v173">01</span>
-                        </div>
-                        <div class="detox-liver-body-v173">
-                            <span class="detox-liver-kicker-v173">SAĞLIKLI YAĞ SEÇİMİ</span>
-                            <h3>Zeytinyağı</h3>
-                            <p>
-                                Tekli doymamış yağ asitleri ve polifenoller içerir. Akdeniz tipi beslenmenin temel
-                                bileşenlerinden biridir ve dengeli yağ tüketimine katkı sağlayabilir.
-                            </p>
-                            <div class="detox-liver-points-v173">
-                                <span>Sağlıklı yağ profili</span><span>Polifenol desteği</span><span>Akdeniz tipi beslenme</span>
-                            </div>
-                            <details class="detox-liver-detail-v173">
-                                <summary>Detaylı Bilgi</summary>
-                                <p>Enerji yoğun bir besindir; miktarı toplam günlük enerji ihtiyacına göre dengelenmelidir. Genellikle yemeklerde ve salatalarda ölçülü kullanım uygundur.</p>
-                            </details>
-                        </div>
-                    </article>
+                <div class="detox-search-v390">
+                    <div class="detox-search-input-wrap-v390">
+                        <span class="detox-search-icon-v390" aria-hidden="true">
+                            <svg viewBox="0 0 24 24"><circle cx="11" cy="11" r="6.5"></circle><path d="m16 16 4 4"></path></svg>
+                        </span>
+                        <input
+                            type="search"
+                            id="detoxSearchInputV390"
+                            autocomplete="off"
+                            spellcheck="false"
+                            placeholder="Örn. şişkinlik, lif, karaciğer, zencefil..."
+                            aria-label="Detoks kürleri içinde ara"
+                        >
+                        <button type="button" class="detox-search-clear-v390" id="detoxSearchClearV390" aria-label="Aramayı temizle" hidden>×</button>
+                    </div>
+                    <button type="button" class="detox-search-button-v390" id="detoxSearchButtonV390">
+                        <span>Ara</span><i aria-hidden="true">→</i>
+                    </button>
+                </div>
 
-                    <article class="detox-liver-card-v173">
-                        <div class="detox-liver-media-v173">
-                            <img src="./detox-kahve-v173.png?v=173" alt="Sade kahve ve kahve çekirdeklerinden oluşan beslenme görseli" loading="lazy" decoding="async">
-                            <span class="detox-liver-index-v173">02</span>
-                        </div>
-                        <div class="detox-liver-body-v173">
-                            <span class="detox-liver-kicker-v173">ÖLÇÜLÜ TÜKETİM</span>
-                            <h3>Kahve</h3>
-                            <p>
-                                Kahve doğal polifenoller içerir. Şekersiz ve ölçülü tüketildiğinde dengeli beslenme
-                                düzenine eşlik edebilir; kişisel kafein toleransı önemlidir.
-                            </p>
-                            <div class="detox-liver-points-v173">
-                                <span>Polifenoller</span><span>Şekersiz tercih</span><span>Ölçülü tüketim</span>
-                            </div>
-                            <details class="detox-liver-detail-v173">
-                                <summary>Detaylı Bilgi</summary>
-                                <p>Uyku bozukluğu, çarpıntı, reflü veya gebelik gibi durumlarda kafein miktarı ayrıca değerlendirilmelidir. Şeker ve yüksek kalorili eklemelerden kaçınmak daha dengeli bir tercihtir.</p>
-                            </details>
-                        </div>
-                    </article>
+                <div class="detox-category-tabs-v390" id="detoxCategoryTabsV390" role="tablist" aria-label="Detoks kürü kategorileri">
+                    <button type="button" class="detox-category-btn-v390 active" data-detox-category-v390="all" role="tab" aria-selected="true">Tümü <span>35</span></button>
+                    <button type="button" class="detox-category-btn-v390" data-detox-category-v390="mide" role="tab" aria-selected="false">Mide <span>5</span></button>
+                    <button type="button" class="detox-category-btn-v390" data-detox-category-v390="ince-bagirsak" role="tab" aria-selected="false">İnce Bağırsak <span>5</span></button>
+                    <button type="button" class="detox-category-btn-v390" data-detox-category-v390="kalin-bagirsak" role="tab" aria-selected="false">Kalın Bağırsak <span>5</span></button>
+                    <button type="button" class="detox-category-btn-v390" data-detox-category-v390="karaciger" role="tab" aria-selected="false">Karaciğer <span>5</span></button>
+                    <button type="button" class="detox-category-btn-v390" data-detox-category-v390="kalp" role="tab" aria-selected="false">Kalp &amp; Dolaşım <span>5</span></button>
+                    <button type="button" class="detox-category-btn-v390" data-detox-category-v390="dalak" role="tab" aria-selected="false">Dalak <span>5</span></button>
+                    <button type="button" class="detox-category-btn-v390" data-detox-category-v390="kilo" role="tab" aria-selected="false">Kilo Kontrolü <span>5</span></button>
+                </div>
 
-                    <article class="detox-liver-card-v173">
-                        <div class="detox-liver-media-v173">
-                            <img src="./detox-turpgiller-v173.png?v=173" alt="Brokoli karnabahar lahana ve Brüksel lahanası görseli" loading="lazy" decoding="async">
-                            <span class="detox-liver-index-v173">03</span>
-                        </div>
-                        <div class="detox-liver-body-v173">
-                            <span class="detox-liver-kicker-v173">SEBZE GRUBU</span>
-                            <h3>Turpgiller</h3>
-                            <p>
-                                Brokoli, karnabahar, lahana ve Brüksel lahanası; lif ve çeşitli bitkisel bileşenler
-                                bakımından zengindir. Sebze çeşitliliğini artırmaya yardımcı olur.
-                            </p>
-                            <div class="detox-liver-points-v173">
-                                <span>Lif desteği</span><span>Bitkisel bileşenler</span><span>Sebze çeşitliliği</span>
-                            </div>
-                            <details class="detox-liver-detail-v173">
-                                <summary>Detaylı Bilgi</summary>
-                                <p>Çiğ veya pişmiş olarak tüketilebilir. Hassas bağırsak yapısında gaz ve şişkinlik yapabileceğinden porsiyon miktarı kişiye göre ayarlanabilir.</p>
-                            </details>
-                        </div>
-                    </article>
+                <div class="detox-results-bar-v390" aria-live="polite">
+                    <div>
+                        <span id="detoxActiveCategoryV390">Tüm kategoriler</span>
+                        <strong id="detoxResultCountV390">35 tarif gösteriliyor</strong>
+                    </div>
+                    <button type="button" id="detoxResetV390" class="detox-reset-v390" hidden>Filtreleri temizle</button>
+                </div>
 
-                    <article class="detox-liver-card-v173">
-                        <div class="detox-liver-media-v173">
-                            <img src="./detox-sarimsak-v173.png?v=173" alt="Taze sarımsak ve yeşilliklerden oluşan beslenme görseli" loading="lazy" decoding="async">
-                            <span class="detox-liver-index-v173">04</span>
-                        </div>
-                        <div class="detox-liver-body-v173">
-                            <span class="detox-liver-kicker-v173">AROMATİK BİTKİSEL DESTEK</span>
-                            <h3>Sarımsak</h3>
-                            <p>
-                                Kükürtlü bitkisel bileşenler içerir ve yemeklere doğal aroma katar. Dengeli bir
-                                beslenme düzeni içinde sebze ve bitkisel gıda çeşitliliğine katkı sağlayabilir.
-                            </p>
-                            <div class="detox-liver-points-v173">
-                                <span>Kükürtlü bileşenler</span><span>Doğal aroma</span><span>Bitkisel çeşitlilik</span>
-                            </div>
-                            <details class="detox-liver-detail-v173">
-                                <summary>Detaylı Bilgi</summary>
-                                <p>Mide hassasiyeti olanlarda çiğ sarımsak rahatsızlık yaratabilir. Kan sulandırıcı kullananlarda yüksek miktarlı tüketim veya takviye kullanımı öncesi hekim görüşü alınmalıdır.</p>
-                            </details>
-                        </div>
-                    </article>
+                <div class="detox-recipe-grid-v390" id="detoxRecipeGridV390"></div>
+
+                <div class="detox-empty-v390" id="detoxEmptyV390" hidden>
+                    <strong>Eşleşen tarif bulunamadı.</strong>
+                    <p>Farklı bir kelime arayın veya başka bir kategori seçin.</p>
                 </div>
             </section>
 
-            <section class="detox-grid-v147" aria-label="Detoks kürleri içerikleri">
-                <article class="detox-card-v147">
-                    <div class="detox-card-media-v147">
-                        <img src="./detoks-limon-nane-v147.png?v=150" alt="Limon ve nane içerikli detoks kürü görseli" loading="lazy" decoding="async">
-                    </div>
-                    <div class="detox-card-body-v147">
-                        <span class="detox-card-badge-v147">FERAHLATAN RUTİN</span>
-                        <h2>Limon &amp; Nane Desteği</h2>
-                        <p>
-                            Limon, nane ve salatalık eşliğinde hazırlanan bu hafif içerikli yaklaşım;
-                            gün içinde ferahlık hissini ve düzenli sıvı tüketimini desteklemeye yardımcı olabilir.
-                        </p>
-                        <div class="detox-tags-v147">
-                            <span>Ferahlık</span>
-                            <span>Hafiflik</span>
-                            <span>Günlük Destek</span>
-                        </div>
-                    </div>
-                </article>
-
-                <article class="detox-card-v147">
-                    <div class="detox-card-media-v147">
-                        <img src="./detoks-yesil-arınma-v147.png?v=150" alt="Yeşil içerikli detoks kürü görseli" loading="lazy" decoding="async">
-                    </div>
-                    <div class="detox-card-body-v147">
-                        <span class="detox-card-badge-v147">BİTKİSEL DENGE</span>
-                        <h2>Yeşil Arınma Desteği</h2>
-                        <p>
-                            Elma, zencefil, rezene ve taze yeşil bitkilerle öne çıkan bu içerik;
-                            daha dengeli beslenme rutinine eşlik eden bitkisel bir destek yaklaşımı sunar.
-                        </p>
-                        <div class="detox-tags-v147">
-                            <span>Bitkisel İçerik</span>
-                            <span>Denge</span>
-                            <span>Hafiflik</span>
-                        </div>
-                    </div>
-                </article>
-
-                <article class="detox-card-v147">
-                    <div class="detox-card-media-v147">
-                        <img src="./detoks-antioksidan-v147.png?v=150" alt="Antioksidan destekli detoks kürü görseli" loading="lazy" decoding="async">
-                    </div>
-                    <div class="detox-card-body-v147">
-                        <span class="detox-card-badge-v147">CANLILIK ODAKLI</span>
-                        <h2>Antioksidan Bitkisel Destek</h2>
-                        <p>
-                            Kırmızı meyveler, nar ve bitkisel çaylar ile hazırlanan bu yaklaşım;
-                            canlılık hissini ve günlük bakım rutinini destekleyen antioksidan odaklı bir seçenek olabilir.
-                        </p>
-                        <div class="detox-tags-v147">
-                            <span>Canlılık</span>
-                            <span>Antioksidan</span>
-                            <span>Bütüncül Bakım</span>
-                        </div>
-                    </div>
-                </article>
-            </section>
-
-            <section class="detox-note-v147" aria-label="Detoks kürleri bilgilendirme notu">
-                <strong>Bilgilendirme Notu</strong>
-                <p>
-                    Bu içerikler genel bilgilendirme amaçlıdır. Tanı ve tedavi yerine geçmez.
-                    Uygun içerik seçimi; kişinin sağlık durumu, kullandığı ilaçlar ve özel gereksinimleri göz önünde bulundurularak planlanmalıdır.
-                </p>
+            <section class="detox-safety-v390" aria-label="Detoks tarifleri güvenlik notu">
+                <div class="detox-safety-icon-v390" aria-hidden="true">i</div>
+                <div>
+                    <strong>Bilgilendirme ve güvenlik notu</strong>
+                    <p>
+                        Bu tarifler genel bilgilendirme amaçlıdır ve tanı veya tedavi yerine geçmez. “Karaciğer detoksu”,
+                        “dalak temizleme” ya da “yağ yakan kür” gibi garantili tıbbi etkiler vaat edilmez. Özellikle
+                        diyabet, böbrek-karaciğer hastalığı, reflü, safra kesesi hastalığı, alerji, gebelik-emzirme
+                        veya düzenli ilaç kullanımı varsa kişisel değerlendirme gerekir.
+                    </p>
+                </div>
             </section>
         </article>
 
@@ -10030,7 +10695,7 @@ body.media-page-open .media-page-content-v48 {
         </div>
     </section>
 
-    <script src="script.js?v=362"></script>
+    <script src="script.js?v=411"></script>
 
 </body>
 
