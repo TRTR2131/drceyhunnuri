@@ -43582,6 +43582,97 @@ body.osteo-standalone-open-v260 #homeStatsV137 {
     }
 }
 
+/* V423 son öncelik: orta ekranlarda hastalık içerik butonlarını ilk ekrana taşı. */
+@media (min-width: 761px) and (max-width: 1180px) {
+    #conditionDiseasePageV246 .condition-hero-v280,
+    #romatoidFaqSectionV198 .ra-hero-v280,
+    #ankilozanFaqSectionV85 .as-main-hero-v275,
+    #conditionDiseasePageV246 .condition-hero-v280 .condition-overview-media-v249 img,
+    #romatoidFaqSectionV198 .ra-hero-v280 .ra-hero-media-v198 img,
+    #ankilozanFaqSectionV85 .as-main-hero-v275 > img {
+        min-height: 440px !important;
+        height: 440px !important;
+    }
+
+    #conditionDiseasePageV246 .condition-hero-v280 > .treatment-launcher-v279,
+    #romatoidFaqSectionV198 .ra-hero-v280 > .treatment-launcher-v279,
+    #ankilozanFaqSectionV85 .as-main-hero-v275 > .as-launcher-v274 {
+        top: 52px !important;
+        bottom: auto !important;
+        padding: 11px !important;
+    }
+
+    #conditionDiseasePageV246 .condition-hero-v280 > .treatment-launcher-v279 .as-launcher-head-v274,
+    #romatoidFaqSectionV198 .ra-hero-v280 > .treatment-launcher-v279 .as-launcher-head-v274,
+    #ankilozanFaqSectionV85 .as-main-hero-v275 > .as-launcher-v274 .as-launcher-head-v274 {
+        min-height: 34px !important;
+        padding-bottom: 7px !important;
+    }
+
+    #conditionDiseasePageV246 .condition-hero-v280 > .treatment-launcher-v279 .as-launcher-head-v274 p,
+    #romatoidFaqSectionV198 .ra-hero-v280 > .treatment-launcher-v279 .as-launcher-head-v274 p,
+    #ankilozanFaqSectionV85 .as-main-hero-v275 > .as-launcher-v274 .as-launcher-head-v274 p {
+        display: none !important;
+    }
+
+    #conditionDiseasePageV246 .condition-hero-v280 > .treatment-launcher-v279 .disease-topic-tab-v421,
+    #romatoidFaqSectionV198 .ra-hero-v280 > .treatment-launcher-v279 .disease-topic-tab-v421,
+    #ankilozanFaqSectionV85 .as-main-hero-v275 > .as-launcher-v274 .disease-topic-tab-v421 {
+        min-height: 72px !important;
+        padding: 9px 11px !important;
+        gap: 4px !important;
+    }
+}
+
+/* =========================================================
+   V423 - HASTALIK SAYFASI AÇILIŞINDA İÇERİK BUTONLARI GÖRÜNSÜN
+   Orta ekranlarda yüksek hero görseli kısaltılır ve buton paneli yukarı alınır.
+   ========================================================= */
+@media (min-width: 761px) and (max-width: 1180px) {
+    #conditionDiseasePageV246 .condition-hero-v280,
+    #romatoidFaqSectionV198 .ra-hero-v280,
+    #ankilozanFaqSectionV85 .as-main-hero-v275 {
+        min-height: 440px !important;
+        height: 440px !important;
+    }
+
+    #conditionDiseasePageV246 .condition-hero-v280 .condition-overview-media-v249 img,
+    #romatoidFaqSectionV198 .ra-hero-v280 .ra-hero-media-v198 img,
+    #ankilozanFaqSectionV85 .as-main-hero-v275 > img {
+        min-height: 440px !important;
+        height: 440px !important;
+    }
+
+    #conditionDiseasePageV246 .condition-hero-v280 > .treatment-launcher-v279,
+    #romatoidFaqSectionV198 .ra-hero-v280 > .treatment-launcher-v279,
+    #ankilozanFaqSectionV85 .as-main-hero-v275 > .as-launcher-v274 {
+        top: 52px !important;
+        bottom: auto !important;
+        padding: 11px !important;
+    }
+
+    #conditionDiseasePageV246 .condition-hero-v280 > .treatment-launcher-v279 .as-launcher-head-v274,
+    #romatoidFaqSectionV198 .ra-hero-v280 > .treatment-launcher-v279 .as-launcher-head-v274,
+    #ankilozanFaqSectionV85 .as-main-hero-v275 > .as-launcher-v274 .as-launcher-head-v274 {
+        min-height: 34px !important;
+        padding-bottom: 7px !important;
+    }
+
+    #conditionDiseasePageV246 .condition-hero-v280 > .treatment-launcher-v279 .as-launcher-head-v274 p,
+    #romatoidFaqSectionV198 .ra-hero-v280 > .treatment-launcher-v279 .as-launcher-head-v274 p,
+    #ankilozanFaqSectionV85 .as-main-hero-v275 > .as-launcher-v274 .as-launcher-head-v274 p {
+        display: none !important;
+    }
+
+    #conditionDiseasePageV246 .condition-hero-v280 > .treatment-launcher-v279 .disease-topic-tab-v421,
+    #romatoidFaqSectionV198 .ra-hero-v280 > .treatment-launcher-v279 .disease-topic-tab-v421,
+    #ankilozanFaqSectionV85 .as-main-hero-v275 > .as-launcher-v274 .disease-topic-tab-v421 {
+        min-height: 72px !important;
+        padding: 9px 11px !important;
+        gap: 4px !important;
+    }
+}
+
 
 /* =========================================================
    V295 - CİHAZ UYGULAMALARI SADELEŞTİRME
@@ -44423,6 +44514,281 @@ body.osteo-standalone-open-v260 #osteoSpecialViewV259 .osteo-tab-panel-v258[hidd
 
     #osteoSpecialViewV259 .osteo-special-title-v259 h2 {
         font-size: clamp(24px, 7vw, 33px) !important;
+    }
+}
+
+/* =========================================================
+   V421 - HASTALIK SAYFALARI / OSTEOPATİ TARZI SEKMELER
+   ========================================================= */
+.disease-switcher-collapsible-v421 {
+    display: block !important;
+    width: min(100% - 32px, 1760px) !important;
+    margin: 14px auto 20px !important;
+    padding: 0 !important;
+    border: 0 !important;
+    border-radius: 22px !important;
+    background: transparent !important;
+    box-shadow: none !important;
+    overflow: visible !important;
+    position: relative !important;
+    z-index: 32 !important;
+}
+
+.disease-switcher-collapsible-v421::before,
+.disease-switcher-collapsible-v421 .disease-switcher-head-v250 {
+    display: none !important;
+}
+
+.disease-switch-toggle-v421 {
+    width: 100%;
+    min-height: 68px;
+    display: grid;
+    grid-template-columns: 44px 1fr 42px;
+    align-items: center;
+    gap: 13px;
+    padding: 10px 14px;
+    border: 1px solid rgba(25, 145, 194, .24);
+    border-radius: 20px;
+    background:
+        radial-gradient(circle at 84% 18%, rgba(81, 211, 229, .22), transparent 28%),
+        linear-gradient(135deg, #103b59 0%, #096c91 55%, #0d8fab 100%);
+    box-shadow: 0 16px 34px rgba(16, 66, 94, .18);
+    color: #fff;
+    cursor: pointer;
+    text-align: left;
+    transition: transform .22s ease, box-shadow .22s ease, border-color .22s ease;
+}
+
+.disease-switch-toggle-v421:hover,
+.disease-switch-toggle-v421:focus-visible {
+    transform: translateY(-2px);
+    border-color: rgba(151, 237, 248, .78);
+    box-shadow: 0 20px 42px rgba(11, 80, 112, .25);
+    outline: none;
+}
+
+.disease-switch-toggle-icon-v421,
+.disease-switch-toggle-state-v421 {
+    width: 42px;
+    height: 42px;
+    display: grid;
+    place-items: center;
+    border: 1px solid rgba(255, 255, 255, .24);
+    border-radius: 14px;
+    background: rgba(255, 255, 255, .12);
+    color: #fff;
+    font-size: 1.2rem;
+    font-weight: 800;
+}
+
+.disease-switch-toggle-copy-v421 {
+    display: flex;
+    flex-direction: column;
+    gap: 2px;
+}
+
+.disease-switch-toggle-copy-v421 small {
+    color: #9deafb;
+    font-size: .72rem;
+    font-weight: 800;
+    letter-spacing: .13em;
+}
+
+.disease-switch-toggle-copy-v421 strong {
+    color: #fff;
+    font-family: Sora, Inter, sans-serif;
+    font-size: clamp(1rem, 1.6vw, 1.25rem);
+    line-height: 1.2;
+}
+
+.disease-switcher-collapsible-v421 .disease-switch-grid-v250[hidden] {
+    display: none !important;
+}
+
+.disease-switcher-collapsible-v421.is-open-v421 .disease-switch-grid-v250 {
+    display: grid !important;
+    grid-template-columns: repeat(4, minmax(0, 1fr)) !important;
+    gap: 12px !important;
+    margin-top: 12px;
+    padding: 14px !important;
+    border: 1px solid rgba(34, 128, 168, .16);
+    border-radius: 22px;
+    background: rgba(244, 251, 255, .96);
+    box-shadow: 0 22px 46px rgba(16, 66, 94, .16);
+    backdrop-filter: blur(16px);
+}
+
+.disease-switcher-collapsible-v421 .disease-image-tab-v421 {
+    min-height: 132px !important;
+    display: flex !important;
+    align-items: flex-end !important;
+    gap: 9px !important;
+    padding: 16px !important;
+    position: relative;
+    isolation: isolate;
+    overflow: hidden;
+    border: 1px solid rgba(255, 255, 255, .5) !important;
+    border-radius: 18px !important;
+    background-image:
+        linear-gradient(180deg, rgba(5, 24, 38, .06) 0%, rgba(5, 24, 38, .88) 100%),
+        var(--disease-tab-image-v421) !important;
+    background-position: center !important;
+    background-size: cover !important;
+    color: #fff !important;
+    box-shadow: 0 10px 24px rgba(18, 72, 102, .13) !important;
+    text-align: left !important;
+    transform: none !important;
+}
+
+.disease-switcher-collapsible-v421 .disease-image-tab-v421::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    z-index: -1;
+    background: linear-gradient(135deg, rgba(16, 139, 185, .08), transparent 55%);
+}
+
+.disease-switcher-collapsible-v421 .disease-image-tab-v421:hover,
+.disease-switcher-collapsible-v421 .disease-image-tab-v421:focus-visible {
+    transform: translateY(-3px) !important;
+    border-color: rgba(121, 226, 242, .95) !important;
+    box-shadow: 0 16px 32px rgba(9, 83, 117, .22) !important;
+    outline: none;
+}
+
+.disease-switcher-collapsible-v421 .disease-image-tab-v421.is-active {
+    border: 2px solid #70e0f0 !important;
+    box-shadow: 0 0 0 3px rgba(22, 160, 194, .15), 0 16px 32px rgba(9, 83, 117, .24) !important;
+}
+
+.disease-switcher-collapsible-v421 .disease-switch-code-v250,
+.disease-switcher-collapsible-v421 .disease-switch-arrow-v250 {
+    flex: 0 0 auto;
+    width: 34px !important;
+    height: 34px !important;
+    display: grid !important;
+    place-items: center;
+    border: 1px solid rgba(255, 255, 255, .28) !important;
+    border-radius: 11px !important;
+    background: rgba(255, 255, 255, .14) !important;
+    color: #fff !important;
+}
+
+.disease-switcher-collapsible-v421 .disease-image-tab-v421 strong {
+    flex: 1;
+    color: #fff !important;
+    font-size: .95rem !important;
+    line-height: 1.25;
+    text-shadow: 0 2px 8px rgba(0, 0, 0, .35);
+}
+
+/* Hastalık içeriği düğmeleri artık Osteopati'deki sekme şeridi gibi çalışır. */
+#asLauncherV274 .as-launcher-grid-v274,
+.treatment-launcher-v279 .as-launcher-grid-v274,
+#conditionDiseasePageV246 .condition-hero-v280 > .treatment-launcher-v279 .as-launcher-grid-v274 {
+    display: grid !important;
+    grid-template-columns: repeat(6, minmax(0, 1fr)) !important;
+    gap: 10px !important;
+}
+
+#asLauncherV274 .disease-topic-tab-v421,
+.treatment-launcher-v279 .disease-topic-tab-v421,
+#conditionDiseasePageV246 .condition-hero-v280 > .treatment-launcher-v279 .disease-topic-tab-v421 {
+    min-height: 94px !important;
+    display: flex !important;
+    flex-direction: column !important;
+    align-items: flex-start !important;
+    justify-content: center !important;
+    gap: 7px !important;
+    padding: 13px !important;
+    border: 1px solid rgba(126, 222, 241, .2) !important;
+    border-radius: 17px !important;
+    background: rgba(7, 48, 69, .78) !important;
+    backdrop-filter: blur(12px);
+    color: #fff !important;
+    box-shadow: inset 0 1px 0 rgba(255, 255, 255, .08) !important;
+}
+
+#asLauncherV274 .disease-topic-tab-v421:hover,
+.treatment-launcher-v279 .disease-topic-tab-v421:hover,
+#asLauncherV274 .disease-topic-tab-v421.is-primary-v274,
+.treatment-launcher-v279 .disease-topic-tab-v421.is-primary-v274,
+#asLauncherV274 .disease-topic-tab-v421.is-selected-v421,
+.treatment-launcher-v279 .disease-topic-tab-v421.is-selected-v421 {
+    border-color: rgba(120, 231, 248, .78) !important;
+    background: linear-gradient(145deg, rgba(35, 170, 217, .96), rgba(9, 119, 166, .94)) !important;
+    transform: translateY(-2px);
+}
+
+.disease-topic-tab-v421 .as-launch-icon-v274 {
+    width: 32px !important;
+    height: 32px !important;
+    border-radius: 10px !important;
+}
+
+.disease-topic-tab-v421 .as-launch-copy-v274 strong {
+    font-size: .88rem !important;
+    line-height: 1.25 !important;
+}
+
+.disease-topic-tab-v421 .as-launch-copy-v274 small {
+    font-size: .7rem !important;
+    line-height: 1.3 !important;
+}
+
+.disease-topic-tab-v421 .as-launch-arrow-v274 {
+    display: none !important;
+}
+
+@media (max-width: 1180px) {
+    #asLauncherV274 .as-launcher-grid-v274,
+    .treatment-launcher-v279 .as-launcher-grid-v274,
+    #conditionDiseasePageV246 .condition-hero-v280 > .treatment-launcher-v279 .as-launcher-grid-v274 {
+        grid-template-columns: repeat(3, minmax(0, 1fr)) !important;
+    }
+}
+
+@media (max-width: 900px) {
+    .disease-switcher-collapsible-v421.is-open-v421 .disease-switch-grid-v250 {
+        grid-template-columns: repeat(2, minmax(0, 1fr)) !important;
+    }
+}
+
+@media (max-width: 620px) {
+    .disease-switcher-collapsible-v421 {
+        width: min(100% - 18px, 1760px) !important;
+        margin-top: 10px !important;
+    }
+
+    .disease-switch-toggle-v421 {
+        min-height: 62px;
+        grid-template-columns: 38px 1fr 36px;
+        gap: 9px;
+        border-radius: 17px;
+    }
+
+    .disease-switch-toggle-icon-v421,
+    .disease-switch-toggle-state-v421 {
+        width: 36px;
+        height: 36px;
+        border-radius: 11px;
+    }
+
+    .disease-switcher-collapsible-v421.is-open-v421 .disease-switch-grid-v250,
+    #asLauncherV274 .as-launcher-grid-v274,
+    .treatment-launcher-v279 .as-launcher-grid-v274,
+    #conditionDiseasePageV246 .condition-hero-v280 > .treatment-launcher-v279 .as-launcher-grid-v274 {
+        grid-template-columns: 1fr 1fr !important;
+    }
+
+    .disease-switcher-collapsible-v421 .disease-image-tab-v421 {
+        min-height: 112px !important;
+        padding: 12px !important;
+    }
+
+    #asLauncherV274 .disease-topic-tab-v421,
+    .treatment-launcher-v279 .disease-topic-tab-v421 {
+        min-height: 86px !important;
     }
 }
 
@@ -48274,12 +48640,29 @@ body.about-page-open .about-tabs-header-v116{
 
 
 /* =========================================================
+   V435 - AĞRI / MEDYA SAYFALARINI KESİN OLARAK AYIR
+   Ağrı sayfası açıkken önceki Medya katmanı hiçbir koşulda altta kalmaz.
+   ========================================================= */
+body.pain-page-open #medyaPage,
+body.pain-page-open .media-page-v48 {
+    display: none !important;
+    visibility: hidden !important;
+    pointer-events: none !important;
+}
+
+body.pain-page-open #agriPage {
+    display: block !important;
+    visibility: visible !important;
+}
+
+
+/* =========================================================
    V324 - YAZI HİYERARŞİSİ
-   Başlıklar / menüler / butonlar: Manrope
+   Başlıklar / menüler / butonlar: Sora
    Açıklamalar / paragraflar / uzun metinler: Inter
    ========================================================= */
 :root{
-    --font-heading-v324: "Manrope", "Segoe UI", Arial, sans-serif;
+    --font-heading-v324: "Sora", "Segoe UI", Arial, sans-serif;
     --font-body-v324: "Inter", "Segoe UI", Arial, sans-serif;
 }
 
@@ -48370,7 +48753,7 @@ nav button,
     font-weight:700;
 }
 
-/* Kart başlığındaki güçlü metinler Manrope; açıklama içindeki vurgu Inter kalsın */
+/* Kart başlığındaki güçlü metinler Sora; açıklama içindeki vurgu Inter kalsın */
 [class*="card"] > strong,
 [class*="card"] .card-title,
 [class*="card"] [class*="title"]{
@@ -49130,7 +49513,7 @@ body.info-guide-open-v143 .info-guide-item-card-v144 {
     display:inline-flex!important;
     align-items:center!important;
     gap:10px!important;
-    font-family:'Manrope',sans-serif!important;
+    font-family:'Sora',sans-serif!important;
     font-weight:800!important;
 }
 .traditional-entry-buttons-v329 .traditional-modern-button-v329::after{
@@ -49365,7 +49748,7 @@ body.info-guide-open-v143 .info-guide-item-card-v144 {
     text-align:left;
     cursor:pointer;
     transition:transform .2s ease,box-shadow .2s ease,border-color .2s ease,background .2s ease,color .2s ease;
-    font-family:'Manrope',sans-serif;
+    font-family:'Sora',sans-serif;
 }
 .traditional-hero-tabs-v330 button > span{
     width:34px;
@@ -49604,7 +49987,7 @@ body.info-guide-open-v143 .info-guide-item-card-v144 {
     border-radius:14px;
     background:rgba(255,255,255,.08);
     color:#fff;
-    font:700 13px/1 "Manrope",sans-serif;
+    font:700 13px/1 "Sora",sans-serif;
     cursor:pointer;
     transition:.22s ease;
 }
@@ -49615,7 +49998,7 @@ body.info-guide-open-v143 .info-guide-item-card-v144 {
 .traditional-subpage-back-v331 span{font-size:18px;color:#70d4ff}
 .traditional-subpage-eyebrow-v331{
     color:#7edcff;
-    font:800 11px/1.2 "Manrope",sans-serif;
+    font:800 11px/1.2 "Sora",sans-serif;
     letter-spacing:.15em;
     text-transform:uppercase;
 }
@@ -49629,7 +50012,7 @@ body.info-guide-open-v143 .info-guide-item-card-v144 {
 .traditional-subpage-title-row-v331 h1{
     margin:0 0 8px!important;
     color:#fff!important;
-    font:800 clamp(34px,4vw,56px)/1.02 "Manrope",sans-serif!important;
+    font:800 clamp(34px,4vw,56px)/1.02 "Sora",sans-serif!important;
     letter-spacing:-.035em;
 }
 .traditional-subpage-title-row-v331 p{
@@ -49651,7 +50034,7 @@ body.info-guide-open-v143 .info-guide-item-card-v144 {
     border:1px solid rgba(123,215,255,.25);
     background:rgba(255,255,255,.08);
     color:#72d7ff;
-    font:800 34px/1 "Manrope",sans-serif;
+    font:800 34px/1 "Sora",sans-serif;
 }
 .traditional-subpage-index-v331 small{
     color:rgba(230,247,255,.58);
@@ -49686,10 +50069,10 @@ body.info-guide-open-v143 .info-guide-item-card-v144 {
 .traditional-subpage-switcher-v331 button span{
     width:30px;height:30px;display:grid;place-items:center;
     border-radius:10px;background:rgba(255,255,255,.14);
-    color:#fff;font:800 11px/1 "Manrope",sans-serif;
+    color:#fff;font:800 11px/1 "Sora",sans-serif;
 }
 .traditional-subpage-switcher-v331 button b{
-    font:700 13px/1.2 "Manrope",sans-serif;
+    font:700 13px/1.2 "Sora",sans-serif;
 }
 .traditional-detail-view-v330.is-traditional-subpage-open-v331 .traditional-detail-content-v330{
     width:100%!important;
@@ -49722,7 +50105,7 @@ body.info-guide-open-v143 .info-guide-item-card-v144 {
 .info-menu-panel-v54 .site-feedback-open-v332{
     width:100%; min-height:54px; padding:0 18px; border:0; border-radius:14px;
     display:flex; align-items:center; justify-content:space-between; gap:14px;
-    background:rgba(255,255,255,.055); color:#f4fbff; font:700 15px/1.2 Manrope,Arial,sans-serif;
+    background:rgba(255,255,255,.055); color:#f4fbff; font:700 15px/1.2 Sora,Arial,sans-serif;
     text-align:left; cursor:pointer; transition:.22s ease;
 }
 .info-menu-panel-v54 .site-feedback-open-v332:hover,
@@ -49747,35 +50130,35 @@ body.site-feedback-open-v332 .home-stats-v137{display:none!important}
 
 .site-feedback-nav-v332{position:fixed;z-index:260;top:12px;left:50%;transform:translateX(-50%);width:min(1380px,calc(100vw - 24px));min-height:70px;padding:8px 10px;display:flex;align-items:center;gap:10px;border-radius:24px;border:1px solid rgba(167,207,228,.72);background:rgba(248,252,255,.94);backdrop-filter:blur(18px);box-shadow:0 16px 42px rgba(22,70,99,.12)}
 .site-feedback-nav-v332 .global-page-brand-v172{min-width:260px}
-.site-feedback-home-v332{min-height:52px;padding:0 18px;border:1px solid #d7e8f2;border-radius:16px;background:#fff;color:#163f5d;display:flex;align-items:center;gap:10px;font:700 14px Manrope,Arial,sans-serif;cursor:pointer}
+.site-feedback-home-v332{min-height:52px;padding:0 18px;border:1px solid #d7e8f2;border-radius:16px;background:#fff;color:#163f5d;display:flex;align-items:center;gap:10px;font:700 14px Sora,Arial,sans-serif;cursor:pointer}
 .site-feedback-home-v332 span{width:30px;height:30px;display:grid;place-items:center;border-radius:10px;background:#edf7fc;color:#168bc9}
 .site-feedback-nav-title-v332{margin-left:auto;display:grid;gap:2px;text-align:right;padding:0 14px}
-.site-feedback-nav-title-v332 span{font:800 10px Manrope,Arial,sans-serif;letter-spacing:.16em;color:#1390d1}
-.site-feedback-nav-title-v332 strong{font:800 16px Manrope,Arial,sans-serif;color:#123d5b}
+.site-feedback-nav-title-v332 span{font:800 10px Sora,Arial,sans-serif;letter-spacing:.16em;color:#1390d1}
+.site-feedback-nav-title-v332 strong{font:800 16px Sora,Arial,sans-serif;color:#123d5b}
 
 .site-feedback-shell-v332{width:min(1380px,100%);margin:0 auto;display:grid;gap:22px}
 .site-feedback-hero-v332{display:grid;grid-template-columns:minmax(0,1.45fr) minmax(320px,.65fr);gap:18px;align-items:stretch}
 .site-feedback-hero-copy-v332{padding:42px 44px;border-radius:34px;background:linear-gradient(135deg,#0b3550 0%,#0d496b 100%);color:#fff;box-shadow:0 22px 52px rgba(15,64,94,.17);position:relative;overflow:hidden}
 .site-feedback-hero-copy-v332:after{content:"";position:absolute;width:320px;height:320px;right:-90px;bottom:-155px;border-radius:50%;background:radial-gradient(circle,rgba(73,193,246,.28),rgba(73,193,246,0) 70%)}
-.site-feedback-kicker-v332{font:800 12px Manrope,Arial,sans-serif;letter-spacing:.18em;color:#71d4ff}
-.site-feedback-hero-copy-v332 h1{margin:10px 0 16px;font:800 clamp(40px,5vw,72px)/1.02 Manrope,Arial,sans-serif;letter-spacing:-.04em;color:#fff}
+.site-feedback-kicker-v332{font:800 12px Sora,Arial,sans-serif;letter-spacing:.18em;color:#71d4ff}
+.site-feedback-hero-copy-v332 h1{margin:10px 0 16px;font:800 clamp(40px,5vw,72px)/1.02 Sora,Arial,sans-serif;letter-spacing:-.04em;color:#fff}
 .site-feedback-hero-copy-v332 p{position:relative;z-index:1;margin:0;max-width:900px;font:500 17px/1.75 Inter,Arial,sans-serif;color:rgba(238,248,255,.9)}
 .site-feedback-pills-v332{position:relative;z-index:1;margin-top:24px;display:flex;flex-wrap:wrap;gap:10px}
-.site-feedback-pills-v332 span{min-height:38px;padding:0 14px;border-radius:999px;display:inline-flex;align-items:center;background:rgba(255,255,255,.1);border:1px solid rgba(151,220,251,.22);font:700 12px Manrope,Arial,sans-serif;color:#e8f8ff}
+.site-feedback-pills-v332 span{min-height:38px;padding:0 14px;border-radius:999px;display:inline-flex;align-items:center;background:rgba(255,255,255,.1);border:1px solid rgba(151,220,251,.22);font:700 12px Sora,Arial,sans-serif;color:#e8f8ff}
 .site-feedback-side-v332{padding:32px 30px;border-radius:34px;background:linear-gradient(180deg,#fff,#f3faff);border:1px solid rgba(166,208,230,.75);box-shadow:0 18px 38px rgba(20,74,107,.08);display:flex;flex-direction:column;justify-content:center;gap:12px}
 .site-feedback-side-icon-v332{width:58px;height:58px;display:grid;place-items:center;border-radius:18px;background:linear-gradient(135deg,#32a9e8,#087cbf);color:#fff;font-size:24px;box-shadow:0 14px 28px rgba(22,137,199,.2)}
-.site-feedback-side-v332 strong{font:800 28px/1.15 Manrope,Arial,sans-serif;color:#123e5c}
+.site-feedback-side-v332 strong{font:800 28px/1.15 Sora,Arial,sans-serif;color:#123e5c}
 .site-feedback-side-v332 p{margin:0;font:500 15px/1.65 Inter,Arial,sans-serif;color:#58778d}
 .site-feedback-side-v332 small{padding-top:12px;border-top:1px solid #d9eaf3;font:500 12px/1.55 Inter,Arial,sans-serif;color:#728a9b}
 
 .site-feedback-form-card-v332{padding:34px;border-radius:34px;background:rgba(255,255,255,.92);border:1px solid rgba(160,205,229,.76);box-shadow:0 18px 42px rgba(24,77,109,.08);display:grid;grid-template-columns:minmax(280px,.55fr) minmax(0,1.45fr);gap:32px}
-.site-feedback-form-heading-v332 span{font:800 11px Manrope,Arial,sans-serif;letter-spacing:.18em;color:#148bc9}
-.site-feedback-form-heading-v332 h2{margin:10px 0 12px;font:800 34px/1.12 Manrope,Arial,sans-serif;color:#123d5a}
+.site-feedback-form-heading-v332 span{font:800 11px Sora,Arial,sans-serif;letter-spacing:.18em;color:#148bc9}
+.site-feedback-form-heading-v332 h2{margin:10px 0 12px;font:800 34px/1.12 Sora,Arial,sans-serif;color:#123d5a}
 .site-feedback-form-heading-v332 p{margin:0;font:500 14px/1.7 Inter,Arial,sans-serif;color:#678297}
 .site-feedback-form-v332{display:grid;gap:18px}
 .site-feedback-row-v332{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:14px}
 .site-feedback-form-v332 label{display:grid;gap:8px}
-.site-feedback-form-v332 label>span{font:800 13px Manrope,Arial,sans-serif;color:#173f5c}
+.site-feedback-form-v332 label>span{font:800 13px Sora,Arial,sans-serif;color:#173f5c}
 .site-feedback-form-v332 label>span small{font-weight:500;color:#8399a8}
 .site-feedback-form-v332 input,.site-feedback-form-v332 select,.site-feedback-form-v332 textarea{width:100%;box-sizing:border-box;border:1px solid #cfe3ee;border-radius:16px;background:#f9fcfe;color:#173f5c;font:500 14px Inter,Arial,sans-serif;outline:none;transition:.2s ease}
 .site-feedback-form-v332 input,.site-feedback-form-v332 select{height:52px;padding:0 15px}
@@ -49783,7 +50166,7 @@ body.site-feedback-open-v332 .home-stats-v137{display:none!important}
 .site-feedback-form-v332 input:focus,.site-feedback-form-v332 select:focus,.site-feedback-form-v332 textarea:focus{border-color:#4db6e8;box-shadow:0 0 0 4px rgba(58,170,225,.10);background:#fff}
 .site-feedback-message-v332>small{text-align:right;font:500 11px Inter,Arial,sans-serif;color:#8aa0af}
 .site-feedback-actions-v332{display:flex;flex-wrap:wrap;gap:12px}
-.site-feedback-actions-v332 button{min-height:52px;padding:0 20px;border-radius:16px;font:800 14px Manrope,Arial,sans-serif;display:inline-flex;align-items:center;justify-content:center;gap:16px;cursor:pointer;transition:.2s ease}
+.site-feedback-actions-v332 button{min-height:52px;padding:0 20px;border-radius:16px;font:800 14px Sora,Arial,sans-serif;display:inline-flex;align-items:center;justify-content:center;gap:16px;cursor:pointer;transition:.2s ease}
 .site-feedback-send-v332{border:0;background:linear-gradient(135deg,#28a8e7,#087dc0);color:#fff;box-shadow:0 12px 24px rgba(21,134,196,.2)}
 .site-feedback-email-v332{border:1px solid #c9e1ed;background:#f7fbfe;color:#17658f}
 .site-feedback-actions-v332 button:hover{transform:translateY(-2px)}
@@ -50056,7 +50439,7 @@ body.site-feedback-open-v332 .home-stats-v137{display:none!important}
     display: block;
     margin-bottom: 4px;
     color: #1689c4;
-    font-family: "Manrope", Arial, sans-serif;
+    font-family: "Sora", Arial, sans-serif;
     font-size: 9px;
     font-weight: 800;
     letter-spacing: .16em;
@@ -50066,7 +50449,7 @@ body.site-feedback-open-v332 .home-stats-v137{display:none!important}
 .other-serums-head-v334 h3 {
     margin: 0;
     color: #123f5b;
-    font-family: "Manrope", Arial, sans-serif;
+    font-family: "Sora", Arial, sans-serif;
     font-size: 20px;
     line-height: 1.15;
     font-weight: 800;
@@ -50124,7 +50507,7 @@ body.site-feedback-open-v332 .home-stats-v137{display:none!important}
     border-radius: 10px;
     background: #e7f5fc;
     color: #0f8dca;
-    font-family: "Manrope", Arial, sans-serif;
+    font-family: "Sora", Arial, sans-serif;
     font-size: 10px;
     font-weight: 800;
 }
@@ -50139,7 +50522,7 @@ body.site-feedback-open-v332 .home-stats-v137{display:none!important}
 .other-serum-copy-v334 strong {
     overflow: hidden;
     color: #153c55;
-    font-family: "Manrope", Arial, sans-serif;
+    font-family: "Sora", Arial, sans-serif;
     font-size: 12px;
     font-weight: 800;
     line-height: 1.15;
@@ -50427,7 +50810,7 @@ body.treatment-detail-open-v71 .vitamin-c-special-intro-v235,
     background: linear-gradient(145deg, #38bfee, #117ab4);
     color: #fff;
     box-shadow: 0 0 40px rgba(66, 216, 255, .34);
-    font-family: "Manrope", Arial, sans-serif;
+    font-family: "Sora", Arial, sans-serif;
     font-size: 43px;
     font-weight: 800;
     letter-spacing: -.05em;
@@ -50457,7 +50840,7 @@ body.treatment-detail-open-v71 .vitamin-c-special-intro-v235,
     display: inline-block;
     margin-bottom: 12px;
     color: #75dfff;
-    font-family: "Manrope", Arial, sans-serif;
+    font-family: "Sora", Arial, sans-serif;
     font-size: 12px;
     font-weight: 800;
     letter-spacing: .18em;
@@ -50466,7 +50849,7 @@ body.treatment-detail-open-v71 .vitamin-c-special-intro-v235,
 .ozone-treatment-copy-v337 h1 {
     margin: 0 0 18px;
     color: #fff;
-    font-family: "Manrope", Arial, sans-serif;
+    font-family: "Sora", Arial, sans-serif;
     font-size: clamp(48px, 6vw, 88px);
     line-height: .98;
     font-weight: 800;
@@ -50504,7 +50887,7 @@ body.treatment-detail-open-v71 .vitamin-c-special-intro-v235,
     border-radius: 14px;
     background: rgba(65, 192, 238, .16);
     color: #7be4ff;
-    font-family: "Manrope", Arial, sans-serif;
+    font-family: "Sora", Arial, sans-serif;
     font-size: 14px;
     font-weight: 800;
 }
@@ -50516,7 +50899,7 @@ body.treatment-detail-open-v71 .vitamin-c-special-intro-v235,
 
 .ozone-treatment-ready-v337 strong {
     color: #fff;
-    font-family: "Manrope", Arial, sans-serif;
+    font-family: "Sora", Arial, sans-serif;
     font-size: 15px;
     font-weight: 800;
 }
@@ -50618,7 +51001,7 @@ body.treatment-detail-open-v71 .vitamin-c-special-intro-v235,
     border-radius: 13px;
     background: linear-gradient(145deg, rgba(63, 197, 239, .25), rgba(22, 115, 164, .25));
     color: #7de6ff;
-    font-family: "Manrope", Arial, sans-serif;
+    font-family: "Sora", Arial, sans-serif;
     font-size: 12px;
     font-weight: 800;
 }
@@ -50626,7 +51009,7 @@ body.treatment-detail-open-v71 .vitamin-c-special-intro-v235,
 .ozone-topic-nav-v338 strong {
     min-width: 0;
     color: #fff;
-    font-family: "Manrope", Arial, sans-serif;
+    font-family: "Sora", Arial, sans-serif;
     font-size: 13px;
     line-height: 1.3;
     font-weight: 800;
@@ -50672,7 +51055,7 @@ body.treatment-detail-open-v71 .vitamin-c-special-intro-v235,
     background: linear-gradient(145deg, #28a4dd, #1185c3);
     color: #fff;
     box-shadow: 0 9px 20px rgba(24, 144, 203, .20);
-    font-family: "Manrope", Arial, sans-serif;
+    font-family: "Sora", Arial, sans-serif;
     font-size: 13px;
     font-weight: 800;
 }
@@ -50681,7 +51064,7 @@ body.treatment-detail-open-v71 .vitamin-c-special-intro-v235,
     display: block;
     margin: 2px 0 8px;
     color: #188fca;
-    font-family: "Manrope", Arial, sans-serif;
+    font-family: "Sora", Arial, sans-serif;
     font-size: 9px;
     font-weight: 800;
     letter-spacing: .15em;
@@ -50690,7 +51073,7 @@ body.treatment-detail-open-v71 .vitamin-c-special-intro-v235,
 .ozone-article-head-v338 h2 {
     margin: 0;
     color: #123d59;
-    font-family: "Manrope", Arial, sans-serif;
+    font-family: "Sora", Arial, sans-serif;
     font-size: clamp(23px, 2vw, 34px);
     line-height: 1.12;
     font-weight: 800;
@@ -50739,7 +51122,7 @@ body.treatment-detail-open-v71 .vitamin-c-special-intro-v235,
     display: block;
     margin-bottom: 7px;
     color: #1493cf;
-    font-family: "Manrope", Arial, sans-serif;
+    font-family: "Sora", Arial, sans-serif;
     font-size: 9px;
     font-weight: 800;
     letter-spacing: .16em;
@@ -50748,7 +51131,7 @@ body.treatment-detail-open-v71 .vitamin-c-special-intro-v235,
 .ozone-emphasis-v338 strong {
     display: block;
     color: #113d58;
-    font-family: "Manrope", Arial, sans-serif;
+    font-family: "Sora", Arial, sans-serif;
     font-size: 17px;
     line-height: 1.55;
     font-weight: 800;
@@ -50765,7 +51148,7 @@ body.treatment-detail-open-v71 .vitamin-c-special-intro-v235,
 
 .ozone-safety-v338 > strong {
     color: #77dfff;
-    font-family: "Manrope", Arial, sans-serif;
+    font-family: "Sora", Arial, sans-serif;
     font-size: 12px;
     font-weight: 800;
     text-transform: uppercase;
@@ -50791,7 +51174,7 @@ body.treatment-detail-open-v71 .vitamin-c-special-intro-v235,
     display: block;
     margin-bottom: 6px;
     color: #73ddff;
-    font-family: "Manrope", Arial, sans-serif;
+    font-family: "Sora", Arial, sans-serif;
     font-size: 9px;
     font-weight: 800;
     letter-spacing: .16em;
@@ -50801,7 +51184,7 @@ body.treatment-detail-open-v71 .vitamin-c-special-intro-v235,
 .ozone-quote-v338 p {
     margin: 0;
     color: #fff;
-    font-family: "Manrope", Arial, sans-serif;
+    font-family: "Sora", Arial, sans-serif;
     font-size: 17px;
     line-height: 1.55;
     font-weight: 700;
@@ -50829,7 +51212,7 @@ body.treatment-detail-open-v71 .vitamin-c-special-intro-v235,
     display: inline-flex;
     margin-bottom: 8px;
     color: #168fc9;
-    font-family: "Manrope", Arial, sans-serif;
+    font-family: "Sora", Arial, sans-serif;
     font-size: 9px;
     font-weight: 800;
     letter-spacing: .13em;
@@ -50838,7 +51221,7 @@ body.treatment-detail-open-v71 .vitamin-c-special-intro-v235,
 .ozone-method-card-v338 h3 {
     margin: 0 0 7px;
     color: #163f59;
-    font-family: "Manrope", Arial, sans-serif;
+    font-family: "Sora", Arial, sans-serif;
     font-size: 17px;
     font-weight: 800;
 }
@@ -50855,7 +51238,7 @@ body.treatment-detail-open-v71 .vitamin-c-special-intro-v235,
     border-radius: 16px;
     background: linear-gradient(135deg, #168ecb, #0f6f9f);
     color: #fff;
-    font-family: "Manrope", Arial, sans-serif;
+    font-family: "Sora", Arial, sans-serif;
     font-size: 18px;
     font-weight: 800;
     text-align: center;
@@ -50875,7 +51258,7 @@ body.treatment-detail-open-v71 .vitamin-c-special-intro-v235,
 
 .ozone-medical-note-v338 span {
     color: #147fab;
-    font-family: "Manrope", Arial, sans-serif;
+    font-family: "Sora", Arial, sans-serif;
     font-size: 10px;
     font-weight: 800;
     letter-spacing: .10em;
@@ -50977,7 +51360,7 @@ body.treatment-detail-open-v71 .vitamin-c-special-intro-v235,
 .ozone-classic-disclaimer-v339 span {
     display: inline-block;
     color: #1a91ca;
-    font-family: "Manrope", Arial, sans-serif;
+    font-family: "Sora", Arial, sans-serif;
     font-size: 11px;
     font-weight: 800;
     letter-spacing: .18em;
@@ -50987,7 +51370,7 @@ body.treatment-detail-open-v71 .vitamin-c-special-intro-v235,
 .ozone-classic-header-v339 h1 {
     margin: 12px 0 14px;
     color: #173f5a;
-    font-family: "Manrope", Arial, sans-serif;
+    font-family: "Sora", Arial, sans-serif;
     font-size: clamp(42px, 5vw, 78px);
     line-height: .98;
     letter-spacing: -.05em;
@@ -51021,7 +51404,7 @@ body.treatment-detail-open-v71 .vitamin-c-special-intro-v235,
     background: #f4fbff;
     color: #1a4b67;
     text-decoration: none;
-    font-family: "Manrope", Arial, sans-serif;
+    font-family: "Sora", Arial, sans-serif;
     font-size: 14px;
     font-weight: 800;
     transition: transform .2s ease, border-color .2s ease, box-shadow .2s ease, background .2s ease;
@@ -51051,7 +51434,7 @@ body.treatment-detail-open-v71 .vitamin-c-special-intro-v235,
 .ozone-classic-section-v339 h2 {
     margin: 10px 0 18px;
     color: #173f5a;
-    font-family: "Manrope", Arial, sans-serif;
+    font-family: "Sora", Arial, sans-serif;
     font-size: clamp(29px, 2.7vw, 44px);
     line-height: 1.1;
     letter-spacing: -.035em;
@@ -51119,7 +51502,7 @@ body.treatment-detail-open-v71 .vitamin-c-special-intro-v235,
 .ozone-classic-note-v339 strong {
     display: block;
     margin-bottom: 8px;
-    font-family: "Manrope", Arial, sans-serif;
+    font-family: "Sora", Arial, sans-serif;
     font-size: 21px;
     line-height: 1.45;
     font-weight: 800;
@@ -51146,7 +51529,7 @@ body.treatment-detail-open-v71 .vitamin-c-special-intro-v235,
 .ozone-classic-quote-v339 p {
     margin: 10px 0 0;
     color: #ffffff;
-    font-family: "Manrope", Arial, sans-serif;
+    font-family: "Sora", Arial, sans-serif;
     font-size: 22px;
     line-height: 1.55;
     font-weight: 700;
@@ -51173,7 +51556,7 @@ body.treatment-detail-open-v71 .vitamin-c-special-intro-v235,
 .ozone-classic-method-v339 h3 {
     margin: 0 0 10px;
     color: #18415c;
-    font-family: "Manrope", Arial, sans-serif;
+    font-family: "Sora", Arial, sans-serif;
     font-size: 22px;
     line-height: 1.25;
     font-weight: 800;
@@ -51192,7 +51575,7 @@ body.treatment-detail-open-v71 .vitamin-c-special-intro-v235,
     border-radius: 16px;
     background: linear-gradient(135deg, #1497d6, #0f6d9b);
     color: #ffffff;
-    font-family: "Manrope", Arial, sans-serif;
+    font-family: "Sora", Arial, sans-serif;
     font-size: 18px;
     font-weight: 800;
 }
@@ -51301,7 +51684,7 @@ body.treatment-detail-open-v71 .vitamin-c-special-intro-v235,
 .ozone-more-topics-head-v340 > span {
     display: inline-block;
     color: #168fca;
-    font-family: "Manrope", Arial, sans-serif;
+    font-family: "Sora", Arial, sans-serif;
     font-size: 10px;
     font-weight: 800;
     letter-spacing: .17em;
@@ -51310,7 +51693,7 @@ body.treatment-detail-open-v71 .vitamin-c-special-intro-v235,
     max-width: 920px;
     margin: 9px 0 10px;
     color: #173f5a;
-    font-family: "Manrope", Arial, sans-serif;
+    font-family: "Sora", Arial, sans-serif;
     font-size: clamp(28px, 2.6vw, 42px);
     line-height: 1.1;
     letter-spacing: -.035em;
@@ -51334,7 +51717,7 @@ body.treatment-detail-open-v71 .vitamin-c-special-intro-v235,
     align-items: flex-start;
     gap: 10px;
     color: #173f5a;
-    font-family: "Manrope", Arial, sans-serif;
+    font-family: "Sora", Arial, sans-serif;
     font-size: clamp(22px, 2vw, 31px);
     line-height: 1.2;
     letter-spacing: -.025em;
@@ -51377,7 +51760,7 @@ body.treatment-detail-open-v71 .vitamin-c-special-intro-v235,
     display: inline-block;
     background: linear-gradient(135deg, #128fcb, #0f6f9f);
     color: #fff;
-    font-family: "Manrope", Arial, sans-serif;
+    font-family: "Sora", Arial, sans-serif;
     font-size: 18px;
     font-weight: 800;
 }
@@ -51408,7 +51791,7 @@ body.treatment-detail-open-v71 .vitamin-c-special-intro-v235,
     display: flex;
     gap: 8px;
     color: #17415c;
-    font-family: "Manrope", Arial, sans-serif;
+    font-family: "Sora", Arial, sans-serif;
     font-size: 18px;
     line-height: 1.3;
     font-weight: 800;
@@ -51494,7 +51877,7 @@ body.treatment-detail-open-v71 .vitamin-c-special-intro-v235,
 
 .ozone-quick-index-head-v341 span {
     color: #1a91c9;
-    font-family: "Manrope", Arial, sans-serif;
+    font-family: "Sora", Arial, sans-serif;
     font-size: 8px;
     font-weight: 800;
     letter-spacing: .16em;
@@ -51503,7 +51886,7 @@ body.treatment-detail-open-v71 .vitamin-c-special-intro-v235,
 
 .ozone-quick-index-head-v341 strong {
     color: #17435e;
-    font-family: "Manrope", Arial, sans-serif;
+    font-family: "Sora", Arial, sans-serif;
     font-size: 14px;
     line-height: 1.2;
     font-weight: 800;
@@ -51580,7 +51963,7 @@ body.treatment-detail-open-v71 .vitamin-c-special-intro-v235,
     border-radius: 8px;
     background: #e8f6fc;
     color: #168dca;
-    font-family: "Manrope", Arial, sans-serif;
+    font-family: "Sora", Arial, sans-serif;
     font-size: 8px;
     font-weight: 800;
 }
@@ -51594,7 +51977,7 @@ body.treatment-detail-open-v71 .vitamin-c-special-intro-v235,
     min-width: 0;
     overflow: hidden;
     color: inherit;
-    font-family: "Manrope", Arial, sans-serif;
+    font-family: "Sora", Arial, sans-serif;
     font-size: 10px;
     line-height: 1.15;
     font-weight: 750;
@@ -51708,7 +52091,7 @@ body.treatment-detail-open-v71 .vitamin-c-special-intro-v235,
     border-radius: 8px;
     background: #e8f6fc;
     color: #168dca;
-    font-family: "Manrope", Arial, sans-serif;
+    font-family: "Sora", Arial, sans-serif;
     font-size: 8px;
     font-weight: 800;
 }
@@ -51722,7 +52105,7 @@ body.treatment-detail-open-v71 .vitamin-c-special-intro-v235,
     min-width: 0;
     overflow: hidden;
     color: inherit;
-    font-family: "Manrope", Arial, sans-serif;
+    font-family: "Sora", Arial, sans-serif;
     font-size: 10px;
     line-height: 1.15;
     font-weight: 750;
@@ -51913,7 +52296,7 @@ body.treatment-detail-open-v71 .vitamin-c-special-intro-v235,
     border-radius: 9px !important;
     background: linear-gradient(135deg, #e6f5fd 0%, #f2fbff 100%) !important;
     color: #0f8ed0 !important;
-    font-family: "Manrope", Arial, sans-serif !important;
+    font-family: "Sora", Arial, sans-serif !important;
     font-size: 9px !important;
     font-weight: 800 !important;
     letter-spacing: .02em !important;
@@ -52652,7 +53035,7 @@ body.phyto-herb-detail-open-v351 .phyto-herb-detail-v351 { display: block; }
 .phyto-herb-head-copy-v351 h2 {
     margin: 7px 0 6px;
     color: #fff;
-    font-family: "Manrope", Arial, sans-serif;
+    font-family: "Sora", Arial, sans-serif;
     font-size: clamp(34px, 4vw, 60px);
     line-height: 1;
 }
@@ -52747,7 +53130,7 @@ body.phyto-herb-detail-open-v351 .phyto-herb-detail-v351 { display: block; }
 .phyto-herb-panel-v351 h3 {
     margin: 8px 0 14px;
     color: #173f49;
-    font-family: "Manrope", Arial, sans-serif;
+    font-family: "Sora", Arial, sans-serif;
     font-size: clamp(28px, 3vw, 44px);
     line-height: 1.08;
 }
@@ -55072,7 +55455,7 @@ body.osteo-manual-detail-open-v364{overflow:hidden!important}
 }
 #osteoSpecialViewV259 .osteo-faq-count-v370 strong{
     color:#108bcf;
-    font-family:Manrope,Inter,sans-serif;
+    font-family:Sora,Inter,sans-serif;
     font-size:38px;
     line-height:1;
     letter-spacing:-.05em;
@@ -55144,7 +55527,7 @@ body.osteo-manual-detail-open-v364{overflow:hidden!important}
     border-radius:15px!important;
     background:linear-gradient(145deg,#eef8fd,#e1f1f9)!important;
     color:#0d88c9!important;
-    font-family:Manrope,Inter,sans-serif!important;
+    font-family:Sora,Inter,sans-serif!important;
     font-size:13px!important;
     font-weight:900!important;
     box-shadow:inset 0 1px 0 rgba(255,255,255,.95)!important;
@@ -55176,7 +55559,7 @@ body.osteo-manual-detail-open-v364{overflow:hidden!important}
 }
 #osteoSpecialViewV259 .osteo-faq-question-v370 strong{
     color:#143e5d;
-    font-family:Manrope,Inter,sans-serif;
+    font-family:Sora,Inter,sans-serif;
     font-size:19px;
     font-weight:800;
     line-height:1.28;
@@ -55480,7 +55863,7 @@ body.osteo-manual-detail-open-v364{overflow:hidden!important}
 .phytotherapy-page-v127 .phyto-search-copy-v372 > strong{
     display:block;
     color:#123f5d;
-    font-family:Manrope,Inter,sans-serif;
+    font-family:Sora,Inter,sans-serif;
     font-size:22px;
     line-height:1.16;
     font-weight:850;
@@ -55581,7 +55964,7 @@ body.osteo-manual-detail-open-v364{overflow:hidden!important}
     color:#fff;
     box-shadow:0 12px 26px rgba(15,134,194,.22);
     cursor:pointer;
-    font-family:Manrope,Inter,sans-serif;
+    font-family:Sora,Inter,sans-serif;
     font-size:14px;
     font-weight:850;
     transition:transform .22s ease,box-shadow .22s ease,filter .22s ease;
@@ -56252,7 +56635,6 @@ body.phyto-herb-detail-open-v351 .home-site-search-v373{
     .hero-home-v85 > .home-site-search-dock-v375 { top: 86px; }
     .home-site-search-kicker-v375 { font-size: 8px; }
 }
-
 
 /* =========================================================
    V376 - GENEL ARAMA KAPAK GÖRSELİNİN ALTINDA
@@ -56966,7 +57348,7 @@ body.phyto-herb-detail-open-v351 .home-search-section-v376 {
 .detox-view-v390 .detox-explorer-head-v390 h2{
     margin:6px 0 7px;
     color:var(--detox-ink);
-    font-family:Manrope,Inter,sans-serif;
+    font-family:Sora,Inter,sans-serif;
     font-size:clamp(26px,3vw,40px);
     line-height:1.08;
     letter-spacing:-.035em;
@@ -56992,7 +57374,7 @@ body.phyto-herb-detail-open-v351 .home-search-section-v376 {
 .detox-view-v390 .detox-total-v390 strong{
     font-size:34px;
     line-height:1;
-    font-family:Manrope,Inter,sans-serif;
+    font-family:Sora,Inter,sans-serif;
 }
 .detox-view-v390 .detox-total-v390 span{
     margin-top:7px;
@@ -57084,7 +57466,7 @@ body.phyto-herb-detail-open-v351 .home-search-section-v376 {
     color:#fff;
     box-shadow:0 12px 26px rgba(13,132,193,.22);
     cursor:pointer;
-    font-family:Manrope,Inter,sans-serif;
+    font-family:Sora,Inter,sans-serif;
     font-size:14px;
     font-weight:850;
     transition:transform .22s ease,box-shadow .22s ease;
@@ -57116,7 +57498,7 @@ body.phyto-herb-detail-open-v351 .home-search-section-v376 {
     border-radius:999px;
     background:#fff;
     color:#315a70;
-    font:800 12px/1 Manrope,Inter,sans-serif;
+    font:800 12px/1 Sora,Inter,sans-serif;
     cursor:pointer;
     box-shadow:0 6px 17px rgba(36,88,112,.045);
     transition:transform .2s ease,background .2s ease,color .2s ease,border-color .2s ease,box-shadow .2s ease;
@@ -57234,7 +57616,7 @@ body.phyto-herb-detail-open-v351 .home-search-section-v376 {
 }
 .detox-view-v390 .detox-card-number-v390{
     color:#6d8c9c;
-    font:900 11px/1 Manrope,Inter,sans-serif;
+    font:900 11px/1 Sora,Inter,sans-serif;
     letter-spacing:.12em;
 }
 .detox-view-v390 .detox-card-copy-v390{
@@ -57255,7 +57637,7 @@ body.phyto-herb-detail-open-v351 .home-search-section-v376 {
 .detox-view-v390 .detox-card-copy-v390 h3{
     margin:0 0 13px;
     color:#173f59;
-    font-family:Manrope,Inter,sans-serif;
+    font-family:Sora,Inter,sans-serif;
     font-size:20px;
     line-height:1.18;
     letter-spacing:-.025em;
@@ -58674,5 +59056,3308 @@ body.romatoid-page-open-v198 .ra-hero-v198{margin-top:18px!important}
     }
     .hero-home-v85>.home-search-section-v376{
         bottom:76px!important;
+    }
+}
+
+/* =========================================================
+   V415 - AĞRI ALT KARTLARI BAĞLANTILI DETAY İÇERİĞİ
+   Genel Bakış ve Değerlendirme kartları gerçek bağlantı olarak
+   çalışır; her başlık zengin, erişilebilir bir detay penceresi açar.
+   ========================================================= */
+.pain-full-info-card-v415 {
+    transition:transform .22s ease,box-shadow .22s ease,border-color .22s ease !important;
+}
+.pain-full-info-card-v415:hover,
+.pain-full-info-card-v415:focus-within {
+    transform:translateY(-4px) !important;
+    border-color:#a9d9f1 !important;
+    box-shadow:0 20px 44px rgba(18,91,134,.14) !important;
+}
+.pain-full-info-card-v415 .pain-full-card-body-v219 {
+    display:flex;
+    min-height:172px;
+    flex-direction:column;
+    align-items:flex-start;
+}
+.pain-full-info-card-v415 .pain-full-card-body-v219 p { flex:1 1 auto; }
+.pain-topic-link-v415 {
+    display:inline-flex !important;
+    align-items:center !important;
+    gap:10px !important;
+    min-height:42px !important;
+    margin-top:16px !important;
+    padding:9px 13px 9px 16px !important;
+    border:1px solid #b9def1 !important;
+    border-radius:13px !important;
+    background:#eef8fd !important;
+    color:#087fc5 !important;
+    font-size:13px !important;
+    font-weight:850 !important;
+    line-height:1 !important;
+    text-decoration:none !important;
+    cursor:pointer !important;
+    transition:background .18s ease,color .18s ease,border-color .18s ease,transform .18s ease !important;
+}
+.pain-topic-link-v415 > span {
+    display:grid !important;
+    width:23px !important;
+    height:23px !important;
+    margin:0 !important;
+    place-items:center !important;
+    border-radius:8px !important;
+    background:#fff !important;
+    color:#087fc5 !important;
+    font-size:18px !important;
+    font-weight:700 !important;
+}
+.pain-topic-link-v415:hover,
+.pain-topic-link-v415:focus-visible {
+    border-color:#0b91da !important;
+    background:#0b88cf !important;
+    color:#fff !important;
+    outline:none !important;
+    transform:translateY(-1px) !important;
+}
+.pain-topic-link-v415:hover > span,
+.pain-topic-link-v415:focus-visible > span { color:#0b88cf !important; }
+
+body.pain-topic-open-v415 { overflow:hidden !important; }
+.pain-topic-modal-v415[hidden] { display:none !important; }
+.pain-topic-modal-v415 {
+    position:fixed;
+    inset:0;
+    z-index:2147480000;
+    display:grid;
+    place-items:center;
+    padding:24px;
+}
+.pain-topic-backdrop-v415 {
+    position:absolute;
+    inset:0;
+    width:100%;
+    height:100%;
+    border:0;
+    background:rgba(5,31,48,.72);
+    backdrop-filter:blur(8px);
+    cursor:pointer;
+}
+.pain-topic-dialog-v415 {
+    position:relative;
+    z-index:1;
+    width:min(960px,100%);
+    max-height:min(860px,calc(100vh - 48px));
+    overflow:auto;
+    border:1px solid rgba(255,255,255,.85);
+    border-radius:30px;
+    background:#f7fbfe;
+    box-shadow:0 34px 95px rgba(0,22,36,.38);
+    opacity:0;
+    transform:translateY(18px) scale(.985);
+    transition:opacity .2s ease,transform .2s ease;
+}
+.pain-topic-modal-v415.is-open-v415 .pain-topic-dialog-v415 {
+    opacity:1;
+    transform:none;
+}
+.pain-topic-close-v415 {
+    position:absolute;
+    z-index:3;
+    top:18px;
+    right:18px;
+    display:grid;
+    width:44px;
+    height:44px;
+    padding:0;
+    place-items:center;
+    border:1px solid rgba(255,255,255,.35);
+    border-radius:15px;
+    background:rgba(255,255,255,.14);
+    color:#fff;
+    font:300 31px/1 Arial,sans-serif;
+    cursor:pointer;
+}
+.pain-topic-close-v415:hover,
+.pain-topic-close-v415:focus-visible { background:#fff;color:#0b78b8;outline:3px solid rgba(255,255,255,.35); }
+.pain-topic-header-v415 {
+    position:relative;
+    overflow:hidden;
+    padding:42px 82px 36px 42px;
+    background:
+        radial-gradient(circle at 88% 12%,rgba(123,218,255,.45),transparent 27%),
+        linear-gradient(135deg,#063c60 0%,#087dbc 56%,#11a1dd 100%);
+    color:#fff;
+}
+.pain-topic-header-v415::after {
+    content:"";
+    position:absolute;
+    right:-70px;
+    bottom:-118px;
+    width:290px;
+    height:290px;
+    border:1px solid rgba(255,255,255,.18);
+    border-radius:50%;
+    box-shadow:0 0 0 34px rgba(255,255,255,.06),0 0 0 68px rgba(255,255,255,.04);
+}
+.pain-topic-region-v415 {
+    position:relative;
+    z-index:1;
+    display:inline-flex;
+    margin-bottom:13px;
+    padding:7px 11px;
+    border:1px solid rgba(255,255,255,.24);
+    border-radius:999px;
+    background:rgba(255,255,255,.1);
+    font-size:12px;
+    font-weight:850;
+    letter-spacing:.08em;
+}
+.pain-topic-header-v415 h2 {
+    position:relative;
+    z-index:1;
+    margin:0 0 10px;
+    color:#fff;
+    font-size:clamp(32px,4vw,52px);
+    line-height:1.05;
+    letter-spacing:-.035em;
+}
+.pain-topic-header-v415 p {
+    position:relative;
+    z-index:1;
+    max-width:720px;
+    margin:0;
+    color:rgba(255,255,255,.88);
+    font-size:16px;
+    line-height:1.65;
+}
+.pain-topic-content-v415 {
+    display:grid;
+    grid-template-columns:1fr 1fr;
+    gap:16px;
+    padding:24px;
+}
+.pain-topic-section-v415 {
+    display:grid;
+    grid-template-columns:48px minmax(0,1fr);
+    gap:15px;
+    padding:22px;
+    border:1px solid #dcebf4;
+    border-radius:21px;
+    background:#fff;
+    box-shadow:0 10px 28px rgba(23,85,120,.06);
+}
+.pain-topic-section-v415:nth-child(2) { grid-row:span 2; }
+.pain-topic-section-accent-v415 { background:linear-gradient(145deg,#fff,#eff9fe); }
+.pain-topic-number-v415 {
+    display:grid;
+    width:46px;
+    height:46px;
+    place-items:center;
+    border-radius:15px;
+    background:#e8f6fd;
+    color:#087fc5;
+    font-size:13px;
+    font-weight:900;
+}
+.pain-topic-section-v415 h3 {
+    margin:2px 0 9px;
+    color:#123e5a;
+    font-size:19px;
+    line-height:1.25;
+}
+.pain-topic-section-v415 p,
+.pain-topic-section-v415 li {
+    color:#537287;
+    font-size:15px;
+    line-height:1.68;
+}
+.pain-topic-section-v415 p { margin:0; }
+.pain-topic-section-v415 ul { display:grid;gap:10px;margin:0;padding:0;list-style:none; }
+.pain-topic-section-v415 li { position:relative;padding-left:20px; }
+.pain-topic-section-v415 li::before {
+    content:"";
+    position:absolute;
+    top:.65em;
+    left:0;
+    width:8px;
+    height:8px;
+    border-radius:3px;
+    background:#14a0df;
+    transform:rotate(45deg);
+}
+.pain-topic-warning-v415 {
+    grid-column:1/-1;
+    display:grid;
+    grid-template-columns:46px minmax(0,1fr);
+    gap:15px;
+    padding:19px 22px;
+    border:1px solid #f1d3ce;
+    border-radius:19px;
+    background:#fff7f5;
+}
+.pain-topic-warning-v415 > span {
+    display:grid;
+    width:42px;
+    height:42px;
+    place-items:center;
+    border-radius:14px;
+    background:#ffe6df;
+    color:#b8472d;
+    font-size:22px;
+    font-weight:900;
+}
+.pain-topic-warning-v415 strong { display:block;margin:1px 0 5px;color:#873621;font-size:16px; }
+.pain-topic-warning-v415 p { margin:0;color:#7a554d;font-size:14px;line-height:1.6; }
+.pain-topic-note-v415 {
+    grid-column:1/-1;
+    padding:15px 18px;
+    border-left:4px solid #18a0df;
+    border-radius:10px 16px 16px 10px;
+    background:#eaf7fd;
+    color:#476c82;
+    font-size:13px;
+    line-height:1.6;
+}
+.pain-topic-related-v415 {
+    grid-column:1/-1;
+    display:flex;
+    flex-wrap:wrap;
+    align-items:center;
+    gap:9px;
+    padding-top:2px;
+}
+.pain-topic-related-v415 > span { margin-right:3px;color:#315c75;font-size:13px;font-weight:850; }
+.pain-topic-related-v415 a {
+    display:inline-flex;
+    min-height:38px;
+    align-items:center;
+    padding:8px 13px;
+    border:1px solid #cae4f2;
+    border-radius:12px;
+    background:#fff;
+    color:#157aaa;
+    font-size:13px;
+    font-weight:800;
+    text-decoration:none;
+}
+.pain-topic-related-v415 a:hover,
+.pain-topic-related-v415 a:focus-visible,
+.pain-topic-related-v415 a.is-active-v415 { border-color:#168dca;background:#168dca;color:#fff;outline:none; }
+
+@media(max-width:760px){
+    .pain-topic-modal-v415 { padding:8px;align-items:end; }
+    .pain-topic-dialog-v415 { max-height:calc(100vh - 16px);border-radius:24px 24px 18px 18px; }
+    .pain-topic-header-v415 { padding:34px 62px 28px 22px; }
+    .pain-topic-close-v415 { top:13px;right:13px;width:40px;height:40px; }
+    .pain-topic-header-v415 h2 { font-size:34px; }
+    .pain-topic-header-v415 p { font-size:15px; }
+    .pain-topic-content-v415 { grid-template-columns:1fr;padding:14px;gap:12px; }
+    .pain-topic-section-v415,
+    .pain-topic-section-v415:nth-child(2) { grid-column:auto;grid-row:auto;padding:18px 15px;grid-template-columns:40px minmax(0,1fr);gap:12px; }
+    .pain-topic-number-v415 { width:38px;height:38px;border-radius:12px; }
+    .pain-topic-section-v415 h3 { font-size:17px; }
+    .pain-topic-section-v415 p,
+    .pain-topic-section-v415 li { font-size:14px; }
+    .pain-topic-warning-v415 { grid-column:auto;padding:16px 14px;grid-template-columns:38px minmax(0,1fr);gap:11px; }
+    .pain-topic-warning-v415 > span { width:36px;height:36px;border-radius:11px; }
+    .pain-topic-note-v415,
+    .pain-topic-related-v415 { grid-column:auto; }
+}
+
+/* =========================================================
+   V413 - 48 HASTALIĞA ÖZEL FİTOTERAPİ KARTI
+   Kartlar ve bitki detay sayfası; hastalık bağlamı, yakınma
+   odakları, değerlendirme çerçevesi ve güvenlik notlarıyla yenilendi.
+   ========================================================= */
+
+/* --- Ana Fitoterapi ve Tedavi Alanları kartları --- */
+.phyto-card-v127.phyto-card-v413,
+.phyto-herbal-card-v232.phyto-card-v413 {
+    position: relative !important;
+    display: flex !important;
+    flex-direction: column !important;
+    min-width: 0 !important;
+    min-height: 100% !important;
+    padding: 0 !important;
+    overflow: hidden !important;
+    text-align: left !important;
+    border: 1px solid rgba(27, 102, 77, .14) !important;
+    border-radius: 24px !important;
+    background:
+        radial-gradient(circle at 100% 0%, rgba(74, 190, 128, .09), transparent 33%),
+        linear-gradient(180deg, #ffffff 0%, #fbfefc 100%) !important;
+    box-shadow: 0 15px 38px rgba(22, 76, 57, .08) !important;
+    transition: transform .24s ease, box-shadow .24s ease, border-color .24s ease !important;
+}
+
+.phyto-card-v127.phyto-card-v413:hover,
+.phyto-herbal-card-v232.phyto-card-v413:hover {
+    transform: translateY(-6px) !important;
+    border-color: rgba(33, 148, 95, .34) !important;
+    box-shadow: 0 24px 52px rgba(22, 76, 57, .14) !important;
+}
+
+.phyto-card-v413::after {
+    display: none !important;
+    content: none !important;
+}
+
+.phyto-card-v413 > .phyto-card-visual-v413,
+.phyto-herbal-card-v232.phyto-card-v413 > .phyto-card-visual-v413 {
+    position: relative !important;
+    display: block !important;
+    width: 100% !important;
+    height: 205px !important;
+    flex: 0 0 205px !important;
+    padding: 0 !important;
+    overflow: hidden !important;
+    background: #eaf3ed !important;
+}
+
+.phyto-card-v413 .phyto-card-visual-v413 > img,
+.phyto-card-v127.phyto-card-v413 .phyto-card-visual-v413 > img,
+.phyto-herbal-card-v232.phyto-card-v413 .phyto-card-visual-v413 > img {
+    width: 100% !important;
+    height: 100% !important;
+    display: block !important;
+    object-fit: cover !important;
+    transform: scale(1.01);
+    transition: transform .45s ease !important;
+}
+
+.phyto-card-v413:hover .phyto-card-visual-v413 > img {
+    transform: scale(1.055);
+}
+
+.phyto-card-v413 .phyto-card-visual-v413::after {
+    content: '' !important;
+    position: absolute !important;
+    inset: 0 !important;
+    display: block !important;
+    pointer-events: none !important;
+    background: linear-gradient(180deg, rgba(6, 42, 34, .02) 48%, rgba(6, 42, 34, .58) 100%) !important;
+}
+
+.phyto-card-v413 .phyto-number-v127,
+.phyto-card-v413 .phyto-number-v413 {
+    position: absolute !important;
+    z-index: 2 !important;
+    left: 14px !important;
+    top: 14px !important;
+    width: 40px !important;
+    height: 40px !important;
+    display: grid !important;
+    place-items: center !important;
+    padding: 0 !important;
+    border: 1px solid rgba(255,255,255,.52) !important;
+    border-radius: 13px !important;
+    background: rgba(9, 55, 46, .76) !important;
+    color: #fff !important;
+    font-size: 12px !important;
+    font-weight: 900 !important;
+    letter-spacing: .08em !important;
+    backdrop-filter: blur(10px);
+}
+
+.phyto-disease-badge-v413 {
+    position: absolute !important;
+    z-index: 2 !important;
+    right: 14px !important;
+    bottom: 14px !important;
+    max-width: calc(100% - 76px) !important;
+    padding: 8px 11px !important;
+    border: 1px solid rgba(255,255,255,.46) !important;
+    border-radius: 999px !important;
+    background: rgba(255,255,255,.90) !important;
+    color: #116a4a !important;
+    font-size: 10px !important;
+    font-weight: 950 !important;
+    letter-spacing: .07em !important;
+    line-height: 1 !important;
+    box-shadow: 0 7px 20px rgba(5,44,35,.16) !important;
+    backdrop-filter: blur(9px);
+}
+
+.phyto-card-v127.phyto-card-v413 > .phyto-card-body-v127,
+.phyto-herbal-card-v232.phyto-card-v413 > .phyto-card-content-v413 {
+    display: flex !important;
+    flex: 1 1 auto !important;
+    flex-direction: column !important;
+    align-items: stretch !important;
+    padding: 20px 20px 18px !important;
+}
+
+.phyto-card-kicker-v413 {
+    display: block !important;
+    margin: 0 0 8px !important;
+    color: #24865f !important;
+    font-size: 10px !important;
+    font-weight: 950 !important;
+    letter-spacing: .11em !important;
+    line-height: 1.4 !important;
+    text-transform: uppercase !important;
+}
+
+.phyto-card-v413 h3,
+.phyto-card-v127.phyto-card-v413 h3,
+.phyto-herbal-card-v232.phyto-card-v413 h3 {
+    margin: 0 0 10px !important;
+    color: #153f47 !important;
+    font-family: "Sora", Arial, sans-serif !important;
+    font-size: 22px !important;
+    line-height: 1.16 !important;
+    letter-spacing: -.025em !important;
+}
+
+.phyto-card-v413 h3 small {
+    display: block !important;
+    margin-top: 4px !important;
+    color: #6c8587 !important;
+    font-size: 11px !important;
+    font-weight: 750 !important;
+    letter-spacing: .02em !important;
+}
+
+.phyto-card-v413 .phyto-card-body-v127 > p,
+.phyto-herbal-card-v232.phyto-card-v413 .phyto-card-content-v413 > p {
+    display: -webkit-box !important;
+    min-height: 101px !important;
+    margin: 0 0 15px !important;
+    overflow: hidden !important;
+    color: #587276 !important;
+    font-size: 13.5px !important;
+    line-height: 1.52 !important;
+    -webkit-box-orient: vertical !important;
+    -webkit-line-clamp: 5 !important;
+}
+
+.phyto-card-focus-v413 {
+    display: flex !important;
+    flex-wrap: wrap !important;
+    gap: 7px !important;
+    margin: 0 0 17px !important;
+}
+
+.phyto-card-focus-v413 > span {
+    max-width: 100% !important;
+    padding: 7px 10px !important;
+    border: 1px solid #d8ebe0 !important;
+    border-radius: 999px !important;
+    background: #f2faf5 !important;
+    color: #31725b !important;
+    font-size: 10.5px !important;
+    font-weight: 800 !important;
+    line-height: 1.25 !important;
+}
+
+.phyto-card-cta-v413 {
+    display: flex !important;
+    min-height: 42px !important;
+    margin-top: auto !important;
+    align-items: center !important;
+    justify-content: center !important;
+    padding: 9px 14px !important;
+    border-radius: 13px !important;
+    background: linear-gradient(135deg, #176f52, #2ba66e) !important;
+    color: #fff !important;
+    font-size: 11.5px !important;
+    font-weight: 900 !important;
+    line-height: 1.2 !important;
+    box-shadow: 0 10px 22px rgba(25, 125, 81, .18) !important;
+}
+
+/* --- Detay sayfası: daha modern, katmanlı ve okunaklı içerik --- */
+.phyto-herb-detail-v351 {
+    background:
+        radial-gradient(circle at 92% 4%, rgba(59, 188, 120, .16), transparent 24%),
+        radial-gradient(circle at 5% 55%, rgba(39, 144, 179, .07), transparent 26%),
+        linear-gradient(180deg, #edf7f1 0%, #f8fcfa 47%, #edf7f1 100%) !important;
+}
+
+.phyto-herb-head-v351 {
+    position: relative !important;
+    isolation: isolate !important;
+    min-height: 170px !important;
+    background:
+        radial-gradient(circle at 86% 16%, rgba(117, 232, 163, .18), transparent 23%),
+        linear-gradient(135deg, #102d35 0%, #123f40 54%, #166249 100%) !important;
+}
+
+.phyto-herb-head-v351::after {
+    content: '' !important;
+    position: absolute !important;
+    z-index: -1 !important;
+    right: 112px !important;
+    top: -72px !important;
+    width: 250px !important;
+    height: 250px !important;
+    border: 1px solid rgba(255,255,255,.08) !important;
+    border-radius: 50% !important;
+}
+
+.phyto-herb-tabs-v351 {
+    position: sticky !important;
+    z-index: 6 !important;
+    top: 10px !important;
+    backdrop-filter: blur(14px) !important;
+}
+
+.phyto-herb-tabs-v351 button {
+    padding: 10px 14px !important;
+    font-size: 13.5px !important;
+}
+
+.phyto-herb-main-v351 {
+    grid-template-columns: minmax(300px, 390px) minmax(0, 1fr) !important;
+    gap: 18px !important;
+}
+
+.phyto-herb-media-v351 {
+    align-self: start !important;
+    position: sticky !important;
+    top: 94px !important;
+    padding: 14px !important;
+    overflow: hidden !important;
+}
+
+.phyto-herb-media-v351 img {
+    height: 330px !important;
+    border-radius: 20px !important;
+}
+
+.phyto-herb-tags-v351 span {
+    padding: 9px 12px !important;
+    font-size: 11.5px !important;
+}
+
+.phyto-herb-tags-v351 span.is-context-v413 {
+    flex-basis: 100% !important;
+    border: 1px solid #cde8d7 !important;
+    border-radius: 14px !important;
+    background: linear-gradient(135deg, #e2f6e9, #f0fbf4) !important;
+    color: #176c4c !important;
+    text-align: center !important;
+}
+
+.phyto-herb-panel-v351 {
+    min-height: 510px !important;
+    padding: clamp(26px, 3.3vw, 48px) !important;
+    overflow: hidden !important;
+    background:
+        radial-gradient(circle at 100% 0%, rgba(59, 181, 116, .08), transparent 32%),
+        #fff !important;
+}
+
+.phyto-panel-eyebrow-v413 {
+    display: flex !important;
+    align-items: center !important;
+    gap: 9px !important;
+    color: #21845e !important;
+    font-size: 11px !important;
+    font-weight: 950 !important;
+    letter-spacing: .13em !important;
+}
+
+.phyto-panel-eyebrow-v413 > span {
+    display: inline-flex !important;
+    min-height: 30px !important;
+    align-items: center !important;
+    padding: 5px 10px !important;
+    border-radius: 999px !important;
+    background: #e5f7ec !important;
+    color: #166d4c !important;
+    letter-spacing: .08em !important;
+}
+
+.phyto-herb-panel-v351 .phyto-panel-lead-v413 {
+    max-width: 980px !important;
+    margin-bottom: 22px !important;
+    color: #506c72 !important;
+    font-size: 16px !important;
+    line-height: 1.78 !important;
+}
+
+.phyto-overview-grid-v413 {
+    display: grid !important;
+    grid-template-columns: repeat(2, minmax(0,1fr)) !important;
+    gap: 12px !important;
+    margin: 22px 0 !important;
+}
+
+.phyto-overview-grid-v413 > article,
+.phyto-assessment-grid-v413 > article {
+    min-width: 0 !important;
+    padding: 18px !important;
+    border: 1px solid #dbeadf !important;
+    border-radius: 19px !important;
+    background: linear-gradient(145deg, #fbfefc, #f4faf6) !important;
+}
+
+.phyto-overview-grid-v413 > article.is-wide-v413 {
+    grid-column: 1 / -1 !important;
+    background:
+        radial-gradient(circle at 96% 10%, rgba(57, 178, 111, .10), transparent 28%),
+        linear-gradient(145deg, #f1faf5, #fbfefc) !important;
+}
+
+.phyto-overview-grid-v413 small,
+.phyto-assessment-grid-v413 span {
+    display: block !important;
+    margin-bottom: 8px !important;
+    color: #2b996b !important;
+    font-size: 10px !important;
+    font-weight: 950 !important;
+    letter-spacing: .12em !important;
+}
+
+.phyto-overview-grid-v413 strong,
+.phyto-assessment-grid-v413 strong {
+    display: block !important;
+    margin-bottom: 7px !important;
+    color: #1c4a51 !important;
+    font-size: 15px !important;
+}
+
+.phyto-overview-grid-v413 p,
+.phyto-assessment-grid-v413 p {
+    margin: 0 !important;
+    color: #617a7e !important;
+    font-size: 13.5px !important;
+    line-height: 1.65 !important;
+}
+
+.phyto-section-head-v413 {
+    display: flex !important;
+    align-items: center !important;
+    justify-content: space-between !important;
+    gap: 12px !important;
+    margin: 24px 0 12px !important;
+}
+
+.phyto-section-head-v413 > span {
+    color: #1f7656 !important;
+    font-size: 11px !important;
+    font-weight: 950 !important;
+    letter-spacing: .11em !important;
+}
+
+.phyto-section-head-v413 > small {
+    color: #799094 !important;
+    font-size: 10px !important;
+    font-weight: 850 !important;
+}
+
+.phyto-herb-list-v413 {
+    grid-template-columns: repeat(3, minmax(0,1fr)) !important;
+    gap: 10px !important;
+    margin-top: 0 !important;
+}
+
+.phyto-herb-list-v413 li {
+    min-height: 88px !important;
+    display: flex !important;
+    align-items: center !important;
+    padding: 15px 14px 15px 48px !important;
+    background: linear-gradient(145deg, #fbfefc, #f5fbf7) !important;
+    font-size: 13px !important;
+}
+
+.phyto-evidence-note-v413 {
+    display: grid !important;
+    grid-template-columns: minmax(150px, 210px) minmax(0,1fr) !important;
+    gap: 16px !important;
+    align-items: start !important;
+    margin-top: 20px !important;
+    padding: 17px 19px !important;
+    border: 1px solid #d5e6ee !important;
+    border-radius: 18px !important;
+    background: linear-gradient(135deg, #f2f9fc, #fbfdfe) !important;
+}
+
+.phyto-evidence-note-v413 strong {
+    color: #21677e !important;
+    font-size: 13px !important;
+}
+
+.phyto-evidence-note-v413 p {
+    margin: 0 !important;
+    color: #5b737c !important;
+    font-size: 13px !important;
+    line-height: 1.65 !important;
+}
+
+.phyto-focus-grid-v413 {
+    display: grid !important;
+    gap: 11px !important;
+}
+
+.phyto-focus-grid-v413 > article {
+    display: grid !important;
+    grid-template-columns: 48px minmax(0,1fr) !important;
+    gap: 14px !important;
+    align-items: center !important;
+    padding: 15px 17px !important;
+    border: 1px solid #dbeadf !important;
+    border-radius: 18px !important;
+    background: linear-gradient(135deg, #fbfefc, #f5fbf7) !important;
+}
+
+.phyto-focus-grid-v413 > article > span {
+    width: 42px !important;
+    height: 42px !important;
+    display: grid !important;
+    place-items: center !important;
+    border-radius: 14px !important;
+    background: #ddf3e6 !important;
+    color: #1c7a53 !important;
+    font-size: 12px !important;
+    font-weight: 950 !important;
+}
+
+.phyto-focus-grid-v413 strong {
+    display: block !important;
+    margin-bottom: 4px !important;
+    color: #214d52 !important;
+    font-size: 12px !important;
+}
+
+.phyto-focus-grid-v413 p {
+    margin: 0 !important;
+    color: #587276 !important;
+    font-size: 14px !important;
+    line-height: 1.55 !important;
+}
+
+.phyto-assessment-grid-v413 {
+    display: grid !important;
+    grid-template-columns: repeat(3, minmax(0,1fr)) !important;
+    gap: 11px !important;
+}
+
+.phyto-warning-grid-v413 {
+    display: grid !important;
+    gap: 12px !important;
+    margin-top: 20px !important;
+}
+
+.phyto-warning-grid-v413 > article {
+    display: grid !important;
+    grid-template-columns: 48px minmax(0,1fr) !important;
+    gap: 15px !important;
+    padding: 18px !important;
+    border: 1px solid #efd6bd !important;
+    border-radius: 20px !important;
+    background: linear-gradient(135deg, #fff8f0, #fffdf9) !important;
+}
+
+.phyto-warning-grid-v413 > article:nth-child(2) {
+    border-color: #d5e6ee !important;
+    background: linear-gradient(135deg, #f2f9fc, #fbfdfe) !important;
+}
+
+.phyto-warning-grid-v413 > article > span {
+    width: 42px !important;
+    height: 42px !important;
+    display: grid !important;
+    place-items: center !important;
+    border-radius: 14px !important;
+    background: #f7e6d3 !important;
+    color: #a46834 !important;
+    font-size: 17px !important;
+    font-weight: 950 !important;
+}
+
+.phyto-warning-grid-v413 > article:nth-child(2) > span {
+    background: #e2f0f6 !important;
+    color: #2c7188 !important;
+}
+
+.phyto-warning-grid-v413 strong {
+    display: block !important;
+    margin-bottom: 6px !important;
+    color: #754c2c !important;
+    font-size: 14px !important;
+}
+
+.phyto-warning-grid-v413 > article:nth-child(2) strong { color: #245f73 !important; }
+
+.phyto-warning-grid-v413 p {
+    margin: 0 !important;
+    color: #705d4e !important;
+    font-size: 13.5px !important;
+    line-height: 1.68 !important;
+}
+
+.phyto-warning-grid-v413 > article:nth-child(2) p { color: #58727a !important; }
+
+.phyto-safety-footer-v413 {
+    margin-top: 15px !important;
+    padding: 15px 18px !important;
+    border-radius: 16px !important;
+    background: #163f46 !important;
+    color: rgba(239, 250, 246, .90) !important;
+    font-size: 13px !important;
+    line-height: 1.65 !important;
+}
+
+@media (max-width: 1100px) {
+    .phyto-herb-main-v351 { grid-template-columns: 1fr !important; }
+    .phyto-herb-media-v351 { position: static !important; }
+    .phyto-herb-media-v351 img { height: 360px !important; }
+    .phyto-herb-list-v413,
+    .phyto-assessment-grid-v413 { grid-template-columns: 1fr !important; }
+}
+
+@media (max-width: 760px) {
+    .phyto-card-v413 > .phyto-card-visual-v413,
+    .phyto-herbal-card-v232.phyto-card-v413 > .phyto-card-visual-v413 {
+        height: 190px !important;
+        flex-basis: 190px !important;
+    }
+    .phyto-card-v127.phyto-card-v413 > .phyto-card-body-v127,
+    .phyto-herbal-card-v232.phyto-card-v413 > .phyto-card-content-v413 {
+        padding: 17px !important;
+    }
+    .phyto-card-v413 .phyto-card-body-v127 > p,
+    .phyto-herbal-card-v232.phyto-card-v413 .phyto-card-content-v413 > p {
+        min-height: 0 !important;
+        -webkit-line-clamp: 6 !important;
+    }
+    .phyto-herb-tabs-v351 { position: static !important; }
+    .phyto-herb-head-v351 { min-height: 0 !important; }
+    .phyto-herb-media-v351 img { height: 250px !important; }
+    .phyto-herb-panel-v351 { padding: 23px 18px !important; }
+    .phyto-herb-panel-v351 h3 { font-size: 29px !important; }
+    .phyto-herb-panel-v351 .phyto-panel-lead-v413 { font-size: 15px !important; }
+    .phyto-overview-grid-v413 { grid-template-columns: 1fr !important; }
+    .phyto-overview-grid-v413 > article.is-wide-v413 { grid-column: auto !important; }
+    .phyto-evidence-note-v413 { grid-template-columns: 1fr !important; }
+    .phyto-section-head-v413 { align-items: flex-start !important; flex-direction: column !important; }
+}
+
+@media (max-width: 430px) {
+    .phyto-herb-tabs-v351 { grid-template-columns: 1fr !important; }
+    .phyto-focus-grid-v413 > article,
+    .phyto-warning-grid-v413 > article { grid-template-columns: 40px minmax(0,1fr) !important; gap: 11px !important; padding: 14px !important; }
+    .phyto-focus-grid-v413 > article > span,
+    .phyto-warning-grid-v413 > article > span { width: 38px !important; height: 38px !important; }
+}
+
+/* =========================================================
+   V414 - ANA SAYFA KONTROLLERİ DAHA BELİRGİN
+   Öne Çıkanlar, Hakkımda ve Sitede Ara grubu ilk açılışta
+   daha rahat görünsün diye yüzü kapatmadan yukarı taşındı.
+   ========================================================= */
+.hero-home-v85 .doctor-slide-bottom-v86{
+    bottom:clamp(176px,21vh,220px)!important;
+}
+
+.hero-home-v85>.home-search-section-v376{
+    bottom:clamp(160px,19vh,202px)!important;
+}
+
+@media(max-width:1100px){
+    .hero-home-v85 .doctor-slide-bottom-v86{
+        bottom:150px!important;
+    }
+    .hero-home-v85>.home-search-section-v376{
+        bottom:138px!important;
+    }
+}
+
+@media(max-width:760px){
+    .hero-home-v85 .doctor-slide-bottom-v86{
+        bottom:124px!important;
+    }
+    .hero-home-v85>.home-search-section-v376{
+        bottom:112px!important;
+    }
+}
+
+@media(max-height:720px) and (min-width:761px){
+    .hero-home-v85 .doctor-slide-bottom-v86{
+        bottom:138px!important;
+    }
+    .hero-home-v85>.home-search-section-v376{
+        bottom:126px!important;
+    }
+}
+
+/* =========================================================
+   V416 - TÜM AĞRI KARTLARI MODERN TASARIM SİSTEMİ
+   Ana Ağrı kartları, Osteopati Ağrı kartları, hızlı geçişler ve
+   içerideki inceleme kartları aynı görsel dilde birleştirildi.
+   ========================================================= */
+
+/* Bölgelere göre kontrollü medikal vurgu renkleri */
+#agriPage [data-pain="ayak-ayak-bilegi"],
+[data-pain-area-v416="ayak-ayak-bilegi"],
+[data-pain-quick-v217="ayak-ayak-bilegi"],
+[data-osteo-pain-target-v265="ayak-ayak-bilegi"] { --pain-accent-v416:#10a6a0;--pain-accent-dark-v416:#087f88;--pain-soft-v416:#e8faf8; }
+#agriPage [data-pain="diz"],
+[data-pain-area-v416="diz"],
+[data-pain-quick-v217="diz"],
+[data-osteo-pain-target-v265="diz"] { --pain-accent-v416:#1596d4;--pain-accent-dark-v416:#0874ba;--pain-soft-v416:#eaf7fe; }
+#agriPage [data-pain="kalca"],
+[data-pain-area-v416="kalca"],
+[data-pain-quick-v217="kalca"],
+[data-osteo-pain-target-v265="kalca"] { --pain-accent-v416:#4b82dc;--pain-accent-dark-v416:#365db9;--pain-soft-v416:#eef3ff; }
+#agriPage [data-pain="bel"],
+[data-pain-area-v416="bel"],
+[data-pain-quick-v217="bel"],
+[data-osteo-pain-target-v265="bel"] { --pain-accent-v416:#168bb5;--pain-accent-dark-v416:#08678f;--pain-soft-v416:#eaf8fc; }
+#agriPage [data-pain="sirt"],
+[data-pain-area-v416="sirt"],
+[data-pain-quick-v217="sirt"],
+[data-osteo-pain-target-v265="sirt"] { --pain-accent-v416:#248fa3;--pain-accent-dark-v416:#156b7f;--pain-soft-v416:#ebf8fa; }
+#agriPage [data-pain="el-bilegi"],
+[data-pain-area-v416="el-bilegi"],
+[data-pain-quick-v217="el-bilegi"] { --pain-accent-v416:#657bd4;--pain-accent-dark-v416:#4559ad;--pain-soft-v416:#f0f2ff; }
+#agriPage [data-pain="dirsek"],
+[data-pain-area-v416="dirsek"],
+[data-pain-quick-v217="dirsek"] { --pain-accent-v416:#119cb7;--pain-accent-dark-v416:#087087;--pain-soft-v416:#e9f9fc; }
+#agriPage [data-pain="omuz"],
+[data-pain-area-v416="omuz"],
+[data-pain-quick-v217="omuz"] { --pain-accent-v416:#2589ce;--pain-accent-dark-v416:#1267aa;--pain-soft-v416:#ebf6ff; }
+[data-pain-area-v416="omuz-kol"],
+[data-osteo-pain-target-v265="omuz-kol"] { --pain-accent-v416:#2589ce;--pain-accent-dark-v416:#1267aa;--pain-soft-v416:#ebf6ff; }
+[data-pain-area-v416="boyun-ense"],
+[data-osteo-pain-target-v265="boyun-ense"] { --pain-accent-v416:#457dd0;--pain-accent-dark-v416:#315aab;--pain-soft-v416:#eef4ff; }
+[data-pain-area-v416="cene-bas"],
+[data-osteo-pain-target-v265="cene-bas"] { --pain-accent-v416:#5574c7;--pain-accent-dark-v416:#3a529f;--pain-soft-v416:#f0f3ff; }
+
+/* Ana Ağrı sayfasındaki sekiz büyük kart */
+#agriPage .pain-grid-v76 {
+    counter-reset:pain-card-v416;
+    gap:22px !important;
+}
+#agriPage .pain-card-v76 {
+    --pain-accent-v416:#168fd0;
+    --pain-accent-dark-v416:#0a6ca8;
+    --pain-soft-v416:#ebf7fd;
+    counter-increment:pain-card-v416;
+    position:relative !important;
+    min-height:438px !important;
+    overflow:hidden !important;
+    border:1px solid #d9eaf3 !important;
+    border-radius:30px !important;
+    background:linear-gradient(180deg,#fff 0%,#fbfdff 100%) !important;
+    box-shadow:0 16px 42px rgba(17,76,111,.085) !important;
+    isolation:isolate;
+    transition:transform .25s ease,border-color .25s ease,box-shadow .25s ease !important;
+}
+#agriPage .pain-card-v76::before {
+    content:"";
+    position:absolute;
+    z-index:3;
+    inset:0 auto 0 0;
+    width:5px;
+    background:linear-gradient(180deg,var(--pain-accent-v416),var(--pain-accent-dark-v416));
+    opacity:.9;
+}
+#agriPage .pain-card-v76:hover,
+#agriPage .pain-card-v76:focus-visible {
+    transform:translateY(-7px) !important;
+    border-color:color-mix(in srgb,var(--pain-accent-v416) 45%,#d9eaf3) !important;
+    box-shadow:0 26px 62px rgba(13,81,121,.16) !important;
+    outline:none !important;
+}
+#agriPage .pain-card-image-v76 {
+    position:relative !important;
+    aspect-ratio:auto !important;
+    height:210px !important;
+    border:0 !important;
+    background:var(--pain-soft-v416) !important;
+}
+#agriPage .pain-card-image-v76::before {
+    content:"";
+    position:absolute;
+    z-index:1;
+    inset:0;
+    background:linear-gradient(180deg,transparent 48%,rgba(4,35,53,.58) 100%);
+    pointer-events:none;
+}
+#agriPage .pain-card-image-v76::after {
+    content:"0" counter(pain-card-v416);
+    position:absolute;
+    z-index:2;
+    right:17px;
+    bottom:15px;
+    display:grid;
+    width:44px;
+    height:44px;
+    place-items:center;
+    border:1px solid rgba(255,255,255,.55);
+    border-radius:15px;
+    background:rgba(255,255,255,.9);
+    color:var(--pain-accent-dark-v416);
+    box-shadow:0 10px 26px rgba(0,34,54,.22);
+    font-size:13px;
+    font-weight:900;
+    backdrop-filter:blur(8px);
+}
+#agriPage .pain-card-image-v76 img {
+    transition:transform .45s cubic-bezier(.2,.7,.2,1),filter .3s ease !important;
+}
+#agriPage .pain-card-v76:hover .pain-card-image-v76 img,
+#agriPage .pain-card-v76:focus-visible .pain-card-image-v76 img {
+    transform:scale(1.065) !important;
+    filter:saturate(1.08) contrast(1.02);
+}
+#agriPage .pain-card-body-v76 {
+    position:relative;
+    padding:24px 24px 23px 27px !important;
+}
+#agriPage .pain-card-body-v76 h3 {
+    min-height:0 !important;
+    margin:0 0 12px !important;
+    color:#123c58 !important;
+    font-size:24px !important;
+    line-height:1.15 !important;
+    letter-spacing:-.025em;
+}
+#agriPage .pain-card-body-v76 h3::before {
+    content:"AĞRI ALANI";
+    display:block;
+    margin-bottom:8px;
+    color:var(--pain-accent-v416);
+    font-size:11px;
+    font-weight:900;
+    line-height:1;
+    letter-spacing:.11em;
+}
+#agriPage .pain-card-body-v76 p {
+    margin:0 0 18px !important;
+    color:#607b8e !important;
+    font-size:14px !important;
+    line-height:1.65 !important;
+}
+#agriPage .pain-card-body-v76 > span {
+    display:flex !important;
+    width:100%;
+    min-height:44px;
+    align-items:center;
+    justify-content:space-between;
+    gap:12px;
+    margin-top:auto !important;
+    padding:10px 11px 10px 15px;
+    border:1px solid color-mix(in srgb,var(--pain-accent-v416) 28%,#d7eaf4);
+    border-radius:14px;
+    background:var(--pain-soft-v416);
+    color:var(--pain-accent-dark-v416) !important;
+    font-size:13px !important;
+    font-weight:900 !important;
+}
+#agriPage .pain-card-body-v76 > span::after {
+    content:"+";
+    display:grid;
+    width:26px;
+    height:26px;
+    place-items:center;
+    border-radius:9px;
+    background:#fff;
+    color:var(--pain-accent-dark-v416);
+    box-shadow:0 4px 13px rgba(15,91,132,.12);
+    font-size:18px;
+    line-height:1;
+}
+#agriPage .pain-card-v76:hover .pain-card-body-v76 > span,
+#agriPage .pain-card-v76:focus-visible .pain-card-body-v76 > span {
+    border-color:var(--pain-accent-v416);
+    background:linear-gradient(135deg,var(--pain-accent-v416),var(--pain-accent-dark-v416));
+    color:#fff !important;
+}
+
+/* Detay sayfası hızlı geçiş ve sekme kartları */
+#painFullDetailPageV215[data-pain-area-v416] {
+    --pain-accent-v416:#1596d4;
+    --pain-accent-dark-v416:#0874ba;
+    --pain-soft-v416:#eaf7fe;
+}
+#painFullDetailPageV215 .pain-full-top-item-v219 {
+    position:relative !important;
+    overflow:hidden !important;
+    border-color:rgba(122,192,226,.22) !important;
+    border-radius:20px !important;
+    background:rgba(255,255,255,.055) !important;
+    box-shadow:inset 0 1px 0 rgba(255,255,255,.08) !important;
+    transition:transform .2s ease,background .2s ease,border-color .2s ease,box-shadow .2s ease !important;
+}
+#painFullDetailPageV215 .pain-full-top-item-v219::after {
+    content:"";
+    position:absolute;
+    right:14px;
+    bottom:0;
+    left:14px;
+    height:3px;
+    border-radius:3px 3px 0 0;
+    background:var(--pain-accent-v416,#1596d4);
+    opacity:0;
+    transform:scaleX(.45);
+    transition:opacity .2s ease,transform .2s ease;
+}
+#painFullDetailPageV215 .pain-full-top-item-v219:hover {
+    transform:translateY(-3px) !important;
+    border-color:rgba(101,201,244,.45) !important;
+    background:rgba(255,255,255,.10) !important;
+}
+#painFullDetailPageV215 .pain-full-top-item-v219.is-active {
+    border-color:color-mix(in srgb,var(--pain-accent-v416) 70%,#fff) !important;
+    background:linear-gradient(135deg,var(--pain-accent-v416),var(--pain-accent-dark-v416)) !important;
+    box-shadow:0 14px 30px color-mix(in srgb,var(--pain-accent-v416) 28%,transparent) !important;
+}
+#painFullDetailPageV215 .pain-full-top-item-v219.is-active::after { opacity:1;transform:scaleX(1);background:#fff; }
+#painFullDetailPageV215 .pain-full-top-thumb-v219 {
+    border:2px solid rgba(255,255,255,.38);
+    box-shadow:0 7px 16px rgba(0,32,50,.18);
+}
+#painFullDetailPageV215 .pain-full-tab-v219 {
+    border-radius:23px !important;
+    transition:transform .2s ease,border-color .2s ease,box-shadow .2s ease !important;
+}
+#painFullDetailPageV215 .pain-full-tab-v219:hover { transform:translateY(-3px);border-color:#b8ddec !important;box-shadow:0 15px 32px rgba(19,95,135,.10) !important; }
+#painFullDetailPageV215 .pain-full-tab-v219.is-active {
+    border-color:var(--pain-accent-v416) !important;
+    background:linear-gradient(135deg,var(--pain-accent-v416),var(--pain-accent-dark-v416)) !important;
+    box-shadow:0 15px 34px color-mix(in srgb,var(--pain-accent-v416) 24%,transparent) !important;
+}
+
+/* Genel Bakış ve Değerlendirme içindeki üçlü kartlar */
+.pain-full-info-card-v416 {
+    --pain-accent-v416:#1596d4;
+    --pain-accent-dark-v416:#0874ba;
+    --pain-soft-v416:#eaf7fe;
+    position:relative !important;
+    overflow:hidden !important;
+    border:1px solid #d9eaf3 !important;
+    border-radius:28px !important;
+    background:linear-gradient(180deg,#fff,#fbfdff) !important;
+    box-shadow:0 17px 42px rgba(14,77,113,.09) !important;
+}
+.pain-full-info-card-v416::before {
+    content:"";
+    position:absolute;
+    z-index:4;
+    inset:0 auto 0 0;
+    width:5px;
+    background:linear-gradient(180deg,var(--pain-accent-v416),var(--pain-accent-dark-v416));
+}
+.pain-full-info-card-v416:hover,
+.pain-full-info-card-v416:focus-within {
+    transform:translateY(-7px) !important;
+    border-color:color-mix(in srgb,var(--pain-accent-v416) 45%,#d9eaf3) !important;
+    box-shadow:0 27px 62px rgba(12,78,117,.16) !important;
+}
+.pain-full-card-image-v416 {
+    position:relative !important;
+    height:172px !important;
+    background:var(--pain-soft-v416) !important;
+}
+.pain-full-card-image-v416::after {
+    content:"";
+    position:absolute;
+    inset:0;
+    background:linear-gradient(180deg,rgba(3,30,45,.02) 40%,rgba(3,32,48,.62) 100%);
+    pointer-events:none;
+}
+.pain-full-card-image-v416 img { transition:transform .45s cubic-bezier(.2,.7,.2,1),filter .3s ease; }
+.pain-full-info-card-v416:hover .pain-full-card-image-v416 img,
+.pain-full-info-card-v416:focus-within .pain-full-card-image-v416 img { transform:scale(1.065);filter:saturate(1.08) contrast(1.02); }
+.pain-card-area-v416,
+.pain-card-index-v416 {
+    position:absolute;
+    z-index:2;
+    bottom:14px;
+    display:inline-flex;
+    min-height:31px;
+    align-items:center;
+    border:1px solid rgba(255,255,255,.48);
+    background:rgba(255,255,255,.91);
+    color:var(--pain-accent-dark-v416);
+    box-shadow:0 8px 22px rgba(0,35,55,.20);
+    backdrop-filter:blur(8px);
+}
+.pain-card-area-v416 {
+    left:15px;
+    max-width:calc(100% - 76px);
+    padding:7px 11px;
+    border-radius:11px;
+    overflow:hidden;
+    font-size:11px;
+    font-weight:900;
+    letter-spacing:.035em;
+    text-overflow:ellipsis;
+    white-space:nowrap;
+}
+.pain-card-index-v416 {
+    right:15px;
+    width:36px;
+    justify-content:center;
+    border-radius:11px;
+    font-size:12px;
+    font-weight:900;
+}
+.pain-full-info-card-v416 .pain-full-card-body-v219 {
+    min-height:218px !important;
+    padding:22px 22px 20px 25px !important;
+}
+.pain-full-info-card-v416 .pain-full-card-body-v219 > strong {
+    margin-bottom:9px !important;
+    color:#123d59 !important;
+    font-size:22px !important;
+    line-height:1.2 !important;
+    letter-spacing:-.02em;
+}
+.pain-full-info-card-v416 .pain-full-card-body-v219 > p {
+    color:#607b8e !important;
+    font-size:14px !important;
+    line-height:1.62 !important;
+}
+.pain-topic-link-v416 {
+    width:100% !important;
+    min-height:46px !important;
+    justify-content:space-between !important;
+    margin-top:18px !important;
+    padding:10px 10px 10px 15px !important;
+    border-color:color-mix(in srgb,var(--pain-accent-v416) 30%,#d6e8f2) !important;
+    border-radius:14px !important;
+    background:var(--pain-soft-v416) !important;
+    color:var(--pain-accent-dark-v416) !important;
+}
+.pain-topic-link-v416 > span {
+    background:#fff !important;
+    color:var(--pain-accent-dark-v416) !important;
+    box-shadow:0 5px 14px rgba(17,83,121,.12);
+}
+.pain-topic-link-v416:hover,
+.pain-topic-link-v416:focus-visible {
+    border-color:var(--pain-accent-v416) !important;
+    background:linear-gradient(135deg,var(--pain-accent-v416),var(--pain-accent-dark-v416)) !important;
+    color:#fff !important;
+}
+
+/* Osteopati > Ağrı kartları */
+#osteoSpecialViewV259 .osteo-pain-grid-v264 { gap:20px !important; }
+#osteoSpecialViewV259 .osteo-pain-links-v265 .osteo-pain-link-v265 {
+    --pain-accent-v416:#1596d4;
+    --pain-accent-dark-v416:#0874ba;
+    --pain-soft-v416:#eaf7fe;
+    position:relative;
+    min-height:142px !important;
+    overflow:hidden;
+    border:1px solid #d8e9f2 !important;
+    border-radius:27px !important;
+    background:linear-gradient(145deg,#fff 0%,var(--pain-soft-v416) 155%) !important;
+    box-shadow:0 15px 38px rgba(17,77,112,.08) !important;
+}
+#osteoSpecialViewV259 .osteo-pain-links-v265 .osteo-pain-link-v265::before {
+    content:"";
+    position:absolute;
+    inset:0 auto 0 0;
+    width:5px;
+    background:linear-gradient(180deg,var(--pain-accent-v416),var(--pain-accent-dark-v416));
+}
+#osteoSpecialViewV259 .osteo-pain-links-v265 .osteo-pain-link-v265:hover,
+#osteoSpecialViewV259 .osteo-pain-links-v265 .osteo-pain-link-v265:focus-visible {
+    transform:translateY(-6px) !important;
+    border-color:color-mix(in srgb,var(--pain-accent-v416) 48%,#d8e9f2) !important;
+    background:linear-gradient(145deg,#fff 0%,var(--pain-soft-v416) 105%) !important;
+    box-shadow:0 25px 55px rgba(13,80,119,.15) !important;
+}
+#osteoSpecialViewV259 .osteo-pain-links-v265 .osteo-pain-link-v265 > span {
+    border-radius:16px !important;
+    background:var(--pain-soft-v416) !important;
+    color:var(--pain-accent-dark-v416) !important;
+}
+#osteoSpecialViewV259 .osteo-pain-links-v265 .osteo-pain-link-v265 > i {
+    border-radius:11px !important;
+    background:#fff !important;
+    color:var(--pain-accent-dark-v416) !important;
+    box-shadow:0 6px 16px rgba(18,85,123,.10);
+    font-style:normal !important;
+    font-size:19px !important;
+    font-weight:800 !important;
+}
+#osteoSpecialViewV259 .osteo-pain-links-v265 .osteo-pain-link-v265:hover > span,
+#osteoSpecialViewV259 .osteo-pain-links-v265 .osteo-pain-link-v265:focus-visible > span {
+    background:linear-gradient(135deg,var(--pain-accent-v416),var(--pain-accent-dark-v416)) !important;
+    color:#fff !important;
+}
+#osteoSpecialViewV259 .osteo-pain-links-v265 .osteo-pain-link-v265:hover > i,
+#osteoSpecialViewV259 .osteo-pain-links-v265 .osteo-pain-link-v265:focus-visible > i {
+    transform:rotate(90deg) !important;
+    background:var(--pain-accent-v416) !important;
+    color:#fff !important;
+}
+
+@media(max-width:1100px){
+    #agriPage .pain-card-v76 { min-height:420px !important; }
+    #agriPage .pain-card-image-v76 { height:196px !important; }
+    .pain-full-card-image-v416 { height:190px !important; }
+}
+@media(max-width:760px){
+    #agriPage .pain-grid-v76 { gap:16px !important; }
+    #agriPage .pain-card-v76 { min-height:0 !important;border-radius:24px !important; }
+    #agriPage .pain-card-image-v76 { height:190px !important; }
+    #agriPage .pain-card-body-v76 { padding:20px 19px 20px 23px !important; }
+    #agriPage .pain-card-body-v76 h3 { font-size:22px !important; }
+    .pain-full-info-card-v416 { border-radius:23px !important; }
+    .pain-full-card-image-v416 { height:180px !important; }
+    .pain-full-info-card-v416 .pain-full-card-body-v219 { min-height:0 !important;padding:19px 18px 18px 21px !important; }
+    .pain-full-info-card-v416 .pain-full-card-body-v219 > strong { font-size:20px !important; }
+    #osteoSpecialViewV259 .osteo-pain-links-v265 .osteo-pain-link-v265 { min-height:116px !important;border-radius:22px !important; }
+}
+
+@media(prefers-reduced-motion:reduce){
+    #agriPage .pain-card-v76,
+    #agriPage .pain-card-image-v76 img,
+    .pain-full-info-card-v416,
+    .pain-full-card-image-v416 img,
+    #painFullDetailPageV215 .pain-full-top-item-v219,
+    #painFullDetailPageV215 .pain-full-tab-v219,
+    #osteoSpecialViewV259 .osteo-pain-links-v265 .osteo-pain-link-v265 { transition:none !important; }
+}
+
+/* =========================================================
+   V417 - AĞRI DETAY SAYFASI / KLİNİK ATLAS TASARIMI
+   Yatay sekme sayfası yerine solda dikey rehber, sağda bento
+   içerik alanı ve kompakt ağrı bölgesi seçicisi kullanılır.
+   ========================================================= */
+.pain-full-detail-page-v417 {
+    position:relative;
+    min-height:100vh;
+    overflow-x:hidden;
+    background:
+        radial-gradient(circle at 92% 8%,color-mix(in srgb,var(--pain-accent-v416,#1596d4) 12%,transparent),transparent 28%),
+        radial-gradient(circle at 4% 62%,rgba(41,163,214,.09),transparent 27%),
+        linear-gradient(180deg,#edf7fb 0%,#f7fbfd 52%,#eef7fb 100%) !important;
+}
+.pain-full-detail-page-v417::before {
+    content:"";
+    position:absolute;
+    top:160px;
+    right:-140px;
+    width:420px;
+    height:420px;
+    border:1px solid rgba(19,139,192,.08);
+    border-radius:50%;
+    box-shadow:0 0 0 54px rgba(19,139,192,.035),0 0 0 108px rgba(19,139,192,.02);
+    pointer-events:none;
+}
+
+/* Üst klinik bölge seçici */
+.pain-full-detail-page-v417 .pain-full-hero-v219 {
+    position:relative;
+    z-index:2;
+    padding:18px 20px 4px !important;
+    background:transparent !important;
+}
+.pain-full-detail-page-v417 .pain-full-top-switch-v219 {
+    width:min(1840px,100%) !important;
+    margin:0 auto !important;
+    padding:12px !important;
+    gap:10px !important;
+    border:1px solid rgba(126,199,231,.20) !important;
+    border-radius:28px !important;
+    background:
+        radial-gradient(circle at 18% 0%,rgba(47,176,227,.18),transparent 32%),
+        linear-gradient(135deg,#082a40 0%,#0a3a57 55%,#092d45 100%) !important;
+    box-shadow:0 20px 55px rgba(3,39,59,.18),inset 0 1px 0 rgba(255,255,255,.06) !important;
+}
+.pain-full-detail-page-v417 .pain-full-top-back-v219 {
+    min-height:64px !important;
+    flex:0 0 208px !important;
+    padding:0 20px !important;
+    border:1px solid rgba(255,255,255,.78) !important;
+    border-radius:19px !important;
+    background:#fff !important;
+    color:#123f5b !important;
+    box-shadow:0 10px 26px rgba(0,26,41,.18) !important;
+    font-size:13px !important;
+}
+.pain-full-detail-page-v417 .pain-full-top-list-v219 {
+    display:flex !important;
+    min-width:0;
+    gap:8px !important;
+    overflow-x:auto !important;
+    padding:0 0 2px !important;
+    scrollbar-width:none;
+}
+.pain-full-detail-page-v417 .pain-full-top-list-v219::-webkit-scrollbar { display:none; }
+.pain-full-detail-page-v417 .pain-full-top-item-v219 {
+    flex:1 0 168px !important;
+    min-width:168px !important;
+    min-height:64px !important;
+    padding:7px 10px !important;
+    border-radius:18px !important;
+    font-size:12px !important;
+}
+.pain-full-detail-page-v417 .pain-full-top-thumb-v219 {
+    width:44px !important;
+    height:48px !important;
+    flex:0 0 44px !important;
+    border-radius:13px !important;
+}
+
+/* Sol dikey rehber + sağ içerik alanı */
+.pain-full-main-v417 {
+    position:relative;
+    z-index:1;
+    display:grid !important;
+    grid-template-columns:260px minmax(0,1fr) !important;
+    gap:22px !important;
+    width:min(1840px,100%) !important;
+    margin:0 auto !important;
+    padding:22px 20px 64px !important;
+    align-items:start;
+}
+.pain-full-detail-page-v417 .pain-full-local-nav-v219 {
+    position:relative !important;
+    top:auto !important;
+    display:flex !important;
+    flex-direction:column !important;
+    gap:8px !important;
+    margin:0 !important;
+    padding:86px 13px 14px !important;
+    border:1px solid rgba(126,199,231,.18) !important;
+    border-radius:30px !important;
+    background:
+        radial-gradient(circle at 80% 0%,rgba(49,181,229,.22),transparent 32%),
+        linear-gradient(165deg,#082a40 0%,#0a3853 54%,#08283d 100%) !important;
+    box-shadow:0 22px 58px rgba(5,49,73,.18),inset 0 1px 0 rgba(255,255,255,.055) !important;
+}
+.pain-full-detail-page-v417 .pain-full-local-nav-v219::before {
+    content:"AĞRI REHBERİ";
+    position:absolute;
+    top:22px;
+    left:22px;
+    color:#fff;
+    font-size:16px;
+    font-weight:900;
+    letter-spacing:.07em;
+}
+.pain-full-detail-page-v417 .pain-full-local-nav-v219::after {
+    content:"Bölümler arasında geçiş yapın";
+    position:absolute;
+    top:48px;
+    left:22px;
+    color:rgba(220,243,253,.58);
+    font-size:11px;
+    line-height:1.3;
+}
+.pain-full-detail-page-v417 .pain-full-tab-v219 {
+    width:100% !important;
+    min-height:68px !important;
+    justify-content:flex-start !important;
+    gap:11px !important;
+    padding:9px 10px !important;
+    border:1px solid rgba(255,255,255,.075) !important;
+    border-radius:18px !important;
+    background:rgba(255,255,255,.045) !important;
+    color:rgba(232,248,255,.78) !important;
+    box-shadow:none !important;
+    font-size:14px !important;
+    font-weight:800 !important;
+    text-align:left !important;
+}
+.pain-full-detail-page-v417 .pain-full-tab-v219 > span {
+    width:44px !important;
+    height:44px !important;
+    min-width:44px !important;
+    border:1px solid rgba(255,255,255,.10) !important;
+    border-radius:13px !important;
+    background:rgba(255,255,255,.08) !important;
+    color:rgba(237,250,255,.82) !important;
+    font-size:13px !important;
+}
+.pain-full-detail-page-v417 .pain-full-tab-v219:hover {
+    transform:translateX(4px) !important;
+    border-color:rgba(130,215,249,.28) !important;
+    background:rgba(255,255,255,.085) !important;
+    box-shadow:none !important;
+}
+.pain-full-detail-page-v417 .pain-full-tab-v219.is-active {
+    transform:translateX(5px) !important;
+    border-color:color-mix(in srgb,var(--pain-accent-v416) 65%,#fff) !important;
+    background:linear-gradient(135deg,var(--pain-accent-v416),var(--pain-accent-dark-v416)) !important;
+    color:#fff !important;
+    box-shadow:0 14px 29px color-mix(in srgb,var(--pain-accent-v416) 31%,transparent) !important;
+}
+.pain-full-detail-page-v417 .pain-full-tab-v219.is-active > span {
+    border-color:rgba(255,255,255,.22) !important;
+    background:rgba(255,255,255,.16) !important;
+    color:#fff !important;
+}
+.pain-full-detail-page-v417 .pain-full-panels-v219 {
+    min-width:0;
+    margin:0 !important;
+}
+.pain-full-detail-page-v417 .pain-full-panel-v219 {
+    min-width:0;
+    padding:0 !important;
+    border:0 !important;
+    background:transparent !important;
+    box-shadow:none !important;
+}
+
+/* Genel Bakış: iki büyük bento blok + altta klinik not */
+.pain-full-detail-page-v417 .pain-overview-hero-v219 {
+    display:grid !important;
+    grid-template-columns:minmax(360px,.88fr) minmax(0,1.12fr) !important;
+    grid-template-areas:
+        "media copy"
+        "quote quote" !important;
+    gap:17px !important;
+    padding:0 !important;
+    border:0 !important;
+    border-radius:0 !important;
+    background:transparent !important;
+    box-shadow:none !important;
+}
+.pain-full-detail-page-v417 .pain-overview-copy-v219 {
+    position:relative;
+    grid-area:copy;
+    display:flex;
+    min-height:500px;
+    flex-direction:column;
+    justify-content:center;
+    overflow:hidden;
+    padding:48px 46px !important;
+    border:1px solid #d8e9f2;
+    border-radius:32px;
+    background:
+        radial-gradient(circle at 100% 0%,var(--pain-soft-v416) 0%,transparent 36%),
+        linear-gradient(145deg,#fff 0%,#fbfdff 100%);
+    box-shadow:0 20px 55px rgba(15,76,111,.09);
+}
+.pain-full-detail-page-v417 .pain-overview-copy-v219::before {
+    content:"";
+    position:absolute;
+    top:0;
+    right:0;
+    left:0;
+    height:6px;
+    background:linear-gradient(90deg,var(--pain-accent-v416),var(--pain-accent-dark-v416));
+}
+.pain-full-detail-page-v417 .pain-overview-kicker-v219 {
+    display:inline-flex !important;
+    width:max-content;
+    margin-bottom:17px !important;
+    padding:8px 12px !important;
+    border:1px solid color-mix(in srgb,var(--pain-accent-v416) 23%,#d7e9f2) !important;
+    border-radius:999px !important;
+    background:var(--pain-soft-v416) !important;
+    color:var(--pain-accent-dark-v416) !important;
+    font-size:11px !important;
+    font-weight:900 !important;
+    letter-spacing:.12em !important;
+}
+.pain-full-detail-page-v417 .pain-overview-copy-v219 h2 {
+    max-width:850px;
+    margin:0 0 16px !important;
+    color:#0b3550 !important;
+    font-size:clamp(45px,5vw,72px) !important;
+    line-height:.98 !important;
+    letter-spacing:-.055em !important;
+}
+.pain-full-detail-page-v417 .pain-overview-copy-v219 > p {
+    max-width:780px;
+    margin:0 !important;
+    color:#58758a !important;
+    font-size:16px !important;
+    line-height:1.78 !important;
+}
+.pain-full-detail-page-v417 .pain-overview-benefits-v219 {
+    display:grid !important;
+    grid-template-columns:1fr !important;
+    gap:9px !important;
+    margin-top:25px !important;
+    padding-top:20px !important;
+    border-top:1px solid #e0edf4;
+}
+.pain-full-detail-page-v417 .pain-overview-benefits-v219 > div {
+    display:grid !important;
+    grid-template-columns:36px minmax(0,1fr) !important;
+    gap:11px !important;
+    min-height:48px;
+    align-items:center;
+    padding:7px 12px 7px 7px;
+    border:1px solid #e2eef5;
+    border-radius:14px;
+    background:#f7fbfd;
+    color:#315c75;
+    font-size:13px;
+    line-height:1.4;
+}
+.pain-full-detail-page-v417 .pain-overview-benefits-v219 b {
+    display:grid;
+    width:34px;
+    height:34px;
+    place-items:center;
+    border-radius:11px;
+    background:var(--pain-soft-v416);
+    color:var(--pain-accent-v416);
+}
+.pain-full-detail-page-v417 .pain-overview-media-v219 {
+    position:relative;
+    grid-area:media;
+    min-height:500px !important;
+    overflow:hidden;
+    border:1px solid color-mix(in srgb,var(--pain-accent-v416) 22%,#d7e8f1);
+    border-radius:32px !important;
+    background:var(--pain-soft-v416);
+    box-shadow:0 22px 58px rgba(13,71,105,.12);
+}
+.pain-full-detail-page-v417 .pain-overview-media-v219::before {
+    content:"MEDİKAL GÖRSEL";
+    position:absolute;
+    z-index:2;
+    top:18px;
+    left:18px;
+    padding:8px 11px;
+    border:1px solid rgba(255,255,255,.55);
+    border-radius:11px;
+    background:rgba(255,255,255,.88);
+    color:var(--pain-accent-dark-v416);
+    box-shadow:0 8px 22px rgba(0,34,52,.16);
+    font-size:10px;
+    font-weight:900;
+    letter-spacing:.09em;
+    backdrop-filter:blur(8px);
+}
+.pain-full-detail-page-v417 .pain-overview-media-v219::after {
+    content:"";
+    position:absolute;
+    inset:0;
+    background:linear-gradient(180deg,transparent 62%,rgba(4,34,51,.25) 100%);
+    pointer-events:none;
+}
+.pain-full-detail-page-v417 .pain-overview-media-v219 img {
+    width:100% !important;
+    height:100% !important;
+    object-fit:cover !important;
+    transition:transform .7s cubic-bezier(.2,.7,.2,1) !important;
+}
+.pain-full-detail-page-v417 .pain-overview-media-v219:hover img { transform:scale(1.035); }
+.pain-full-detail-page-v417 .pain-overview-quote-v219 {
+    grid-area:quote !important;
+    display:grid !important;
+    grid-template-columns:auto minmax(190px,.65fr) 38px minmax(300px,1fr) !important;
+    gap:18px !important;
+    min-height:112px;
+    align-items:center !important;
+    padding:22px 28px !important;
+    border:1px solid rgba(126,199,231,.20) !important;
+    border-radius:25px !important;
+    background:
+        radial-gradient(circle at 90% 0%,rgba(46,179,228,.18),transparent 34%),
+        linear-gradient(135deg,#082b42,#0a3a57) !important;
+    color:#fff !important;
+    box-shadow:0 18px 42px rgba(4,44,66,.16) !important;
+}
+.pain-full-detail-page-v417 .pain-overview-quote-v219 > span {
+    color:color-mix(in srgb,var(--pain-accent-v416) 72%,#fff) !important;
+    font-size:48px !important;
+    line-height:.8 !important;
+}
+.pain-full-detail-page-v417 .pain-overview-quote-v219 strong {
+    margin:0 !important;
+    color:#fff !important;
+    font-size:19px !important;
+    line-height:1.35 !important;
+}
+.pain-full-detail-page-v417 .pain-overview-quote-v219 i {
+    width:2px !important;
+    height:52px !important;
+    margin:0 auto !important;
+    background:rgba(121,213,249,.45) !important;
+}
+.pain-full-detail-page-v417 .pain-overview-quote-v219 p {
+    margin:0 !important;
+    color:rgba(226,245,252,.74) !important;
+    font-size:13px !important;
+    line-height:1.62 !important;
+}
+.pain-full-detail-page-v417 .pain-full-card-grid-v219 {
+    gap:17px !important;
+    margin-top:18px !important;
+}
+
+/* Belirtiler, Kimlerde, Değerlendirme ve Yaklaşım panelleri */
+.pain-full-detail-page-v417 .pain-subtab-layout-v219 {
+    display:grid !important;
+    grid-template-columns:minmax(0,1.05fr) minmax(380px,.95fr) !important;
+    gap:17px !important;
+    min-height:560px;
+    padding:0 !important;
+    border:0 !important;
+    border-radius:0 !important;
+    background:transparent !important;
+    box-shadow:none !important;
+}
+.pain-full-detail-page-v417 .pain-full-panel-copy-v219 {
+    position:relative;
+    justify-content:center !important;
+    overflow:hidden;
+    padding:48px !important;
+    border:1px solid #d8e9f2;
+    border-radius:32px;
+    background:
+        radial-gradient(circle at 100% 0%,var(--pain-soft-v416),transparent 38%),
+        #fff;
+    box-shadow:0 20px 55px rgba(15,76,111,.09);
+}
+.pain-full-detail-page-v417 .pain-full-panel-copy-v219::before {
+    content:"";
+    position:absolute;
+    inset:0 auto 0 0;
+    width:6px;
+    background:linear-gradient(180deg,var(--pain-accent-v416),var(--pain-accent-dark-v416));
+}
+.pain-full-detail-page-v417 .pain-full-panel-copy-v219 > span {
+    display:inline-flex;
+    width:max-content;
+    margin-bottom:15px;
+    padding:8px 12px;
+    border:1px solid color-mix(in srgb,var(--pain-accent-v416) 24%,#d8e9f2);
+    border-radius:999px;
+    background:var(--pain-soft-v416);
+    color:var(--pain-accent-dark-v416);
+    font-size:11px;
+    font-weight:900;
+    letter-spacing:.12em;
+}
+.pain-full-detail-page-v417 .pain-full-panel-copy-v219 h2 {
+    margin:0 0 15px !important;
+    color:#0c3854 !important;
+    font-size:clamp(36px,4vw,58px) !important;
+    line-height:1.04 !important;
+    letter-spacing:-.045em !important;
+}
+.pain-full-detail-page-v417 .pain-full-panel-copy-v219 > p {
+    color:#58758a !important;
+    font-size:16px !important;
+    line-height:1.75 !important;
+}
+.pain-full-detail-page-v417 .pain-subtab-image-v219 {
+    position:relative;
+    min-height:560px !important;
+    overflow:hidden;
+    border:1px solid color-mix(in srgb,var(--pain-accent-v416) 22%,#d7e8f1);
+    border-radius:32px !important;
+    background:var(--pain-soft-v416);
+    box-shadow:0 22px 58px rgba(13,71,105,.12);
+}
+.pain-full-detail-page-v417 .pain-subtab-image-v219::after {
+    content:"";
+    position:absolute;
+    inset:0;
+    background:linear-gradient(180deg,transparent 60%,rgba(4,34,51,.27));
+    pointer-events:none;
+}
+.pain-full-detail-page-v417 .pain-subtab-image-v219 img {
+    width:100% !important;
+    height:100% !important;
+    object-fit:cover !important;
+    transition:transform .7s cubic-bezier(.2,.7,.2,1) !important;
+}
+.pain-full-detail-page-v417 .pain-subtab-image-v219:hover img { transform:scale(1.035); }
+.pain-full-detail-page-v417 .pain-full-list-card-v219 {
+    margin-top:22px !important;
+    padding:16px 18px !important;
+    border:1px solid #dcebf3 !important;
+    border-radius:19px !important;
+    background:#f5fafc !important;
+}
+.pain-full-detail-page-v417 .pain-full-list-card-v219 li {
+    margin:8px 0;
+    color:#3f657c;
+    font-size:14px;
+    line-height:1.55;
+}
+.pain-full-detail-page-v417 .pain-full-tags-v219 {
+    display:flex !important;
+    flex-wrap:wrap;
+    gap:9px !important;
+    margin-top:24px !important;
+}
+.pain-full-detail-page-v417 .pain-full-tags-v219 > span {
+    padding:10px 13px !important;
+    border:1px solid color-mix(in srgb,var(--pain-accent-v416) 22%,#dceaf2) !important;
+    border-radius:12px !important;
+    background:var(--pain-soft-v416) !important;
+    color:var(--pain-accent-dark-v416) !important;
+    font-size:13px !important;
+    font-weight:800 !important;
+}
+
+@media(max-width:1320px){
+    .pain-full-main-v417 { grid-template-columns:230px minmax(0,1fr) !important; }
+    .pain-full-detail-page-v417 .pain-overview-copy-v219 { padding:38px 34px !important; }
+    .pain-full-detail-page-v417 .pain-overview-copy-v219 h2 { font-size:50px !important; }
+    .pain-full-detail-page-v417 .pain-full-panel-copy-v219 { padding:38px !important; }
+}
+
+@media(max-width:1120px){
+    .pain-full-detail-page-v417 .pain-full-top-switch-v219 { flex-direction:column !important;align-items:stretch !important; }
+    .pain-full-detail-page-v417 .pain-full-top-back-v219 { flex-basis:auto !important;width:100% !important; }
+    .pain-full-main-v417 { display:block !important;padding-top:16px !important; }
+    .pain-full-detail-page-v417 .pain-full-local-nav-v219 {
+        display:flex !important;
+        flex-direction:row !important;
+        gap:8px !important;
+        margin-bottom:17px !important;
+        padding:68px 12px 12px !important;
+        overflow-x:auto;
+        scrollbar-width:none;
+    }
+    .pain-full-detail-page-v417 .pain-full-local-nav-v219::-webkit-scrollbar { display:none; }
+    .pain-full-detail-page-v417 .pain-full-local-nav-v219::before { top:17px;left:18px; }
+    .pain-full-detail-page-v417 .pain-full-local-nav-v219::after { top:40px;left:18px; }
+    .pain-full-detail-page-v417 .pain-full-tab-v219 { flex:0 0 205px;width:auto !important; }
+    .pain-full-detail-page-v417 .pain-full-tab-v219:hover,
+    .pain-full-detail-page-v417 .pain-full-tab-v219.is-active { transform:translateY(-3px) !important; }
+    .pain-full-detail-page-v417 .pain-overview-hero-v219 {
+        grid-template-columns:1fr !important;
+        grid-template-areas:"media" "copy" "quote" !important;
+    }
+    .pain-full-detail-page-v417 .pain-overview-media-v219 { min-height:440px !important; }
+    .pain-full-detail-page-v417 .pain-overview-copy-v219 { min-height:0; }
+    .pain-full-detail-page-v417 .pain-subtab-layout-v219 { grid-template-columns:1fr !important;min-height:0; }
+    .pain-full-detail-page-v417 .pain-subtab-image-v219 { min-height:420px !important; }
+}
+
+@media(max-width:700px){
+    .pain-full-detail-page-v417 .pain-full-hero-v219 { padding:9px 8px 0 !important; }
+    .pain-full-detail-page-v417 .pain-full-top-switch-v219 { padding:9px !important;border-radius:22px !important; }
+    .pain-full-detail-page-v417 .pain-full-top-back-v219 { min-height:54px !important;border-radius:15px !important; }
+    .pain-full-detail-page-v417 .pain-full-top-item-v219 { flex-basis:150px !important;min-width:150px !important;min-height:57px !important; }
+    .pain-full-detail-page-v417 .pain-full-top-thumb-v219 { width:38px !important;height:41px !important;flex-basis:38px !important; }
+    .pain-full-main-v417 { padding:12px 8px 38px !important; }
+    .pain-full-detail-page-v417 .pain-full-local-nav-v219 { border-radius:23px !important;padding-top:65px !important; }
+    .pain-full-detail-page-v417 .pain-full-tab-v219 { flex-basis:174px;min-height:58px !important;font-size:12px !important; }
+    .pain-full-detail-page-v417 .pain-full-tab-v219 > span { width:38px !important;height:38px !important;min-width:38px !important; }
+    .pain-full-detail-page-v417 .pain-overview-media-v219 { min-height:300px !important;border-radius:23px !important; }
+    .pain-full-detail-page-v417 .pain-overview-copy-v219 { padding:27px 21px !important;border-radius:23px; }
+    .pain-full-detail-page-v417 .pain-overview-copy-v219 h2 { font-size:40px !important; }
+    .pain-full-detail-page-v417 .pain-overview-copy-v219 > p { font-size:15px !important;line-height:1.68 !important; }
+    .pain-full-detail-page-v417 .pain-overview-quote-v219 {
+        display:flex !important;
+        min-height:0;
+        flex-direction:column;
+        align-items:flex-start !important;
+        gap:9px !important;
+        padding:21px !important;
+        border-radius:21px !important;
+    }
+    .pain-full-detail-page-v417 .pain-overview-quote-v219 i { width:44px !important;height:2px !important;margin:3px 0 !important; }
+    .pain-full-detail-page-v417 .pain-full-panel-copy-v219 { padding:28px 22px !important;border-radius:23px; }
+    .pain-full-detail-page-v417 .pain-full-panel-copy-v219 h2 { font-size:36px !important; }
+    .pain-full-detail-page-v417 .pain-subtab-image-v219 { min-height:300px !important;border-radius:23px !important; }
+}
+
+@media(prefers-reduced-motion:reduce){
+    .pain-full-detail-page-v417 .pain-overview-media-v219 img,
+    .pain-full-detail-page-v417 .pain-subtab-image-v219 img,
+    .pain-full-detail-page-v417 .pain-full-tab-v219 { transition:none !important; }
+}
+
+/* =========================================================
+   V418 - AĞRI DETAY HIZLI GEÇİŞ ŞERİDİ KALDIRILDI
+   İçerik, üstte gereksiz bir boşluk bırakmadan doğrudan klinik atlasla başlar.
+   ========================================================= */
+.pain-full-detail-page-v417 > .pain-full-hero-v215,
+.pain-full-detail-page-v417 > .pain-full-hero-v219 {
+    display:none !important;
+}
+
+.pain-full-detail-page-v417 .pain-full-main-v417 {
+    padding-top:22px !important;
+}
+
+@media(max-width:700px){
+    .pain-full-detail-page-v417 .pain-full-main-v417 {
+        padding-top:10px !important;
+    }
+}
+
+/* =========================================================
+   V419 - AĞRI MENÜSÜ SAYFA BAŞINDA SABİT KONUMDA
+   Ağrı sayfasındaki menüler kaydırma sırasında ekranı takip etmez.
+   ========================================================= */
+body.pain-page-open .global-connected-nav-v402,
+body.pain-page-open .pain-page-nav,
+body.pain-page-open.pain-nav-scrolled .pain-page-nav {
+    position:absolute !important;
+    top:8px !important;
+}
+
+@media(max-width:560px){
+    body.pain-page-open .global-connected-nav-v402,
+    body.pain-page-open .pain-page-nav,
+    body.pain-page-open.pain-nav-scrolled .pain-page-nav {
+        top:5px !important;
+    }
+}
+/* =========================================================
+   V420 - DAMAR YOLU İÇERİK SUNUMU
+   ========================================================= */
+.iv-clinic-note-v420 {
+    margin: 0 0 28px;
+    padding: clamp(22px, 3vw, 34px);
+    border: 1px solid rgba(22, 117, 157, .18);
+    border-radius: 24px;
+    background:
+        radial-gradient(circle at 92% 12%, rgba(41, 171, 181, .18), transparent 34%),
+        linear-gradient(135deg, #f7fcff 0%, #edf8fb 100%);
+    box-shadow: 0 18px 44px rgba(25, 83, 111, .1);
+}
+
+.iv-clinic-note-v420 > span,
+.iv-source-head-v420 > span {
+    display: inline-flex;
+    margin-bottom: 9px;
+    color: #087a91;
+    font-size: .74rem;
+    font-weight: 800;
+    letter-spacing: .14em;
+}
+
+.iv-clinic-note-v420 h2 {
+    margin: 0 0 10px;
+    max-width: 820px;
+    color: #123b59;
+    font-size: clamp(1.35rem, 2.2vw, 2rem);
+    line-height: 1.18;
+}
+
+.iv-clinic-note-v420 p {
+    margin: 0;
+    max-width: 980px;
+    color: #496b7f;
+    font-size: 1rem;
+    line-height: 1.75;
+}
+
+.iv-clinic-note-v420 > div {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 9px;
+    margin-top: 18px;
+}
+
+.iv-clinic-note-v420 strong {
+    padding: 8px 12px;
+    border: 1px solid rgba(8, 122, 145, .16);
+    border-radius: 999px;
+    background: rgba(255, 255, 255, .82);
+    color: #17667b;
+    font-size: .82rem;
+}
+
+.iv-detail-grid-v420 {
+    display: grid;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 16px;
+    margin-top: 20px;
+}
+
+.iv-detail-grid-v420 .vitamin-c-doc-section-v234 {
+    height: 100%;
+    margin: 0;
+    border: 1px solid rgba(27, 111, 153, .15);
+    background: linear-gradient(145deg, #ffffff, #f7fbfd);
+    box-shadow: 0 12px 30px rgba(20, 74, 105, .07);
+}
+
+.iv-detail-grid-v420 li {
+    margin-bottom: 9px;
+    line-height: 1.65;
+}
+
+.iv-source-head-v420 {
+    margin-top: 28px;
+}
+
+.iv-source-card-v420 small {
+    line-height: 1.45;
+}
+
+@media (max-width: 780px) {
+    .iv-detail-grid-v420 {
+        grid-template-columns: 1fr;
+    }
+
+    .iv-clinic-note-v420 {
+        border-radius: 19px;
+    }
+}
+
+/* =========================================================
+   V422 - TÜM HASTALIK SAYFALARINDA ORTAK HIZLI ULAŞIM
+   ========================================================= */
+.disease-switcher-as-v250,
+.disease-switcher-ra-v250,
+.disease-switcher-condition-v250 {
+    display: none !important;
+}
+
+body.ankilozan-page-open-v87 #globalDiseaseSwitcherV422,
+body.romatoid-page-open-v198 #globalDiseaseSwitcherV422,
+body.condition-disease-page-open-v246 #globalDiseaseSwitcherV422 {
+    display: block !important;
+    position: relative !important;
+    z-index: 200 !important;
+    width: min(calc(100% - 32px), 1760px) !important;
+    margin: 14px auto 20px !important;
+    visibility: visible !important;
+    opacity: 1 !important;
+    transform: none !important;
+}
+
+#globalDiseaseSwitcherV422[hidden] {
+    display: none !important;
+}
+
+#globalDiseaseSwitcherV422 .global-disease-grid-v422[hidden] {
+    display: none !important;
+}
+
+#globalDiseaseSwitcherV422.is-open-v421 .global-disease-grid-v422 {
+    display: grid !important;
+}
+
+@media (max-width: 720px) {
+    body.ankilozan-page-open-v87 #globalDiseaseSwitcherV422,
+    body.romatoid-page-open-v198 #globalDiseaseSwitcherV422,
+    body.condition-disease-page-open-v246 #globalDiseaseSwitcherV422 {
+        width: calc(100% - 18px) !important;
+        margin-top: 10px !important;
+        margin-bottom: 14px !important;
+    }
+}
+
+/* V423 - Orta ekranlarda hastalık içerik butonlarını ilk ekrana taşı. */
+@media (min-width: 761px) and (max-width: 1180px) {
+    #conditionDiseasePageV246 .condition-hero-v280,
+    #romatoidFaqSectionV198 .ra-hero-v280,
+    #ankilozanFaqSectionV85 .as-main-hero-v275,
+    #conditionDiseasePageV246 .condition-hero-v280 .condition-overview-media-v249 img,
+    #romatoidFaqSectionV198 .ra-hero-v280 .ra-hero-media-v198 img,
+    #ankilozanFaqSectionV85 .as-main-hero-v275 > img {
+        min-height: 440px !important;
+        height: 440px !important;
+    }
+
+    #conditionDiseasePageV246 .condition-hero-v280 > .treatment-launcher-v279,
+    #romatoidFaqSectionV198 .ra-hero-v280 > .treatment-launcher-v279,
+    #ankilozanFaqSectionV85 .as-main-hero-v275 > .as-launcher-v274 {
+        top: 52px !important;
+        bottom: auto !important;
+        padding: 11px !important;
+    }
+
+    #conditionDiseasePageV246 .condition-hero-v280 > .treatment-launcher-v279 .as-launcher-head-v274,
+    #romatoidFaqSectionV198 .ra-hero-v280 > .treatment-launcher-v279 .as-launcher-head-v274,
+    #ankilozanFaqSectionV85 .as-main-hero-v275 > .as-launcher-v274 .as-launcher-head-v274 {
+        min-height: 34px !important;
+        padding-bottom: 7px !important;
+    }
+
+    #conditionDiseasePageV246 .condition-hero-v280 > .treatment-launcher-v279 .as-launcher-head-v274 p,
+    #romatoidFaqSectionV198 .ra-hero-v280 > .treatment-launcher-v279 .as-launcher-head-v274 p,
+    #ankilozanFaqSectionV85 .as-main-hero-v275 > .as-launcher-v274 .as-launcher-head-v274 p {
+        display: none !important;
+    }
+
+    #conditionDiseasePageV246 .condition-hero-v280 > .treatment-launcher-v279 .disease-topic-tab-v421,
+    #romatoidFaqSectionV198 .ra-hero-v280 > .treatment-launcher-v279 .disease-topic-tab-v421,
+    #ankilozanFaqSectionV85 .as-main-hero-v275 > .as-launcher-v274 .disease-topic-tab-v421 {
+        min-height: 72px !important;
+        padding: 9px 11px !important;
+        gap: 4px !important;
+    }
+}
+
+/* =========================================================
+   V424 - MASAÜSTÜNDE DE HASTALIK BUTONLARINI HERO ÜSTÜNE AL
+   ========================================================= */
+@media (min-width: 761px) {
+    #conditionDiseasePageV246 .condition-hero-v280 > .treatment-launcher-v279,
+    #romatoidFaqSectionV198 .ra-hero-v280 > .treatment-launcher-v279,
+    #ankilozanFaqSectionV85 .as-main-hero-v275 > .as-launcher-v274 {
+        top: 24px !important;
+        bottom: auto !important;
+        transform: none !important;
+    }
+}
+
+/* =========================================================
+   V425 - HASTALIK GİRİŞLERİ / OSTEOPATİ BENZERİ İKİ KOLON VİTRİN
+   ========================================================= */
+@media (min-width: 901px) {
+    #ankilozanFaqSectionV85 .as-main-hero-v275,
+    #romatoidFaqSectionV198 .ra-hero-v280,
+    #conditionDiseasePageV246 .condition-hero-v280 {
+        width: min(1900px, calc(100% - 24px)) !important;
+        height: clamp(620px, calc(100vh - 150px), 760px) !important;
+        min-height: 620px !important;
+        margin: 0 auto 14px !important;
+        border: 1px solid rgba(67, 183, 224, .26) !important;
+        border-radius: 0 0 34px 34px !important;
+        background:
+            radial-gradient(circle at 18% 18%, rgba(51, 170, 214, .16), transparent 34%),
+            linear-gradient(135deg, #071f2c 0%, #0b2c3e 52%, #082536 100%) !important;
+        box-shadow: 0 28px 70px rgba(3, 31, 48, .24) !important;
+        isolation: isolate;
+    }
+
+    #ankilozanFaqSectionV85 .as-main-hero-v275::after,
+    #romatoidFaqSectionV198 .ra-hero-v280::after,
+    #conditionDiseasePageV246 .condition-hero-v280::after {
+        z-index: 1 !important;
+        background:
+            linear-gradient(90deg, rgba(3, 20, 29, .98) 0%, rgba(5, 29, 41, .94) 50%, rgba(4, 24, 35, .18) 63%, rgba(4, 24, 35, .05) 100%) !important;
+    }
+
+    #ankilozanFaqSectionV85 .as-main-hero-v275 > img,
+    #romatoidFaqSectionV198 .ra-hero-v280 .ra-hero-media-v198,
+    #conditionDiseasePageV246 .condition-hero-v280 .condition-overview-media-v249 {
+        position: absolute !important;
+        top: 24px !important;
+        right: 24px !important;
+        bottom: 24px !important;
+        left: auto !important;
+        width: 43% !important;
+        height: auto !important;
+        min-height: 0 !important;
+        overflow: hidden !important;
+        border: 1px solid rgba(77, 196, 235, .38) !important;
+        border-radius: 28px !important;
+        background: #061d2a !important;
+        box-shadow: 0 22px 58px rgba(0, 18, 29, .30) !important;
+        z-index: 2 !important;
+    }
+
+    #romatoidFaqSectionV198 .ra-hero-v280 .ra-hero-media-v198 img,
+    #conditionDiseasePageV246 .condition-hero-v280 .condition-overview-media-v249 img {
+        width: 100% !important;
+        height: 100% !important;
+        min-height: 0 !important;
+        object-fit: cover !important;
+        object-position: center !important;
+    }
+
+    #ankilozanFaqSectionV85 .as-main-hero-v275 > img {
+        object-fit: cover !important;
+        object-position: center !important;
+    }
+
+    #ankilozanFaqSectionV85 .as-main-hero-v275 > .disease-entry-launcher-v425,
+    #romatoidFaqSectionV198 .ra-hero-v280 > .disease-entry-launcher-v425,
+    #conditionDiseasePageV246 .condition-hero-v280 > .disease-entry-launcher-v425 {
+        position: absolute !important;
+        top: 44px !important;
+        right: auto !important;
+        bottom: auto !important;
+        left: 32px !important;
+        width: calc(55% - 56px) !important;
+        margin: 0 !important;
+        padding: 0 !important;
+        border: 0 !important;
+        border-radius: 0 !important;
+        background: transparent !important;
+        box-shadow: none !important;
+        backdrop-filter: none !important;
+        -webkit-backdrop-filter: none !important;
+        transform: none !important;
+        z-index: 4 !important;
+    }
+
+    .disease-entry-launcher-v425 .as-launcher-head-v274 {
+        display: block !important;
+        min-height: 0 !important;
+        margin: 0 0 28px !important;
+        padding: 0 !important;
+    }
+
+    .disease-entry-launcher-v425 .as-launcher-head-v274 > div {
+        display: block !important;
+    }
+
+    .disease-entry-launcher-v425 .as-launcher-head-v274 span {
+        display: block !important;
+        margin-bottom: 18px !important;
+        color: #70ddff !important;
+        font-size: .86rem !important;
+        font-weight: 900 !important;
+        letter-spacing: .16em !important;
+    }
+
+    .disease-entry-launcher-v425 .as-launcher-head-v274 h2 {
+        margin: 0 !important;
+        color: #fff !important;
+        font-size: clamp(3.3rem, 5.2vw, 6.3rem) !important;
+        font-weight: 900 !important;
+        line-height: .94 !important;
+        letter-spacing: -.065em !important;
+        text-wrap: balance;
+    }
+
+    .disease-entry-launcher-v425 .as-launcher-head-v274 p {
+        display: block !important;
+        max-width: 900px !important;
+        margin: 24px 0 0 !important;
+        color: rgba(224, 240, 248, .88) !important;
+        font-size: clamp(.96rem, 1.2vw, 1.22rem) !important;
+        font-weight: 650 !important;
+        line-height: 1.55 !important;
+    }
+
+    #asLauncherV274 .as-launcher-grid-v274,
+    #raLauncherV279 .as-launcher-grid-v274,
+    #conditionLauncherV279 .as-launcher-grid-v274,
+    #conditionDiseasePageV246 .condition-hero-v280 > .disease-entry-launcher-v425 .as-launcher-grid-v274 {
+        display: grid !important;
+        grid-template-columns: repeat(3, minmax(0, 1fr)) !important;
+        gap: 14px !important;
+    }
+
+    #asLauncherV274 .as-launch-card-v274,
+    #raLauncherV279 .as-launch-card-v274,
+    #conditionLauncherV279 .as-launch-card-v274,
+    .disease-entry-launcher-v425 .disease-topic-tab-v421 {
+        min-height: 106px !important;
+        display: grid !important;
+        grid-template-columns: 48px minmax(0, 1fr) 28px !important;
+        grid-template-rows: 1fr !important;
+        align-items: center !important;
+        gap: 10px !important;
+        padding: 15px !important;
+        border: 1px solid rgba(78, 203, 241, .34) !important;
+        border-radius: 20px !important;
+        background: linear-gradient(145deg, rgba(9, 67, 91, .96), rgba(7, 48, 68, .96)) !important;
+        box-shadow: inset 0 1px 0 rgba(255,255,255,.06), 0 14px 30px rgba(0, 15, 25, .16) !important;
+    }
+
+    .disease-entry-launcher-v425 .as-launch-card-v274:hover,
+    .disease-entry-launcher-v425 .as-launch-card-v274:focus-visible,
+    .disease-entry-launcher-v425 .as-launch-card-v274.is-primary-v274,
+    .disease-entry-launcher-v425 .as-launch-card-v274.is-selected-v421 {
+        border-color: rgba(110, 229, 255, .82) !important;
+        background: linear-gradient(145deg, #159dce, #08749f) !important;
+        transform: translateY(-3px) !important;
+    }
+
+    .disease-entry-launcher-v425 .as-launch-icon-v274 {
+        width: 48px !important;
+        height: 48px !important;
+        border-radius: 15px !important;
+    }
+
+    .disease-entry-launcher-v425 .as-launch-copy-v274 strong {
+        color: #fff !important;
+        font-size: .98rem !important;
+        line-height: 1.15 !important;
+        white-space: normal !important;
+    }
+
+    .disease-entry-launcher-v425 .as-launch-copy-v274 small {
+        margin-top: 5px !important;
+        color: rgba(202, 229, 240, .72) !important;
+        font-size: .72rem !important;
+        line-height: 1.25 !important;
+    }
+
+    .disease-entry-launcher-v425 .as-launch-arrow-v274 {
+        display: grid !important;
+        width: 28px !important;
+        height: 28px !important;
+        border-radius: 10px !important;
+    }
+
+    #romatoidFaqSectionV198 .ra-hero-v280 .ra-hero-quote-v198,
+    #conditionDiseasePageV246 .condition-hero-v280 .condition-overview-media-v249 figcaption {
+        right: 18px !important;
+        bottom: 18px !important;
+        left: 18px !important;
+        max-width: none !important;
+        z-index: 4 !important;
+        text-align: left !important;
+    }
+}
+
+@media (min-width: 901px) and (max-width: 1240px) {
+    .disease-entry-launcher-v425 .as-launcher-head-v274 h2 {
+        font-size: clamp(2.65rem, 5vw, 4.5rem) !important;
+    }
+
+    .disease-entry-launcher-v425 .as-launcher-head-v274 p {
+        margin-top: 16px !important;
+        font-size: .9rem !important;
+    }
+
+    #asLauncherV274 .as-launch-card-v274,
+    #raLauncherV279 .as-launch-card-v274,
+    #conditionLauncherV279 .as-launch-card-v274,
+    .disease-entry-launcher-v425 .disease-topic-tab-v421 {
+        min-height: 92px !important;
+        padding: 11px !important;
+        grid-template-columns: 40px minmax(0, 1fr) !important;
+    }
+
+    .disease-entry-launcher-v425 .as-launch-arrow-v274 {
+        display: none !important;
+    }
+}
+
+/* V426 - Ozon ek başlık girişi kaldırıldı; içerik üst boşluksuz başlar. */
+.ozone-more-topics-v340 {
+    padding-top: 0 !important;
+}
+
+.ozone-more-topics-v340 > .ozone-topic-v340:first-child {
+    margin-top: 0 !important;
+}
+
+/* =========================================================
+   V427 - OZON GİRİŞİ KOMPAKT / TAŞMASIZ YENİ TASARIM
+   ========================================================= */
+.ozone-classic-header-v339 {
+    position: relative;
+    display: grid !important;
+    grid-template-columns: minmax(250px, .72fr) minmax(0, 1.28fr);
+    grid-template-areas:
+        "kicker description"
+        "title description";
+    align-items: center;
+    column-gap: clamp(32px, 5vw, 74px);
+    row-gap: 10px;
+    min-height: 220px;
+    padding: clamp(28px, 4vw, 48px) !important;
+    overflow: hidden !important;
+    border: 1px solid rgba(90, 208, 244, .24) !important;
+    border-radius: 28px !important;
+    background:
+        radial-gradient(circle at 12% 18%, rgba(49, 184, 229, .18), transparent 34%),
+        linear-gradient(135deg, #071f2c 0%, #0b3042 100%) !important;
+    box-shadow: 0 22px 50px rgba(3, 35, 53, .18) !important;
+}
+
+.ozone-classic-header-v339 .ozone-classic-kicker-v339 {
+    grid-area: kicker;
+    align-self: end;
+    max-width: 280px;
+    color: #62d8ff !important;
+    font-size: .74rem !important;
+    line-height: 1.5 !important;
+}
+
+.ozone-classic-header-v339 h1 {
+    grid-area: title;
+    align-self: start;
+    max-width: 520px;
+    margin: 0 !important;
+    color: #fff !important;
+    font-size: clamp(2.8rem, 4.5vw, 5rem) !important;
+    line-height: .98 !important;
+    letter-spacing: -.055em !important;
+    overflow-wrap: anywhere;
+}
+
+.ozone-classic-header-v339 > p {
+    grid-area: description;
+    width: 100%;
+    max-width: 720px !important;
+    margin: 0 !important;
+    color: rgba(222, 241, 249, .84) !important;
+    font-size: clamp(1rem, 1.25vw, 1.2rem) !important;
+    line-height: 1.65 !important;
+    overflow-wrap: anywhere;
+}
+
+.ozone-classic-nav-v339 {
+    display: none !important;
+}
+
+@media (max-width: 820px) {
+    .ozone-classic-header-v339 {
+        grid-template-columns: 1fr;
+        grid-template-areas: "kicker" "title" "description";
+        min-height: 0;
+        row-gap: 14px;
+        padding: 26px 22px !important;
+        border-radius: 22px !important;
+    }
+
+    .ozone-classic-header-v339 h1 {
+        font-size: clamp(2.5rem, 12vw, 4rem) !important;
+    }
+
+    .ozone-classic-header-v339 > p {
+        font-size: 1rem !important;
+        line-height: 1.55 !important;
+    }
+}
+
+
+/* =========================================================
+   V428 - FİTOTERAPİ BİLGİ GÖRSELLERİ DAHA KOMPAKT
+   Kullanıcı talebi: büyük bilgilendirme görseli, ikinci örnekteki
+   ölçüye yaklaşsın; metin alanı daha fazla nefes alsın.
+   ========================================================= */
+
+/* Mevcut Fitoterapi odak/vitrin alanları */
+@media (min-width: 901px) {
+    .phytotherapy-page-v127 .phyto-condition-spotlight-v232 {
+        grid-template-columns: minmax(280px, 350px) minmax(0, 1fr) !important;
+        gap: clamp(28px, 3.5vw, 54px) !important;
+        align-items: center !important;
+    }
+
+    .phytotherapy-page-v127 .phyto-condition-media-v232 {
+        width: 100% !important;
+        max-width: 350px !important;
+        height: 230px !important;
+        min-height: 230px !important;
+        justify-self: start !important;
+        align-self: center !important;
+        border-radius: 22px !important;
+    }
+
+    .phytotherapy-page-v127 .phyto-condition-media-v232 img {
+        width: 100% !important;
+        height: 100% !important;
+        object-fit: cover !important;
+        object-position: center !important;
+    }
+
+    .phyto-herb-detail-v351 .phyto-herb-main-v351 {
+        grid-template-columns: minmax(280px, 350px) minmax(0, 1fr) !important;
+        gap: clamp(22px, 3vw, 42px) !important;
+        align-items: start !important;
+    }
+
+    .phyto-herb-detail-v351 .phyto-herb-media-v351 {
+        width: 100% !important;
+        max-width: 350px !important;
+        padding: 10px !important;
+        justify-self: start !important;
+    }
+
+    .phyto-herb-detail-v351 .phyto-herb-media-v351 img {
+        width: 100% !important;
+        height: 230px !important;
+        min-height: 0 !important;
+        object-fit: cover !important;
+        object-position: center !important;
+        border-radius: 18px !important;
+    }
+}
+
+/* V428 JS tarafından yakalanan "Fitoterapi Nedir?" benzeri iki kolonlu bilgi bölümleri */
+.phyto-compact-info-v428 {
+    grid-template-columns: minmax(280px, 350px) minmax(0, 1fr) !important;
+    gap: clamp(28px, 3.8vw, 58px) !important;
+    align-items: center !important;
+}
+
+.phyto-compact-image-v428 {
+    width: 100% !important;
+    max-width: 350px !important;
+    height: 230px !important;
+    min-height: 230px !important;
+    align-self: center !important;
+    justify-self: start !important;
+    overflow: hidden !important;
+    border-radius: 22px !important;
+}
+
+.phyto-compact-image-v428 > img,
+.phyto-compact-image-v428 img {
+    width: 100% !important;
+    height: 100% !important;
+    max-height: 230px !important;
+    object-fit: cover !important;
+    object-position: center !important;
+    display: block !important;
+}
+
+@media (max-width: 900px) {
+    .phyto-compact-info-v428,
+    .phytotherapy-page-v127 .phyto-condition-spotlight-v232,
+    .phyto-herb-detail-v351 .phyto-herb-main-v351 {
+        grid-template-columns: 1fr !important;
+    }
+
+    .phyto-compact-image-v428,
+    .phytotherapy-page-v127 .phyto-condition-media-v232,
+    .phyto-herb-detail-v351 .phyto-herb-media-v351 {
+        width: min(100%, 420px) !important;
+        max-width: 420px !important;
+        height: 240px !important;
+        min-height: 0 !important;
+        justify-self: center !important;
+        margin-inline: auto !important;
+    }
+
+    .phyto-compact-image-v428 img,
+    .phytotherapy-page-v127 .phyto-condition-media-v232 img,
+    .phyto-herb-detail-v351 .phyto-herb-media-v351 img {
+        height: 240px !important;
+        max-height: 240px !important;
+    }
+}
+
+@media (max-width: 560px) {
+    .phyto-compact-image-v428,
+    .phytotherapy-page-v127 .phyto-condition-media-v232,
+    .phyto-herb-detail-v351 .phyto-herb-media-v351 {
+        height: 210px !important;
+        max-width: 100% !important;
+        border-radius: 18px !important;
+    }
+
+    .phyto-compact-image-v428 img,
+    .phytotherapy-page-v127 .phyto-condition-media-v232 img,
+    .phyto-herb-detail-v351 .phyto-herb-media-v351 img {
+        height: 210px !important;
+        max-height: 210px !important;
+    }
+}
+
+
+/* =========================================================
+   V429 - GLOBAL TYPOGRAFİ SİSTEMİ
+   Başlıklar: Sora | Metinler: Inter
+   Amaç: medikal, modern, premium ve daha okunaklı hiyerarşi.
+   ========================================================= */
+:root{
+    --font-heading-v324:"Sora","Segoe UI",Arial,sans-serif;
+    --font-body-v324:"Inter","Segoe UI",Arial,sans-serif;
+    --font-heading-v429:"Sora","Segoe UI",Arial,sans-serif;
+    --font-body-v429:"Inter","Segoe UI",Arial,sans-serif;
+}
+
+/* Uzun okuma ve açıklama metinleri */
+body,
+p,
+li,
+label,
+input,
+textarea,
+select,
+option,
+figcaption,
+blockquote,
+td,
+th,
+[class*="description"],
+[class*="excerpt"],
+[class*="summary"] p,
+[class*="note"] p,
+[class*="card"] p,
+[class*="panel"] p,
+[class*="copy"] p,
+[class*="text"] p{
+    font-family:var(--font-body-v429)!important;
+}
+
+/* Ana başlıklar ve bölüm/kart başlıkları */
+h1,
+h2,
+h3,
+h4,
+h5,
+h6,
+[class*="title"],
+[class*="heading"],
+[class*="headline"],
+[class*="kicker"],
+[class*="eyebrow"],
+[class*="section-name"],
+[class*="card-name"],
+[class*="brand-copy"] strong,
+[class*="brand"] strong,
+[class*="card"] h2,
+[class*="card"] h3,
+[class*="card"] h4,
+[class*="panel"] h2,
+[class*="panel"] h3{
+    font-family:var(--font-heading-v429)!important;
+    text-rendering:optimizeLegibility;
+}
+
+/* Sora'nın geometrik karakterini daha dengeli göstermek için */
+h1{letter-spacing:-.042em!important;}
+h2{letter-spacing:-.032em!important;}
+h3,h4,h5,h6{letter-spacing:-.018em!important;}
+
+/* Menü ve butonlar: başlık ailesiyle tutarlı, kısa metinde güçlü */
+button,
+[role="button"],
+[class*="button"],
+[class*="btn"],
+[class*="tab"],
+[class*="nav"] a,
+nav a,
+nav button,
+[class*="menu"] a,
+[class*="menu"] button{
+    font-family:var(--font-heading-v429)!important;
+}
+
+/* Formlarda ve aramalarda Inter okunurluğu korunur */
+input,
+textarea,
+select,
+option{
+    font-family:var(--font-body-v429)!important;
+}
+
+@media(max-width:760px){
+    h1,h2,[class*="hero"] h1,[class*="hero"] h2{
+        letter-spacing:-.028em!important;
+    }
+}
+
+
+/* =========================================================
+   V430 - TV PROGRAMLARI YOUTUBE OYNATMA LİSTESİ VİTRİNİ
+   ========================================================= */
+.media-panel-v177[data-media-panel="tv"] .tv-playlist-showcase-v430{
+    display:grid;
+    grid-template-columns:minmax(280px,.82fr) minmax(0,1.18fr);
+    gap:0;
+    margin:0 0 28px;
+    overflow:hidden;
+    border:1px solid rgba(20,104,160,.12);
+    border-radius:30px;
+    background:
+        radial-gradient(circle at 92% 10%,rgba(230,33,23,.08),transparent 26%),
+        linear-gradient(135deg,#ffffff 0%,#f6fbfe 100%);
+    box-shadow:0 22px 52px rgba(16,69,104,.10);
+}
+
+.tv-playlist-cover-v430{
+    position:relative;
+    display:block;
+    min-height:330px;
+    overflow:hidden;
+    background:#071d2a;
+    text-decoration:none;
+}
+
+.tv-playlist-cover-v430 img{
+    width:100%;
+    height:100%;
+    min-height:330px;
+    display:block;
+    object-fit:cover;
+    object-position:center;
+    transform:scale(1.01);
+    transition:transform .35s ease;
+}
+
+.tv-playlist-cover-v430:hover img,
+.tv-playlist-cover-v430:focus-visible img{transform:scale(1.045)}
+
+.tv-playlist-cover-shade-v430{
+    position:absolute;
+    inset:0;
+    background:linear-gradient(180deg,rgba(4,17,28,.03) 35%,rgba(4,17,28,.68) 100%);
+    pointer-events:none;
+}
+
+.tv-playlist-play-v430{
+    position:absolute;
+    left:24px;
+    bottom:24px;
+    width:58px;
+    height:58px;
+    display:grid;
+    place-items:center;
+    border:1px solid rgba(255,255,255,.54);
+    border-radius:50%;
+    background:#e62117;
+    color:#fff;
+    font-size:20px;
+    box-shadow:0 14px 30px rgba(0,0,0,.22);
+}
+
+.tv-playlist-open-v430{
+    position:absolute;
+    right:22px;
+    bottom:27px;
+    padding:10px 13px;
+    border:1px solid rgba(255,255,255,.35);
+    border-radius:12px;
+    background:rgba(8,30,44,.72);
+    color:#fff;
+    font-family:"Sora",Arial,sans-serif;
+    font-size:11px;
+    font-weight:800;
+    backdrop-filter:blur(10px);
+}
+
+.tv-playlist-copy-v430{
+    display:flex;
+    flex-direction:column;
+    justify-content:center;
+    align-items:flex-start;
+    padding:clamp(28px,4vw,52px);
+}
+
+.tv-playlist-kicker-v430{
+    display:block;
+    margin-bottom:10px;
+    color:#e62117;
+    font-family:"Sora",Arial,sans-serif;
+    font-size:11px;
+    font-weight:900;
+    letter-spacing:.16em;
+}
+
+.tv-playlist-copy-v430 h3{
+    margin:0;
+    max-width:720px;
+    color:#123c5b;
+    font-family:"Sora",Arial,sans-serif;
+    font-size:clamp(28px,3.5vw,48px);
+    line-height:1.08;
+    letter-spacing:-.035em;
+}
+
+.tv-playlist-copy-v430 p{
+    max-width:760px;
+    margin:16px 0 0;
+    color:#60798b;
+    font-family:"Inter",Arial,sans-serif;
+    font-size:15px;
+    line-height:1.72;
+}
+
+.tv-playlist-tags-v430{
+    display:flex;
+    flex-wrap:wrap;
+    gap:8px;
+    margin-top:20px;
+}
+
+.tv-playlist-tags-v430 span{
+    padding:8px 11px;
+    border:1px solid #d7e8f1;
+    border-radius:999px;
+    background:#f3f9fc;
+    color:#315f79;
+    font-size:11px;
+    font-weight:750;
+}
+
+.tv-playlist-cta-v430{
+    display:inline-flex;
+    align-items:center;
+    gap:10px;
+    min-height:50px;
+    margin-top:24px;
+    padding:0 20px;
+    border-radius:15px;
+    background:linear-gradient(135deg,#e62117,#c81811);
+    color:#fff;
+    font-family:"Sora",Arial,sans-serif;
+    font-size:13px;
+    font-weight:850;
+    text-decoration:none;
+    box-shadow:0 12px 28px rgba(230,33,23,.20);
+    transition:transform .18s ease,box-shadow .18s ease;
+}
+
+.tv-playlist-cta-v430:hover,
+.tv-playlist-cta-v430:focus-visible{
+    transform:translateY(-2px);
+    box-shadow:0 16px 32px rgba(230,33,23,.27);
+}
+
+.tv-playlist-cta-v430 > span{
+    width:27px;
+    height:27px;
+    display:grid;
+    place-items:center;
+    border-radius:50%;
+    background:rgba(255,255,255,.18);
+    font-size:11px;
+}
+
+@media(max-width:900px){
+    .media-panel-v177[data-media-panel="tv"] .tv-playlist-showcase-v430{grid-template-columns:1fr}
+    .tv-playlist-cover-v430,
+    .tv-playlist-cover-v430 img{min-height:0;aspect-ratio:16/9}
+    .tv-playlist-copy-v430{padding:26px 24px 30px}
+}
+
+@media(max-width:560px){
+    .media-panel-v177[data-media-panel="tv"] .tv-playlist-showcase-v430{border-radius:22px;margin-bottom:22px}
+    .tv-playlist-copy-v430 h3{font-size:29px}
+    .tv-playlist-copy-v430 p{font-size:13.5px;line-height:1.62}
+    .tv-playlist-open-v430{right:14px;bottom:16px;font-size:10px}
+    .tv-playlist-play-v430{left:14px;bottom:14px;width:48px;height:48px}
+    .tv-playlist-cta-v430{width:100%;justify-content:center}
+}
+
+
+/* =========================================================
+   V431 - TV PROGRAMLARI VİTRİNİ
+   V430 oynatma listesi kartı YouTube panelinden TV Programları paneline
+   taşındı. Görsel tasarım korunmuştur.
+   ========================================================= */
+
+/* =========================================================
+   V432 - TV PROGRAMLARI TEMİZLİĞİ
+   Eski Bölüm 1 / Bölüm 2 video kartları kaldırıldı.
+   Oynatma listesi vitrini tek ana içerik olarak korunur.
+   ========================================================= */
+
+
+/* =========================================================
+   V434 - YOUTUBE SEKME: TEK SEÇİLİ VİDEO + KANALA YÖNLENDİRME
+   ========================================================= */
+.media-youtube-single-v434 .media-video-grid-single-v434{
+    display:grid !important;
+    grid-template-columns:minmax(0,760px) !important;
+    justify-content:center !important;
+    gap:0 !important;
+}
+
+.media-youtube-single-v434 .media-video-card-single-v434{
+    width:100% !important;
+    max-width:760px !important;
+    margin:0 auto !important;
+}
+
+.media-youtube-single-v434 .media-video-frame-v177{
+    aspect-ratio:16 / 9 !important;
+    min-height:0 !important;
+}
+
+.media-youtube-single-v434 .media-video-copy-v177{
+    padding:22px 24px 24px !important;
+}
+
+@media (max-width:760px){
+    .media-youtube-single-v434 .media-video-grid-single-v434{
+        grid-template-columns:1fr !important;
+    }
+
+    .media-youtube-single-v434 .media-video-copy-v177{
+        padding:18px 17px 20px !important;
+    }
+}
+
+
+/* V435 - Son güvenlik katmanı: Ağrı açıkken Medya sayfasını kapat. */
+body.pain-page-open #medyaPage,
+body.pain-page-open .media-page-v48,
+body.pain-page-open.media-page-open #medyaPage {
+    display:none !important;
+    visibility:hidden !important;
+    pointer-events:none !important;
+}
+
+body.pain-page-open #agriPage {
+    display:block !important;
+    visibility:visible !important;
+}
+
+
+/* =========================================================
+   V437 - HASTALIK ÖZEL İÇERİK BAŞLIKLARI / MİNİMAL GERİ KONTROLÜ
+   Tüm alt sekmeler Görsel 3'teki ortak koyu başlık düzenini kullanır.
+   ========================================================= */
+.as-special-view-v274 .as-special-head-v274,
+.treatment-special-view-v279 .as-special-head-v274 {
+    grid-template-columns: 48px minmax(0, 1fr) 86px !important;
+    gap: 22px !important;
+    min-height: 148px !important;
+    padding: 22px 28px !important;
+    border: 1px solid rgba(111, 210, 242, .18) !important;
+    border-radius: 32px !important;
+    background:
+        radial-gradient(circle at 86% 12%, rgba(24, 166, 207, .13), transparent 27%),
+        linear-gradient(135deg, #132b38 0%, #152832 54%, #112631 100%) !important;
+    box-shadow: 0 24px 58px rgba(14, 62, 88, .14) !important;
+}
+
+.as-special-view-v274 .as-special-back-v274,
+.treatment-special-view-v279 .as-special-back-v274 {
+    width: 48px !important;
+    height: 48px !important;
+    min-width: 48px !important;
+    min-height: 48px !important;
+    display: grid !important;
+    place-items: center !important;
+    padding: 0 !important;
+    gap: 0 !important;
+    border: 1px solid rgba(168, 232, 249, .26) !important;
+    border-radius: 15px !important;
+    background: linear-gradient(145deg, rgba(34, 134, 170, .72), rgba(25, 87, 115, .72)) !important;
+    color: #eafbff !important;
+    box-shadow: inset 0 1px 0 rgba(255,255,255,.12), 0 10px 24px rgba(4, 32, 46, .18) !important;
+    transition: transform .2s ease, border-color .2s ease, background .2s ease !important;
+}
+
+.as-special-view-v274 .as-special-back-v274 > span,
+.treatment-special-view-v279 .as-special-back-v274 > span {
+    width: auto !important;
+    height: auto !important;
+    display: block !important;
+    border-radius: 0 !important;
+    background: transparent !important;
+    color: #8be4ff !important;
+    font-size: 21px !important;
+    line-height: 1 !important;
+}
+
+.as-special-view-v274 .as-special-back-v274 strong,
+.treatment-special-view-v279 .as-special-back-v274 strong {
+    display: none !important;
+}
+
+.as-special-view-v274 .as-special-back-v274:hover,
+.as-special-view-v274 .as-special-back-v274:focus-visible,
+.treatment-special-view-v279 .as-special-back-v274:hover,
+.treatment-special-view-v279 .as-special-back-v274:focus-visible {
+    transform: translateY(-2px) !important;
+    border-color: rgba(139, 228, 255, .82) !important;
+    background: linear-gradient(145deg, rgba(30, 163, 205, .92), rgba(20, 103, 139, .92)) !important;
+    outline: none !important;
+}
+
+.as-special-view-v274 .as-special-title-v274,
+.treatment-special-view-v279 .as-special-title-v274 {
+    align-self: center !important;
+}
+
+.as-special-view-v274 .as-special-kicker-v274,
+.treatment-special-view-v279 .as-special-kicker-v274 {
+    margin-bottom: 7px !important;
+    color: #72dcff !important;
+    font-size: 11px !important;
+    letter-spacing: .16em !important;
+}
+
+.as-special-view-v274 .as-special-title-v274 h2,
+.treatment-special-view-v279 .as-special-title-v274 h2 {
+    font-size: clamp(31px, 3vw, 52px) !important;
+    line-height: 1.02 !important;
+    letter-spacing: -.045em !important;
+}
+
+.as-special-view-v274 .as-special-title-v274 p,
+.treatment-special-view-v279 .as-special-title-v274 p {
+    max-width: 920px !important;
+    margin-top: 9px !important;
+    color: #a8bfca !important;
+    font-size: 15px !important;
+}
+
+.as-special-view-v274 .as-special-index-v274,
+.treatment-special-view-v279 .as-special-index-v274 {
+    min-width: 86px !important;
+    width: 86px !important;
+    min-height: 86px !important;
+    padding-top: 18px !important;
+    border-radius: 25px !important;
+    background: rgba(255,255,255,.022) !important;
+}
+
+@media (max-width: 760px) {
+    .as-special-view-v274 .as-special-head-v274,
+    .treatment-special-view-v279 .as-special-head-v274 {
+        grid-template-columns: 42px minmax(0, 1fr) 62px !important;
+        gap: 12px !important;
+        min-height: 124px !important;
+        padding: 17px 15px !important;
+        border-radius: 23px !important;
+    }
+
+    .as-special-view-v274 .as-special-back-v274,
+    .treatment-special-view-v279 .as-special-back-v274 {
+        width: 42px !important;
+        height: 42px !important;
+        min-width: 42px !important;
+        min-height: 42px !important;
+        border-radius: 13px !important;
+    }
+
+    .as-special-view-v274 .as-special-title-v274 h2,
+    .treatment-special-view-v279 .as-special-title-v274 h2 {
+        font-size: clamp(23px, 7vw, 34px) !important;
+    }
+
+    .as-special-view-v274 .as-special-title-v274 p,
+    .treatment-special-view-v279 .as-special-title-v274 p {
+        display: none !important;
+    }
+
+    .as-special-view-v274 .as-special-kicker-v274,
+    .treatment-special-view-v279 .as-special-kicker-v274 {
+        overflow: hidden !important;
+        text-overflow: ellipsis !important;
+        white-space: nowrap !important;
+        font-size: 9px !important;
+    }
+
+    .as-special-view-v274 .as-special-index-v274,
+    .treatment-special-view-v279 .as-special-index-v274 {
+        min-width: 62px !important;
+        width: 62px !important;
+        min-height: 62px !important;
+        padding-top: 12px !important;
+        border-radius: 19px !important;
+    }
+
+    .as-special-view-v274 .as-special-index-v274 span,
+    .treatment-special-view-v279 .as-special-index-v274 span {
+        font-size: 24px !important;
+    }
+}
+
+
+/* =========================================================
+   V438 - ANKİLOZAN ANA VİTRİNİ VE 6 İÇERİK BUTONU GÖRÜNÜRLÜĞÜ
+   Eski sayfa durumları kalsa bile aktif Ankilozan ekranı boş kalmaz.
+   ========================================================= */
+body.ankilozan-page-open-v87 #ankilozanFaqSectionV85 {
+    display:block !important;
+    visibility:visible !important;
+    opacity:1 !important;
+    pointer-events:auto !important;
+}
+
+body.ankilozan-page-open-v87 #ankilozanFaqSectionV85 #asMainHeroV275,
+body.ankilozan-page-open-v87 #ankilozanFaqSectionV85 .as-main-hero-v275 {
+    display:block !important;
+    visibility:visible !important;
+    opacity:1 !important;
+}
+
+body.ankilozan-page-open-v87 #asLauncherV274 {
+    display:block !important;
+    visibility:visible !important;
+    opacity:1 !important;
+    pointer-events:auto !important;
+}
+
+body.ankilozan-page-open-v87 #asLauncherV274 .as-launcher-grid-v274 {
+    display:grid !important;
+    visibility:visible !important;
+    opacity:1 !important;
+}
+
+body.ankilozan-page-open-v87 #asLauncherV274 .as-launch-card-v274 {
+    display:grid !important;
+    visibility:visible !important;
+    opacity:1 !important;
+    pointer-events:auto !important;
+}
+
+@media (max-width:760px) {
+    body.ankilozan-page-open-v87 #ankilozanFaqSectionV85 #asMainHeroV275,
+    body.ankilozan-page-open-v87 #ankilozanFaqSectionV85 .as-main-hero-v275 {
+        display:flex !important;
+    }
+}
+
+
+/* =========================================================
+   V439 - ÖZEL HASTALIK SEKMELERİNDE MİNİMAL HIZLI GEÇİŞ
+   Büyük görsel kart paneli yerine sekmelerin altında kompakt açılır menü.
+   ========================================================= */
+body.as-special-open-v274 #globalDiseaseSwitcherV422,
+body.treatment-special-open-v279 #globalDiseaseSwitcherV422 {
+    display:none !important;
+}
+
+.special-disease-quick-v439 {
+    position:relative;
+    z-index:90;
+    display:flex;
+    justify-content:flex-end;
+    width:100%;
+    margin:10px 0 18px;
+}
+
+.special-disease-quick-toggle-v439 {
+    min-height:42px;
+    display:inline-flex;
+    align-items:center;
+    gap:9px;
+    padding:7px 9px 7px 12px;
+    border:1px solid rgba(43,150,190,.24);
+    border-radius:14px;
+    background:rgba(245,251,254,.96);
+    color:#174c67;
+    box-shadow:0 9px 22px rgba(18,77,108,.09);
+    cursor:pointer;
+    transition:transform .18s ease,border-color .18s ease,box-shadow .18s ease;
+}
+
+.special-disease-quick-toggle-v439:hover,
+.special-disease-quick-toggle-v439:focus-visible,
+.special-disease-quick-v439.is-open-v439 .special-disease-quick-toggle-v439 {
+    transform:translateY(-1px);
+    border-color:rgba(20,146,194,.55);
+    box-shadow:0 12px 27px rgba(18,77,108,.14);
+    outline:none;
+}
+
+.special-disease-quick-icon-v439,
+.special-disease-quick-state-v439 {
+    width:27px;
+    height:27px;
+    display:grid;
+    place-items:center;
+    flex:0 0 auto;
+    border-radius:9px;
+    background:linear-gradient(145deg,#167da7,#1ca8c5);
+    color:#fff;
+    font-size:13px;
+    font-weight:900;
+}
+
+.special-disease-quick-state-v439 {
+    background:#e9f6fb;
+    color:#15799f;
+    transition:transform .2s ease;
+}
+
+.special-disease-quick-v439.is-open-v439 .special-disease-quick-state-v439 {
+    transform:rotate(45deg);
+}
+
+.special-disease-quick-copy-v439 {
+    display:flex;
+    flex-direction:column;
+    align-items:flex-start;
+    gap:1px;
+    text-align:left;
+}
+
+.special-disease-quick-copy-v439 small {
+    color:#5f8497;
+    font-family:var(--font-body-v429,Inter,Arial,sans-serif)!important;
+    font-size:9px;
+    font-weight:800;
+    letter-spacing:.1em;
+    line-height:1.1;
+}
+
+.special-disease-quick-copy-v439 strong {
+    color:#173f55;
+    font-size:12px;
+    font-weight:850;
+    line-height:1.2;
+}
+
+.special-disease-quick-panel-v439 {
+    position:absolute;
+    top:calc(100% + 8px);
+    right:0;
+    width:min(390px,calc(100vw - 32px));
+    display:grid;
+    grid-template-columns:repeat(2,minmax(0,1fr));
+    gap:7px;
+    padding:10px;
+    border:1px solid rgba(49,139,177,.2);
+    border-radius:17px;
+    background:rgba(255,255,255,.98);
+    box-shadow:0 22px 52px rgba(10,58,84,.2);
+    backdrop-filter:blur(18px);
+}
+
+.special-disease-quick-panel-v439[hidden] {
+    display:none !important;
+}
+
+.special-disease-quick-item-v439 {
+    min-height:43px;
+    display:grid;
+    grid-template-columns:29px minmax(0,1fr);
+    align-items:center;
+    gap:8px;
+    padding:7px 9px;
+    border:1px solid #dcecf3;
+    border-radius:11px;
+    background:#f7fbfd;
+    color:#234e64;
+    text-align:left;
+    cursor:pointer;
+    transition:background .16s ease,border-color .16s ease,transform .16s ease;
+}
+
+.special-disease-quick-item-v439:hover,
+.special-disease-quick-item-v439:focus-visible {
+    transform:translateY(-1px);
+    border-color:#7bcfe5;
+    background:#edf9fc;
+    outline:none;
+}
+
+.special-disease-quick-item-v439.is-active {
+    border-color:#35b8d5;
+    background:linear-gradient(135deg,#e9fafe,#f6fdff);
+    color:#0c6688;
+}
+
+.special-disease-quick-code-v439 {
+    width:29px;
+    height:29px;
+    display:grid;
+    place-items:center;
+    border-radius:8px;
+    background:#e5f4f9;
+    color:#147da2;
+    font-size:9px;
+    font-weight:900;
+}
+
+.special-disease-quick-item-v439.is-active .special-disease-quick-code-v439 {
+    background:linear-gradient(145deg,#147fa9,#1ba8c5);
+    color:#fff;
+}
+
+.special-disease-quick-item-v439 strong {
+    min-width:0;
+    overflow:hidden;
+    color:inherit;
+    font-size:11px;
+    font-weight:800;
+    line-height:1.25;
+    text-overflow:ellipsis;
+    white-space:nowrap;
+}
+
+@media (max-width:620px) {
+    .special-disease-quick-v439 {
+        margin:8px 0 14px;
+    }
+
+    .special-disease-quick-toggle-v439 {
+        min-height:39px;
+        padding:6px 7px 6px 9px;
+    }
+
+    .special-disease-quick-copy-v439 small {
+        display:none;
+    }
+
+    .special-disease-quick-copy-v439 strong {
+        font-size:11px;
+    }
+
+    .special-disease-quick-panel-v439 {
+        width:min(340px,calc(100vw - 26px));
+        grid-template-columns:1fr;
+        max-height:310px;
+        overflow:auto;
     }
 }
