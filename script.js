@@ -6,6 +6,44 @@
 // V205 - Üst menü yalnızca CSS ile kompakt/hizalı güncellendi; mevcut animasyonlar korunur.
 // V204 - Ana sayfa üst menü beyaz tema; mevcut animasyon ve yönlendirmeler korunur
 // V203 - Romatoid Artrit hero konu başlıkları 8 başlığa tamamlandı
+
+// =========================================================
+// V480 - Hastalık SSS: birbirinden bağımsız iki akordeon sütunu
+// Soru kartları sırayla sol/sağ sütuna ayrılır. Mobilde görsel sıra korunur.
+// =========================================================
+function organizeDiseaseFaqV480(root) {
+    if (!root) return;
+    root.querySelectorAll('.ankilozan-faq-list-v85:not(.faq-independent-v480)').forEach((list) => {
+        const items = Array.from(list.children).filter(el => el.classList.contains('ankilozan-faq-item-v85'));
+        if (!items.length) return;
+
+        const left = document.createElement('div');
+        const right = document.createElement('div');
+        left.className = 'faq-column-v480 faq-column-left-v480';
+        right.className = 'faq-column-v480 faq-column-right-v480';
+
+        items.forEach((item, index) => {
+            const button = item.querySelector('.ankilozan-faq-question-v85');
+            const answer = item.querySelector('.ankilozan-faq-answer-v85');
+            const answerId = 'faq-answer-v480-' + (++organizeDiseaseFaqV480.lastId);
+            item.classList.remove('is-open');
+            item.style.setProperty('--faq-order-v480', index);
+            if (button) {
+                button.setAttribute('aria-expanded', 'false');
+                button.setAttribute('aria-controls', answerId);
+            }
+            if (answer) {
+                answer.id = answerId;
+                answer.hidden = true;
+            }
+            (index % 2 === 0 ? left : right).appendChild(item);
+        });
+        list.replaceChildren(left, right);
+        list.classList.add('faq-independent-v480');
+    });
+}
+organizeDiseaseFaqV480.lastId = 0;
+
 const menuButton = document.getElementById("menuButton");
 const navbar = document.getElementById("navbar");
 const siteHeader = document.getElementById("siteHeader");
@@ -1952,16 +1990,8 @@ if (
 
 (function () {
     const updateTreatmentNavState = () => {
-        if (!document.body.classList.contains("treatment-page-open")) {
-            document.body.classList.remove("treatment-nav-scrolled");
-            return;
-        }
-
-        if (window.scrollY > 45) {
-            document.body.classList.add("treatment-nav-scrolled");
-        } else {
-            document.body.classList.remove("treatment-nav-scrolled");
-        }
+        /* V463: Eski yüzen/çerçeveli menü modu hiçbir sayfada açılmaz. */
+        document.body.classList.remove("treatment-nav-scrolled");
     };
 
     window.addEventListener("scroll", updateTreatmentNavState, {
@@ -1984,6 +2014,322 @@ if (
         });
     }
 })();
+
+
+// =========================================================
+// V463 - ÖZEL HASTALIK SAYFALARINDA GÜVENLİ MENÜ KAYDIRMASI
+// Menü DOM içinde taşınmaz; böylece bağlantılar ve sayfa kaydırması
+// bozulmaz. Sabit katmanlı hastalık görünümü kaydırıldığında menü de
+// aynı miktarda yukarı çıkar ve ekranı takip etmez.
+// =========================================================
+(function () {
+    const nav = document.getElementById('globalConnectedNavV402');
+    const body = document.body;
+    const asView = document.getElementById('asSpecialViewV274');
+    const treatmentView = document.getElementById('treatmentSpecialViewV279');
+    const views = [asView, treatmentView].filter(Boolean);
+    let frame = 0;
+
+    if (!nav || !views.length) return;
+
+    function activeViewV463() {
+        if (body.classList.contains('as-special-open-v274')) return asView;
+        if (body.classList.contains('treatment-special-open-v279')) return treatmentView;
+        return null;
+    }
+
+    function syncNavScrollV463() {
+        body.classList.remove('treatment-nav-scrolled');
+
+        const activeView = activeViewV463();
+        if (!activeView) {
+            nav.classList.remove('is-special-scroll-out-v463', 'is-special-scroll-hidden-v463');
+            nav.style.removeProperty('--special-nav-shift-v463');
+            return;
+        }
+
+        /* V464: Hastalık sayfası normal belge akışındaysa pencere zaten
+           menüyü doğal biçimde kaydırır; ayrıca transform uygulanmaz. */
+        if (window.getComputedStyle(activeView).position !== 'fixed') {
+            nav.classList.remove('is-special-scroll-out-v463', 'is-special-scroll-hidden-v463');
+            nav.style.removeProperty('--special-nav-shift-v463');
+            return;
+        }
+
+        const navHeight = Math.max(1, Math.ceil(nav.offsetHeight));
+        const hideDistance = navHeight + 24;
+        const shift = Math.min(Math.max(0, activeView.scrollTop), hideDistance);
+
+        nav.classList.add('is-special-scroll-out-v463');
+        nav.classList.toggle('is-special-scroll-hidden-v463', shift >= hideDistance - 1);
+        nav.style.setProperty('--special-nav-shift-v463', `${shift}px`);
+    }
+
+    function scheduleNavScrollV463() {
+        window.cancelAnimationFrame(frame);
+        frame = window.requestAnimationFrame(syncNavScrollV463);
+    }
+
+    views.forEach((view) => {
+        view.addEventListener('scroll', scheduleNavScrollV463, { passive:true });
+    });
+
+    new MutationObserver(scheduleNavScrollV463).observe(body, {
+        attributes:true,
+        attributeFilter:['class']
+    });
+
+    window.addEventListener('resize', scheduleNavScrollV463, { passive:true });
+    window.addEventListener('popstate', scheduleNavScrollV463);
+    scheduleNavScrollV463();
+})();
+
+
+// =========================================================
+// V461 - HASTALIK BAŞLIĞI / KONTROL GRUBU OTOMATİK HİZASI
+// Başlık uzunluğunu sınıflandırır ve özel görünümü, ortak üst
+// menüde en aşağıda kalan butonun hemen altından başlatır.
+// =========================================================
+(function () {
+    const root = document.documentElement;
+    const body = document.body;
+    const nav = document.getElementById('globalConnectedNavV402');
+    const viewIds = ['asSpecialViewV274', 'treatmentSpecialViewV279'];
+    let frame = 0;
+
+    function classifyTitleV461(view) {
+        const header = view?.querySelector('.as-special-head-v274');
+        const title = header?.querySelector('.as-special-title-v274 h2');
+        if (!header || !title) return;
+
+        const length = (title.textContent || '').replace(/\s+/g, ' ').trim().length;
+        header.classList.toggle('is-title-long-v461', length >= 43 && length < 56);
+        header.classList.toggle('is-title-xlong-v461', length >= 56);
+    }
+
+    function updateSafeTopV461() {
+        if (!nav) return;
+
+        const specialOpen = body.classList.contains('as-special-open-v274') ||
+            body.classList.contains('treatment-special-open-v279');
+        if (!specialOpen) return;
+
+        const elements = [nav, ...nav.querySelectorAll('.global-connected-item-v402')];
+        const visibleBottoms = elements.map((element) => element.getBoundingClientRect().bottom)
+            .filter((bottom) => Number.isFinite(bottom) && bottom > 0);
+        const lowestVisiblePoint = visibleBottoms.length ? Math.max(...visibleBottoms) : 0;
+        const safeTop = Math.max(8, Math.min(window.innerHeight * .42, Math.ceil(lowestVisiblePoint + 10)));
+        root.style.setProperty('--disease-special-safe-top-v461', `${safeTop}px`);
+    }
+
+    function syncDiseaseHeaderV461() {
+        viewIds.forEach((id) => classifyTitleV461(document.getElementById(id)));
+        updateSafeTopV461();
+    }
+
+    function scheduleSyncV461() {
+        window.cancelAnimationFrame(frame);
+        frame = window.requestAnimationFrame(() => {
+            syncDiseaseHeaderV461();
+            window.requestAnimationFrame(syncDiseaseHeaderV461);
+        });
+    }
+
+    viewIds.forEach((id) => {
+        const view = document.getElementById(id);
+        const title = view?.querySelector('.as-special-title-v274 h2');
+        if (!title) return;
+        new MutationObserver(scheduleSyncV461).observe(title, {
+            childList:true,
+            characterData:true,
+            subtree:true
+        });
+    });
+
+    new MutationObserver(scheduleSyncV461).observe(body, {
+        attributes:true,
+        attributeFilter:['class']
+    });
+
+    if ('ResizeObserver' in window && nav) {
+        new ResizeObserver(scheduleSyncV461).observe(nav);
+    }
+
+    window.addEventListener('resize', scheduleSyncV461, { passive:true });
+    window.addEventListener('scroll', scheduleSyncV461, { passive:true });
+    document.addEventListener('click', scheduleSyncV461, true);
+    scheduleSyncV461();
+})();
+
+// =========================================================
+// V450 - Alt sayfa ortak menüsünü normal belge akışında tut.
+// V451 - Normal akıştaki menünün içerik katmanının altında kalması engellendi.
+// V452 - Tedavi Alanları ve tüm hastalık sayfalarında ikonlu üst butonlar aşağı hizalandı.
+// V453 - Özel hastalık başlığı ile ortak üst menü arasındaki gereksiz boş bant kapatıldı.
+// CSS'nin yanında sınıf tabanlı güvence kullanılır; ana sayfaya
+// dönüldüğünde menünün mevcut hero yerleşimi aynen geri gelir.
+// =========================================================
+(function () {
+    const nav = document.getElementById('globalConnectedNavV402');
+    if (!nav) return;
+
+    const subpageClasses = [
+        'treatment-page-open', 'pain-page-open', 'media-page-open',
+        'about-page-open', 'general-health-detail-open-v75',
+        'treatment-detail-open-v71', 'ankilozan-page-open-v87',
+        'romatoid-page-open-v198', 'condition-disease-page-open-v246',
+        'pain-full-detail-open-v215', 'legal-page-open-v56',
+        'info-guide-open-v143', 'device-detail-page-open-v157',
+        'site-feedback-open-v332'
+    ];
+
+    function syncMenuFlowV450() {
+        const isSubpage = document.body.classList.contains('global-subpage-open-v405') ||
+            subpageClasses.some(className => document.body.classList.contains(className));
+        nav.classList.toggle('is-flow-v450', isSubpage);
+    }
+
+    const observer = new MutationObserver(syncMenuFlowV450);
+    observer.observe(document.body, { attributes:true, attributeFilter:['class'] });
+    window.addEventListener('popstate', syncMenuFlowV450);
+    document.addEventListener('click', () => window.requestAnimationFrame(syncMenuFlowV450), true);
+    syncMenuFlowV450();
+})();
+
+// V449 - Alt sayfalardaki ortak üst menü kaydırmada ekranı takip etmez.
+
+// =========================================================
+// V446 - HASTALIK SAYFALARINDA "KİMLERDE GÖRÜLÜR?" KALDIRILDI
+// Yalnızca tedavi alanlarındaki AS, RA ve altı hastalık sayfasını etkiler.
+// =========================================================
+(function () {
+    const diseaseAudienceSelectorsV446 = [
+        '[data-ank-topic-v197="kimlerde"]',
+        '[data-ra-hero-topic-v202="kimlerde"]',
+        '[data-condition-hero-topic-v309="kimlerde"]',
+        '[data-ank-detail-v196="kimlerde"]',
+        '[data-ank-panel-v196="kimlerde"]',
+        '[data-ra-detail-v198="kimlerde"]',
+        '[data-ra-panel-v198="kimlerde"]',
+        '[data-condition-topic-v249="kimlerde"]'
+    ];
+
+    document
+        .querySelectorAll(diseaseAudienceSelectorsV446.join(','))
+        .forEach((element) => element.remove());
+})();
+
+// =========================================================
+// V447 - HASTALIĞA ÖZEL OSTEOPATİ VE DOĞU TIBBI BAKIŞI
+// "Hastalığı Tanıyın" alanında üçüncü akordeon olarak kullanılır.
+// =========================================================
+(function () {
+    const perspectiveContentV447 = {
+        'ankilozan-spondilit': {
+            osteopati: 'Ankilozan spondilitte osteopatik bakış; omurga, göğüs kafesi, pelvis ve çevre yumuşak dokuların birbiriyle olan hareket ilişkisini değerlendirir. Amaç hastalığı ortadan kaldırmak değil; romatoloji takibi ve kişiye uygun egzersiz planına eşlik ederek hareket konforunu, postürü ve solunum mekaniğini desteklemektir.',
+            dogu: 'Doğu tıbbı bakışında ağrı ve sertliğin yanında uyku, sindirim, stres yükü ve kişinin genel enerji düzeni birlikte ele alınır. Bu yaklaşım tanının veya temel romatoloji tedavisinin yerine geçmez; hekim gözetimindeki bütüncül planın destekleyici bir parçası olarak değerlendirilir.'
+        },
+        'romatoid-artrit': {
+            osteopati: 'Romatoid artritte osteopatik bakış; yalnız ağrılı ekleme değil, eklemin çevresindeki yumuşak dokulara, yük aktarımına ve günlük hareket zincirine de odaklanır. Uygulama planı hastalığın aktif dönemine göre dikkatle uyarlanır ve romatoloji tedavisinin yerine değil, hareket rahatlığını desteklemek amacıyla değerlendirilir.',
+            dogu: 'Doğu tıbbı yaklaşımında eklem yakınmaları; uyku, sindirim, stres, beslenme düzeni ve genel dayanıklılık ile birlikte yorumlanır. Amaç kişisel örüntüyü anlamaktır; ilaçların kesilmesi veya değiştirilmesi anlamına gelmez ve tüm destekler hekim kontrolünde planlanmalıdır.'
+        },
+        'bas-agrisi-migren': {
+            osteopati: 'Baş ağrısı ve migrende osteopatik bakış; boyun, çene, göğüs kafesi, solunum paterni ve omuz kuşağındaki mekanik ilişkileri değerlendirir. Her baş ağrısı kas-iskelet sistemi kaynaklı değildir; yeni, ani veya nörolojik bulgularla seyreden yakınmalarda öncelik tıbbi değerlendirmedir.',
+            dogu: 'Doğu tıbbı bakışında atakların zamanlaması; uyku, öğün düzeni, sıvı alımı, sindirim, stres ve kişisel tetikleyicilerle birlikte incelenir. Bu değerlendirme migren tanısı ve hekim tarafından planlanan tedavinin yerine geçmez; tetikleyici farkındalığını destekleyen tamamlayıcı bir çerçevedir.'
+        },
+        'bel-sirt-agrisi': {
+            osteopati: 'Bel ve sırt ağrısında osteopatik bakış; omurga, pelvis, kalça, kaburgalar ve çevre kasların birlikte nasıl hareket ettiğini değerlendirir. Hedef yalnız ağrılı noktaya müdahale etmek değil, yük aktarımını ve hareket kalitesini etkileyen ilişkileri belirleyerek kişiye uygun hareket planını desteklemektir.',
+            dogu: 'Doğu tıbbı yaklaşımında ağrının gün içindeki değişimi; uyku, stres, sindirim, hareketsizlik ve genel yaşam ritmiyle birlikte ele alınır. Bu bakış, kırmızı bayrakların ve yapısal nedenlerin tıbbi olarak değerlendirilmesinin ardından destekleyici planın bir parçası olabilir.'
+        },
+        'fibromiyalji': {
+            osteopati: 'Fibromiyaljide osteopatik bakış; tek bir ağrı noktasından çok solunum, postür, hareket toleransı ve yaygın doku hassasiyetini birlikte değerlendirir. Nazik ve kişiye uyarlanmış yaklaşımın amacı belirtileri zorlamak değil, güvenli hareketi ve beden farkındalığını desteklemektir.',
+            dogu: 'Doğu tıbbı bakışında yaygın ağrı; uyku kalitesi, yorgunluk, sindirim, stres yükü ve günlük enerji dalgalanmalarıyla birlikte yorumlanır. Destekleyici uygulamalar tek başına tedavi değildir; düzenli hareket, uyku düzeni ve hekim tarafından planlanan tedaviyle birlikte ele alınmalıdır.'
+        },
+        'huzursuz-bacak': {
+            osteopati: 'Huzursuz bacak yakınmalarında osteopatik bakış; bel-pelvis bölgesi, alt ekstremite hareketliliği, kas gerginliği ve günlük yüklenme alışkanlıklarını değerlendirir. Demir eksikliği, ilaçlar veya nörolojik nedenler gibi tıbbi başlıklar ayrıca araştırılmalı; manuel yaklaşım yalnız uygun kişilerde destekleyici olarak düşünülmelidir.',
+            dogu: 'Doğu tıbbı yaklaşımında gece artan yakınmalar; uyku ritmi, beslenme, sindirim, stres ve gün içindeki hareket düzeniyle birlikte ele alınır. Amaç kişisel örüntüyü görmek ve yaşam düzenini desteklemektir; gerekli tetkik ve tedavilerin yerine geçmez.'
+        },
+        'iltihabi-bagirsak': {
+            osteopati: 'İltihabi bağırsak hastalıklarında osteopatik bakış; diyafram, karın duvarı, göğüs kafesi, omurga ve pelvis çevresindeki hareket ilişkilerini değerlendirir. Aktif alevlenmede öncelik gastroenteroloji takibidir; uygun dönemde planlanan destekleyici yaklaşım nefes ve hareket konforuna odaklanır.',
+            dogu: 'Doğu tıbbı bakışında bağırsak yakınmaları; öğün düzeni, uyku, stres, dışkılama örüntüsü ve kişinin genel dayanıklılığıyla birlikte değerlendirilir. Kısıtlayıcı diyetler veya bitkisel ürünler gelişigüzel kullanılmamalı; temel tıbbi tedavi değiştirilmeden hekim ve diyetisyen görüşü alınmalıdır.'
+        },
+        'kronik-yorgunluk': {
+            osteopati: 'Kronik yorgunlukta osteopatik bakış; solunum mekaniği, göğüs kafesi hareketi, postür ve kişinin hareket toleransını birlikte değerlendirir. Yorgunluğun altında kansızlık, tiroid, enfeksiyon, uyku bozukluğu veya başka bir hastalık bulunabileceği için destekleyici uygulamalardan önce tıbbi nedenler araştırılmalıdır.',
+            dogu: 'Doğu tıbbı yaklaşımında enerji düşüklüğü; uyku, beslenme, sindirim, stres ve gün içindeki ritimle birlikte ele alınır. Bu çerçeve günlük yaşam düzenini anlamaya yardımcı olabilir; tanı koymaz ve nedeni belirlemeye yönelik tıbbi incelemenin yerine geçmez.'
+        }
+    };
+
+    window.createDiseasePerspectivePanelV447 = function (diseaseKey, diseaseName) {
+        const content = perspectiveContentV447[diseaseKey] || {
+            osteopati: `${diseaseName} için osteopatik bakış; hareket sistemi, çevre dokular, postür ve günlük yüklenme ilişkilerini birlikte değerlendirir. Bu yaklaşım temel tıbbi tanı ve tedavinin yerine geçmez; uygun kişilerde hareket konforunu destekleyen tamamlayıcı bir çerçeve olarak ele alınır.`,
+            dogu: `Doğu tıbbı bakışında ${diseaseName.toLocaleLowerCase('tr-TR')}; uyku, sindirim, beslenme, stres ve genel yaşam ritmiyle birlikte değerlendirilir. Destekleyici uygulamalar kişiye özel planlanmalı ve mevcut tıbbi tedavi hekim görüşü olmadan değiştirilmemelidir.`
+        };
+
+        const panel = document.createElement('article');
+        panel.className = 'ankilozan-detail-panel-v196 as-cloned-detail-v274 is-active disease-perspective-panel-v447';
+        panel.innerHTML = `
+            <div class="ankilozan-detail-panel-copy-v196">
+                <span class="ankilozan-detail-kicker-v196">BÜTÜNCÜL YAKLAŞIM</span>
+                <h3>Osteopatiye Bakışı ve Doğu Tıbbı</h3>
+                <p>${diseaseName} için iki destekleyici yaklaşımın temel değerlendirme çerçevesi.</p>
+            </div>
+            <div class="disease-perspective-grid-v447">
+                <article class="disease-perspective-card-v447 is-osteopathy-v447">
+                    <span>01</span>
+                    <div><h4>Osteopatiye Bakışı</h4><p>${content.osteopati}</p></div>
+                </article>
+                <article class="disease-perspective-card-v447 is-eastern-v447">
+                    <span>02</span>
+                    <div><h4>Doğu Tıbbı</h4><p>${content.dogu}</p></div>
+                </article>
+            </div>
+            <div class="ankilozan-detail-note-v196 disease-perspective-note-v447"><strong>Önemli:</strong> Bu bölüm genel bilgilendirme amaçlıdır; tanı ve tedavi kararı hekim değerlendirmesiyle verilmelidir.</div>
+        `;
+        return panel;
+    };
+})();
+
+
+// =========================================================
+// V444 - HIZLI HASTALIK MENÜSİNİ ÖZEL BAŞLIĞA TAŞI
+// V443 içerik + sistemi ve üstteki altı bölüm butonu korunur.
+// =========================================================
+(function () {
+    const viewIdsV444 = ['asSpecialViewV274', 'treatmentSpecialViewV279'];
+
+    function placeQuickMenuV444(view) {
+        const header = view?.querySelector('.as-special-head-v274');
+        const menu = view?.querySelector('.special-disease-quick-v439');
+        if (!header || !menu) return;
+        const controlsV448 = header.querySelector('.special-head-controls-v448');
+        const menuTarget = controlsV448 || header;
+        if (menu.parentElement !== menuTarget) menuTarget.appendChild(menu);
+        view.classList.add('quick-menu-in-head-v444');
+    }
+
+    function syncQuickMenusV444() {
+        viewIdsV444.forEach((id) => placeQuickMenuV444(document.getElementById(id)));
+    }
+
+    syncQuickMenusV444();
+    window.setTimeout(syncQuickMenusV444, 0);
+    window.setTimeout(syncQuickMenusV444, 180);
+
+    const observerV444 = new MutationObserver(syncQuickMenusV444);
+    observerV444.observe(document.body, { attributes:true, attributeFilter:['class'] });
+
+    document.addEventListener('click', (event) => {
+        if (!event.target.closest(
+            '[data-as-special-target-v274], [data-treatment-special-target-v279], ' +
+            '[data-as-special-tab-v274], [data-treatment-special-tab-v279]'
+        )) return;
+        window.setTimeout(syncQuickMenusV444, 0);
+    }, true);
+
+    window.addEventListener('popstate', syncQuickMenusV444);
+})();
+
+// V444 - “Diğer hastalıklara geç” başlığın sağ alanında; ana menü ikon ve yazıları hizalıdır.
 
 
 // =========================================================
@@ -2027,6 +2373,7 @@ if (
         const toggle = menu?.querySelector('.special-disease-quick-toggle-v439');
         const panel = menu?.querySelector('.special-disease-quick-panel-v439');
         if (!menu || !toggle || !panel) return;
+        if (menu.tagName === 'DETAILS') menu.open = false;
         menu.classList.remove('is-open-v439');
         toggle.setAttribute('aria-expanded', 'false');
         panel.hidden = true;
@@ -2048,19 +2395,19 @@ if (
 
         let menu = config.view.querySelector('.special-disease-quick-v439');
         if (!menu) {
-            menu = document.createElement('div');
+            menu = document.createElement('details');
             menu.className = 'special-disease-quick-v439';
             const panelId = `specialDiseaseQuickPanelV439-${index}`;
             menu.innerHTML = `
-                <button type="button" class="special-disease-quick-toggle-v439" aria-expanded="false" aria-controls="${panelId}">
+                <summary class="special-disease-quick-toggle-v439" aria-expanded="false" aria-controls="${panelId}">
                     <span class="special-disease-quick-icon-v439" aria-hidden="true">⌘</span>
                     <span class="special-disease-quick-copy-v439">
                         <small>TEDAVİ ALANLARI</small>
                         <strong>Diğer hastalıklara geç</strong>
                     </span>
                     <span class="special-disease-quick-state-v439" aria-hidden="true">＋</span>
-                </button>
-                <div class="special-disease-quick-panel-v439" id="${panelId}" role="tablist" aria-label="Diğer hastalıklara hızlı ulaş" hidden>
+                </summary>
+                <div class="special-disease-quick-panel-v439" id="${panelId}" role="tablist" aria-label="Diğer hastalıklara hızlı ulaş">
                     ${diseasesV439.map(([key, code, title]) => `
                         <button type="button" class="special-disease-quick-item-v439" data-disease-switch-v250="${key}" role="tab" aria-selected="false">
                             <span class="special-disease-quick-code-v439">${code}</span>
@@ -2073,26 +2420,32 @@ if (
         const toggle = menu.querySelector('.special-disease-quick-toggle-v439');
         const panel = menu.querySelector('.special-disease-quick-panel-v439');
 
-        toggle.onclick = event => {
-            event.preventDefault();
-            event.stopPropagation();
-            const willOpen = !menu.classList.contains('is-open-v439');
-            document.querySelectorAll('.special-disease-quick-v439.is-open-v439').forEach(closeMenuV439);
-            syncActiveV439(config, menu);
-            menu.classList.toggle('is-open-v439', willOpen);
-            toggle.setAttribute('aria-expanded', String(willOpen));
-            panel.hidden = !willOpen;
-        };
+        if (menu.dataset.quickMenuBoundV468 !== 'true') {
+            menu.dataset.quickMenuBoundV468 = 'true';
 
-        panel.addEventListener('click', event => {
-            const button = event.target.closest('[data-disease-switch-v250]');
-            if (!button) return;
+            menu.addEventListener('toggle', () => {
+                const isOpen = menu.open;
+                if (isOpen) {
+                    document.querySelectorAll('.special-disease-quick-v439[open]').forEach((openMenu) => {
+                        if (openMenu !== menu) closeMenuV439(openMenu);
+                    });
+                    syncActiveV439(config, menu);
+                }
+                menu.classList.toggle('is-open-v439', isOpen);
+                toggle.setAttribute('aria-expanded', String(isOpen));
+                panel.hidden = !isOpen;
+            });
 
-            document.body.classList.remove('as-special-open-v274', 'treatment-special-open-v279');
-            document.getElementById('asSpecialViewV274')?.setAttribute('aria-hidden', 'true');
-            document.getElementById('treatmentSpecialViewV279')?.setAttribute('aria-hidden', 'true');
-            closeMenuV439(menu);
-        });
+            panel.addEventListener('click', event => {
+                const button = event.target.closest('[data-disease-switch-v250]');
+                if (!button) return;
+
+                document.body.classList.remove('as-special-open-v274', 'treatment-special-open-v279');
+                document.getElementById('asSpecialViewV274')?.setAttribute('aria-hidden', 'true');
+                document.getElementById('treatmentSpecialViewV279')?.setAttribute('aria-hidden', 'true');
+                closeMenuV439(menu);
+            });
+        }
 
         syncActiveV439(config, menu);
     }
@@ -2544,8 +2897,16 @@ if (
 
         document.body.classList.remove(
             "treatment-page-open",
-            "treatment-nav-scrolled"
+            "treatment-nav-scrolled",
+            "general-health-detail-open-v75"
         );
+
+        // V489: Ağrı açılırken önceki Detoks/Beslenme/Takviye ekranını kapat.
+        // Yalnızca aktif sayfayı kapatır; filtreleri ve tarifleri silmez.
+        const previousHealthPageV489 = document.getElementById("generalHealthDetailPageV75");
+        if (previousHealthPageV489) {
+            previousHealthPageV489.setAttribute("aria-hidden", "true");
+        }
 
         if (typeof treatmentPage !== "undefined" && treatmentPage) {
             treatmentPage.setAttribute("aria-hidden", "true");
@@ -4396,20 +4757,17 @@ window.addEventListener("load", async () => {
 
 
 // =========================================================
-// V401 - ANA HERO OTOMATIK GEÇİŞ
-// Her 5 saniyede bir sonraki slide'a geçer.
-// Manuel ileri/geri tıklamasında sayaç yeniden 5 saniyeden başlar.
+// V454 - ANA SAYFA HERO: YALNIZCA MANUEL SAĞ/SOL GEÇİŞ
+// Otomatik slayt değiştirme kapalıdır. Ok butonları çalışmaya devam eder.
 // =========================================================
 (function () {
     const slider = document.getElementById("heroSliderV86");
     if (!slider) return;
 
-    const slides = Array.from(slider.querySelectorAll('.hero-slide-v86'));
+    const slides = Array.from(slider.querySelectorAll(".hero-slide-v86"));
     if (!slides.length) return;
 
-    const AUTO_DELAY_V401 = 10000;
-    let activeIndex = Math.max(0, slides.findIndex(slide => slide.classList.contains('is-active')));
-    let autoTimerV401 = null;
+    let activeIndex = Math.max(0, slides.findIndex(slide => slide.classList.contains("is-active")));
 
     function activateByIndex(index) {
         const normalized = (index + slides.length) % slides.length;
@@ -4417,59 +4775,31 @@ window.addEventListener("load", async () => {
 
         slides.forEach((slide, i) => {
             const active = i === normalized;
-            slide.classList.toggle('is-active', active);
-            if (active) slide.removeAttribute('aria-hidden');
-            else slide.setAttribute('aria-hidden', 'true');
+            slide.classList.toggle("is-active", active);
+            if (active) slide.removeAttribute("aria-hidden");
+            else slide.setAttribute("aria-hidden", "true");
         });
     }
 
-    function stopAutoV401() {
-        if (!autoTimerV401) return;
-        window.clearInterval(autoTimerV401);
-        autoTimerV401 = null;
-    }
-
-    function startAutoV401() {
-        stopAutoV401();
-        if (slides.length < 2 || document.hidden) return;
-
-        autoTimerV401 = window.setInterval(() => {
-            activateByIndex(activeIndex + 1);
-        }, AUTO_DELAY_V401);
-    }
-
-    function restartAutoV401() {
-        startAutoV401();
-    }
-
-    slider.addEventListener('click', event => {
-        const next = event.target.closest('[data-hero-next-v309]');
-        if (next) {
+    slider.addEventListener("click", event => {
+        const next = event.target.closest("[data-hero-next-v309]");
+        if (next && slider.contains(next)) {
             event.preventDefault();
             event.stopPropagation();
             activateByIndex(activeIndex + 1);
-            restartAutoV401();
             return;
         }
 
-        const prev = event.target.closest('[data-hero-prev-v309]');
-        if (prev) {
+        const prev = event.target.closest("[data-hero-prev-v309]");
+        if (prev && slider.contains(prev)) {
             event.preventDefault();
             event.stopPropagation();
             activateByIndex(activeIndex - 1);
-            restartAutoV401();
         }
     });
 
-    document.addEventListener('visibilitychange', () => {
-        if (document.hidden) stopAutoV401();
-        else startAutoV401();
-    });
-
     activateByIndex(activeIndex);
-    startAutoV401();
 })();
-
 
 // =========================================================
 // V309 - ANA HERO'DAKİ 6 DİĞER HASTALIĞIN DETAY SAYFASINA GEÇİŞİ
@@ -4603,11 +4933,13 @@ window.addEventListener("load", async () => {
             window.updateDiseaseSwitcherV250('as');
         }
 
-        history.pushState(
-            { page: "ankilozan-spondilit" },
-            "",
-            "#ankilozan-spondilit"
-        );
+        if (options.pushHistory !== false) {
+            history.pushState(
+                { page: "ankilozan-spondilit" },
+                "",
+                "#ankilozan-spondilit"
+            );
+        }
 
         if (!options.skipScroll) {
             window.scrollTo({
@@ -5858,6 +6190,13 @@ window.addEventListener("load", async () => {
                 active ? "false" : "true"
             );
         });
+
+        // V459: Eğitim kartları uzunsa sayfanın tamamı doğal biçimde kaydırılsın.
+        // Diğer Hakkımda sekmelerinin yerleşimini değiştirmiyoruz.
+        document.body.classList.toggle(
+            "about-education-scroll-v459",
+            name === "education"
+        );
     }
 
     buttons.forEach((button, index) => {
@@ -8728,7 +9067,6 @@ window.addEventListener("load", async () => {
         'neden': ['NEDEN OLUR?', 'Neden Olur?'],
         'belirtiler': ['BELİRTİLER', 'Belirtiler'],
         'nasil-gecer': ['NASIL HAFİFLER?', 'Nasıl Hafifler?'],
-        'kimlerde': ['KİMLERDE GÖRÜLÜR?', 'Kimlerde Görülür?'],
         'tani': ['TANI SÜRECİ', 'Tanı Süreci'],
         'tedavi': ['TEDAVİ YAKLAŞIMI', 'Tedavi Yaklaşımı'],
         'egzersiz': ['EGZERSİZ & HAREKET', 'Egzersiz & Hareket'],
@@ -8747,7 +9085,6 @@ window.addEventListener("load", async () => {
             neden: [['Genetik yatkınlık','Migren ailelerde daha sık görülebilir; tek başına genetik bir hastalık değildir.'],['Sinir sistemi hassasiyeti','Ağrı işleme ve trigeminal sistemdeki hassasiyet ataklara katkıda bulunabilir.'],['Tetikleyiciler','Uyku düzensizliği, açlık, sıvı kaybı ve stres bazı kişilerde atağı başlatabilir.'],['Boyun-kas etkisi','Boyun ve omuz kuşağı gerginliği bazı baş ağrısı tiplerinde tabloya eşlik edebilir.']],
             belirtiler: [['Baş ağrısı','Tek veya iki taraflı, zonklayıcı ya da baskı tarzında ağrı görülebilir.'],['Bulantı','Migren atağında bulantı ve bazen kusma eşlik edebilir.'],['Işık-ses hassasiyeti','Işık, ses ve koku hassasiyeti sık görülen eşlikçi bulgulardandır.'],['Aura','Bazı kişilerde görsel, duysal veya konuşma ile ilgili geçici aura belirtileri olabilir.']],
             'nasil-gecer': [['Atak planı','Hekimin önerdiği atak tedavisini erken dönemde uygulamak önemlidir.'],['Uyku düzeni','Düzenli uyku ve öğün ritmi atak eşiğini olumlu etkileyebilir.'],['Tetikleyici takibi','Baş ağrısı günlüğü kişisel tetikleyicileri fark etmeye yardımcı olur.'],['Boyun rahatlığı','Uygun kişilerde boyun hareketliliği ve postür çalışmaları destekleyici olabilir.']],
-            kimlerde: [['Aile öyküsü','Ailesinde migren bulunanlarda görülme olasılığı artabilir.'],['Hormonal dönemler','Bazı kişilerde hormonal değişimler atak sıklığını etkileyebilir.'],['Yoğun stres','Stres, uykusuzluk ve düzensiz yaşam ritmi atağı kolaylaştırabilir.'],['Duyusal hassasiyet','Işık, ses veya kokuya hassas kişilerde tetiklenme daha belirgin olabilir.']],
             tani: [['Ağrı öyküsü','Süre, sıklık, yer ve ağrının karakteri ayrıntılı sorgulanır.'],['Eşlik eden bulgular','Bulantı, aura ve nörolojik belirtiler değerlendirilir.'],['Muayene','Nörolojik muayene ve gerektiğinde boyun-kas sistemi değerlendirmesi yapılır.'],['Görüntüleme gerekliliği','Her baş ağrısında görüntüleme gerekmez; kırmızı bayrak varsa hekim karar verir.']],
             tedavi: [['Atak tedavisi','Atak sırasında kullanılan ilaçlar kişiye göre hekim tarafından planlanır.'],['Koruyucu yaklaşım','Sık veya ağır ataklarda koruyucu tedaviler değerlendirilebilir.'],['Yaşam düzeni','Uyku, sıvı, öğün ve stres yönetimi planın önemli parçasıdır.'],['Destekleyici yaklaşım','Boyun-postür, gevşeme ve egzersiz uygun hastalarda destekleyici olabilir.']],
             egzersiz: [['Düzenli aerobik hareket','Yürüyüş ve benzeri düzenli egzersizler genel sağlık ve stres yönetimini destekler.'],['Boyun mobilitesi','Ağrıyı tetiklemeyen kontrollü hareketler boyun gerginliğini azaltmaya yardımcı olabilir.'],['Aşırı yükten kaçınma','Atak döneminde yoğun egzersiz bazı kişilerde yakınmaları artırabilir.'],['Kademeli ilerleme','Egzersiz sıklığı ve şiddeti kişisel toleransa göre artırılmalıdır.']],
@@ -8762,7 +9099,6 @@ window.addEventListener("load", async () => {
             neden:[['Kas ve yumuşak doku','Aşırı yüklenme, hareketsizlik veya kas dengesizlikleri ağrıya katkıda bulunabilir.'],['Disk ve eklem yapıları','Omurga diskleri ve faset eklemler bazı ağrı tiplerinde rol oynayabilir.'],['Postür ve ergonomi','Uzun oturma, tekrarlayan eğilme ve uygunsuz çalışma pozisyonları yakınmaları artırabilir.'],['Sistemik nedenler','Daha nadir olarak inflamatuar, enfeksiyöz veya diğer sistemik nedenler araştırılabilir.']],
             belirtiler:[['Bölgesel ağrı','Bel veya sırt bölgesinde lokal ağrı ve hassasiyet görülebilir.'],['Sertlik','Uzun oturma veya sabah saatlerinde sertlik hissi olabilir.'],['Yayılım','Bazı durumlarda ağrı kalçaya, bacağa veya gövdeye yayılabilir.'],['Nörolojik bulgular','Uyuşma, kuvvet kaybı veya idrar-dışkı kontrol sorunu varsa acil değerlendirme gerekir.']],
             'nasil-gecer':[['Hareketi sürdürmek','Uygun düzeyde hareket çoğu mekanik ağrıda uzun süreli yatak istirahatinden daha yararlıdır.'],['Ergonomi','Oturma, çalışma ve kaldırma tekniklerinin düzenlenmesi yükü azaltabilir.'],['Kademeli güçlendirme','Gövde, kalça ve sırt kaslarının kontrollü güçlendirilmesi destekleyici olabilir.'],['Tıbbi değerlendirme','Uzayan veya şiddetlenen ağrıda nedenin belirlenmesi gerekir.']],
-            kimlerde:[['Masa başı çalışanlar','Uzun süre oturma ve düşük hareket düzeyi riski artırabilir.'],['Fiziksel yükü yüksek işler','Tekrarlayan kaldırma ve dönme hareketleri yakınmaları artırabilir.'],['Hareketsizlik','Düşük kas dayanıklılığı ve esneklik ağrı riskine katkı sağlayabilir.'],['Önceki yaralanmalar','Geçmiş bel-sırt yaralanmaları bazı kişilerde tekrar eden yakınmalarla ilişkili olabilir.']],
             tani:[['Öykü','Ağrının başlangıcı, süresi ve hareketle ilişkisi sorgulanır.'],['Fizik muayene','Omurga hareketi, kas kuvveti, refleksler ve sinir germe testleri değerlendirilebilir.'],['Kırmızı bayraklar','Travma, ateş, kilo kaybı veya nörolojik kayıp gibi bulgular araştırılır.'],['Görüntüleme','Her bel ağrısında gerekli değildir; klinik gerekliliğe göre planlanır.']],
             tedavi:[['Aktif yaklaşım','Hareket, egzersiz ve günlük aktivitenin korunması çoğu durumda temel yaklaşımdır.'],['Ağrı yönetimi','İlaç ve diğer tıbbi yöntemler kişisel duruma göre hekimce planlanır.'],['Manuel/osteopatik destek','Uygun hastalarda hareket ve kas-iskelet sistemi planına destek olarak değerlendirilebilir.'],['Takip','Devam eden veya değişen belirtiler yeniden değerlendirilmelidir.']],
             egzersiz:[['Yürüyüş','Düşük-orta tempolu yürüyüş hareket toleransını artırabilir.'],['Gövde stabilizasyonu','Karın-bel-kalça kaslarını kontrollü güçlendirmek faydalı olabilir.'],['Mobilite','Kalça ve torakal omurga hareketliliği kişiye uygun şekilde çalışılabilir.'],['Ağrı sınırı','Keskin veya yayılan ağrıyı artıran hareketler zorlanmamalıdır.']],
@@ -8776,7 +9112,6 @@ window.addEventListener("load", async () => {
             neden:[['Ağrı işleme hassasiyeti','Merkezi sinir sisteminin ağrıyı işleme biçimindeki hassasiyet önemli rol oynar.'],['Uyku bozukluğu','Dinlendirmeyen uyku ağrı ve yorgunluğu artırabilir.'],['Stres yanıtı','Yoğun stres belirtilerin alevlenmesiyle ilişkili olabilir.'],['Tek bir neden yok','Genetik, biyolojik ve çevresel faktörler birlikte etkili olabilir.']],
             belirtiler:[['Yaygın ağrı','Vücudun farklı bölgelerinde uzun süreli ağrı görülebilir.'],['Yorgunluk','Dinlenmeye rağmen devam eden enerji düşüklüğü sık görülür.'],['Uyku sorunu','Uyku süresi yeterli olsa bile dinlenmiş hissetmeme olabilir.'],['Bilişsel yakınmalar','Dikkat ve odaklanmada güçlük bazı kişilerde belirgin olabilir.']],
             'nasil-gecer':[['Kademeli egzersiz','Düzenli ve düşük-orta yoğunlukta hareket belirtileri yönetmeye yardımcı olabilir.'],['Uyku düzeni','Uyku ritmini düzeltmek temel yaklaşımlardan biridir.'],['Stres yönetimi','Gevşeme ve psikolojik destek bazı kişilerde yararlı olabilir.'],['Kişisel tedavi planı','İlaçlar ve destekleyici yöntemler kişiye göre planlanmalıdır.']],
-            kimlerde:[['Kadınlarda daha sık','Fibromiyalji kadınlarda daha sık tanınmaktadır.'],['Uyku sorunu olanlar','Kronik uyku bozuklukları belirtilerle ilişkili olabilir.'],['Uzun süreli stres','Stresli dönemler yakınmaların şiddetini etkileyebilir.'],['Eşlik eden ağrı sendromları','Migren veya irritabl bağırsak gibi durumlar eşlik edebilir.']],
             tani:[['Klinik değerlendirme','Tanı öykü ve muayene temelinde konur.'],['Yaygın ağrı örüntüsü','Ağrının dağılımı ve süresi değerlendirilir.'],['Eşlik eden belirtiler','Uyku, yorgunluk ve bilişsel belirtiler sorgulanır.'],['Ayırıcı tanı','Benzer yakınma yapan tiroid, romatizmal veya diğer durumlar gerektiğinde dışlanır.']],
             tedavi:[['Eğitim','Hastalığın mekanizmasını anlamak tedavi uyumunu artırabilir.'],['Egzersiz','Düzenli aerobik ve güçlendirme programları önemli yer tutar.'],['Uyku ve stres','Uyku hijyeni ve stres yönetimi planın parçasıdır.'],['Medikal destek','Gerektiğinde ilaçlar hekim tarafından kişiye göre planlanabilir.']],
             egzersiz:[['Düşük tempolu başlangıç','Yürüyüş, bisiklet veya su egzersizleri düşük yoğunlukta başlanabilir.'],['Kademeli artış','Yoğunluk yavaş artırılmalıdır; aşırı yüklenme alevlenmeye yol açabilir.'],['Güçlendirme','Hafif direnç egzersizleri zamanla programa eklenebilir.'],['Esneme','Nazik esneme ve mobilite çalışmaları rahatlık sağlayabilir.']],
@@ -8790,7 +9125,6 @@ window.addEventListener("load", async () => {
             neden:[['Demir durumu','Düşük demir depoları bazı kişilerde belirtilerle ilişkili olabilir.'],['Sinir sistemi','Dopaminerjik sistem ve sinir sistemi mekanizmaları rol oynayabilir.'],['Gebelik','Gebelik döneminde geçici olarak daha sık görülebilir.'],['Eşlik eden durumlar','Böbrek hastalıkları ve bazı ilaçlar belirtileri etkileyebilir.']],
             belirtiler:[['Hareket ettirme isteği','Bacaklarda güçlü hareket ettirme ihtiyacı oluşabilir.'],['Dinlenmede artış','Yakınmalar oturma veya uzanma sırasında belirginleşir.'],['Hareketle rahatlama','Yürüme veya bacakları oynatma geçici rahatlama sağlayabilir.'],['Gece artışı','Belirtiler akşam ve gece saatlerinde daha belirgin olabilir.']],
             'nasil-gecer':[['Demir eksikliğini düzeltme','Eksiklik varsa hekim kontrolünde yerine koyma planlanabilir.'],['Kafein azaltma','Özellikle akşam saatlerinde kafein bazı kişilerde yakınmaları artırabilir.'],['Uyku düzeni','Düzenli uyku ve gevşeme rutini yararlı olabilir.'],['Tıbbi tedavi','Orta-ağır olgularda uygun ilaç seçenekleri hekim tarafından değerlendirilir.']],
-            kimlerde:[['Aile öyküsü','Bazı kişilerde ailesel yatkınlık bulunabilir.'],['Gebeler','Özellikle gebeliğin ilerleyen dönemlerinde görülebilir.'],['Demir eksikliği olanlar','Düşük ferritin ile HBS arasında ilişki olabilir.'],['Bazı kronik hastalıklar','Böbrek hastalığı gibi durumlarda görülme sıklığı artabilir.']],
             tani:[['Klinik ölçütler','Tanı tipik belirtiler ve zamanlama örüntüsüne dayanır.'],['Demir değerlendirmesi','Ferritin ve demir durumu gerektiğinde incelenir.'],['İlaç gözden geçirme','Bazı ilaçlar belirtileri artırabileceği için kullanım listesi değerlendirilir.'],['Ayırıcı tanı','Kramp, nöropati ve dolaşım sorunları gibi durumlar ayrılır.']],
             tedavi:[['Nedeni düzeltme','Demir eksikliği veya tetikleyici ilaç gibi etkenler öncelikle ele alınır.'],['Uyku-hijyen planı','Akşam rutinleri ve kafein kullanımı düzenlenir.'],['İlaç tedavisi','Gerekli olgularda nörolojik ilaçlar hekim tarafından planlanabilir.'],['Takip','Belirti sıklığı ve uyku üzerindeki etkisi izlenir.']],
             egzersiz:[['Hafif yürüyüş','Akşam saatlerinde hafif yürüyüş bazı kişilerde rahatlatıcı olabilir.'],['Esneme','Baldır ve uyluk kaslarına nazik esneme uygulanabilir.'],['Aşırı egzersizden kaçınma','Geç saatte yoğun egzersiz bazı kişilerde belirtileri artırabilir.'],['Düzenlilik','Günlük hafif-orta hareket genel uyku düzenini destekleyebilir.']],
@@ -8804,7 +9138,6 @@ window.addEventListener("load", async () => {
             neden:[['Genetik yatkınlık','Aile öyküsü ve genetik faktörler hastalık riskine katkı sağlayabilir.'],['Bağışıklık yanıtı','Bağırsak dokusunda uygunsuz veya aşırı bağışıklık yanıtı rol oynar.'],['Mikrobiyota','Bağırsak mikrobiyotasındaki değişiklikler araştırılan mekanizmalardandır.'],['Çevresel etkenler','Sigara, yaşam tarzı ve çevresel faktörlerin etkisi hastalık tipine göre değişebilir.']],
             belirtiler:[['İshal','Uzun süren veya tekrarlayan ishal görülebilir.'],['Karın ağrısı','Karın ağrısı ve kramp sık yakınmalardandır.'],['Kanama','Dışkıda kan özellikle ülseratif kolitte görülebilir ve değerlendirme gerektirir.'],['Kilo-yorgunluk','Kilo kaybı, iştahsızlık ve yorgunluk eşlik edebilir.']],
             'nasil-gecer':[['Hastalık kontrolü','Temel amaç bağırsak inflamasyonunu medikal tedaviyle kontrol etmektir.'],['Beslenme desteği','Alevlenme ve sakin döneme göre kişiselleştirilmiş beslenme planlanabilir.'],['Eksiklikleri düzeltme','Demir, B12, D vitamini gibi eksiklikler gerektiğinde değerlendirilir.'],['Düzenli takip','Semptomlar, laboratuvarlar ve gerekirse endoskopi ile hastalık aktivitesi izlenir.']],
-            kimlerde:[['Aile öyküsü olanlar','Birinci derece yakınlarda İBH bulunması riski artırabilir.'],['Genç erişkinler','Hastalık sıklıkla genç erişkinlik döneminde başlayabilir.'],['Sigara etkisi','Sigaranın Crohn ve ülseratif kolit üzerindeki etkisi farklıdır; genel olarak bırakılması önerilir.'],['Bağışıklık ilişkili durumlar','Bazı eklem, göz ve cilt bulguları İBH ile birlikte görülebilir.']],
             tani:[['Öykü ve muayene','Belirti süresi, kanama, kilo kaybı ve sistemik bulgular değerlendirilir.'],['Laboratuvar','Kan ve dışkı testleri inflamasyon ve anemi açısından kullanılabilir.'],['Endoskopi','Kolonoskopi ve biyopsi tanıda önemli rol oynar.'],['Görüntüleme','Crohn hastalığında ince bağırsak değerlendirmesi için görüntüleme gerekebilir.']],
             tedavi:[['Gastroenteroloji takibi','Tedavi hastalık tipi, yeri ve aktivitesine göre uzman tarafından planlanır.'],['İlaç tedavisi','Anti-inflamatuar, immün düzenleyici ve biyolojik tedaviler kullanılabilir.'],['Beslenme','Beslenme destekleyicidir; tek başına medikal tedavinin yerine geçmez.'],['Cerrahi','Bazı komplikasyonlarda veya seçilmiş olgularda cerrahi gerekebilir.']],
             egzersiz:[['Hafif-orta hareket','Sakin dönemde yürüyüş ve benzeri aktiviteler genel sağlığı destekler.'],['Alevlenmede uyarlama','Aktif alevlenmede yoğunluk semptomlara göre azaltılmalıdır.'],['Kemik sağlığı','Direnç egzersizleri uygun kişilerde kemik ve kas sağlığını destekleyebilir.'],['Sıvı dengesi','İshal dönemlerinde sıvı-elektrolit kaybına dikkat edilmelidir.']],
@@ -8818,7 +9151,6 @@ window.addEventListener("load", async () => {
             neden:[['Uyku bozuklukları','Yetersiz veya kalitesiz uyku uzun süreli yorgunluğun sık nedenlerindendir.'],['Anemi ve eksiklikler','Demir, B12 veya diğer besin eksiklikleri enerji düzeyini etkileyebilir.'],['Tiroid ve metabolizma','Tiroid ve bazı metabolik bozukluklar yorgunluğa yol açabilir.'],['Enfeksiyon ve stres','Enfeksiyon sonrası dönem, yoğun stres veya bazı ilaçlar tabloya katkı sağlayabilir.']],
             belirtiler:[['Enerji düşüklüğü','Dinlenmeyle tam düzelmeyen günlük enerji kaybı olabilir.'],['Düşük efor toleransı','Daha önce kolay olan aktiviteler zorlayıcı hale gelebilir.'],['Odaklanma güçlüğü','Dikkat ve zihinsel dayanıklılıkta azalma görülebilir.'],['Uyku düzensizliği','Aşırı uyuma veya dinlendirmeyen uyku eşlik edebilir.']],
             'nasil-gecer':[['Nedeni bulmak','Öncelik altta yatan tıbbi veya yaşam tarzı nedenini belirlemektir.'],['Uyku düzeni','Düzenli uyku ve ışık-maruziyet ritmi önemlidir.'],['Beslenme','Yeterli protein, enerji ve mikrobesin alımı desteklenmelidir.'],['Kademeli aktivite','Nedene ve toleransa göre hareket kademeli planlanmalıdır.']],
-            kimlerde:[['Yoğun stres yaşayanlar','Uzun süreli fiziksel veya psikolojik yük enerji düzeyini etkileyebilir.'],['Uyku sorunu olanlar','Uyku apnesi ve diğer uyku bozuklukları önemli nedenler olabilir.'],['Eksiklik riski olanlar','Yetersiz beslenme veya kan kaybı gibi durumlarda yorgunluk gelişebilir.'],['Kronik hastalığı olanlar','Enfeksiyon, endokrin veya inflamatuar hastalıklar yorgunlukla seyredebilir.']],
             tani:[['Ayrıntılı öykü','Süre, uyku, ilaçlar ve eşlik eden belirtiler sorgulanır.'],['Fizik muayene','Genel ve sistemik bulgular değerlendirilir.'],['Laboratuvar','Gerektiğinde kan sayımı, demir, tiroid ve diğer testler istenebilir.'],['Uyku değerlendirmesi','Horlama, gündüz uykululuğu ve uyku kalitesi özellikle sorgulanabilir.']],
             tedavi:[['Nedene yönelik plan','Tedavi, saptanan temel nedene göre değişir.'],['Uyku ve yaşam düzeni','Ritim, stres ve günlük yük planlanır.'],['Eksikliklerin düzeltilmesi','Kanıtlanmış eksiklikler uygun şekilde yerine konur.'],['Takip','Devam eden yorgunlukta yeni belirtiler ve işlev kaybı izlenir.']],
             egzersiz:[['Toleransa göre başlangıç','Hafif yürüyüş veya esneme düşük düzeyde başlanabilir.'],['Kademeli artış','Aktivite artışı kişisel toleransa göre yapılmalıdır.'],['Aşırı efordan kaçınma','Aktivite sonrası belirgin kötüleşme varsa program yeniden değerlendirilmelidir.'],['Düzenlilik','Kısa ve sürdürülebilir hareket periyotları çoğu kişi için daha uygulanabilirdir.']],
@@ -8860,7 +9192,6 @@ window.addEventListener("load", async () => {
             neden: `${data.title} tek bir etkene indirgenmeden; biyolojik, mekanik ve yaşam tarzı faktörleri birlikte değerlendirilir.`,
             belirtiler: `${data.title} farklı kişilerde farklı belirti örüntüleri oluşturabilir. Süre, şiddet ve günlük yaşama etkisi birlikte ele alınır.`,
             'nasil-gecer': `Yakınmaları hafifletmek için tek bir uygulama yerine, nedeni ve kişisel tetikleyicileri hedefleyen çok bileşenli yaklaşım tercih edilir.`,
-            kimlerde: `${data.title} için risk veya eşlik eden faktörler kişiden kişiye değişir; tek bir özellik hastalık gelişeceği anlamına gelmez.`,
             tani: `Tanı ve değerlendirme; öykü, fizik muayene ve gerekli görülen testlerin birlikte yorumlanmasına dayanır.`,
             tedavi: `Tedavi planı belirtilerin şiddeti, eşlik eden hastalıklar ve kişinin günlük işlevine göre kişiselleştirilir.`,
             egzersiz: `Hareket ve egzersiz programı hastalığın dönemine, toleransa ve kişinin mevcut kapasitesine göre kademeli planlanmalıdır.`,
@@ -8875,7 +9206,6 @@ window.addEventListener("load", async () => {
             neden:'Tek bir risk faktörü tek başına tanı koydurmaz.',
             belirtiler:'Belirtilerin yeni, hızlı ilerleyen veya alışılmadık olması durumunda tıbbi değerlendirme gerekir.',
             'nasil-gecer':'Destekleyici yöntemler, gerektiğinde temel tıbbi tedavinin yerine değil yanında değerlendirilmelidir.',
-            kimlerde:'Risk faktörü bulunması hastalığın mutlaka gelişeceği anlamına gelmez.',
             tani:'Tanı kararı tek bir test sonucuna göre verilmemelidir.',
             tedavi:'Tedavi seçenekleri kişisel riskler ve ilaç etkileşimleri dikkate alınarak hekim tarafından planlanmalıdır.',
             egzersiz:'Egzersiz sırasında yeni nörolojik belirti, göğüs ağrısı veya belirgin kötüleşme olursa program durdurulup değerlendirme alınmalıdır.',
@@ -9698,7 +10028,7 @@ window.addEventListener("load", async () => {
         window.openAnkilozanPageV87 = function (options = {}) {
             const result = originalOpenAnkilozan({ ...options, skipScroll: true });
             syncGenericFaqHiddenState();
-            scrollToTarget('#ankilozanFaqSectionV85 .ankilozan-overview-v195');
+            if (!document.body.classList.contains('disease-direct-opening-v478')) scrollToTarget('#ankilozanFaqSectionV85 .ankilozan-overview-v195');
             return result;
         };
         window.openAnkilozanPageV87.__v273Wrapped = true;
@@ -9709,7 +10039,7 @@ window.addEventListener("load", async () => {
         window.openRomatoidPageV198 = function (push = true) {
             const result = originalOpenRA(push);
             syncGenericFaqHiddenState();
-            scrollToTarget('#romatoidFaqSectionV198 .ra-hero-v198');
+            if (!document.body.classList.contains('disease-direct-opening-v478')) scrollToTarget('#romatoidFaqSectionV198 .ra-hero-v198');
             return result;
         };
         window.openRomatoidPageV198.__v273Wrapped = true;
@@ -9721,7 +10051,7 @@ window.addEventListener("load", async () => {
             const result = originalOpenCondition(key, push);
             initCollapsedFaqState();
             syncGenericFaqHiddenState();
-            scrollToTarget('#conditionDiseasePageV246 .condition-overview-poster-v249');
+            if (!document.body.classList.contains('disease-direct-opening-v478')) scrollToTarget('#conditionDiseasePageV246 .condition-overview-poster-v249');
             return result;
         };
         window.openConditionDiseaseV249.__v273Wrapped = true;
@@ -9771,11 +10101,11 @@ window.addEventListener("load", async () => {
         overview: {
             index: '01',
             title: 'Hastalığı Tanıyın',
-            desc: 'Nedenleri, belirtileri ve kimlerde görüldüğünü birlikte inceleyin.',
+            desc: 'Hastalığın nedenlerini, belirtilerini ve bütüncül bakışları inceleyin.',
             kicker: 'GENEL BAKIŞ',
             heading: 'Ankilozan Spondiliti Tanıyın',
-            intro: 'Hastalığın nedenleri, tipik belirtileri ve kimlerde daha sık görülebildiğine ilişkin mevcut içerikler.',
-            topics: ['neden', 'belirtiler', 'kimlerde']
+            intro: 'Hastalığın nedenleri, tipik belirtileri ve destekleyici bütüncül bakışlara ilişkin içerikler.',
+            topics: ['neden', 'belirtiler']
         },
         diagnosis: {
             index: '02',
@@ -9836,13 +10166,6 @@ window.addEventListener("load", async () => {
         return clone;
     }
 
-    function makePanelHead(data) {
-        const head = document.createElement('div');
-        head.className = 'as-special-panel-head-v274';
-        head.innerHTML = `<span>${data.kicker}</span><h3>${data.heading}</h3><p>${data.intro}</p>`;
-        return head;
-    }
-
     function cloneTopic(topicKey) {
         const source = mainPage.querySelector(`[data-ank-panel-v196="${topicKey}"]`);
         const clone = cleanClone(source);
@@ -9856,7 +10179,6 @@ window.addEventListener("load", async () => {
     function renderTopics(data) {
         const wrapper = document.createElement('section');
         wrapper.className = 'as-special-panel-v274';
-        wrapper.appendChild(makePanelHead(data));
 
         const stack = document.createElement('div');
         stack.className = 'as-special-topic-stack-v274';
@@ -9864,6 +10186,11 @@ window.addEventListener("load", async () => {
             const clone = cloneTopic(key);
             if (clone) stack.appendChild(clone);
         });
+        if (data === meta.overview && typeof window.createDiseasePerspectivePanelV447 === 'function') {
+            stack.appendChild(
+                window.createDiseasePerspectivePanelV447('ankilozan-spondilit', 'Ankilozan Spondilit')
+            );
+        }
         wrapper.appendChild(stack);
         return wrapper;
     }
@@ -9871,11 +10198,13 @@ window.addEventListener("load", async () => {
     function renderFaq(data) {
         const wrapper = document.createElement('section');
         wrapper.className = 'as-special-panel-v274';
-        wrapper.appendChild(makePanelHead(data));
 
         const source = mainPage.querySelector('.ankilozan-faq-inner-v85');
         const clone = cleanClone(source);
         if (clone) {
+            // V470: Koyu hastalık başlığında Soru-Cevap zaten yazıyor.
+            // Özel içerikte ikinci 'BİLGİ ALANI / Sık Sorulanlar' bloğunu kaldır.
+            clone.querySelector('.ankilozan-faq-heading-v85')?.remove();
             clone.querySelectorAll('.ankilozan-faq-item-v85').forEach(item => {
                 item.classList.remove('is-open');
                 const button = item.querySelector('.ankilozan-faq-question-v85');
@@ -9891,7 +10220,6 @@ window.addEventListener("load", async () => {
     function renderHerbs(data) {
         const wrapper = document.createElement('section');
         wrapper.className = 'as-special-panel-v274';
-        wrapper.appendChild(makePanelHead(data));
 
         const source = document.getElementById('ankilozanHerbalSupportV233');
         const clone = cleanClone(source);
@@ -9919,7 +10247,12 @@ window.addEventListener("load", async () => {
         else if (activeKey === 'herbs') panel = renderHerbs(data);
         else panel = renderTopics(data);
         specialContent.appendChild(panel);
-        specialView.scrollTo({ top: 0, behavior: 'smooth' });
+        if (activeKey === 'faq') organizeDiseaseFaqV480(specialContent);
+        if (window.getComputedStyle(specialView).position === 'fixed') {
+            specialView.scrollTo({ top: 0, behavior: 'smooth' });
+        } else {
+            window.scrollTo({ top: 0, left: 0, behavior: 'smooth' });
+        }
     }
 
     function openSpecial(key) {
@@ -9927,8 +10260,14 @@ window.addEventListener("load", async () => {
         document.body.classList.add('as-special-open-v274');
         specialView.setAttribute('aria-hidden', 'false');
         history.pushState({ page: 'ankilozan-special-v274', tab: key }, '', `#ankilozan-${key}`);
+        window.scrollTo({ top: 0, left: 0, behavior: 'auto' });
         window.setTimeout(() => specialView.focus?.(), 20);
     }
+
+    // V478: Hastalık kartından doğrudan Hastalığı Tanıyın sekmesine geçiş.
+    window.openAnkilozanSpecialV478 = function (tab = 'overview') {
+        openSpecial(tab);
+    };
 
     function closeSpecial(push = true) {
         document.body.classList.remove('as-special-open-v274');
@@ -10087,11 +10426,11 @@ window.addEventListener("load", async () => {
         overview: {
             index: '01',
             title: 'Hastalığı Tanıyın',
-            desc: 'Nedenleri, belirtileri ve kimlerde görüldüğünü birlikte inceleyin.',
+            desc: 'Hastalığın nedenlerini, belirtilerini ve bütüncül bakışları inceleyin.',
             kicker: 'GENEL BAKIŞ',
             heading: 'Hastalığı Tanıyın',
-            intro: 'Bu bölümde hastalığın temel yapısı, belirtileri ve kimlerde daha sık görülebileceğine ilişkin başlıklar bir araya getirilir.',
-            topics: ['neden', 'belirtiler', 'kimlerde']
+            intro: 'Bu bölümde hastalığın temel yapısı, nedenleri, belirtileri ve destekleyici bütüncül bakışlar bir araya getirilir.',
+            topics: ['neden', 'belirtiler']
         },
         diagnosis: {
             index: '02',
@@ -10170,14 +10509,6 @@ window.addEventListener("load", async () => {
         return window.getConditionDiseaseStateV279?.().key || 'tedavi-alani';
     }
 
-    function makePanelHead(data) {
-        const title = getCurrentTitle();
-        const head = document.createElement('div');
-        head.className = 'as-special-panel-head-v274';
-        head.innerHTML = `<span>${title.toUpperCase()} • ${data.kicker}</span><h3>${title}: ${data.heading}</h3><p>${data.intro}</p>`;
-        return head;
-    }
-
     function cloneConditionTopic(topicKey) {
         const getState = typeof window.getConditionDiseaseStateV279 === 'function' ? window.getConditionDiseaseStateV279 : null;
         const renderTopic = typeof window.renderConditionDiseaseTopicV279 === 'function' ? window.renderConditionDiseaseTopicV279 : null;
@@ -10208,15 +10539,23 @@ window.addEventListener("load", async () => {
     function renderTopics(data) {
         const wrapper = document.createElement('section');
         wrapper.className = 'as-special-panel-v274';
-        wrapper.appendChild(makePanelHead(data));
 
         const stack = document.createElement('div');
         stack.className = 'as-special-topic-stack-v274';
 
+        const cloneCurrentTopicV446 = (topicKey) => activeSource === 'ra'
+            ? cloneRaTopic(topicKey)
+            : cloneConditionTopic(topicKey);
+
         (data.topics || []).forEach((topicKey) => {
-            const clone = activeSource === 'ra' ? cloneRaTopic(topicKey) : cloneConditionTopic(topicKey);
+            const clone = cloneCurrentTopicV446(topicKey);
             if (clone) stack.appendChild(clone);
         });
+        if (data === meta.overview && typeof window.createDiseasePerspectivePanelV447 === 'function') {
+            stack.appendChild(
+                window.createDiseasePerspectivePanelV447(getCurrentSlug(), getCurrentTitle())
+            );
+        }
 
         if (!stack.children.length) {
             const empty = document.createElement('article');
@@ -10232,16 +10571,12 @@ window.addEventListener("load", async () => {
     function buildFaqSection(data, items) {
         const wrapper = document.createElement('section');
         wrapper.className = 'as-special-panel-v274';
-        wrapper.appendChild(makePanelHead(data));
 
         const faqBox = document.createElement('div');
         faqBox.className = 'ankilozan-faq-inner-v85';
+        // V470: Hastalık adı + Merak Edilen Sorular koyu üst başlıkta var.
+        // Burada yalnızca tıklanabilir soru kartlarını üret.
         faqBox.innerHTML = `
-            <div class="ankilozan-faq-heading-v85">
-                <span class="ankilozan-faq-kicker-v85">BİLGİ ALANI</span>
-                <h2>${getCurrentTitle()} Hakkında Sık Sorulanlar</h2>
-                <p>Sadece görmek istediğiniz soruya basın; cevap tek başına açılsın.</p>
-            </div>
             <div class="ankilozan-faq-list-v85">
                 ${items.map((item, index) => `
                     <article class="ankilozan-faq-item-v85${index === 0 ? ' is-open' : ''}">
@@ -10280,7 +10615,6 @@ window.addEventListener("load", async () => {
     function renderConditionHerbs(data) {
         const wrapper = document.createElement('section');
         wrapper.className = 'as-special-panel-v274';
-        wrapper.appendChild(makePanelHead(data));
 
         const source = document.getElementById('conditionHerbalSupportV249');
         const clone = cleanClone(source);
@@ -10291,7 +10625,6 @@ window.addEventListener("load", async () => {
     function renderRaHerbs(data) {
         const wrapper = document.createElement('section');
         wrapper.className = 'as-special-panel-v274';
-        wrapper.appendChild(makePanelHead(data));
 
         const section = document.createElement('section');
         section.className = 'phyto-herbal-focus-v232';
@@ -10364,7 +10697,12 @@ window.addEventListener("load", async () => {
         else panel = renderTopics(data);
 
         specialContent.appendChild(panel);
-        specialView.scrollTo({ top: 0, behavior: 'smooth' });
+        if (activeKey === 'faq') organizeDiseaseFaqV480(specialContent);
+        if (window.getComputedStyle(specialView).position === 'fixed') {
+            specialView.scrollTo({ top: 0, behavior: 'smooth' });
+        } else {
+            window.scrollTo({ top: 0, left: 0, behavior: 'smooth' });
+        }
     }
 
     function openSpecial(source, key, push = true) {
@@ -10372,12 +10710,18 @@ window.addEventListener("load", async () => {
         renderSpecial(key || 'overview');
         document.body.classList.add('treatment-special-open-v279');
         specialView.setAttribute('aria-hidden', 'false');
+        window.scrollTo({ top: 0, left: 0, behavior: 'auto' });
         if (push) {
             const slug = getCurrentSlug();
             history.pushState({ page: 'treatment-special-v279', source: activeSource, disease: slug, tab: activeKey }, '', `#${slug}-${activeKey}-ozel`);
         }
         window.setTimeout(() => backButton?.focus({ preventScroll: true }), 30);
     }
+
+    // V478: Romatoid Artrit ve diğer altı hastalık için doğrudan sekme açılışı.
+    window.openTreatmentSpecialV478 = function (source, tab = 'overview') {
+        openSpecial(source, tab, true);
+    };
 
     function closeSpecial(push = true) {
         document.body.classList.remove('treatment-special-open-v279');
@@ -10836,20 +11180,13 @@ window.addEventListener("load", async () => {
     const PERSONEL_IMG_02_V317 = 'data:image/jpeg;base64,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';
 
     const staff = [
-        {name:'Dr. Ceyhun Nuri', role:'Klinik Kurucu', type:'Hekim', img:PERSONEL_IMG_01_V317, desc:'Osteopati, fitoterapi ve bütüncül değerlendirme yaklaşımıyla klinik planlamaya liderlik eder.', tags:['Osteopati','Fitoterapi','Muayene'], extra:'Tanı, değerlendirme ve kişiye özel tedavi planlaması süreçlerinin merkezinde yer alır.'},
-        {name:'Dr. Mustafa İkizek', role:'Hekim', type:'Hekim', img:PERSONEL_IMG_02_V317, desc:'Klinik değerlendirme, hasta takibi ve hekimlik bakış açısını destekleyen ekip yapılanmasının önemli yüzlerinden biridir.', tags:['Değerlendirme','Takip','Klinik'], extra:'Klinik akışta danışan yönetimi ve hekimlik koordinasyonu tarafını güçlendiren örnek profil kartıdır.'},
-        {name:'Klinik Koordinasyon', role:'Operasyon Sorumlusu', type:'Koordinasyon', img:null, desc:'Randevu akışı, danışan yönlendirmesi ve günlük işleyişin düzenli ilerlemesine destek olur.', tags:['Planlama','Akış','Koordinasyon'], extra:'Yoğun günlerde ekibin eşgüdümünü sağlar ve hastanın doğru alana yönlendirilmesine yardımcı olur.'},
-        {name:'Danışan Karşılama', role:'Resepsiyon', type:'Karşılama', img:null, desc:'İlk temas noktası olarak danışan kabulü, bilgilendirme ve yönlendirme süreçlerini yürütür.', tags:['Karşılama','Bilgi','Yönlendirme'], extra:'Hasta deneyiminin sıcak ve güven verici başlaması için ön yüz görevini üstlenir.'},
-        {name:'Muayene Destek', role:'Klinik Asistan', type:'Destek', img:null, desc:'Muayene öncesi hazırlık, oda düzeni ve danışan bilgilendirme süreçlerine katkı sağlar.', tags:['Hazırlık','Destek','Düzen'], extra:'Hekim görüşmesi öncesinde klinik düzenin sorunsuz ilerlemesine yardımcı olur.'},
-        {name:'Osteopati Destek', role:'Uygulama Asistanı', type:'Uygulama', img:null, desc:'Osteopati ve manuel uygulama akışında ekip düzenine ve hasta konforuna destek sunar.', tags:['Osteopati','Mobilite','Konfor'], extra:'Tedavi odasının akışını destekleyen ve süreç konforunu artıran örnek karttır.'},
-        {name:'GETAT Uygulama', role:'Uygulama Destek', type:'GETAT', img:null, desc:'Tamamlayıcı uygulamalar sırasında düzen, hazırlık ve takip disiplinini destekler.', tags:['GETAT','Takip','Hazırlık'], extra:'Ozon, hacamat veya benzer destek uygulamaları öncesinde operasyonel destek sunar.'},
-        {name:'Fitoterapi Danışma', role:'Bilgilendirme', type:'Danışma', img:null, desc:'Bitkisel destek yaklaşımına yönelik süreçlerin organizasyonu ve bilgilendirme akışında yer alır.', tags:['Fitoterapi','İçerik','Danışma'], extra:'Hasta eğitim materyallerinin doğru iletilmesi ve süreç takibi için destek sağlar.'},
-        {name:'Damar Yolu Destek', role:'IV Uygulama Koordinasyon', type:'IV', img:null, desc:'Damar yolu destek süreçlerinde hazırlık ve operasyon düzenini destekleyen örnek profil.', tags:['IV','Hazırlık','Kontrol'], extra:'Uygulama alanı düzeni, hasta hazırlığı ve ekip içi koordinasyon tarafını temsil eder.'},
-        {name:'Sosyal Medya & İçerik', role:'Dijital Destek', type:'Medya', img:null, desc:'Klinik bilgilendirmeleri, içerik akışı ve dijital görünürlük başlıklarına destek olur.', tags:['İçerik','Medya','Tanıtım'], extra:'Hastaların kliniği daha iyi tanımasını sağlayan dijital yüzü güçlendirir.'},
-        {name:'Randevu Takip', role:'Danışan İletişimi', type:'İletişim', img:null, desc:'Randevu hatırlatma, ilk bilgi paylaşımı ve takip planlamasına yardımcı olur.', tags:['Randevu','Takip','İletişim'], extra:'Danışan ile klinik arasındaki düzenli iletişimi destekleyen başlangıç kartıdır.'},
-        {name:'Hasta Deneyimi', role:'Geri Bildirim', type:'Destek', img:null, desc:'Danışan memnuniyeti, geri bildirim ve süreç iyileştirme alanında örnek temsil kartı.', tags:['Memnuniyet','Geri Bildirim','Süreç'], extra:'Hizmet kalitesini yükseltmeye yönelik geri bildirim akışlarını destekler.'},
-        {name:'Klinik Düzen', role:'Operasyon Destek', type:'Operasyon', img:null, desc:'İç alanların düzenli, temiz ve akışa uygun kalmasını sağlayan destek alanı.', tags:['Düzen','Operasyon','Akış'], extra:'Klinik deneyimin profesyonel ve konforlu görünümünü destekleyen arka plan rolüdür.'},
-        {name:'Uygulama Sonrası Takip', role:'Hasta Bilgilendirme', type:'Takip', img:null, desc:'Uygulama sonrasında dikkat edilmesi gerekenlerin aktarımı ve yönlendirme desteği sunar.', tags:['Takip','Bilgilendirme','Destek'], extra:'Danışanların süreç sonrası yönlendirmeleri daha net takip edebilmesi için örnek karttır.'}
+        {name:'Dr. Ceyhun Nuri', role:'Sorumlu Hekim', type:'Hekim', img:PERSONEL_IMG_01_V317, desc:'Hastayı muayene eder, klinik bulgularını değerlendirir ve kişiye özel tedavi planını oluşturur.', tags:['Muayene','Planlama','Takip'], extra:'Uygulanacak yöntemlerin hastanın sağlık durumu ve ihtiyaçlarına uygunluğunu değerlendirir.'},
+        {name:'Dr. Mustafa İkizek', role:'Hekim', type:'Hekim', img:PERSONEL_IMG_02_V317, desc:'Değerlendirme ve ölçüm sonuçları hakkında hastayı bilgilendirir, sorularını yanıtlar.', tags:['Bilgilendirme','Değerlendirme','Takip'], extra:'Hasta ile görüşerek klinik süreçte elde edilen verilerin anlaşılmasına yardımcı olur.'},
+        {name:'Hasta Koordinasyon Asistanı', role:'Ana Asistan · 1 Kişi', type:'Hasta İletişimi', img:null, desc:'İlk telefon görüşmesini, randevu planlamasını, hasta karşılamayı ve anamnez görüşmesini yürütür.', tags:['Randevu','Anamnez','Yönlendirme'], extra:'Hasta hekim muayenesine geçmeden önce gerekli ön bilgileri ve ölçüm aşamasını organize eder.'},
+        {name:'Doktor Asistanı', role:'Hekim Asistanı · 1 Kişi', type:'Muayene', img:null, desc:'Muayene odasının ve hekim görüşmelerinin hazırlığına yardımcı olur.', tags:['Hazırlık','Koordinasyon','Muayene'], extra:'Muayene sırasında hastanın doğru şekilde yönlendirilmesine ve gerekli düzenin sağlanmasına katkı verir.'},
+        {name:'Hemşirelik Ekibi', role:'5 Hemşire', type:'Hemşirelik', img:null, desc:'Hekimin uygun gördüğü işlemlerin uygulanmasını ve işlem sırasındaki hasta takibini yürütür.', tags:['Uygulama','Gözlem','Bakım'], extra:'Damar yolu uygulamaları, EMS yatak ve lenfatik drenaj gibi planlanan işlemlerde kendi mesleki yetki ve sorumlulukları içinde görev alırlar.'},
+        {name:'Muhasebe', role:'Muhasebe Sorumlusu · 1 Kişi', type:'İdari İşler', img:null, desc:'Klinik işlemlerine ait ödeme ve kayıt süreçlerini yürütür.', tags:['Kayıt','Muhasebe','Bilgilendirme'], extra:'Hasta işlemlerinin tamamlanması ve ilgili idari belgelerin düzenlenmesine yardımcı olur.'},
+        {name:'Klinik Temizlik ve Hijyen', role:'Temizlik Görevlisi · 1 Kişi', type:'Klinik Düzeni', img:null, desc:'Ortak alanların ve klinik ortamının temizlik ve düzenine katkıda bulunur.', tags:['Temizlik','Hijyen','Düzen'], extra:'Hastaların temiz ve düzenli bir ortamda karşılanması için günlük temizlik görevlerini yürütür.'}
     ];
 
     grid.innerHTML = staff.map((item, idx) => `
@@ -10857,7 +11194,7 @@ window.addEventListener("load", async () => {
             <div class="team-card-media-v316 ${item.img ? 'has-photo-v317' : 'is-placeholder-v317'}">
                 ${item.img
                     ? `<img src="${item.img}" alt="${item.name}">`
-                    : `<div class="team-card-placeholder-v317" aria-hidden="true"><span>${String(idx + 1).padStart(2,'0')}</span><strong>PERSONEL</strong><small>Fotoğraf eklenecek</small></div>`}
+                    : `<div class="team-card-placeholder-v317" aria-hidden="true"><span>${String(idx + 1).padStart(2,'0')}</span><strong>EKİBİMİZ</strong><small>Görev alanı</small></div>`}
                 <span class="team-card-badge-v316">${item.type}</span>
             </div>
             <div class="team-card-body-v316">
@@ -11100,7 +11437,16 @@ window.addEventListener("load", async () => {
         if (hero) hero.setAttribute('aria-hidden', 'true');
         if (stage) stage.setAttribute('aria-hidden', 'false');
 
-        window.setTimeout(() => detailView.scrollIntoView({ behavior: 'smooth', block: 'start' }), 30);
+        window.setTimeout(() => {
+            const nav = document.querySelector('.treatment-detail-nav-modern-v160');
+            const navBottom = nav && nav.getBoundingClientRect().height
+                ? Math.max(0, nav.getBoundingClientRect().bottom)
+                : 100;
+            // Keep the entire dark heading below the fixed site menu.
+            const destination = (stage || detailView).getBoundingClientRect().top
+                + window.scrollY - Math.max(112, navBottom + 18);
+            window.scrollTo({ top: Math.max(0, destination), behavior: 'smooth' });
+        }, 60);
     }
 
     function buildSubPageHeader(detailView, panel, applicationName, buttons) {
@@ -11184,7 +11530,16 @@ window.addEventListener("load", async () => {
         opener.addEventListener('click', () => {
             const name = opener.dataset.traditionalOpen;
             const detailView = detailViews.find(view => view.dataset.traditionalDetail === name);
-            if (detailView) window.setTimeout(() => closeSubPage(detailView, false), 20);
+            if (!detailView) return;
+
+            const directTopic = opener.dataset.traditionalDirect;
+            window.setTimeout(() => {
+                if (directTopic) {
+                    openSubPage(detailView, `${name}-${directTopic}`);
+                    return;
+                }
+                closeSubPage(detailView, false);
+            }, 20);
         });
     });
 
@@ -12628,7 +12983,7 @@ window.addEventListener("load", async () => {
         if (source === 'as') {
             const content = document.getElementById('asSpecialContentV274');
             if (!content) return;
-            content.innerHTML = `<section class="as-special-panel-v274"><div class="as-special-panel-head-v274"><span>FİTOTERAPİ & DESTEK</span><h3>${escapeText(set.title)}</h3><p>${escapeText(set.desc)}</p></div>${herbHubHtml(key)}</section>`;
+            content.innerHTML = `<section class="as-special-panel-v274">${herbHubHtml(key)}</section>`;
             document.body.classList.add('as-special-open-v274');
             document.getElementById('asSpecialViewV274')?.setAttribute('aria-hidden','false');
             const t = document.getElementById('asSpecialTitleV274'); if(t) t.textContent='Ankilozan Spondilit - Bitkisel Destekler';
@@ -12637,7 +12992,7 @@ window.addEventListener("load", async () => {
         } else {
             const content = document.getElementById('treatmentSpecialContentV279');
             if (!content) return;
-            content.innerHTML = `<section class="as-special-panel-v274"><div class="as-special-panel-head-v274"><span>FİTOTERAPİ & DESTEK</span><h3>${escapeText(set.title)}</h3><p>${escapeText(set.desc)}</p></div>${herbHubHtml(key)}</section>`;
+            content.innerHTML = `<section class="as-special-panel-v274">${herbHubHtml(key)}</section>`;
             document.body.classList.add('treatment-special-open-v279');
             document.getElementById('treatmentSpecialViewV279')?.setAttribute('aria-hidden','false');
             const t = document.getElementById('treatmentSpecialTitleV279'); if(t) t.textContent=`${set.short} - Bitkisel Destekler`;
@@ -13691,12 +14046,12 @@ window.addEventListener("load", async () => {
         {title:'Tedavi Alanları', category:'Ana Bölüm', desc:'Hastalık ve klinik durumlara göre bilgi sayfalarını görüntüleyin.', keys:'tedavi alanlari hastalik hastalıklar', steps:['#heroDiseasesButton'], icon:'T'},
         {title:'Ağrı', category:'Ana Bölüm', desc:'Boyun, sırt, bel, omuz, kalça, diz ve diğer ağrı bölgeleri.', keys:'agri ağrı bel boyun sirt sırt omuz kalca kalça diz', steps:['#heroPainButton'], icon:'A'},
         {title:'Sosyal Medya', category:'Medya', desc:'YouTube, TV programları ve sosyal medya içerikleri.', keys:'medya sosyal medya youtube video tv instagram reels', steps:['#heroMediaButton'], icon:'▶'},
-        {title:'Hakkımda', category:'Kurumsal', desc:'Dr. Ceyhun Nuri, eğitimler, görevler, sağlık kurumu ve personeller.', keys:'hakkimda hakkımda ceyhun nuri egitim eğitim görev personel klinik kurum', steps:['#heroAboutButton'], icon:'Dr'},
+        {title:'Hakkımda', category:'Kurumsal', desc:'Dr. Ceyhun Nuri, mesleki eğitim ve sağlık kurumu anlayışımız.', keys:'hakkimda hakkımda ceyhun nuri mesleki eğitim egitim klinik kurum anlayış', steps:['#heroAboutButton'], icon:'Dr'},
         {title:'Öne Çıkanlar', category:'Ana Bölüm', desc:'Sitedeki öne çıkan genel içeriklere hızlı erişim.', keys:'one cikanlar öne çıkanlar genel', steps:['#heroGeneralButtonV124'], icon:'★'},
 
         {title:'Beslenme', category:'Genel Sağlık', desc:'Beslenme yaklaşımı ve genel sağlık içerikleri.', keys:'genel saglik sağlık beslenme diyet', steps:['[data-health-detail="beslenme"]'], icon:'B'},
         {title:'Supplementler', category:'Genel Sağlık', desc:'Takviye edici ürünler hakkında bilgilendirme.', keys:'genel saglik sağlık supplement takviye vitamin mineral', steps:['[data-health-detail="supplementler"]'], icon:'S'},
-        {title:'Detoks Kürleri', category:'Genel Sağlık', desc:'35 tarif; mide, bağırsak, karaciğer, kalp, dalak ve kilo kontrolü filtreleri.', keys:'genel saglik sağlık detoks kur kür mide bağırsak karaciğer kalp dalak kilo tarif', steps:['[data-health-detail="kurler"]'], icon:'D'},
+        {title:'Detoks Kürleri', category:'Genel Sağlık', desc:'40 tarif; mide, bağırsak, karaciğer, kalp, dalak, kilo kontrolü ve çölyak uyumlu filtreleri.', keys:'genel saglik sağlık detoks kur kür mide bağırsak karaciğer kalp dalak kilo çölyak colyak glutensiz tarif', steps:['[data-health-detail="kurler"]'], icon:'D'},
 
         {title:'Ankilozan Spondilit', category:'Tedavi Alanı', desc:'Ankilozan spondilit özel bilgi sayfası.', keys:'as ankilozan spondilit sakroileit omurga', steps:['[data-phyto-disease="as"]'], icon:'AS'},
         {title:'Romatoid Artrit', category:'Tedavi Alanı', desc:'Romatoid artrit özel bilgi sayfası.', keys:'ra romatoid artrit eklem', steps:['[data-phyto-disease="ra"]'], icon:'RA'},
@@ -13927,6 +14282,13 @@ window.addEventListener("load", async () => {
     const closeButton = document.getElementById('homeSiteSearchCloseV400');
     if (!section || !toggle || !panel) return;
 
+    // V483: Üst menünün stacking context'i içinde kalmaması için
+    // tam ekran arama panelini doğrudan <body> içine taşıyoruz.
+    // Mevcut buton ve arama olay dinleyicileri aynı DOM öğesinde kalır.
+    if (panel.parentElement !== document.body) {
+        document.body.appendChild(panel);
+    }
+
     function setOpen(open, focusInput){
         section.classList.toggle('is-open-v377', open);
         document.body.classList.toggle('site-search-modal-open-v400', open);
@@ -14153,8 +14515,8 @@ window.addEventListener("load", async () => {
 
 // =========================================================
 // V390 - DETOKS KÜRLERİ / 35 TARİF + ARAMA + KATEGORİ FİLTRE
-// İlk 10 tarifin görselleri bu sürümde site kartlarına işlendi.
-// Kalan tarifler için placeholder alanı korunur ve sonraki turda doldurulur.
+// V490: Kalp-dolaşım, dalak ve kilo kontrolündeki 15 karta görsel eklendi.
+// V490: Çölyak uyumlu 5 yeni tarif ve görselleri filtre sistemine dahil edildi.
 // =========================================================
 (function () {
     const recipes = [
@@ -14187,30 +14549,38 @@ window.addEventListener("load", async () => {
         {id:'karaciger-05',category:'karaciger',categoryLabel:'Karaciğer',icon:'☕',name:'Şekersiz Tarçınlı Kahve Rutini',support:'Şekerli kahve içecekleri yerine sade kahve tercih etmek, toplam şeker ve enerji alımını azaltmaya yardımcı olabilir.',ingredients:['1 küçük fincan filtre kahve veya Türk kahvesi','1 küçük tutam tarçın','şeker eklemeden'],prep:'Kahveyi normal şekilde hazırlayın; içmeden önce çok az tarçın ekleyin.',note:'Çarpıntı, kontrolsüz hipertansiyon, reflü, gebelik veya uyku sorunu varsa kafein miktarını sınırlayın.',tags:['kahve','şekersiz','ölçülü tüketim'],keywords:'karaciger karaciğer kahve tarcin tarçın kafein sekersiz şekersiz',image:'./detox-karaciger-05-tarcinli-kahve-v392.png?v=392',imageAlt:'Tarçınlı şekersiz kahve ile hazırlanmış karaciğer rutini görseli'},
 
         // KALP & DOLAŞIM
-        {id:'kalp-01',category:'kalp',categoryLabel:'Kalp & Dolaşım',icon:'❤️',name:'Nar & Kırmızı Meyve Suyu',support:'Renkli meyveleri küçük porsiyonda bir araya getirerek günlük beslenme çeşitliliğine katkı sağlar.',ingredients:['2 yemek kaşığı nar tanesi','½ su bardağı çilek veya yaban mersini','¾ su bardağı su'],prep:'Meyveleri suyla blenderdan geçirin; posa kaybını azaltmak için süzmeden tüketin.',note:'Diyabet veya ilaç kullanımı varsa meyve porsiyonunu kişisel planınıza göre ayarlayın.',tags:['nar','kırmızı meyve','meyve çeşitliliği'],keywords:'kalp dolasim dolaşım nar kirmizi kırmızı meyve yaban mersini',image:''},
-        {id:'kalp-02',category:'kalp',categoryLabel:'Kalp & Dolaşım',icon:'🌺',name:'Hibiskus & Tarçın Demlemesi',support:'Şeker eklemeden tüketilebilen aromatik bir bitki çayı alternatifi olarak günlük sıvı rutinine eşlik edebilir.',ingredients:['1 tatlı kaşığı kurutulmuş hibiskus','1 küçük parça çubuk tarçın','1 su bardağı sıcak su'],prep:'5–7 dakika demleyin, süzüp ılık veya soğuk tüketin.',note:'Düşük tansiyon, antihipertansif ilaç kullanımı, gebelik-emzirme döneminde düzenli kullanım öncesi hekim görüşü alın.',tags:['hibiskus','tarçın','şekersiz'],keywords:'kalp dolasim dolaşım hibiskus tarcin tarçın tansiyon',image:''},
-        {id:'kalp-03',category:'kalp',categoryLabel:'Kalp & Dolaşım',icon:'🌾',name:'Yulaf & Yaban Mersini Smoothie',support:'Yulafın çözünür lifi ile meyve çeşitliliğini bir araya getiren dengeli bir ara öğün seçeneğidir.',ingredients:['2 yemek kaşığı yulaf','½ su bardağı yaban mersini','¾ su bardağı kefir veya sade yoğurt-su karışımı'],prep:'Tüm malzemeleri blenderdan geçirin; ilave şeker kullanmayın.',note:'Süt ürünleri uygun değilse şekersiz, uygun bir alternatif tercih edin.',tags:['yulaf','yaban mersini','çözünür lif'],keywords:'kalp dolasim dolaşım yulaf beta glukan yaban mersini lif',image:''},
-        {id:'kalp-04',category:'kalp',categoryLabel:'Kalp & Dolaşım',icon:'🥜',name:'Ceviz & Kakao Kefir Karışımı',support:'Küçük porsiyonda ceviz, şekersiz kakao ve kefiri birleştiren doyurucu bir ara öğün alternatifi olabilir.',ingredients:['¾ su bardağı sade kefir','2 tam ceviz içi','1 çay kaşığı şekersiz kakao'],prep:'Malzemeleri blenderdan geçirin; şeker veya şurup eklemeyin.',note:'Kuruyemiş alerjisinde tüketilmemelidir; enerji yoğun olduğu için porsiyon önemlidir.',tags:['ceviz','kakao','kefir'],keywords:'kalp dolasim dolaşım ceviz kakao kefir ara ogun öğün',image:''},
-        {id:'kalp-05',category:'kalp',categoryLabel:'Kalp & Dolaşım',icon:'🍅',name:'Domates & Salatalık Tuzsuz Ayran',support:'Tuzlu hazır içecekler yerine sebze ve sade yoğurtla hazırlanmış, tuzsuz bir seçenek sunar.',ingredients:['½ su bardağı yoğurt','½ su bardağı su','½ küçük domates','¼ salatalık','birkaç nane yaprağı'],prep:'Tüm malzemeleri blenderdan geçirin; tuz eklemeden soğuk tüketin.',note:'Potasyum kısıtlaması gereken böbrek hastalarında içerikler kişiye göre ayarlanmalıdır.',tags:['tuzsuz','yoğurt','sebze'],keywords:'kalp dolasim dolaşım tuzsuz ayran domates salatalik salatalık',image:''},
+        {id:'kalp-01',category:'kalp',categoryLabel:'Kalp & Dolaşım',icon:'❤️',name:'Nar & Kırmızı Meyve Suyu',support:'Renkli meyveleri küçük porsiyonda bir araya getirerek günlük beslenme çeşitliliğine katkı sağlar.',ingredients:['2 yemek kaşığı nar tanesi','½ su bardağı çilek veya yaban mersini','¾ su bardağı su'],prep:'Meyveleri suyla blenderdan geçirin; posa kaybını azaltmak için süzmeden tüketin.',note:'Diyabet veya ilaç kullanımı varsa meyve porsiyonunu kişisel planınıza göre ayarlayın.',tags:['nar','kırmızı meyve','meyve çeşitliliği'],keywords:'kalp dolasim dolaşım nar kirmizi kırmızı meyve yaban mersini',image:'./detoks-kalp-01-nar-kirmizi-meyve-v490.png',imageAlt:'Nar, çilek ve yaban mersiniyle hazırlanmış kırmızı meyve içeceği'},
+        {id:'kalp-02',category:'kalp',categoryLabel:'Kalp & Dolaşım',icon:'🌺',name:'Hibiskus & Tarçın Demlemesi',support:'Şeker eklemeden tüketilebilen aromatik bir bitki çayı alternatifi olarak günlük sıvı rutinine eşlik edebilir.',ingredients:['1 tatlı kaşığı kurutulmuş hibiskus','1 küçük parça çubuk tarçın','1 su bardağı sıcak su'],prep:'5–7 dakika demleyin, süzüp ılık veya soğuk tüketin.',note:'Düşük tansiyon, antihipertansif ilaç kullanımı, gebelik-emzirme döneminde düzenli kullanım öncesi hekim görüşü alın.',tags:['hibiskus','tarçın','şekersiz'],keywords:'kalp dolasim dolaşım hibiskus tarcin tarçın tansiyon',image:'./detoks-kalp-02-hibiskus-tarcin-v490.png',imageAlt:'Hibiskus çiçekleri ve tarçınla hazırlanmış demleme'},
+        {id:'kalp-03',category:'kalp',categoryLabel:'Kalp & Dolaşım',icon:'🌾',name:'Yulaf & Yaban Mersini Smoothie',support:'Yulafın çözünür lifi ile meyve çeşitliliğini bir araya getiren dengeli bir ara öğün seçeneğidir.',ingredients:['2 yemek kaşığı yulaf','½ su bardağı yaban mersini','¾ su bardağı kefir veya sade yoğurt-su karışımı'],prep:'Tüm malzemeleri blenderdan geçirin; ilave şeker kullanmayın.',note:'Süt ürünleri uygun değilse şekersiz, uygun bir alternatif tercih edin.',tags:['yulaf','yaban mersini','çözünür lif'],keywords:'kalp dolasim dolaşım yulaf beta glukan yaban mersini lif',image:'./detoks-kalp-03-yulaf-yaban-mersini-v490.png',imageAlt:'Yulaf ve yaban mersiniyle hazırlanmış smoothie'},
+        {id:'kalp-04',category:'kalp',categoryLabel:'Kalp & Dolaşım',icon:'🥜',name:'Ceviz & Kakao Kefir Karışımı',support:'Küçük porsiyonda ceviz, şekersiz kakao ve kefiri birleştiren doyurucu bir ara öğün alternatifi olabilir.',ingredients:['¾ su bardağı sade kefir','2 tam ceviz içi','1 çay kaşığı şekersiz kakao'],prep:'Malzemeleri blenderdan geçirin; şeker veya şurup eklemeyin.',note:'Kuruyemiş alerjisinde tüketilmemelidir; enerji yoğun olduğu için porsiyon önemlidir.',tags:['ceviz','kakao','kefir'],keywords:'kalp dolasim dolaşım ceviz kakao kefir ara ogun öğün',image:'./detoks-kalp-04-ceviz-kakao-kefir-v490.png',imageAlt:'Ceviz ve kakao ile hazırlanmış kefir karışımı'},
+        {id:'kalp-05',category:'kalp',categoryLabel:'Kalp & Dolaşım',icon:'🍅',name:'Domates & Salatalık Tuzsuz Ayran',support:'Tuzlu hazır içecekler yerine sebze ve sade yoğurtla hazırlanmış, tuzsuz bir seçenek sunar.',ingredients:['½ su bardağı yoğurt','½ su bardağı su','½ küçük domates','¼ salatalık','birkaç nane yaprağı'],prep:'Tüm malzemeleri blenderdan geçirin; tuz eklemeden soğuk tüketin.',note:'Potasyum kısıtlaması gereken böbrek hastalarında içerikler kişiye göre ayarlanmalıdır.',tags:['tuzsuz','yoğurt','sebze'],keywords:'kalp dolasim dolaşım tuzsuz ayran domates salatalik salatalık',image:'./detoks-kalp-05-domates-salatalik-ayran-v490.png',imageAlt:'Domates ve salatalıkla hazırlanmış tuzsuz ayran'},
 
         // DALAK
-        {id:'dalak-01',category:'dalak',categoryLabel:'Dalak',icon:'🍎',name:'Şekersiz Elma & Tarçın Kompostosu',support:'Dalak için özel bir “temizleme” etkisi iddia etmeden, sıcak ve kolay tüketilen bir meyve alternatifi sunar.',ingredients:['½ elma','1 küçük parça çubuk tarçın','1,5 su bardağı su'],prep:'Elmayı tarçınla 6–8 dakika hafifçe kaynatın; şeker eklemeden ılık tüketin.',note:'Dalak hastalıkları beslenme kürüyle tedavi edilmez; büyüme veya ağrı varsa tıbbi değerlendirme gerekir.',tags:['elma','tarçın','ılık tarif'],keywords:'dalak elma tarcin tarçın komposto sıcak ilik ılık',image:''},
-        {id:'dalak-02',category:'dalak',categoryLabel:'Dalak',icon:'🎃',name:'Balkabağı & Yoğurt Karışımı',support:'Yumuşak dokulu, küçük porsiyonlu bir ara öğün olarak sebze çeşitliliği ve protein alımına katkı sağlayabilir.',ingredients:['3 yemek kaşığı pişmiş balkabağı','3 yemek kaşığı sade yoğurt','1 tutam tarçın'],prep:'Balkabağını ezin, yoğurtla karıştırın; şeker eklemeyin.',note:'Diyabette porsiyon planı; süt ürünlerine hassasiyette uygun alternatif gerekir.',tags:['balkabağı','yoğurt','yumuşak kıvam'],keywords:'dalak balkabagi balkabağı yogurt yoğurt tarcin tarçın',image:''},
-        {id:'dalak-03',category:'dalak',categoryLabel:'Dalak',icon:'🥕',name:'Havuç & Armut Ilık Püresi',support:'Meyve-sebze içeriğini yumuşak kıvamda sunan küçük porsiyonlu bir beslenme alternatifi olabilir.',ingredients:['½ küçük havuç','½ armut','½ su bardağı su','1 tutam tarçın'],prep:'Havuç ve armudu az suyla yumuşatın; blenderdan geçirip ılık tüketin.',note:'Bu tarif bir organ tedavisi değildir; kişisel enerji ve karbonhidrat ihtiyacına göre porsiyon belirlenmelidir.',tags:['havuç','armut','ılık'],keywords:'dalak havuc havuç armut püre ilik ılık',image:''},
-        {id:'dalak-04',category:'dalak',categoryLabel:'Dalak',icon:'🥣',name:'Kırmızı Mercimek & Havuç Mini Çorba',support:'Bitkisel protein, lif ve sebzeyi bir araya getiren küçük porsiyonlu sıcak bir tarif olarak genel beslenmeyi destekler.',ingredients:['2 yemek kaşığı kırmızı mercimek','½ küçük havuç','1,5 su bardağı su','kimyon, çok az'],prep:'Malzemeleri tamamen yumuşayana kadar pişirin; blenderdan geçirip tuzu sınırlı tutun.',note:'Gaz-şişkinlik eğiliminde porsiyonu küçük başlayın.',tags:['mercimek','bitkisel protein','sıcak tarif'],keywords:'dalak mercimek havuc havuç corba çorba protein lif',image:''},
-        {id:'dalak-05',category:'dalak',categoryLabel:'Dalak',icon:'🍐',name:'Armut & Yulaf Ilık Karışımı',support:'Çözünür lif içeren yulaf ile meyveyi bir araya getiren sıcak ve yumuşak kıvamlı bir ara öğün seçeneğidir.',ingredients:['½ armut','1 yemek kaşığı yulaf','¾ su bardağı su','1 tutam tarçın'],prep:'Armut ve yulafı suyla 5–6 dakika pişirin; ılık tüketin.',note:'Dalakla ilgili özel bir “detoks” etkisi beklenmemelidir; bu tarif genel beslenme içindir.',tags:['armut','yulaf','lif'],keywords:'dalak armut yulaf lif sıcak ilik ılık',image:''},
+        {id:'dalak-01',category:'dalak',categoryLabel:'Dalak',icon:'🍎',name:'Şekersiz Elma & Tarçın Kompostosu',support:'Dalak için özel bir “temizleme” etkisi iddia etmeden, sıcak ve kolay tüketilen bir meyve alternatifi sunar.',ingredients:['½ elma','1 küçük parça çubuk tarçın','1,5 su bardağı su'],prep:'Elmayı tarçınla 6–8 dakika hafifçe kaynatın; şeker eklemeden ılık tüketin.',note:'Dalak hastalıkları beslenme kürüyle tedavi edilmez; büyüme veya ağrı varsa tıbbi değerlendirme gerekir.',tags:['elma','tarçın','ılık tarif'],keywords:'dalak elma tarcin tarçın komposto sıcak ilik ılık',image:'./detoks-dalak-01-elma-tarcin-komposto-v490.png',imageAlt:'Elma dilimleri ve tarçınla hazırlanmış şekersiz komposto'},
+        {id:'dalak-02',category:'dalak',categoryLabel:'Dalak',icon:'🎃',name:'Balkabağı & Yoğurt Karışımı',support:'Yumuşak dokulu, küçük porsiyonlu bir ara öğün olarak sebze çeşitliliği ve protein alımına katkı sağlayabilir.',ingredients:['3 yemek kaşığı pişmiş balkabağı','3 yemek kaşığı sade yoğurt','1 tutam tarçın'],prep:'Balkabağını ezin, yoğurtla karıştırın; şeker eklemeyin.',note:'Diyabette porsiyon planı; süt ürünlerine hassasiyette uygun alternatif gerekir.',tags:['balkabağı','yoğurt','yumuşak kıvam'],keywords:'dalak balkabagi balkabağı yogurt yoğurt tarcin tarçın',image:'./detoks-dalak-02-balkabagi-yogurt-v490.png',imageAlt:'Balkabağı püresi ve yoğurtla hazırlanmış karışım'},
+        {id:'dalak-03',category:'dalak',categoryLabel:'Dalak',icon:'🥕',name:'Havuç & Armut Ilık Püresi',support:'Meyve-sebze içeriğini yumuşak kıvamda sunan küçük porsiyonlu bir beslenme alternatifi olabilir.',ingredients:['½ küçük havuç','½ armut','½ su bardağı su','1 tutam tarçın'],prep:'Havuç ve armudu az suyla yumuşatın; blenderdan geçirip ılık tüketin.',note:'Bu tarif bir organ tedavisi değildir; kişisel enerji ve karbonhidrat ihtiyacına göre porsiyon belirlenmelidir.',tags:['havuç','armut','ılık'],keywords:'dalak havuc havuç armut püre ilik ılık',image:'./detoks-dalak-03-havuc-armut-pure-v490.png',imageAlt:'Havuç ve armutla hazırlanmış ılık püre'},
+        {id:'dalak-04',category:'dalak',categoryLabel:'Dalak',icon:'🥣',name:'Kırmızı Mercimek & Havuç Mini Çorba',support:'Bitkisel protein, lif ve sebzeyi bir araya getiren küçük porsiyonlu sıcak bir tarif olarak genel beslenmeyi destekler.',ingredients:['2 yemek kaşığı kırmızı mercimek','½ küçük havuç','1,5 su bardağı su','kimyon, çok az'],prep:'Malzemeleri tamamen yumuşayana kadar pişirin; blenderdan geçirip tuzu sınırlı tutun.',note:'Gaz-şişkinlik eğiliminde porsiyonu küçük başlayın.',tags:['mercimek','bitkisel protein','sıcak tarif'],keywords:'dalak mercimek havuc havuç corba çorba protein lif',image:'./detoks-dalak-04-mercimek-havuc-corba-v490.png',imageAlt:'Kırmızı mercimek ve havuçla hazırlanmış mini çorba'},
+        {id:'dalak-05',category:'dalak',categoryLabel:'Dalak',icon:'🍐',name:'Armut & Yulaf Ilık Karışımı',support:'Çözünür lif içeren yulaf ile meyveyi bir araya getiren sıcak ve yumuşak kıvamlı bir ara öğün seçeneğidir.',ingredients:['½ armut','1 yemek kaşığı yulaf','¾ su bardağı su','1 tutam tarçın'],prep:'Armut ve yulafı suyla 5–6 dakika pişirin; ılık tüketin.',note:'Dalakla ilgili özel bir “detoks” etkisi beklenmemelidir; bu tarif genel beslenme içindir.',tags:['armut','yulaf','lif'],keywords:'dalak armut yulaf lif sıcak ilik ılık',image:'./detoks-dalak-05-armut-yulaf-v490.png',imageAlt:'Armut ve yulafla hazırlanmış ılık karışım'},
 
         // KİLO KONTROLÜ
-        {id:'kilo-01',category:'kilo',categoryLabel:'Kilo Kontrolü',icon:'🥒',name:'Salatalık, Nane & Limon Suyu',support:'Kalorili içecekler yerine şekersiz aromalı su tercih etmeyi kolaylaştırarak günlük enerji kontrolüne dolaylı katkı sağlayabilir.',ingredients:['½ salatalık','6–8 nane yaprağı','2 ince limon dilimi','1 litre su'],prep:'Malzemeleri suya ekleyin; 1–2 saat buzdolabında bekletin ve gün içinde tüketin.',note:'Tek başına yağ yakmaz veya kilo verdirmez; kilo kaybı toplam enerji dengesiyle ilişkilidir.',tags:['şekersiz','sıvı','düşük enerji'],keywords:'kilo verme zayiflama zayıflama salatalik salatalık nane limon sivi sıvı',image:''},
-        {id:'kilo-02',category:'kilo',categoryLabel:'Kilo Kontrolü',icon:'🫘',name:'Yoğurt & Chia Tokluk Karışımı',support:'Protein ve lif içeren küçük porsiyonlu bir ara öğün olarak daha uzun süre tokluk hissine yardımcı olabilir.',ingredients:['4 yemek kaşığı sade yoğurt','1 tatlı kaşığı chia tohumu','2 yemek kaşığı su','1 tutam tarçın'],prep:'Karıştırıp chia tamamen şişene kadar en az 20 dakika bekletin.',note:'Enerjisi sıfır değildir; günlük toplam enerji planına dahil edilmelidir.',tags:['tokluk','chia','protein'],keywords:'kilo verme zayiflama zayıflama tokluk chia yogurt yoğurt protein lif',image:''},
-        {id:'kilo-03',category:'kilo',categoryLabel:'Kilo Kontrolü',icon:'🍏',name:'Yeşil Elma & Yulaf Smoothie',support:'Meyve ve yulafı kontrollü porsiyonda birleştirerek lif içeren dengeli bir ara öğün alternatifi sunar.',ingredients:['½ yeşil elma','1 yemek kaşığı yulaf','¾ su bardağı kefir veya su','tarçın, isteğe bağlı'],prep:'Malzemeleri blenderdan geçirin; ilave şeker veya bal eklemeyin.',note:'Smoothie sıvı olduğu için hızlı tüketilebilir; yavaş içmek ve porsiyonu küçük tutmak önemlidir.',tags:['yulaf','elma','ara öğün'],keywords:'kilo verme zayiflama zayıflama elma yulaf smoothie lif',image:''},
-        {id:'kilo-04',category:'kilo',categoryLabel:'Kilo Kontrolü',icon:'🥛',name:'Naneli Salatalıklı Ayran',support:'Şekerli içecekler yerine protein içeren, tuzu sınırlı bir içecek alternatifi olarak kullanılabilir.',ingredients:['½ su bardağı yoğurt','½ su bardağı su','¼ salatalık','4–5 nane yaprağı'],prep:'Tüm malzemeleri blenderdan geçirin; tuz eklemeyin veya çok az kullanın.',note:'Laktoz intoleransı veya süt alerjisinde uygun değildir.',tags:['ayran','protein','şekersiz'],keywords:'kilo verme zayiflama zayıflama ayran salatalik salatalık nane protein',image:''},
-        {id:'kilo-05',category:'kilo',categoryLabel:'Kilo Kontrolü',icon:'🍫',name:'Kakao & Kefir Ara Öğünü',support:'Tatlı isteğinde ilave şeker içeren içecekler yerine kontrollü porsiyonlu bir alternatif oluşturabilir.',ingredients:['¾ su bardağı sade kefir','1 çay kaşığı şekersiz kakao','¼ küçük muz, isteğe bağlı','tarçın, isteğe bağlı'],prep:'Malzemeleri blenderdan geçirin; bal, şurup veya şeker eklemeyin.',note:'Muz eklenirse toplam karbonhidrat ve enerji miktarı artar; porsiyonu günlük plana göre ayarlayın.',tags:['kakao','kefir','tatlı isteği'],keywords:'kilo verme zayiflama zayıflama kakao kefir tatli tatlı istegi isteği',image:''}
+        {id:'kilo-01',category:'kilo',categoryLabel:'Kilo Kontrolü',icon:'🥒',name:'Salatalık, Nane & Limon Suyu',support:'Kalorili içecekler yerine şekersiz aromalı su tercih etmeyi kolaylaştırarak günlük enerji kontrolüne dolaylı katkı sağlayabilir.',ingredients:['½ salatalık','6–8 nane yaprağı','2 ince limon dilimi','1 litre su'],prep:'Malzemeleri suya ekleyin; 1–2 saat buzdolabında bekletin ve gün içinde tüketin.',note:'Tek başına yağ yakmaz veya kilo verdirmez; kilo kaybı toplam enerji dengesiyle ilişkilidir.',tags:['şekersiz','sıvı','düşük enerji'],keywords:'kilo verme zayiflama zayıflama salatalik salatalık nane limon sivi sıvı',image:'./detoks-kilo-01-salatalik-nane-limon-v490.png',imageAlt:'Salatalık, nane ve limonla hazırlanmış şekersiz aromalı su'},
+        {id:'kilo-02',category:'kilo',categoryLabel:'Kilo Kontrolü',icon:'🫘',name:'Yoğurt & Chia Tokluk Karışımı',support:'Protein ve lif içeren küçük porsiyonlu bir ara öğün olarak daha uzun süre tokluk hissine yardımcı olabilir.',ingredients:['4 yemek kaşığı sade yoğurt','1 tatlı kaşığı chia tohumu','2 yemek kaşığı su','1 tutam tarçın'],prep:'Karıştırıp chia tamamen şişene kadar en az 20 dakika bekletin.',note:'Enerjisi sıfır değildir; günlük toplam enerji planına dahil edilmelidir.',tags:['tokluk','chia','protein'],keywords:'kilo verme zayiflama zayıflama tokluk chia yogurt yoğurt protein lif',image:'./detoks-kilo-02-yogurt-chia-v490.png',imageAlt:'Yoğurt ve tamamen şişmiş chia tohumuyla hazırlanmış karışım'},
+        {id:'kilo-03',category:'kilo',categoryLabel:'Kilo Kontrolü',icon:'🍏',name:'Yeşil Elma & Yulaf Smoothie',support:'Meyve ve yulafı kontrollü porsiyonda birleştirerek lif içeren dengeli bir ara öğün alternatifi sunar.',ingredients:['½ yeşil elma','1 yemek kaşığı yulaf','¾ su bardağı kefir veya su','tarçın, isteğe bağlı'],prep:'Malzemeleri blenderdan geçirin; ilave şeker veya bal eklemeyin.',note:'Smoothie sıvı olduğu için hızlı tüketilebilir; yavaş içmek ve porsiyonu küçük tutmak önemlidir.',tags:['yulaf','elma','ara öğün'],keywords:'kilo verme zayiflama zayıflama elma yulaf smoothie lif',image:'./detoks-kilo-03-yesil-elma-yulaf-v490.png',imageAlt:'Yeşil elma ve yulafla hazırlanmış smoothie'},
+        {id:'kilo-04',category:'kilo',categoryLabel:'Kilo Kontrolü',icon:'🥛',name:'Naneli Salatalıklı Ayran',support:'Şekerli içecekler yerine protein içeren, tuzu sınırlı bir içecek alternatifi olarak kullanılabilir.',ingredients:['½ su bardağı yoğurt','½ su bardağı su','¼ salatalık','4–5 nane yaprağı'],prep:'Tüm malzemeleri blenderdan geçirin; tuz eklemeyin veya çok az kullanın.',note:'Laktoz intoleransı veya süt alerjisinde uygun değildir.',tags:['ayran','protein','şekersiz'],keywords:'kilo verme zayiflama zayıflama ayran salatalik salatalık nane protein',image:'./detoks-kilo-04-naneli-salatalikli-ayran-v490.png',imageAlt:'Nane ve salatalıkla hazırlanmış ayran'},
+        {id:'kilo-05',category:'kilo',categoryLabel:'Kilo Kontrolü',icon:'🍫',name:'Kakao & Kefir Ara Öğünü',support:'Tatlı isteğinde ilave şeker içeren içecekler yerine kontrollü porsiyonlu bir alternatif oluşturabilir.',ingredients:['¾ su bardağı sade kefir','1 çay kaşığı şekersiz kakao','¼ küçük muz, isteğe bağlı','tarçın, isteğe bağlı'],prep:'Malzemeleri blenderdan geçirin; bal, şurup veya şeker eklemeyin.',note:'Muz eklenirse toplam karbonhidrat ve enerji miktarı artar; porsiyonu günlük plana göre ayarlayın.',tags:['kakao','kefir','tatlı isteği'],keywords:'kilo verme zayiflama zayıflama kakao kefir tatli tatlı istegi isteği',image:'./detoks-kilo-05-kakao-kefir-v490.png',imageAlt:'Şekersiz kakao ve kefirle hazırlanmış ara öğün'},
+
+        // ÇÖLYAK UYUMLU
+        {id:'colyak-01',category:'colyak',categoryLabel:'Çölyak Uyumlu',icon:'🥗',name:'Kinoalı Maydanoz & Salatalık Kasesi',support:'Doğal olarak glutensiz kinoa ile sebzeleri bir araya getirerek lif ve bitkisel protein içeren dengeli bir öğün alternatifi sunar.',ingredients:['½ su bardağı pişmiş kinoa','½ küçük salatalık','1 küçük avuç maydanoz','1 tatlı kaşığı zeytinyağı','birkaç damla limon'],prep:'Kinoayı yıkayıp pişirin ve soğutun; doğranmış sebzeler, zeytinyağı ve limonla karıştırın.',note:'Kinoayı glutensiz ürünlerle temas etmemiş ayrı kap ve gereçlerle hazırlayın; hazır sos kullanacaksanız etikette “glutensiz” ibaresini kontrol edin.',tags:['doğal glutensiz','kinoa','lif'],keywords:'çölyak colyak glutensiz kinoa salatalik salatalık maydanoz lif protein',image:'./detoks-colyak-01-kinoa-salatalik-v490.png',imageAlt:'Kinoa, salatalık ve maydanozla hazırlanmış glutensiz kase'},
+        {id:'colyak-02',category:'colyak',categoryLabel:'Çölyak Uyumlu',icon:'🫐',name:'Glutensiz Yulaf & Yaban Mersini Kasesi',support:'Sertifikalı glutensiz yulaf, chia ve yaban mersinini birleştirerek lif içeren pratik bir kahvaltı seçeneği oluşturur.',ingredients:['3 yemek kaşığı sertifikalı glutensiz yulaf','¾ su bardağı süt veya uygun bitkisel içecek','1 tatlı kaşığı chia','¼ su bardağı yaban mersini'],prep:'Yulafı sıvıyla pişirin; chia ve yaban mersinini ekleyip ılıkken tüketin.',note:'Çölyakta yalnızca “sertifikalı glutensiz” yulaf kullanın. Yulafa bireysel hassasiyet varsa diyetisyeninizle değerlendirin.',tags:['sertifikalı glutensiz','yulaf','kahvaltı'],keywords:'çölyak colyak glutensiz yulaf yaban mersini chia kahvalti kahvaltı',image:'./detoks-colyak-02-glutensiz-yulaf-yaban-mersini-v490.png',imageAlt:'Sertifikalı glutensiz yulaf, chia ve yaban mersini kasesi'},
+        {id:'colyak-03',category:'colyak',categoryLabel:'Çölyak Uyumlu',icon:'🥣',name:'Kırmızı Mercimek & Havuç Çorbası',support:'Doğal olarak glutensiz mercimek ve havuçla hazırlanan sıcak bir tarif olarak bitkisel protein ve lif alımına katkı sağlar.',ingredients:['3 yemek kaşığı kırmızı mercimek','½ küçük havuç','1,5 su bardağı su','çok az kimyon'],prep:'Mercimek ve havucu tamamen yumuşayana kadar pişirin; blenderdan geçirip tuzu sınırlı tutun.',note:'Hazır bulyon, baharat karışımı veya un eklemeyin; kullanılan tüm ürünlerin ve mutfak gereçlerinin çapraz bulaşma açısından güvenli olduğundan emin olun.',tags:['doğal glutensiz','mercimek','sıcak tarif'],keywords:'çölyak colyak glutensiz mercimek havuç çorba corba protein lif',image:'./detoks-colyak-03-mercimek-havuc-corba-v490.png',imageAlt:'Kırmızı mercimek ve havuçla hazırlanmış glutensiz çorba'},
+        {id:'colyak-04',category:'colyak',categoryLabel:'Çölyak Uyumlu',icon:'🥒',name:'Naneli Salatalıklı Yoğurt Kasesi',support:'Yoğurt, salatalık ve naneyi birleştirerek protein içeren, serin ve doğal olarak glutensiz bir ara öğün alternatifi sunar.',ingredients:['5 yemek kaşığı sade yoğurt','¼ salatalık','4–5 nane yaprağı','1 çay kaşığı zeytinyağı'],prep:'Salatalığı küçük doğrayın; yoğurt ve ince kıyılmış naneyle karıştırıp zeytinyağını ekleyin.',note:'Yoğurt ve baharat etiketlerini kontrol edin; glutenli ekmek veya krakerle aynı yüzey ve gereçleri kullanmayın. Süt alerjisinde uygun değildir.',tags:['doğal glutensiz','yoğurt','serin tarif'],keywords:'çölyak colyak glutensiz yoğurt yogurt salatalık nane ara öğün',image:'./detoks-colyak-04-salatalik-nane-yogurt-v490.png',imageAlt:'Salatalık ve naneyle hazırlanmış glutensiz yoğurt kasesi'},
+        {id:'colyak-05',category:'colyak',categoryLabel:'Çölyak Uyumlu',icon:'🍎',name:'Fırın Elma & Ceviz',support:'Un veya hamur kullanmadan hazırlanan elma, ceviz ve tarçın birleşimiyle porsiyon kontrollü bir tatlı alternatifi sunar.',ingredients:['1 küçük elma','2 tam ceviz içi','1 tutam tarçın','2 yemek kaşığı su'],prep:'Elmanın çekirdekli kısmını çıkarın; ceviz ve tarçını içine koyup suyla birlikte yumuşayana kadar fırınlayın.',note:'Ceviz ve tarçının glutenli ürünlerle aynı kapta işlenmediğini doğrulayın; kuruyemiş alerjisinde tüketmeyin.',tags:['doğal glutensiz','elma','tatlı alternatifi'],keywords:'çölyak colyak glutensiz elma ceviz tarçın tatlı firin fırın',image:'./detoks-colyak-05-firin-elma-ceviz-v490.png',imageAlt:'Ceviz ve tarçınla hazırlanmış glutensiz fırın elma'}
     ];
 
     window.detoxRecipesV390 = recipes;
     window.detoxRecipesV391 = recipes;
     window.detoxRecipesV392 = recipes;
+    window.detoxRecipesV490 = recipes;
 
     const root = document.getElementById('detoxExplorerV390');
     const grid = document.getElementById('detoxRecipeGridV390');
@@ -14238,7 +14608,8 @@ window.addEventListener("load", async () => {
         karaciger:'Karaciğer',
         kalp:'Kalp & Dolaşım',
         dalak:'Dalak',
-        kilo:'Kilo Kontrolü'
+        kilo:'Kilo Kontrolü',
+        colyak:'Çölyak Uyumlu'
     };
 
     function normalize(value) {
@@ -14645,23 +15016,6 @@ window.addEventListener("load", async () => {
 (function () {
     const vascularView = document.querySelector('[data-treatment-detail-view="damar-yolu"]');
     if (!vascularView) return;
-
-    const grid = vascularView.querySelector('.serum-grid-modern-v307');
-    if (grid && !vascularView.querySelector('.iv-clinic-note-v420')) {
-        const note = document.createElement('section');
-        note.className = 'iv-clinic-note-v420';
-        note.innerHTML = `
-            <span>BENİM YAKLAŞIMIM</span>
-            <h2>Damar yolu uygulamasını hazır bir paket gibi görmüyorum.</h2>
-            <p>Önce kişinin yakınmasını, tıbbi öyküsünü, kullandığı ilaçları, böbrek-karaciğer durumunu ve gerekiyorsa laboratuvar sonuçlarını değerlendiriyorum. Eksiklik ya da açık bir klinik gerekçe yoksa yalnızca “iyi hissettirsin” düşüncesiyle uygulama planlamıyorum. İçerik, doz ve süre kişiye özel belirlenir; standart tedaviler hiçbir zaman habersizce bırakılmaz.</p>
-            <div>
-                <strong>Önce değerlendirme</strong>
-                <strong>Kişiye özel plan</strong>
-                <strong>Steril uygulama</strong>
-                <strong>Uygulama sonrası takip</strong>
-            </div>`;
-        grid.parentNode.insertBefore(note, grid);
-    }
 
     const details = {
         karnitinDetailV243: {
@@ -15412,3 +15766,441 @@ window.addEventListener("load", async () => {
 })();
 
 // V438 - Ankilozan Spondilit girişindeki altı içerik butonu tekrar görünür.
+
+
+// =========================================================
+// V448 - GERİ / DİĞER HASTALIKLAR / BÖLÜM SAYACI TEK KONTROL GRUBU
+// Tüm hastalıkların özel içerik başlıklarında aynı yapıyı kullanır.
+// =========================================================
+(function () {
+    const viewIdsV448 = ['asSpecialViewV274', 'treatmentSpecialViewV279'];
+
+    function groupHeaderControlsV448(view) {
+        const header = view?.querySelector('.as-special-head-v274');
+        const menu = view?.querySelector('.special-disease-quick-v439');
+        if (!header || !menu) return;
+
+        let controls = header.querySelector('.special-head-controls-v448');
+        if (!controls) {
+            controls = document.createElement('div');
+            controls.className = 'special-head-controls-v448';
+            controls.setAttribute('aria-label', 'Hastalık sayfası kontrolleri');
+            header.appendChild(controls);
+        }
+
+        if (menu.parentElement !== controls) controls.appendChild(menu);
+        header.classList.add('has-grouped-controls-v448');
+        view.classList.add('has-grouped-controls-v448');
+    }
+
+    function syncGroupedControlsV448() {
+        viewIdsV448.forEach((id) => groupHeaderControlsV448(document.getElementById(id)));
+    }
+
+    syncGroupedControlsV448();
+    window.setTimeout(syncGroupedControlsV448, 0);
+    window.setTimeout(syncGroupedControlsV448, 220);
+
+    const observerV448 = new MutationObserver(syncGroupedControlsV448);
+    observerV448.observe(document.body, { attributes:true, attributeFilter:['class'] });
+
+    document.addEventListener('click', (event) => {
+        if (!event.target.closest(
+            '[data-as-special-target-v274], [data-treatment-special-target-v279], ' +
+            '[data-as-special-tab-v274], [data-treatment-special-tab-v279]'
+        )) return;
+        window.setTimeout(syncGroupedControlsV448, 0);
+    }, true);
+})();
+
+
+// =========================================================
+// V447 - ÜSTTEKİ 6 HASTALIK BUTONUNU KORUYAN TEK-AÇIK AKORDEON
+// Seçilen içerik açılır, diğer açık içerik kapanır ve ekran seçilen
+// başlığa kayarak metnin başlangıcını görünür konuma getirir.
+// =========================================================
+(function () {
+    const contentIdsV443 = ['asSpecialContentV274', 'treatmentSpecialContentV279'];
+    let accordionSequenceV443 = 0;
+
+    function readTitleV443(panel) {
+        const kicker = panel.querySelector('.ankilozan-detail-kicker-v196')?.textContent?.trim() || 'BİLGİ';
+        const heading = panel.querySelector('.ankilozan-detail-panel-copy-v196 h3')?.textContent?.trim() || 'Detaylı Bilgi';
+        return { kicker, heading };
+    }
+
+    function enhancePanelV443(panel) {
+        if (!panel || panel.dataset.contentAccordionV443 === 'true') return;
+
+        const { kicker, heading } = readTitleV443(panel);
+        const contentId = `diseaseContentAccordionV443-${++accordionSequenceV443}`;
+        const body = document.createElement('div');
+        body.className = 'disease-content-accordion-body-v443';
+        body.id = contentId;
+        body.hidden = true;
+
+        while (panel.firstChild) body.appendChild(panel.firstChild);
+
+        const button = document.createElement('button');
+        button.type = 'button';
+        button.className = 'disease-content-accordion-button-v443';
+        button.setAttribute('aria-expanded', 'false');
+        button.setAttribute('aria-controls', contentId);
+        button.innerHTML = `
+            <span class="disease-content-accordion-copy-v443">
+                <span class="disease-content-accordion-kicker-v443"></span>
+                <strong></strong>
+            </span>
+            <span class="disease-content-accordion-plus-v443" aria-hidden="true">+</span>
+        `;
+        button.querySelector('.disease-content-accordion-kicker-v443').textContent = kicker;
+        button.querySelector('strong').textContent = heading;
+
+        panel.dataset.contentAccordionV443 = 'true';
+        panel.classList.add('disease-content-accordion-v443');
+        panel.replaceChildren(button, body);
+    }
+
+    function enhanceContentV443(root) {
+        if (!root) return;
+        root.querySelectorAll(
+            '.as-special-topic-stack-v274 > .as-cloned-detail-v274:not([data-content-accordion-v443="true"])'
+        ).forEach(enhancePanelV443);
+    }
+
+    contentIdsV443.forEach((id) => {
+        const root = document.getElementById(id);
+        if (!root) return;
+
+        enhanceContentV443(root);
+        const observer = new MutationObserver(() => enhanceContentV443(root));
+        observer.observe(root, { childList: true, subtree: true });
+
+        root.addEventListener('click', (event) => {
+            const button = event.target.closest('.disease-content-accordion-button-v443');
+            if (!button || !root.contains(button)) return;
+
+            const item = button.closest('.disease-content-accordion-v443');
+            const body = item?.querySelector(':scope > .disease-content-accordion-body-v443');
+            if (!item || !body) return;
+
+            const willOpen = button.getAttribute('aria-expanded') !== 'true';
+
+            if (willOpen) {
+                root.querySelectorAll('.disease-content-accordion-v443.is-open-v443').forEach((openItem) => {
+                    if (openItem === item) return;
+                    const openButton = openItem.querySelector(':scope > .disease-content-accordion-button-v443');
+                    const openBody = openItem.querySelector(':scope > .disease-content-accordion-body-v443');
+                    openButton?.setAttribute('aria-expanded', 'false');
+                    openItem.classList.remove('is-open-v443');
+                    if (openBody) openBody.hidden = true;
+                });
+            }
+
+            button.setAttribute('aria-expanded', String(willOpen));
+            item.classList.toggle('is-open-v443', willOpen);
+            body.hidden = !willOpen;
+
+            if (willOpen) {
+                window.requestAnimationFrame(() => {
+                    window.requestAnimationFrame(() => {
+                        item.scrollIntoView({ behavior: 'smooth', block: 'start', inline: 'nearest' });
+                    });
+                });
+            }
+        });
+    });
+})();
+
+
+// ============================================================
+// V469 - TÜM HASTALIKLARDA ÇOKLU KART VE SEKME RENKLERİ
+// İçeriği değiştirmez, sadece mevcut bileşenleri renklendirir.
+// ============================================================
+(function () {
+    const tabViewsV469 = [
+        { tabs: document.getElementById('asSpecialTabsV274'), content: document.getElementById('asSpecialContentV274') },
+        { tabs: document.getElementById('treatmentSpecialTabsV279'), content: document.getElementById('treatmentSpecialContentV279') }
+    ];
+    const multiTopicsV469 = new Set(['overview', 'treatment', 'movement', 'faq', 'herbs']);
+    const tonesV469 = ['sky', 'mint', 'lavender', 'peach'];
+
+    // Uygulamadaki sekmelerin konularına göre: Tanı Süreci tek başlık,
+    // diğer sekmeler birden fazla konu/soru/bitkisel destek içeriyor.
+    function colorTabsV469(tabs) {
+        if (!tabs) return;
+        tabs.querySelectorAll('button[data-as-special-tab-v274], button[data-treatment-special-tab-v279]')
+            .forEach(button => {
+                const topic = button.dataset.asSpecialTabV274 || button.dataset.treatmentSpecialTabV279;
+                const multiple = multiTopicsV469.has(topic);
+                button.classList.toggle('v469-multi', multiple);
+                button.classList.toggle('v469-single', !multiple);
+            });
+    }
+
+    function colorAccordionV469(content) {
+        if (!content) return;
+        // Her görünen hastalık sekmesindeki + kartlarına sıra sıra uyumlu tonlar.
+        content.querySelectorAll('.as-special-topic-stack-v274').forEach(stack => {
+            const cards = Array.from(stack.querySelectorAll(':scope > .disease-content-accordion-v443'));
+            cards.forEach((card, index) => {
+                const tone = tonesV469[index % tonesV469.length];
+                if (card.dataset.v469Tone !== tone) card.dataset.v469Tone = tone;
+            });
+        });
+    }
+
+    tabViewsV469.forEach(({tabs, content}) => {
+        colorTabsV469(tabs);
+        colorAccordionV469(content);
+        if (!content) return;
+        // İçerik JS tarafından yeniden çizildiğinde renkler tekrar uygulanır.
+        let pending = false;
+        const observer = new MutationObserver(() => {
+            if (pending) return;
+            pending = true;
+            requestAnimationFrame(() => {
+                pending = false;
+                colorAccordionV469(content);
+            });
+        });
+        observer.observe(content, {childList:true, subtree:true});
+    });
+})();
+
+// =========================================================
+// V471 - HAKKIMDA / TEDAVİ: İLGİLİ MEVCUT BÖLÜME GEÇ
+// Olmayan uygulama için sahte/boş sayfa açılmaz.
+// =========================================================
+(function () {
+    const source = document.getElementById('aboutPanelTreatmentV116');
+    if (!source) return;
+
+    const deviceKeys = new Set(['ems', 'robotik', 'magneto']);
+    const traditionalKeys = new Set(['akupunktur', 'suluk', 'hacamat']);
+    const treatmentKeys = new Set(['manual','osteopati','fitoterapi','ozon-tedavisi','prp','proloterapi','damar-yolu']);
+
+    function openParent(name) {
+        const trigger = document.querySelector(
+            '.treatment-detail-link-v71[data-treatment-detail="' + name + '"]'
+        ) || document.querySelector('[data-treatment-detail="' + name + '"]');
+        if (!trigger) return false;
+        trigger.click();
+        return true;
+    }
+
+    function focusInjectionCard(title) {
+        window.setTimeout(() => {
+            const view = document.querySelector('[data-treatment-detail-view="igne"]');
+            if (!view) return;
+            const headings = Array.from(view.querySelectorAll('.injection-card-v72 h2'));
+            const match = headings.find(h => h.textContent.trim().toLocaleLowerCase('tr-TR') === title.toLocaleLowerCase('tr-TR'));
+            if (match) {
+                const target = match.closest('.injection-card-v72');
+                target?.scrollIntoView({behavior:'smooth', block:'start'});
+            }
+        }, 220);
+    }
+
+    source.addEventListener('click', event => {
+        const button = event.target.closest('[data-about-treatment-target-v471]');
+        if (!button || !source.contains(button)) return;
+        event.preventDefault();
+        const key = button.dataset.aboutTreatmentTargetV471;
+        if (deviceKeys.has(key)) {
+            // Mevcut cihaz kartlarının yerleşik sayfa açma mekanizması kullanılır.
+            document.querySelector('[data-device-detail-open="' + key + '"]')?.click();
+            return;
+        }
+        if (traditionalKeys.has(key)) {
+            if (!openParent('geleneksel-tedavi')) return;
+            window.setTimeout(() => {
+                const opener = document.querySelector(
+                    '[data-traditional-open="' + key + '"]'
+                );
+                opener?.click();
+            }, 90);
+            return;
+        }
+        if (!treatmentKeys.has(key)) return;
+        const parent = (key === 'prp' || key === 'proloterapi') ? 'igne' :
+                       (key === 'manual' ? 'osteopati' : key);
+        if (!openParent(parent)) return;
+        if (key === 'manual') {
+            window.setTimeout(() => {
+                document.querySelector('[data-osteo-tab="manual"]')?.click();
+            }, 100);
+        }
+        if (key === 'prp') focusInjectionCard('PRP Tedavisi');
+        if (key === 'proloterapi') focusInjectionCard('Proloterapi');
+    });
+})();
+
+
+// =========================================================
+// V476 - Sağlık Kurumu: Çift panel büyüt / küçült
+// Soldaki veya sağdaki kart tek başına açılır; tekrar basınca varsayılan görünüme döner.
+// =========================================================
+(function(){
+    const wrap = document.querySelector('[data-dual-focus-v476]');
+    if(!wrap) return;
+
+    const buttons = Array.from(wrap.querySelectorAll('[data-focus-toggle]'));
+
+    function syncButtons(){
+        const state = wrap.dataset.state || 'default';
+        buttons.forEach(btn => {
+            const side = btn.dataset.focusToggle;
+            const expanded = state === side;
+            btn.setAttribute('aria-expanded', expanded ? 'true' : 'false');
+            btn.textContent = expanded ? 'Küçült' : 'Detayı Aç';
+        });
+    }
+
+    buttons.forEach(btn => {
+        btn.addEventListener('click', function(){
+            const side = this.dataset.focusToggle;
+            const current = wrap.dataset.state || 'default';
+            wrap.dataset.state = (current === side) ? 'default' : side;
+            syncButtons();
+        });
+    });
+
+    syncButtons();
+})();
+
+
+// =========================================================
+// V478 - TEDAVİ ALANLARI KARTLARINDAN DOĞRUDAN ÖZEL İÇERİĞE GEÇİŞ
+// Ara hastalık tanıtım (6 butonlu poster) ekranını atla.
+// Kart başlıkları, diğer hastalık menüleri ve özel sekmeler korunur.
+// =========================================================
+(function () {
+    const diseaseKeys = new Set([
+        'ankilozan-spondilit','romatoid-artrit','bas-agrisi-migren',
+        'bel-sirt-agrisi','fibromiyalji','huzursuz-bacak',
+        'iltihabi-bagirsak','kronik-yorgunluk'
+    ]);
+
+    // Capture at window before all the older treatment-card click handlers.
+    window.addEventListener('click', (event) => {
+        const node = event.target;
+        if (!(node instanceof Element)) return;
+        const card = node.closest('#tedaviAlanlariPage .treatment-card-v77[data-disease]');
+        if (!card) return;
+        const key = card.dataset.disease;
+        if (!diseaseKeys.has(key)) return;
+
+        const hasParent = key === 'ankilozan-spondilit'
+            ? typeof window.openAnkilozanPageV87 === 'function' && typeof window.openAnkilozanSpecialV478 === 'function'
+            : key === 'romatoid-artrit'
+                ? typeof window.openRomatoidPageV198 === 'function' && typeof window.openTreatmentSpecialV478 === 'function'
+                : typeof window.openConditionDiseaseV249 === 'function' && typeof window.openTreatmentSpecialV478 === 'function';
+        if (!hasParent) return;
+
+        event.preventDefault();
+        event.stopPropagation();
+        event.stopImmediatePropagation();
+        document.body.classList.add('disease-direct-opening-v478');
+
+        try {
+            // Önceki hastalık özel ekranı açık kaldıysa çakışmayı önle.
+            document.body.classList.remove('as-special-open-v274', 'treatment-special-open-v279');
+            document.getElementById('asSpecialViewV274')?.setAttribute('aria-hidden', 'true');
+            document.getElementById('treatmentSpecialViewV279')?.setAttribute('aria-hidden', 'true');
+            if (key === 'ankilozan-spondilit') {
+                window.openAnkilozanPageV87({ skipScroll: true, pushHistory: false });
+                window.openAnkilozanSpecialV478('overview');
+            } else if (key === 'romatoid-artrit') {
+                window.openRomatoidPageV198(false);
+                window.openTreatmentSpecialV478('ra', 'overview');
+            } else {
+                window.openConditionDiseaseV249(key, false);
+                window.openTreatmentSpecialV478('condition', 'overview');
+            }
+            // Karttan tek tık tek sayfa; eski ara sayfa history'ye yazılmaz.
+            document.getElementById('asSpecialViewV274')?.classList.toggle('direct-from-card-v478', key === 'ankilozan-spondilit');
+            document.getElementById('treatmentSpecialViewV279')?.classList.toggle('direct-from-card-v478', key !== 'ankilozan-spondilit');
+        } finally {
+            // Önceki sürümün asenkron scroll düzeltmelerini engellemek için kısa beklet.
+            window.setTimeout(() => document.body.classList.remove('disease-direct-opening-v478'), 350);
+        }
+    }, true);
+})();
+
+
+// =========================================================
+// V479 - MOR 'DİĞER HASTALIKLARA GEÇ' MENÜSÜNÜ GERÇEKTEN AKTİF ET
+// Eski ara hastalık vitrini açılmaz; doğrudan V478 özel sayfasına geçer.
+// =========================================================
+(function () {
+    const slugMap = {
+        as: 'ankilozan-spondilit',
+        ra: 'romatoid-artrit',
+        'bas-agrisi-migren': 'bas-agrisi-migren',
+        'bel-sirt-agrisi': 'bel-sirt-agrisi',
+        'fibromiyalji': 'fibromiyalji',
+        'huzursuz-bacak': 'huzursuz-bacak',
+        'iltihabi-bagirsak': 'iltihabi-bagirsak',
+        'kronik-yorgunluk': 'kronik-yorgunluk'
+    };
+
+    function closeMenus() {
+        document.querySelectorAll('details.special-disease-quick-v439').forEach(menu => {
+            menu.open = false;
+            menu.classList.remove('is-open-v439');
+            menu.querySelector('summary')?.setAttribute('aria-expanded', 'false');
+            const panel = menu.querySelector('.special-disease-quick-panel-v439');
+            if (panel) panel.hidden = true;
+        });
+    }
+
+    // Capture before old disease-switch handlers can redirect to an intermediary.
+    window.addEventListener('click', event => {
+        const button = event.target instanceof Element
+            ? event.target.closest('.special-disease-quick-v439 [data-disease-switch-v250]')
+            : null;
+        if (!button) return;
+        event.preventDefault();
+        event.stopPropagation();
+        event.stopImmediatePropagation();
+
+        const slug = slugMap[button.dataset.diseaseSwitchV250];
+        closeMenus();
+        if (!slug) return;
+
+        // Reuse the tested V478 direct-card navigation, without triggering older handlers.
+        const targetCard = document.querySelector(
+            '#tedaviAlanlariPage .treatment-card-v77[data-disease="' + slug + '"]'
+        );
+        if (targetCard) targetCard.click();
+    }, true);
+})();
+
+
+// V498 • Geleneksel Tedavi girişinin 3 arka plan fotoğrafı
+// Akupunktur -> Sülük -> Hacamat -> Akupunktur, her 3000 ms.
+(function(){
+    const root=document.querySelector('#traditionalOverviewV168 .traditional-launchpad-v496');
+    if(!root)return;
+    const slides=Array.from(root.querySelectorAll('[data-traditional-bg-slide]'));
+    if(slides.length!==3)return;
+    let index=0;
+    function show(next){
+        index=next%slides.length;
+        slides.forEach((s,i)=>s.classList.toggle('is-active',i===index));
+    }
+    show(0);
+    window.setInterval(()=>{
+        if(document.hidden)return;
+        show(index+1);
+    },3000);
+})();
+
+
+// V503 • Geleneksel Tedavi detay kartları bağımsız açılsın
+// Artık her kart (+) kendi içinde açılır/kapanır; diğer kartları kapatmaz.
+(function(){
+    const cards=document.querySelectorAll('.traditional-card-details-v501[name]');
+    cards.forEach(card=>card.removeAttribute('name'));
+})();
