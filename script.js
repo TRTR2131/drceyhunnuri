@@ -1,3 +1,116 @@
+
+
+/* V548 — Tek merkez premium menü, V546 yönlendirme motorunu kullanır. */
+(function () {
+    'use strict';
+    const root=document.getElementById('v548PremiumNav');
+    if(!root)return;
+    const toggles=Array.from(root.querySelectorAll('[data-v548-toggle]'));
+    const panels=Array.from(root.querySelectorAll('[data-v548-menu]'));
+    const mobileButton=root.querySelector('[data-v548-action="mobile-menu"]');
+    let openMenu=null;
+
+    function closeMenus(){
+        openMenu=null;
+        panels.forEach(panel=>{panel.classList.remove('v548-open');panel.setAttribute('aria-hidden','true');});
+        toggles.forEach(button=>{button.setAttribute('aria-expanded','false');button.classList.remove('v548-active');});
+    }
+    function closeAll(){
+        closeMenus();
+        root.classList.remove('v548-mobile-open');
+        if(mobileButton){mobileButton.setAttribute('aria-expanded','false');mobileButton.setAttribute('aria-label','Menüyü aç');}
+    }
+    function openDropdown(name){
+        const panel=root.querySelector('[data-v548-menu="'+name+'"]');
+        const button=root.querySelector('[data-v548-toggle="'+name+'"]');
+        if(!panel||!button)return;
+        closeMenus();
+        openMenu=name;
+        panel.classList.add('v548-open');
+        panel.setAttribute('aria-hidden','false');
+        button.setAttribute('aria-expanded','true');
+        button.classList.add('v548-active');
+    }
+    function routeTo(kind,value){
+        const source=document.getElementById('globalConnectedNavV402');
+        if(!source)return false;
+        let selector='';
+        if(kind==='home')selector='#globalConnectedBrandV402';
+        if(kind==='route')selector='[data-v402-route="'+value+'"]';
+        if(kind==='treatment')selector='[data-v402-treatment="'+value+'"]';
+        if(kind==='health')selector='[data-v402-health="'+value+'"]';
+        if(kind==='guide')selector='[data-v402-guide="'+value+'"]';
+        if(kind==='feedback')selector='[data-v402-feedback]';
+        if(kind==='legal')selector='[data-v402-legal="'+value+'"]';
+        if(kind==='about'){
+            const about=document.getElementById('heroAboutButton');
+            if(about){about.click();return true;}
+            return false;
+        }
+        const target=selector&&source.querySelector(selector);
+        if(!target)return false;
+        const wasBridge=window.__v548BridgeClick===true;
+        const wasImmediate=window.__v533ImmediateNav===true;
+        window.__v548BridgeClick=true;
+        window.__v533ImmediateNav=true;
+        try{target.click();}finally{window.__v548BridgeClick=wasBridge;window.__v533ImmediateNav=wasImmediate;}
+        return true;
+    }
+    function navigateContact(){
+        closeAll();
+        routeTo('home');
+        window.setTimeout(()=>{
+            const target=document.getElementById('iletisim');
+            if(target)target.scrollIntoView({behavior:'smooth',block:'start'});
+        },80);
+    }
+    function openSearch(){
+        closeAll();
+        const trigger=document.getElementById('homeSearchToggleV377');
+        if(!trigger && typeof window.openHomeSiteSearchV400!=='function')return;
+        // V552: Gizlenen arama kısayolu yerine üst menü arama ikonunu kullan.
+        if(document.body.classList.contains('global-subpage-open-v405'))routeTo('home');
+        window.setTimeout(()=>{
+            if(typeof window.openHomeSiteSearchV400==='function'){
+                window.openHomeSiteSearchV400(true);
+            }else if(trigger && trigger.getAttribute('aria-expanded')!=='true'){
+                trigger.click();
+            }
+            const input=document.getElementById('homeSiteSearchInputV373');
+            if(input)input.focus({preventScroll:true});
+        },80);
+    }
+    root.addEventListener('click',event=>{
+        const button=event.target.closest('button');
+        if(!button||!root.contains(button))return;
+        const toggle=button.dataset.v548Toggle;
+        if(toggle){event.preventDefault(); if(openMenu===toggle)closeMenus();else openDropdown(toggle);return;}
+        const action=button.dataset.v548Action;
+        if(action==='mobile-menu'){
+            event.preventDefault();
+            const shouldOpen=!root.classList.contains('v548-mobile-open');
+            root.classList.toggle('v548-mobile-open',shouldOpen);
+            if(!shouldOpen)closeMenus();
+            if(mobileButton){mobileButton.setAttribute('aria-expanded',String(shouldOpen));mobileButton.setAttribute('aria-label',shouldOpen?'Menüyü kapat':'Menüyü aç');}
+            return;
+        }
+        if(action==='search'){event.preventDefault();openSearch();return;}
+        if(action==='appointment'){event.preventDefault();navigateContact();return;}
+        const kind=button.dataset.v548Kind||('v548Route' in button.dataset?'route':null);
+        if(kind){
+            event.preventDefault();
+            const value=button.dataset.v548Value || button.dataset.v548Route || '';
+            // No video or image stand-ins: navigate via existing V402 site action.
+            closeAll();
+            routeTo(value==='home'?'home':(value==='about'?'about':kind),value);
+        }
+    });
+    document.addEventListener('pointerdown',event=>{if(!root.contains(event.target))closeAll();});
+    document.addEventListener('keydown',event=>{if(event.key==='Escape')closeAll();});
+    window.addEventListener('resize',()=>{if(window.innerWidth>1180){root.classList.remove('v548-mobile-open');if(mobileButton)mobileButton.setAttribute('aria-expanded','false');}});
+    // Kept route handling centralized in V546; only visual nav state is local.
+})();
+
 // V258 - Osteopati bağımsız premium sekme sistemi.
 // V257 - Osteopati signature tasarımı; mevcut etkileşimler korunur.
 // V254 - Dikey boşluk düzeltmesi CSS tarafında yapıldı; mevcut davranış korunur.
@@ -219,12 +332,24 @@ Teşekkür ederim.`;
             encodeURIComponent(message);
 
         if (appointmentPreview) {
-            appointmentPreview.innerHTML = `
-                <div class="preview-row"><span>Ad Soyad</span><strong>${name}</strong></div>
-                <div class="preview-row"><span>Yaş</span><strong>${age}</strong></div>
-                <div class="preview-row"><span>Telefon</span><strong>${phone}</strong></div>
-                <div class="preview-row"><span>Şikayet / Hastalık / Ağrı</span><strong>${complaint}</strong></div>
-            `;
+            // V534: Hasta tarafından girilen metin HTML olarak çalıştırılmaz.
+            // Mevcut önizleme satırlarının sınıfları / görünümü korunur.
+            const rowsV534 = [
+                ["Ad Soyad", name],
+                ["Yaş", age],
+                ["Telefon", phone],
+                ["Şikayet / Hastalık / Ağrı", complaint]
+            ];
+            appointmentPreview.replaceChildren(...rowsV534.map(([label, value]) => {
+                const row = document.createElement("div");
+                row.className = "preview-row";
+                const title = document.createElement("span");
+                title.textContent = label;
+                const content = document.createElement("strong");
+                content.textContent = value;
+                row.append(title, content);
+                return row;
+            }));
         }
 
         if (appointmentModal) {
@@ -1820,6 +1945,10 @@ function openTreatmentPage() {
     document.body.classList.remove(
         "pain-page-open",
         "pain-nav-scrolled",
+        // V543: Ağrı detayından üst menü ile Tedavi Alanları'na geçişte
+        // sabit detay katmanı ve varsa açık konu penceresi kapatılır.
+        "pain-full-detail-open-v215",
+        "pain-topic-open-v415",
         "media-page-open",
         "media-nav-scrolled",
         "about-page-open",
@@ -1840,6 +1969,7 @@ function openTreatmentPage() {
 
     [
         "agriPage",
+        "painFullDetailPageV215",
         "medyaPage",
         "hakkimdaPage",
         "legalPageV56",
@@ -1860,6 +1990,15 @@ function openTreatmentPage() {
             el.setAttribute("aria-hidden", "true");
         }
     });
+
+    // V543: V415 konusu body altına taşındığından, görünür modal
+    // Tedavi Alanları'nın üstünde kalmasın. Hash/geçmiş değiştirilmez.
+    const painTopicModalV543 = document.getElementById('painTopicModalV415');
+    if (painTopicModalV543) {
+        painTopicModalV543.hidden = true;
+        painTopicModalV543.classList.remove('is-open-v415');
+        painTopicModalV543.setAttribute('aria-hidden', 'true');
+    }
 
     document.body.classList.add(
         "treatment-page-open"
@@ -2557,14 +2696,81 @@ if (
         });
     });
 
+    // V546: Ortak menüden hedef sayfaya geçilirken diğer sürümlerin
+    // açık bıraktığı bağımsız tam ekran katmanlar kapatılır.
+    // Yalnızca global V402 menüsünün yönlendirme adımında kullanılır;
+    // sayfa içi kartlar, akordeonlar ve seçilmiş içerikler etkilenmez.
+    function prepareGlobalDestinationV546() {
+        const body = document.body;
+        const competingClasses = [
+            'treatment-page-open', 'treatment-nav-scrolled',
+            'pain-page-open', 'pain-nav-scrolled',
+            'pain-full-detail-open-v215', 'pain-topic-open-v415',
+            'media-page-open', 'media-nav-scrolled',
+            'about-page-open', 'about-nav-scrolled',
+            'treatment-detail-open-v71', 'treatment-detail-nav-scrolled-v71',
+            'general-health-detail-open-v75',
+            'osteo-standalone-open-v260',
+            'osteo-main-open-v356', 'osteo-main-fixed-v357',
+            'phyto-herb-detail-open-v351', 'device-detail-page-open-v157',
+            'ankilozan-page-open-v87', 'romatoid-page-open-v198',
+            'condition-disease-page-open-v246',
+            'as-special-open-v274', 'treatment-special-open-v279',
+            'general-featured-open-v124',
+            'legal-page-open-v56',
+            'info-guide-open-v143', 'info-guide-page-open-v143',
+            'site-feedback-open-v332'
+        ];
+        body.classList.remove(...competingClasses);
+
+        const independentPages = [
+            'tedaviAlanlariPage', 'agriPage', 'painFullDetailPageV215',
+            'medyaPage', 'hakkimdaPage', 'treatmentDetailPageV71',
+            'generalHealthDetailPageV75', 'ankilozanFaqSectionV85',
+            'romatoidFaqSectionV198', 'conditionDiseasePageV246',
+            'ankilozanSpecialViewV274', 'treatmentSpecialViewV279',
+            'osteoSpecialViewV259', 'deviceDetailPageV157',
+            'generalFeaturedPageV124', 'legalPageV56', 'infoGuidePageV143',
+            'siteFeedbackPageV332', 'phytoHerbDetailV351'
+        ];
+        independentPages.forEach(function (id) {
+            const page = document.getElementById(id);
+            if (page && page.getAttribute('aria-hidden') !== 'true') {
+                page.setAttribute('aria-hidden', 'true');
+            }
+        });
+        const painTopicModal = document.getElementById('painTopicModalV415');
+        if (painTopicModal) {
+            painTopicModal.hidden = true;
+            painTopicModal.classList.remove('is-open-v415');
+            painTopicModal.setAttribute('aria-hidden', 'true');
+        }
+        // Kapanan modalın kaydırma kilidini temizle; sayfaya ait
+        // inline tasarım değerlerine dokunma.
+        body.style.removeProperty('overflow');
+        document.documentElement.style.removeProperty('overflow');
+    }
+
     function clickExistingV402(selector, requestedRoute) {
         const target = document.querySelector(selector);
         if (!target) return false;
+        if (requestedRoute && requestedRoute !== 'home') {
+            prepareGlobalDestinationV546();
+        }
         if (requestedRoute) {
             setNavActiveV402(requestedRoute);
             if (requestedRoute !== 'home') setPageModeV408(false);
         }
-        target.click();
+        // V533: Gizli eski düğmeye programatik tıklama, V110 animasyon
+        // yakalayıcısına tekrar düşmemeli. Böylece ortak menü anında açar.
+        const wasImmediate = window.__v533ImmediateNav === true;
+        window.__v533ImmediateNav = true;
+        try { target.click(); }
+        finally { window.__v533ImmediateNav = wasImmediate; }
+        if (requestedRoute === 'home') {
+            prepareGlobalDestinationV546();
+            setPageModeV408(true);
+        }
         closeMenusV402();
         return true;
     }
@@ -2660,11 +2866,28 @@ if (
             history.pushState({ page: 'home' }, '', location.pathname + location.search);
             window.scrollTo({ top: 0, behavior: 'smooth' });
         }
+        // V546: Site Önerileri ve özel detaylar ana sayfaya dönerken
+        // geride kalan görünür katmanlar / açılış sınıfları temizlenir.
+        prepareGlobalDestinationV546();
+        setPageModeV408(true);
         closeMenusV402();
         window.setTimeout(updateActiveV402, 30);
     }
 
     if (brand) brand.addEventListener('click', goHomeV402);
+
+    // V533: Kullanıcı üst menüde yeni bölüm seçtiği anda önceki sayfanın
+    // bekleyen 750/1500 ms geçiş zamanlayıcıları iptal edilir.
+    nav.addEventListener('click', function (event) {
+        if (!(event.target instanceof Element)) return;
+        const destination = event.target.closest(
+            '#globalConnectedBrandV402, [data-v402-route], [data-v402-treatment], '+
+            '[data-v402-health], [data-v402-guide], [data-v402-feedback], [data-v402-legal]'
+        );
+        if (destination && typeof window.cancelSiteTransitionV533 === 'function') {
+            window.cancelSiteTransitionV533();
+        }
+    }, true);
 
     routeButtons.forEach(function (button) {
         button.addEventListener('click', function () {
@@ -5988,6 +6211,21 @@ window.addEventListener("load", async () => {
 
     let running = false;
     let bypassTrigger = null;
+    let midpointTimerV533 = null;
+    let finishTimerV533 = null;
+
+    // V533: Eski geçiş henüz bitmemişse yeni üst menü rotasını engellemesin.
+    window.cancelSiteTransitionV533 = function () {
+        if (midpointTimerV533 !== null) clearTimeout(midpointTimerV533);
+        if (finishTimerV533 !== null) clearTimeout(finishTimerV533);
+        midpointTimerV533 = null;
+        finishTimerV533 = null;
+        running = false;
+        bypassTrigger = null;
+        overlay.classList.remove('is-running-v110');
+        overlay.setAttribute('aria-hidden', 'true');
+        document.body.classList.remove('site-transition-running-v110');
+    };
 
     function getMeta(trigger) {
         if (!trigger) return null;
@@ -6059,13 +6297,15 @@ window.addEventListener("load", async () => {
         );
 
         // Geçişin tam ortasında gerçek sekme açılır.
-        window.setTimeout(() => {
+        midpointTimerV533 = window.setTimeout(() => {
+            midpointTimerV533 = null;
             bypassTrigger = trigger;
             trigger.click();
         }, 750);
 
         // Toplam 1.5 saniye.
-        window.setTimeout(() => {
+        finishTimerV533 = window.setTimeout(() => {
+            finishTimerV533 = null;
             overlay.classList.remove(
                 "is-running-v110"
             );
@@ -6099,6 +6339,10 @@ window.addEventListener("load", async () => {
             if (!(event.target instanceof Element)) {
                 return;
             }
+
+            // Ortak menü sekmeleri zaten kendileri rota açar; ikinci animasyon
+            // tetiklenirse tıklama iptal edildiği için kullanıcı takılı kalır.
+            if (window.__v533ImmediateNav === true) return;
 
             const trigger =
                 event.target.closest(selectors);
@@ -6590,10 +6834,9 @@ window.addEventListener("load", async () => {
         });
 
         switchButtons.forEach(button => {
-            button.classList.toggle(
-                "is-active",
-                button.dataset.infoGuideSwitch === selected
-            );
+            const active = button.dataset.infoGuideSwitch === selected;
+            button.classList.toggle("is-active", active);
+            button.setAttribute("aria-pressed", String(active));
         });
 
         return selected;
@@ -6616,7 +6859,7 @@ window.addEventListener("load", async () => {
             "#" + selected
         );
 
-        window.scrollTo({ top: 0, behavior: "smooth" });
+        window.scrollTo({ top: 0, behavior: "instant" });
     }
 
     function closeGuideV143() {
@@ -6641,6 +6884,9 @@ window.addEventListener("load", async () => {
                 "",
                 "#" + selected
             );
+            // V506: Uzun bir rehberden başka birine geçerken sayfa
+            // ortasında kalmasın, doğrudan yeni rehberin başlangıcını göster.
+            window.scrollTo({ top: 0, behavior: "instant" });
         });
     });
 
@@ -7850,6 +8096,12 @@ window.addEventListener("load", async () => {
     const topicWarning=document.getElementById('painTopicWarningV415');
     const topicRelated=document.getElementById('painTopicRelatedV415');
 
+    // V532: Ekranı kaplayan ağrı detayını üst menünün alt katmanından çıkar.
+    // Modalın HTML yapısı aynı kalır; yalnızca DOM'daki üst sahibi değişir.
+    if (topicModal && topicModal.parentElement !== document.body) {
+      document.body.appendChild(topicModal);
+    }
+
     let activePain='';
     let activeImageSrc='';
     let lastTopicTriggerV415=null;
@@ -8010,7 +8262,9 @@ window.addEventListener("load", async () => {
       });
     });
 
-    detailPage.addEventListener('click',event=>{
+    // V532: Modal artık doğrudan body altında. Hem ana kartların hem modal
+    // içindeki ilgili başlıkların tıklama yönlendirmeleri korunmalıdır.
+    function handlePainTopicClickV532(event) {
       const link=event.target.closest('.pain-topic-link-v415');
       if(link) {
         event.preventDefault();
@@ -8022,10 +8276,12 @@ window.addEventListener("load", async () => {
         event.preventDefault();
         openTopicV415(related.dataset.painTopicSectionV415||'genel',related.dataset.painTopicRelatedV415,related,true);
       }
-    });
+    }
+    detailPage.addEventListener('click',handlePainTopicClickV532);
+    if(topicModal) topicModal.addEventListener('click',handlePainTopicClickV532);
 
     if(topicClose) topicClose.addEventListener('click',()=>closeTopicV415(true,true));
-    detailPage.querySelectorAll('[data-pain-topic-close-v415]').forEach(button=>button.addEventListener('click',()=>closeTopicV415(true,true)));
+    if(topicModal) topicModal.querySelectorAll('[data-pain-topic-close-v415]').forEach(button=>button.addEventListener('click',()=>closeTopicV415(true,true)));
     document.addEventListener('keydown',event=>{
       if(event.key==='Escape' && topicModal && !topicModal.hidden) closeTopicV415(true,true);
     });
@@ -8216,6 +8472,29 @@ window.addEventListener("load", async () => {
 })();
 
 
+// ============================================================
+// V514 — Serum başlığı üst menünün altında kalmasın.
+// Damar Yolu detayında yalnızca görünen başlığa kaydır.
+// ============================================================
+function scrollSerumTitleBelowNavbarV514(vascularView) {
+    if (!vascularView) return;
+    const sections = Array.from(vascularView.querySelectorAll('.vitamin-c-special-tab-v235'));
+    const active = sections.find((section) => {
+        if (section.getAttribute('aria-hidden') !== 'false') return false;
+        return window.getComputedStyle(section).display !== 'none';
+    });
+    const heading = active?.querySelector('.serum-title-only-v513') ||
+        vascularView.querySelector('.serum-title-only-v513');
+    const target = heading || vascularView;
+    const nav = document.querySelector('body.treatment-detail-open-v71 .treatment-detail-nav-modern-v160');
+    const actualNavBottom = nav?.getBoundingClientRect().bottom;
+    const navBottom = typeof actualNavBottom === 'number' && actualNavBottom > 0 && actualNavBottom < window.innerHeight * .33
+        ? actualNavBottom : (window.innerWidth <= 760 ? 84 : 112);
+    const safeTop = Math.max(navBottom + 18, window.innerWidth <= 760 ? 98 : 135);
+    const absoluteTop = window.scrollY + target.getBoundingClientRect().top - safeTop;
+    window.scrollTo({ top: Math.max(0, absoluteTop), behavior: 'auto' });
+}
+
 // =========================================================
 // V238 - C VİTAMİNİ "BİLGİ EDİN" ÖZEL SEKME / METİN İÇİ HASTALIK GEÇİŞLERİ
 // =========================================================
@@ -8233,8 +8512,7 @@ window.addEventListener("load", async () => {
     }
 
     function scrollViewTop() {
-        const top = vascularView.getBoundingClientRect().top + window.scrollY - 12;
-        window.scrollTo({ top: Math.max(0, top), behavior: 'smooth' });
+        scrollSerumTitleBelowNavbarV514(vascularView);
     }
 
     function openVitaminCTab() {
@@ -8327,8 +8605,7 @@ window.addEventListener("load", async () => {
     }
 
     function scrollViewTop() {
-        const top = vascularView.getBoundingClientRect().top + window.scrollY - 12;
-        window.scrollTo({ top: Math.max(0, top), behavior: 'smooth' });
+        scrollSerumTitleBelowNavbarV514(vascularView);
     }
 
     function closeOtherSpecialTabs() {
@@ -8436,11 +8713,7 @@ window.addEventListener("load", async () => {
     }
 
     function scrollViewTop() {
-        const top = vascularView.getBoundingClientRect().top + window.scrollY - 12;
-        window.scrollTo({
-            top: Math.max(0, top),
-            behavior: 'smooth'
-        });
+        scrollSerumTitleBelowNavbarV514(vascularView);
     }
 
     function closeOtherSpecialTabs() {
@@ -8552,12 +8825,7 @@ window.addEventListener("load", async () => {
     }
 
     function scrollViewTop() {
-        const top = vascularView.getBoundingClientRect().top + window.scrollY - 12;
-
-        window.scrollTo({
-            top: Math.max(0, top),
-            behavior: 'smooth'
-        });
+        scrollSerumTitleBelowNavbarV514(vascularView);
     }
 
     function closeOtherSpecialTabs() {
@@ -8670,12 +8938,7 @@ window.addEventListener("load", async () => {
     }
 
     function scrollViewTop() {
-        const top = vascularView.getBoundingClientRect().top + window.scrollY - 12;
-
-        window.scrollTo({
-            top: Math.max(0, top),
-            behavior: 'smooth'
-        });
+        scrollSerumTitleBelowNavbarV514(vascularView);
     }
 
     function closeOtherSpecialTabs() {
@@ -8788,12 +9051,7 @@ window.addEventListener("load", async () => {
     }
 
     function scrollViewTop() {
-        const top = vascularView.getBoundingClientRect().top + window.scrollY - 12;
-
-        window.scrollTo({
-            top: Math.max(0, top),
-            behavior: 'smooth'
-        });
+        scrollSerumTitleBelowNavbarV514(vascularView);
     }
 
     function closeOtherSpecialTabs() {
@@ -8920,12 +9178,7 @@ window.addEventListener("load", async () => {
     }
 
     function scrollViewTop() {
-        const top = vascularView.getBoundingClientRect().top + window.scrollY - 12;
-
-        window.scrollTo({
-            top: Math.max(0, top),
-            behavior: 'smooth'
-        });
+        scrollSerumTitleBelowNavbarV514(vascularView);
     }
 
     function closeOtherSpecialTabs() {
@@ -11461,7 +11714,7 @@ window.addEventListener("load", async () => {
         header.innerHTML = `
             <div class="traditional-subpage-top-v331">
                 <button type="button" class="traditional-subpage-back-v331" data-traditional-sub-back>
-                    <span>←</span><b>${applicationName}</b>
+                    <span>←</span><b>Geleneksel Tedavi</b>
                 </button>
                 <span class="traditional-subpage-eyebrow-v331">GELENEKSEL & TAMAMLAYICI TIP · ÖZEL İÇERİK</span>
             </div>
@@ -11582,9 +11835,47 @@ window.addEventListener("load", async () => {
         });
     }
 
+    // V533: Yeni alt sayfalar da kapatılır. Önceki kod Ağrı'nın
+    // bağımsız detay ve açılır konu katmanlarını açık bırakıyordu.
     function hideOtherPages(){
-        document.body.classList.remove('treatment-page-open','treatment-nav-scrolled','pain-page-open','pain-nav-scrolled','about-page-open','about-nav-scrolled','media-page-open','media-nav-scrolled','legal-page-open-v56','treatment-detail-open-v71','treatment-detail-nav-scrolled-v71','ankilozan-page-open-v87','general-health-detail-open-v75','general-featured-open-v124','info-guide-open-v143');
-        ['tedaviAlanlariPage','agriPage','hakkimdaPage','medyaPage','legalPageV56','treatmentDetailPageV71','ankilozanFaqSectionV85','romatoidFaqSectionV198','generalHealthDetailPageV75','generalFeaturedPageV124','infoGuidePageV143','deviceDetailPageV157','conditionDiseasePageV246'].forEach(id=>{const el=document.getElementById(id);if(el)el.setAttribute('aria-hidden','true')});
+        const body=document.body;
+        body.classList.remove(
+            'treatment-page-open','treatment-nav-scrolled',
+            'pain-page-open','pain-nav-scrolled',
+            'pain-full-detail-open-v215','pain-topic-open-v415',
+            'about-page-open','about-nav-scrolled',
+            'media-page-open','media-nav-scrolled',
+            'legal-page-open-v56','treatment-detail-open-v71',
+            'treatment-detail-nav-scrolled-v71','ankilozan-page-open-v87',
+            'romatoid-page-open-v198','condition-disease-page-open-v246',
+            'as-special-open-v274','treatment-special-open-v279',
+            'osteo-standalone-open-v260','phyto-herb-detail-open-v351',
+            'general-health-detail-open-v75','general-featured-open-v124',
+            'device-detail-page-open-v157','info-guide-open-v143',
+            'info-guide-page-open-v143'
+        );
+        [
+            'tedaviAlanlariPage','agriPage','painFullDetailPageV215',
+            'hakkimdaPage','medyaPage','legalPageV56','treatmentDetailPageV71',
+            'ankilozanFaqSectionV85','romatoidFaqSectionV198',
+            'generalHealthDetailPageV75','generalFeaturedPageV124',
+            'infoGuidePageV143','deviceDetailPageV157',
+            'conditionDiseasePageV246','asSpecialViewV274',
+            'treatmentSpecialViewV279','osteoStandaloneV260',
+            'phytoHerbDetailV351'
+        ].forEach(id=>{
+            const el=document.getElementById(id);
+            if(el)el.setAttribute('aria-hidden','true');
+        });
+        const painModal=document.getElementById('painTopicModalV415');
+        if(painModal){
+            painModal.hidden=true;
+            painModal.classList.remove('is-open-v415');
+            painModal.setAttribute('aria-hidden','true');
+        }
+        // Eski modal açıkken sayfa kaydırması kilitlenmişse yeniden aç.
+        document.body.style.removeProperty('overflow');
+        document.documentElement.style.removeProperty('overflow');
     }
 
     function openFeedback(){
@@ -11600,6 +11891,39 @@ window.addEventListener("load", async () => {
         history.pushState({page:'home'},'','#anasayfa');
         window.scrollTo({top:0,behavior:'smooth'});
     }
+    // V505: Öneri formundan ortak menü ile başka bir sayfaya gidilince
+    // eski öneri sayfasının sınıfı yeni sayfaları gizlemesin.
+    function leaveFeedbackForRouteV505(){
+        if(!document.body.classList.contains('site-feedback-open-v332')) return;
+        document.body.classList.remove('site-feedback-open-v332');
+        page.setAttribute('aria-hidden','true');
+        // Yeni rota daha URL'sini yazmadan önce eski öneriler hash'ini temizle.
+        if(window.location.hash==='#site-onerileri'){
+            window.history.replaceState(window.history.state,'',window.location.pathname+window.location.search);
+        }
+    }
+
+    const connectedNavV505=document.getElementById('globalConnectedNavV402');
+    if(connectedNavV505){
+        connectedNavV505.addEventListener('click',function(event){
+            const target=event.target instanceof Element
+                ? event.target.closest(
+                    '#globalConnectedBrandV402, [data-v402-route], '+
+                    '[data-v402-treatment], [data-v402-health], '+
+                    '[data-v402-guide], [data-v402-legal]'
+                ) : null;
+            if(target) leaveFeedbackForRouteV505();
+        },true);
+    }
+
+    // Tarayıcı geri/ileri düğmeleriyle öneri sayfasından çıkışta da kilit kalmasın.
+    window.addEventListener('popstate',function(){
+        if(document.body.classList.contains('site-feedback-open-v332') &&
+           window.location.hash!=='#site-onerileri'){
+            leaveFeedbackForRouteV505();
+        }
+    });
+
     openButtons.forEach(btn=>btn.addEventListener('click',e=>{e.preventDefault();e.stopPropagation();openFeedback()}));
     [home,brand].forEach(btn=>{if(btn)btn.addEventListener('click',e=>{e.preventDefault();closeFeedback()})});
 
@@ -11734,10 +12058,36 @@ window.addEventListener("load", async () => {
     }
 
     function exitSingleDetail() {
+        // V556: Eski v235–v244 sınıfları kalırsa serum kartlarını gizler.
+        // Her çıkışta hem yeni hem eski detay katmanlarını temizle.
+        oldStateClasses.forEach((className) => vascularView.classList.remove(className));
         vascularView.classList.remove('serum-focus-v334');
         vascularView.removeAttribute('data-active-serum-v334');
         hideAllDetails();
     }
+
+    // V556: Kullanıcı Damar Yolu'nu MENÜDEN yeniden seçerse her seferinde
+    // serum kartları (başlangıç görünümü) gösterilsin. Diğer serumların
+    // içerik değiştirme düğmelerine bu sıfırlama uygulanmaz.
+    const overviewRoutesV556 = [
+        '[data-treatment-detail="damar-yolu"]',
+        '[data-treatment-top="damar-yolu"]',
+        '[data-v402-treatment="damar-yolu"]',
+        '[data-v548-kind="treatment"][data-v548-value="damar-yolu"]'
+    ].join(',');
+    document.addEventListener('click', (event) => {
+        if (event.target instanceof Element && event.target.closest(overviewRoutesV556)) {
+            exitSingleDetail();
+        }
+    }, true);
+
+    // Aynı sayfaya tarayıcı geri/ileri ile dönüldüğünde V511'in eski DOM
+    // anlık görüntüsü serum ayrıntısını yanlışlıkla açık bırakmasın.
+    window.addEventListener('popstate', () => {
+        if (location.hash === '#damar-yolu') {
+            window.setTimeout(exitSingleDetail, 190);
+        }
+    });
 
     function openSerum(key) {
         const item = serumMap.find((serum) => serum.key === key);
@@ -11756,11 +12106,7 @@ window.addEventListener("load", async () => {
         window.requestAnimationFrame(() => {
             enforceSingleDetail(key);
 
-            const top = vascularView.getBoundingClientRect().top + window.scrollY - 10;
-            window.scrollTo({
-                top: Math.max(0, top),
-                behavior: 'smooth'
-            });
+            scrollSerumTitleBelowNavbarV514(vascularView);
         });
     }
 
@@ -11847,8 +12193,7 @@ window.addEventListener("load", async () => {
 
         window.requestAnimationFrame(() => {
             enforceSingleDetail(targetKey);
-            const top = vascularView.getBoundingClientRect().top + window.scrollY - 10;
-            window.scrollTo({ top: Math.max(0, top), behavior: 'smooth' });
+            scrollSerumTitleBelowNavbarV514(vascularView);
         });
     });
 
@@ -11950,7 +12295,7 @@ window.addEventListener("load", async () => {
 // =========================================================
 (function () {
     const mainGrid = document.querySelector('.phyto-grid-v127');
-    const guideHead = document.querySelector('.phyto-guide-v127 .phyto-guide-head-v127');
+    const guideHead = document.getElementById('phytoFilterMountV531') || document.querySelector('.phyto-guide-v127 .phyto-guide-head-v127');
     const conditionHerbGrid = document.getElementById('conditionHerbGridV249');
     const conditionHerbTitle = document.getElementById('conditionHerbTitleV249');
     const conditionHerbNote = document.getElementById('conditionHerbNoteV249');
@@ -12530,7 +12875,7 @@ window.addEventListener("load", async () => {
     }
 
     const diseaseOrder = ['as','ra','bas-agrisi-migren','bel-sirt-agrisi','fibromiyalji','huzursuz-bacak','iltihabi-bagirsak','kronik-yorgunluk'];
-    let activeMainDisease = 'as';
+    let activeMainDisease = 'all';
 
     function cardHTML(herbId, index, diseaseKey) {
         const herb = herbCatalog[herbId];
@@ -12556,29 +12901,44 @@ window.addEventListener("load", async () => {
         `;
     }
 
+    // V531: 8 hastalık x 6 kart = 48 ilişki, katalogda 27 farklı
+    // destek girdisi bulunur. Hepsi seçildiğinde aynı bitki, farklı
+    // hastalık bağlamlarında ayrı kart olarak korunur.
     function renderMainDisease(key) {
-        if (!mainGrid || !diseaseSets[key]) return;
+        if (!mainGrid || (key !== 'all' && !diseaseSets[key])) return;
         activeMainDisease = key;
-        window.phytoActiveDiseaseV413 = key;
-        const data = diseaseSets[key];
-        mainGrid.innerHTML = data.herbs.map((id, index) => cardHTML(id, index, key)).join('');
-        const descNode = document.getElementById('phytoCurrentDescV350');
-        if (descNode) descNode.textContent = data.desc;
-        document.querySelectorAll('.phyto-disease-tab-v350').forEach(btn => {
-            btn.classList.toggle('is-active', btn.dataset.phytoDiseaseV350 === key);
+        window.phytoActiveDiseaseV413 = key === 'all' ? 'as' : key;
+        let cardNumber = 0;
+        const keys = key === 'all' ? diseaseOrder : [key];
+        mainGrid.innerHTML = keys.map(diseaseKey => {
+            return diseaseSets[diseaseKey].herbs.map(herbKey =>
+                cardHTML(herbKey, cardNumber++, diseaseKey)
+            ).join('');
+        }).join('');
+        document.querySelectorAll('#phytoDiseaseTabsV350 [data-phyto-disease-v350]').forEach(btn => {
+            const active = btn.dataset.phytoDiseaseV350 === key;
+            btn.classList.toggle('is-active', active);
+            btn.setAttribute('aria-pressed', String(active));
         });
+        const counter = document.getElementById('phytoFilterCountV531');
+        if (counter) counter.textContent = `${cardNumber} kart gösteriliyor`;
         wireHerbTriggers(mainGrid);
     }
 
     function ensureMainPhytoFilters() {
         if (!mainGrid || !guideHead || document.getElementById('phytoDiseaseTabsV350')) return;
         const wrap = document.createElement('div');
-        wrap.className = 'phyto-disease-switch-v350';
+        wrap.className = 'phyto-disease-switch-v350 phyto-disease-switch-v531';
+        const total = diseaseOrder.reduce((sum, key) => sum + diseaseSets[key].herbs.length, 0);
         wrap.innerHTML = `
-            <div class="phyto-disease-tabs-v350" id="phytoDiseaseTabsV350" aria-label="Fitoterapi hastalık sekmeleri">
-                ${diseaseOrder.map(key => `<button type="button" class="phyto-disease-tab-v350${key === activeMainDisease ? ' is-active' : ''}" data-phyto-disease-v350="${key}">${diseaseSets[key].short}</button>`).join('')}
+            <div class="phyto-filter-heading-v531">
+                <strong>Bitkileri hastalığa göre filtrele</strong>
+                <small id="phytoFilterCountV531">${total} kart gösteriliyor</small>
             </div>
-            <p class="phyto-current-desc-v350" id="phytoCurrentDescV350"></p>
+            <div class="phyto-disease-tabs-v350 phyto-disease-tabs-v531" id="phytoDiseaseTabsV350" aria-label="Hastalığa göre bitkileri filtrele" role="group">
+                <button type="button" class="phyto-disease-tab-v350 is-active" data-phyto-disease-v350="all" aria-pressed="true">Tümü (${total})</button>
+                ${diseaseOrder.map(key => `<button type="button" class="phyto-disease-tab-v350" data-phyto-disease-v350="${key}" aria-pressed="false">${diseaseSets[key].short} (${diseaseSets[key].herbs.length})</button>`).join('')}
+            </div>
         `;
         guideHead.appendChild(wrap);
         wrap.addEventListener('click', function (event) {
@@ -13523,12 +13883,17 @@ window.addEventListener("load", async () => {
     }
     function close(){page.hidden=true;page.setAttribute('aria-hidden','true');document.body.classList.remove('osteo-manual-detail-open-v364'); if(lastFocus?.focus) lastFocus.focus();}
     document.addEventListener('click',e=>{const b=e.target.closest('[data-osteo-manual-detail-v364]');if(!b)return;open(b.dataset.osteoManualDetailV364,b)});
+    // V563: Geri butonu tarayıcı geçmişindeki başka sayfaya değil, her zaman
+    // Osteopati > Manuel Uygulamalar'ın 01 numaralı sekmesine götürür.
     back?.addEventListener('click',()=>{
-        if(/^#osteopati-manual-(postur|somato-visseral|mobilizasyon|pelvis-omurga)$/.test(location.hash)){
-            history.back();
-        }else{
-            close();
+        const manualHash='#osteopati-manual';
+        if(location.hash!==manualHash){
+            history.replaceState({page:'osteopati-special',tab:'manual'},'',manualHash);
         }
+        close();
+        // Osteopati özel görünümü zaten kullandığı popstate yöneticileri üzerinden
+        // açılır: mevcut sekmeler, odak ve menü durumu korunur.
+        window.dispatchEvent(new PopStateEvent('popstate',{state:history.state}));
     });
     document.addEventListener('keydown',e=>{
         if(e.key==='Escape'&&!page.hidden){
@@ -14975,6 +15340,21 @@ window.addEventListener("load", async () => {
         if (event.key !== 'Escape' || event.defaultPrevented) return;
         const active = document.activeElement;
         if (active && /^(INPUT|TEXTAREA|SELECT)$/.test(active.tagName)) return;
+        // V556: Serum alt sayfasında ESC önce kart listesine döner;
+        // sayfadan çıkıp geçmişteki başka bir tedaviye atlamaz.
+        const activeSerumV556 = document.querySelector('[data-treatment-detail-view="damar-yolu"].serum-focus-v334');
+        if (activeSerumV556) {
+            const closeIdsV556 = {
+                ozone: 'closeOzoneDetailV239', 'vitamin-c': 'closeVitaminCDetailV235',
+                karnitin: 'closeKarnitinDetailV243', selenium: 'closeSeleniumDetailV244',
+                nad: 'closeNadDetailV242', glutathione: 'closeGlutathioneDetailV241',
+                'major-ozone': 'closeMajorOzoneDetailV240'
+            };
+            event.preventDefault();
+            event.stopImmediatePropagation();
+            document.getElementById(closeIdsV556[activeSerumV556.dataset.activeSerumV334])?.click();
+            return;
+        }
         if (hasOpenOverlayV419()) return;
 
         const isHome = !location.hash && !Array.from(document.body.classList).some(function (name) {
@@ -15116,7 +15496,17 @@ window.addEventListener("load", async () => {
         const intro = section.querySelector('.vitamin-c-special-intro-v235');
         const editorial = section.querySelector('.vitamin-c-editorial-v234');
         if (intro) {
-            intro.innerHTML = `<span>${item.kicker}</span><h1>${item.title}</h1><p>${item.intro}</p>`;
+            // V513: Üst kapakta yalnızca uygulama adı gösterilir.
+            // Ayrıntılı bilgilendirme ve kaynaklar aşağıdaki editoryal bölümde kalır.
+            const titleOnlyV513 = {
+                karnitinDetailV243: 'L-Karnitin Serumu',
+                seleniumDetailV244: 'Selenyum Serumu',
+                nadDetailV242: 'IV NAD+ Serumu',
+                glutathioneDetailV241: 'Glutatyon ve NAC Serumu',
+                majorOzoneDetailV240: 'Majör Ozon Uygulaması',
+                ozoneDetailV239: 'Ozonlu Serum'
+            };
+            intro.innerHTML = `<h1>${titleOnlyV513[id] || item.title}</h1>`;
         }
         if (editorial) {
             editorial.innerHTML = `
@@ -16203,4 +16593,1071 @@ window.addEventListener("load", async () => {
 (function(){
     const cards=document.querySelectorAll('.traditional-card-details-v501[name]');
     cards.forEach(card=>card.removeAttribute('name'));
+})();
+
+
+// =========================================================
+// V508 - ÖNE ÇIKAN MAKALELER: arama ve konu filtreleri.
+// Yalnızca kart görünürlüğünü değiştirir; site gezinmesini etkilemez.
+// =========================================================
+(function(){
+    const grid=document.getElementById('featuredArticlesGridV508');
+    const search=document.getElementById('featuredArticleSearchV508');
+    const output=document.getElementById('featuredArticleResultsV508');
+    const empty=document.getElementById('featuredArticlesEmptyV508');
+    if(!grid || !search || !output || !empty) return;
+    const cards=Array.from(grid.querySelectorAll('[data-featured-article-card-v508]'));
+    const buttons=Array.from(document.querySelectorAll('[data-featured-article-category-v508]'));
+    let category='Tümü';
+    const normalize=str=>String(str||'').toLocaleLowerCase('tr-TR').normalize('NFD').replace(/[\u0300-\u036f]/g,'').trim();
+    function filter(){
+        const query=normalize(search.value);
+        let visible=0;
+        cards.forEach(card=>{
+            const matchesCategory=category==='Tümü' || card.dataset.category===category;
+            const matchesText=!query || normalize(card.dataset.search).includes(query);
+            const show=matchesCategory && matchesText;
+            card.hidden=!show;
+            if(show) visible++;
+        });
+        output.textContent=visible+' makale listeleniyor';
+        empty.hidden=visible!==0;
+    }
+    buttons.forEach(button=>button.addEventListener('click',()=>{
+        category=button.dataset.featuredArticleCategoryV508||'Tümü';
+        buttons.forEach(item=>{
+            const active=item===button;
+            item.classList.toggle('is-active',active);
+            item.setAttribute('aria-pressed',String(active));
+        });
+        filter();
+    }));
+    search.addEventListener('input',filter);
+    filter();
+})();
+
+
+// =========================================================
+// V510 - MAKALE KARTLARININ SİTE İÇİ OKUMA ALANINI AÇMASI
+// Arama/filtre aynı kalır; dış siteye yönlendirme yapılmaz.
+// =========================================================
+(function(){
+    const page=document.getElementById('generalFeaturedPageV124');
+    const grid=document.getElementById('featuredArticlesGridV508');
+    const toolbar=page && page.querySelector('.featured-articles-toolbar-v508');
+    const reader=document.getElementById('featuredArticleReaderV510');
+    const content=document.getElementById('featuredArticleReaderContentV510');
+    const back=document.getElementById('featuredArticleBackV510');
+    const empty=document.getElementById('featuredArticlesEmptyV508');
+    if(!page || !grid || !toolbar || !reader || !content || !back || !empty) return;
+
+    let openKey=null;
+    let lastTrigger=null;
+    let scrollBefore=0;
+    const jumpTo=(node)=>{
+        const menu=document.getElementById('globalConnectedNavV402');
+        const rect=menu ? menu.getBoundingClientRect() : null;
+        const offset=rect && rect.height>0 && rect.height<220 ? rect.height+20 : 145;
+        window.scrollTo({top:Math.max(0,window.scrollY+node.getBoundingClientRect().top-offset),behavior:'auto'});
+    };
+    function openArticle(key,trigger){
+        const tpl=page.querySelector('[data-featured-article-template-v510="'+key+'"]');
+        if(!tpl) return;
+        if(openKey===null) scrollBefore=window.scrollY;
+        lastTrigger=trigger;
+        openKey=key;
+        content.replaceChildren(tpl.content.cloneNode(true));
+        toolbar.hidden=true;
+        grid.hidden=true;
+        empty.hidden=true;
+        reader.hidden=false;
+        requestAnimationFrame(()=>{jumpTo(reader);back.focus({preventScroll:true});});
+    }
+    function closeArticle(restoreScroll=true){
+        if(openKey===null) return;
+        openKey=null;
+        reader.hidden=true;
+        content.replaceChildren();
+        toolbar.hidden=false;
+        grid.hidden=false;
+        const search=document.getElementById('featuredArticleSearchV508');
+        if(search) search.dispatchEvent(new Event('input',{bubbles:true}));
+        if(restoreScroll){requestAnimationFrame(()=>{
+            window.scrollTo({top:scrollBefore,behavior:'auto'});
+            if(lastTrigger && lastTrigger.isConnected) lastTrigger.focus({preventScroll:true});
+        });}
+    }
+    // V511: Makale görüntüleyicisini geçmiş gezinmesiyle senkron tut.
+    window.siteArticleReaderV511 = {
+        open: (key) => {
+            const button=page.querySelector('[data-featured-article-open-v510="'+key+'"]');
+            if (button) openArticle(key,button);
+        },
+        close: () => closeArticle(false),
+        current: () => openKey
+    };
+    page.querySelectorAll('[data-featured-article-open-v510]').forEach(btn=>{
+        btn.addEventListener('click',()=>openArticle(btn.dataset.featuredArticleOpenV510,btn));
+    });
+    back.addEventListener('click',()=>closeArticle());
+    page.querySelectorAll('[data-featured-article-back-v510]').forEach(btn=>btn.addEventListener('click',()=>closeArticle()));
+    document.addEventListener('keydown',event=>{
+        if(event.key==='Escape' && openKey!==null){event.preventDefault();closeArticle();}
+    });
+    document.addEventListener('click',event=>{
+        if(openKey!==null && !page.contains(event.target)) closeArticle(false);
+    },true);
+})();
+
+
+// =========================================================
+// V511 - SİTENİN TAMAMINDA TEK BİR GERİ / İLERİ GEÇMİŞİ
+// Eski V419 history işleyişini bozmadan, gerçek ekran durumunu saklar.
+// Tarayıcı geri/ileri, ESC, sayfa üzerindeki geri tuşları ve yüzen
+// geri tuşu aynı geçmişi kullanır. Makale okuyucu dahil.
+// =========================================================
+(function () {
+    if (window.siteBackV511) return;
+
+    // Sabit DOM öğeleri için küçük bir durum fotoğrafı; gerçek makale
+    // metinlerini ya da kişisel form içeriklerini tarayıcı geçmişine yazmayız.
+    const selector = [
+        'section[aria-hidden]', 'article[aria-hidden]', '[hidden]',
+        '[data-treatment-detail-view]', '[data-health-detail-view]',
+        '[data-traditional-detail]', '[data-nutrition-detail]',
+        '[data-info-guide-view]', '[data-info-guide-panel]',
+        '[data-osteo-panel]', '[data-osteo-special-panel]',
+        '[data-disease-detail-view]', '[data-pain-detail-view]',
+        '[data-treatment-special-panel]', '[data-device-detail-panel]',
+        '[data-ank-panel-v196]', '[data-ra-panel-v198]',
+        '[data-about-panel-v116]', '[data-media-panel]',
+        '[data-traditional-panel]', '[data-pain-full-panel-v215]',
+        '[data-legal-doc-page]', '[data-manual-view-v364]',
+        '[data-focus-panel]',
+        '[data-featured-article-card-v508]',
+        '[role="tab"]', '[aria-current="page"]',
+        '#traditionalOverviewV168', '#nutritionOverviewV175',
+        '#featuredArticlesGridV508', '#featuredArticleReaderV510',
+        '.featured-articles-toolbar-v508', '#featuredArticlesEmptyV508'
+    ].join(',');
+    const nodes = Array.from(document.querySelectorAll(selector));
+    const rootPages = Array.from(document.querySelectorAll([
+        '#tedaviAlanlariPage','#agriPage','#hakkimdaPage','#medyaPage',
+        '#treatmentDetailPageV71','#generalHealthDetailPageV75',
+        '#generalFeaturedPageV124','#infoGuidePageV143',
+        '#deviceDetailPageV157','#siteFeedbackPageV332',
+        '#traditionalOverviewV168','#nutritionOverviewV175',
+        '#featuredArticleReaderV510',
+        '[data-treatment-detail-view]','[data-health-detail-view]',
+        '[data-traditional-detail]','[data-nutrition-detail]',
+        '[data-info-guide-view]', '[data-about-panel-v116]',
+        '[data-media-panel]', '[data-ank-panel-v196]', '[data-ra-panel-v198]',
+        '[data-traditional-panel]', '[data-pain-full-panel-v215]',
+        '[data-legal-doc-page]', '[data-manual-view-v364]',
+        '[data-device-detail-panel]', '[data-osteo-panel]'
+    ].join(',')));
+
+    const rawPush = history.pushState.bind(history);
+    const rawReplace = history.replaceState.bind(history);
+    const stateKey = 'siteViewV511';
+    const homeUrl = location.pathname + location.search;
+    let restoring = false;
+    let ticket = 0;
+    let gesture = null;
+
+    const cleanState = (state) => (state && typeof state === 'object' ? Object.assign({}, state) : {});
+    const isSameOriginUrl = (url) => {
+        try { return new URL(url || location.href, location.href).origin === location.origin; }
+        catch (_) { return false; }
+    };
+    const snapshot = () => ({
+        body: document.body.className,
+        x: Math.round(window.scrollX || 0),
+        y: Math.round(window.scrollY || 0),
+        states: nodes.map((node) => [
+            node.className && typeof node.className === 'string' ? node.className : '',
+            node.getAttribute('aria-hidden'), node.hidden ? 1 : 0,
+            node.getAttribute('aria-current'), node.getAttribute('aria-selected'),
+            node.hasAttribute('open') ? 1 : 0
+        ]),
+        article: window.siteArticleReaderV511?.current?.() || null
+    });
+    const saveCurrent = () => {
+        if (restoring) return;
+        try {
+            const state = cleanState(history.state);
+            state[stateKey] = snapshot();
+            rawReplace(state, '', location.href);
+        } catch (e) {
+            // Geçmiş boyutu sınırına ulaşılırsa site gezinmesi yine çalışsın.
+            console.warn('V511: geçmiş ekranı kaydedilemedi', e);
+        }
+    };
+    const fingerprint = () => {
+        const body = Array.from(document.body.classList).filter(c =>
+            /(open|active|page|detail|special)/.test(c) && !/(scrolled|fixed|animat)/.test(c)
+        ).sort().join('.');
+        const pages = rootPages.map(n =>
+            (n.classList.contains('active') ? '1' : '0') +
+            (n.getAttribute('aria-hidden') === 'false' ? '1' : '0') +
+            (n.hidden ? '1' : '0')
+        ).join('');
+        return body + '|' + pages + '|' + (window.siteArticleReaderV511?.current?.() || '');
+    };
+    const hasSubpage = () => Boolean(location.hash && location.hash !== '#anasayfa') ||
+        Array.from(document.body.classList).some(c => /(page|detail|special|featured|standalone)-open/.test(c)) ||
+        Boolean(window.siteArticleReaderV511?.current?.());
+    const atSiteDepth = () => Number(history.state && history.state.siteDepthV419) || 0;
+    const shouldConvertReplace = (target) => Boolean(target && target.closest([
+        '[data-traditional-open]','[data-nutrition-open]',
+        '[data-info-guide-switch]','[data-traditional-back]',
+        '[data-nutrition-back]'
+    ].join(',')));
+
+    // V419 tarafından kurulmuş pushState/replaceState sarmalayıcılarını
+    // kullanarak siteDepthV419 değerini koruyoruz.
+    history.pushState = function (state, title, url) {
+        const result = rawPush(state, title, url);
+        if (!restoring) {
+            if (gesture) gesture.written = true;
+            const turn = ++ticket;
+            setTimeout(() => { if (turn === ticket) saveCurrent(); }, 70);
+        }
+        return result;
+    };
+    history.replaceState = function (state, title, url) {
+        const targetUrl = url == null ? location.href : url;
+        const changesUrl = isSameOriginUrl(targetUrl) &&
+            new URL(targetUrl, location.href).href !== location.href;
+        // Bazı alt sayfalar replaceState kullandığı için tarayıcı geri
+        // okuna bir giriş bırakmıyordu. Kullanıcının bir sekmeye tıklaması
+        // sonucu gerçekleşen bu geçişleri yalnızca o durumda push'a çevir.
+        if (!restoring && gesture && gesture.convertReplace && changesUrl) {
+            const result = history.pushState(state, title, targetUrl);
+            gesture.written = true;
+            return result;
+        }
+        const result = rawReplace(state, title, url);
+        if (!restoring && changesUrl) {
+            const turn = ++ticket;
+            setTimeout(() => { if (turn === ticket) saveCurrent(); }, 70);
+        }
+        return result;
+    };
+
+    function restore(snapshotData) {
+        if (!snapshotData || !Array.isArray(snapshotData.states)) return;
+        restoring = true;
+        try {
+            const reader = window.siteArticleReaderV511;
+            if (reader) {
+                if (snapshotData.article && reader.current() !== snapshotData.article) reader.open(snapshotData.article);
+                else if (!snapshotData.article && reader.current()) reader.close();
+            }
+            document.body.className = snapshotData.body || '';
+            snapshotData.states.forEach((values, i) => {
+                const node = nodes[i];
+                if (!node || !node.isConnected) return;
+                if (typeof values[0] === 'string') node.setAttribute('class', values[0]);
+                if (values[1] === null) node.removeAttribute('aria-hidden');
+                else node.setAttribute('aria-hidden', values[1]);
+                node.hidden = values[2] === 1;
+                if (values[3] == null) node.removeAttribute('aria-current');
+                else node.setAttribute('aria-current', values[3]);
+                if (values[4] == null) node.removeAttribute('aria-selected');
+                else node.setAttribute('aria-selected', values[4]);
+                if (values[5]) node.setAttribute('open', '');
+                else node.removeAttribute('open');
+            });
+            window.scrollTo({ left: snapshotData.x || 0, top: snapshotData.y || 0, behavior: 'instant' });
+        } finally {
+            restoring = false;
+            updateBackVisibility();
+        }
+    }
+
+    function goBack() {
+        // V556: Serum ayrıntısı, tarayıcı geçmişinden bağımsız bir alt görünüm.
+        // Global geri okuna basılınca önce Damar Yolu serum kartlarına dön.
+        const focusedSerumV556 = document.querySelector('[data-treatment-detail-view="damar-yolu"].serum-focus-v334');
+        if (focusedSerumV556) {
+            const closeIdsV556 = {
+                ozone: 'closeOzoneDetailV239', 'vitamin-c': 'closeVitaminCDetailV235',
+                karnitin: 'closeKarnitinDetailV243', selenium: 'closeSeleniumDetailV244',
+                nad: 'closeNadDetailV242', glutathione: 'closeGlutathioneDetailV241',
+                'major-ozone': 'closeMajorOzoneDetailV240'
+            };
+            const closeId = closeIdsV556[focusedSerumV556.dataset.activeSerumV334];
+            if (closeId && document.getElementById(closeId)) {
+                document.getElementById(closeId).click();
+                updateBackVisibility();
+                return;
+            }
+        }
+        if (atSiteDepth() > 0) {
+            history.back();
+        } else if (window.siteArticleReaderV511?.current?.()) {
+            window.siteArticleReaderV511.close();
+            updateBackVisibility();
+        } else if (hasSubpage()) {
+            // Sayfa URL'si doğrudan alt bölüme yapıştırılarak açılmışsa.
+            const brand = document.getElementById('globalConnectedBrandV402');
+            if (brand) brand.click();
+            else location.href = homeUrl;
+        }
+    }
+
+    // Tüm site için küçük ve daima erişilebilir bir geri tuşu.
+    const backButton = document.createElement('button');
+    backButton.type = 'button';
+    backButton.id = 'siteGlobalBackV511';
+    backButton.className = 'site-global-back-v511';
+    backButton.setAttribute('aria-label', 'Önceki sayfaya dön');
+    backButton.title = 'Geri dön (Alt + Sol Ok)';
+    backButton.innerHTML = '<span aria-hidden="true">‹</span>';
+    backButton.hidden = true;
+    document.body.appendChild(backButton);
+    backButton.addEventListener('click', goBack);
+
+    function updateBackVisibility() {
+        backButton.hidden = !(hasSubpage() || atSiteDepth() > 0);
+    }
+
+    // Eski tekil geri butonları artık aynı geçmişe yönlendirilsin.
+    // Slider sol okları ve sayfa başına dönme tuşu BU LİSTEDE YOK.
+    const backSelectors = [
+        '[data-traditional-back]', '[data-nutrition-back]',
+        '#featuredArticleBackV510', '[data-featured-article-back-v510]',
+        '#painFullBackV215', '#osteoSpecialBackV259',
+        // V563: Manuel Uygulamalara Dön kendi #osteopati-manual rotasını açar.
+        '#phytoHerbBackV351',
+        '#deviceDetailBackV157', '#deviceDetailBreadcrumbBackV157',
+        // V556: Serum detay geri butonları global history.back'e bağlanmaz.
+        // Kendi V235–V334 close handler'ları normal şekilde çalışır.
+    ].join(',');
+
+    // Navigasyonun başında AYRILACAĞIMIZ sayfayı kaydet (click bubbling
+    // dinleyicilerinden önce). Böylece browser back gerçek önceki ekranı açar.
+    document.addEventListener('click', (event) => {
+        const target = event.target instanceof Element ? event.target : null;
+        if (!target || restoring) return;
+        const back = target.closest(backSelectors);
+        if (back && atSiteDepth() > 0) {
+            event.preventDefault();
+            event.stopImmediatePropagation();
+            goBack();
+            return;
+        }
+        const control = target.closest('a,button,summary,[role="tab"]');
+        if (!control || control === backButton) return;
+        const isNavigation = !control.closest('form') && !control.matches(
+            '[data-traditional-card-toggle],.traditional-card-details-v501 summary'
+        );
+        if (!isNavigation) return;
+        const before = fingerprint();
+        saveCurrent();
+        const clickGesture = {
+            target: control, convertReplace: shouldConvertReplace(control),
+            written: false, before, url: location.href
+        };
+        gesture = clickGesture;
+        // Önce eski handler'ların tamamlanmasını bekle; hash değişmeden açılan
+        // detay/sekme ekranlarına da ayrı geri geçmişi oluştur.
+        setTimeout(() => {
+            if (gesture === clickGesture) gesture = null;
+            if (restoring) return;
+            if (location.href === clickGesture.url && fingerprint() !== before &&
+                history.state && history.state[stateKey] && !clickGesture.written) {
+                history.pushState(cleanState(history.state), '', location.href);
+            }
+            updateBackVisibility();
+        }, 110);
+    }, true);
+
+    window.addEventListener('popstate', (event) => {
+        const target = event.state && event.state[stateKey];
+        const expectedUrl = location.href;
+        ++ticket;
+        // Mevcut sayfanın 25+ eski popstate işleyicisi önce tamamlanmalı.
+        setTimeout(() => {
+            if (expectedUrl !== location.href) return;
+            if (target) restore(target);
+            else updateBackVisibility();
+        }, 140);
+    });
+    window.addEventListener('hashchange', () => setTimeout(updateBackVisibility, 70));
+    window.addEventListener('pageshow', updateBackVisibility);
+
+    window.siteBackV511 = { goBack, refresh: updateBackVisibility };
+    saveCurrent();
+    updateBackVisibility();
+})();
+
+
+// =========================================================
+// V512 - GELENEKSEL TEDAVİ: ALT SAYFADAN DİREKT ÜÇ KARTA DÖNÜŞ
+// Akupunktur/Sülük/Hacamat alt sayfaları eski tanıtım/hero ekranına
+// dönmez. Geri düğmesi ana Geleneksel Tedavi seçim ekranına gider.
+// =========================================================
+(function () {
+    const treatmentView = document.querySelector('[data-treatment-detail-view="geleneksel-tedavi"]');
+    const overview = document.getElementById('traditionalOverviewV168');
+    if (!treatmentView || !overview) return;
+
+    const details = Array.from(treatmentView.querySelectorAll('[data-traditional-detail]'));
+
+    function openTraditionalOverviewV512(updateAddress = true) {
+        // Eski uygulama hero'suna dönmek yerine, üç kartlı seçim ekranını göster.
+        details.forEach(detail => {
+            detail.classList.remove('active', 'is-traditional-subpage-open-v331');
+            detail.setAttribute('aria-hidden', 'true');
+            detail.querySelector('.traditional-detail-hero-v330')?.setAttribute('aria-hidden', 'true');
+            detail.querySelector('.traditional-tabs-stage-v330')?.setAttribute('aria-hidden', 'true');
+            detail.querySelectorAll('[data-traditional-panel]').forEach(panel => {
+                panel.classList.remove('is-active');
+                panel.setAttribute('aria-hidden', 'true');
+            });
+            detail.querySelectorAll('[data-traditional-tab]').forEach(button => {
+                button.classList.remove('is-active');
+                button.setAttribute('aria-selected', 'false');
+            });
+        });
+        overview.classList.add('active');
+        overview.setAttribute('aria-hidden', 'false');
+
+        if (updateAddress && window.history.replaceState) {
+            // Yeni bir ara ekran/geçmiş halkası üretme.
+            window.history.replaceState(window.history.state, '', '#geleneksel-tedavi');
+        }
+
+        // Üstteki sabit site menüsü kartların üstüne gelmesin.
+        const nav = document.querySelector('.treatment-detail-nav-modern-v160');
+        const navBottom = nav ? Math.max(0, nav.getBoundingClientRect().bottom) : 0;
+        const offset = Math.max(18, navBottom + 14);
+        const destination = window.scrollY + overview.getBoundingClientRect().top - offset;
+        window.scrollTo({ top: Math.max(0, destination), behavior: 'smooth' });
+        window.siteBackV511?.refresh?.();
+    }
+
+    // Capture aşaması: V331'in eski alt-sayfa geri işleyicisinden ve
+    // V511'in tüm-site geçmiş işleyicisinden önce bu özel dönüşü uygula.
+    window.addEventListener('click', (event) => {
+        const target = event.target;
+        if (!(target instanceof Element)) return;
+        const back = target.closest('[data-traditional-sub-back], [data-traditional-back]');
+        if (!back || !treatmentView.contains(back)) return;
+        event.preventDefault();
+        event.stopPropagation();
+        event.stopImmediatePropagation();
+        openTraditionalOverviewV512(true);
+    }, true);
+
+    // Tarayıcı geri/ileri ile daha önce kaydedilmiş "eski hero" durumuna
+    // dönülürse de kullanıcının istemediği tanıtım ekranını atla.
+    window.addEventListener('popstate', () => {
+        window.setTimeout(() => {
+            const parent = document.getElementById('treatmentDetailPageV71');
+            if (!document.body.classList.contains('treatment-detail-open-v71') ||
+                (parent && parent.getAttribute('aria-hidden') === 'true')) return;
+            const legacyHeroOpen = details.some(detail =>
+                detail.classList.contains('active') &&
+                !detail.classList.contains('is-traditional-subpage-open-v331')
+            );
+            if (legacyHeroOpen && !overview.classList.contains('active')) {
+                openTraditionalOverviewV512(false);
+            }
+        }, 220); // V511, popstate'de 140 ms sonra geçmişi geri yükler.
+    });
+})();
+
+
+/* ============================================================
+   V517 - Ağrı sayfasında sabit üst menünün gerçek yüksekliğini
+   ölçerek sol rehberin üst menü ile çakışmasını önler.
+   ============================================================ */
+(function(){
+    const menu = document.getElementById('globalConnectedNavV402');
+    if (!menu) return;
+    const updatePainStickyOffsetV517 = () => {
+        const marginTop = window.innerWidth <= 560 ? 5 : 8;
+        const menuHeight = menu.getBoundingClientRect().height || 104;
+        document.documentElement.style.setProperty('--pain-sidebar-top-v517',
+            Math.ceil(menuHeight + marginTop + 14) + 'px');
+    };
+    updatePainStickyOffsetV517();
+    window.addEventListener('resize', updatePainStickyOffsetV517, {passive:true});
+    if (typeof ResizeObserver !== 'undefined') {
+        new ResizeObserver(updatePainStickyOffsetV517).observe(menu);
+    }
+})();
+
+
+// =============================================================
+// V518 — Ağrı üst menüsü fixed iken sayfa boşluğunu ve detay
+// ekranının açılacağı güvenli yüksekliği menü boyuna göre ayarla.
+// =============================================================
+(function () {
+    const nav = document.getElementById('globalConnectedNavV402');
+    if (!nav) return;
+    // V519: Ağrı listesinde fixed menü kalktı; boşluk elemanı eklenmez.
+    document.getElementById('painNavSpacerV518')?.remove();
+    const root = document.documentElement;
+    let frame = 0;
+    function syncPainNavV518() {
+        frame = 0;
+        const active = document.body.classList.contains('pain-page-open') ||
+            document.body.classList.contains('pain-full-detail-open-v215');
+        if (!active) return;
+        // Menünün gerçek yüksekliğini ölç: masaüstü ve mobilde doğru boşluk.
+        const top = window.innerWidth <= 560 ? 5 : 8;
+        const height = Math.ceil(nav.getBoundingClientRect().height || 104);
+        const safe = top + height + 12;
+        root.style.setProperty('--pain-nav-reserve-v518', safe + 'px');
+        root.style.setProperty('--pain-sidebar-top-v517', safe + 'px');
+    }
+    function schedule() {
+        if (frame) return;
+        frame = window.requestAnimationFrame(syncPainNavV518);
+    }
+    new MutationObserver(schedule).observe(document.body, {
+        attributes: true, attributeFilter: ['class']
+    });
+    if (typeof ResizeObserver !== 'undefined') new ResizeObserver(schedule).observe(nav);
+    window.addEventListener('resize', schedule, {passive:true});
+    window.addEventListener('pageshow', schedule);
+    schedule();
+})();
+
+
+// V522 — Osteopati bağımsız detayında ortak üst menünün ekranı izlemesini önle.
+// Mevcut V308 yalnız eski/kapalı tedavi navını izliyordu; ekranda görünen
+// ortak V402 menüsünü, aynı detay panelinin kaydırmasıyla eşleştir.
+(function () {
+    const detail = document.getElementById('osteoSpecialViewV259');
+    const nav = document.getElementById('globalConnectedNavV402');
+    if (!detail || !nav) return;
+    let scheduled = false;
+    function applyV522() {
+        scheduled = false;
+        const active = document.body.classList.contains('osteo-standalone-open-v260') &&
+                       !detail.hidden;
+        if (!active) {
+            nav.style.removeProperty('--osteo-main-nav-scroll-y-v522');
+            return;
+        }
+        const distance = Math.max(0, Math.min(detail.scrollTop,
+            nav.getBoundingClientRect().height + 30));
+        nav.style.setProperty('--osteo-main-nav-scroll-y-v522', (-distance) + 'px');
+    }
+    function updateV522() {
+        if (scheduled) return;
+        scheduled = true;
+        requestAnimationFrame(applyV522);
+    }
+    detail.addEventListener('scroll', updateV522, {passive:true});
+    new MutationObserver(updateV522).observe(document.body, {
+        attributes:true, attributeFilter:['class']
+    });
+    window.addEventListener('resize', updateV522, {passive:true});
+    window.addEventListener('pageshow', updateV522);
+    updateV522();
+})();
+
+
+// V528 • Estetiğe Bakış: dört karttan tam detay sayfasına geçiş, geri/ileri uyumu.
+(function () {
+    'use strict';
+    const root = document.querySelector('.aesthetic-view-v526[data-treatment-detail-view="estetik"]');
+    if (!root) return;
+    const overview = root.querySelector('.aesthetic-overview-v528');
+    const reading = root.querySelector('.aesthetic-reading-v528');
+    const cards = Array.from(root.querySelectorAll('[data-aesthetic-topic-v527]'));
+    const pages = Array.from(root.querySelectorAll('[data-aesthetic-read-v528]'));
+    const keys = pages.map(page => page.dataset.aestheticReadV528);
+    if (!overview || !reading || !cards.length || !pages.length) return;
+    let lastCard = null;
+
+    function moveToStart() {
+        const treatmentLayer = document.getElementById('treatmentDetailPageV71');
+        if (treatmentLayer && treatmentLayer.scrollHeight > treatmentLayer.clientHeight + 40 &&
+            getComputedStyle(treatmentLayer).overflowY !== 'visible') {
+            treatmentLayer.scrollTop = 0;
+        }
+        window.scrollTo({ top: 0, left: 0, behavior: 'instant' });
+    }
+
+    function renderTopic(key, options = {}) {
+        const isDetail = keys.includes(key);
+        overview.hidden = isDetail;
+        reading.hidden = !isDetail;
+        root.classList.toggle('aesthetic-is-reading-v528', isDetail);
+        pages.forEach(page => { page.hidden = !isDetail || page.dataset.aestheticReadV528 !== key; });
+        if (options.scroll !== false) moveToStart();
+        if (options.focus) {
+            if (isDetail) {
+                const heading = pages.find(page => page.dataset.aestheticReadV528 === key)?.querySelector('h2');
+                if (heading) { heading.setAttribute('tabindex', '-1'); heading.focus({ preventScroll: true }); }
+            } else if (lastCard) lastCard.focus({ preventScroll: true });
+        }
+    }
+
+    function openTopic(key, source, updateHistory = true) {
+        if (!keys.includes(key)) return;
+        if (source) lastCard = source;
+        if (updateHistory) {
+            // Same #estetik route. Moving between readings replaces that one detail
+            // entry, so the in-page back button always returns to the overview.
+            const state = { ...(history.state || {}), aestheticTopicV528: key };
+            if (root.classList.contains('aesthetic-is-reading-v528')) {
+                history.replaceState(state, '', location.href);
+            } else {
+                history.pushState(state, '', location.href);
+            }
+        }
+        renderTopic(key, { focus: true });
+    }
+
+    function goBack() {
+        if (history.state && keys.includes(history.state.aestheticTopicV528) &&
+            location.hash === '#estetik') {
+            history.back();
+        } else renderTopic(null, { focus: true });
+    }
+
+    cards.forEach(card => {
+        card.addEventListener('click', () => openTopic(card.dataset.aestheticTopicV527, card));
+    });
+    root.querySelectorAll('[data-aesthetic-next-v528]').forEach(button => {
+        button.addEventListener('click', () => openTopic(button.dataset.aestheticNextV528));
+    });
+    root.querySelectorAll('[data-aesthetic-back-v528]').forEach(button => {
+        button.addEventListener('click', goBack);
+    });
+
+    window.addEventListener('popstate', event => {
+        if (location.hash !== '#estetik') {
+            renderTopic(null, { scroll: false });
+            return;
+        }
+        const key = event.state && event.state.aestheticTopicV528;
+        renderTopic(key, { focus: false });
+    });
+    // Returning via a normal site menu should open the four-card overview.
+    document.addEventListener('click', event => {
+        const opener = event.target.closest('[data-treatment-detail="estetik"], [data-treatment-top="estetik"]');
+        if (opener && !root.contains(opener)) renderTopic(null, { scroll: false });
+    }, true);
+    const initial = location.hash === '#estetik' && history.state && history.state.aestheticTopicV528;
+    renderTopic(initial, { scroll: false });
+})();;
+
+
+// ======================================================================
+// V535 — Premium site animasyonları: mevcut yönlendirme/sekme mantığına dokunmaz.
+// Hero fotoğrafına hafif parallax ve sadece görünür kartlara giriş hareketi.
+// ======================================================================
+(function initVisualMotionV535() {
+    'use strict';
+    const hero = document.querySelector('.hero-home-v85');
+    const reduceMotion = window.matchMedia('(prefers-reduced-motion: reduce)');
+    const finePointer = window.matchMedia('(hover: hover) and (pointer: fine)');
+    let pointerFrame = 0;
+    let lastPointer = null;
+    function applyPointer() {
+        pointerFrame = 0;
+        if (!hero || !lastPointer || reduceMotion.matches || !finePointer.matches ||
+            !document.body.classList.contains('global-home-open-v408')) return;
+        const rect = hero.getBoundingClientRect();
+        if (rect.width <= 0 || rect.height <= 0) return;
+        const x = Math.max(-1, Math.min(1, (lastPointer.x - rect.left) / rect.width * 2 - 1));
+        const y = Math.max(-1, Math.min(1, (lastPointer.y - rect.top) / rect.height * 2 - 1));
+        hero.style.setProperty('--v535-photo-x', (-x * 6).toFixed(2) + 'px');
+        hero.style.setProperty('--v535-photo-y', (-y * 4).toFixed(2) + 'px');
+    }
+    if (hero) {
+        hero.addEventListener('pointermove', function (event) {
+            if (event.pointerType !== 'mouse' || reduceMotion.matches || !finePointer.matches) return;
+            lastPointer = {x:event.clientX, y:event.clientY};
+            if (!pointerFrame) pointerFrame = requestAnimationFrame(applyPointer);
+        }, {passive:true});
+        hero.addEventListener('pointerleave', function () {
+            lastPointer = null;
+            hero.style.setProperty('--v535-photo-x','0px');
+            hero.style.setProperty('--v535-photo-y','0px');
+        });
+    }
+    // Görünür kartlara bir kez animasyon: gizli sayfalarda veya modal içinde
+    // yanlışlıkla kartları saklamaz. Liste sınırı büyük sayfaları korur.
+    const selector = [
+        '.treatment-card-v77','.pain-card-v76','.serum-card-v71',
+        '.injection-card-v72','.featured-article-card-v508',
+        '.traditional-intro-card-v167','.aesthetic-topic-card-v527'
+    ].join(',');
+    if (!('IntersectionObserver' in window)) return;
+    const seen = new WeakSet();
+    const observed = new WeakSet();
+    const io = new IntersectionObserver(function (entries) {
+        for (const entry of entries) {
+            if (!entry.isIntersecting) continue;
+            io.unobserve(entry.target);
+            seen.add(entry.target);
+            entry.target.style.setProperty('--v535-reveal-delay',
+                ((Array.prototype.indexOf.call(entry.target.parentElement?.children || [],entry.target) % 4) * 65) + 'ms');
+            entry.target.classList.add('v535-reveal-seen');
+        }
+    }, {threshold:0.12, rootMargin:'0px 0px -25px 0px'});
+    let scanFrame = 0;
+    function scanActiveCards() {
+        scanFrame = 0;
+        if (reduceMotion.matches) return;
+        let count = 0;
+        document.querySelectorAll(selector).forEach(function (el) {
+            if (count >= 140 || observed.has(el) || seen.has(el)) return;
+            // display:none sayfaları şimdi gözlemleme; açılınca tekrar taranır.
+            if (!el.getClientRects().length) return;
+            if (el.closest('[hidden], [aria-hidden="true"]')) return;
+            observed.add(el);
+            io.observe(el);
+            count++;
+        });
+    }
+    function scheduleScan() {
+        if (!scanFrame) scanFrame = requestAnimationFrame(scanActiveCards);
+    }
+    const classChanges = new MutationObserver(scheduleScan);
+    classChanges.observe(document.body,{attributes:true,attributeFilter:['class']});
+    document.addEventListener('click',scheduleScan, {passive:true});
+    window.addEventListener('pageshow',scheduleScan,{passive:true});
+    reduceMotion.addEventListener?.('change',scheduleScan);
+    scheduleScan();
+})();
+
+
+// =====================================================================
+// V536 | Yeni global menü sinematik geçişleri
+// V533'te kapatılmış eski global animasyonu GERİ AÇMAZ: ortak menüdeki
+// gerçek tıklamayı örtü ekranının orta noktasında bir kez yürütür.
+// Bölüm menüleri, geçmiş/ESC ve hızlı ardışık tıklamalar korunur.
+// =====================================================================
+(function initSectionSwitchV536() {
+    'use strict';
+    const nav = document.getElementById('globalConnectedNavV402');
+    const overlay = document.getElementById('siteRouteTransitionV536');
+    if (!nav || !overlay) return;
+    const title = overlay.querySelector('#routeTitleV536');
+    const kicker = overlay.querySelector('#routeEyebrowV536');
+    const subtitle = overlay.querySelector('#routeSubtitleV536');
+    const icon = overlay.querySelector('#routeIconV536');
+    if (!title || !kicker || !subtitle || !icon) return;
+
+    const selector = [
+        '#globalConnectedBrandV402', '[data-v402-route]',
+        '[data-v402-treatment]', '[data-v402-health]',
+        '[data-v402-guide]', '[data-v402-feedback]', '[data-v402-legal]'
+    ].join(',');
+    const treatmentNames = {
+        'osteopati':['Osteopati','Bütüncül manuel yaklaşım','✧','osteopati'],
+        'fitoterapi':['Fitoterapi','Bitkisel destekler ve beslenme','❧','fitoterapi'],
+        'damar-yolu':['Damar Yolu Uygulamaları','Uygulamaları keşfedin','✚','health'],
+        'ozon-tedavisi':['Ozon Tedavisi','Uygulamalar hakkında bilgiler','◎','health'],
+        'igne':['İğneli Uygulamalar','Uygulamaları keşfedin','✦','osteopati'],
+        'cihaz-uygulamalari':['Cihaz Uygulamaları','Cihaz ve teknoloji uygulamaları','◈','areas'],
+        'geleneksel-tedavi':['Geleneksel Tedaviler','Geleneksel uygulamalar','❋','fitoterapi'],
+        'estetik':['Estetiğe Bakış','Bütüncül estetik yaklaşımlar','◇','info']
+    };
+    const routeNames = {
+        home:['Ana Sayfa','Dr. Ceyhun Nuri','✚','general'],
+        areas:['Tedavi Alanları','Bilgilendirme ve değerlendirme alanları','▦','areas'],
+        pain:['Ağrı','Ağrı bölgelerini keşfedin','◎','pain'],
+        media:['Sosyal Medya','Video ve yayınlar','▶','media']
+    };
+    const healthNames = {
+        beslenme:['Beslenme','Beslenme rehberi','❧','fitoterapi'],
+        supplementler:['Supplementler','Destek ürünleri','✦','health'],
+        kurler:['Detoks Kürleri','Tarifler ve kürler','✧','fitoterapi'],
+        egzersizler:['Egzersizler','Hareket ve yaşam','↗','osteopati']
+    };
+    let startTimer=null, endTimer=null, landingTimer=null;
+    let bypass=false;
+    let sequence=0;
+    const prefersReducedMotion=window.matchMedia('(prefers-reduced-motion: reduce)');
+
+    function getMeta(target) {
+        if (target.id === 'globalConnectedBrandV402') return routeNames.home;
+        if (target.dataset.v402Treatment) return treatmentNames[target.dataset.v402Treatment] || [target.textContent.trim(),'Tedavi uygulamaları','✦','general'];
+        if (target.dataset.v402Route) return routeNames[target.dataset.v402Route] || [target.textContent.trim(),'Yeni bölüm','✦','general'];
+        if (target.dataset.v402Health) return healthNames[target.dataset.v402Health] || [target.textContent.trim(),'Genel sağlık','✚','health'];
+        return [target.textContent.trim(),'Bilgi ve rehberler','i','info'];
+    }
+
+    function clearTimers() {
+        if (startTimer !== null) clearTimeout(startTimer);
+        if (endTimer !== null) clearTimeout(endTimer);
+        if (landingTimer !== null) clearTimeout(landingTimer);
+        startTimer=endTimer=landingTimer=null;
+    }
+    function cancel() {
+        sequence++;
+        clearTimers();
+        overlay.classList.remove('is-running-v536');
+        overlay.setAttribute('aria-hidden','true');
+        document.body.classList.remove('v536-content-land');
+    }
+    function runOriginal(target) {
+        bypass=true;
+        try { target.click(); }
+        finally { bypass=false; }
+    }
+    // Escape ve tarayıcı geçmişi ile bekleyen sayfa değişimi asla sonra tetiklenmesin.
+    document.addEventListener('keydown', function (event) {
+        if (event.key === 'Escape' && overlay.classList.contains('is-running-v536')) cancel();
+    }, true);
+    window.addEventListener('popstate',cancel);
+    window.addEventListener('pagehide',cancel);
+
+    document.addEventListener('click',function (event) {
+        if (bypass || window.__v548BridgeClick || !(event.target instanceof Element)) return;
+        if (event.button !== 0 || event.ctrlKey || event.metaKey || event.shiftKey || event.altKey) return;
+        const trigger=event.target.closest(selector);
+        if (!trigger || !nav.contains(trigger) || trigger.disabled || trigger.getAttribute('aria-disabled')==='true') return;
+        // Tıklama animasyon süresince tutulur, sonra normal V402 handler'ına
+        // bırakılır. Açılır menüyü açan ana butonlar burada yakalanmaz.
+        event.preventDefault();
+        event.stopPropagation();
+        event.stopImmediatePropagation();
+        cancel();
+        if (typeof window.cancelSiteTransitionV533 === 'function') window.cancelSiteTransitionV533();
+        if (prefersReducedMotion.matches) { runOriginal(trigger); return; }
+        const current=sequence;
+        const meta=getMeta(trigger);
+        title.textContent=meta[0];
+        subtitle.textContent=meta[1];
+        icon.textContent=meta[2];
+        kicker.textContent='DR. CEYHUN NURİ  •  '+(meta[3]==='general'?'ANA SAYFA':'KEŞFET');
+        overlay.dataset.v536Theme=meta[3];
+        // Aynı isimli animasyonu sonraki tıklamada sıfırdan oynat.
+        overlay.classList.remove('is-running-v536');
+        void overlay.offsetWidth;
+        overlay.setAttribute('aria-hidden','false');
+        overlay.classList.add('is-running-v536');
+        startTimer=window.setTimeout(function () {
+            startTimer=null;
+            if (current!==sequence) return;
+            runOriginal(trigger);
+            document.body.classList.add('v536-content-land');
+            landingTimer=window.setTimeout(function () {
+                landingTimer=null;
+                if (current===sequence) document.body.classList.remove('v536-content-land');
+            },650);
+        },300);
+        endTimer=window.setTimeout(function () {
+            endTimer=null;
+            if (current!==sequence) return;
+            overlay.classList.remove('is-running-v536');
+            overlay.setAttribute('aria-hidden','true');
+        },835);
+    },true);
+})();
+
+// V542: V536 özgün, kolajsız bölüm geçiş animasyonlarına geri dönüldü.
+
+// V543: Ağrı tam detayından Tedavi Alanları geçişinin katman temizliği düzeltildi.
+
+
+// V544 — Tedavi/Genel Sağlık/Bilgi açılır menüleri alt sekmelerde içerik
+// katmanlarının altında kalmasın; menü kapanınca normal z-index'e dönsün.
+(function syncGlobalDropdownLayerV544(){
+    'use strict';
+    const nav = document.getElementById('globalConnectedNavV402');
+    if (!nav) return;
+    const menus = Array.from(nav.querySelectorAll('.global-connected-menu-v402'));
+    const sync = () => {
+        nav.classList.toggle('v544-dropdown-front', menus.some(menu => menu.classList.contains('open')));
+    };
+    menus.forEach(menu => {
+        new MutationObserver(sync).observe(menu, {attributes:true, attributeFilter:['class']});
+    });
+    sync();
+})();
+
+
+// V545 | Osteopati'de 7.-8. seçenekler örtülmesin: sayfanın en üstünde
+// görsel menü kopyası göster, gerçek V402 düğmelerini aynen çalıştır.
+(function ensureWholeTreatmentDropdownV545(){
+    'use strict';
+    if (document.getElementById('v548PremiumNav')) return;
+    const nav = document.getElementById('globalConnectedNavV402');
+    const menu = nav && nav.querySelector('[data-v402-menu="treatments"]');
+    const panel = menu && menu.querySelector(':scope > .global-connected-panel-v402');
+    const trigger = menu && menu.querySelector(':scope > .global-connected-item-v402');
+    if (!nav || !menu || !panel || !trigger) return;
+    let floating = null;
+    let originalButtons = [];
+
+    function isDetailPage(){
+        return document.body.classList.contains('treatment-detail-open-v71') ||
+            document.body.classList.contains('osteo-standalone-open-v260') ||
+            document.querySelector('#treatmentDetailPageV71[aria-hidden="false"]') !== null;
+    }
+    function clearFloating(){
+        if (floating) floating.remove();
+        floating = null;
+        if (document.body.classList.contains('v545-popup-open')) document.body.classList.remove('v545-popup-open');
+    }
+    function positionFloating(){
+        if (!floating) return;
+        const anchor = trigger.getBoundingClientRect();
+        const navRect = nav.getBoundingClientRect();
+        const width = Math.min(342,window.innerWidth-16);
+        let left = anchor.left + anchor.width/2 - width/2;
+        left = Math.min(Math.max(8,left),window.innerWidth-width-8);
+        let top = Math.max(navRect.bottom,anchor.bottom) + 8;
+        // Kaydırma sonrası menü açık kalırsa yine görünür bölgede olsun.
+        top = Math.min(Math.max(8,top),Math.max(8,window.innerHeight-90));
+        floating.style.setProperty('left',left+'px','important');
+        floating.style.setProperty('top',top+'px','important');
+        floating.style.setProperty('width',width+'px','important');
+        floating.style.setProperty('max-height',Math.max(75,window.innerHeight-top-8)+'px','important');
+    }
+    function buildFloating(){
+        clearFloating();
+        originalButtons = Array.from(panel.querySelectorAll(':scope > button'));
+        if (!originalButtons.length) return;
+        floating = panel.cloneNode(true);
+        floating.id = '';
+        floating.removeAttribute('aria-hidden');
+        floating.classList.remove('global-connected-panel-v402');
+        floating.classList.add('v545-floating-panel');
+        Array.from(floating.querySelectorAll('[id]')).forEach(el=>el.removeAttribute('id'));
+        Array.from(floating.querySelectorAll(':scope > button')).forEach((button,index)=>{
+            button.addEventListener('click',function(event){
+                event.preventDefault();
+                event.stopPropagation();
+                const target = originalButtons[index];
+                // Orijinal buton: bağlı rotalar, sayfa geçişi ve animasyonlar.
+                clearFloating();
+                menu.classList.remove('open');
+                trigger.setAttribute('aria-expanded','false');
+                panel.setAttribute('aria-hidden','true');
+                if (target) target.click();
+            });
+        });
+        document.documentElement.appendChild(floating);
+        document.body.classList.add('v545-popup-open');
+        positionFloating();
+        // Bazı eski sayfa animasyonları menüyü ilk karelerde kaydırır.
+        // İlk 0.4 sn boyunca gerçek konuma yeniden hizala.
+        let frames = 0;
+        function settle(){
+            if (!floating || ++frames > 28) return;
+            positionFloating();
+            window.requestAnimationFrame(settle);
+        }
+        window.requestAnimationFrame(settle);
+    }
+    function sync(){
+        const shouldOpen = menu.classList.contains('open') && isDetailPage() && !document.body.classList.contains('site-search-modal-open-v400');
+        if (!shouldOpen){ clearFloating(); return; }
+        if (!floating) buildFloating();
+        else positionFloating();
+    }
+    new MutationObserver(sync).observe(menu,{attributes:true,attributeFilter:['class']});
+    new MutationObserver(sync).observe(document.body,{attributes:true,attributeFilter:['class']});
+    window.addEventListener('scroll',positionFloating,{passive:true,capture:true});
+    window.addEventListener('resize',positionFloating,{passive:true});
+    document.addEventListener('keydown',function(event){
+        if (event.key === 'Escape') clearFloating();
+    },true);
+    document.addEventListener('pointerdown',function(event){
+        if (!floating) return;
+        if (!floating.contains(event.target) && !nav.contains(event.target)){
+            clearFloating();
+            menu.classList.remove('open');
+            trigger.setAttribute('aria-expanded','false');
+            panel.setAttribute('aria-hidden','true');
+        }
+    },true);
+    sync();
+})();
+
+
+
+/* V561 | Sabit medya kategorileri + ana afis icinde dogrudan video oynatma. */
+(function(){
+  function initMediaV561(){
+    const root=document.getElementById('mediaFixedV559');
+    if(!root || root.dataset.readyV561==='1') return;
+    root.dataset.readyV561='1';
+
+    const tabs=Array.from(root.querySelectorAll('[data-media-filter-v559]'));
+    const cards=Array.from(root.querySelectorAll('[data-media-tags-v559]'));
+    const empty=root.querySelector('#mediaFixedEmptyV559');
+    tabs.forEach(tab=>tab.addEventListener('click',()=>{
+      const key=tab.dataset.mediaFilterV559;
+      tabs.forEach(btn=>{
+        const selected=btn===tab;
+        btn.classList.toggle('is-active',selected);
+        btn.setAttribute('aria-pressed',String(selected));
+      });
+      let matches=0;
+      cards.forEach(card=>{
+        const visible=key==='all'||card.dataset.mediaTagsV559.split(/\s+/).includes(key);
+        card.hidden=!visible;
+        if(visible) matches++;
+      });
+      if(empty) empty.hidden=matches!==0;
+    }));
+
+    const mediaPage=document.getElementById('medyaPage');
+    const feature=root.querySelector('.media-fixed-feature-v559');
+    const player=document.getElementById('mediaInlinePlayerV561');
+    const embed=document.getElementById('mediaInlineEmbedV561');
+    const closeBtn=document.getElementById('mediaInlineCloseV561');
+    const watchBtn=document.getElementById('mediaFixedHeroWatchV559');
+    const playBtn=document.getElementById('mediaFixedHeroPlayV559');
+    if(!feature||!player||!embed||!closeBtn||!watchBtn||!playBtn) return;
+    const videoId='DUb6-5poPjI';
+
+    function stopInlineVideo(){
+      embed.replaceChildren(); // iframe kaldirilinca ses de durur
+      player.hidden=true;
+      feature.classList.remove('is-playing-v561');
+    }
+
+    function playInlineVideo(){
+      if(!player.hidden) return;
+      // Embed kullanicinin tiklamasindan sonra yuklenir, ayri pencere ACILMAZ.
+      const iframe=document.createElement('iframe');
+      iframe.src='https://www.youtube.com/embed/'+videoId+'?start=32&autoplay=1&playsinline=1&rel=0';
+      iframe.title='Dr. Ceyhun Nuri Kimdir? | Site içi video, 32. saniyeden başlar';
+      iframe.allow='accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share';
+      iframe.referrerPolicy='strict-origin-when-cross-origin';
+      iframe.allowFullscreen=true;
+      iframe.setAttribute('loading','eager');
+      iframe.setAttribute('frameborder','0');
+      embed.replaceChildren(iframe);
+      player.hidden=false;
+      feature.classList.add('is-playing-v561');
+      closeBtn.focus({preventScroll:true});
+    }
+
+    watchBtn.addEventListener('click',playInlineVideo);
+    playBtn.addEventListener('click',playInlineVideo);
+    closeBtn.addEventListener('click',()=>{stopInlineVideo();playBtn.focus({preventScroll:true});});
+    document.addEventListener('keydown',event=>{
+      if(event.key==='Escape'&&!player.hidden){stopInlineVideo();playBtn.focus({preventScroll:true});}
+    });
+
+    // Medyadan başka bir sekmeye geçilince iframe sesinin arkada çalmasını önle.
+    if(mediaPage){
+      const observer=new MutationObserver(()=>{
+        if(mediaPage.getAttribute('aria-hidden')==='true' || !document.body.classList.contains('media-page-open')){
+          if(!player.hidden) stopInlineVideo();
+        }
+      });
+      observer.observe(mediaPage,{attributes:true,attributeFilter:['aria-hidden']});
+    }
+  }
+  if(document.readyState==='loading') document.addEventListener('DOMContentLoaded',initMediaV561,{once:true});
+  else initMediaV561();
 })();
