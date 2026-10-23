@@ -1,3 +1,102 @@
+/* V577 - Mobil nav portal: gövdeye bağlı panel, header kırpmasından bağımsız. */
+(function(){
+ 'use strict';
+ function ready(){
+  const root=document.getElementById('v548PremiumNav');
+  if(!root||document.getElementById('v577MenuLayer'))return;
+  const toggle=root.querySelector('[data-v548-action="mobile-menu"]');
+  const nav=root.querySelector('#v548NavItems');
+  if(!toggle||!nav)return;
+  const layer=document.createElement('div');
+  layer.id='v577MenuLayer';layer.className='v577-menu-layer';
+  layer.setAttribute('aria-hidden','true');
+  layer.innerHTML='<button type="button" class="v577-menu-scrim" aria-label="Menüyü kapat"></button>'+ 
+    '<section class="v577-menu-drawer" aria-label="Mobil menü">'+
+    '<div class="v577-menu-head">Site Menüsü <button type="button" class="v577-menu-close" aria-label="Menüyü kapat">×</button></div>'+ 
+    '<div class="v577-menu-list" role="navigation" aria-label="Mobil site bölümleri"></div></section>';
+  document.body.appendChild(layer);
+  const list=layer.querySelector('.v577-menu-list');
+  let open=false;
+  function close(){
+    if(!open)return;
+    open=false;layer.classList.remove('v577-is-open');layer.setAttribute('aria-hidden','true');
+    document.body.classList.remove('v577-mobile-menu-lock');
+    toggle.setAttribute('aria-expanded','false');toggle.setAttribute('aria-label','Menüyü aç');
+    root.classList.remove('v548-mobile-open');
+  }
+  function show(){
+    if(window.innerWidth>1180)return;
+    const bottom=Math.max(60,Math.ceil(root.getBoundingClientRect().bottom));
+    layer.style.setProperty('--v577-nav-top',bottom+'px');
+    layer.classList.add('v577-is-open');layer.setAttribute('aria-hidden','false');
+    document.body.classList.add('v577-mobile-menu-lock');
+    toggle.setAttribute('aria-expanded','true');toggle.setAttribute('aria-label','Menüyü kapat');
+    open=true;
+    // Escaping stacking/overflow issues: never activate the old nav overlay.
+    root.classList.remove('v548-mobile-open');
+  }
+  function makeSubButton(original){
+    const btn=document.createElement('button');btn.type='button';btn.className='v577-subitem';
+    const icon=original.querySelector('.v548-card-icon');
+    const copy=original.querySelector('.v548-card-copy');
+    if(copy){
+      if(icon){const sp=document.createElement('span');sp.className='v577-subicon';sp.innerHTML=icon.innerHTML;btn.appendChild(sp);}
+      const tx=document.createElement('span');tx.className='v577-subtext';
+      const st=document.createElement('strong');st.textContent=copy.querySelector('strong')?.textContent||original.textContent.trim();tx.appendChild(st);
+      const sm=copy.querySelector('small');if(sm){const sml=document.createElement('small');sml.textContent=sm.textContent;tx.appendChild(sml);}
+      btn.appendChild(tx);
+    }else{
+      const tx=document.createElement('span');tx.className='v577-subtext';
+      const st=document.createElement('strong');st.textContent=original.textContent.trim().replace(/›/g,'');tx.appendChild(st);btn.appendChild(tx);
+    }
+    const arrow=document.createElement('span');arrow.className='v577-subarrow';arrow.textContent='›';btn.appendChild(arrow);
+    btn.addEventListener('click',function(event){event.preventDefault();event.stopPropagation();close();original.click();});
+    return btn;
+  }
+  const originalButtons=Array.from(nav.querySelectorAll(':scope > .v548-nav-item'));
+  originalButtons.forEach(function(original){
+    const name=original.getAttribute('data-v548-toggle');
+    const row=document.createElement('button');row.type='button';row.className='v577-menu-item';
+    if(name==='treatments')row.classList.add('v577-menu-primary');
+    const label=document.createElement('span');label.textContent=original.textContent.trim();row.appendChild(label);
+    const arrow=document.createElement('span');arrow.className='v577-menu-caret';arrow.textContent=name?'⌄':'›';row.appendChild(arrow);
+    list.appendChild(row);
+    if(!name){
+      row.addEventListener('click',function(event){event.preventDefault();event.stopPropagation();close();original.click();});
+      return;
+    }
+    const sub=document.createElement('div');sub.className='v577-subnav';
+    sub.id='v577-sub-'+name;
+    row.setAttribute('aria-controls',sub.id);row.setAttribute('aria-expanded','false');
+    const originalPanel=root.querySelector('[data-v548-menu="'+name+'"]');
+    if(originalPanel){originalPanel.querySelectorAll('button').forEach(el=>sub.appendChild(makeSubButton(el)));}
+    list.appendChild(sub);
+    row.addEventListener('click',function(event){
+      event.preventDefault();event.stopPropagation();
+      const next=row.getAttribute('aria-expanded')!=='true';
+      list.querySelectorAll('.v577-subnav-open').forEach(el=>el.classList.remove('v577-subnav-open'));
+      list.querySelectorAll('.v577-menu-item[aria-expanded]').forEach(el=>el.setAttribute('aria-expanded','false'));
+      if(next){sub.classList.add('v577-subnav-open');row.setAttribute('aria-expanded','true');}
+      row.scrollIntoView({block:'nearest',behavior:'instant'});
+    });
+  });
+  toggle.addEventListener('click',function(event){
+     if(window.innerWidth>1180)return;
+     event.preventDefault();event.stopImmediatePropagation();
+     if(open)close();else show();
+  },true);
+  layer.querySelector('.v577-menu-close').addEventListener('click',close);
+  layer.querySelector('.v577-menu-scrim').addEventListener('click',close);
+  document.addEventListener('keydown',function(e){if(e.key==='Escape')close();},true);
+  window.addEventListener('resize',function(){if(window.innerWidth>1180)close();else if(open)layer.style.setProperty('--v577-nav-top',Math.max(60,Math.ceil(root.getBoundingClientRect().bottom))+'px');});
+  window.addEventListener('popstate',close);
+ }
+ if(document.getElementById('v548PremiumNav'))ready();
+ else if(document.readyState==='loading')document.addEventListener('DOMContentLoaded',ready,{once:true});
+ else ready();
+})();
+
+
 
 
 /* V548 — Tek merkez premium menü, V546 yönlendirme motorunu kullanır. */
@@ -20,6 +119,24 @@
         root.classList.remove('v548-mobile-open');
         if(mobileButton){mobileButton.setAttribute('aria-expanded','false');mobileButton.setAttribute('aria-label','Menüyü aç');}
     }
+    // V576: Mobil menü düğmesini doğrudan dinle. Yalnız üst menüdeki
+    // delegasyona / önbelleğe bağlı kalma; eski root click ile çift
+    // tetiklenmeyi event.stopPropagation() ile önle.
+    if(mobileButton){
+        mobileButton.addEventListener('click',function(event){
+            event.preventDefault();
+            event.stopPropagation();
+            if(root.classList.contains('v548-mobile-open')){
+                closeAll();
+                return;
+            }
+            closeMenus();
+            root.classList.add('v548-mobile-open');
+            mobileButton.setAttribute('aria-expanded','true');
+            mobileButton.setAttribute('aria-label','Menüyü kapat');
+        });
+    }
+
     function openDropdown(name){
         const panel=root.querySelector('[data-v548-menu="'+name+'"]');
         const button=root.querySelector('[data-v548-toggle="'+name+'"]');
@@ -31,7 +148,94 @@
         button.setAttribute('aria-expanded','true');
         button.classList.add('v548-active');
     }
-    function routeTo(kind,value){
+    // V567: Premium V548 menüsündeki gerçek tıklamalara V536'nın ışıklı,
+    // bölüm rengine özel animasyonunu geri bağla. V402 işlevleri değişmez.
+    const routeOverlayV567=document.getElementById('siteRouteTransitionV536');
+    const reducedMotionV567=window.matchMedia('(prefers-reduced-motion: reduce)');
+    let routeTokenV567=0;
+    let startTimerV567=0;
+    let finishTimerV567=0;
+    let landingTimerV567=0;
+    const routeNamesV567={
+        home:['Ana Sayfa','Dr. Ceyhun Nuri','✚','general'],
+        areas:['Tedavi Alanları','Bilgilendirme ve değerlendirme alanları','▦','areas'],
+        pain:['Ağrı','Ağrı bölgelerini keşfedin','◎','pain'],
+        media:['Sosyal Medya','Video ve yayınlar','▶','media'],
+        about:['Hakkımda','Dr. Ceyhun Nuri','✦','info'],
+        osteopati:['Osteopati','Bütüncül manuel yaklaşım','✧','osteopati'],
+        fitoterapi:['Fitoterapi','Bitkisel destekler ve beslenme','❧','fitoterapi'],
+        'damar-yolu':['Damar Yolu Uygulamaları','Uygulamaları keşfedin','✚','health'],
+        'ozon-tedavisi':['Ozon Tedavisi','Uygulamalar hakkında bilgiler','◎','health'],
+        igne:['İğneli Uygulamalar','Uygulamaları keşfedin','✦','osteopati'],
+        'cihaz-uygulamalari':['Cihaz Uygulamaları','Cihaz ve teknoloji uygulamaları','◈','areas'],
+        'geleneksel-tedavi':['Geleneksel Tedaviler','Geleneksel uygulamalar','❋','fitoterapi'],
+        estetik:['Estetiğe Bakış','Bütüncül estetik yaklaşımlar','◇','info'],
+        beslenme:['Beslenme','Beslenme rehberi','❧','fitoterapi'],
+        supplementler:['Supplementler','Destek ürünleri','✦','health'],
+        kurler:['Detoks Kürleri','Tarifler ve kürler','✧','fitoterapi'],
+        egzersizler:['Egzersizler','Hareket ve yaşam','↗','osteopati']
+    };
+    function cancelPremiumTransitionV567(){
+        ++routeTokenV567;
+        window.clearTimeout(startTimerV567);
+        window.clearTimeout(finishTimerV567);
+        window.clearTimeout(landingTimerV567);
+        startTimerV567=finishTimerV567=landingTimerV567=0;
+        routeOverlayV567?.classList.remove('is-running-v536');
+        routeOverlayV567?.setAttribute('aria-hidden','true');
+        document.body.classList.remove('v536-content-land');
+    }
+    function runPremiumTransitionV567(kind,value,action){
+        // Animasyon açıkken yeni sekmeye basılabilir; son tıklama geçerlidir.
+        cancelPremiumTransitionV567();
+        window.cancelSiteTransitionV533?.();
+        if(!routeOverlayV567 || reducedMotionV567.matches){action();return true;}
+        const key=kind==='route'||kind==='home'||kind==='about'?value: value;
+        const meta=routeNamesV567[key]||[
+            root.querySelector('.v548-active')?.textContent?.trim()||'Yeni Bölüm',
+            'Bilgi ve rehberler','✦','info'
+        ];
+        const title=routeOverlayV567.querySelector('#routeTitleV536');
+        const subtitle=routeOverlayV567.querySelector('#routeSubtitleV536');
+        const icon=routeOverlayV567.querySelector('#routeIconV536');
+        const eyebrow=routeOverlayV567.querySelector('#routeEyebrowV536');
+        if(title)title.textContent=meta[0];
+        if(subtitle)subtitle.textContent=meta[1];
+        if(icon)icon.textContent=meta[2];
+        if(eyebrow)eyebrow.textContent='DR. CEYHUN NURİ  •  '+(key==='home'?'ANA SAYFA':'KEŞFET');
+        routeOverlayV567.dataset.v536Theme=meta[3];
+        routeOverlayV567.classList.remove('is-running-v536');
+        void routeOverlayV567.offsetWidth;
+        routeOverlayV567.setAttribute('aria-hidden','false');
+        routeOverlayV567.classList.add('is-running-v536');
+        const token=routeTokenV567;
+        startTimerV567=window.setTimeout(()=>{
+            startTimerV567=0;
+            if(token!==routeTokenV567)return;
+            action();
+            document.body.classList.add('v536-content-land');
+            landingTimerV567=window.setTimeout(()=>{
+                landingTimerV567=0;
+                if(token===routeTokenV567)document.body.classList.remove('v536-content-land');
+            },650);
+        },300);
+        finishTimerV567=window.setTimeout(()=>{
+            finishTimerV567=0;
+            if(token!==routeTokenV567)return;
+            routeOverlayV567.classList.remove('is-running-v536');
+            routeOverlayV567.setAttribute('aria-hidden','true');
+        },835);
+        return true;
+    }
+    window.addEventListener('popstate',cancelPremiumTransitionV567);
+    window.addEventListener('pagehide',cancelPremiumTransitionV567);
+    document.addEventListener('keydown',event=>{
+        if(event.key==='Escape'&&routeOverlayV567?.classList.contains('is-running-v536')){
+            cancelPremiumTransitionV567();
+        }
+    },true);
+
+    function routeTo(kind,value,animate=true){
         const source=document.getElementById('globalConnectedNavV402');
         if(!source)return false;
         let selector='';
@@ -42,23 +246,30 @@
         if(kind==='guide')selector='[data-v402-guide="'+value+'"]';
         if(kind==='feedback')selector='[data-v402-feedback]';
         if(kind==='legal')selector='[data-v402-legal="'+value+'"]';
-        if(kind==='about'){
-            const about=document.getElementById('heroAboutButton');
-            if(about){about.click();return true;}
-            return false;
-        }
-        const target=selector&&source.querySelector(selector);
+        // Tek navigasyon işlevi: eski V402 handler'ı ve V565 katman temizliği
+        // yürür, yalnız görünür V536 geçişi işlemden önce oynatılır.
+        const target=kind==='about'?document.getElementById('heroAboutButton'):
+            selector&&source.querySelector(selector);
         if(!target)return false;
-        const wasBridge=window.__v548BridgeClick===true;
-        const wasImmediate=window.__v533ImmediateNav===true;
-        window.__v548BridgeClick=true;
-        window.__v533ImmediateNav=true;
-        try{target.click();}finally{window.__v548BridgeClick=wasBridge;window.__v533ImmediateNav=wasImmediate;}
+        const action=()=>{
+            const wasBridge=window.__v548BridgeClick===true;
+            const wasImmediate=window.__v533ImmediateNav===true;
+            window.__v548BridgeClick=true;
+            window.__v533ImmediateNav=true;
+            try{target.click();}
+            finally{
+                window.__v548BridgeClick=wasBridge;
+                window.__v533ImmediateNav=wasImmediate;
+            }
+        };
+        if(animate)return runPremiumTransitionV567(kind,value,action);
+        cancelPremiumTransitionV567();
+        action();
         return true;
     }
     function navigateContact(){
         closeAll();
-        routeTo('home');
+        routeTo('home',undefined,false);
         window.setTimeout(()=>{
             const target=document.getElementById('iletisim');
             if(target)target.scrollIntoView({behavior:'smooth',block:'start'});
@@ -66,10 +277,11 @@
     }
     function openSearch(){
         closeAll();
+        cancelPremiumTransitionV567();
         const trigger=document.getElementById('homeSearchToggleV377');
         if(!trigger && typeof window.openHomeSiteSearchV400!=='function')return;
         // V552: Gizlenen arama kısayolu yerine üst menü arama ikonunu kullan.
-        if(document.body.classList.contains('global-subpage-open-v405'))routeTo('home');
+        if(document.body.classList.contains('global-subpage-open-v405'))routeTo('home',undefined,false);
         window.setTimeout(()=>{
             if(typeof window.openHomeSiteSearchV400==='function'){
                 window.openHomeSiteSearchV400(true);
@@ -86,14 +298,8 @@
         const toggle=button.dataset.v548Toggle;
         if(toggle){event.preventDefault(); if(openMenu===toggle)closeMenus();else openDropdown(toggle);return;}
         const action=button.dataset.v548Action;
-        if(action==='mobile-menu'){
-            event.preventDefault();
-            const shouldOpen=!root.classList.contains('v548-mobile-open');
-            root.classList.toggle('v548-mobile-open',shouldOpen);
-            if(!shouldOpen)closeMenus();
-            if(mobileButton){mobileButton.setAttribute('aria-expanded',String(shouldOpen));mobileButton.setAttribute('aria-label',shouldOpen?'Menüyü kapat':'Menüyü aç');}
-            return;
-        }
+        // V576: mobile-menu tıklaması yukarıdaki doğrudan dinleyicide çözülür.
+        if(action==='mobile-menu')return;
         if(action==='search'){event.preventDefault();openSearch();return;}
         if(action==='appointment'){event.preventDefault();navigateContact();return;}
         const kind=button.dataset.v548Kind||('v548Route' in button.dataset?'route':null);
@@ -2760,6 +2966,10 @@ if (
         if (requestedRoute) {
             setNavActiveV402(requestedRoute);
             if (requestedRoute !== 'home') setPageModeV408(false);
+        }
+        // V565: Bekleyen Osteopati iç sayfa animasyonu yeni rotayı geri alamaz.
+        if (typeof window.cancelOsteoRouteTransitionV565 === 'function') {
+            window.cancelOsteoRouteTransitionV565();
         }
         // V533: Gizli eski düğmeye programatik tıklama, V110 animasyon
         // yakalayıcısına tekrar düşmemeli. Böylece ortak menü anında açar.
@@ -5647,15 +5857,20 @@ window.addEventListener("load", async () => {
 
     prepareRevealItems(document);
 
+    // V615: her kartın sınıf değişiminde sayfayı yeniden ölçme.
+    // Yalnız ana sayfa/alt sayfa görünürlük değişimleri animasyonu tetikler.
+    const pageSelectorV615 = '.treatment-page, .pain-page, .media-page-v48, .about-page-v47, .legal-page-v56, .treatment-detail-page-v71, .general-health-detail-page-v75, .ankilozan-page-v87';
+    let replayFrameV615 = 0;
     const bodyObserver = new MutationObserver(mutations => {
         const changed = mutations.some(m =>
-            m.type === "attributes" &&
-            (m.attributeName === "class" || m.attributeName === "aria-hidden")
+            m.type === 'attributes' &&
+            (m.target === document.body || (m.target.matches && m.target.matches(pageSelectorV615)))
         );
-
-        if (changed) {
-            requestAnimationFrame(replayVisiblePageAnimation);
-        }
+        if (!changed || replayFrameV615) return;
+        replayFrameV615 = requestAnimationFrame(() => {
+            replayFrameV615 = 0;
+            replayVisiblePageAnimation();
+        });
     });
 
     bodyObserver.observe(document.body, {
@@ -9935,6 +10150,52 @@ function scrollSerumTitleBelowNavbarV514(vascularView) {
 
     let routeTransitionV272 = null;
     let routeTransitionBusyV272 = false;
+    let routeLaunchTimerV565 = 0;
+    let routeFinishTimerV565 = 0;
+
+    // V565: Bağımsız Osteopati ekranını ve henüz tamamlanmamış geçişleri
+    // güvenle temizler. Bu işlev geçmişte geri gitmez, yalnızca görünümü kapatır.
+    function cancelOsteoRouteTransitionV565() {
+        if (routeLaunchTimerV565) window.clearTimeout(routeLaunchTimerV565);
+        if (routeFinishTimerV565) window.clearTimeout(routeFinishTimerV565);
+        routeLaunchTimerV565 = 0;
+        routeFinishTimerV565 = 0;
+        routeTransitionBusyV272 = false;
+        if (routeTransitionV272) {
+            routeTransitionV272.classList.remove('is-visible-v272');
+            routeTransitionV272.setAttribute('aria-hidden', 'true');
+        }
+        document.body.classList.remove('osteo-route-transition-open-v272');
+        heroLaunchers.forEach(button => button.classList.remove('is-launching-v272'));
+        specialView.classList.remove('is-entering-v272');
+        if (!specialView.hidden || page.classList.contains('is-special-view-open-v259') ||
+            document.body.classList.contains('osteo-standalone-open-v260')) {
+            closeSpecialView({ returnFocus: false });
+        } else {
+            specialView.hidden = true;
+            specialView.setAttribute('aria-hidden', 'true');
+        }
+    }
+    window.cancelOsteoRouteTransitionV565 = cancelOsteoRouteTransitionV565;
+
+    // Yalnızca sekmeler arası gerçek yönlendirmede temizle; Osteopati'nin
+    // alt sekme butonlarını, soru akordeonlarını ve animasyonlarını bozma.
+    document.addEventListener('click', function (event) {
+        const target = event.target instanceof Element ? event.target.closest(
+            '#v548PremiumNav [data-v548-route], ' +
+            '#v548PremiumNav [data-v548-kind], ' +
+            '#v548PremiumNav [data-v548-action="appointment"], ' +
+            '#v548PremiumNav [data-v548-action="search"], ' +
+            '#globalConnectedNavV402 [data-v402-route], ' +
+            '#globalConnectedNavV402 [data-v402-treatment], ' +
+            '#globalConnectedNavV402 [data-v402-health], ' +
+            '#globalConnectedBrandV402'
+        ) : null;
+        if (!target) return;
+        if (!routeTransitionBusyV272 && specialView.hidden &&
+            !document.body.classList.contains('osteo-standalone-open-v260')) return;
+        cancelOsteoRouteTransitionV565();
+    }, true);
 
     function ensureRouteTransitionV272() {
         if (routeTransitionV272) return routeTransitionV272;
@@ -9981,7 +10242,8 @@ function scrollSerumTitleBelowNavbarV514(vascularView) {
         overlay.setAttribute('aria-hidden', 'false');
         document.body.classList.add('osteo-route-transition-open-v272');
 
-        window.setTimeout(() => {
+        routeLaunchTimerV565 = window.setTimeout(() => {
+            routeLaunchTimerV565 = 0;
             openSpecialView(key);
             specialView.classList.add('is-entering-v272');
 
@@ -9990,7 +10252,8 @@ function scrollSerumTitleBelowNavbarV514(vascularView) {
                 overlay.setAttribute('aria-hidden', 'true');
             });
 
-            window.setTimeout(() => {
+            routeFinishTimerV565 = window.setTimeout(() => {
+                routeFinishTimerV565 = 0;
                 specialView.classList.remove('is-entering-v272');
                 button.classList.remove('is-launching-v272');
                 document.body.classList.remove('osteo-route-transition-open-v272');
@@ -10613,8 +10876,9 @@ function scrollSerumTitleBelowNavbarV514(vascularView) {
             <img
                 src="./disease-ankilozan-spondilit-v77.png?v=150"
                 alt="Ankilozan Spondilit; omurga ve sakroiliak eklem bölgesini anlatan ana bilgilendirme görseli"
-                loading="eager"
+                loading="lazy"
                 decoding="async"
+                fetchpriority="low"
             >
         `;
     }
@@ -11429,8 +11693,8 @@ function scrollSerumTitleBelowNavbarV514(vascularView) {
     const grid = document.getElementById('aboutTeamGridV316');
     if (!grid) return;
 
-    const PERSONEL_IMG_01_V317 = 'data:image/jpeg;base64,/9j/4AAQSkZJRgABAQAAAQABAAD/2wCEAAkGBwgHBgkIBwgKCgkLDRYPDQwMDRsUFRAWIB0iIiAdHx8kKDQsJCYxJx8fLT0tMTU3Ojo6Iys/RD84QzQ5OjcBCgoKDQwNGg8PGjclHyU3Nzc3Nzc3Nzc3Nzc3Nzc3Nzc3Nzc3Nzc3Nzc3Nzc3Nzc3Nzc3Nzc3Nzc3Nzc3Nzc3N//AABEIAb8BvwMBIgACEQEDEQH/xAAcAAEAAQUBAQAAAAAAAAAAAAAABAECAwUGBwj/xABDEAACAgECBAMECAMGBQMFAAAAAQIDEQQhBRIxQQYTUSIyYXEHFEJSgZGhsSPB0RUkM2Jy4TRDU5LwFmPxJTWCorL/xAAZAQEBAQEBAQAAAAAAAAAAAAAAAQIEAwX/xAAjEQEBAAICAgICAwEAAAAAAAAAAQIRAzESIQRBE1EiMnEj/9oADAMBAAIRAxEAPwD3EAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAZNXxjjvD+D0ueu1Ndfflct3+B5/xn6YtDRFrhWlnfJPHNY+VAeptopzfmfP3Efpa4/qrJfU7q6IdlGCyvzNJb408Qaucpz4nqcvfazH5E2un05zrGSqkn8z5lr8V8fi8rimrg362Mmf+s/EaXMuK3qfrzbNFNPo7JU8Q4P9LXE9M418Tpr1cPvRxGR6T4c8a8G45TDydSqr3tKm3aSf8wadMCifxKhAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAtnLli29ku4FLbI1Qc5ySillt9jyjxl9KDqVml4HGOHmLvby/mv6ml+krx7fxHWW8L4Ze6tHU+Wy2D3s9fwPNZO21tR91Lu98BqM/E+IarW6iV+rulbJ/anJyZCk8LoiRpdLbZPLUn6JdzodH4e1Wph7cOVNdGjFzk7bxwyvTloKXvRgskmmqNlm8UpemcI6n/0nKuXNhZ7pR6lz8NWyblCtZ9dzP5MW/wAObn1KtbcrXbd7FJW5XKk4wXq8nSx8KXT35GturZJp8HS5Vn8eo/LiThyriL8Ncy3/AB3Rjp1NtM8xcl8V1PQl4QqUGnFfiQdd4UUYS8uvEvh0ZPyxbwZNv4I+lS3hdMdFxuNup08ZYjct51r4+qPZeD8V0XGNDXreH6iN1Fi2ku3wfoz5a4hwzV6OUnyvkXVmy8F+Ktb4c4nCyqyf1ZyXn0p+zKPf8T0mUeOWNnb6hBA4RxPTcV0VWq0lkZ12LKw84J5pgAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAADlfpJ4zLg3hfU2VvFly8qLX2c9X+R1R5X9N2qSjw3SyliL5rJLPXsB5E9PKa55bc+7bLtPw/z9XGDl7C7+pn1l2Zxg0morLivX0/L9zYcFg7Zc/V53a6GM7qPTjnldOk4LwqiEFLy45Ohq06XRY/AicMjyxwjcVwzg+fbuvq4ySLY1LHQfVoZzj9SSoGRVkb1EWNODI4LHQz8mA4k21qIyhHfbdmC6qPZImuHoYbItCVLI0Wu0NNqlGcE0+p514h4NHhmr8yhP6va8Y+6z1S+O+Wc54g0sNTorqpxzlPHzPfjy1XNzYTKJH0Q8fs0mufDNRZFaa6TdeV9o9ri8o+WOF2zqspnW5QnTNSjL7rTX7n0vwHVPW8K02oc4y54J5R2x8ytiACoAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAeG/TRfnxRSpRclVp4qMfV5k/6HuL6HgX02yX/rCMFZjGlhJpP1b/oBxE09uazMpe98jpfDiUsKPRPBylmbJqNby3sd74b4ctPTCUuuDn5rqOrgx3dup0UMRTNrWsI11EoxSXwJcL4/eRx6fQlS4l2WYarYyezM+M9BqtSxTmHMWPJa8kbXuxGObTKNMsk8dQlYNRHZnOcV9mEjprGnF7mg4vXzVSwax7eWfVeeW1yhOfKm0287fke6fRZrLdR4cjXa3J02OEZeq/8AGeISsTvsrk8cs4v8G8HsH0NXq7g2rUUkoX4ePXlWT6OPT5Ofb0QAGmAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAowD6Hzt9NLdXj29T+3paWv8A9l/I9q8T+I1wN0QVHnWW5eObCSR419MOp03F9fw7i2mThN0+TdVJ+0mm2vw3e5m5Tem/DLXlr05Tw1p1fr4NrmUGejQflwXwOK8GV5tfp1bOw1uY0/E5Oa7y07fjzWDX8Q8Rx013kxeZLq+pGh4itc/4ULJLHRRMn1HTUxep1OXJPPxMkeLaeCjPlnKLkoJ1w6N9smsfGfSZzK3tFp8W66mb8zTTjHs5ZOp4L4rq1kMzik/9W5o7LtDxB+XJz5uXm36JZxu1t1RSHD46OyM4e63sMrNe43hjd+q9EosruSce6yW6m6uiLlPoiFwafNSvkReO6nkqlHJz7lde/SzifiHSaJZm8d+porPGOksf8Lmb9GajX8Lnr5eZc8R9Zdiyjg/C0vLd1Tm9vYt3/I6MfH9OPO577dFR4gpvajnGfUkWWRug0nlM5W7w/ZCjOh1Sml9mS3RO8OW3KuzT6nm565Yw+xnLDHuGGeXWTm+P0fU+Mcy/w5xeT1f6DuR8C1s4rDep3/7UeYeNPZ1tbX3WerfQdRyeDpXNf4uqm/ywjp4/6uTmn8nooAPR4gAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAABRlQBwv0kaeNtmjnzYlGMv3RwHiDhy1HCboWJOyuLnB/gej/SFppThpLo9OZxf7/wAjg9WrJVPLXLhpr1OPkuuR9Phky4XK+BIOcLWzuFRG9LPY0/CNLVpa3CmCis7m90CbyYzu7tePHxmkPV8JjfVKM1zZ7EeHCE9E9HOKdLeUmujOnrqWMtF/kw9DEyse3jK5zhfD48LhZVpIVx83aUpQ5nj0KT0XlR8vmk03lLsjo5UxS2SRrbklY11Fyt7SYSJnB4eXRj4Gv41W7blHsbbQLFRC10c3v5GXpZ6auGkzz/WKY3RlBwSbxy/H5moo4DfDUUq6UZaauUZeXyLpHOFn8Ts6aozqjlFXo4fH8D0mdnTyvHtxsdFfHi7u06ddEm81Zyl8jYrTxqu50t31OhWlrj0RA19KW6XQeVqXCSPO/GWXxKuK6uGx6t9H/GdBwDwnw7Q6qUnf7UrFCOVHmk3uef8AF+Hz1niHQvH8JLM36Y3Ojq0s9XqKKK/ZU5xikvRvB7zk1JHNOCZ22vYoTU4RnF5jJZTLjHVBV1whH3YpJGQ6XCAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAADnfHKS4G7PuWw/V4/meaOfNVZXLHNH9T1PxhCNnh/VKXZRa/7kea6iFfkKtQzNLZ9zl5/wC0fQ+Lf+diBpnyt/E3PDpJbmmijZaGWx5V64t/W00ZVEhaeZsascuTze+NYb1y1N9EjSb2W7e6nsbjiKlOpxgzmtbqdfXOqOjjXyxf8RWRe/yZNbXL06bTQ5YdOxC10Xnmx3MNHE5Rrjz1SUujRDt4pfLXQr+rpUSeJWSl0/AvjU8sW60KzVlbrJKcSJwuTi5bPkZsZpJZRG/pElt1NZxGSUGzY6iXU1HEJZgzcjy5K1nvalNdF1Ok8H6Kep4xW/8Al0pWN/sc3U3zSwsuWEejeBdM6+GS1Euts8J/Bbfvk9ePHebx5M/Dht/bpsFQDsfLAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAABg1umr1els09qzCyOGcVLwlro6nkgqnX0VspdF8vU7sMxlhMu3phy5YdPG+LaJ8N4nfpG+by54TaxlPv8AqW6SXJLB0H0i6R1cVq1UV7N1WH/qi/6NHN0P2k0c2eOq6+PK3GVvNM8pMnwuSjg1OmsysEi21U1uybSS65PLTol9M117x1ZFjSpzTku5rVxfSXP2dRF/BE/T6/TrHsNxyekkjN88omKuCeOXqtyNbRGNnNhfkZnr9GpJuTW3uow26zSWtqE8P4mr7Z8M57TaLUumxLlapV7GijqVDfKfxRMhb7PMuh43F6zkt9U1M+pqNdP2cZ3J2ps+JZwjh74txevSybUPem12SNYy3pjkykntCpr5aHB7OW7PWeGUV6bQaeqlYhGuOEc3T4Qn9ZjK66EqovfCw2jrYrlSSWEjp4sLjvbj5+SZSTFcAD2cwAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAABQqAOc8caB6zglk4RzZp35ix1x3/T9jzbTNc+D2LiF9Wm0ltl/ucrWPX4HkLqdNmOXDhlY+B4cuP26ODL6SdM2rUsk7UQhdXiXT0NbzYnCSNhW8xOd2Y1p7eF0eb5ka45Xw6Gw0FmpohGuuS5c5w4pkh1lqU4NSj1RqV6TOTuMz1F7nlwoUmt/wCEjVcQ089RLNuNnn2Fg2T1FzfSK/Aslmfv4RdrM8J1Gnr4VzWpudi3zhTZu64uNXK30XUx8qTyUts5YNtmKzlftg1FmZNeh2HgLh8q9Nbr7Y4lc+WvP3V3/wDPQ5LhWis4pxCrTQ6TlmT+7FdWeraamFFEKao8sIRUYr0R78WH24ufP6ZUADocoAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAi8R4hpOG6Z6nXXxpqj9qRqdD4khxSiV+gpmqOZxjbYsc2OrS9AL/E783TuqO7iuZpfM5PVaD6xWpRS8yK/M6mqKu5lZu5Lc13kSqsnXLsy+Ms9rMrLuOLnXKuUq5JprpnsSNPfhLL26HR8R4ZHVwy/ZsS2n/U5bU6ezTWOFkWmn+ZzZ8djr4+WVtanzxJEaYvuavTXYjhkyOpx3Z4arqxss9pXkwxjCbLHVHD6IwPVx6ZTZZPWRx2LqpubUvUY5yzXaq1P2S7ValzeF2IqzKSWepZi88s9+noXgThi0/D/r1iXm6j3fhDt/U6g1Xhe+Oo4Fo5wjypV8uPkbY7MZ6cGV3QAFZAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAKN7ZMV+prpWZy39F1Id1tupqkuVwra39S6HnXj3iP9qeIYaOuXNRpoeyu0pvfP8js+DaFaXhmmoikowrSOB8S6aWh4nptTjaS5X/qi/wCmD07h99er0FF1LzGcE0EYZVcl0XHvsV1+nU8XRW62kS1DMk8dOhkUfZcezLsafy8pZ7kTXcNhqoYkstdDa2VeXY4vsFFPqi32s9OE1vDLdJPEk8epF8iT6yZ6Jbpq7YOFkcp+po9fwGcf4mkxJd4Pr+Bz58f6e+HL9Vy31RP7TMb00U/ekbSdEoScXtJdU1jBHnXjrg8Lv7dM1r0hSqSI2pmqKXN7vKSS+OxsLVhb4I/DNO+IcXjDl/gaVeZZJ9M/ZXz7lx3bpnL1NvRvBy8vhSqfWDW3psjfHnHFVxL6g9Twa6yvVUWp8sH78WsY+Ji4X9I+r0V8dJ4i0MlPvbBcsvnyvr+B1604bdvTAQOE8Y0PF6PO4fqIWx7pPePzRPAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAUckllvCAqGQ7tbGO0FzfEhSc75e3fZjtHoi6G0nco9E5P4Eay2y1OPNyL4FsIOLTSwV5oyeJJpl0jAqUpZUstd3uSqpc1eHuWcslvhNfqUg+SzfowOa8Y8K8/S2uCfM/bj8JL+qNd4A4yoS/sy+W0m3S32feJ3OpojqKZQl3XX0Z5LxzS2cP4xNVZrmnzwa7MUevpDDRz3hHxDHimnVN+2qrXtL769UdJ1IrDfXz17dUQk9zY9GRb6uWXMvdkWIsiy4xx2ZW22uiqdt04wrhFylKTwkgMGv0NGsrauWGt+ddUcHrnGrU2V1XRthGTipx9Uabxl421HGrHpuD3W6bh9cs+ZHaV7Xf4R+BpI+KeJwhGq6dOori0+Wypb/ijzz45l/r14+W499O10PDNTxaXJS+StP2rWspfL1Z0mm4Zp+HadaXSp8meac5e9OXqziOC/SbPT3xq4joqo6R4jmhNOtfLuj0GOop1dFep0tsbabFzQnF5TRePjmJyclyrFw+OdTqKF0cMr8yPrOEabiMJVauqE09k2vaj8mTeGL/6pW19qMk/yJd0VVfKLW2dj0ryeeajgXEfD+s+t8JvmpV7tZ3a9f8AMvgdn4Y8a6biUI0cQcdNqum/uz/o/gbDUaSrW0OufX7L7o5PifhCephZbp5R+sQ2cenmf7mdD0lPPfJU8s8M+JNXwnULQcQsmqU+WLnv5T9H8DvlxDUcufLhNP7SexFbUGms4hqZY5VGK+WTJp+IWxeLkpJ91sXSbbUFldkbEnB5XcvIoAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAW2TjCDlJ4iurAttthVBznLEV1INls78YWE91F9jBK2Wsuc5/4UH7MTPs5Z9SyCsYuPvVoyxw90sP0wUg5RMkZxm91v8SoTSe629SxYk+Wa+TMvIkm0YX15Zbeg2LmnD4/EpZHzINR6opFck1Ge+SlmaZp59lgK7Vy8sup5r4z1+n4hxiS0kceX7M7F9qXc73jUZR00rqspJZbXb4nn/hKuqzjUI6hKbe6Uu7FELS1a2ucbtPC6Eo788U00dHofFHENO4RusWp9Y2x5Zfg0dtCuuuKjyx5O2EYtZwnRa2HLfRCW3vJYf5kGPhPG9JxSLhByq1EV7VNm0vw9TY8qnBxfoed+IOFavg9teo09k5Vxea7U/aj8DrfC/Go8X0mZ4jqK9rF6v1CpMk1Jp9Tyz6WuL6++VfDtLGceHw9q5xf+K/R/5V6Hq3F6bLNLOWn2sUevwOW1fCKddpP4kV5scpZ/VM1EeJaW9S9ht7eplurw9sYJnivg74RxBSpi1prMOP8Alb7fuRqZK2peuAiLKKlszpvAHiC3gutjodVOT4bqp4WelUvvL+Zzl8cZwdb4R4RVxjw7bFpK+m+ShL5pPAV6twtKOvgnjfLXx2Nlq6ou+EprZ7HLeEtVZP6hXqG/Oo8yixPrlR2f5HXahc8MMDE9NGKzB4Mc4SUlOK9uK3/zIlUS5oLI6WZwQcl4w4DDX6Z67SQXnQXtrHvr+prvBnG3CS4bqpt/9Gbfb7rO4lBVWPOPLs6r0Z574s4RLhut+s6ZctbllOP2X2YHezqXWKyn0wXQrWWmlsa/w1xRcT4dC148yPs2L0kbZLE/mgMFkZVvnqk4NdcEinVySUbfe77CcU4vJjnFSSk123+Y0NjGSkk10ZUhaS/ElTLq1mJNMqAAAAAAAAAAAAAAAAAAAAAAAAAAAAABrOIzna3XD/Dj7z9ZehO1Nvk0WWP7EWzS6W9wlyXPKs9pP4ssGXTyUWk9vVEtVJ4fbJZ5EZdC6ELIdHlFRkeY9f1DjnfBdGbltJfmXOKe8Hyv9ALa5OKTzldy+yMbYfs/QxdH7S5X69mXZcJeiJoUSc4OE/eh39fRl7StrafUuypRU12LJrlfMujKMUEp1yqsWc7NHmPGuH3cG4u41txcJK2iz1X+3Q9Qn1U1+JqfFfCf7T4fzwwr6varf7r8QM3h/icOLcOjc8RsXs2R+7Inwm4trq11R514d4nLhHEWrsxpm+W1P7L9T0ScVYo21Tzt+DIMXFtPDXcPtqaTTX6nAeHdW+EcfVdjahOflzXzex6FF5e6km9pejOF8ZaFUayvUVNRU9m/R9mB6M8SSfY0+u0zpk74rNcvfiuxl4Br1rODafUWvEnD29u66mw5VKDjJbPrkT0PPvEnCKda/LvipU6iDg5Ls+sX+/5nkFX921V2nnLeqyUH8cPH8j3XxLNcH0Oqlck61CU6W+0uyPn6+UqtXzT3cnlv49zY2F7i1zJp5+J3P0VST0mur5t43Rlj4Nf7HE8kbaE8ZfwN99GetjpPElmjk2lqqsR325o7/tkg9Gog6PEdU47Rm8y+eMHYWe1CSit8bHKT/wDuNU/TP7HUxllr4pMDDpLLMNWUyi+jXX8i9WynLljVP2XjLwZ8cryiifLZ/lkQYNX5ka8KMcy9SLxLRQ1mjVeoSkpx5ZbdM9zZ3R5q3+Zjx5lTj6oDznw7fZwPxDZo9Q+WuyXlyz0zn2Weid65ejwcR450TjKjiFSacv4dj9JdmdTwLWf2hwijUbc7guf/AFLqBszF2lnpFmXsR721lJZbxherAxyhm+NkN5VJ7fF/7fubSEuaKfqiBVDkiot7rdt92Z6L4ux1P3uqFEoAGVAAAAAAAAAAAAAAAAAAAAAAAAAABruNXeXp4xb/AMSWDXQqzyxeemUzN4han5cE94+0YOHX8zUJ9cbGoibpbJY5ZdiZHGCLGGJZJECjJyorgIqQUe6axlejLMKHs9Y/HsZcFJRTWGBj3rllbpmSO+3Uxb1rD3g/0KpuDWOmf0Axy9ixRl7k9s/EyQXNW4vqtty62tW1yh09H6MxU2OUY2SW/uz+EkBy3HfDn1nVq+iSgm8WrHb1Nn4Xuxo3orcq2j2GpPLNvYlz77xawzR8U09ui1MdbpU+etbpfbh6fNCjdtuuzla6mHXaKjUxir4RnFvfKL6b69bpYX0vMXuX+/S0/TYQabw1Y6Yajh9r9vTWOPzi3sdCmc3xBLR8f0er6V6uPlWPtzLodBF9GRUHxNwWrj/B79Da+VzWa5fdl2Z83+IuH6jQ6y3T6qtwvom4Tj8T6kjueefS34VXEeGy4voq86rTx/jRit7K/X5rr8ixK8h4bPmo5fQK63Qa+jWad4tosVkfw7FOHLlbXb1MmthmOSo9Z4XxbT8V+p6zTtclvbO8Zd0/kdnppuVVMvWCPB/AnEZaXidellL+HZdGSXx6f0PdNH/w1D+aCtjHcpZH2dupSD2RlittzIsrfMtyypYcl6PYvceWWV3LXtdF9mUafxLpPrHCtTU19nnh/qRpfo81TlVqtJJ55GpxXwfX9TsL6Y6iM6prZo878N2f2b4slQ84m50/rlfsKPRl7u/YtaXPnG+BB55vgXbqW3oBbKPKm/UiWry5xt3zHcmv4kTUxb2SA2NNsbq4zi9mjIarhtrqsdUvdk8x+ZtTJAABQAAAAAAAAAAAAAAAAAAAAALbJxri5SeEluy4icThKehuUevLlfhuBo9Zc79TK1+5NYiW1rllGXoy2myu6tKMsPPRkmFLextE2DaeGSYEatNxi2nnG5JgsAZV0ARVEDJd1KNBZQFJJYwYn2g28/ZMyak8GO2G3yAq3iGfTqYoYjqpw+zZFTXzWz/kZI4nF57rDIfmNR01kutdrql+O39AJc0Uvq86n/Mt4mSSyVr3WxBoNPJ8J1aaT+p3v2v/AG5f0NxFJTccrHVFup08J80ZRzCaw/gyFprJaWxaa9vCeKpPuvulgj+I6Xdwe5xXt6eath+e5stFer9LRaulkFJfii2+vz6dTU/+ZW1+aIPhi3zeD0p9YNx/Xb9yfat5Wy+SU4uMkmmsNPujBF4ZnQHhXjfw2/DvHZqmLWh1LdlD+76w/B/oc5qY81Z7/wCLuBw4/wAGt0u0b4/xKJ/dmv69PxPCNTTOqdlVkXGcG4yi10a6mojXcJm6eM6SfTF8P3R9GaVf3Wv4PJ84L+HrqJelsP8A+kfSelj/AHSPyTFEmPtNJfiSDBp1sZzKqMxXbRTX2XkystnHmi4+oRF1t8KKZXTnGCjHLcnhYPMNbxGh+I/r+nblVG6M20vzwTfEfFLda4aBz922UbI59Nlk031l1znGiEcQW/R5SeMtso9N4NxrQ8Tc1pblKa3cJbS/I22f2R5dCiUvKsX931a3jOGyynj8m/3Oz8O8bfEtK46hKOqqfJbH4+pNjeGOay9zJDLTbMVz5Y7dWUYbIx653XQzw4hWoe3zcy64RbXp3KObHu/QjamHLsnlF0NtXZG2CnDoy81+jn5cEiemmjNiqgAgAAAAAAAAAAAAAAAAAAAWz91rHYuKNZA5FafDzW8MkU2Ths+pLo0/l2WKfabSWDHdViecbZNolU28y2JVb5o5NdBOqax0ZN08vbce0llfNASUXJliLkQXAoOnQgSjlenxKKTWzRVB79gMUvYnlPZkfVV82n1Lj9rFi+DX/wAEmcMrbYxaaLjp5VWduaKfquxRnrlz1Rl6pCPsya9THpfZhyvtsZX1yQVcc9SFrqIz2ktn0foyeuhZZBTi4sK1ejtsjrVVfvLG0vvL1+ZC8L+zpNTD7molH9idfGXn4T9qD5oyXVM13hhpV6yvnTn9Yk5f1A301spLqjPCWUvUxQ3WGUSbWOjXRhEpHlP0pcAWm1seL6eH8LUPluSW0Z42f4nqVVmVh+9+5G4xw2ni3DNRotQvYuhjOOj7P8GNrXzPqli6Ev8APH90fS2hWdPFP/pr9j504/o7eH6+3S3xxbTbyz+ef5n0bw//AIar4wX7FtZi+h4wiQmRltZJfEkRI0qy0uZawPKfE2jlo/FOtwsq3l1Na9crEkvyNZqIQrlbZzNQnXJc0VnmizuPpD4XLU6CviOn2v0mc47wfX9cfqee18TpmpV3KKfeD6P4plROp19t+j0fnquE6q0vZlmTwsNv/wA6m78O2teJGovEZVpzXxwjnfrVCipKGce7zSykbbw75tTt10pYclh56mblI3hhcunpt+pqoqc7WlFL8yDp+KUzuTnCSTeObtE5qWt1eucHOScYvZNdSTZqXCtVqKjOb6JnlebfTrw+L6/k6+ViaagRr0nKPwRG0Grp8iNMeZWtY9rrL4km3MrPLj16HvjduPPG432xtt7RMuiv5bPJm37W6yZ6q4wWX2XUh61c8fMXsyi8porDalTBo7/PpjPv3+ZnMNAAAAAAAAAAAAAAAAAAAAACBrcVXwsfuyWH8zG+SyLwyRxKh6jR2Rj/AIiWY/NHO6bVTe0uvoaiNzKCnFIuqrmnFrrF7Eam5tbkyueSjM+pVSRbFlkp8ks9u5Bn5kVTz6GNspjuQZWhnHUR6LH6hrPXqUNn8zHOLTyVfs7l+edZAwcyjJFdVqqdNS7tRYoVx6swa9SripxWye+DVcY093EuGTppcVY2ms9HjsBM0/iThduU7/La++sZNlp9VTqavN09kbIP7UWedQ4bxdyalRCGPvP9jc8J4VqaqXG69xnOTk1X0QsJ7dFq7a6YSvsmo8m/xfyNHwXSWR0Utak43WTlPHfHY2ek4TVB5tttsz1Unhf/AATbKOZpwxHHTGxFRauKabkzK2MZJZ5c7/kaPWeL7KtQvI0y8pPHtvDl/Q2ur4JDUTdk1FS9UjWy8KK/Uyv1OonNSeXFLH4GkdNor69VRVbFYjZFSi/nuSVJr2ZdezImnhGqMa4LEYLEUuyJTXMsMzVeVfTRwPljTxuiGzcar8Lv9l/yPS+Hf8DRL/21+xZxrhtPF+Fanh2sWar4OOe6fZr45wX6NOOkhCSw4xwEVTzY2SYketZkSEFVLZdC4skwMFiU1KEkmmsYZyXjDw5obvD+sup0da1VVblFxjuzrLmormzg5/i3EHqp+Rpm/Lx7UvvfAmefjG+Pjud05PR8Jor0+nr5I8lcVzNr3pY3ZN0+lVtvNy4j0SJduJYqhsl1+JO0lca4OTwcWWXl2+nhjMZqI9kY6OiU54XKskTS2Tusd9te8lss+6jJrLvrdmH/AISf5kzRaSy5xUPZg+s3/IzjjbfTWWeOM9thwdq/VOTjtp49uik+35G6ri8uWN28kfh2lo0NLhWpycnzSk+smTVZLHsxf4ndhLI+Vy5+edqlvNJYSx6kadcpw5F+ZKzLfmZhbPR5sWhU9PNxmsJvsbM1/NnsS6bFL2W/aSM0jKACKAAAAAAAAAAAAAAAAAAAcrrqlRxK2tLHNiS+TOqNB4koanVql9n2ZFgxUywTq5Gs081KKZLrlhmkbCMtivKp7djBCZmhIBp5b+VLqvdfqSkiPKpTSxs13RfTa37E/eX6mRlwVGUVQGOSf4ehjzyS26EjJZOKktyi22CsqkvVEDSxVc3B9ibFOvZ7oj6iPLZ5i6ZAkKuLWWl+RcqoLflRZVPMUZUyKpyhIuAFOUt5S8ssnCCzKSS6bvBRjjtNJkmJDlZBTzzx/Mzq6tL34/mKjI/aykYWuVy+Jcr6srE4vPxMc8vOF6kVbTIk5IVdcl1JKyEXuWDBKzOS6USkemCiDxCN+p08qdPKMXLZyl2NfXwK1VuLugn6xRv5VKW/QtVcl0Zm4TLt6YcmWHTS1eG1XFf3lt/6Smq4FqJQUKr4cvfKeWb1KffoXpMzeLD9NTn5J9tNo+EaelLzK/Mku8uhta6qopKEYxjjbC6GblT6otlBx6dDUxmPqPPLK5dq8q7FcYLYyXdlyeSssc3gxPckTjkwtYfQ0LXy1wc5dImt02rlHVK2XST3XwJusy4+XHot2a26HLjDxsXSOkRUxaVuWmqbeW4oynm0AAAAAAAAAAAAAAAAAAAQ+KwVmgti1nYmEfX/APCW/IQcnppOEnF9mbKt82GQdXDyrY2Y9lvDJOmlst9jaJkGZ4PBHh1JMegEmD2WCk4p79y2BkTIKwk3s+qMkWY8xKxsi/tIDIH0KZK5yQY5PqjDfHmg0jPJGKXMuiLBFptwkn17kuM1g1+vf1euWojFuMfeUVual+IG1iiGW+jZnLKTtrHG5dOo5l64Iup4lptN79iz6Lqc3Zr9Vavasax1SMMaXKT5nn4s8cueTp0YfHt7bm/xDiP8GnPxkzR8Ws1HFoxjZbKEYS5o8j6MzKn2cYzsXKhqOE92zwvNm95wYNloJy1GlrnZjzF7M8feX9epnlU12IfCZcmonSntOPMl6tbM26S7o7ePLyx24uXHxz0h8j68vQ2eln5kUpP2kYeRPdFYfw5c76d/kbrzS8YLsFMrCexTJkVccmKUWmZOYN5KLYsvMePQuSfqwLsjmRbyv1K8oDm+Bcm2EsFAKSjnsWbrdfkZU9y2S3yupBaplXiXUtxnfuUzgoxWQcW8757kDV1vEZpbLqbTmzsR7oYTa9zuUSeHy5tJXv0WCSQeFvlhOvtGWV8icZqgAIAAAAAAAAAAAAAAAABG4g8aWf4Ekja9Z0s/huINJqKlbU4+pD0tjTxLaS2Zs0k0a3WV+Rdzx92fX5m0bCqXczweTX0WZRNqy47AbCtJxRk8tdyJXKyJnjY31W4GTy4lfKh6FIsuMgopdd0XbdiiKgUZRlQIMU0pJprPwNVreC6W5OVUFVPs49GbeUTHJC4y9tY5XG+nKT00tPPktWH+5khF7LG2De6rT16itwsjnPf0NXKmWnsUZPMH0Zx8nF43cdvFzec1WPy8dO5Tl9SW4JrBYoRWcni9+0Lm8rXaW5bRhYlL4qW38zpXFHPcQivq8nHsub8Vv/I39c+eqE/vRTOr419WOT5U9yq4GMpr12K5wUXXJ1ORfoHKVDhLDcJOJn5dyPRNQ1Dh08xZ/FEpmVU5SmEXFAhgqUyUyBUFrBRUZLRkC5spkoUYBruU6/MZKP4AUaMc3gzdjFYsoCmifLfNdpIno01U3Xq60+jlg3CJVVABAAAAAAAAAAAAAAAAALZxU4OL6NYLgBpJ1Sosdct12fqjDqqldVKPw/U2fFo406tX/LeX8u5r0+aPwZqI1emscZcs9pJ4ZtdPYsGt19fl2q6PTozLpbdkUbquSaMySINE8omQkBlRcmWplV1ILkVKIqQCncqAKFrLmUKMcooj30KUWms5JbLWFl00dvmUyVahKWemCDLWOUXKGeRPHN2ydNKDaxnBiemqVPlRhHl7rHU58vjy3bpw+TZPccnqNQ51TWctp9zfcM1Ks4fp5ZWfLin+xiXA9HXN2OmVibzyuey+ROq0enjSq9NHy0vdS/Y1xcfgzzcs5Oor5mUY7LWuhgcnCbrntKLI99rU0uz/AFPdzsluqkrap94PJ0MWpQUl0aycpOalJxinleuxvuD2+bo0n71b5WSqmAqygQAKAGihUtYBgo2MgC1lS1gVyUZbko2UV58FG+bo9y2TRhkpZymBh1G91KXveYjdo02jg7uIJy6Vrm/kjdIzSAAIoAAAAAAAAAAAAAAAAAAMd8FbVOt9JRaOY0Vjj/Bm949Dqzh9dOVHE7op+5Y8L4Fg298FZBp9zV1t02ut9uhsdParIKS3TIvEK+liW69DSJens6GxpnlI0Wms2W5s6LOgGziy9EaqeTOmQZEVKRKkAANpAMFMBzXYtbb6AVeC1sblIPO0fdLsVLS+fsoxrcCuCLepz1mmjB4jGbnP5Ya/mTMbZZiSUE5v3pDQh8R0f1ucZV2ypsg9pRWdvRr0Ieqo1NSyoxnKPuyj0f4djbwWVnuUlumijSWQvclO2rCUesXkncCliy2PVSSeTNNpLD/Ij0Rq02od6jiUljbuRW5bRa2Qnrk2lktlrEuskBO5kOdeprJcQivtGKXEE+jCNq7F6lvmr1NXDUSm9s49TMrYxWZySXxYVO5myudjVz4tRW+WvNkv8pgnrNZqNoctUfV7sDcysjFZbRgerqbwpJs1a0ym+bUXub77id9FK5aUs+uSjZT1UIrLf4GL6y5b4wjX1S557LzJv9DZUaaaXNa/wCL45luW32KqHNNr4GSDd3s6aKwus30RJo0MISVln8WxfakunyJsY+E1SVDtnFxlY84fZdieAZUAAAAAAAAAAAAAAAAAAAAADj+NaZ/23bPtKKf6HW2zjXBym8RW7ZyXF9ar7ZWqOFjEfkWCLpNdVXrnpObDayjb2JWVnOcH0fmai3V2J592L9De6a3Kdc/eiaiIMM03Sg/XY2VMujIuurzFTXVF2it50BtarCZXPKNZHYlUzAnxkV5jFCWUZdiBljl9Sq6DPqQEkUk1FZfQw26qEHywTnL4GJRsukna9vQDIpyuliG0TPGKisIRiorCKtgY7G5ywuhcopJBcscvJF1OuqqWE+afZIokXWRrhzTey6I1/mTsk5Zx6fAwZs1E+ax49F6EmEcAXRssh1Ski6N9cnhvlfoyyUlgxyhzrdZRRnnFN/D1IWr0DsXNCUk/VMv5Jwf8OTXw7GSu+2O0op/IDTWaHWwzyWuXz3IGu1HENLJJ01zUl6tHWxtjJ7xwyLxXTwsqjJJey/0IrjJcX1aUnPSdPSRr7PFWphBuvQRb7c03/Q6uejrnty/ocjZobG55j7PM8GM/KdPXj8e8laPGeqk+S/TSrfrU8/uS6+Pae15nKzm9Jmslw5YeIl9GiysYQm/tnK43p0NHFY8v8PkZIXEL2to4+Zo69BhbbHo3A3XqeFaac64OShyyzFdVsa2w5eMtTqH72z7In6Th+fauf4HU+RT/ANKH/aV8qv8A6cfyGxrNPUoxxRS2/vNYRJhouffUz5l9xbL8fUm4AtFsYqKSisJdkXAEAAAAAAAAAAAAAAAAAAAAAAAAGo8SWShpa4x6SlucpdZO+xwj23Ox49R5/D546w9pHN6SpZyWDPpalTRGMeqQtTjicOq6/FGZDG2TSEZKypY7kSFcqLlKPRsvcnp7cfZluvgVlPmksFE5SRnrbIdbzglQnGK3ZBLrkZ4yIEb4NpJkqEtiCRzGKxOfVhyRa5AXQqS6IzLEUR/O5ehZK9sCVKxLbJHu1MK0YJ2SfTqYvIcnmTyNDHdqrbm1DZCnT4xKe7JEKYouccFFNlsiyc32LuVl0a99wLIxlLqZlDYvjBF/KBiVeS5QLyr6EFI1og8YSq0uU95SSNjHODT+I7VCFEG8ZcmUQa5ez8kRLNH7LJOhUrZPb2V1JsqVgDQR0m7T/Atlo/Lakjc+QuboZPITWGtgNZVp01sdF4cfJVbT6S5l+JrY0cksdibw+Xk62v7s04slG+ABlQAAAAAAAAAAAAAAAAAAAAAAAAAAAABbNKUXF7prDOXcI12TjDeKk0n8DpNXb5OnnPult8zmomsUq9F6XYxx3nhGaCy2+xRF1kOZ9PkRqpcr5ZdUT7ItsiayhuvmivaQFZa6uiOZJvHoX16qGpr5q5fNehqbYSsg/UhYu08+eEmjO1dRVy8y9o2VdijD2nscLLiqreLbJp+qWyMUfFMNLPld1l8JPdcr2Ls07WzilMbOVtouWur2bkuX1ycxqeI6HU1q6Gpr6Z2e/wCRrLeO0Vx5YRtt+SwibXTvYauiz3LEw7o5PMZ+JNTVPmo08VH4tnQcJ8R066PLL2Ll1rfX8PUbNOxhYmZYzTRzcddJeuCVVxRL3i7TTeJou2NdTr65r3lkkR1EX9pBEpJFySI6uj6l6sKMxXJiUxzgZMlGyzmQzuBmjnGzNHxrSWazXwTko11x3fxZvItcpBtfNY5erIMNFNdFSrqjhF7iVRfjYowOKb6Fyii7G5cgLHWsdDBYnCUJL7Mk1+ZN7EfUr2QN4nlZKmHSy56K5esUZjCgAAAAAAAAAAAAAAAAAAAAAAAAAAAADV8buxXCpfaeX8kadvBI19zv1U5dk+VEWT3NyekZavUlVwxHBgpW8US4LYIxuBbOGUSOUo4gau3TJt4RCv0uUzfSrTI9tCKrk9XoFLOxrLeFp59k7G3TJsjWaVcr6bk0rkuH6Dk1TXL1WDbS4XFr3NiTVplHVJ/5jeQ0ycETQ5KzhEH9kiz4PyyUoppro11O1npF8DHLRp+g0OYqWtq6XSa9JLJl+s61dI1y/wDxN7LRfIV6Fcz6DRtqNLxCafLqYcj+9DobSrVuXuTUl8GZnw2EuqRgt4SlvBuOOmGTQlV6xp4ZKr1vxNN5Wpq6uNi+PUr53J7ylH8mUb+Orz9oyx1CfdHN/X6oPeUvyMi4nUuk3+TGzTpI3ZMsLE2jmo8Xqzjmz+DJEOKwit+bdpDaN/ffGumcm102+ZruH2yt0qVjzZBuE/mu5FuvdzSW0V0RXQScNXJfZujnH+aP+z/Qo2UOpm7GCCk3tjBnitgLGg+xcy1hF3YwW7mWUsQMFb5m38SjZ8MlnSQX3colkHhjxGyHpLJNRitKgAgAAAAAAAAAAAAAP//Z';
-    const PERSONEL_IMG_02_V317 = 'data:image/jpeg;base64,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';
+    const PERSONEL_IMG_01_V317 = './personel-ceyhun-nuri-v613.jpg';
+    const PERSONEL_IMG_02_V317 = './personel-mustafa-ikizek-v613.jpg';
 
     const staff = [
         {name:'Dr. Ceyhun Nuri', role:'Sorumlu Hekim', type:'Hekim', img:PERSONEL_IMG_01_V317, desc:'Hastayı muayene eder, klinik bulgularını değerlendirir ve kişiye özel tedavi planını oluşturur.', tags:['Muayene','Planlama','Takip'], extra:'Uygulanacak yöntemlerin hastanın sağlık durumu ve ihtiyaçlarına uygunluğunu değerlendirir.'},
@@ -11446,7 +11710,7 @@ function scrollSerumTitleBelowNavbarV514(vascularView) {
         <article class="team-card-v316" tabindex="0" role="button" aria-expanded="false" aria-label="${item.name} detaylarını göster">
             <div class="team-card-media-v316 ${item.img ? 'has-photo-v317' : 'is-placeholder-v317'}">
                 ${item.img
-                    ? `<img src="${item.img}" alt="${item.name}">`
+                    ? `<picture class="v617-webp-picture"><source type="image/webp" srcset="${item.img.replace('-v613.jpg','-v617.webp')}"><img src="${item.img}" alt="${item.name}" loading="lazy" decoding="async"></picture>`
                     : `<div class="team-card-placeholder-v317" aria-hidden="true"><span>${String(idx + 1).padStart(2,'0')}</span><strong>EKİBİMİZ</strong><small>Görev alanı</small></div>`}
                 <span class="team-card-badge-v316">${item.type}</span>
             </div>
@@ -13048,16 +13312,25 @@ function scrollSerumTitleBelowNavbarV514(vascularView) {
         return '';
     }
 
+    // V615: yeni eklenen bitki kartlarının yalnız kendi alt ağacını işle.
+    // Kök kartın kendisi de eşleşebileceği için querySelectorAll'a ekle.
+    const herbTriggersV615 = '.phyto-card-button-v350[data-herb-id-v350], .phyto-herbal-card-v232';
+    function scopedHerbCardsV615(root, selector) {
+        if (!root || typeof root.querySelectorAll !== 'function') return [];
+        const cards = Array.from(root.querySelectorAll(selector));
+        if (root.nodeType === 1 && root.matches(selector)) cards.unshift(root);
+        return cards;
+    }
     function wireHerbTriggers(root) {
         if (!root) return;
-        root.querySelectorAll('.phyto-card-button-v350[data-herb-id-v350]').forEach(card => {
+        scopedHerbCardsV615(root, '.phyto-card-button-v350[data-herb-id-v350]').forEach(card => {
             if (card.dataset.wiredV350 === 'true') return;
             card.dataset.wiredV350 = 'true';
             card.addEventListener('click', function () {
                 openModal(card.dataset.herbIdV350);
             });
         });
-        root.querySelectorAll('.phyto-herbal-card-v232').forEach(card => {
+        scopedHerbCardsV615(root, '.phyto-herbal-card-v232').forEach(card => {
             if (card.dataset.wiredV350 === 'true') return;
             const title = card.querySelector('h3')?.textContent || '';
             const key = normalizeHerbKey(title);
@@ -13128,8 +13401,17 @@ function scrollSerumTitleBelowNavbarV514(vascularView) {
     wireHerbTriggers(document);
     patchConditionPage();
 
-    const observer = new MutationObserver(function () {
-        wireHerbTriggers(document);
+    // V615: eski sürüm her DOM değişiminde bütün siteyi tekrar tarıyordu.
+    // Artık yalnız yeni eklenen ve bitki kartı içeren düğümler işlenir.
+    const observer = new MutationObserver(function (records) {
+        records.forEach(function (record) {
+            record.addedNodes.forEach(function (node) {
+                if (node.nodeType !== 1) return;
+                if (node.matches(herbTriggersV615) || node.querySelector(herbTriggersV615)) {
+                    wireHerbTriggers(node);
+                }
+            });
+        });
     });
     observer.observe(document.body, { childList: true, subtree: true });
 
@@ -13581,8 +13863,18 @@ function scrollSerumTitleBelowNavbarV514(vascularView) {
     const video = osteo.querySelector('.osteo-bg-video-v355');
     if (!video) return;
 
+    function isActuallyOpenV589() {
+        const shell=document.getElementById('treatmentDetailPageV71');
+        return !document.hidden &&
+               document.body.classList.contains('treatment-detail-open-v71') &&
+               shell?.getAttribute('aria-hidden') !== 'true' &&
+               osteo.classList.contains('active');
+    }
     function ensurePlayV359() {
-        if (!osteo.classList.contains('active')) return;
+        if (!isActuallyOpenV589()) {
+            if (!video.paused) video.pause();
+            return;
+        }
         video.muted = true;
         video.defaultMuted = true;
         video.loop = true;
@@ -13597,21 +13889,22 @@ function scrollSerumTitleBelowNavbarV514(vascularView) {
     video.addEventListener('loadeddata', ensurePlayV359);
     video.addEventListener('canplay', ensurePlayV359);
     video.addEventListener('pause', () => {
-        if (osteo.classList.contains('active') && !document.hidden) setTimeout(ensurePlayV359, 120);
+        if (isActuallyOpenV589()) setTimeout(ensurePlayV359, 120);
     });
 
     const obs = new MutationObserver(() => {
-        if (osteo.classList.contains('active')) {
+        if (isActuallyOpenV589()) {
             requestAnimationFrame(ensurePlayV359);
             setTimeout(ensurePlayV359, 160);
             setTimeout(ensurePlayV359, 700);
         }
     });
     obs.observe(osteo, { attributes: true, attributeFilter: ['class'] });
+    obs.observe(document.body,{attributes:true,attributeFilter:['class']});
+    const detailRoot=document.getElementById('treatmentDetailPageV71');
+    if(detailRoot) obs.observe(detailRoot,{attributes:true,attributeFilter:['aria-hidden']});
 
-    document.addEventListener('visibilitychange', () => {
-        if (!document.hidden) ensurePlayV359();
-    });
+    document.addEventListener('visibilitychange', ensurePlayV359);
 
     document.addEventListener('click', (event) => {
         if (event.target.closest('[data-treatment-detail="osteopati"], [data-treatment-top="osteopati"]')) {
@@ -14366,39 +14659,37 @@ function scrollSerumTitleBelowNavbarV514(vascularView) {
 })();
 
 
+
 // =========================================================
-// V373 - ANA SAYFA GENEL SİTE ARAMA
-// Not: Fitoterapi içindeki TEK TEK bitkiler bilerek indekslenmez.
-// Arama yalnızca site bölümleri, tedaviler, hastalık sayfaları ve bilgi alanlarını gösterir.
+// V566 - GÖRSELLİ, İÇERİK ODAKLI SİTE GENELİNDE ARAMA
+// V373 bölüm/konu indeksini korur; bitkiler, makaleler, 48
+// beslenme tarifi, 40 kür ve medya içerikleri ayrı sonuçtur.
+// İçerikler DOM'dan ve zaten kullanılan veri kataloglarından alınır.
 // =========================================================
 (function(){
-    const root = document.getElementById('homeSiteSearchV373');
-    const input = document.getElementById('homeSiteSearchInputV373');
-    const submit = document.getElementById('homeSiteSearchSubmitV373');
-    const clear = document.getElementById('homeSiteSearchClearV373');
-    const results = document.getElementById('homeSiteSearchResultsV373');
-    const list = document.getElementById('homeSiteSearchListV373');
-    const count = document.getElementById('homeSiteSearchCountV373');
-
-    if (!root || !input || !results || !list) return;
+    const root=document.getElementById('homeSiteSearchV373');
+    const input=document.getElementById('homeSiteSearchInputV373');
+    const submit=document.getElementById('homeSiteSearchSubmitV373');
+    const clear=document.getElementById('homeSiteSearchClearV373');
+    const results=document.getElementById('homeSiteSearchResultsV373');
+    const list=document.getElementById('homeSiteSearchListV373');
+    const count=document.getElementById('homeSiteSearchCountV373');
+    if(!root || !input || !list || !results) return;
 
     function norm(value){
-        return String(value || '')
-            .toLocaleLowerCase('tr-TR')
-            .normalize('NFD')
-            .replace(/[\u0300-\u036f]/g,'')
-            .replace(/ı/g,'i')
-            .replace(/ğ/g,'g')
-            .replace(/ü/g,'u')
-            .replace(/ş/g,'s')
-            .replace(/ö/g,'o')
-            .replace(/ç/g,'c')
-            .replace(/[^a-z0-9\s&-]/g,' ')
-            .replace(/\s+/g,' ')
-            .trim();
+        return String(value||'').toLocaleLowerCase('tr-TR').normalize('NFD')
+            .replace(/[\u0300-\u036f]/g,'').replace(/ı/g,'i')
+            .replace(/ğ/g,'g').replace(/ü/g,'u').replace(/ş/g,'s')
+            .replace(/ö/g,'o').replace(/ç/g,'c')
+            .replace(/[^a-z0-9\s&-]/g,' ').replace(/\s+/g,' ').trim();
     }
+    const escapeHtml=value=>String(value||'').replace(/[&<>"']/g,ch=>
+        ({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[ch]));
 
-    const index = [
+    const shortcutArea=root.querySelector('.site-search-shortcuts-v400');
+    // İçerikler, uzun hızlı geçiş listesinden önce gösterilir.
+    if(shortcutArea && results.nextElementSibling!==shortcutArea)shortcutArea.before(results);
+    const baseIndex = [
         {title:'Osteopati', category:'Tedavi Uygulaması', desc:'Osteopati ana sayfası, manuel değerlendirme, hareket ve soru-cevap alanları.', keys:'osteopati manuel terapi hareket postür', steps:['[data-treatment-detail="osteopati"]'], icon:'O'},
         {title:'Fitoterapi', category:'Tedavi Uygulaması', desc:'Fitoterapi ve bitkisel yaklaşım ana sayfası.', keys:'fitoterapi fito terapi bitkisel destek bitki', steps:['[data-treatment-detail="fitoterapi"]'], icon:'F'},
         {title:'Damar Yolu Uygulamaları', category:'Tedavi Uygulaması', desc:'Serum ve damar yolu uygulamaları bilgi alanı.', keys:'damar yolu serum iv vitamin c l karnitin', steps:['[data-treatment-detail="damar-yolu"]'], icon:'IV'},
@@ -14436,189 +14727,278 @@ function scrollSerumTitleBelowNavbarV514(vascularView) {
         {title:'Osteopati Soru & Cevap', category:'Osteopati', desc:'Osteopati hakkında sık sorulan sorular ve ayrıntılı cevaplar.', keys:'osteopati soru cevap merak edilenler faq', steps:['[data-treatment-detail="osteopati"]','[data-osteo-tab-target="faq"]'], icon:'?'},
         {title:'Bilimsel Yayınlar', category:'Osteopati', desc:'Osteopati ve hareket alanındaki akademik kaynaklar.', keys:'bilimsel yayin yayın makale akademik kaynak', steps:['[data-treatment-detail="osteopati"]','[data-osteo-tab-target="articles"]'], icon:'≡'}
     ];
+    function baseImage(item){
+        const key=norm(item.title+' '+(item.category||''));
+        if(key.includes('zerdecal') || key.includes('kurkumin')) return 'phyto-zerdecal-v412.webp';
+        if(key.includes('fitoterapi') || key.includes('bitki')) return 'phyto-biberiye-v412.webp';
+        if(key.includes('osteopati') || key.includes('postur')) return 'medya-v558-doktor.jpg';
+        if(key.includes('medya') || key.includes('video')) return 'medya-v558-konu-1.jpg';
+        if(key.includes('agri') || key.includes('romatoid')) return 'medya-v558-konu-2.jpg';
+        return '';
+    }
+    function addEntry(target,map,entry){
+        if(!entry || !entry.title || !entry.id || map.has(entry.id)) return;
+        const copy={...entry};
+        copy.desc=String(copy.desc||'').trim().slice(0,205);
+        copy.haystack=norm([copy.title,copy.category,copy.desc,copy.keys||''].join(' '));
+        copy.normalTitle=norm(copy.title);
+        map.set(copy.id,true);
+        target.push(copy);
+    }
+    function buildCatalog(){
+        const entries=[];
+        const seen=new Map();
+        baseIndex.forEach((item,i)=>addEntry(entries,seen,{...item,type:'section',id:'section-'+i,image:baseImage(item)}));
 
-    index.forEach(item => {
-        item._search = norm([item.title,item.category,item.desc,item.keys].join(' '));
-        item._title = norm(item.title);
-    });
-
-    function score(item, query){
-        if (!query) return 0;
-        const words = query.split(' ').filter(Boolean);
-        if (!words.every(word => item._search.includes(word))) return -1;
-        let value = 0;
-        if (item._title === query) value += 120;
-        if (item._title.startsWith(query)) value += 80;
-        if (item._title.includes(query)) value += 55;
-        words.forEach(word => {
-            if (item._title.startsWith(word)) value += 24;
-            else if (item._title.includes(word)) value += 15;
-            else value += 5;
+        // V350 - Ana bitki kataloğunda her bitki tek sonuç; yinelenen hastalık
+        // kartları aynı bitkinin tekrar tekrar gösterilmesine neden olmaz.
+        Object.entries(window.phytoHerbCatalogV350||{}).forEach(([key,herb])=>{
+            addEntry(entries,seen,{
+                id:'herb-'+key,type:'herb',key,
+                title:herb.name+(herb.subtitle?' ('+herb.subtitle+')':''),category:'Fitoterapi • Bitki',
+                desc:herb.intro||'Bitkiye ait detaylı bilgi',
+                keys:[...(herb.tags||[]),...(herb.benefits||[])].join(' '),image:herb.image||''
+            });
         });
-        return value;
+
+        // V508/V510 - Her makale, makalenin kendi okuyucusunu açar.
+        document.querySelectorAll('#featuredArticlesGridV508 [data-featured-article-card-v508]').forEach(card=>{
+            const key=card.querySelector('[data-featured-article-open-v510]')?.dataset.featuredArticleOpenV510;
+            const title=card.querySelector('h2')?.textContent?.trim();
+            if(!key || !title) return;
+            addEntry(entries,seen,{
+                id:'article-'+key,type:'article',key,title,
+                category:'Öne Çıkanlar • Makale',
+                desc:card.querySelector('p')?.textContent?.trim()||'',
+                keys:card.dataset.search||'',
+                image:card.querySelector('img')?.getAttribute('src')||baseImage({title,category:'Makale'})
+            });
+        });
+
+        // V385 - 48 beslenme tarifi HTML'e farklı tablarda basılmış olabilir.
+        // Bir başlığın içinde değil malzemede geçen bitki de bulunabilsin.
+        document.querySelectorAll('[data-nutrition-detail]').forEach(section=>{
+            const group=section.dataset.nutritionDetail;
+            section.querySelectorAll('.pregnancy-recipe-v384').forEach((card,idx)=>{
+                const title=card.querySelector('h2')?.textContent?.trim();
+                if(!title) return;
+                const id='nutrition-'+group+'-'+idx;
+                card.dataset.v566SearchId=id;
+                addEntry(entries,seen,{
+                    id,type:'nutrition',key:group,cardId:id,title,
+                    category:'Beslenme • Tarif',
+                    desc:card.querySelector('.pregnancy-recipe-kicker-v384')?.textContent?.trim()||'Beslenme önerisi',
+                    keys:card.textContent||'',
+                    image:card.querySelector('img')?.getAttribute('src')||''
+                });
+            });
+        });
+
+        // V390 - Kür indeksinin tamamı: başka bir filtre açıkken de
+        // sonuçlar eksilmemeli.
+        (window.siteDetoxCatalogV566||[]).forEach(recipe=>{
+            addEntry(entries,seen,{
+                id:'detox-'+recipe.id,type:'detox',key:recipe.id,title:recipe.name,
+                category:'Detoks Kürleri • '+recipe.categoryLabel,
+                desc:recipe.support||'Malzemeler ve hazırlanış bilgisi',
+                keys:[recipe.keywords,recipe.prep,...(recipe.tags||[]),...(recipe.ingredients||[])].join(' '),
+                image:recipe.image||''
+            });
+        });
+
+        document.querySelectorAll('#medyaPage [data-media-tags-v559]').forEach((card,idx)=>{
+            const title=card.querySelector('strong')?.textContent?.trim();
+            if(!title) return;
+            addEntry(entries,seen,{
+                id:'media-'+idx,type:'media',key:idx,title,category:'Sosyal Medya • Video',
+                desc:card.textContent?.trim().slice(0,180)||'',keys:card.dataset.mediaTagsV559||'',
+                image:card.querySelector('img')?.getAttribute('src')||''
+            });
+        });
+        return entries;
     }
 
-    function search(query){
-        const q = norm(query);
-        if (!q) return [];
-        return index
-            .map(item => ({item, score:score(item,q)}))
-            .filter(entry => entry.score >= 0)
-            .sort((a,b) => b.score - a.score || a.item.title.localeCompare(b.item.title,'tr'))
-            .slice(0,10)
-            .map(entry => entry.item);
+    function rank(item,q){
+        const words=q.split(' ').filter(Boolean);
+        if(!words.every(word=>item.haystack.includes(word)))return -1;
+        let score=0;
+        if(item.normalTitle===q)score+=150;
+        else if(item.normalTitle.startsWith(q))score+=100;
+        else if(item.normalTitle.includes(q))score+=75;
+        words.forEach(word=>{
+            if(item.normalTitle.startsWith(word))score+=26;
+            else if(item.normalTitle.includes(word))score+=18;
+            else score+=4;
+        });
+        if(item.type==='section')score-=10;
+        return score;
     }
-
-    function escapeHtml(value){
-        return String(value || '').replace(/[&<>"']/g, ch => ({
-            '&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'
-        }[ch]));
-    }
-
-    function render(query){
-        const q = query.trim();
-        clear.hidden = !q;
-        if (!q){
-            results.hidden = true;
+    let found=[];
+    function render(value){
+        const q=norm(value);
+        if(clear)clear.hidden=!q;
+        root.classList.toggle('is-searching-v566',!!q);
+        if(!q){
+            results.hidden=true;
+            list.replaceChildren();
+            found=[];
             input.setAttribute('aria-expanded','false');
-            list.innerHTML = '';
             return;
         }
-
-        const found = search(q);
-        count.textContent = found.length ? `${found.length} sonuç` : 'Sonuç bulunamadı';
-
-        if (!found.length){
-            list.innerHTML = `
-                <div class="home-site-search-empty-v373">
-                    <strong>Bu ifadeyle eşleşen bir bölüm bulamadım.</strong>
-                    “Osteopati”, “Fitoterapi”, “Sosyal Medya”, “Ağrı” veya bir hastalık adı deneyebilirsiniz.
-                </div>`;
-        } else {
-            list.innerHTML = found.map((item, i) => `
-                <button type="button" class="home-site-search-result-v373" data-home-search-result-v373="${i}">
-                    <span class="home-site-search-result-icon-v373" aria-hidden="true">${escapeHtml(item.icon || '↗')}</span>
-                    <span class="home-site-search-result-copy-v373">
-                        <span>${escapeHtml(item.category)}</span>
-                        <strong>${escapeHtml(item.title)}</strong>
-                        <small>${escapeHtml(item.desc)}</small>
-                    </span>
-                    <span class="home-site-search-result-arrow-v373" aria-hidden="true">↗</span>
-                </button>
-            `).join('');
-            Array.from(list.querySelectorAll('[data-home-search-result-v373]')).forEach((button, i) => {
-                button._homeSearchItemV373 = found[i];
-            });
+        const catalog=buildCatalog();
+        found=catalog.map(item=>({item,score:rank(item,q)}))
+            .filter(x=>x.score>=0)
+            .sort((a,b)=>b.score-a.score||a.item.title.localeCompare(b.item.title,'tr'))
+            .map(x=>x.item);
+        if(count)count.textContent=`“${value.trim()}” için ${found.length} içerik`;
+        if(!found.length){
+            list.innerHTML='<div class="home-site-search-empty-v373"><strong>Bu aramayla eşleşen içerik bulunamadı.</strong>Başka bir bitki, hastalık, tarif veya uygulama adı deneyebilirsiniz.</div>';
+        }else{
+            list.innerHTML=found.map((item,i)=>{
+                const thumb=item.image
+                    ? `<img src="${escapeHtml(item.image)}" alt="" loading="lazy" decoding="async" onerror="this.hidden=true;this.parentElement.classList.add('is-fallback-v566')">`
+                    : '';
+                return `<button type="button" class="home-site-search-result-v373 site-search-card-v566"
+                        data-home-search-result-v373="${i}" aria-label="${escapeHtml(item.title)} içeriğini aç">
+                    <span class="site-search-thumb-v566 ${thumb?'':'is-fallback-v566'}" aria-hidden="true">${thumb}<span class="site-search-thumb-symbol-v566">${escapeHtml((item.category||'İ').slice(0,1))}</span></span>
+                    <span class="home-site-search-result-copy-v373 site-search-card-copy-v566">
+                       <span>${escapeHtml(item.category||'İçerik')}</span>
+                       <strong>${escapeHtml(item.title)}</strong>
+                       <small>${escapeHtml(item.desc)}</small>
+                    </span><span class="site-search-card-arrow-v566" aria-hidden="true">↗</span>
+                </button>`;
+            }).join('');
         }
-
-        results.hidden = false;
+        results.hidden=false;
         input.setAttribute('aria-expanded','true');
+        root.querySelector('.site-search-modal-body-v400')?.scrollTo({top:0,behavior:'instant'});
     }
 
-    function clickSelector(selector){
-        const el = document.querySelector(selector);
-        if (!el) return false;
-        el.click();
-        return true;
+    const wait=ms=>new Promise(resolve=>window.setTimeout(resolve,ms));
+    const click=selector=>{
+        if(!selector)return false;
+        const node=document.querySelector(selector);
+        if(!node)return false;
+        node.click();return true;
+    };
+    function focusCard(selector,openDetails=false){
+        const node=document.querySelector(selector);
+        if(!node)return;
+        if(openDetails){const detail=node.querySelector('details');if(detail)detail.open=true;}
+        node.classList.add('site-search-landing-v566');
+        node.scrollIntoView({block:'center',behavior:'smooth'});
+        window.setTimeout(()=>node.classList.remove('site-search-landing-v566'),2800);
     }
-
-    function navigate(item){
-        if (!item || !Array.isArray(item.steps)) return;
-        results.hidden = true;
-        input.setAttribute('aria-expanded','false');
-        if (typeof window.closeHomeSiteSearchV400 === 'function') {
-            window.closeHomeSiteSearchV400(false);
+    let currentNavigation=0;
+    async function navigate(item){
+        if(!item)return;
+        // Önceki aramada açılan tam ekran bitki detayı / makale okuyucusu
+        // sonradan yeni sonucun üstüne binmesin.
+        if(document.body.classList.contains('phyto-herb-detail-open-v351')){
+            click('#phytoHerbBackV351');
         }
+        window.siteArticleReaderV511?.close?.();
+        const token=++currentNavigation;
+        results.hidden=true;
+        input.setAttribute('aria-expanded','false');
+        window.closeHomeSiteSearchV400?.(false);
+        await wait(70);
+        if(token!==currentNavigation)return;
 
-        let delay = 0;
-        item.steps.forEach((selector, idx) => {
-            window.setTimeout(() => {
-                const ok = clickSelector(selector);
-                if (!ok && idx === 0) {
-                    // Güvenli son seçenek: hash bağlantısı olan bir elemanı bul.
-                    const hashTarget = document.querySelector(`a[href="#${CSS.escape(norm(item.title).replace(/\s+/g,'-'))}"]`);
-                    hashTarget?.click();
-                }
-            }, delay);
-            delay += idx === 0 ? 120 : 140;
-        });
-    }
-
-    let timer = null;
-    input.addEventListener('input', () => {
-        window.clearTimeout(timer);
-        timer = window.setTimeout(() => render(input.value), 80);
-    });
-    input.addEventListener('focus', () => {
-        if (input.value.trim()) render(input.value);
-    });
-    input.addEventListener('keydown', event => {
-        if (event.key === 'Enter'){
-            event.preventDefault();
-            const first = list.querySelector('[data-home-search-result-v373]');
-            if (first && first._homeSearchItemV373) navigate(first._homeSearchItemV373);
-            else render(input.value);
-        } else if (event.key === 'Escape'){
-            results.hidden = true;
-            input.setAttribute('aria-expanded','false');
-        } else if (event.key === 'ArrowDown' && !results.hidden){
-            const first = list.querySelector('[data-home-search-result-v373]');
-            if (first){
-                event.preventDefault();
-                first.focus();
+        if(item.type==='herb'){
+            click('[data-treatment-detail="fitoterapi"]');
+            await wait(850);
+            if(token!==currentNavigation)return;
+            window.openPhytoHerbDetailV352?.(item.key);
+        }else if(item.type==='article'){
+            click('#heroGeneralButtonV124');
+            await wait(850);
+            if(token!==currentNavigation)return;
+            window.siteArticleReaderV511?.open(item.key);
+        }else if(item.type==='nutrition'){
+            click('[data-health-detail="beslenme"]');
+            await wait(850);
+            if(token!==currentNavigation)return;
+            click(`[data-nutrition-open="${item.key}"]`);
+            await wait(240);
+            if(token!==currentNavigation)return;
+            focusCard(`[data-v566-search-id="${item.cardId}"]`);
+        }else if(item.type==='detox'){
+            click('[data-health-detail="kurler"]');
+            await wait(850);
+            if(token!==currentNavigation)return;
+            click('[data-detox-category-v390="all"]');
+            const searchInput=document.querySelector('#detoxSearchInputV390, [data-detox-search-v390]');
+            if(searchInput){
+                searchInput.value=item.title;
+                searchInput.dispatchEvent(new Event('input',{bubbles:true}));
+            }
+            await wait(150);
+            if(token!==currentNavigation)return;
+            focusCard(`[data-detox-recipe-v390="${item.key}"]`,true);
+        }else if(item.type==='media'){
+            click('#heroMediaButton');
+            await wait(850);
+            if(token!==currentNavigation)return;
+            focusCard('#medyaPage [data-media-tags-v559]');
+        }else{
+            for(const [i,selector] of (item.steps||[]).entries()){
+                if(token!==currentNavigation)return;
+                click(selector);
+                if(i<(item.steps.length-1))await wait(470);
             }
         }
-    });
+    }
 
-    submit?.addEventListener('click', () => {
-        const first = list.querySelector('[data-home-search-result-v373]');
-        if (first && first._homeSearchItemV373) navigate(first._homeSearchItemV373);
-        else render(input.value);
+    let debounce=0;
+    input.addEventListener('input',()=>{
+        window.clearTimeout(debounce);
+        debounce=window.setTimeout(()=>render(input.value),110);
     });
-
-    clear?.addEventListener('click', () => {
-        input.value = '';
-        render('');
-        input.focus();
-    });
-
-    list.addEventListener('click', event => {
-        const button = event.target.closest('[data-home-search-result-v373]');
-        if (!button) return;
-        navigate(button._homeSearchItemV373);
-    });
-
-    root.addEventListener('click', event => {
-        const shortcut = event.target.closest?.('[data-site-search-shortcut-v400]');
-        if (!shortcut) return;
-        const title = shortcut.dataset.siteSearchShortcutV400 || '';
-        const item = index.find(entry => norm(entry.title) === norm(title));
-        if (item) navigate(item);
-    });
-
-    list.addEventListener('keydown', event => {
-        const buttons = Array.from(list.querySelectorAll('[data-home-search-result-v373]'));
-        const current = event.target.closest?.('[data-home-search-result-v373]');
-        if (!current || !buttons.length) return;
-        const indexNow = buttons.indexOf(current);
-        if (event.key === 'ArrowDown'){
+    input.addEventListener('focus',()=>{if(input.value.trim())render(input.value);});
+    input.addEventListener('keydown',event=>{
+        if(event.key==='Enter'){
             event.preventDefault();
-            buttons[(indexNow + 1) % buttons.length].focus();
-        } else if (event.key === 'ArrowUp'){
-            event.preventDefault();
-            buttons[(indexNow - 1 + buttons.length) % buttons.length].focus();
-        } else if (event.key === 'Escape'){
-            results.hidden = true;
+            if(input.value.trim() && !found.length)render(input.value);
+            if(found.length)navigate(found[0]);
+        }else if(event.key==='Escape'){
+            results.hidden=true;
             input.setAttribute('aria-expanded','false');
-            input.focus();
+        }else if(event.key==='ArrowDown'&&!results.hidden){
+            const first=list.querySelector('[data-home-search-result-v373]');
+            if(first){event.preventDefault();first.focus();}
         }
     });
-
-    document.addEventListener('click', event => {
-        if (!root.contains(event.target)){
-            results.hidden = true;
-            input.setAttribute('aria-expanded','false');
-        }
+    submit?.addEventListener('click',()=>{
+        if(!input.value.trim())return input.focus();
+        render(input.value);
+        // "Ara" ile önce görselli sonuçları göster; kullanıcı içerik seçer.
+        list.querySelector('[data-home-search-result-v373]')?.focus({preventScroll:true});
+    });
+    clear?.addEventListener('click',()=>{input.value='';render('');input.focus();});
+    list.addEventListener('click',event=>{
+        const button=event.target.closest('[data-home-search-result-v373]');
+        if(button)navigate(found[Number(button.dataset.homeSearchResultV373)]);
+    });
+    list.addEventListener('keydown',event=>{
+        const buttons=Array.from(list.querySelectorAll('[data-home-search-result-v373]'));
+        const current=event.target.closest('[data-home-search-result-v373]');
+        if(!current||!buttons.length)return;
+        let next=-1;
+        if(event.key==='ArrowDown'||event.key==='ArrowRight')next=(buttons.indexOf(current)+1)%buttons.length;
+        if(event.key==='ArrowUp'||event.key==='ArrowLeft')next=(buttons.indexOf(current)-1+buttons.length)%buttons.length;
+        if(next>=0){event.preventDefault();buttons[next].focus();}
+        if(event.key==='Escape'){event.preventDefault();input.focus();}
+    });
+    root.addEventListener('click',event=>{
+        const shortcut=event.target.closest?.('[data-site-search-shortcut-v400]');
+        if(!shortcut)return;
+        const title=norm(shortcut.dataset.siteSearchShortcutV400||'');
+        const item=buildCatalog().find(x=>x.type==='section'&&x.normalTitle===title);
+        if(item)navigate(item);
+    });
+    document.addEventListener('click',event=>{
+        if(!root.contains(event.target))results.hidden=true;
     });
 })();
 
@@ -14841,7 +15221,7 @@ function scrollSerumTitleBelowNavbarV514(vascularView) {
         const program = document.createElement('div');
         program.className = 'nutrition-program-v385';
         program.innerHTML =
-            '<div class="nutrition-program-head-v385"><span>' + safe(set.label) + '</span><h2>' + safe(set.title) + '</h2><p>' + safe(set.intro) + '</p></div>' +
+            // V605: Alt sayfanın küçük başlığı yeterli; ikinci başlık/açıklama üretme.
             '<div class="pregnancy-recipe-list-v384">' + list + '</div>' +
             '<aside class="pregnancy-recipes-note-v384"><strong>Kişiye özel güvenlik notu</strong><p>' + safe(set.note) + ' Bu içerik genel bilgilendirme amaçlıdır; kişisel diyet reçetesi değildir.</p></aside>';
         shell.prepend(program);
@@ -15013,6 +15393,8 @@ function scrollSerumTitleBelowNavbarV514(vascularView) {
             ...(recipe.ingredients || [])
         ].join(' '));
     }
+
+    window.siteDetoxCatalogV566 = recipes;
 
     const indexed = recipes.map((recipe, index) => ({
         ...recipe,
@@ -15827,7 +16209,15 @@ function scrollSerumTitleBelowNavbarV514(vascularView) {
     }
 
     // Sayfa sınıfı hangi yöntemle değişirse değişsin ortak menü aktif sayfaya taşınır.
-    const observer = new MutationObserver(() => window.requestAnimationFrame(mountV422));
+    // V615: menü değişiklikleri tek çizim karesinde birleştirilsin.
+    let mountFrameV615 = 0;
+    const observer = new MutationObserver(() => {
+        if (mountFrameV615) return;
+        mountFrameV615 = window.requestAnimationFrame(() => {
+            mountFrameV615 = 0;
+            mountV422();
+        });
+    });
     observer.observe(document.body, { attributes: true, attributeFilter: ['class'] });
 
     document.addEventListener('click', event => {
@@ -15894,8 +16284,15 @@ function scrollSerumTitleBelowNavbarV514(vascularView) {
 
     const titleNode = document.getElementById('conditionTitleV249');
     if (titleNode) {
-        new MutationObserver(() => window.requestAnimationFrame(refreshDiseaseEntriesV425))
-            .observe(titleNode, { childList: true, subtree: true, characterData: true });
+        // V615: dinamik hastalık başlığı değişince tekrarlanan yenilemeleri birleştir.
+        let refreshFrameV615 = 0;
+        new MutationObserver(() => {
+            if (refreshFrameV615) return;
+            refreshFrameV615 = window.requestAnimationFrame(() => {
+                refreshFrameV615 = 0;
+                refreshDiseaseEntriesV425();
+            });
+        }).observe(titleNode, { childList: true, subtree: true, characterData: true });
     }
 
     document.addEventListener('click', () => window.setTimeout(refreshDiseaseEntriesV425, 100), true);
@@ -16568,23 +16965,94 @@ function scrollSerumTitleBelowNavbarV514(vascularView) {
 })();
 
 
-// V498 • Geleneksel Tedavi girişinin 3 arka plan fotoğrafı
-// Akupunktur -> Sülük -> Hacamat -> Akupunktur, her 3000 ms.
+// V612 • Geleneksel Tedavi: üç Grok video arka planı. Kaynaklar sayfa açılınca yüklenir.
+// Eski V498 3 saniyelik fotoğraf döngüsünün yerini alır; başka bölümlerde veri/CPU kullanılmaz.
 (function(){
-    const root=document.querySelector('#traditionalOverviewV168 .traditional-launchpad-v496');
-    if(!root)return;
-    const slides=Array.from(root.querySelectorAll('[data-traditional-bg-slide]'));
-    if(slides.length!==3)return;
-    let index=0;
-    function show(next){
-        index=next%slides.length;
-        slides.forEach((s,i)=>s.classList.toggle('is-active',i===index));
-    }
-    show(0);
-    window.setInterval(()=>{
-        if(document.hidden)return;
-        show(index+1);
-    },3000);
+  'use strict';
+  const root=document.querySelector('#traditionalOverviewV168 .traditional-launchpad-v496');
+  const overview=document.getElementById('traditionalOverviewV168');
+  const detail=document.querySelector('[data-treatment-detail-view="geleneksel-tedavi"]');
+  const shell=document.getElementById('treatmentDetailPageV71');
+  if(!root || !overview || !detail || !shell)return;
+  const slides=Array.from(root.querySelectorAll('[data-traditional-bg-slide]'));
+  const videos=slides.map(s=>s.querySelector('video[data-traditional-bg-video]'));
+  if(slides.length!==3 || videos.some(v=>!v))return;
+  const reduced=window.matchMedia('(prefers-reduced-motion: reduce)');
+  const saveData=Boolean(navigator.connection && navigator.connection.saveData);
+  const buttons=Array.from(root.querySelectorAll('[data-traditional-open]'));
+  const nameToIndex={akupunktur:0,suluk:1,hacamat:2};
+  let index=0, hoverIndex=null, ticker=null, prewarmTimer=null, inViewport=true;
+  let previouslyVisible=false;
+  const usable=()=> !document.hidden && !reduced.matches && !saveData && inViewport &&
+    document.body.classList.contains('treatment-detail-open-v71') &&
+    shell.getAttribute('aria-hidden')!=='true' &&
+    detail.classList.contains('active') && overview.classList.contains('active');
+  function ensureSrc(v){
+    if(v.dataset.v612Loaded)return;
+    v.dataset.v612Loaded='1';
+    v.muted=true;v.defaultMuted=true;v.loop=true;v.playsInline=true;
+    v.setAttribute('muted','');v.setAttribute('playsinline','');
+    v.preload='metadata';
+    v.src=v.dataset.src;
+    v.load();
+  }
+  function stopAll(){
+    videos.forEach(v=>{if(!v.paused)v.pause();v.classList.remove('is-playing-v599');});
+  }
+  function activate(n){
+    index=(n+slides.length)%slides.length;
+    slides.forEach((s,i)=>s.classList.toggle('is-active',i===index));
+    if(prewarmTimer){clearTimeout(prewarmTimer);prewarmTimer=null;}
+    if(!usable()){stopAll();return;}
+    videos.forEach((v,i)=>{if(i!==index && !v.paused)v.pause();});
+    const v=videos[index];ensureSrc(v);
+    const p=v.play(); if(p && typeof p.catch==='function')p.catch(()=>{v.classList.remove('is-playing-v599');});
+    // Sıradaki sahneyi kısa bir gecikmeyle hazırla; aynı anda üç video başlatılmaz.
+    prewarmTimer=setTimeout(()=>{
+      prewarmTimer=null;
+      if(usable())ensureSrc(videos[(index+1)%videos.length]);
+    },2600);
+  }
+  videos.forEach(v=>{
+    v.addEventListener('playing',()=>v.classList.add('is-playing-v599'));
+    v.addEventListener('pause',()=>v.classList.remove('is-playing-v599'));
+    v.addEventListener('error',()=>v.classList.remove('is-playing-v599'));
+  });
+  function sync(){
+    const on=usable();
+    if(!on){stopAll();previouslyVisible=false;return;}
+    if(!previouslyVisible){previouslyVisible=true;activate(hoverIndex ?? index);}
+    else if(videos[index].paused) activate(hoverIndex ?? index);
+  }
+  function next(){
+    if(!usable() || hoverIndex!==null)return;
+    activate(index+1);
+  }
+  buttons.forEach(b=>{
+    const n=nameToIndex[b.dataset.traditionalOpen];
+    if(n===undefined)return;
+    b.addEventListener('mouseenter',()=>{hoverIndex=n;if(usable())activate(n);});
+    b.addEventListener('mouseleave',()=>{hoverIndex=null;});
+    b.addEventListener('focus',()=>{hoverIndex=n;if(usable())activate(n);});
+    b.addEventListener('blur',()=>{hoverIndex=null;});
+  });
+  if('IntersectionObserver' in window){
+    new IntersectionObserver(entries=>{
+      inViewport=entries[0]?.isIntersecting??false;sync();
+    },{threshold:.03}).observe(root);
+  }
+  const observer=new MutationObserver(sync);
+  observer.observe(document.body,{attributes:true,attributeFilter:['class']});
+  observer.observe(detail,{attributes:true,attributeFilter:['class']});
+  observer.observe(overview,{attributes:true,attributeFilter:['class','aria-hidden']});
+  observer.observe(shell,{attributes:true,attributeFilter:['aria-hidden']});
+  document.addEventListener('visibilitychange',sync);
+  window.addEventListener('pagehide',stopAll);
+  if(typeof reduced.addEventListener==='function')reduced.addEventListener('change',sync);
+  else if(typeof reduced.addListener==='function')reduced.addListener(sync);
+  activate(0);
+  ticker=setInterval(next,6600);
+  sync();
 })();
 
 
@@ -17192,6 +17660,11 @@ function scrollSerumTitleBelowNavbarV514(vascularView) {
         reading.hidden = !isDetail;
         root.classList.toggle('aesthetic-is-reading-v528', isDetail);
         pages.forEach(page => { page.hidden = !isDetail || page.dataset.aestheticReadV528 !== key; });
+        root.querySelectorAll('.ae604-read-nav [data-aesthetic-next-v528]').forEach(button => {
+            if (button.dataset.aestheticNextV528 === key) {
+                button.setAttribute('aria-current', 'page');
+            } else button.removeAttribute('aria-current');
+        });
         if (options.scroll !== false) moveToStart();
         if (options.focus) {
             if (isDetail) {
@@ -17592,6 +18065,19 @@ function scrollSerumTitleBelowNavbarV514(vascularView) {
     const tabs=Array.from(root.querySelectorAll('[data-media-filter-v559]'));
     const cards=Array.from(root.querySelectorAll('[data-media-tags-v559]'));
     const empty=root.querySelector('#mediaFixedEmptyV559');
+    // V598: Filtre secilince liste basligini sabit ust menunun altina getir.
+    // Filtreleme/icerik yapisi korunur; yalnizca gorunur kaydirma eklenir.
+    const mediaListSection=root.querySelector('.media-fixed-list-section-v559');
+    function scrollToFilteredMediaV598(){
+      if(!mediaListSection || !document.body.classList.contains('media-page-open')) return;
+      const topNavigation=document.getElementById('v548PremiumNav');
+      const navigationBottom=topNavigation && getComputedStyle(topNavigation).display!=='none'
+        ? Math.max(0, topNavigation.getBoundingClientRect().bottom) : 0;
+      const topGap=Math.max(window.innerWidth<=760?76:96, navigationBottom+18);
+      const destination=Math.max(0, window.scrollY + mediaListSection.getBoundingClientRect().top - topGap);
+      const reduceMotion=window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+      window.scrollTo({top:destination,behavior:reduceMotion?'auto':'smooth'});
+    }
     tabs.forEach(tab=>tab.addEventListener('click',()=>{
       const key=tab.dataset.mediaFilterV559;
       tabs.forEach(btn=>{
@@ -17601,11 +18087,13 @@ function scrollSerumTitleBelowNavbarV514(vascularView) {
       });
       let matches=0;
       cards.forEach(card=>{
-        const visible=key==='all'||card.dataset.mediaTagsV559.split(/\s+/).includes(key);
+        const visible=card.dataset.mediaOnlyV592 ? key===card.dataset.mediaOnlyV592 : (key==='all'||card.dataset.mediaTagsV559.split(/\s+/).includes(key));
         card.hidden=!visible;
         if(visible) matches++;
       });
       if(empty) empty.hidden=matches!==0;
+      // DOM guncellendikten sonra yeni kategoriye ait kartlara kaydir.
+      window.requestAnimationFrame(scrollToFilteredMediaV598);
     }));
 
     const mediaPage=document.getElementById('medyaPage');
@@ -17616,39 +18104,107 @@ function scrollSerumTitleBelowNavbarV514(vascularView) {
     const watchBtn=document.getElementById('mediaFixedHeroWatchV559');
     const playBtn=document.getElementById('mediaFixedHeroPlayV559');
     if(!feature||!player||!embed||!closeBtn||!watchBtn||!playBtn) return;
-    const videoId='DUb6-5poPjI';
+    // V587: Son gönderilen gerçek MP4 dosyası sitenin yerel HTML5 oynatıcısından açılır.
+    // Youtube iframe, Referer veya üçüncü taraf izinleri gerekmez.
+    // V588: Yeni MP4 videoları da aynı büyük HTML5 video alanında oynatılır.
+    const nativeVideo=document.getElementById('mediaLocalVideoV585');
+    if(!nativeVideo) return;
+    nativeVideo.playsInline=true;
+    const sourceEl=nativeVideo.querySelector('source');
+    const featureTitle=feature.querySelector('.media-fixed-feature-copy-v559 h2');
+    const featureDescription=feature.querySelector('.media-fixed-feature-copy-v559 p');
+    const heroPhoto=feature.querySelector('.media-fixed-hero-photo-v559');
+    const directYoutube=feature.querySelector('.media-fixed-direct-v584');
+    const inlineYoutube=player.querySelector('.media-inline-youtube-v561');
+    const videoCards=Array.from(root.querySelectorAll('[data-media-local-v588]'));
+    let activeSource=sourceEl?.getAttribute('src')||'';
+    let startAtSeconds=32;
+    let seekHandler=null;
 
     function stopInlineVideo(){
-      embed.replaceChildren(); // iframe kaldirilinca ses de durur
+      nativeVideo.pause();
       player.hidden=true;
       feature.classList.remove('is-playing-v561');
     }
 
-    function playInlineVideo(){
-      if(!player.hidden) return;
-      // Embed kullanicinin tiklamasindan sonra yuklenir, ayri pencere ACILMAZ.
-      const iframe=document.createElement('iframe');
-      iframe.src='https://www.youtube.com/embed/'+videoId+'?start=32&autoplay=1&playsinline=1&rel=0';
-      iframe.title='Dr. Ceyhun Nuri Kimdir? | Site içi video, 32. saniyeden başlar';
-      iframe.allow='accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share';
-      iframe.referrerPolicy='strict-origin-when-cross-origin';
-      iframe.allowFullscreen=true;
-      iframe.setAttribute('loading','eager');
-      iframe.setAttribute('frameborder','0');
-      embed.replaceChildren(iframe);
-      player.hidden=false;
-      feature.classList.add('is-playing-v561');
-      closeBtn.focus({preventScroll:true});
+    function setSeekStart(offset){
+      if(seekHandler){nativeVideo.removeEventListener('loadedmetadata',seekHandler);seekHandler=null;}
+      startAtSeconds=offset;
+      if(offset<=0) return;
+      const seek=()=>{
+        if(Number.isFinite(nativeVideo.duration)&&nativeVideo.duration>offset){
+          try{nativeVideo.currentTime=offset;}catch(_error){}
+        }
+      };
+      if(nativeVideo.readyState>=1) seek();
+      else {
+        seekHandler=()=>{seekHandler=null;seek();};
+        nativeVideo.addEventListener('loadedmetadata',seekHandler,{once:true});
+      }
     }
 
+    function playInlineVideo(){
+      if(player.hidden){
+        player.hidden=false;
+        feature.classList.add('is-playing-v561');
+      }
+      const attempt=nativeVideo.play();
+      if(attempt?.catch) attempt.catch(()=>{});
+    }
+
+    function selectMediaCard(card){
+      const src=card.getAttribute('data-media-local-v588');
+      if(!src || !sourceEl) return;
+      const title=card.getAttribute('data-media-title-v588')||'Video';
+      const desc=card.getAttribute('data-media-description-v588')||'';
+      const poster=card.getAttribute('data-media-poster-v588')||'';
+      const youtube=card.getAttribute('data-media-youtube-v588')||'';
+      const offset=Math.max(0,Number(card.getAttribute('data-media-start-v588'))||0);
+      const isDifferent=activeSource!==src;
+      nativeVideo.pause();
+      if(featureTitle) featureTitle.textContent=title;
+      if(featureDescription) featureDescription.textContent=desc;
+      if(heroPhoto && poster) heroPhoto.src=poster;
+      if(poster) nativeVideo.poster=poster;
+      for(const link of [directYoutube,inlineYoutube]){
+        if(!link)continue;
+        link.hidden=!youtube;
+        if(youtube)link.href=youtube;
+      }
+      playBtn.setAttribute('aria-label',title+' videosunu bu alanda oynat');
+      player.setAttribute('aria-label',title+' video oynatıcı');
+      nativeVideo.setAttribute('aria-label',title+' videosu');
+      videoCards.forEach(other=>{
+        const selected=other===card;
+        other.classList.toggle('is-selected-v588',selected);
+        other.setAttribute('aria-pressed',String(selected));
+      });
+      if(isDifferent){
+        activeSource=src;
+        sourceEl.setAttribute('src',src);
+        nativeVideo.load();
+      }else{
+        try{nativeVideo.currentTime=0;}catch(_error){}
+      }
+      setSeekStart(offset);
+      // Sadece kullanıcı kart seçtiğinde oynat; tümü yerel MP4, YouTube iframe yok.
+      playInlineVideo();
+    }
+
+    // Varsayılan Kimdir? yayını ilk oynatmada daha önce istenen 32. saniyede başlar.
+    setSeekStart(32);
     watchBtn.addEventListener('click',playInlineVideo);
     playBtn.addEventListener('click',playInlineVideo);
+    videoCards.forEach(card=>card.addEventListener('click',()=>{
+      selectMediaCard(card);
+      feature.scrollIntoView({behavior:'smooth',block:'center'});
+    }));
     closeBtn.addEventListener('click',()=>{stopInlineVideo();playBtn.focus({preventScroll:true});});
     document.addEventListener('keydown',event=>{
       if(event.key==='Escape'&&!player.hidden){stopInlineVideo();playBtn.focus({preventScroll:true});}
     });
 
-    // Medyadan başka bir sekmeye geçilince iframe sesinin arkada çalmasını önle.
+    // Medyadan başka bir sekmeye geçilince yerel videonun sesini durdur.
     if(mediaPage){
       const observer=new MutationObserver(()=>{
         if(mediaPage.getAttribute('aria-hidden')==='true' || !document.body.classList.contains('media-page-open')){
@@ -17660,4 +18216,888 @@ function scrollSerumTitleBelowNavbarV514(vascularView) {
   }
   if(document.readyState==='loading') document.addEventListener('DOMContentLoaded',initMediaV561,{once:true});
   else initMediaV561();
+})();
+
+
+// =========================================================
+// V568 — YEDİ DAMAR YOLU KARTININ TAMAMI DETAY AÇSIN
+// Mevcut "Bilgi Edin" düğmelerinin işlevini aynen kullanır.
+// Böylece serum detayları, Geri işlevi ve V556/V565 yönlendirmeleri korunur.
+// =========================================================
+(function initSerumWholeCardV568(){
+    function bind(){
+        const vascularView = document.querySelector('[data-treatment-detail-view="damar-yolu"]');
+        if (!vascularView) return;
+        const cards = Array.from(vascularView.querySelectorAll('.serum-grid-modern-v307 > .serum-card-modern-v307'));
+        cards.forEach((card) => {
+            if (card.dataset.serumCardBoundV568 === 'true') return;
+            const openButton = card.querySelector('.serum-detail-open-v235');
+            if (!openButton) return;
+            card.dataset.serumCardBoundV568 = 'true';
+            card.tabIndex = 0;
+            const heading = card.querySelector('h2')?.textContent?.trim() || 'Serum';
+            card.setAttribute('aria-label', heading + ' bilgi sayfasını aç');
+            // İçeride zaten tıklanabilir bir düğmeye/linke basıldıysa bir kez daha tetikleme.
+            function activateFromCard(event){
+                if (!(event.target instanceof Element)) return;
+                if (event.target.closest('button, a, input, select, textarea, summary, [role="button"], [role="link"]')) return;
+                if (!openButton.disabled) openButton.click();
+            }
+            card.addEventListener('click', activateFromCard);
+            card.addEventListener('keydown', (event) => {
+                if (event.target !== card) return;
+                if (event.key !== 'Enter' && event.key !== ' ') return;
+                event.preventDefault();
+                if (!openButton.disabled) openButton.click();
+            });
+        });
+    }
+    if (document.readyState === 'loading') document.addEventListener('DOMContentLoaded', bind, {once:true});
+    else bind();
+})();
+
+
+// ====================================================================
+// V569 — İlk slayttaki sessiz arka plan videosunu görünürlüğe göre yönet.
+// Diğer slayt veya bölüm açıkken CPU/bant genişliği kullanımını azalt.
+// ====================================================================
+(function () {
+    const video=document.getElementById('homeDoctorVideoV569');
+    const slide=document.querySelector('#heroSliderV86 .doctor-slide-v86');
+    if(!video || !slide) return;
+
+    video.muted=true;
+    video.defaultMuted=true;
+    const reduced=window.matchMedia('(prefers-reduced-motion: reduce)');
+    const source=video.querySelector('source[data-v616-src]');
+    let lastWanted=null;
+    let firstPageReady=false;
+    let sourceLoaded=false;
+
+    // V616: Show the original poster instantly. Load the large MP4 after the
+    // initial page has painted, only if the home slide is actually active.
+    // The same background video and existing navigation behaviour are retained.
+    function startDeferredHomeVideoV616(){
+        if(firstPageReady)return;
+        firstPageReady=true;
+        syncHomeVideoV569();
+    }
+    function scheduleDeferredHomeVideoV616(){
+        if('requestIdleCallback' in window){
+            window.requestIdleCallback(startDeferredHomeVideoV616,{timeout:1100});
+        }else{
+            window.setTimeout(startDeferredHomeVideoV616,400);
+        }
+    }
+    if(document.readyState==='complete')scheduleDeferredHomeVideoV616();
+    else window.addEventListener('load',scheduleDeferredHomeVideoV616,{once:true});
+    // Network-dependent fonts should never prevent the home video forever.
+    window.setTimeout(startDeferredHomeVideoV616,3000);
+
+    function syncHomeVideoV569(){
+        const wanted=slide.classList.contains('is-active') &&
+            document.body.classList.contains('global-home-open-v408') &&
+            !document.hidden && !reduced.matches;
+        if(!wanted){
+            lastWanted=false;
+            if(!video.paused) video.pause();
+            return;
+        }
+        if(!firstPageReady)return;
+        if(source && !sourceLoaded){
+            sourceLoaded=true;
+            source.src=source.dataset.v616Src;
+            video.preload='metadata';
+            video.load();
+        }
+        if(wanted===lastWanted && !video.paused)return;
+        lastWanted=wanted;
+        if(video.paused){
+            const result=video.play();
+            if(result && typeof result.catch==='function')result.catch(function(){});
+        }
+    }
+
+    const observer=new MutationObserver(syncHomeVideoV569);
+    observer.observe(slide,{attributes:true,attributeFilter:['class']});
+    observer.observe(document.body,{attributes:true,attributeFilter:['class']});
+    document.addEventListener('visibilitychange',syncHomeVideoV569);
+    if(typeof reduced.addEventListener==='function') reduced.addEventListener('change',syncHomeVideoV569);
+    else if(typeof reduced.addListener==='function') reduced.addListener(syncHomeVideoV569);
+    video.addEventListener('canplay',syncHomeVideoV569);
+    syncHomeVideoV569();
+})();
+
+
+/* V571 - Gerçek klinik galerisi: yalnızca resme tıklanınca büyük göster. */
+(function(){
+ function ready(){
+  var root=document.getElementById('aboutPanelInstitutionV125');
+  if(!root||!root.querySelector('.institution-gallery-v571'))return;
+  var dialog=document.createElement('dialog');
+  dialog.className='institution-photo-dialog-v571';
+  dialog.setAttribute('aria-label','Klinik fotoğrafı');
+  dialog.innerHTML='<button type="button" class="institution-dialog-close-v571" aria-label="Fotoğrafı kapat">×</button><img alt=""><div class="institution-dialog-caption-v571"></div>';
+  document.body.appendChild(dialog);
+  var image=dialog.querySelector('img'),caption=dialog.querySelector('.institution-dialog-caption-v571');
+  root.addEventListener('click',function(event){
+    var card=event.target.closest('.institution-photo-card-v571');
+    if(!card||!root.contains(card))return;
+    var imageName=card.getAttribute('data-clinic-photo-v571');
+    if(!/^[a-z0-9-]+\.webp$/.test(imageName||''))return;
+    var label=card.getAttribute('data-clinic-title-v571')||'Klinik fotoğrafı';
+    image.src='./'+imageName;
+    image.alt=label;
+    caption.textContent=label;
+    if(typeof dialog.showModal==='function')dialog.showModal();
+  });
+  dialog.querySelector('.institution-dialog-close-v571').addEventListener('click',function(){dialog.close();});
+  dialog.addEventListener('click',function(event){if(event.target===dialog)dialog.close();});
+ }
+ if(document.getElementById('v548PremiumNav'))ready();
+ else if(document.readyState==='loading')document.addEventListener('DOMContentLoaded',ready,{once:true});
+ else ready();
+})();
+
+
+
+
+/* V578 — Tedavi Alanları özel hastalık sayfalarında görünür Ana Sayfa düğmesi.
+   V402/V548 ortak yönlendirmesini kullanır; detayları ve animasyonları korur. */
+(function () {
+  'use strict';
+  const screens = ['asSpecialViewV274', 'treatmentSpecialViewV279'];
+  function goHomeFromDiseaseV578(event) {
+    event.preventDefault();
+    event.stopPropagation();
+    // Premium üst menü merkezi yönlendirme, katman temizleme ve geçiş animasyonunu yönetir.
+    const brand = document.querySelector('#v548PremiumNav [data-v548-route="home"]');
+    if (brand) { brand.click(); return; }
+    const legacyBrand = document.getElementById('globalConnectedBrandV402');
+    if (legacyBrand) { legacyBrand.click(); return; }
+    const home = document.getElementById('anasayfa');
+    home?.scrollIntoView({behavior:'smooth', block:'start'});
+  }
+  function addHomeButtonsV578() {
+    screens.forEach(id => {
+      const view = document.getElementById(id);
+      if (!view) return;
+      const controls = view.querySelector('.special-head-controls-v448');
+      if (!controls || controls.querySelector('.special-home-v578')) return;
+      const button = document.createElement('button');
+      button.type = 'button';
+      button.className = 'special-home-v578';
+      button.setAttribute('aria-label', 'Ana sayfaya dön');
+      button.setAttribute('title', 'Ana sayfaya dön');
+      button.innerHTML = '<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="m3 10 9-7 9 7v10a1 1 0 0 1-1 1h-5v-7H9v7H4a1 1 0 0 1-1-1z"/></svg><span class="special-home-desktop-v578">Ana Sayfaya Dön</span><span class="special-home-mobile-v578">Ana Sayfa</span>';
+      button.addEventListener('click', goHomeFromDiseaseV578);
+      controls.insertBefore(button, controls.firstChild);
+    });
+  }
+  if (document.readyState === 'loading') {
+    document.addEventListener('DOMContentLoaded', addHomeButtonsV578, {once:true});
+  } else {
+    addHomeButtonsV578();
+  }
+})();
+
+// V589 - Osteopati manuel video: yalnızca görünürken yüklenir/oynar.
+// Görüntü ve oynatma davranışı korunur; gizliyken veri ve CPU harcamaz.
+(function(){
+  const panel=document.getElementById('osteoChiroV105');
+  const video=panel?.querySelector('.osteo-chiro-video-v108 video');
+  const special=document.getElementById('osteoSpecialViewV259');
+  const osteo=document.querySelector('[data-treatment-detail-view="osteopati"]');
+  if(!video||!special||!osteo)return;
+  let lastVisible=false;
+  function sync(){
+    const shell=document.getElementById('treatmentDetailPageV71');
+    const visible=!document.hidden &&
+      document.body.classList.contains('treatment-detail-open-v71') &&
+      shell?.getAttribute('aria-hidden')!=='true' &&
+      osteo.classList.contains('active') &&
+      !special.hidden && special.getAttribute('aria-hidden')!=='true' &&
+      panel.classList.contains('is-active-v258');
+    if(!visible){
+      if(!video.paused)video.pause();
+      lastVisible=false;
+      return;
+    }
+    if(!lastVisible||video.paused){
+      video.muted=true;
+      const p=video.play();
+      if(p?.catch)p.catch(()=>{});
+    }
+    lastVisible=true;
+  }
+  const observer=new MutationObserver(sync);
+  for(const [el,attrs] of [[document.body,['class']],[document.getElementById('treatmentDetailPageV71'),['aria-hidden']],[osteo,['class']],[special,['hidden','aria-hidden']],[panel,['class']]]){
+    if(el)observer.observe(el,{attributes:true,attributeFilter:attrs});
+  }
+  document.addEventListener('visibilitychange',sync);
+  video.addEventListener('pause',()=>{if(lastVisible&&!document.hidden)setTimeout(sync,140);});
+  sync();
+})();
+
+
+// =========================================================
+// V601 - BESLENME: 48 tarifte malzemeye göre arama ve kompakt kartlar
+// V175 kategori yönlendirmesi / V385 tarif verileri olduğu gibi korunur.
+// =========================================================
+(function () {
+  'use strict';
+  function initNutritionV601() {
+    const view = document.querySelector('[data-health-detail-view="beslenme"]');
+    const toggle = document.getElementById('nutritionSearchToggleV601');
+    const panel = document.getElementById('nutritionSearchPanelV601');
+    const input = document.getElementById('nutritionSearchInputV601');
+    const results = document.getElementById('nutritionSearchResultsV601');
+    const status = document.getElementById('nutritionSearchStatusV601');
+    const clear = document.getElementById('nutritionSearchClearV601');
+    if (!view || !toggle || !panel || !input || !results || !status || view.dataset.nutritionV601Ready) return;
+    view.dataset.nutritionV601Ready = 'true';
+
+    const categories = Array.from(view.querySelectorAll('.nutrition-card-v174 [data-nutrition-open]'));
+    const titles = new Map(categories.map(button => [button.dataset.nutritionOpen,
+      button.closest('.nutrition-card-v174')?.querySelector('h3')?.textContent?.trim() || 'Beslenme']));
+    const normalize = value => String(value || '').toLocaleLowerCase('tr-TR')
+      .normalize('NFD').replace(/[\u0300-\u036f]/g, '')
+      .replace(/ı/g,'i').replace(/ğ/g,'g').replace(/ş/g,'s')
+      .replace(/ü/g,'u').replace(/ö/g,'o').replace(/ç/g,'c')
+      .replace(/\s+/g,' ').trim();
+    const allRecipes = [];
+    const dialog = document.createElement('dialog');
+    dialog.className = 'nutrition-recipe-dialog-v601';
+    dialog.setAttribute('aria-label','Beslenme tarifi detayı');
+    // V602: Browser reset CSS dialogun margin:auto varsayılanını kaldırıyordu.
+    // Bağımsız yapışkan üst bar + yalnız içeride kayan, ortalanmış modal.
+    dialog.innerHTML = `
+      <div class="nutrition-recipe-frame-v602">
+        <div class="nutrition-recipe-toolbar-v602">
+          <span class="nutrition-recipe-toolbar-identity-v602">
+            <span class="nutrition-recipe-toolbar-icon-v602" aria-hidden="true">✦</span>
+            <span><strong>BESLENME REHBERİ</strong><small>Tarif detayları</small></span>
+          </span>
+          <button type="button" class="nutrition-recipe-dialog-close-v601" aria-label="Tarif penceresini kapat" title="Kapat">×</button>
+        </div>
+        <div class="nutrition-recipe-scroll-v602" tabindex="-1"><div class="nutrition-recipe-dialog-inner-v601"></div></div>
+      </div>`;
+    document.body.appendChild(dialog);
+    const dialogInner = dialog.querySelector('.nutrition-recipe-dialog-inner-v601');
+    const dialogClose = dialog.querySelector('.nutrition-recipe-dialog-close-v601');
+    dialogClose.addEventListener('click', () => dialog.close());
+    dialog.addEventListener('click', event => {if (event.target === dialog) dialog.close();});
+
+    function openRecipe(recipe) {
+      if (!recipe || !recipe.card) return;
+      if (dialog.open) dialog.close();
+      dialogInner.replaceChildren();
+      const media = document.createElement('div'); media.className = 'nutrition-recipe-modal-media-v601';
+      const img = recipe.card.querySelector('.pregnancy-recipe-media-v384 img');
+      if (img) {
+        const photo=img.cloneNode(true);
+        photo.addEventListener('error',()=>{media.hidden=true;},{once:true});
+        media.appendChild(photo);
+        if (photo.complete && !photo.naturalWidth) media.hidden=true;
+      } else media.hidden=true;
+      const body = document.createElement('div'); body.className = 'nutrition-recipe-modal-body-v601';
+      const category = document.createElement('span');category.className='nutrition-recipe-modal-category-v601';
+      category.textContent=recipe.category+' • '+recipe.kicker;
+      const heading = document.createElement('h2');heading.id='nutritionRecipeModalHeadingV601';heading.textContent=recipe.title;
+      const columns = document.createElement('div');columns.className='nutrition-recipe-modal-sections-v601';
+      recipe.card.querySelectorAll('.pregnancy-recipe-columns-v384 section').forEach(section => columns.appendChild(section.cloneNode(true)));
+      const why = recipe.card.querySelector('.pregnancy-recipe-why-v384');
+      const whyClone = why ? why.cloneNode(true) : document.createElement('div');
+      whyClone.className='nutrition-recipe-modal-why-v601';
+      const note = document.createElement('p');note.className='nutrition-recipe-modal-note-v601';
+      note.textContent='Genel bilgilendirme amaçlıdır; kişisel beslenme planı için hekim ve diyetisyene danışın.';
+      body.append(category,heading,columns,whyClone,note);
+      dialogInner.append(media,body);
+      dialog.setAttribute('aria-labelledby',heading.id);
+      if (typeof dialog.showModal==='function') dialog.showModal(); else dialog.setAttribute('open','');
+      const modalScroller = dialog.querySelector('.nutrition-recipe-scroll-v602');
+      if (modalScroller) modalScroller.scrollTop = 0;
+      dialogClose.focus({preventScroll:true});
+    }
+
+    view.querySelectorAll('[data-nutrition-detail]').forEach(detail => {
+      const key = detail.getAttribute('data-nutrition-detail');
+      const category = titles.get(key) || 'Beslenme';
+      detail.querySelectorAll('.pregnancy-recipe-v384').forEach((card, index) => {
+        const title = card.querySelector('.pregnancy-recipe-content-v384 > h2')?.textContent?.trim() || '';
+        const kicker = card.querySelector('.pregnancy-recipe-kicker-v384')?.textContent?.trim() || 'PRATİK TARİF';
+        const ingredients = Array.from(card.querySelectorAll('.pregnancy-recipe-columns-v384 section:first-child li')).map(li => li.textContent.trim());
+        const reason = card.querySelector('.pregnancy-recipe-why-v384 > p')?.textContent?.trim() || '';
+        if (!title || !ingredients.length) return;
+        const recipe = {key, category, title, kicker, ingredients, card,
+          searchText:normalize([title, ingredients.join(' '), category].join(' ')),
+          image:card.querySelector('.pregnancy-recipe-media-v384 img')?.getAttribute('src') || ''};
+        allRecipes.push(recipe);
+        card.dataset.nutritionRecipeV601 = key+'-'+String(index+1).padStart(2,'0');
+        const content = card.querySelector('.pregnancy-recipe-content-v384');
+        if (content && !content.querySelector('.nutrition-recipe-preview-v601')) {
+          const preview = document.createElement('div');preview.className='nutrition-recipe-preview-v601';
+          const whyShort = document.createElement('p');
+          whyShort.textContent = reason;
+          const tag = document.createElement('small');
+          tag.textContent='Malzemeler: '+ingredients.slice(0,3).join(' · ')+(ingredients.length>3?'…':'');
+          const button = document.createElement('button');button.type='button';
+          button.className='nutrition-recipe-open-v601';
+          button.innerHTML='<span>Tarifi Gör</span><span aria-hidden="true">→</span>';
+          button.setAttribute('aria-label',title+' tarifinin malzemelerini ve hazırlanışını aç');
+          button.addEventListener('click',() => openRecipe(recipe));
+          preview.append(whyShort,tag,button);
+          content.appendChild(preview);
+        }
+      });
+    });
+    view.querySelector('.nutrition-search-quantity-v601').textContent = allRecipes.length+' Tarif';
+
+    function setSearchOpen(open) {
+      panel.hidden=!open;
+      toggle.setAttribute('aria-expanded',String(open));
+      if (open) window.requestAnimationFrame(() => input.focus({preventScroll:true}));
+    }
+    function addResult(recipe) {
+      const button=document.createElement('button');button.type='button';button.className='nutrition-search-result-v601';
+      const image=document.createElement('img');image.src=recipe.image;image.alt='';image.loading='lazy';
+      const copy=document.createElement('span');copy.className='nutrition-search-result-copy-v601';
+      const category=document.createElement('small');category.textContent=recipe.category;
+      const name=document.createElement('strong');name.textContent=recipe.title;
+      const ingredients=document.createElement('em');ingredients.textContent=recipe.ingredients.join(' · ');
+      copy.append(category,name,ingredients);
+      const arrow=document.createElement('span');arrow.textContent='↗';arrow.setAttribute('aria-hidden','true');
+      button.append(image,copy,arrow);
+      button.setAttribute('aria-label',recipe.title+' — '+recipe.category+' içinde tarifi görüntüle');
+      button.addEventListener('click',() => {
+        setSearchOpen(false);
+        const opener=view.querySelector('[data-nutrition-open="'+recipe.key+'"]');
+        if (opener) opener.click();
+        window.requestAnimationFrame(()=>openRecipe(recipe));
+      });
+      return button;
+    }
+    function render() {
+      const query=normalize(input.value);
+      results.replaceChildren();
+      if (!query) {
+        status.textContent='Bir malzeme yazarak '+allRecipes.length+' tarifin tamamında arama yapabilirsiniz.';
+        return;
+      }
+      const matching=allRecipes.filter(recipe=>recipe.searchText.includes(query));
+      status.textContent=matching.length
+        ? allRecipes.length+' tarif içinde '+matching.length+' sonuç bulundu.'
+        : 'Bu aramayla eşleşen tarif bulunamadı. Başka bir malzeme deneyin.';
+      const fragment=document.createDocumentFragment();
+      matching.forEach(recipe=>fragment.appendChild(addResult(recipe)));
+      results.appendChild(fragment);
+    }
+    toggle.addEventListener('click',()=>{setSearchOpen(panel.hidden); if (!panel.hidden) render();});
+    input.addEventListener('input',render);
+    clear.addEventListener('click',()=>{input.value='';render();input.focus({preventScroll:true});});
+    const inputLine = view.querySelector('.nutrition-search-inputline-v601');
+    if (inputLine) inputLine.addEventListener('click',event=>{
+      if (event.target===inputLine) input.focus({preventScroll:true});
+    });
+    view.querySelectorAll('[data-nutrition-query-v601]').forEach(button=>button.addEventListener('click',()=>{
+      input.value=button.dataset.nutritionQueryV601;
+      setSearchOpen(true);render();
+      input.focus({preventScroll:true});
+    }));
+    view.querySelectorAll('[data-nutrition-open]').forEach(button=>button.addEventListener('click',()=>setSearchOpen(false)));
+    document.addEventListener('keydown',event=>{if(event.key==='Escape' && !panel.hidden){setSearchOpen(false);toggle.focus();}});
+    // Diğer bölümlerden mevcut site genel araması ve geri dönüş etkilenmez.
+    window.nutritionSearchV601={count:allRecipes.length, search:q=>allRecipes.filter(r=>r.searchText.includes(normalize(q))).map(r=>({title:r.title,category:r.category}))};
+    render();
+  }
+  if (document.readyState==='loading') document.addEventListener('DOMContentLoaded',initNutritionV601,{once:true});
+  else initNutritionV601();
+})();
+
+
+/* V603 - Supplementler: live arama, filtre ve bağımsız, ortalanmış detay penceresi. */
+(function(){
+  'use strict';
+  function init(){
+    const view=document.getElementById('sup603Explorer')?.closest('[data-health-detail-view="supplementler"]');
+    if(!view||view.dataset.sup603Ready)return;
+    view.dataset.sup603Ready='true';
+    const cards=Array.from(view.querySelectorAll('[data-sup603-card]'));
+    const searchToggle=view.querySelector('#sup603SearchToggle');
+    const searchPanel=view.querySelector('#sup603SearchPanel');
+    const input=view.querySelector('#sup603Input');
+    const status=view.querySelector('#sup603Status');
+    const empty=view.querySelector('#sup603Empty');
+    const buttons=Array.from(view.querySelectorAll('[data-sup603-filter]'));
+    const dialog=document.getElementById('sup603Dialog');
+    const dialogContent=document.getElementById('sup603DialogContent');
+    const dialogScroller=document.getElementById('sup603DialogScroll');
+    const dialogClose=document.getElementById('sup603Close');
+    if(!cards.length||!dialog||!input)return;
+    // Top-layer modal: move outside section clipping / hidden page transitions.
+    if(dialog.parentElement!==document.body)document.body.appendChild(dialog);
+    const normalize=s=>String(s||'').toLocaleLowerCase('tr-TR').normalize('NFD').replace(/[\u0300-\u036f]/g,'').replace(/ı/g,'i').replace(/ğ/g,'g').replace(/ş/g,'s').replace(/ü/g,'u').replace(/ö/g,'o').replace(/ç/g,'c').replace(/[‑–—-]/g,'').replace(/\s+/g,' ').trim();
+    let currentCategory='all';
+    const corpus=cards.map(card=>({card,text:normalize(card.dataset.sup603Search)}));
+    function render(){
+      const q=normalize(input.value);
+      let count=0;
+      corpus.forEach(({card,text})=>{
+        const matchCategory=currentCategory==='all'||card.dataset.sup603Category===currentCategory;
+        const matchText=!q||text.includes(q);
+        card.hidden=!(matchCategory&&matchText);
+        if(!card.hidden)count++;
+      });
+      empty.hidden=!!count;
+      status.textContent=count+' / '+cards.length+' içerik gösteriliyor'+(q||currentCategory!=='all'?'. Filtreler aktif.':'.');
+    }
+    function setSearchOpen(open){
+      searchPanel.hidden=!open;searchToggle.setAttribute('aria-expanded',String(open));
+      if(open)input.focus({preventScroll:true});
+    }
+    function setCategory(name){
+      currentCategory=name;
+      buttons.forEach(button=>{const active=button.dataset.sup603Filter===name;button.classList.toggle('is-active',active);button.setAttribute('aria-pressed',String(active));});
+      render();
+    }
+    searchToggle.addEventListener('click',()=>setSearchOpen(searchPanel.hidden));
+    view.querySelector('#sup603Clear').addEventListener('click',()=>{input.value='';render();input.focus({preventScroll:true});});
+    input.addEventListener('input',render);
+    input.addEventListener('keydown',event=>{if(event.key==='Escape'&&input.value){event.stopPropagation();input.value='';render();}});
+    view.querySelectorAll('[data-sup603-query]').forEach(button=>button.addEventListener('click',()=>{input.value=button.dataset.sup603Query;setSearchOpen(true);render();}));
+    buttons.forEach(button=>button.addEventListener('click',()=>setCategory(button.dataset.sup603Filter)));
+    view.querySelector('#sup603Reset').addEventListener('click',()=>{input.value='';setCategory('all');setSearchOpen(false);});
+    const missingImage=(img)=>{if(img&&!img.naturalWidth)img.classList.add('sup603-img-missing');};
+    cards.forEach(card=>{const img=card.querySelector('img');if(img){img.addEventListener('error',()=>missingImage(img));if(img.complete)missingImage(img);}});
+    let lastTrigger=null;
+    function close(){if(dialog.open)dialog.close();}
+    function open(slug,trigger){
+      // Selection limited to the six in-page templates, never evaluated as HTML input.
+      if(!/^[a-z0-9]+$/.test(slug))return;
+      const template=document.getElementById('sup603-template-'+slug);
+      if(!template)return;
+      if(dialog.open)close();
+      lastTrigger=trigger;
+      dialogContent.replaceChildren(template.content.cloneNode(true));
+      const image=dialogContent.querySelector('.sup603-detail-photo img');
+      if(image){image.addEventListener('error',()=>missingImage(image));if(image.complete)missingImage(image);}
+      if(typeof dialog.showModal==='function')dialog.showModal();else dialog.setAttribute('open','');
+      if(dialogScroller)dialogScroller.scrollTop=0;
+      dialogClose.focus({preventScroll:true});
+    }
+    view.addEventListener('click',event=>{const btn=event.target.closest('[data-sup603-open]');if(btn&&view.contains(btn))open(btn.dataset.sup603Open,btn);});
+    dialogClose.addEventListener('click',close);
+    dialog.addEventListener('click',event=>{if(event.target===dialog)close();});
+    dialog.addEventListener('close',()=>{if(lastTrigger&&lastTrigger.isConnected)lastTrigger.focus({preventScroll:true});});
+    // Leaving supplement section should close modal and reset focus state.
+    const healthView=view;
+    new MutationObserver(()=>{if(dialog.open&&(!healthView.classList.contains('active')&&healthView.getAttribute('aria-hidden')==='true'))close();})
+      .observe(healthView,{attributes:true,attributeFilter:['class','aria-hidden']});
+    window.supplementSearchV603={count:cards.length,search:q=>corpus.filter(e=>e.text.includes(normalize(q))).map(e=>e.card.querySelector('h2')?.textContent?.trim())};
+    render();
+  }
+  if(document.readyState==='loading')document.addEventListener('DOMContentLoaded',init,{once:true});else init();
+})();
+
+
+// V616 - Defer small animated header portrait until after first meaningful paint.
+// The static, unchanged doctor image always remains as the fallback.
+(function(){
+    'use strict';
+    const video=document.querySelector('.v594-avatar-motion-v594');
+    const source=video?.querySelector('source[data-v616-src]');
+    if(!video||!source)return;
+    const reduced=window.matchMedia('(prefers-reduced-motion: reduce)');
+    const saveData=Boolean(navigator.connection?.saveData);
+    if(reduced.matches||saveData)return;
+    let started=false;
+    function activate(){
+        if(started||document.hidden)return;
+        started=true;
+        source.src=source.dataset.v616Src;
+        video.preload='metadata';
+        video.load();
+        const promise=video.play();
+        if(promise?.catch)promise.catch(()=>{});
+    }
+    function schedule(){
+        if('requestIdleCallback' in window)window.requestIdleCallback(activate,{timeout:1300});
+        else window.setTimeout(activate,700);
+    }
+    if(document.readyState==='complete')schedule();
+    else window.addEventListener('load',schedule,{once:true});
+    window.setTimeout(activate,3400);
+    document.addEventListener('visibilitychange',()=>{
+        if(document.hidden){if(!video.paused)video.pause();}
+        else if(!started)activate();
+        else if(video.paused){const promise=video.play();if(promise?.catch)promise.catch(()=>{});}
+    });
+})();
+
+
+// =========================================================
+// V618 - Mobil boşluk, başlık ve hızlı geçiş iyileştirmeleri
+// =========================================================
+(function(){
+    function runV618MobileFixes(){
+        // ---------- Fitoterapi bitki detay sayfası: mobilde boş alanı ilgili bitki başlıklarıyla doldur ----------
+        const phytoDetail = document.getElementById('phytoHerbDetailV351');
+        const phytoMain = phytoDetail?.querySelector('.phyto-herb-main-v351');
+        if (phytoDetail && phytoMain && !document.getElementById('v618PhytoRelatedV351')) {
+            const section = document.createElement('section');
+            section.id = 'v618PhytoRelatedV351';
+            section.className = 'v618-mobile-quick-section';
+            section.hidden = true;
+            section.innerHTML = `
+                <div class="v618-mobile-quick-heading">
+                    <span>BİTKİSEL BAŞLIKLAR</span>
+                    <strong>İlgili bitki başlıkları</strong>
+                </div>
+                <div class="v618-mobile-quick-grid" id="v618PhytoRelatedGridV351"></div>
+            `;
+            phytoMain.insertAdjacentElement('afterend', section);
+
+            const titleMap = {
+                'zerdecal':'Zerdeçal / Kurkumin',
+                'kurkumin':'Zerdeçal / Kurkumin',
+                'zencefil':'Zencefil',
+                'boswellia':'Boswellia',
+                'akgunluk':'Akgünlük / Boswellia',
+                'yesil-cay':'Yeşil Çay',
+                'yesilcay':'Yeşil Çay',
+                'yesil cay':'Yeşil Çay',
+                'matcha':'Matcha',
+                'biberiye':'Biberiye',
+                'enginar':'Enginar',
+                'rezene':'Rezene',
+                'melisa':'Melisa',
+                'papatya':'Papatya',
+                'corekotu':'Çörek Otu',
+                'corekotu':'Çörek Otu',
+                'çörekotu':'Çörek Otu',
+                'deve-dikeni':'Deve Dikeni',
+                'devedikeni':'Deve Dikeni',
+                'isirgan':'Isırgan',
+                'ısırgan':'Isırgan',
+                'ada-cayi':'Adaçayı',
+                'adacayi':'Adaçayı',
+                'keten-tohumu':'Keten Tohumu',
+                'ketentohumu':'Keten Tohumu',
+                'sumak':'Sumak',
+                'zerdecal-kok':'Zerdeçal',
+                'lavanta':'Lavanta'
+            };
+
+            function labelFromKeyV618(key, herb){
+                return titleMap[key] || herb?.name || String(key||'Bitki').replace(/-/g,' ').replace(/\b\w/g, ch => ch.toLocaleUpperCase('tr-TR'));
+            }
+
+            function renderPhytoQuickV618(){
+                const grid = document.getElementById('v618PhytoRelatedGridV351');
+                if (!grid) return;
+                const isOpen = document.body.classList.contains('phyto-herb-detail-open-v351');
+                if (!isOpen) {
+                    section.hidden = true;
+                    grid.innerHTML = '';
+                    return;
+                }
+                const catalog = window.phytoHerbCatalogV350 || {};
+                const sets = window.phytoDiseaseSetsV350 || {};
+                const currentTitle = (document.getElementById('phytoHerbTitleV351')?.textContent || '').trim().toLocaleLowerCase('tr-TR');
+                const diseaseKey = window.phytoActiveDiseaseV413 || '';
+                const diseaseSet = diseaseKey && sets[diseaseKey] ? sets[diseaseKey] : null;
+                const candidateKeys = diseaseSet?.herbs?.length ? diseaseSet.herbs.slice() : Object.keys(catalog);
+                const items = candidateKeys
+                    .filter(key => catalog[key] && (catalog[key].name || '').toLocaleLowerCase('tr-TR') !== currentTitle)
+                    .slice(0, 6);
+                if (!items.length) {
+                    section.hidden = true;
+                    grid.innerHTML = '';
+                    return;
+                }
+                const headSpan = section.querySelector('.v618-mobile-quick-heading span');
+                const headStrong = section.querySelector('.v618-mobile-quick-heading strong');
+                if (diseaseSet) {
+                    headSpan.textContent = `${(diseaseSet.short || 'FİTOTERAPİ').toLocaleUpperCase('tr-TR')} • BİTKİLER`;
+                    headStrong.textContent = `${diseaseSet.title || 'İlgili hastalık'} için diğer bitkiler`;
+                } else {
+                    headSpan.textContent = 'BİTKİSEL BAŞLIKLAR';
+                    headStrong.textContent = 'İlgili bitki başlıkları';
+                }
+                grid.innerHTML = items.map((key, index) => {
+                    const herb = catalog[key] || {};
+                    const active = (herb.name || '').toLocaleLowerCase('tr-TR') === currentTitle;
+                    const subtitle = herb.subtitle || 'Bitkisel destek';
+                    return `<button type="button" class="v618-mobile-quick-btn${active ? ' is-active' : ''}" data-v618-herb-key="${key}">
+                        <strong>${labelFromKeyV618(key, herb)}</strong>
+                        <small>${subtitle} • ${String(index + 1).padStart(2,'0')}</small>
+                    </button>`;
+                }).join('');
+                section.hidden = false;
+            }
+
+            section.addEventListener('click', function(event){
+                const button = event.target.closest('[data-v618-herb-key]');
+                if (!button) return;
+                const key = button.dataset.v618HerbKey;
+                if (!key || typeof window.openPhytoHerbDetailV352 !== 'function') return;
+                window.openPhytoHerbDetailV352(key, window.phytoActiveDiseaseV413 || '');
+                window.setTimeout(renderPhytoQuickV618, 40);
+            });
+
+            document.addEventListener('click', function(event){
+                const openTrigger = event.target.closest('[data-herb-id-v350], .phyto-herbal-card-v232.is-clickable-v350, .phyto-card-button-v350, [data-phyto-herb-tab-v351], #phytoHerbBackV351');
+                if (!openTrigger) return;
+                window.setTimeout(renderPhytoQuickV618, 45);
+            }, true);
+            document.addEventListener('keydown', function(event){
+                if (event.key === 'Escape') window.setTimeout(renderPhytoQuickV618, 45);
+            });
+            renderPhytoQuickV618();
+        }
+
+        // ---------- Osteopati özel sayfası: mobilde diğer başlıkları göster ----------
+        const osteoSpecial = document.getElementById('osteoSpecialViewV259');
+        const osteoStatus = osteoSpecial?.querySelector('.osteo-tab-status-v258');
+        if (osteoSpecial && osteoStatus && !document.getElementById('v618OsteoMobileQuickV618')) {
+            const section = document.createElement('section');
+            section.id = 'v618OsteoMobileQuickV618';
+            section.className = 'v618-mobile-quick-section';
+            section.innerHTML = `
+                <div class="v618-mobile-quick-heading">
+                    <span>OSTEOPATİ BAŞLIKLARI</span>
+                    <strong>Diğer osteopati başlıkları</strong>
+                </div>
+                <div class="v618-mobile-quick-grid">
+                    <button type="button" class="v618-mobile-quick-btn" data-v618-osteo-tab="manual"><strong>Manuel Uygulamalar</strong><small>Osteopati • mobilite</small></button>
+                    <button type="button" class="v618-mobile-quick-btn" data-v618-osteo-tab="exercise"><strong>Egzersiz & Hareket</strong><small>Video • hareket planı</small></button>
+                    <button type="button" class="v618-mobile-quick-btn" data-v618-osteo-tab="sports"><strong>Spor Yaralanmaları</strong><small>Yüklenme • fonksiyon</small></button>
+                    <button type="button" class="v618-mobile-quick-btn" data-v618-osteo-tab="pain"><strong>Ağrı Rehberi</strong><small>Bölgelere göre incele</small></button>
+                    <button type="button" class="v618-mobile-quick-btn" data-v618-osteo-tab="faq"><strong>Soru & Cevap</strong><small>Merak edilenler</small></button>
+                    <button type="button" class="v618-mobile-quick-btn" data-v618-osteo-tab="articles"><strong>Bilimsel Yayınlar</strong><small>Akademik kaynaklar</small></button>
+                </div>
+            `;
+            osteoStatus.insertAdjacentElement('afterend', section);
+
+            function syncOsteoQuickV618(){
+                const activeTab = osteoSpecial.querySelector('[data-osteo-tab].is-active-v258, [data-osteo-tab][aria-selected="true"]');
+                const activeKey = activeTab?.dataset?.osteoTab || '';
+                section.querySelectorAll('[data-v618-osteo-tab]').forEach(btn => {
+                    btn.classList.toggle('is-active', btn.dataset.v618OsteoTab === activeKey);
+                });
+            }
+
+            section.addEventListener('click', function(event){
+                const btn = event.target.closest('[data-v618-osteo-tab]');
+                if (!btn) return;
+                osteoSpecial.querySelector(`[data-osteo-tab="${btn.dataset.v618OsteoTab}"]`)?.click();
+                window.setTimeout(syncOsteoQuickV618, 20);
+            });
+
+            document.addEventListener('click', function(event){
+                const trigger = event.target.closest('[data-osteo-tab-target], [data-osteo-tab], #osteoSpecialBackV259');
+                if (!trigger) return;
+                window.setTimeout(syncOsteoQuickV618, 25);
+            }, true);
+            syncOsteoQuickV618();
+        }
+
+        // ---------- Tedavi alanları: mobilde hastalık başlıklarıyla boş alanı doldur ----------
+        const conditionPanel = document.getElementById('conditionDetailPanelV249');
+        const conditionNote = document.getElementById('conditionDetailNoteV249');
+        if (conditionPanel && conditionNote && !document.getElementById('v618ConditionQuickV618')) {
+            const section = document.createElement('section');
+            section.id = 'v618ConditionQuickV618';
+            section.className = 'v618-mobile-quick-section';
+            section.innerHTML = `
+                <div class="v618-mobile-quick-heading">
+                    <span>TEDAVİ ALANLARI</span>
+                    <strong>Diğer hastalık başlıkları</strong>
+                </div>
+                <div class="v618-mobile-quick-grid">
+                    <button type="button" class="v618-mobile-quick-btn" data-disease-switch-v250="as"><strong>Ankilozan Spondilit</strong><small>AS • romatizmal süreç</small></button>
+                    <button type="button" class="v618-mobile-quick-btn" data-disease-switch-v250="ra"><strong>Romatoid Artrit</strong><small>RA • eklem yakınmaları</small></button>
+                    <button type="button" class="v618-mobile-quick-btn" data-disease-switch-v250="bas-agrisi-migren"><strong>Baş Ağrısı & Migren</strong><small>Nörolojik / mekanik ağrı</small></button>
+                    <button type="button" class="v618-mobile-quick-btn" data-disease-switch-v250="bel-sirt-agrisi"><strong>Bel & Sırt Ağrısı</strong><small>Postür • hareket ilişkisi</small></button>
+                    <button type="button" class="v618-mobile-quick-btn" data-disease-switch-v250="fibromiyalji"><strong>Fibromiyalji</strong><small>Yaygın ağrı • yorgunluk</small></button>
+                    <button type="button" class="v618-mobile-quick-btn" data-disease-switch-v250="huzursuz-bacak"><strong>Huzursuz Bacak</strong><small>Gece artan yakınmalar</small></button>
+                    <button type="button" class="v618-mobile-quick-btn" data-disease-switch-v250="iltihabi-bagirsak"><strong>İltihabi Bağırsak</strong><small>Bağırsak • sistemik etkiler</small></button>
+                    <button type="button" class="v618-mobile-quick-btn" data-disease-switch-v250="kronik-yorgunluk"><strong>Kronik Yorgunluk</strong><small>Enerji • toparlanma</small></button>
+                </div>
+            `;
+            conditionNote.insertAdjacentElement('afterend', section);
+
+            const diseaseTitleMap = {
+                'Ankilozan Spondilit':'as',
+                'Romatoid Artrit':'ra',
+                'Baş Ağrısı & Migren':'bas-agrisi-migren',
+                'Bel & Sırt Ağrısı':'bel-sirt-agrisi',
+                'Fibromiyalji':'fibromiyalji',
+                'Huzursuz Bacak':'huzursuz-bacak',
+                'İltihabi Bağırsak':'iltihabi-bagirsak',
+                'Kronik Yorgunluk':'kronik-yorgunluk'
+            };
+            function syncConditionQuickV618(){
+                const activeTitle = (document.getElementById('conditionTitleV249')?.textContent || '').trim();
+                const activeKey = diseaseTitleMap[activeTitle] || '';
+                section.querySelectorAll('[data-disease-switch-v250]').forEach(btn => {
+                    btn.classList.toggle('is-active', btn.dataset.diseaseSwitchV250 === activeKey);
+                });
+            }
+            document.addEventListener('click', function(event){
+                const trigger = event.target.closest('[data-disease-switch-v250], [data-condition-topic-v249], [data-condition-hero-open-v309], [data-treatment-special-target-v279]');
+                if (!trigger) return;
+                window.setTimeout(syncConditionQuickV618, 40);
+            }, true);
+            syncConditionQuickV618();
+        }
+
+        // ---------- Makale / bitki içeriklerinde mobil ek başlıklar ----------
+        const articleReader = document.getElementById('featuredArticleReaderV510');
+        const articleContent = document.getElementById('featuredArticleReaderContentV510');
+        const articleFooter = articleReader?.querySelector('.featured-article-reader-footer-v510');
+        if (articleReader && articleContent && articleFooter && !document.getElementById('v618ArticleQuickV618')) {
+            const section = document.createElement('section');
+            section.id = 'v618ArticleQuickV618';
+            section.className = 'v618-mobile-quick-section';
+            section.hidden = true;
+            section.innerHTML = `
+                <div class="v618-mobile-quick-heading">
+                    <span>İLGİLİ BAŞLIKLAR</span>
+                    <strong>Bu konuyla ilgili diğer yazılar</strong>
+                </div>
+                <div class="v618-mobile-quick-grid" id="v618ArticleQuickGridV618"></div>
+            `;
+            articleFooter.insertAdjacentElement('beforebegin', section);
+
+            const groups = {
+                'Bitkisel İçerikler': [
+                    {key:'article-10', title:'Fitoterapi – Kurkumin – Zerdeçal'},
+                    {key:'article-13', title:'Bir İçim Çay – Kamelyalı Kadın!'}
+                ],
+                'Beslenme': [
+                    {key:'article-11', title:'Glisemik İndeks Nedir?'},
+                    {key:'article-12', title:'Umami Tadı ve Glutamat'},
+                    {key:'article-14', title:'Fonksiyonel Beslenme'}
+                ],
+                'Vitaminler': [
+                    {key:'article-02', title:'İnsan Hücresinin Yapamadığı Vitamin: C'},
+                    {key:'article-03', title:'B-12 Vitamini'},
+                    {key:'article-04', title:'Çinkonun Sağlık ve Hastalıktaki Rolü'},
+                    {key:'article-05', title:'B12 Vitamini Düşük mü?'}
+                ],
+                'Romatizma': [
+                    {key:'article-06', title:'Ankilozan Spondilit Tedavisi Fonksiyonel Yaklaşımlar'},
+                    {key:'article-07', title:'Romatoid Artrit ve Uykusuzluk'},
+                    {key:'article-15', title:'İltihaplı Romatizma Nedir?'}
+                ],
+                'Genel Sağlık': [
+                    {key:'article-01', title:'Su Molekülü ve Tıbbi Önemi'},
+                    {key:'article-09', title:'Beyin Sisi ve Tedavi Yöntemi'}
+                ],
+                'Duruş ve Hareket': [
+                    {key:'article-08', title:'Daha İyi Bir Duruş İçin'}
+                ]
+            };
+
+            function syncArticleQuickV618(){
+                const grid = document.getElementById('v618ArticleQuickGridV618');
+                if (!grid) return;
+                if (articleReader.hidden) {
+                    section.hidden = true;
+                    grid.innerHTML = '';
+                    return;
+                }
+                const category = (articleContent.querySelector('.featured-article-full-meta-v510 span')?.textContent || '').trim();
+                const currentTitle = (articleContent.querySelector('.featured-article-full-header-v510 h1')?.textContent || '').trim();
+                const items = (groups[category] || []).filter(item => item.title !== currentTitle).slice(0,4);
+                if (!items.length) {
+                    section.hidden = true;
+                    grid.innerHTML = '';
+                    return;
+                }
+                const headSpan = section.querySelector('.v618-mobile-quick-heading span');
+                const headStrong = section.querySelector('.v618-mobile-quick-heading strong');
+                if (category === 'Bitkisel İçerikler') {
+                    headSpan.textContent = 'BİTKİSEL BAŞLIKLAR';
+                    headStrong.textContent = 'Bitki ile ilgili diğer başlıklar';
+                } else {
+                    headSpan.textContent = 'İLGİLİ BAŞLIKLAR';
+                    headStrong.textContent = 'Bu konuyla ilgili diğer yazılar';
+                }
+                grid.innerHTML = items.map((item, index) => `
+                    <button type="button" class="v618-mobile-quick-btn" data-v618-article-key="${item.key}">
+                        <strong>${item.title}</strong>
+                        <small>${category} • ${String(index + 1).padStart(2,'0')}</small>
+                    </button>
+                `).join('');
+                section.hidden = false;
+            }
+
+            section.addEventListener('click', function(event){
+                const btn = event.target.closest('[data-v618-article-key]');
+                if (!btn) return;
+                if (window.siteArticleReaderV511?.open) {
+                    window.siteArticleReaderV511.open(btn.dataset.v618ArticleKey);
+                    window.setTimeout(syncArticleQuickV618, 40);
+                }
+            });
+            document.addEventListener('click', function(event){
+                const trigger = event.target.closest('[data-featured-article-open-v510], #featuredArticleBackV510, [data-featured-article-back-v510]');
+                if (!trigger) return;
+                window.setTimeout(syncArticleQuickV618, 40);
+            }, true);
+            syncArticleQuickV618();
+        }
+    }
+
+    if (document.readyState === 'loading') document.addEventListener('DOMContentLoaded', runV618MobileFixes, { once:true });
+    else runV618MobileFixes();
+})();
+
+
+// =========================================================
+// V619 - Özel içerik mobil üst kontrol grubunu başlığın üstüne sabitle
+// =========================================================
+(function(){
+  const viewIds = ['asSpecialViewV274','treatmentSpecialViewV279'];
+
+  function syncV619SpecialMobileLayout(){
+    viewIds.forEach((viewId) => {
+      const view = document.getElementById(viewId);
+      if (!view) return;
+      const shell = view.querySelector('.as-special-shell-v274');
+      const header = view.querySelector('.as-special-head-v274');
+      const tabs = view.querySelector('.as-special-tabs-v274');
+      const title = header?.querySelector('.as-special-title-v274');
+      const controls = header?.querySelector('.special-head-controls-v448');
+      if (!shell || !header || !title || !controls) return;
+
+      // Başlığın üstünde daima kontrol grubu olsun.
+      if (controls.previousElementSibling !== null) {
+        header.insertBefore(controls, header.firstChild);
+      }
+
+      // Mobilde başlık alanı önce, sekmeler hemen sonrasında gelsin.
+      if (window.innerWidth <= 760 && tabs && header.previousElementSibling !== null) {
+        shell.insertBefore(header, shell.firstChild);
+        if (tabs.parentElement === shell) {
+          shell.insertBefore(tabs, header.nextElementSibling);
+        }
+      }
+    });
+  }
+
+  if (document.readyState === 'loading') {
+    document.addEventListener('DOMContentLoaded', syncV619SpecialMobileLayout, {once:true});
+  } else {
+    syncV619SpecialMobileLayout();
+  }
+  window.addEventListener('resize', syncV619SpecialMobileLayout, {passive:true});
+  window.setTimeout(syncV619SpecialMobileLayout, 0);
+  window.setTimeout(syncV619SpecialMobileLayout, 220);
+  document.addEventListener('click', function(event){
+    if (!event.target.closest('[data-as-special-target-v274], [data-treatment-special-target-v279], [data-as-special-tab-v274], [data-treatment-special-tab-v279], [data-disease-switch-v250], .special-home-v578')) return;
+    window.setTimeout(syncV619SpecialMobileLayout, 30);
+  }, true);
 })();
