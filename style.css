@@ -4312,8 +4312,8 @@ body.about-page-open.about-education-scroll-v459 .about-page-content-v116{height
     .as-special-head-v274.has-grouped-controls-v448.is-title-xlong-v461 .as-special-title-v274 h2{font-size:clamp(21px,6.8vw,29px) !important}.as-special-head-v274.has-grouped-controls-v448 .special-disease-quick-copy-v439 small{display:none !important}}.global-connected-nav-v402.is-special-scroll-out-v463{transform:translate3d(0,calc(-1 * var(--special-nav-shift-v463,0px)),0) !important;transition:none !important;will-change:transform}.global-connected-nav-v402.is-special-scroll-hidden-v463{pointer-events:none !important}body.treatment-page-open.treatment-nav-scrolled .global-connected-nav-v402{border-color:transparent !important;box-shadow:none !important}@media (prefers-reduced-motion: reduce){.global-connected-nav-v402.is-special-scroll-out-v463{scroll-behavior:auto !important}}html:has(body.as-special-open-v274),
 html:has(body.treatment-special-open-v279),
 body.as-special-open-v274,
-body.treatment-special-open-v279{height:auto !important;min-height:100% !important;overflow-y:auto !important;overflow-x:hidden !important}body.as-special-open-v274 > :not(#globalConnectedNavV402):not(#asSpecialViewV274):not(#sitePageTransitionV110):not(#phytoHerbDetailV351):not(script),
-body.treatment-special-open-v279 > :not(#globalConnectedNavV402):not(#treatmentSpecialViewV279):not(#sitePageTransitionV110):not(#phytoHerbDetailV351):not(script){display:none !important}body.as-special-open-v274 #globalConnectedNavV402,
+body.treatment-special-open-v279{height:auto !important;min-height:100% !important;overflow-y:auto !important;overflow-x:hidden !important}body.as-special-open-v274 > :not(#globalConnectedNavV402):not(#asSpecialViewV274):not(#sitePageTransitionV110):not(#phytoHerbDetailV351):not(#v548PremiumNav):not(.v577-menu-layer):not(script),
+body.treatment-special-open-v279 > :not(#globalConnectedNavV402):not(#treatmentSpecialViewV279):not(#sitePageTransitionV110):not(#phytoHerbDetailV351):not(#v548PremiumNav):not(.v577-menu-layer):not(script){display:none !important}body.as-special-open-v274 #globalConnectedNavV402,
 body.treatment-special-open-v279 #globalConnectedNavV402{position:relative !important;inset:auto !important;transform:none !important;margin:10px auto 0 !important;pointer-events:auto !important}body.as-special-open-v274 #asSpecialViewV274,
 body.treatment-special-open-v279 #treatmentSpecialViewV279{position:relative !important;inset:auto !important;z-index:auto !important;display:block !important;width:100% !important;min-height:calc(100dvh - 114px) !important;overflow:visible !important;overscroll-behavior:auto !important;padding:10px 28px 34px !important}#asSpecialViewV274 > .as-special-shell-v274,
 #treatmentSpecialViewV279 > .as-special-shell-v274{display:flex !important;flex-direction:column !important}#asSpecialViewV274 > .as-special-shell-v274 > .as-special-tabs-v274,
@@ -4848,5 +4848,642 @@ html body .nutrition-recipe-dialog-v601 .nutrition-recipe-dialog-close-v601:focu
 
   .as-special-head-v274.has-grouped-controls-v448 .special-disease-quick-copy-v439 strong{
     font-size:10px !important;
+  }
+}
+
+
+/* V620 - Tedavi Alanları / AS / RA özel ekran başlıkları: taşma ve kontrast düzeltmesi.
+   V619 ve daha eski sürümlerdeki sabit yükseklikli grid, kontrol grubunu taşırıyor.
+   1380px altında doğal yükseklikli dikey düzen kullanılacak. */
+@media (max-width:1380px){
+  #asSpecialViewV274 .as-special-head-v274,
+  #treatmentSpecialViewV279 .as-special-head-v274,
+  #asSpecialViewV274 .as-special-head-v274.has-grouped-controls-v448,
+  #treatmentSpecialViewV279 .as-special-head-v274.has-grouped-controls-v448{
+    box-sizing:border-box!important;
+    display:flex!important;
+    flex-direction:column!important;
+    align-items:stretch!important;
+    justify-content:flex-start!important;
+    height:auto!important;
+    min-height:0!important;
+    max-height:none!important;
+    grid-template-columns:none!important;
+    grid-template-rows:none!important;
+    gap:12px!important;
+    overflow:visible!important;
+    border-radius:23px!important;
+    background:linear-gradient(135deg,#102c40 0%,#092537 100%)!important;
+    box-shadow:0 12px 30px rgba(5,44,68,.12)!important;
+  }
+  #asSpecialViewV274 .as-special-head-v274 > .special-head-controls-v448,
+  #treatmentSpecialViewV279 .as-special-head-v274 > .special-head-controls-v448{
+    box-sizing:border-box!important;
+    order:0!important;
+    flex:0 0 auto!important;
+    align-self:stretch!important;
+    display:flex!important;
+    width:100%!important;
+    min-width:0!important;
+    max-width:none!important;
+    height:auto!important;
+    margin:0!important;
+    justify-self:stretch!important;
+  }
+  #asSpecialViewV274 .as-special-head-v274 > .as-special-title-v274,
+  #treatmentSpecialViewV279 .as-special-head-v274 > .as-special-title-v274{
+    position:relative!important;
+    order:1!important;
+    display:block!important;
+    flex:0 0 auto!important;
+    align-self:stretch!important;
+    width:100%!important;
+    height:auto!important;
+    min-width:0!important;
+    margin:0!important;
+    padding:0!important;
+    color:#fff!important;
+  }
+  #asSpecialViewV274 .as-special-head-v274 > .as-special-title-v274 h2,
+  #treatmentSpecialViewV279 .as-special-head-v274 > .as-special-title-v274 h2{
+    color:#fff!important;
+    opacity:1!important;
+    visibility:visible!important;
+    max-width:100%!important;
+    overflow-wrap:break-word!important;
+    word-break:normal!important;
+    margin:6px 0!important;
+  }
+  #asSpecialViewV274 .as-special-head-v274 > .as-special-title-v274 .as-special-kicker-v274,
+  #treatmentSpecialViewV279 .as-special-head-v274 > .as-special-title-v274 .as-special-kicker-v274{
+    color:#73d6f2!important;
+    opacity:1!important;
+    visibility:visible!important;
+  }
+  #asSpecialViewV274 .as-special-head-v274 > .as-special-title-v274 p,
+  #treatmentSpecialViewV279 .as-special-head-v274 > .as-special-title-v274 p{
+    color:#c9e3ef!important;
+    opacity:1!important;
+    visibility:visible!important;
+    margin:6px 0 0!important;
+  }
+}
+@media (max-width:760px){
+  #asSpecialViewV274 .as-special-head-v274.has-grouped-controls-v448,
+  #treatmentSpecialViewV279 .as-special-head-v274.has-grouped-controls-v448{
+    padding:14px 14px 17px!important;
+    gap:13px!important;
+  }
+  #asSpecialViewV274 .as-special-head-v274 .as-special-title-v274 h2,
+  #treatmentSpecialViewV279 .as-special-head-v274 .as-special-title-v274 h2{
+    font-size:clamp(22px,6.4vw,31px)!important;
+    line-height:1.12!important;
+    text-wrap:pretty!important;
+  }
+  #asSpecialViewV274 .as-special-head-v274 .as-special-title-v274 p,
+  #treatmentSpecialViewV279 .as-special-head-v274 .as-special-title-v274 p{
+    font-size:13px!important;
+    line-height:1.5!important;
+  }
+}
+
+/* V620 - Eski temadaki genel 'nav' mobil menü kuralı,
+   hastalık sekme nav'larını da gizliyordu; yalnızca bu iki sekmeyi açık tut. */
+@media (max-width:1380px){
+  #asSpecialViewV274 #asSpecialTabsV274,
+  #treatmentSpecialViewV279 #treatmentSpecialTabsV279{
+    box-sizing:border-box!important;
+    display:grid!important;
+    position:relative!important;
+    inset:auto!important;
+    opacity:1!important;
+    visibility:visible!important;
+    transform:none!important;
+    transition:background-color .2s ease,box-shadow .2s ease!important;
+    width:100%!important;
+    height:auto!important;
+    max-height:none!important;
+    min-height:0!important;
+    pointer-events:auto!important;
+  }
+}
+
+/* Tablet genişliklerinde de kontrol / başlık önce, içerik sekmeleri sonra. */
+@media (max-width:1380px){
+  #asSpecialViewV274 > .as-special-shell-v274 > .as-special-head-v274,
+  #treatmentSpecialViewV279 > .as-special-shell-v274 > .as-special-head-v274{
+    order:1!important;
+    margin:0 0 10px!important;
+  }
+  #asSpecialViewV274 > .as-special-shell-v274 > .as-special-tabs-v274,
+  #treatmentSpecialViewV279 > .as-special-shell-v274 > .as-special-tabs-v274{
+    order:2!important;
+    margin:0 0 12px!important;
+  }
+  #asSpecialViewV274 > .as-special-shell-v274 > .as-special-content-v274,
+  #treatmentSpecialViewV279 > .as-special-shell-v274 > .as-special-content-v274{
+    order:3!important;
+  }
+}
+
+/* V621 — Tedavi Alanları özel sayfalarında mevcut premium üst menü görünür kalsın.
+   Eski menü kopyalanmaz; tek v548PremiumNav kullanılır. */
+body.as-special-open-v274 > #v548PremiumNav,
+body.treatment-special-open-v279 > #v548PremiumNav{
+ display:block !important;
+ visibility:visible !important;
+ opacity:1 !important;
+ pointer-events:auto !important;
+}
+body.as-special-open-v274 > .v577-menu-layer.v577-is-open,
+body.treatment-special-open-v279 > .v577-menu-layer.v577-is-open{
+ display:block !important;
+}
+
+
+/* =========================================================
+   V622 - Tedavi alanları üst menü ve sekme hizalama düzeltmesi
+   ========================================================= */
+
+/* 1) Masaüstünde global üst menü daha dengeli hizalansın */
+@media (min-width:1181px){
+  html body .v548-header-inner{
+    max-width:1840px !important;
+    padding:10px 20px !important;
+    gap:12px !important;
+  }
+  html body .v548-brand{
+    min-width:0 !important;
+    flex:0 1 340px !important;
+    max-width:340px !important;
+    gap:10px !important;
+    overflow:hidden !important;
+  }
+  html body .v548-brand img{
+    flex:0 0 58px !important;
+    width:58px !important;
+    height:58px !important;
+  }
+  html body .v548-brand-text{
+    min-width:0 !important;
+    overflow:hidden !important;
+  }
+  html body .v548-brand-text strong{
+    font-size:clamp(18px,1.9vw,28px) !important;
+    overflow:hidden !important;
+    text-overflow:ellipsis !important;
+    white-space:nowrap !important;
+  }
+  html body .v548-brand-text small{
+    gap:6px !important;
+    font-size:9px !important;
+  }
+  html body .v548-brand-text small span{
+    width:22px !important;
+  }
+  html body .v548-nav{
+    flex:1 1 auto !important;
+    min-width:0 !important;
+    gap:8px !important;
+    justify-content:center !important;
+    flex-wrap:nowrap !important;
+  }
+  html body .v548-nav-item{
+    min-height:52px !important;
+    padding:0 16px !important;
+    font-size:clamp(11px,.9vw,14px) !important;
+    white-space:nowrap !important;
+  }
+  html body .v548-header-actions{
+    flex:0 0 auto !important;
+    gap:10px !important;
+  }
+  html body .v548-search,
+  html body .v548-hamburger{
+    width:50px !important;
+    height:50px !important;
+    min-width:50px !important;
+  }
+  html body .v548-appointment{
+    min-height:52px !important;
+    padding:0 22px !important;
+    white-space:nowrap !important;
+  }
+}
+
+@media (min-width:1181px) and (max-width:1450px){
+  html body .v548-header-inner{
+    padding:10px 14px !important;
+    gap:8px !important;
+  }
+  html body .v548-brand{
+    flex-basis:290px !important;
+    max-width:290px !important;
+    gap:8px !important;
+  }
+  html body .v548-brand img{
+    flex-basis:52px !important;
+    width:52px !important;
+    height:52px !important;
+  }
+  html body .v548-brand-text strong{
+    font-size:clamp(16px,1.55vw,24px) !important;
+  }
+  html body .v548-brand-text small{
+    font-size:8px !important;
+    letter-spacing:.1em !important;
+  }
+  html body .v548-nav{
+    gap:6px !important;
+  }
+  html body .v548-nav-item{
+    min-height:48px !important;
+    padding:0 12px !important;
+    gap:7px !important;
+    font-size:12px !important;
+  }
+  html body .v548-header-actions{
+    gap:8px !important;
+  }
+  html body .v548-search,
+  html body .v548-hamburger{
+    width:46px !important;
+    height:46px !important;
+    min-width:46px !important;
+  }
+  html body .v548-search svg,
+  html body .v548-hamburger svg{
+    width:22px !important;
+    height:22px !important;
+  }
+  html body .v548-appointment{
+    min-height:48px !important;
+    padding:0 16px !important;
+    gap:10px !important;
+  }
+}
+
+/* 2) Tedavi alanları özel içerik sekmeleri masaüstünde tek satır ve hizalı kalsın */
+@media (min-width:761px){
+  #asSpecialViewV274 > .as-special-shell-v274,
+  #treatmentSpecialViewV279 > .as-special-shell-v274{
+    display:flex !important;
+    flex-direction:column !important;
+  }
+
+  #asSpecialViewV274 > .as-special-shell-v274 > .as-special-tabs-v274,
+  #treatmentSpecialViewV279 > .as-special-shell-v274 > .as-special-tabs-v274{
+    order:1 !important;
+    margin:12px 0 18px !important;
+    display:grid !important;
+    grid-template-columns:repeat(6,minmax(0,1fr)) !important;
+    align-items:stretch !important;
+    gap:12px !important;
+  }
+
+  #asSpecialViewV274 > .as-special-shell-v274 > .as-special-head-v274,
+  #treatmentSpecialViewV279 > .as-special-shell-v274 > .as-special-head-v274{
+    order:2 !important;
+  }
+
+  #asSpecialTabsV274 button,
+  #treatmentSpecialTabsV279 button{
+    min-width:0 !important;
+    min-height:86px !important;
+    align-self:stretch !important;
+    display:grid !important;
+    grid-template-columns:40px minmax(0,1fr) !important;
+    grid-template-rows:auto auto !important;
+    column-gap:10px !important;
+    row-gap:3px !important;
+    padding:12px !important;
+  }
+
+  #asSpecialTabsV274 button strong,
+  #treatmentSpecialTabsV279 button strong{
+    white-space:nowrap !important;
+    overflow:hidden !important;
+    text-overflow:ellipsis !important;
+    font-size:13px !important;
+  }
+
+  #asSpecialTabsV274 button small,
+  #treatmentSpecialTabsV279 button small{
+    white-space:nowrap !important;
+    overflow:hidden !important;
+    text-overflow:ellipsis !important;
+  }
+}
+
+/* 3) Çok dar desktop/tablet aralığında üst sekmeler iki satıra düşebilsin ama düzgün hizalı kalsın */
+@media (min-width:761px) and (max-width:1220px){
+  #asSpecialViewV274 > .as-special-shell-v274 > .as-special-tabs-v274,
+  #treatmentSpecialViewV279 > .as-special-shell-v274 > .as-special-tabs-v274{
+    grid-template-columns:repeat(3,minmax(0,1fr)) !important;
+  }
+}
+
+
+/* =========================================================
+   V623 - Masaüstü üst menü net hizalama + tedavi alanı sekmeleri sabit
+   ========================================================= */
+
+/* 1) Desktop üst ana menü: logo / menü / aksiyonlar net hizalansın */
+@media (min-width:1181px){
+  html body .v548-header-inner{
+    display:grid !important;
+    grid-template-columns:minmax(240px,300px) minmax(0,1fr) auto !important;
+    align-items:center !important;
+    max-width:1840px !important;
+    padding:10px 16px !important;
+    gap:10px !important;
+  }
+  html body .v548-brand{
+    display:flex !important;
+    align-items:center !important;
+    min-width:0 !important;
+    width:100% !important;
+    max-width:300px !important;
+    gap:8px !important;
+    overflow:hidden !important;
+  }
+  html body .v548-brand img{
+    width:50px !important;
+    height:50px !important;
+    flex:0 0 50px !important;
+  }
+  html body .v548-brand-text{
+    min-width:0 !important;
+    overflow:hidden !important;
+    gap:3px !important;
+  }
+  html body .v548-brand-text strong{
+    display:block !important;
+    font-size:clamp(14px,1.8vw,22px) !important;
+    line-height:1 !important;
+    white-space:nowrap !important;
+    overflow:hidden !important;
+    text-overflow:ellipsis !important;
+  }
+  html body .v548-brand-text small{
+    font-size:8px !important;
+    gap:5px !important;
+    white-space:nowrap !important;
+    overflow:hidden !important;
+  }
+  html body .v548-brand-text small span{
+    width:16px !important;
+  }
+  html body .v548-nav{
+    display:flex !important;
+    flex-wrap:nowrap !important;
+    align-items:center !important;
+    justify-content:center !important;
+    min-width:0 !important;
+    gap:6px !important;
+    overflow:visible !important;
+  }
+  html body .v548-nav-item{
+    flex:0 1 auto !important;
+    min-width:0 !important;
+    min-height:46px !important;
+    padding:0 12px !important;
+    gap:6px !important;
+    border-radius:999px !important;
+    font-size:12px !important;
+    line-height:1 !important;
+    white-space:nowrap !important;
+    transform:none !important;
+    transition:background .18s ease,color .18s ease,box-shadow .18s ease !important;
+  }
+  html body .v548-nav-item:hover,
+  html body .v548-nav-item:focus-visible{
+    transform:none !important;
+  }
+  html body .v548-header-actions{
+    display:flex !important;
+    align-items:center !important;
+    flex-wrap:nowrap !important;
+    gap:8px !important;
+    min-width:0 !important;
+  }
+  html body .v548-search,
+  html body .v548-hamburger{
+    width:44px !important;
+    height:44px !important;
+    min-width:44px !important;
+    flex:0 0 44px !important;
+    transform:none !important;
+  }
+  html body .v548-appointment{
+    min-height:46px !important;
+    padding:0 16px !important;
+    gap:10px !important;
+    border-radius:24px !important;
+    white-space:nowrap !important;
+    transform:none !important;
+  }
+  html body .v548-appointment span{
+    font-size:12px !important;
+  }
+  html body .v548-appointment b{
+    font-size:18px !important;
+  }
+}
+
+@media (min-width:1181px) and (max-width:1360px){
+  html body .v548-header-inner{
+    grid-template-columns:minmax(210px,265px) minmax(0,1fr) auto !important;
+    padding:10px 12px !important;
+    gap:8px !important;
+  }
+  html body .v548-brand{max-width:265px !important;}
+  html body .v548-brand img{width:46px !important;height:46px !important;flex-basis:46px !important;}
+  html body .v548-brand-text strong{font-size:clamp(13px,1.45vw,20px) !important;}
+  html body .v548-brand-text small{font-size:7px !important;letter-spacing:.08em !important;}
+  html body .v548-nav{gap:5px !important;}
+  html body .v548-nav-item{min-height:44px !important;padding:0 10px !important;font-size:11px !important;}
+  html body .v548-search,
+  html body .v548-hamburger{width:42px !important;height:42px !important;min-width:42px !important;flex-basis:42px !important;}
+  html body .v548-appointment{min-height:44px !important;padding:0 14px !important;gap:8px !important;}
+}
+
+/* 2) Tedavi alanları üst sekmeleri masaüstünde sabit / hareketsiz kalsın */
+@media (min-width:761px){
+  #asSpecialViewV274 > .as-special-shell-v274 > .as-special-tabs-v274,
+  #treatmentSpecialViewV279 > .as-special-shell-v274 > .as-special-tabs-v274{
+    position:relative !important;
+    inset:auto !important;
+    top:auto !important;
+    left:auto !important;
+    right:auto !important;
+    transform:none !important;
+    transition:none !important;
+    margin:12px 0 16px !important;
+    display:grid !important;
+    grid-template-columns:repeat(6, minmax(0, 1fr)) !important;
+    gap:10px !important;
+    align-items:stretch !important;
+    overflow:visible !important;
+  }
+
+  #asSpecialTabsV274 button,
+  #treatmentSpecialTabsV279 button{
+    position:relative !important;
+    min-height:82px !important;
+    transform:none !important;
+    transition:border-color .18s ease, background .18s ease, box-shadow .18s ease, color .18s ease !important;
+    animation:none !important;
+  }
+
+  #asSpecialTabsV274 button:hover,
+  #treatmentSpecialTabsV279 button:hover,
+  #asSpecialTabsV274 button:focus-visible,
+  #treatmentSpecialTabsV279 button:focus-visible,
+  #asSpecialTabsV274 button.is-active-v274,
+  #treatmentSpecialTabsV279 button.is-active-v274{
+    transform:none !important;
+  }
+}
+
+@media (min-width:761px) and (max-width:1220px){
+  #asSpecialViewV274 > .as-special-shell-v274 > .as-special-tabs-v274,
+  #treatmentSpecialViewV279 > .as-special-shell-v274 > .as-special-tabs-v274{
+    grid-template-columns:repeat(3, minmax(0,1fr)) !important;
+  }
+}
+
+
+/* =========================================================
+   V624 - Tedavi alanları özel içerik: Butonlar > Başlık > Sekmeler
+   ========================================================= */
+@media (min-width:761px){
+  /* Genel sıralama: önce başlık bloğu, sonra üst sekmeler */
+  #asSpecialViewV274 > .as-special-shell-v274,
+  #treatmentSpecialViewV279 > .as-special-shell-v274{
+    display:flex !important;
+    flex-direction:column !important;
+    gap:0 !important;
+  }
+
+  #asSpecialViewV274 > .as-special-shell-v274 > .as-special-head-v274,
+  #treatmentSpecialViewV279 > .as-special-shell-v274 > .as-special-head-v274{
+    order:1 !important;
+    display:flex !important;
+    flex-direction:column !important;
+    align-items:stretch !important;
+    justify-content:flex-start !important;
+    gap:14px !important;
+    min-height:0 !important;
+    height:auto !important;
+    padding:18px 24px 20px !important;
+    margin:0 0 12px !important;
+    overflow:visible !important;
+    border-radius:28px !important;
+  }
+
+  /* Butonlar başlığın üstünde dursun */
+  #asSpecialViewV274 .as-special-head-v274 > .special-head-controls-v448,
+  #treatmentSpecialViewV279 .as-special-head-v274 > .special-head-controls-v448,
+  #asSpecialViewV274 .as-special-head-v274.has-grouped-controls-v448 > .special-head-controls-v448,
+  #treatmentSpecialViewV279 .as-special-head-v274.has-grouped-controls-v448 > .special-head-controls-v448{
+    order:1 !important;
+    width:100% !important;
+    align-self:stretch !important;
+    justify-content:flex-end !important;
+    margin:0 !important;
+    padding:0 !important;
+    gap:10px !important;
+  }
+
+  #asSpecialViewV274 .as-special-head-v274 > .as-special-title-v274,
+  #treatmentSpecialViewV279 .as-special-head-v274 > .as-special-title-v274,
+  #asSpecialViewV274 .as-special-head-v274.has-grouped-controls-v448 > .as-special-title-v274,
+  #treatmentSpecialViewV279 .as-special-head-v274.has-grouped-controls-v448 > .as-special-title-v274{
+    order:2 !important;
+    width:100% !important;
+    min-width:0 !important;
+    margin:0 !important;
+    padding:0 !important;
+    align-self:stretch !important;
+  }
+
+  /* Başlığı biraz küçült */
+  #asSpecialViewV274 .as-special-head-v274 > .as-special-title-v274 h2,
+  #treatmentSpecialViewV279 .as-special-head-v274 > .as-special-title-v274 h2{
+    font-size:clamp(28px, 2.8vw, 42px) !important;
+    line-height:1.04 !important;
+    margin:0 !important;
+    max-width:min(980px,100%) !important;
+  }
+
+  #asSpecialViewV274 .as-special-head-v274 > .as-special-title-v274 p,
+  #treatmentSpecialViewV279 .as-special-head-v274 > .as-special-title-v274 p{
+    margin:10px 0 0 !important;
+    max-width:min(900px,100%) !important;
+    font-size:14px !important;
+    line-height:1.5 !important;
+  }
+
+  #asSpecialViewV274 .as-special-head-v274 > .as-special-title-v274 .as-special-kicker-v274,
+  #treatmentSpecialViewV279 .as-special-head-v274 > .as-special-title-v274 .as-special-kicker-v274{
+    margin:0 0 8px !important;
+  }
+
+  /* Ana butonları biraz küçült, başlığın üstünde kalsın */
+  #asSpecialViewV274 .special-head-controls-v448 .special-home-v578,
+  #treatmentSpecialViewV279 .special-head-controls-v448 .special-home-v578{
+    min-height:48px !important;
+    padding:0 14px !important;
+    font-size:13px !important;
+    border-radius:15px !important;
+  }
+
+  #asSpecialViewV274 .special-head-controls-v448 > details.special-disease-quick-v439,
+  #treatmentSpecialViewV279 .special-head-controls-v448 > details.special-disease-quick-v439{
+    flex:0 1 300px !important;
+    min-width:250px !important;
+  }
+
+  #asSpecialViewV274 .special-disease-quick-toggle-v439,
+  #treatmentSpecialViewV279 .special-disease-quick-toggle-v439{
+    min-height:48px !important;
+    border-radius:15px !important;
+  }
+
+  #asSpecialViewV274 .special-disease-quick-copy-v439 small,
+  #treatmentSpecialViewV279 .special-disease-quick-copy-v439 small{
+    font-size:9px !important;
+  }
+
+  #asSpecialViewV274 .special-disease-quick-copy-v439 strong,
+  #treatmentSpecialViewV279 .special-disease-quick-copy-v439 strong{
+    font-size:12px !important;
+  }
+
+  /* Sekme satırı başlığın altında kalsın */
+  #asSpecialViewV274 > .as-special-shell-v274 > .as-special-tabs-v274,
+  #treatmentSpecialViewV279 > .as-special-shell-v274 > .as-special-tabs-v274{
+    order:2 !important;
+    margin:0 0 16px !important;
+    position:relative !important;
+    top:auto !important;
+    transform:none !important;
+  }
+}
+
+@media (min-width:761px) and (max-width:1280px){
+  #asSpecialViewV274 .as-special-head-v274 > .special-head-controls-v448,
+  #treatmentSpecialViewV279 .as-special-head-v274 > .special-head-controls-v448,
+  #asSpecialViewV274 .as-special-head-v274.has-grouped-controls-v448 > .special-head-controls-v448,
+  #treatmentSpecialViewV279 .as-special-head-v274.has-grouped-controls-v448 > .special-head-controls-v448{
+    justify-content:flex-start !important;
+    flex-wrap:wrap !important;
+  }
+
+  #asSpecialViewV274 .special-head-controls-v448 > details.special-disease-quick-v439,
+  #treatmentSpecialViewV279 .special-head-controls-v448 > details.special-disease-quick-v439{
+    flex:1 1 280px !important;
+    min-width:230px !important;
   }
 }
