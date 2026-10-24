@@ -4571,6 +4571,23 @@ window.addEventListener("load", async () => {
         });
     }
 
+    // V631: Fitoterapi bitki detayı için doğrudan geri dönüş.
+    // Programatik menü tıklaması, V110 geçiş animasyonu tarafından yakalanabildiği
+    // için mevcut V71 sayfa açma fonksiyonunu doğrudan kullan.
+    window.returnToFitoterapiFromHerbV631 = function () {
+        if (typeof window.cancelSiteTransitionV533 === 'function') {
+            window.cancelSiteTransitionV533();
+        }
+        if (typeof window.cancelOsteoRouteTransitionV565 === 'function') {
+            window.cancelOsteoRouteTransitionV565();
+        }
+        openTreatmentDetailV71('fitoterapi');
+        document.body.classList.remove('global-home-open-v408');
+        document.body.classList.add('global-subpage-open-v405');
+        const motionLayer = document.querySelector('.hero-motion-layer-v407');
+        if (motionLayer) motionLayer.hidden = true;
+    };
+
     function closeTreatmentDetailV71() {
 
         document.body.classList.remove(
@@ -13552,9 +13569,21 @@ function scrollSerumTitleBelowNavbarV514(vascularView) {
         window.setTimeout(() => backButton?.focus({preventScroll:true}), 20);
     }
 
-    function closeHerbDetail() {
+    function closeHerbDetail(options = {}) {
         document.body.classList.remove('phyto-herb-detail-open-v351');
         detailView.setAttribute('aria-hidden','true');
+
+        // V630: "Bitkilere Dön" her zaman Fitoterapi bitki listesine götürür.
+        // Mevcut tedavi yönlendirmesini kullanmak, ana menü ve URL durumunu da günceller.
+        if (options.returnToFitoterapi) {
+            // V631: animasyon yakalayıcılarını atla ve Fitoterapi sayfasını doğrudan aç.
+            if (typeof window.returnToFitoterapiFromHerbV631 === 'function') {
+                window.returnToFitoterapiFromHerbV631();
+                return;
+            }
+        }
+
+        // ESC ve genel arama gibi diğer kapatmalarda eski konuma dönme davranışı korunur.
         window.scrollTo({top:previousScrollY, behavior:'auto'});
     }
 
@@ -13562,7 +13591,7 @@ function scrollSerumTitleBelowNavbarV514(vascularView) {
         activeTab = btn.dataset.phytoHerbTabV351 || 'overview';
         renderDetail();
     }));
-    backButton?.addEventListener('click', closeHerbDetail);
+    backButton?.addEventListener('click', () => closeHerbDetail({returnToFitoterapi:true}));
     document.addEventListener('keydown', event => {
         if (event.key === 'Escape' && document.body.classList.contains('phyto-herb-detail-open-v351')) closeHerbDetail();
     });
@@ -17397,8 +17426,8 @@ function scrollSerumTitleBelowNavbarV514(vascularView) {
         '[data-traditional-back]', '[data-nutrition-back]',
         '#featuredArticleBackV510', '[data-featured-article-back-v510]',
         '#painFullBackV215', '#osteoSpecialBackV259',
-        // V563: Manuel Uygulamalara Dön kendi #osteopati-manual rotasını açar.
-        '#phytoHerbBackV351',
+        // V631: Bitkilere Dön kendi Fitoterapi yönlendirmesini yönetir;
+        // geçmişi geri alan V511 bu butona müdahale etmemeli.
         '#deviceDetailBackV157', '#deviceDetailBreadcrumbBackV157',
         // V556: Serum detay geri butonları global history.back'e bağlanmaz.
         // Kendi V235–V334 close handler'ları normal şekilde çalışır.
@@ -19100,4 +19129,178 @@ function scrollSerumTitleBelowNavbarV514(vascularView) {
     if (!event.target.closest('[data-as-special-target-v274], [data-treatment-special-target-v279], [data-as-special-tab-v274], [data-treatment-special-tab-v279], [data-disease-switch-v250], .special-home-v578')) return;
     window.setTimeout(syncV619SpecialMobileLayout, 30);
   }, true);
+})();
+
+
+// =========================================================
+// V625 - Mobil ana sayfa doktor videosu ilk açılışta poster gibi açılsın.
+// İlk yüklemede yürüyüş karesi yerine daha temiz başlangıç görünümü ver.
+// =========================================================
+(function(){
+  const video=document.getElementById('homeDoctorVideoV569');
+  const slide=document.querySelector('#heroSliderV86 .doctor-slide-v86');
+  if(!video || !slide) return;
+
+  const mobileQuery=window.matchMedia('(max-width: 760px)');
+  let mobilePosterReleased=!mobileQuery.matches;
+  let mobileFallbackTimer=0;
+
+  function releasePosterHoldV625(){
+    if(mobilePosterReleased) return;
+    mobilePosterReleased=true;
+    slide.classList.remove('is-mobile-poster-hold-v625');
+    document.removeEventListener('pointerdown', releasePosterHoldV625, true);
+    document.removeEventListener('touchstart', releasePosterHoldV625, true);
+    document.removeEventListener('keydown', releasePosterHoldV625, true);
+    document.removeEventListener('scroll', releasePosterHoldV625, true);
+    window.dispatchEvent(new Event('v625-mobile-hero-release'));
+  }
+
+  function enablePosterHoldIfNeededV625(){
+    if(!mobileQuery.matches) return;
+    mobilePosterReleased=false;
+    slide.classList.add('is-mobile-poster-hold-v625');
+    document.addEventListener('pointerdown', releasePosterHoldV625, true);
+    document.addEventListener('touchstart', releasePosterHoldV625, true);
+    document.addEventListener('keydown', releasePosterHoldV625, true);
+    document.addEventListener('scroll', releasePosterHoldV625, true);
+    clearTimeout(mobileFallbackTimer);
+    mobileFallbackTimer=window.setTimeout(releasePosterHoldV625, 4200);
+  }
+
+  enablePosterHoldIfNeededV625();
+  if(typeof mobileQuery.addEventListener==='function'){
+    mobileQuery.addEventListener('change', function(event){
+      clearTimeout(mobileFallbackTimer);
+      if(event.matches){
+        enablePosterHoldIfNeededV625();
+      }else{
+        mobilePosterReleased=true;
+        slide.classList.remove('is-mobile-poster-hold-v625');
+      }
+    });
+  }
+})();
+
+// V625 - V569 davranışını mobil poster bekletmesi ile senkronize et.
+(function(){
+  const video=document.getElementById('homeDoctorVideoV569');
+  const slide=document.querySelector('#heroSliderV86 .doctor-slide-v86');
+  if(!video || !slide) return;
+  const mobileQuery=window.matchMedia('(max-width: 760px)');
+
+  function syncPauseWhileHeldV625(){
+    if(!mobileQuery.matches) return;
+    const shouldHold=slide.classList.contains('is-mobile-poster-hold-v625');
+    if(shouldHold && !video.paused){
+      video.pause();
+    }
+    if(!shouldHold && document.body.classList.contains('global-home-open-v408') && slide.classList.contains('is-active')){
+      const p=video.play();
+      if(p && typeof p.catch==='function') p.catch(function(){});
+    }
+  }
+
+  const observer=new MutationObserver(syncPauseWhileHeldV625);
+  observer.observe(slide,{attributes:true,attributeFilter:['class']});
+  document.addEventListener('visibilitychange',syncPauseWhileHeldV625);
+  window.addEventListener('v625-mobile-hero-release',syncPauseWhileHeldV625);
+  syncPauseWhileHeldV625();
+})();
+
+
+// =========================================================
+// V627 - Fitoterapi kullanım kolaylığı: filtrede odak ve sayfa hizalama
+// =========================================================
+(function(){
+    const fitoterapiView = document.querySelector('[data-treatment-detail-view="fitoterapi"]');
+    const filterMount = document.getElementById('phytoFilterMountV531');
+    const grid = document.querySelector('.phyto-grid-v127');
+    if (!fitoterapiView) return;
+
+    function scrollGuideIntoView(){
+        if (!fitoterapiView.classList.contains('active')) return;
+        const target = filterMount || grid;
+        if (!target) return;
+        requestAnimationFrame(() => {
+            const top = target.getBoundingClientRect().top + window.scrollY - (window.innerWidth <= 760 ? 90 : 106);
+            window.scrollTo({ top: Math.max(0, top), behavior: 'smooth' });
+        });
+    }
+
+    document.addEventListener('click', function(event){
+        const btn = event.target.closest?.('#phytoDiseaseTabsV350 [data-phyto-disease-v350]');
+        if (!btn) return;
+        setTimeout(scrollGuideIntoView, 30);
+    }, true);
+
+    document.addEventListener('click', function(event){
+        const trigger = event.target.closest?.('[data-treatment-detail="fitoterapi"], [data-treatment-top="fitoterapi"], [data-v548-value="fitoterapi"], [data-v402-treatment="fitoterapi"]');
+        if (!trigger) return;
+        setTimeout(() => {
+            if (!fitoterapiView.classList.contains('active')) return;
+            const hero = fitoterapiView.querySelector('.phyto-hero-v531');
+            if (!hero) return;
+            const offset = window.innerWidth <= 760 ? 82 : 96;
+            const top = hero.getBoundingClientRect().top + window.scrollY - offset;
+            window.scrollTo({ top: Math.max(0, top), left: 0, behavior: 'auto' });
+        }, 80);
+    }, true);
+})();
+
+
+// V632 - Tedavi Alanları hızlı geçişi doğrudan mevcut V478 kart navigasyonuna bağla.
+// Diğer site rotalarına, Fitoterapi geri butonuna ve sayfa animasyonlarına müdahale etmez.
+(function(){
+  const keys = new Set(['ankilozan-spondilit','romatoid-artrit','bas-agrisi-migren','bel-sirt-agrisi','fibromiyalji','huzursuz-bacak','iltihabi-bagirsak','kronik-yorgunluk']);
+  const asView = document.getElementById('asSpecialViewV274');
+  const otherView = document.getElementById('treatmentSpecialViewV279');
+  if (!asView || !otherView) return;
+
+  function currentKey(){
+    if(document.body.classList.contains('as-special-open-v274')) return 'ankilozan-spondilit';
+    if(document.body.classList.contains('treatment-special-open-v279')){
+      const disease=typeof window.getConditionDiseaseStateV279 === 'function' ? window.getConditionDiseaseStateV279() : null;
+      if(disease?.key && keys.has(disease.key)) return disease.key;
+      const hash=decodeURIComponent(location.hash.replace(/^#/,''));
+      if(keys.has(hash)) return hash;
+      return document.body.classList.contains('romatoid-page-open-v198') ? 'romatoid-artrit' : '';
+    }
+    return '';
+  }
+
+  function syncQuickBars(){
+    const current=currentKey();
+    [asView,otherView].forEach(view=>{
+      const bar=view.querySelector('.v632-quick-bar');
+      if(!bar)return;
+      bar.querySelectorAll('[data-v632-disease]').forEach(btn=>{
+        const active=btn.dataset.v632Disease===current;
+        btn.classList.toggle('is-current-v632',active);
+        if(active) btn.setAttribute('aria-current','page');
+        else btn.removeAttribute('aria-current');
+      });
+    });
+  }
+
+  document.addEventListener('click',event=>{
+    const button=event.target.closest?.('.v632-quick-bar [data-v632-disease]');
+    if(!button)return;
+    event.preventDefault();
+    const key=button.dataset.v632Disease;
+    if(!keys.has(key))return;
+    const card=document.querySelector('#tedaviAlanlariPage .treatment-card-v77[data-disease="'+key+'"]');
+    if(card){
+      button.closest(".v633-quick-disclosure")?.removeAttribute("open");
+      card.click();
+    }
+    syncQuickBars();
+  });
+  document.addEventListener('click',event=>{
+    if(event.target.closest?.('[data-as-special-tab-v274], [data-treatment-special-tab-v279], [data-disease-switch-v250], .treatment-card-v77'))
+      setTimeout(syncQuickBars,80);
+  },true);
+  const observer=new MutationObserver(syncQuickBars);
+  observer.observe(document.body,{attributes:true,attributeFilter:['class']});
+  syncQuickBars();
 })();
