@@ -7247,3 +7247,1027 @@ body.about-page-open #hakkimdaPage .about-tab-index-v116{
     height:34px !important;
   }
 }
+
+/* V639 - Estetiğe Bakış: serum, ozon ve sağlıklı yaş alma rehberi */
+.aesthetic-view-v526 .ae639-overview-note{margin:22px 0 0;padding:16px 20px;border:1px solid #cde5da;border-radius:17px;background:linear-gradient(105deg,#f4fbf7,#fff);color:#416861;font-size:13px;line-height:1.65}
+.aesthetic-view-v526 .ae639-overview-note strong{color:#1f6d5d}
+.aesthetic-view-v526 .ae639-sources{margin:22px 0 0;padding:19px 22px;border:1px solid #d9e9df;border-radius:17px;background:#f7faf7;color:#486d64;line-height:1.6}
+.aesthetic-view-v526 .ae639-sources>strong{color:#1c5d50;font-size:15px}
+.aesthetic-view-v526 .ae639-sources p{margin:5px 0 12px;font-size:12px}
+.aesthetic-view-v526 .ae639-sources div{display:flex;flex-wrap:wrap;gap:10px}
+.aesthetic-view-v526 .ae639-sources a{display:inline-flex;padding:9px 12px;border:1px solid #cfdfd5;border-radius:12px;background:#fff;color:#276d60;font-size:12px;text-decoration:none;font-weight:750}
+.aesthetic-view-v526 .ae639-sources a:hover{background:#eaf5ec}
+.aesthetic-view-v526 .aesthetic-topic-copy-v527 strong{overflow-wrap:anywhere}
+.aesthetic-view-v526 .aesthetic-read-header-v528 h2{overflow-wrap:anywhere}
+@media(max-width:760px){
+ .aesthetic-view-v526 .aesthetic-banner-v526.ae604-hero{min-height:530px;padding-bottom:180px}
+ .aesthetic-view-v526 .ae604-hero-lead{max-width:100%;font-size:14px;line-height:1.6}
+ .aesthetic-view-v526 .ae604-hero-aside{inset:auto 0 0;height:180px}
+ .aesthetic-view-v526 .ae604-hero-stamp{right:15px;bottom:14px}
+ .aesthetic-view-v526 .ae604-read-nav-buttons{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));width:100%}
+ .aesthetic-view-v526 .ae604-read-nav-buttons button{min-width:0;min-height:40px;white-space:normal;line-height:1.3}
+ .aesthetic-view-v526 .ae639-sources div{flex-direction:column}
+ .aesthetic-view-v526 .ae639-overview-note{padding:14px;font-size:12.5px}
+}
+@media(max-width:380px){.aesthetic-view-v526 .aesthetic-banner-v526.ae604-hero{min-height:570px}}
+/* Focus is moved to the article title for keyboard and screen reader navigation.
+   Keep the programmatic title focus visually clean; tab-focus rings on controls remain. */
+.aesthetic-view-v526 .aesthetic-read-header-v528 h2[tabindex="-1"]:focus{outline:none}
+
+
+/* V642 - Sosyal Medya bolumu sade modern tasarim */
+
+.media-modern-v642{max-width:1480px;margin:0 auto;padding:18px 22px 42px}
+.media-modern-hero-v642{position:relative;display:grid;grid-template-columns:minmax(0,1.18fr) minmax(320px,.92fr);align-items:center;gap:24px;padding:38px 34px 0;border-radius:34px;background:linear-gradient(180deg,rgba(255,255,255,.78) 0%,rgba(239,247,252,.92) 64%,rgba(235,244,250,.98) 100%);overflow:hidden;box-shadow:0 20px 44px rgba(19,74,110,.08)}
+.media-modern-hero-v642::before{content:"";position:absolute;inset:0;background:radial-gradient(circle at 16% 18%,rgba(255,255,255,.92),rgba(255,255,255,0) 34%),linear-gradient(90deg,rgba(255,255,255,.76) 0%,rgba(255,255,255,.48) 36%,rgba(255,255,255,0) 56%);pointer-events:none}
+.media-modern-hero-copy-v642,.media-modern-hero-visual-v642{position:relative;z-index:1}
+.media-modern-hero-copy-v642{padding:18px 0 26px}
+.media-modern-hero-copy-v642 h1{margin:0 0 10px;color:#0d3270;font-size:clamp(44px,5vw,78px);line-height:.95;font-weight:900;letter-spacing:-.04em}
+.media-modern-hero-copy-v642 p{max-width:720px;color:#24476b;font-size:clamp(18px,1.8vw,26px);line-height:1.45;font-weight:500}
+.media-modern-platforms-v642{margin-top:28px;display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:14px}
+.media-modern-platform-card-v642{display:flex;align-items:center;gap:14px;min-height:92px;padding:16px 16px 16px 14px;border:1px solid rgba(165,191,215,.34);border-radius:18px;background:rgba(255,255,255,.78);box-shadow:0 12px 26px rgba(19,74,110,.08);text-decoration:none;color:#16385c;transition:transform .18s ease,box-shadow .18s ease,border-color .18s ease}
+.media-modern-platform-card-v642:hover,.media-modern-platform-card-v642:focus-visible{transform:translateY(-2px);box-shadow:0 16px 30px rgba(19,74,110,.12);border-color:rgba(65,142,210,.42)}
+.media-modern-platform-icon-v642{width:56px;height:56px;flex:0 0 56px;border-radius:16px;display:grid;place-items:center;color:#fff;box-shadow:0 10px 22px rgba(0,0,0,.12)}
+.media-modern-platform-card-v642 svg{width:30px;height:30px;fill:none;stroke:currentColor;stroke-width:1.8;stroke-linecap:round;stroke-linejoin:round}
+.media-modern-platform-card-v642 .inverse{fill:#fff;stroke:none}
+.media-modern-platform-card-v642.youtube .media-modern-platform-icon-v642{background:#ff2e2e}
+.media-modern-platform-card-v642.instagram .media-modern-platform-icon-v642{background:linear-gradient(135deg,#ffcf52,#fe2f7c 52%,#6957ff)}
+.media-modern-platform-card-v642.facebook .media-modern-platform-icon-v642{background:#1877f2}
+.media-modern-platform-card-v642.x .media-modern-platform-icon-v642{background:#111827}
+.media-modern-platform-copy-v642{display:flex;flex-direction:column;min-width:0}
+.media-modern-platform-copy-v642 strong{font-size:15px;font-weight:850;color:#16385c}.media-modern-platform-copy-v642 small{margin-top:5px;font-size:13px;color:#6b86a0;font-weight:600}
+.media-modern-platform-card-v642 i{margin-left:auto;font-style:normal;font-size:24px;color:#50729a}
+.media-modern-hero-visual-v642{display:flex;align-items:flex-end;justify-content:flex-end;min-height:390px}
+.media-modern-hero-visual-v642 img{max-width:100%;max-height:540px;object-fit:contain;display:block}
+.media-modern-feature-shell-v642,.media-modern-list-section-v642{margin-top:18px}
+.media-modern-section-head-v642{display:flex;align-items:center;justify-content:space-between;gap:14px;margin:0 6px 14px}
+.media-modern-section-head-v642 h2{font-size:24px;color:#122d69;font-weight:850}
+.media-modern-section-head-v642 a{color:#2070ea;font-size:16px;font-weight:700;text-decoration:none}
+.media-modern-feature-grid-v642{display:grid;grid-template-columns:minmax(0,1.35fr) minmax(320px,.95fr);gap:18px;align-items:stretch}
+.media-modern-feature-visual-v642{position:relative;min-height:330px;border-radius:24px;overflow:hidden;background:#123b82;box-shadow:0 14px 34px rgba(18,55,106,.16)}
+.media-modern-feature-visual-v642 .media-fixed-photo-wrap-v559,.media-modern-feature-visual-v642 .media-fixed-hero-photo-v559{position:absolute;inset:0;width:100%;height:100%}
+.media-modern-feature-visual-v642 .media-fixed-hero-photo-v559{object-fit:cover}
+.media-modern-feature-visual-v642 .media-fixed-shade-v559{position:absolute;inset:0;background:linear-gradient(90deg,rgba(9,39,96,.96) 0%,rgba(20,86,188,.65) 45%,rgba(10,31,68,.12) 100%)}
+.media-modern-feature-copy-v642{display:flex;flex-direction:column;justify-content:center;padding:34px 30px;border-radius:24px;background:linear-gradient(180deg,#ffffff,#f4f8fd);box-shadow:0 14px 34px rgba(18,55,106,.10);color:#1a3863}
+.media-fixed-pill-v559{display:inline-flex;align-self:flex-start;padding:8px 14px;border-radius:999px;background:#ebf2ff;color:#2d61bb;font-size:12px;font-weight:900;letter-spacing:.08em}
+.media-modern-feature-copy-v642 h2{margin:14px 0 10px;font-size:clamp(32px,2.8vw,50px);line-height:1.05;color:#153164;font-weight:850}
+.media-modern-feature-copy-v642 p{font-size:18px;line-height:1.55;color:#4c6581}
+.media-modern-feature-meta-v642{margin-top:16px;display:flex;flex-wrap:wrap;gap:10px 16px;color:#6f87a1;font-size:14px;font-weight:700}
+.media-modern-feature-actions-v642{margin-top:22px;display:flex;flex-wrap:wrap;gap:12px}
+.media-fixed-watch-v559,.media-fixed-direct-v584{display:inline-flex;align-items:center;justify-content:center;gap:10px;min-height:54px;padding:0 24px;border-radius:16px;text-decoration:none;font-size:17px;font-weight:800;border:0;cursor:pointer}
+.media-fixed-watch-v559{background:linear-gradient(135deg,#1e7cf3,#1aa0ff);color:#fff;box-shadow:0 12px 26px rgba(31,126,241,.28)}
+.media-fixed-direct-v584{background:#edf4ff;color:#1652b8}
+.media-fixed-play-v559{position:absolute;z-index:3;left:50%;top:50%;transform:translate(-50%,-50%);width:84px;height:84px;border:0;border-radius:50%;display:grid;place-items:center;background:rgba(255,255,255,.9);box-shadow:0 18px 30px rgba(8,28,74,.22);color:#1a57b5;cursor:pointer}
+.media-fixed-play-v559 svg{width:34px;height:34px;fill:currentColor}
+.media-inline-player-v561{position:absolute;inset:0;z-index:6;display:flex;flex-direction:column;background:#071124}
+.media-inline-embed-v561,.media-inline-embed-v561 video{flex:1;width:100%;height:100%}
+.media-inline-embed-v561 video{object-fit:cover;background:#000}
+.media-inline-actions-v561{padding:14px 16px;display:flex;align-items:center;justify-content:space-between;gap:12px;background:rgba(7,17,36,.92)}
+.media-inline-youtube-v561{color:#fff;text-decoration:none;font-weight:700}
+.media-inline-close-v561{width:42px;height:42px;border:0;border-radius:12px;background:rgba(255,255,255,.1);color:#fff;font-size:24px;cursor:pointer}
+.media-modern-video-grid-v642{display:grid;grid-template-columns:repeat(5,minmax(0,1fr));gap:16px}
+.media-modern-item-v642{padding:0;border:1px solid rgba(197,213,229,.62);border-radius:18px;background:#fff;box-shadow:0 12px 24px rgba(12,52,99,.06);text-align:left;overflow:hidden;transition:transform .18s ease,box-shadow .18s ease,border-color .18s ease;text-decoration:none;color:#183457}
+.media-modern-item-v642:hover,.media-modern-item-v642:focus-visible,.media-modern-item-v642.is-selected-v588{transform:translateY(-2px);box-shadow:0 16px 28px rgba(12,52,99,.11);border-color:rgba(32,112,234,.36)}
+.media-modern-item-v642 .media-fixed-thumb-v559{position:relative;display:block;aspect-ratio:16/9;overflow:hidden;background:#d9e6f5}
+.media-modern-item-v642 .media-fixed-thumb-v559 img{width:100%;height:100%;display:block;object-fit:cover}
+.media-modern-item-v642 .media-fixed-type-v559{position:absolute;right:10px;bottom:10px;padding:6px 10px;border-radius:10px;background:rgba(14,24,43,.82);color:#fff;font-size:12px;font-weight:800}
+.media-modern-item-v642 strong{display:block;padding:14px 14px 0;font-size:15px;line-height:1.3;color:#16355d;font-weight:850}
+.media-modern-item-v642 .media-fixed-meta-v559{display:block;padding:8px 14px 16px;color:#7087a1;font-size:14px;font-weight:600}
+#mediaFixedEmptyV559{padding:20px 6px 0;color:#69809b;font-size:15px;font-weight:600}
+@media (max-width:1200px){.media-modern-platforms-v642{grid-template-columns:repeat(2,minmax(0,1fr))}.media-modern-video-grid-v642{grid-template-columns:repeat(3,minmax(0,1fr))}}
+@media (max-width:980px){.media-modern-hero-v642{grid-template-columns:1fr;padding:28px 20px 0}.media-modern-hero-copy-v642{padding:10px 0 0}.media-modern-hero-copy-v642 h1{font-size:56px}.media-modern-hero-copy-v642 p{font-size:19px}.media-modern-hero-visual-v642{min-height:260px;justify-content:center}.media-modern-hero-visual-v642 img{max-height:380px}.media-modern-feature-grid-v642{grid-template-columns:1fr}.media-modern-feature-copy-v642 h2{font-size:34px}.media-modern-video-grid-v642{grid-template-columns:repeat(2,minmax(0,1fr))}}
+@media (max-width:760px){.media-modern-v642{padding:12px 12px 28px}.media-modern-hero-v642{padding:24px 16px 0;border-radius:24px}.media-modern-hero-copy-v642 h1{font-size:clamp(42px,14vw,62px)}.media-modern-hero-copy-v642 p{font-size:18px}.media-modern-platforms-v642{grid-template-columns:1fr;gap:12px}.media-modern-platform-card-v642{min-height:84px}.media-modern-hero-visual-v642{min-height:220px}.media-modern-hero-visual-v642 img{max-height:320px}.media-modern-section-head-v642{margin:0 2px 12px}.media-modern-section-head-v642 h2{font-size:20px}.media-modern-section-head-v642 a{font-size:14px}.media-modern-feature-visual-v642{min-height:240px;border-radius:20px}.media-modern-feature-copy-v642{padding:24px 20px;border-radius:20px}.media-modern-feature-copy-v642 h2{font-size:28px}.media-modern-feature-copy-v642 p{font-size:16px}.media-modern-feature-actions-v642{flex-direction:column;align-items:stretch}.media-fixed-watch-v559,.media-fixed-direct-v584{width:100%}.media-fixed-play-v559{width:74px;height:74px}.media-modern-video-grid-v642{grid-template-columns:1fr}.media-modern-item-v642 strong{font-size:16px}}
+
+
+/* V644 – Öne Çıkan Video: yalnız başlık + tam genişlik video */
+#medyaPage #mediaFixedV559 .media-feature-shell-v643{
+  display:block!important;
+  width:100%!important;
+  max-width:100%!important;
+  margin:26px 0 18px!important;
+  padding:0!important;
+  overflow:visible!important;
+}
+#medyaPage #mediaFixedV559 .media-feature-full-v643,
+#medyaPage #mediaFixedV559 .media-feature-full-v643.is-playing-v561{
+  display:flex!important;
+  flex-direction:column!important;
+  width:100%!important;
+  max-width:100%!important;
+  min-height:0!important;
+  height:auto!important;
+  aspect-ratio:auto!important;
+  align-items:stretch!important;
+  justify-content:flex-start!important;
+  gap:14px!important;
+  padding:0!important;
+  margin:0!important;
+  border:0!important;
+  border-radius:0!important;
+  box-shadow:none!important;
+  background:transparent!important;
+  color:#112f56!important;
+  overflow:visible!important;
+  isolation:auto!important;
+}
+#medyaPage #mediaFixedV559 .media-feature-full-v643 .media-feature-heading-v643{
+  position:static!important;
+  display:flex!important;
+  width:100%!important;
+  min-width:0!important;
+  max-width:100%!important;
+  height:auto!important;
+  min-height:0!important;
+  align-items:flex-start!important;
+  justify-content:flex-start!important;
+  flex-direction:column!important;
+  gap:9px!important;
+  order:0!important;
+  inset:auto!important;
+  padding:0 4px!important;
+  margin:0!important;
+  color:#102e57!important;
+  background:transparent!important;
+  box-shadow:none!important;
+  transform:none!important;
+}
+#medyaPage #mediaFixedV559 .media-feature-heading-v643 .media-fixed-pill-v559{
+  display:inline-flex!important;
+  align-self:flex-start!important;
+  margin:0!important;
+  padding:6px 12px!important;
+  border-radius:999px!important;
+  background:#e9f5ff!important;
+  color:#126eaa!important;
+  font-size:11px!important;
+  font-weight:850!important;
+  letter-spacing:.06em!important;
+}
+#medyaPage #mediaFixedV559 .media-feature-heading-v643 h2{
+  margin:0!important;
+  padding:0!important;
+  font:850 clamp(24px,2.7vw,38px)/1.2 Inter,Arial,sans-serif!important;
+  color:#12315b!important;
+  text-shadow:none!important;
+  letter-spacing:-.025em!important;
+  background:transparent!important;
+}
+#medyaPage #mediaFixedV559 .media-feature-heading-v643 > p[hidden],
+#medyaPage #mediaFixedV559 .media-feature-legacy-actions-v643{
+  display:none!important;
+}
+#medyaPage #mediaFixedV559 .media-feature-visual-v643{
+  position:relative!important;
+  display:block!important;
+  order:1!important;
+  width:100%!important;
+  max-width:100%!important;
+  min-width:0!important;
+  height:auto!important;
+  min-height:0!important;
+  aspect-ratio:16/9!important;
+  margin:0!important;
+  padding:0!important;
+  border:0!important;
+  border-radius:24px!important;
+  background:#0a2339!important;
+  overflow:hidden!important;
+  box-shadow:0 16px 36px rgba(11,56,91,.13)!important;
+}
+#medyaPage #mediaFixedV559 .media-feature-visual-v643 .media-fixed-photo-wrap-v559{
+  position:absolute!important;
+  inset:0!important;
+  width:100%!important;
+  height:100%!important;
+  margin:0!important;
+}
+#medyaPage #mediaFixedV559 .media-feature-visual-v643 .media-fixed-hero-photo-v559{
+  display:block!important;
+  width:100%!important;
+  height:100%!important;
+  object-fit:cover!important;
+  object-position:center 40%!important;
+  filter:none!important;
+}
+#medyaPage #mediaFixedV559 .media-feature-visual-v643 .media-fixed-shade-v559{
+  position:absolute!important;
+  inset:0!important;
+  z-index:1!important;
+  background:linear-gradient(0deg,rgba(3,21,42,.16),rgba(3,21,42,.02))!important;
+  pointer-events:none!important;
+}
+#medyaPage #mediaFixedV559 .media-feature-visual-v643 #mediaFixedHeroPlayV559{
+  position:absolute!important;
+  z-index:4!important;
+  top:50%!important;
+  left:50%!important;
+  right:auto!important;
+  bottom:auto!important;
+  width:80px!important;
+  height:80px!important;
+  padding:0!important;
+  border:2px solid rgba(255,255,255,.82)!important;
+  border-radius:50%!important;
+  display:grid!important;
+  place-items:center!important;
+  background:rgba(255,255,255,.93)!important;
+  color:#1462ae!important;
+  box-shadow:0 14px 30px rgba(0,23,51,.22)!important;
+  transform:translate(-50%,-50%)!important;
+}
+#medyaPage #mediaFixedV559 .media-feature-visual-v643 #mediaFixedHeroPlayV559 svg{
+  width:32px!important;height:32px!important;fill:currentColor!important;
+}
+#medyaPage #mediaFixedV559 .media-feature-visual-v643 .media-inline-player-v561{
+  position:absolute!important;
+  inset:0!important;
+  width:100%!important;
+  height:100%!important;
+  z-index:8!important;
+  border-radius:inherit!important;
+  background:#000!important;
+}
+#medyaPage #mediaFixedV559 .media-feature-visual-v643 .media-inline-player-v561[hidden]{display:none!important}
+#medyaPage #mediaFixedV559 .media-feature-visual-v643 .media-inline-embed-v561{
+  position:absolute!important;inset:0!important;display:block!important;
+}
+#medyaPage #mediaFixedV559 .media-feature-visual-v643 .media-inline-embed-v561 video{
+  display:block!important;width:100%!important;height:100%!important;object-fit:contain!important;
+}
+#medyaPage #mediaFixedV559 .media-feature-visual-v643 .media-inline-actions-v561{
+  position:absolute!important;top:10px!important;right:10px!important;left:auto!important;bottom:auto!important;
+  z-index:9!important;display:flex!important;align-items:center!important;gap:12px!important;
+  padding:8px 10px!important;background:rgba(6,23,40,.66)!important;border-radius:12px!important;
+}
+@media(max-width:760px){
+  #medyaPage #mediaFixedV559 .media-feature-shell-v643{margin:18px 0!important}
+  #medyaPage #mediaFixedV559 .media-feature-full-v643{gap:12px!important}
+  #medyaPage #mediaFixedV559 .media-feature-heading-v643 h2{font-size:clamp(22px,6vw,30px)!important}
+  #medyaPage #mediaFixedV559 .media-feature-visual-v643{border-radius:16px!important}
+  #medyaPage #mediaFixedV559 .media-feature-visual-v643 #mediaFixedHeroPlayV559{width:60px!important;height:60px!important}
+  #medyaPage #mediaFixedV559 .media-feature-visual-v643 #mediaFixedHeroPlayV559 svg{width:26px!important;height:26px!important}
+  #medyaPage #mediaFixedV559 .media-feature-visual-v643 .media-inline-actions-v561{top:5px!important;right:5px!important;padding:4px 7px!important;gap:6px!important}
+  #medyaPage #mediaFixedV559 .media-feature-visual-v643 .media-inline-youtube-v561{font-size:10px!important}
+  #medyaPage #mediaFixedV559 .media-feature-visual-v643 .media-inline-close-v561{width:30px!important;height:30px!important}
+}
+
+/* V644 - Sosyal Medya sayfasi: daha belirgin ve ilgi cekici modern tasarim */
+#medyaPage #mediaFixedV559.media-modern-v642{
+  max-width:1480px;
+  padding:20px 22px 48px;
+}
+#medyaPage #mediaFixedV559 .media-modern-hero-v642{
+  grid-template-columns:minmax(0,1.18fr) minmax(300px,.82fr);
+  gap:24px;
+  padding:34px 36px 30px;
+  border-radius:34px;
+  background:
+    radial-gradient(circle at 86% 20%, rgba(163,208,255,.28), transparent 28%),
+    radial-gradient(circle at 0% 85%, rgba(180,218,244,.22), transparent 24%),
+    linear-gradient(180deg,#f7fbff 0%,#edf5fb 100%);
+  border:1px solid rgba(182,205,228,.42);
+  box-shadow:0 20px 48px rgba(18,71,112,.08);
+}
+#medyaPage #mediaFixedV559 .media-modern-kicker-v644{
+  display:inline-flex;
+  align-items:center;
+  gap:8px;
+  padding:10px 16px;
+  border-radius:999px;
+  background:rgba(255,255,255,.92);
+  color:#2b65c7;
+  font-size:14px;
+  font-weight:900;
+  letter-spacing:.03em;
+  box-shadow:0 10px 24px rgba(20,70,120,.08);
+}
+#medyaPage #mediaFixedV559 .media-modern-kicker-v644::before{
+  content:"◉";
+  font-size:10px;
+  color:#55a7ff;
+}
+#medyaPage #mediaFixedV559 .media-modern-hero-copy-v642 h1{
+  margin-top:18px;
+  font-size:clamp(56px,6vw,88px);
+  letter-spacing:-.05em;
+}
+#medyaPage #mediaFixedV559 .media-modern-hero-copy-v642 p{
+  max-width:760px;
+  font-size:clamp(20px,1.9vw,28px);
+  line-height:1.42;
+  color:#35567e;
+}
+#medyaPage #mediaFixedV559 .media-modern-platforms-v642{
+  margin-top:24px;
+  gap:16px;
+}
+#medyaPage #mediaFixedV559 .media-modern-platform-card-v642{
+  min-height:108px;
+  padding:18px 18px 18px 16px;
+  border-radius:22px;
+  background:rgba(255,255,255,.88);
+  box-shadow:0 14px 28px rgba(18,71,112,.08);
+}
+#medyaPage #mediaFixedV559 .media-modern-platform-icon-v642{
+  width:62px;height:62px;flex-basis:62px;border-radius:18px;
+}
+#medyaPage #mediaFixedV559 .media-modern-platform-copy-v642 strong{font-size:17px}
+#medyaPage #mediaFixedV559 .media-modern-platform-copy-v642 small{font-size:14px;line-height:1.35}
+#medyaPage #mediaFixedV559 .media-modern-platform-card-v642 i{
+  width:42px;height:42px;border-radius:50%;display:grid;place-items:center;
+  background:#f2f7ff;color:#4677d8;font-size:22px;flex:0 0 42px;
+}
+#medyaPage #mediaFixedV559 .media-modern-hero-visual-v642{
+  min-height:320px;
+  align-items:stretch;
+}
+#medyaPage #mediaFixedV559 .media-modern-visual-panel-v644{
+  position:relative;
+  width:100%;
+  min-height:100%;
+  border-radius:28px;
+  overflow:hidden;
+  background:
+    radial-gradient(circle at 80% 24%, rgba(255,255,255,.42), transparent 34%),
+    linear-gradient(180deg, rgba(235,245,252,.78), rgba(226,240,250,.92));
+}
+#medyaPage #mediaFixedV559 .media-modern-anatomy-glow-v644{
+  position:absolute;
+  right:-6%; top:-8%; bottom:-6%; width:74%;
+  background:
+    radial-gradient(circle at 50% 46%, rgba(255,132,132,.32), rgba(255,132,132,0) 12%),
+    radial-gradient(circle at 50% 10%, rgba(114,184,255,.72), rgba(114,184,255,.12) 54%, rgba(114,184,255,0) 70%);
+  opacity:.92;
+  filter:blur(0px);
+}
+#medyaPage #mediaFixedV559 .media-modern-anatomy-glow-v644::before{
+  content:"";
+  position:absolute; inset:0;
+  background:linear-gradient(180deg, transparent 0%, rgba(124,188,255,.4) 100%);
+  -webkit-mask:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 180 420'%3E%3Cpath fill='white' d='M88 0c15 0 30 11 30 32 0 13-6 25-14 36-8 11-14 24-14 39v33c10 8 18 22 22 40 5 23 13 45 24 66 11 22 19 45 23 69 2 13-8 26-23 29l-14 3v73H58v-73l-14-3c-15-3-25-16-23-29 4-24 12-47 23-69 11-21 19-43 24-66 4-18 12-32 22-40v-33c0-15-6-28-14-39C68 57 62 45 62 32 62 11 73 0 88 0Z'/%3E%3C/svg%3E") center right/72% auto no-repeat;
+          mask:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 180 420'%3E%3Cpath fill='white' d='M88 0c15 0 30 11 30 32 0 13-6 25-14 36-8 11-14 24-14 39v33c10 8 18 22 22 40 5 23 13 45 24 66 11 22 19 45 23 69 2 13-8 26-23 29l-14 3v73H58v-73l-14-3c-15-3-25-16-23-29 4-24 12-47 23-69 11-21 19-43 24-66 4-18 12-32 22-40v-33c0-15-6-28-14-39C68 57 62 45 62 32 62 11 73 0 88 0Z'/%3E%3C/svg%3E") center right/72% auto no-repeat;
+}
+#medyaPage #mediaFixedV559 .media-modern-anatomy-glow-v644::after{
+  content:"";
+  position:absolute; right:20%; top:14%; width:7px; height:68%; border-radius:999px;
+  background:linear-gradient(180deg, rgba(255,255,255,.9), rgba(255,214,102,.95) 35%, rgba(255,138,81,.95) 55%, rgba(255,255,255,.76) 100%);
+  box-shadow:0 0 18px rgba(255,180,98,.6);
+}
+#medyaPage #mediaFixedV559 .media-modern-note-v644{
+  position:absolute;
+  left:8%; top:20%;
+  color:#3e69b0;
+  font-size:clamp(18px,2vw,26px);
+  line-height:1.45;
+  font-weight:700;
+  font-style:italic;
+  transform:rotate(-6deg);
+}
+#medyaPage #mediaFixedV559 .media-modern-note-v644::after{
+  content:"→";
+  position:absolute;
+  right:-52px; bottom:-20px;
+  font-size:50px;
+  font-style:normal;
+  color:#3f70d8;
+}
+#medyaPage #mediaFixedV559 .media-feature-shell-v643{
+  display:block!important;
+  margin:24px 0 18px!important;
+}
+#medyaPage #mediaFixedV559 .media-feature-full-v643,
+#medyaPage #mediaFixedV559 .media-feature-full-v643.is-playing-v561{
+  display:grid!important;
+  grid-template-columns:minmax(320px,.95fr) minmax(0,1.45fr)!important;
+  gap:22px!important;
+  align-items:stretch!important;
+}
+#medyaPage #mediaFixedV559 .media-feature-heading-v643{
+  padding:26px 18px 26px 18px!important;
+  border-radius:28px!important;
+  background:linear-gradient(180deg,#ffffff 0%,#f6fafe 100%)!important;
+  box-shadow:0 16px 34px rgba(19,74,110,.08)!important;
+  border:1px solid rgba(197,217,235,.46)!important;
+}
+#medyaPage #mediaFixedV559 .media-feature-heading-v643 h2{font-size:clamp(34px,3vw,56px)!important; line-height:1.08!important;}
+#medyaPage #mediaFixedV559 .media-feature-heading-v643 p{
+  display:block!important; margin:8px 0 0!important; font-size:18px!important; line-height:1.6!important; color:#537091!important;
+}
+#medyaPage #mediaFixedV559 .media-feature-legacy-actions-v643{
+  display:flex!important; flex-wrap:wrap!important; gap:12px!important; margin-top:24px!important;
+}
+#medyaPage #mediaFixedV559 .media-feature-legacy-actions-v643[aria-hidden="true"]{aria-hidden:false;}
+#medyaPage #mediaFixedV559 .media-feature-legacy-actions-v643 .media-fixed-watch-v559,
+#medyaPage #mediaFixedV559 .media-feature-legacy-actions-v643 .media-fixed-direct-v584{
+  width:auto!important; min-height:58px!important; border-radius:18px!important; padding:0 26px!important;
+}
+#medyaPage #mediaFixedV559 .media-feature-legacy-actions-v643 .media-fixed-direct-v584{
+  background:#eef5ff!important; color:#1b58bf!important;
+}
+#medyaPage #mediaFixedV559 .media-feature-visual-v643{
+  border-radius:28px!important; aspect-ratio:auto!important; min-height:430px!important;
+}
+#medyaPage #mediaFixedV559 .media-feature-visual-v643 .media-fixed-hero-photo-v559{object-position:center center!important;}
+#medyaPage #mediaFixedV559 .media-modern-list-section-v642{margin-top:22px!important}
+#medyaPage #mediaFixedV559 .media-modern-section-head-v642 h2{font-size:20px!important; color:#173b77!important;}
+#medyaPage #mediaFixedV559 .media-modern-video-grid-v642{grid-template-columns:repeat(5,minmax(0,1fr));gap:18px}
+#medyaPage #mediaFixedV559 .media-modern-item-v642{border-radius:20px;overflow:hidden}
+#medyaPage #mediaFixedV559 .media-modern-item-v642 strong{font-size:15px;line-height:1.32}
+
+@media (max-width:1200px){
+  #medyaPage #mediaFixedV559 .media-modern-hero-v642{grid-template-columns:1fr}
+  #medyaPage #mediaFixedV559 .media-modern-hero-visual-v642{min-height:240px}
+  #medyaPage #mediaFixedV559 .media-modern-video-grid-v642{grid-template-columns:repeat(3,minmax(0,1fr))}
+}
+@media (max-width:980px){
+  #medyaPage #mediaFixedV559 .media-feature-full-v643,
+  #medyaPage #mediaFixedV559 .media-feature-full-v643.is-playing-v561{grid-template-columns:1fr!important}
+  #medyaPage #mediaFixedV559 .media-feature-heading-v643{order:0!important}
+  #medyaPage #mediaFixedV559 .media-feature-visual-v643{order:1!important; min-height:350px!important}
+}
+@media (max-width:760px){
+  #medyaPage #mediaFixedV559.media-modern-v642{padding:12px 12px 30px}
+  #medyaPage #mediaFixedV559 .media-modern-hero-v642{padding:22px 16px 18px;border-radius:24px}
+  #medyaPage #mediaFixedV559 .media-modern-hero-copy-v642 h1{font-size:clamp(44px,14vw,70px);margin-top:14px}
+  #medyaPage #mediaFixedV559 .media-modern-hero-copy-v642 p{font-size:18px}
+  #medyaPage #mediaFixedV559 .media-modern-platforms-v642{grid-template-columns:1fr 1fr;gap:12px}
+  #medyaPage #mediaFixedV559 .media-modern-platform-card-v642{min-height:92px;padding:14px 12px;border-radius:18px;gap:10px}
+  #medyaPage #mediaFixedV559 .media-modern-platform-icon-v642{width:52px;height:52px;flex-basis:52px;border-radius:15px}
+  #medyaPage #mediaFixedV559 .media-modern-platform-copy-v642 strong{font-size:15px}
+  #medyaPage #mediaFixedV559 .media-modern-platform-copy-v642 small{font-size:12px}
+  #medyaPage #mediaFixedV559 .media-modern-platform-card-v642 i{width:34px;height:34px;font-size:18px}
+  #medyaPage #mediaFixedV559 .media-modern-hero-visual-v642{min-height:190px}
+  #medyaPage #mediaFixedV559 .media-modern-note-v644{left:10%; top:15%; font-size:17px}
+  #medyaPage #mediaFixedV559 .media-modern-note-v644::after{font-size:34px;right:-36px;bottom:-10px}
+  #medyaPage #mediaFixedV559 .media-feature-heading-v643{padding:22px 16px!important;border-radius:20px!important}
+  #medyaPage #mediaFixedV559 .media-feature-heading-v643 h2{font-size:clamp(24px,8vw,38px)!important}
+  #medyaPage #mediaFixedV559 .media-feature-heading-v643 p{font-size:16px!important}
+  #medyaPage #mediaFixedV559 .media-feature-legacy-actions-v643{flex-direction:column!important}
+  #medyaPage #mediaFixedV559 .media-feature-legacy-actions-v643 .media-fixed-watch-v559,
+  #medyaPage #mediaFixedV559 .media-feature-legacy-actions-v643 .media-fixed-direct-v584{width:100%!important}
+  #medyaPage #mediaFixedV559 .media-feature-visual-v643{min-height:250px!important;border-radius:20px!important}
+  #medyaPage #mediaFixedV559 .media-modern-video-grid-v642{grid-template-columns:1fr}
+}
+@media (max-width:520px){
+  #medyaPage #mediaFixedV559 .media-modern-platforms-v642{grid-template-columns:1fr}
+}
+
+
+/* ============================================================
+   V645 - Sosyal medya platform kartları: çakışmasız hizalama
+   Kartları dar sol kolon yerine tüm üst alan genişliğine yayıyoruz.
+   ============================================================ */
+#medyaPage #mediaFixedV559 .media-modern-hero-v642{
+  grid-template-columns:minmax(0,1.18fr) minmax(270px,.82fr)!important;
+  grid-template-rows:auto auto!important;
+  align-items:center!important;
+  column-gap:24px!important;
+  row-gap:16px!important;
+}
+#medyaPage #mediaFixedV559 .media-modern-hero-copy-v642{
+  grid-column:1!important;
+  grid-row:1!important;
+  min-width:0!important;
+}
+#medyaPage #mediaFixedV559 .media-modern-hero-visual-v642{
+  grid-column:2!important;
+  grid-row:1!important;
+  min-width:0!important;
+}
+#medyaPage #mediaFixedV559 .media-modern-platforms-v642{
+  position:relative!important;
+  z-index:2!important;
+  grid-column:1 / -1!important;
+  grid-row:2!important;
+  width:100%!important;
+  min-width:0!important;
+  max-width:100%!important;
+  display:grid!important;
+  grid-template-columns:repeat(4,minmax(0,1fr))!important;
+  align-items:stretch!important;
+  gap:14px!important;
+  margin:0!important;
+  padding:0!important;
+}
+#medyaPage #mediaFixedV559 .media-modern-platforms-v642 .media-modern-platform-card-v642{
+  position:relative!important;
+  display:grid!important;
+  grid-template-columns:56px minmax(0,1fr) 36px!important;
+  align-items:center!important;
+  justify-items:stretch!important;
+  width:100%!important;
+  min-width:0!important;
+  min-height:94px!important;
+  height:auto!important;
+  gap:12px!important;
+  padding:14px!important;
+  border-radius:19px!important;
+}
+#medyaPage #mediaFixedV559 .media-modern-platforms-v642 .media-modern-platform-icon-v642{
+  grid-column:1!important;
+  width:56px!important;
+  height:56px!important;
+  min-width:56px!important;
+  flex:0 0 56px!important;
+  border-radius:16px!important;
+}
+#medyaPage #mediaFixedV559 .media-modern-platforms-v642 .media-modern-platform-copy-v642{
+  grid-column:2!important;
+  width:100%!important;
+  min-width:0!important;
+  max-width:100%!important;
+  display:flex!important;
+  flex-direction:column!important;
+  align-items:flex-start!important;
+  justify-content:center!important;
+  gap:3px!important;
+  overflow:visible!important;
+}
+#medyaPage #mediaFixedV559 .media-modern-platforms-v642 .media-modern-platform-copy-v642 strong,
+#medyaPage #mediaFixedV559 .media-modern-platforms-v642 .media-modern-platform-copy-v642 small{
+  display:block!important;
+  width:100%!important;
+  min-width:0!important;
+  max-width:100%!important;
+  margin:0!important;
+  overflow-wrap:break-word!important;
+  white-space:normal!important;
+  line-height:1.32!important;
+}
+#medyaPage #mediaFixedV559 .media-modern-platforms-v642 .media-modern-platform-copy-v642 strong{
+  font-size:16px!important;
+  font-weight:850!important;
+}
+#medyaPage #mediaFixedV559 .media-modern-platforms-v642 .media-modern-platform-copy-v642 small{
+  font-size:12px!important;
+  color:#587598!important;
+}
+#medyaPage #mediaFixedV559 .media-modern-platforms-v642 .media-modern-platform-card-v642 i{
+  position:static!important;
+  grid-column:3!important;
+  justify-self:end!important;
+  margin:0!important;
+  width:36px!important;
+  height:36px!important;
+  flex:0 0 36px!important;
+  display:grid!important;
+  place-items:center!important;
+  font-size:19px!important;
+  line-height:1!important;
+  transform:none!important;
+  pointer-events:none!important;
+}
+@media(max-width:1260px){
+  #medyaPage #mediaFixedV559 .media-modern-platforms-v642{
+    grid-template-columns:repeat(2,minmax(0,1fr))!important;
+  }
+}
+@media(max-width:980px){
+  #medyaPage #mediaFixedV559 .media-modern-hero-v642{
+    grid-template-columns:minmax(0,1fr)!important;
+    grid-template-rows:auto auto!important;
+  }
+  #medyaPage #mediaFixedV559 .media-modern-hero-copy-v642{
+    grid-column:1!important;
+    grid-row:1!important;
+  }
+  #medyaPage #mediaFixedV559 .media-modern-hero-visual-v642{
+    display:none!important;
+  }
+  #medyaPage #mediaFixedV559 .media-modern-platforms-v642{
+    grid-column:1!important;
+    grid-row:2!important;
+  }
+}
+@media(max-width:600px){
+  #medyaPage #mediaFixedV559 .media-modern-platforms-v642{
+    grid-template-columns:minmax(0,1fr)!important;
+    gap:11px!important;
+  }
+  #medyaPage #mediaFixedV559 .media-modern-platforms-v642 .media-modern-platform-card-v642{
+    grid-template-columns:52px minmax(0,1fr) 36px!important;
+    min-height:78px!important;
+    padding:12px!important;
+    gap:12px!important;
+  }
+  #medyaPage #mediaFixedV559 .media-modern-platforms-v642 .media-modern-platform-icon-v642{
+    width:52px!important;height:52px!important;min-width:52px!important;flex-basis:52px!important;
+  }
+}
+
+
+/* V646: Aynı karşılama videosu PC ve mobilde bir kez oynar, son karede sabitlenir. */
+html body section#anasayfa.hero-home-v85 .doctor-slide-v86{
+  background-image:url("./ana-sayfa-doktor-karsilama-v646.jpg") !important;
+  background-position:center center !important;
+  background-size:cover !important;
+}
+html body section#anasayfa.hero-home-v85 .doctor-slide-v86 video#homeDoctorVideoV569{
+  background:#eaf3f8 url("./ana-sayfa-doktor-karsilama-v646.jpg") center center / cover no-repeat !important;
+  object-fit:cover !important;
+  object-position:center center !important;
+  transform:none !important;
+  transition:none !important;
+  animation:none !important;
+  opacity:1 !important;
+  visibility:visible !important;
+}
+@media(max-width:760px){
+  html body section#anasayfa.hero-home-v85 .doctor-slide-v86 video#homeDoctorVideoV569{
+    object-position:center center !important;
+    height:100% !important;
+  }
+}
+
+
+/* V648 — Önemli Videolar başlığı ve tüm TV programları bağlantısı */
+#medyaPage #mediaFixedV559 .media-modern-list-section-v642 .media-modern-section-head-v642{
+  display:flex!important;
+  flex-direction:row!important;
+  flex-wrap:wrap!important;
+  align-items:center!important;
+  justify-content:space-between!important;
+  gap:14px!important;
+}
+#medyaPage #mediaFixedV559 .media-modern-list-section-v642 .media-modern-section-head-v642 h2{
+  flex:0 1 auto!important;
+  min-width:0!important;
+  margin:0!important;
+  color:#123b7d!important;
+  font-size:clamp(22px,2vw,30px)!important;
+  line-height:1.25!important;
+}
+#medyaPage #mediaFixedV559 .media-modern-list-section-v642 .media-tv-all-link-v648{
+  display:inline-flex!important;
+  align-items:center!important;
+  justify-content:center!important;
+  gap:10px!important;
+  max-width:100%!important;
+  min-height:48px!important;
+  padding:9px 15px!important;
+  border:1px solid #c9e0fa!important;
+  border-radius:999px!important;
+  background:linear-gradient(135deg,#f0f7ff,#fff)!important;
+  box-shadow:0 5px 14px rgba(26,94,154,.08)!important;
+  color:#114987!important;
+  text-decoration:none!important;
+  text-align:center!important;
+  font-size:14px!important;
+  font-weight:800!important;
+  line-height:1.3!important;
+  white-space:normal!important;
+  overflow-wrap:break-word!important;
+  transition:background .18s ease,box-shadow .18s ease!important;
+}
+#medyaPage #mediaFixedV559 .media-modern-list-section-v642 .media-tv-all-link-v648:hover,
+#medyaPage #mediaFixedV559 .media-modern-list-section-v642 .media-tv-all-link-v648:focus-visible{
+  background:#e4f1ff!important;
+  box-shadow:0 8px 20px rgba(26,94,154,.14)!important;
+}
+#medyaPage #mediaFixedV559 .media-tv-link-icon-v648{
+  display:grid!important;
+  place-items:center!important;
+  width:28px!important;
+  height:28px!important;
+  flex:0 0 28px!important;
+  border-radius:50%!important;
+  background:#1973c6!important;
+  color:white!important;
+  font-size:12px!important;
+}
+#medyaPage #mediaFixedV559 .media-tv-link-arrow-v648{
+  flex:0 0 auto!important;
+  color:#1973c6!important;
+  font-size:19px!important;
+}
+@media(max-width:760px){
+  #medyaPage #mediaFixedV559 .media-modern-list-section-v642 .media-modern-section-head-v642{
+    align-items:flex-start!important;
+    flex-direction:column!important;
+    gap:12px!important;
+  }
+  #medyaPage #mediaFixedV559 .media-modern-list-section-v642 .media-tv-all-link-v648{
+    width:100%!important;
+    padding:11px 13px!important;
+    border-radius:16px!important;
+    font-size:13px!important;
+  }
+}
+
+
+/* V649 - Instagram karti yerine TV programlari arsiv karti. */
+#medyaPage #mediaFixedV559 .media-tv-card-v649{
+  display:flex!important;
+  flex-direction:column!important;
+  min-width:0!important;
+  border:1px solid rgba(31,107,203,.22)!important;
+  background:linear-gradient(180deg,#fff,#f4f9ff)!important;
+  text-decoration:none!important;
+  cursor:pointer!important;
+}
+#medyaPage #mediaFixedV559 .media-tv-card-v649:hover,
+#medyaPage #mediaFixedV559 .media-tv-card-v649:focus-visible{
+  border-color:#267ed8!important;
+  box-shadow:0 16px 32px rgba(20,89,172,.15)!important;
+}
+#medyaPage #mediaFixedV559 .media-tv-card-v649 .media-tv-card-thumb-v649{
+  display:block!important;
+  width:100%!important;
+  aspect-ratio:16/9!important;
+  overflow:hidden!important;
+  position:relative!important;
+  background:#102e60!important;
+}
+#medyaPage #mediaFixedV559 .media-tv-card-v649 .media-tv-card-thumb-v649 img{
+  display:block!important;
+  width:100%!important;
+  height:100%!important;
+  object-fit:cover!important;
+  object-position:center!important;
+}
+#medyaPage #mediaFixedV559 .media-tv-card-v649 .media-fixed-type-v559{
+  position:absolute!important;
+  right:9px!important;
+  bottom:9px!important;
+  border-radius:8px!important;
+  padding:6px 10px!important;
+  background:rgba(12,44,100,.94)!important;
+  color:white!important;
+  font-size:12px!important;
+}
+#medyaPage #mediaFixedV559 .media-tv-card-v649 strong{
+  color:#0f3877!important;
+  font-weight:900!important;
+  line-height:1.3!important;
+}
+#medyaPage #mediaFixedV559 .media-tv-card-v649 .media-fixed-meta-v559{
+  margin-top:auto!important;
+  font-weight:800!important;
+  color:#176dc4!important;
+}
+@media(max-width:760px){
+  #medyaPage #mediaFixedV559 .media-tv-card-v649 strong{font-size:17px!important;}
+}
+@media(max-width:760px){
+  /* Tek kalan TV arsiv karti mobilde tum sirayi kullansin. */
+  #medyaPage #mediaFixedV559 .media-modern-video-grid-v642 .media-tv-card-v649{
+    grid-column:1/-1!important;
+    width:100%!important;
+  }
+  #medyaPage #mediaFixedV559 .media-tv-card-v649 .media-tv-card-thumb-v649{
+    aspect-ratio:16/9!important;
+  }
+}
+
+
+/* V659 - Görünür Beslenme rehberi; eski gizlenen ek açıklamalar yerine üstte sabit bilgi alanları. */
+.nutrition-view-v174 .nutrition-v659-overview{box-sizing:border-box;max-width:1380px;margin:12px auto 22px;padding:24px 26px;border-radius:24px;background:linear-gradient(120deg,#f0faf7 0%,#f5fbff 100%);border:1px solid #cfe8e2;box-shadow:0 12px 30px rgba(22,91,104,.07);color:#153f51}
+.nutrition-view-v174 .nutrition-v659-eyebrow,.nutrition-view-v174 .nutrition-v659-insights-title>span{display:inline-block;font:900 11px/1.35 Inter,Arial,sans-serif;letter-spacing:.11em;color:#17846c}
+.nutrition-view-v174 .nutrition-v659-overview-head h3{margin:7px 0 10px;font:850 clamp(23px,2.7vw,34px)/1.2 Inter,Arial,sans-serif;color:#123e5d}
+.nutrition-view-v174 .nutrition-v659-overview-head p{max-width:950px;margin:0;color:#557787;font:450 15px/1.6 Inter,Arial,sans-serif}
+.nutrition-view-v174 .nutrition-v659-overview-grid{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:12px;margin-top:20px}
+.nutrition-view-v174 .nutrition-v659-overview-grid article{min-width:0;background:#fff;border:1px solid #dcece8;border-radius:18px;padding:17px 15px;box-shadow:0 7px 22px rgba(16,73,80,.04)}
+.nutrition-view-v174 .nutrition-v659-overview-grid .nutrition-v659-index{display:inline-flex;align-items:center;justify-content:center;width:30px;height:30px;border-radius:10px;background:#e7f7f2;color:#17856b;font:850 12px Inter,Arial,sans-serif}
+.nutrition-view-v174 .nutrition-v659-overview-grid h4{margin:11px 0 8px;font:800 16px/1.32 Inter,Arial,sans-serif;color:#174860}
+.nutrition-view-v174 .nutrition-v659-overview-grid p{margin:0;font:450 13px/1.65 Inter,Arial,sans-serif;color:#557583}
+.nutrition-view-v174 .nutrition-v659-insights{box-sizing:border-box;width:calc(100% - 56px);max-width:1380px;margin:9px auto 22px;padding:22px 24px;border-radius:23px;background:#f1faf6;border:1px solid #d0e9e1;box-shadow:0 10px 28px rgba(17,84,86,.06)}
+.nutrition-view-v174 .nutrition-v659-insights-title h2{margin:7px 0 8px;color:#143e58;font:850 clamp(22px,2.2vw,29px)/1.22 Inter,Arial,sans-serif}
+.nutrition-view-v174 .nutrition-v659-insights-title p{margin:0;color:#5d7a85;font:450 14px/1.6 Inter,Arial,sans-serif}
+.nutrition-view-v174 .nutrition-v659-insights-grid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:14px;margin-top:18px}
+.nutrition-view-v174 .nutrition-v659-insight-card{min-width:0;padding:18px 20px;background:#fff;border:1px solid #dceae4;border-radius:17px}
+.nutrition-view-v174 .nutrition-v659-insight-card>span{color:#17826a;font:850 10px/1.4 Inter,Arial,sans-serif;letter-spacing:.07em}
+.nutrition-view-v174 .nutrition-v659-insight-card h3{margin:7px 0 9px;color:#143f5b;font:800 17px/1.35 Inter,Arial,sans-serif}
+.nutrition-view-v174 .nutrition-v659-insight-card p{margin:0;color:#577583;font:450 14px/1.7 Inter,Arial,sans-serif}
+@media(max-width:960px){.nutrition-view-v174 .nutrition-v659-overview-grid{grid-template-columns:repeat(2,minmax(0,1fr))}}
+@media(max-width:700px){
+ .nutrition-view-v174 .nutrition-v659-overview{margin:12px 14px 20px;padding:19px 16px;border-radius:18px}
+ .nutrition-view-v174 .nutrition-v659-overview-head h3{font-size:24px}
+ .nutrition-view-v174 .nutrition-v659-overview-grid{grid-template-columns:1fr;gap:10px;margin-top:15px}
+ .nutrition-view-v174 .nutrition-v659-overview-grid article{padding:14px}
+ .nutrition-view-v174 .nutrition-v659-insights{width:calc(100% - 28px);margin:8px auto 18px;padding:17px 15px;border-radius:18px}
+ .nutrition-view-v174 .nutrition-v659-insights-title h2{font-size:21px}
+ .nutrition-view-v174 .nutrition-v659-insights-grid{grid-template-columns:1fr;gap:11px;margin-top:13px}
+ .nutrition-view-v174 .nutrition-v659-insight-card{padding:15px 15px}
+ .nutrition-view-v174 .nutrition-v659-insight-card p{font-size:13px}
+}
+/* V659 - telefonda konuların tek uzun listeye dönüşmesini önler. */
+@media (min-width:361px) and (max-width:700px){
+ .nutrition-view-v174 .nutrition-v659-overview-grid{grid-template-columns:repeat(2,minmax(0,1fr));gap:9px}
+ .nutrition-view-v174 .nutrition-v659-overview-grid article{padding:12px 11px}
+ .nutrition-view-v174 .nutrition-v659-overview-grid h4{font-size:14px;line-height:1.35}
+ .nutrition-view-v174 .nutrition-v659-overview-grid p{font-size:12px;line-height:1.55}
+}
+
+/* V661 - Yalnızca gıda faydası pencerelerinde ek sindirim/bağırsak açıklamaları */
+.nutrition-recipe-dialog-v601 .nutrition-v661-journey{margin:18px 0 0;padding:20px 22px;border:1px solid #cfe6e0;border-radius:22px;background:linear-gradient(135deg,#f1faf6,#f3f9fd)}
+.nutrition-recipe-dialog-v601 .nutrition-v661-journey-title{display:block;margin-bottom:14px;font-size:18px;font-weight:850;color:#13435c;line-height:1.3}
+.nutrition-recipe-dialog-v601 .nutrition-v661-journey-grid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:12px}
+.nutrition-recipe-dialog-v601 .nutrition-v661-journey-grid article{min-width:0;padding:16px;border-radius:16px;background:#fff;border:1px solid #dcebe7;box-shadow:0 7px 20px rgba(14,68,72,.04)}
+.nutrition-recipe-dialog-v601 .nutrition-v661-journey-grid h3{margin:0 0 8px;color:#16745e;font-size:15px;font-weight:850;line-height:1.3}
+.nutrition-recipe-dialog-v601 .nutrition-v661-journey-grid p{margin:0;color:#536f7d;font-size:13px;line-height:1.65}
+@media(max-width:720px){.nutrition-recipe-dialog-v601 .nutrition-v661-journey{padding:15px;margin-top:16px;border-radius:17px}.nutrition-recipe-dialog-v601 .nutrition-v661-journey-title{font-size:16px}.nutrition-recipe-dialog-v601 .nutrition-v661-journey-grid{grid-template-columns:1fr;gap:10px}.nutrition-recipe-dialog-v601 .nutrition-v661-journey-grid article{padding:13px}.nutrition-recipe-dialog-v601 .nutrition-v661-journey-grid h3{font-size:14px}.nutrition-recipe-dialog-v601 .nutrition-v661-journey-grid p{font-size:13px}}
+
+/* V662 · Akademik sistemik supplement bilgi içerikleri: diğer bölümlere dokunma */
+.sup603-view .sup603-evidence-lead-v662{margin:0 0 14px;color:#607b89;font-size:13px;line-height:1.65}
+.sup603-view .sup603-facts-v662{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:12px}
+.sup603-view .sup603-facts-v662 .sup603-fact{align-items:flex-start;padding:17px;background:linear-gradient(160deg,#ffffff,#f5faf8);border-radius:16px}
+.sup603-view .sup603-facts-v662 .sup603-fact h3{font-size:14px;line-height:1.4;margin:1px 0 8px;color:#174a60}
+.sup603-view .sup603-facts-v662 .sup603-fact p{font-size:13px;line-height:1.65;color:#527180}
+.sup603-view .sup603-source-v662{font-size:12px;line-height:1.6;color:#60798a;margin:18px 0 8px}
+.sup603-view .sup603-source-v662 strong{color:#21536a}
+.sup603-view .sup603-source-v662 a{color:#086b91;text-decoration:underline;text-underline-offset:3px}
+@media(max-width:800px){.sup603-view .sup603-facts-v662{grid-template-columns:1fr}.sup603-view .sup603-facts-v662 .sup603-fact{padding:14px}.sup603-view .sup603-facts-v662 .sup603-fact p{font-size:13px}}
+
+
+/* V663 — Birleştirilmiş bağırsak sekmesi ve yeni tıbbi/geleneğe dayalı rehberler */
+.detox-view-v390 .detox-category-new-v663{border-color:rgba(20,121,133,.27);background:linear-gradient(140deg,#f1fbf8,#f8fcff);color:#1b6570}
+.detox-view-v390 .detox-v663-intro-note{display:block;margin:-2px 0 18px;padding:15px 18px;background:linear-gradient(135deg,#edf9f6,#f4f9ff);border:1px solid #cfe8e6;border-radius:18px}
+.detox-view-v390 .detox-v663-intro-note strong{display:block;color:#145d6c;font:850 14px/1.3 Inter,Arial,sans-serif;margin:0 0 7px}
+.detox-view-v390 .detox-v663-intro-note p{margin:0;color:#54758a;font:450 13px/1.6 Inter,Arial,sans-serif}
+.detox-view-v390 .detox-v663-guide{background:#fff;min-width:0}
+.detox-view-v390 .detox-v663-visual{position:relative;overflow:hidden;aspect-ratio:1.5/1;margin:0 22px 15px;border-radius:20px;display:flex;align-items:center;justify-content:center;flex-direction:column;gap:16px;background:radial-gradient(circle at 78% 22%,rgba(255,255,255,.9),transparent 30%),linear-gradient(125deg,#d9f2ed,#ebf7ff 60%,#d8e8f7);border:1px solid #d5e8e9}
+.detox-view-v390 .detox-v663-visual::before{content:"";position:absolute;width:180px;height:180px;border:2px solid rgba(69,148,174,.14);border-radius:50%;right:-56px;top:-70px}
+.detox-view-v390 .detox-v663-visual > span{position:relative;display:grid;place-items:center;width:88px;height:88px;border-radius:28px;background:rgba(255,255,255,.75);font-size:47px;box-shadow:0 12px 24px rgba(37,106,130,.09)}
+.detox-view-v390 .detox-v663-visual > small{position:relative;color:#46768a;font-size:10px;font-weight:850;letter-spacing:.12em;text-align:center}
+.detox-view-v390 .detox-v663-detail h4{margin:14px 0 6px;color:#184c63;font-size:14px;font-weight:850}
+.detox-view-v390 .detox-v663-detail p:not(.detox-card-note-v390){margin:0 0 12px;color:#5c7988;font-size:13px;line-height:1.68}
+.detox-view-v390 .detox-v663-sources{display:flex;flex-wrap:wrap;align-items:center;gap:12px;margin:16px auto 0;max-width:1420px;padding:14px 18px;background:#f5fafb;border:1px solid #e1eff0;border-radius:18px}
+.detox-view-v390 .detox-v663-sources span{color:#285869;font-weight:850;font-size:12px;margin-right:10px}
+.detox-view-v390 .detox-v663-sources a{color:#166b93;font-size:12px;font-weight:700;text-decoration:underline;text-underline-offset:3px}
+@media(max-width:760px){.detox-view-v390 .detox-v663-intro-note{padding:13px 14px}.detox-view-v390 .detox-v663-visual{margin:0 17px 13px;aspect-ratio:1.7/1}.detox-view-v390 .detox-v663-sources{margin:12px 12px 0;gap:10px}}
+/* V663: Uzun kategori isimlerinde aktif / pasif buton kontrastını koru */
+.detox-view-v390 .detox-category-tabs-v390 .detox-category-btn-v390.active{color:#fff!important;background:linear-gradient(135deg,#153f5c,#0e759f)!important}
+.detox-view-v390 .detox-category-tabs-v390 .detox-category-btn-v390:not(.active){color:#315a70!important}
+.detox-view-v390 .detox-category-tabs-v390 .detox-category-btn-v390.active span{color:#fff!important}
+.detox-view-v390 .detox-category-tabs-v390 .detox-category-btn-v390:not(.active) span{color:#64879a!important}
+
+
+/* V640 - Öne Çıkanlar makale görselleri */
+.featured-article-card-v508{
+  min-height:530px;
+}
+.featured-article-card-image-v640{
+  position:relative;
+  width:calc(100% + 48px);
+  aspect-ratio:3 / 2;
+  margin:18px -24px 0;
+  overflow:hidden;
+  border-top:1px solid rgba(164,210,230,.55);
+  border-bottom:1px solid rgba(164,210,230,.55);
+  background:#ddecf3;
+  isolation:isolate;
+}
+.featured-article-card-image-v640::after{
+  content:"";
+  position:absolute;
+  inset:0;
+  z-index:1;
+  pointer-events:none;
+  background:linear-gradient(180deg,transparent 65%,rgba(6,42,63,.15) 100%);
+}
+.featured-article-card-image-v640 img{
+  display:block;
+  width:100%;
+  height:100%;
+  object-fit:cover;
+  object-position:center;
+  transition:transform .45s cubic-bezier(.2,.7,.2,1),filter .3s ease;
+}
+.featured-article-card-v508:hover .featured-article-card-image-v640 img{
+  transform:scale(1.035);
+  filter:saturate(1.04) contrast(1.02);
+}
+.featured-article-card-v508 .featured-article-card-meta-v508{
+  margin-top:18px;
+}
+.featured-article-hero-v640{
+  position:relative;
+  width:100%;
+  max-width:980px;
+  aspect-ratio:3 / 2;
+  margin:0 auto 34px;
+  overflow:hidden;
+  border:1px solid #d4e8f3;
+  border-radius:25px;
+  background:#ddecf3;
+  box-shadow:0 18px 42px rgba(12,65,97,.13);
+}
+.featured-article-hero-v640::after{
+  content:"";
+  position:absolute;
+  inset:0;
+  pointer-events:none;
+  box-shadow:inset 0 0 0 1px rgba(255,255,255,.22);
+  border-radius:inherit;
+}
+.featured-article-hero-v640 img{
+  display:block;
+  width:100%;
+  height:100%;
+  object-fit:cover;
+  object-position:center;
+}
+@media(max-width:650px){
+  .featured-article-card-v508{min-height:445px;}
+  .featured-article-card-image-v640{
+    width:calc(100% + 40px);
+    margin:15px -20px 0;
+  }
+  .featured-article-hero-v640{
+    margin-bottom:24px;
+    border-radius:18px;
+  }
+}
+@media(prefers-reduced-motion:reduce){
+  .featured-article-card-image-v640 img{transition:none!important;}
+}
+
+
+/* V643 — Detoks tariflerinde Çin Tıbbı ve Doğu Tıbbı bakış kartları */
+.detox-view-v390 .detox-v643-intro-note{position:relative;overflow:hidden;padding:18px 20px 18px 70px;background:radial-gradient(circle at 96% 0,rgba(117,84,215,.12),transparent 34%),linear-gradient(135deg,#f1fbf8 0%,#f6f3ff 100%);border-color:rgba(107,89,185,.18);box-shadow:0 14px 34px rgba(31,77,95,.06)}
+.detox-view-v390 .detox-v643-intro-note::before{content:"☯";position:absolute;left:18px;top:19px;width:38px;height:38px;display:grid;place-items:center;border-radius:13px;background:linear-gradient(145deg,#7655d9,#9a68ef);color:#fff;font-size:22px;box-shadow:0 10px 20px rgba(100,70,186,.22)}
+.detox-view-v390 .detox-tradition-badge-v643{background:linear-gradient(135deg,#f1edff,#fff7e8);color:#614b91;border:1px solid rgba(113,78,184,.12)}
+.detox-view-v390 .detox-tradition-badge-v643 i{width:22px;height:22px;display:grid;place-items:center;border-radius:8px;background:linear-gradient(145deg,#7655d9,#9b69ef);color:#fff;font-size:13px;box-shadow:0 5px 12px rgba(100,70,186,.18)}
+.detox-view-v390 .detox-tradition-grid-v643{display:grid;grid-template-columns:1fr;gap:10px;margin:5px 0 11px}
+.detox-view-v390 .detox-tradition-panel-v643{position:relative;overflow:hidden;padding:14px 14px 13px;border-radius:15px;border:1px solid;background:#fff}
+.detox-view-v390 .detox-tradition-panel-v643::after{content:"";position:absolute;right:-25px;top:-30px;width:78px;height:78px;border-radius:50%;border:1px solid currentColor;opacity:.08}
+.detox-view-v390 .detox-tradition-panel-v643.is-tcm{color:#5b468c;border-color:rgba(111,79,181,.18);background:linear-gradient(145deg,#f7f4ff,#fdfcff)}
+.detox-view-v390 .detox-tradition-panel-v643.is-east{color:#8a5c2a;border-color:rgba(196,130,59,.20);background:linear-gradient(145deg,#fff9ee,#fffdf8)}
+.detox-view-v390 .detox-tradition-title-v643{position:relative;display:flex;align-items:center;gap:9px;margin-bottom:8px}
+.detox-view-v390 .detox-tradition-title-v643 span{width:27px;height:27px;display:grid;place-items:center;flex:0 0 27px;border-radius:9px;color:#fff;font-size:15px;font-weight:800}
+.detox-view-v390 .is-tcm .detox-tradition-title-v643 span{background:linear-gradient(145deg,#6d4dc9,#9c70ed)}
+.detox-view-v390 .is-east .detox-tradition-title-v643 span{background:linear-gradient(145deg,#bd7835,#e0a45d)}
+.detox-view-v390 .detox-tradition-title-v643 h4{margin:0;color:inherit;font-size:12.5px;font-weight:900;letter-spacing:.01em}
+.detox-view-v390 .detox-tradition-panel-v643 p{position:relative;margin:0;color:#5e7180;font-size:11.5px;line-height:1.66}
+.detox-view-v390 .detox-tradition-frame-v643{margin:0 0 13px;padding:10px 11px;border-left:3px solid #79a8b5;border-radius:0 10px 10px 0;background:#f2f8fa;color:#627a87;font-size:10.7px;line-height:1.58}
+.detox-view-v390 .detox-tradition-frame-v643 strong{color:#376677}
+.detox-view-v390 .detox-recipe-divider-v643{height:1px;margin:13px 0;background:linear-gradient(90deg,rgba(72,133,158,.18),transparent)}
+.detox-view-v390 .detox-recipe-title-v643{display:block;margin-bottom:6px;color:#285d73;font-size:12px;font-weight:900;letter-spacing:.02em}
+.detox-view-v390 .detox-recipe-detail-v390[open] summary{background:linear-gradient(135deg,#f2efff,#fff8ed);color:#604c8a}
+@media(max-width:760px){.detox-view-v390 .detox-v643-intro-note{padding:64px 15px 15px}.detox-view-v390 .detox-v643-intro-note::before{left:15px;top:14px}.detox-view-v390 .detox-tradition-panel-v643{padding:13px}.detox-view-v390 .detox-tradition-panel-v643 p{font-size:12px}}
+
+
+/* V644 — Tarif bölümü kaldırıldı; kartlar yalnızca fayda ve geleneksel bakış sunar */
+.detox-view-v390 .detox-benefit-safety-v644{margin-top:12px}
+.detox-view-v390 .detox-recipe-detail-v390 summary{background:linear-gradient(135deg,#f8f6ff,#fffaf2)}
+.detox-view-v390 .detox-recipe-detail-v390 summary::before{content:"☯";display:inline-grid;place-items:center;width:22px;height:22px;margin-right:8px;border-radius:7px;background:#7454cf;color:#fff;font-size:12px;vertical-align:-1px}
+
+
+/* V645 — Detoks kartlarında Beslenme tarzı bağımsız açıklama penceresi */
+.detox-view-v390 .detox-card-copy-v390{display:flex;flex:1;flex-direction:column}
+.detox-view-v390 .detox-info-open-v645{width:100%;min-height:45px;margin-top:auto;padding:0 15px;border:1px solid rgba(111,80,191,.18);border-radius:13px;display:flex;align-items:center;justify-content:space-between;background:linear-gradient(135deg,#f3efff,#fff9ef);color:#654d9a;font:inherit;font-size:12.5px;font-weight:900;cursor:pointer;transition:transform .2s ease,background .2s ease,color .2s ease,box-shadow .2s ease}
+.detox-view-v390 .detox-info-open-v645 i{font-style:normal;font-size:18px}
+.detox-view-v390 .detox-info-open-v645:hover{transform:translateY(-1px);background:linear-gradient(135deg,#7050ca,#9b67e8);color:#fff;box-shadow:0 12px 23px rgba(101,72,175,.19)}
+html body dialog.detox-info-dialog-v645,dialog.detox-info-dialog-v645[open]{position:fixed!important;inset:0!important;margin:auto!important;box-sizing:border-box!important;display:block!important;width:min(900px,calc(100vw - 36px))!important;max-width:calc(100vw - 36px)!important;height:fit-content!important;max-height:min(88dvh,860px)!important;padding:0!important;overflow:hidden!important;border:1px solid rgba(220,211,244,.95)!important;border-radius:26px!important;background:#fff!important;box-shadow:0 34px 110px rgba(12,29,53,.38)!important;color:#173f56!important;text-align:left!important}
+dialog.detox-info-dialog-v645:not([open]){display:none!important}
+html body dialog.detox-info-dialog-v645::backdrop{background:rgba(8,22,38,.70)!important;backdrop-filter:blur(8px);-webkit-backdrop-filter:blur(8px)}
+.detox-info-frame-v645{display:flex;flex-direction:column;min-height:0;max-height:min(88dvh,860px);overflow:hidden;background:#fff}
+.detox-info-toolbar-v645{position:relative;z-index:4;flex:0 0 auto;min-height:72px;padding:10px 20px 10px 24px;display:flex;align-items:center;justify-content:space-between;gap:14px;background:linear-gradient(135deg,#fff,#faf8ff);border-bottom:1px solid #ebe5f7}
+.detox-info-identity-v645{display:flex;align-items:center;gap:12px;min-width:0}
+.detox-info-identity-v645>span:last-child{display:flex;flex-direction:column;gap:3px}
+.detox-info-identity-v645 strong{color:#574285;font-size:11px;font-weight:950;letter-spacing:.13em}
+.detox-info-identity-v645 small{color:#8495a3;font-size:12px}
+.detox-info-logo-v645{width:40px;height:40px;display:grid;place-items:center;flex:0 0 40px;border-radius:12px;background:linear-gradient(145deg,#7655d9,#9c6bea);color:#fff;font-size:21px;box-shadow:0 8px 16px rgba(105,73,189,.22)}
+html body .detox-info-close-v645{width:40px;height:40px;display:grid;place-items:center;flex:0 0 40px;padding:0;border:1px solid #e3dff0;border-radius:12px;background:#f8f6fc;color:#594c70;font-size:26px;line-height:1;cursor:pointer}
+html body .detox-info-close-v645:hover{background:#7050ca;color:#fff}
+.detox-info-scroll-v645{min-height:0;overflow-y:auto;overscroll-behavior:contain;scrollbar-color:#c8bce4 #f6f3fb}
+.detox-info-inner-v645{background:linear-gradient(180deg,#fff 0%,#fbfcfd 100%)}
+.detox-info-media-v645{position:relative;height:250px;overflow:hidden;background:linear-gradient(135deg,#e9f4f6,#eee8fb)}
+.detox-info-media-v645 img{width:100%;height:100%;display:block;object-fit:cover}
+.detox-info-media-v645>span{position:absolute;left:20px;bottom:18px;padding:8px 13px;border-radius:999px;background:rgba(255,255,255,.93);color:#574285;font-size:10px;font-weight:900;letter-spacing:.1em;text-transform:uppercase;box-shadow:0 8px 20px rgba(20,43,62,.13)}
+.detox-info-media-v645.is-guide{height:190px;display:grid;place-items:center;background:radial-gradient(circle at 75% 15%,rgba(255,255,255,.95),transparent 28%),linear-gradient(135deg,#dff4ef,#eee9fb)}
+.detox-info-media-v645.is-guide b{width:88px;height:88px;display:grid;place-items:center;border-radius:28px;background:rgba(255,255,255,.84);font-size:45px;box-shadow:0 15px 30px rgba(53,74,101,.10)}
+.detox-info-body-v645{padding:27px 30px 32px}
+.detox-info-category-v645{display:block;margin-bottom:7px;color:#7355b6;font-size:10.5px;font-weight:950;letter-spacing:.12em;text-transform:uppercase}
+.detox-info-body-v645>h2{margin:0;color:#153f59;font-size:clamp(27px,3.4vw,38px);line-height:1.16;letter-spacing:-.025em}
+.detox-info-lead-v645{margin:12px 0 13px;color:#607a8b;font-size:14px;line-height:1.72}
+.detox-info-tags-v645{display:flex;flex-wrap:wrap;gap:7px;margin:0 0 19px}
+.detox-info-tags-v645 span{padding:7px 10px;border-radius:999px;background:#f2eefb;color:#654e95;font-size:10.5px;font-weight:850}
+.detox-info-lenses-v645{display:grid;grid-template-columns:1fr 1fr;gap:14px}
+.detox-info-lens-v645{position:relative;overflow:hidden;padding:20px;border:1px solid;border-radius:19px}
+.detox-info-lens-v645::after{content:"";position:absolute;right:-36px;top:-44px;width:110px;height:110px;border:1px solid currentColor;border-radius:50%;opacity:.08}
+.detox-info-lens-v645>div{position:relative;display:flex;align-items:center;gap:10px;margin-bottom:12px}
+.detox-info-lens-v645>div span{width:34px;height:34px;display:grid;place-items:center;flex:0 0 34px;border-radius:10px;color:#fff;font-size:17px}
+.detox-info-lens-v645 h3{margin:0;color:inherit;font-size:15px;font-weight:900}
+.detox-info-lens-v645 p{position:relative;margin:0;color:#5d7485;font-size:13px;line-height:1.75}
+.detox-info-lens-v645.is-tcm,.detox-info-lens-v645.is-science{color:#5d468e;border-color:#ded3f5;background:linear-gradient(145deg,#f8f5ff,#fff)}
+.detox-info-lens-v645.is-east,.detox-info-lens-v645.is-life{color:#93602b;border-color:#f0d6b5;background:linear-gradient(145deg,#fff8ed,#fff)}
+.detox-info-lens-v645.is-tcm>div span,.detox-info-lens-v645.is-science>div span{background:linear-gradient(145deg,#7452d3,#9b6cea)}
+.detox-info-lens-v645.is-east>div span,.detox-info-lens-v645.is-life>div span{background:linear-gradient(145deg,#c07a36,#dfa25a)}
+.detox-info-frame-note-v645{margin:14px 0 0;padding:12px 14px;border-left:3px solid #74a9b8;border-radius:0 12px 12px 0;background:#f1f7f9;color:#627c8c;font-size:11.5px;line-height:1.65}
+.detox-info-frame-note-v645 strong{color:#37697a}
+.detox-info-warning-v645{margin:14px 0 0;padding:14px 16px;border:1px solid #f1dfbd;border-radius:15px;background:#fff8e9;color:#806943;font-size:12.5px;line-height:1.65}
+.detox-info-warning-v645 strong{color:#6d542d}
+@media(max-width:700px){html body dialog.detox-info-dialog-v645,dialog.detox-info-dialog-v645[open]{width:calc(100vw - 20px)!important;max-width:calc(100vw - 20px)!important;max-height:92dvh!important;border-radius:20px!important}.detox-info-frame-v645{max-height:92dvh}.detox-info-toolbar-v645{min-height:66px;padding:9px 12px 9px 14px}.detox-info-identity-v645 small{font-size:10.5px}.detox-info-media-v645{height:195px}.detox-info-media-v645.is-guide{height:155px}.detox-info-body-v645{padding:21px 17px 25px}.detox-info-lenses-v645{grid-template-columns:1fr}.detox-info-lens-v645{padding:16px}.detox-info-lens-v645 p{font-size:12.5px}.detox-info-body-v645>h2{font-size:27px}}
+@media(prefers-reduced-motion:reduce){.detox-view-v390 .detox-info-open-v645{transition:none}}
+
+/* V647: Açlık ve Japon tek öğün gıda kartları */
+.detox-view-v390 .detox-recipe-card-v390[data-category="aclik"] .detox-card-media-badge-v391,.detox-view-v390 .detox-recipe-card-v390[data-category="japon"] .detox-card-media-badge-v391{background:rgba(255,255,255,.94);color:#315f75}
+.detox-view-v390 .detox-recipe-card-v390[data-category="aclik"] .detox-card-media-v391 img,.detox-view-v390 .detox-recipe-card-v390[data-category="japon"] .detox-card-media-v391 img{object-position:center}
+
+/* V648: Ürogenital rehber görselleri ve altıncı gıda kartları */
+.detox-view-v390 .detox-v663-guide .detox-card-media-v391{margin-bottom:15px}
+.detox-view-v390 .detox-v663-guide .detox-card-media-v391 img{object-position:center}
+
+/* V649: Ürogenital sistem altı görselli kart */
+.detox-view-v390 .detox-v663-guide[data-category="urogenital"] .detox-card-media-v391 img{object-position:center}
