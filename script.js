@@ -10098,6 +10098,12 @@ function scrollSerumTitleBelowNavbarV514(vascularView) {
         }
     }
 
+    // V679: Geri/ileri sonrasında panel başlığı da önceki sekmeyle eşleşsin.
+    window.siteOsteoHistoryV679 = {
+        current: () => specialView.querySelector('[data-osteo-tab][aria-selected="true"]')?.dataset.osteoTab || null,
+        restore: (key) => { if (tabMeta[key]) activateTab(key); }
+    };
+
     function openSpecialView(key, options = {}) {
         activateTab(key || 'manual');
 
@@ -10163,7 +10169,12 @@ function scrollSerumTitleBelowNavbarV514(vascularView) {
             if (event.key === 'ArrowLeft') nextIndex = (index - 1 + tabs.length) % tabs.length;
             if (event.key === 'Home') nextIndex = 0;
             if (event.key === 'End') nextIndex = tabs.length - 1;
-            activateTab(tabs[nextIndex].dataset.osteoTab, { focus: true });
+            const newKeyV679 = tabs[nextIndex].dataset.osteoTab;
+            const previousKeyV679 = specialView.querySelector('[data-osteo-tab][aria-selected="true"]')?.dataset.osteoTab;
+            if (newKeyV679 !== previousKeyV679) {
+                activateTab(newKeyV679, { focus: true });
+                history.pushState({page:'osteopati-special',tab:newKeyV679},'', '#osteopati-'+newKeyV679);
+            }
         });
     });
 
@@ -12785,6 +12796,42 @@ function scrollSerumTitleBelowNavbarV514(vascularView) {
         }
     };
 
+    // V664: 27 ayrı bitkinin akademik geleneksel / osteopatik / klinik açıklamaları.
+    // Geleneksel çerçeve biyomedikal kanıtla karıştırılmamalıdır.
+    const phytoEditorialV664 = {
+        zerdecal: {"traditional":"Güney Asya Ayurveda geleneğinde zerdeçal, baharat ve bitkisel hazırlama yöntemlerinde sindirim ile günlük beden konforu bağlamında kullanılmıştır. Geleneksel metinlerdeki “denge” açıklamaları tarihsel bir çerçevedir; eklem hastalığının tedavi edildiğini kanıtlamaz.","osteopathic":"Osteopatik değerlendirmede eklem hareket açıklığı, yumuşak doku hassasiyeti, uyku ve kişinin yüklenme biçimi birlikte incelenir. Zerdeçal veya kurkumin içeren ürünler gündeme gelirse bunu manuel değerlendirme ya da hastalığı değiştiren tedavilerin yerine koymadan, eşlik eden ilaçlar ve karaciğer öyküsüyle birlikte ele almak gerekir.","clinical":"Kurkuminin inflamasyonla ilişkili bazı biyolojik yolları araştırılmaktadır; ürünlerin emilimi ve formülasyonları farklıdır. Yüksek emilimli ekstrelerde nadir karaciğer hasarı bildirimleri olduğundan yararı ve güvenliği ürüne göre değerlendirilmelidir."},
+        boswellia: {"traditional":"Boswellia reçinesi Ayurveda literatüründe “shallaki” adıyla anılır ve özellikle hareket rahatlığına ilişkin geleneksel uygulamalarda yer bulur. Geleneksel kullanımı, aynı ürünün tüm romatizmal veya bağırsak hastalıklarında etkili olduğu anlamına gelmez.","osteopathic":"Kas-eklem sertliğini değerlendirirken ağrının yeri, sabah tutukluğu, hareket alışkanlıkları ve fonksiyon kaybı ayrı ayrı incelenmelidir. Boswellia içeren bir preparat düşünülüyorsa etkisi yalnız hastanın yakınması üzerinden izlenir; egzersiz, tıbbi takip ve gerektiğinde manuel yaklaşımın yerini alamaz.","clinical":"Boswellik asitlerin inflamasyonla ilişkili süreçler üzerindeki etkileri araştırılmıştır. Klinik çalışmaların sayısı ve ürün standardizasyonu sınırlı olduğundan kesin hastalık tedavisi iddiasından kaçınılmalıdır."},
+        omega3: {"traditional":"Omega-3 bir şifalı bitki değil, balık ve bazı tohumlarda bulunan yağ asitleri grubudur. Doğu Asya beslenme geleneklerinde balığın yer alması, omega-3 kapsülünün aynı kültürel veya tıbbi etkiyi gösterdiğinin kanıtı değildir; bu başlık geleneksel beslenme perspektifinde ele alınabilir.","osteopathic":"Kas-iskelet şikâyetlerinde yalnız tek bir besin öğesine değil, genel beslenme örüntüsüne, hareket kapasitesine ve dinlenme düzenine bakılır. Omega-3 ihtiyacı varsa gıda kaynakları, mevcut ilaçlar ve kişinin kalp-damar durumu birlikte değerlendirilir; omurga veya eklem yapılarını tek başına “onaracağı” söylenmez.","clinical":"EPA ve DHA, hücre zarlarında bulunan yağ asitleridir. Romatizmal yakınmaların yönetimine ilişkin bazı çalışmalar bulunsa da sonuçlar hastalığa ve doza göre değişir; kan sulandırıcılarla kullanım ayrıca gözden geçirilmelidir."},
+        isirgan: {"traditional":"Isırgan, Anadolu ve Batı Asya halk hekimliği geleneklerinde yaprak veya kök olarak kullanılagelmiştir. Bu tarihsel kullanım, Geleneksel Çin Tıbbı ya da Ayurveda için tek bir standart reçete bulunduğu anlamına gelmez; bitkiyi kaynak aldığı geleneğe göre değerlendirmek gerekir.","osteopathic":"Bacaklarda dolgunluk veya ağırlık yakınmasında dolaşım, ödem, hareketsizlik ve sistemik nedenler birbirinden ayrılmalıdır. Isırganın geleneksel idrar artırıcı kullanımından yola çıkarak kas gerginliği ya da bağ dokusu sorununa doğrudan tedavi etkisi atfedilmez.","clinical":"Isırganın farklı bitki bölümlerinden elde edilen ürünler aynı içerikte değildir. Özellikle idrar söktürücü, tansiyon veya diyabet ilacı kullanan kişilerde sıvı-elektrolit dengesi ve etkileşimler önemlidir."},
+        sarimsak: {"traditional":"Sarımsak, Asya ve Orta Doğu mutfaklarında uzun süredir yer alan bir besindir; Ayurveda ve farklı halk hekimliği geleneklerinde de anılır. Geleneksel “ısıtıcı” veya canlılıkla ilişkilendirilen yorumlar, modern dolaşım hastalıklarının tedavisi yerine geçmez.","osteopathic":"Kas ve dolaşım şikâyetlerinin değerlendirilmesi; hareket kısıtlılığı, ağrının dağılımı, damar sağlığı ve eşlik eden ilaç kullanımını içerir. Sarımsağı önce bir gıda olarak değerlendirmek, yoğun ekstreleri ise kişisel kanama riski ve sindirim toleransına göre ele almak uygundur.","clinical":"Allisin ve diğer organokükürt bileşikleri araştırılan unsurlardır. Takviye formunda özellikle kanama riski, ameliyat öncesi dönem ve mide-bağırsak tahrişi açısından dikkat gerekir."},
+        civanpercemi: {"traditional":"Civanperçemi Anadolu, Balkan ve Avrupa bitkisel geleneklerinde sindirim ve günlük rahatlama çaylarıyla anılır. Doğu tıbbı adına evrensel bir organ temizleme veya “enerji açma” etkisi ileri sürmek doğru değildir; geleneksel kullanım ile deneysel sonuçlar ayrılmalıdır.","osteopathic":"Karın gerginliğiyle birlikte görülen beden tutukluğunda solunum paternleri, postür, stres, uyku ve sindirim yakınmaları aynı görüşmede değerlendirilebilir. Civanperçemi yalnız geleneksel bir seçenek olarak konuşulabilir; miyofasyal ağrı veya spazm için kanıtlanmış tedavi değildir.","clinical":"Bazı uçucu yağ ve flavonoid bileşikleri deneysel çalışmalarda incelenmiştir. Papatyagiller ailesine alerji ve özel durumlarda güvenlik verisinin sınırlı olması göz önünde tutulmalıdır."},
+        zencefil: {"traditional":"Geleneksel Çin Tıbbında taze ve kurutulmuş zencefil farklı niteliklerle tanımlanır; Ayurveda’da da sindirim ve sıcaklık dengesi bağlamında yer alır. Bu kavramlar tarihsel uygulama dilidir, modern organ işlevlerinin bire bir karşılığı değildir.","osteopathic":"Bulantı, karın rahatsızlığı ve buna eşlik eden bedensel gerginlikte sindirim sistemi yakınmaları, beslenme, uyku ve hareket kapasitesi birlikte değerlendirilir. Zencefilin bir kişinin bulantısına yardımcı olabilmesi, postür bozukluğunu veya kas-iskelet hastalığını doğrudan düzelttiği anlamına gelmez.","clinical":"Gingerol ve şogaol gibi bileşenler araştırılmıştır. Bazı bulantı türlerinde yarar gösteren veriler bulunurken diğer kullanımlarda sonuçlar sınırlıdır; reflü ve ilaç etkileşimleri değerlendirilmelidir."},
+        yesilcay: {"traditional":"Çay, Çin ve Doğu Asya kültürlerinde günlük ritüel ve beslenmenin bir parçasıdır. Geleneksel bağlamda zihinsel açıklık ve dengeyle ilişkilendirilmesi, yoğun yeşil çay ekstrelerinin sağlıklı veya tedavi edici olduğu anlamına gelmez.","osteopathic":"Gün boyu hissedilen zihinsel yorgunluk, uyku kalitesi, stres, hareket azlığı ve kafein tüketimiyle birlikte değerlendirilmelidir. Yeşil çayı odaklanma desteği olarak konuşurken kişinin çarpıntı, uyku bozukluğu ve ilaç kullanımı önceliklidir.","clinical":"Kateşinler, özellikle EGCG, araştırılan polifenollerdendir. Normal çay tüketimiyle yoğun ekstreler eşdeğer değildir; bazı konsantre ürünlerle karaciğer hasarı bildirimleri bulunduğundan dikkat gerekir."},
+        kekik: {"traditional":"Kekik Doğu Akdeniz ve Anadolu mutfak-botanik geleneğinin önemli aromatik bitkilerindendir. Geleneksel kullanımı çoğunlukla gıda, koku ve dönemsel boğaz-sindirim konforuyla ilişkilidir; klasik Çin tıbbındaki bir bitkiyle özdeşleştirilmemelidir.","osteopathic":"Solunum rahatlığı veya göğüs çevresi gerginliği bildiren kişilerde öncelik solunum sistemi açısından tıbbi değerlendirmedir. Diyafram hareketleri ve postür ayrı olarak ele alınabilir; kekiğin uçucu yağıyla solunum hastalığı tedavisi iddiası kurulmaz.","clinical":"Timol ve karvakrolün laboratuvar düzeyinde incelenen özellikleri vardır. Bu veriler konsantre uçucu yağın ağızdan alınmasının etkili veya güvenli olduğu anlamına gelmez; tahriş riski yüksektir."},
+        corekotu: {"traditional":"Çörek otu, Orta Doğu ve Güney Asya beslenme geleneklerinde ve Unani gibi tarihsel tıp yaklaşımlarında yer bulmuştur. “Her derde deva” türü yaygın halk söylemleri bilimsel kanıt olarak değerlendirilmemelidir.","osteopathic":"Kronik ağrı, yorgunluk ve eklem hassasiyeti tek bir yağ veya bitkiyle açıklanamayacak çok etkenli yakınmalardır. Osteopatik değerlendirmede hareket, günlük yüklenme, metabolik durum ve tıbbi tanı birlikte dikkate alınır; çörek otu bunların yerine geçmez.","clinical":"Timokinon başta olmak üzere çeşitli bileşenleri araştırılmaktadır. İnsan çalışmalarındaki ürünler, dozlar ve sonuçlar değişkendir; yoğun yağ formlarında mide toleransı ve ilaç etkileşimleri önemlidir."},
+        kusburnu: {"traditional":"Kuşburnu, Anadolu ve çevre bölgelerin kış çayı ve geleneksel beslenme kültüründe yaygın bir meyvedir. Tarihsel “güçlendirme” anlayışı, sistemik hastalıkların tedavisine yönelik klinik kanıtla karıştırılmamalıdır.","osteopathic":"İyileşme ve dokuların normal işlevi için yalnızca tek bir meyvenin değil, yeterli enerji, protein, vitamin ve sıvı alımının bütünlüğü önemlidir. Kuşburnu dengeli beslenmede yer alabilir; hareket kısıtlılığının nedeni ayrı değerlendirilir.","clinical":"C vitamini ve çeşitli polifenoller içerebilir; miktarlar ürünün işlenmesine ve hazırlanmasına göre değişir. Yoğun ekstreyle çay veya meyve tüketimi aynı kanıt düzeyinde değildir."},
+        beyazsogut: {"traditional":"Söğüt kabuğu Avrupa, Batı Asya ve çevre bölgelerde ağrı ve ateşle ilişkili halk uygulamalarında kullanılmıştır. Bu tarihsel bilgi, ağrının altta yatan nedenini giderdiğinin veya modern ilaçlar kadar güvenli olduğunun kanıtı değildir.","osteopathic":"Bel, sırt ya da eklem ağrısında postür, yüklenme, nörolojik bulgular ve iltihabi hastalık olasılığı değerlendirilmelidir. Beyaz söğüt gibi salisilat içerebilen ürünlerin ağrıyı maskelemesi olasıdır; tanı ve uygun tedavi planı geciktirilmemelidir.","clinical":"Salisin türevleri nedeniyle aspirin benzeri istenmeyen etkiler ve ilaç etkileşimleri gündeme gelebilir. Kanama riski, aspirin alerjisi ve çocuklarda kullanım açısından özel dikkat gerekir."},
+        papatya: {"traditional":"Papatya, Anadolu, Akdeniz ve Avrupa çay geleneklerinde sakinleşme ve sindirim rahatlığı için kullanılan bitkilerdendir. Geleneksel kullanım anlatılırken türün doğrulanması ve etken maddelerin ürünlere göre değişebileceği belirtilmelidir.","osteopathic":"Uykuya dalma güçlüğü ve kas gerginliğiyle başvuran kişilerde ağrı, stres, uyku alışkanlıkları ve günlük hareket birlikte ele alınır. Papatya çayı rahatlatıcı bir ritüel olabilir; kas-iskelet kaynaklı ağrıya doğrudan bir tedavi olarak sunulmaz.","clinical":"Apigenin gibi flavonoidler araştırılmıştır. Klinik yarar verileri sınırlıdır; papatyagiller alerjisi, sedatif ilaçlar ve diğer etkileşimler değerlendirilmelidir."},
+        biberiye: {"traditional":"Biberiye, Akdeniz ve Anadolu mutfaklarında aromatik bir bitkidir; tarihsel bitkisel geleneklerde uyanıklık ve beden rahatlığıyla ilişkilendirilmiştir. Bu kültürel bilgi, hafızayı güçlendirdiği veya dolaşım bozukluğunu tedavi ettiği iddiası değildir.","osteopathic":"Boyun-omuz gerginliği ve dikkat dağınıklığında ergonomi, solunum, uyku ve fiziksel yüklenme değerlendirilir. Biberiye aromasının öznel olarak iyi hissettirmesi mümkün olsa da bu durum kas ve eklem yapılarında tedavi edici etki gösterdiğini kanıtlamaz.","clinical":"Rosmarinik asit ve uçucu yağ bileşenleri deneysel araştırmalarda incelenmiştir. Yoğun yağların ağızdan alınması gıda olarak kullanılan küçük miktarlara göre çok farklı güvenlik riski taşır."},
+        melisa: {"traditional":"Melisa, Orta Doğu ve Avrupa bitkisel çay geleneklerinde sakinlik ve sindirim rahatlığıyla ilişkilendirilir. Geleneksel nitelendirmeler kişisel deneyime dayanabilir; uyku bozukluğunun nedenini tespit eden tıbbi değerlendirme yerine geçmez.","osteopathic":"Kaslarda koruyucu gerginliğin eşlik ettiği uyku ve stres yakınmalarında ağrı döngüsü, duruş, nefes alışkanlıkları ve ruhsal yük birlikte ele alınır. Melisa yalnız destekleyici bir yaşam alışkanlığı olarak konuşulabilir; gerekirse uyku ve ruh sağlığı değerlendirmesi önceliklidir.","clinical":"Melisanın bazı sakinlik ve uyku çıktıları üzerindeki etkileri küçük çalışmalarda incelenmiştir. Sonuçlar kesin değildir; tiroit tedavisi veya sakinleştirici ilaç kullananlarda uygunluk ayrıca değerlendirilmelidir."},
+        atescicegi: {"traditional":"Feverfew olarak da bilinen ateş çiçeği, Batı Asya ve Balkanlar kaynaklı geleneksel bitkisel uygulamalarda anılmıştır. Özellikle baş ağrısı ile tarihsel ilişkisi olsa da klasik Doğu tıbbında her baş ağrısına aynı açıklamayla yaklaşılması doğru değildir.","osteopathic":"Tekrarlayan baş ağrılarında boyun hareket açıklığı, uyku, stres ve eşlik eden nörolojik belirtiler değerlendirilirken migrenin ayrı bir nörolojik hastalık olduğu unutulmamalıdır. Osteopatik yaklaşım, gerekli tıbbi tanı ve koruyucu tedavinin yerine geçmez.","clinical":"Tanacetum parthenium üzerinde migrenin önlenmesine yönelik çalışmalar tutarsızdır. Gebelikte kullanılmamalı; kanama riski, ameliyat öncesi dönem ve papatyagiller alerjisi dikkate alınmalıdır."},
+        lavanta: {"traditional":"Lavanta, Akdeniz kökenli geleneksel bitkisel ve koku uygulamalarında gevşeme ve dinlenme ile ilişkilendirilir. Kokuya verilen öznel yanıt, tüm kişilerde uyku bozukluğunu iyileştirdiğinin kanıtı değildir.","osteopathic":"Boyun-omuz gerginliğiyle birlikte uyku bozukluğu varsa iş yükü, postür, ağrı, dinlenme ve kaygı düzeyi birlikte sorgulanır. Lavantanın koku yoluyla kullanımı rahatlama ritüelinin bir parçası olabilir, fakat manuel tedavi veya tıbbi uyku değerlendirmesinin yerine geçmez.","clinical":"Linalool ve linalil asetat gibi uçucu yağ bileşenleri araştırılmıştır. Uçucu yağın cilde seyreltilmeden uygulanması veya ağızdan gelişigüzel alınması güvenli kabul edilmemelidir."},
+        ashwagandha: {"traditional":"Ashwagandha, Ayurveda’da “rasayana” başlığıyla ilişkilendirilen bitkilerden biridir. Bu tarihsel kavram canlılık ve dayanıklılık gibi geniş bir geleneği anlatır; modern klinik araştırmalarda her hastalığa etkili olduğu anlamına gelmez.","osteopathic":"Kronik gerginlik, yorgunluk ve uyku sorunlarında yalnız kas tonusuna değil, kişinin iş yüküne, psikolojik durumuna, hareket kapasitesine ve altta yatan hastalıklarına bakılır. Ashwagandha kullanımı özellikle otoimmün, tiroit ve karaciğer hastalığı açısından ayrıca değerlendirilmelidir.","clinical":"Bazı preparatların stres ve uykuyla ilişkili sonuçlarında yarar bildiren çalışmalar vardır; diğer endikasyonlarda kanıt yetersizdir. Karaciğer hasarı bildirimleri, ilaç etkileşimleri ve gebelikte sakıncalı olması önemlidir."},
+        pasiflora: {"traditional":"Pasiflora Amerika kökenli bir bitkidir; bu nedenle onu tarihsel Çin veya Ayurveda tıbbının özgün bitkisi gibi sunmak doğru olmaz. Geleneksel kullanımında dinlenme ve sakinlik öne çıkar; Doğu’nun bütüncül yaşam ritmi fikriyle ancak karşılaştırmalı olarak ilişkilendirilebilir.","osteopathic":"Uykuya geçişteki bedensel huzursuzluk; ağrı, gün içi hareket miktarı, solunum alışkanlıkları ve stresle birlikte ele alınabilir. Pasiflora üzerine düşünülse bile devam eden kas spazmı veya nörolojik yakınmalar için tanı ve kanıta dayalı yaklaşım gereklidir.","clinical":"Çarkıfelek bitkisinin sedatif etkilere ilişkin verileri sınırlı ve ürünler arasında değişkendir. Uyku ilaçları ve diğer sakinleştiricilerle birlikte kullanımda istenmeyen etki riski artabilir."},
+        ginkgo: {"traditional":"Ginkgo ağacı Çin kökenli olup tarihsel Çin bitkisel uygulamalarında bilinir. Geleneksel “kan dolaşımı” ve “denge” anlatımları, modern damar hastalıklarını veya hafıza sorunlarını tedavi ettiğini kanıtlayan sonuçlar değildir.","osteopathic":"Baş dönmesi, odaklanma veya bacak yakınmalarında önce vasküler, nörolojik ve metabolik nedenler dışlanmalıdır. Ginkgo bu değerlendirmelerin yerine geçmez; hareket ve fonksiyon ölçümü ile ilaç öyküsü, özellikle kan sulandırıcılar, gözden geçirilmelidir.","clinical":"Ginkgo ekstreleri hafıza ve dolaşım konularında çalışılmıştır ancak sonuçlar birçok kullanımda tutarsızdır. Kanama riski ve ilaç etkileşimleri klinik karar açısından önemlidir."},
+        kediotu: {"traditional":"Kediotu Avrupa ve Batı Asya halk hekimliğinde, özellikle uyku ve sakinleşmeyle ilişkili kullanılmıştır. Bu kullanım onu otomatik olarak Geleneksel Çin Tıbbı formüllerinin eşdeğeri yapmaz.","osteopathic":"Uykuya dalma güçlüğü olan kişilerde ağrı, gece hareketleri, yatış pozisyonu, stres ve uyku hijyeni değerlendirilir. Kediotunun olası yatıştırıcı etkisi konuşulsa da altta yatan uyku apnesi veya kronik ağrının nedeni ayrıca araştırılmalıdır.","clinical":"Valerenik asit ve diğer bileşenlere yönelik araştırmalar sürmektedir; uyku için sonuçlar kesin değildir. Sedatif ilaçlar ve alkolle birlikte kullanımda dikkat gerekir."},
+        rezene: {"traditional":"Rezene, Anadolu, Orta Doğu ve Güney Asya mutfak-bitki geleneklerinde sindirim sonrası rahatlama ile ilişkilendirilir. Ayurveda’da sindirim düzeni bağlamında yer alsa da “gazı kesin giderir” şeklinde tedavi vaadi kurulamaz.","osteopathic":"Yemek sonrası karın şişkinliğiyle gelen kişide besin toleransı, bağırsak düzeni, diyafram solunumu ve karın duvarı gerginliği birlikte değerlendirilebilir. Rezene bir gıda/çay alışkanlığı olarak ele alınırken açıklanamayan veya şiddetli karın ağrısı tıbbi inceleme gerektirir.","clinical":"Anetol gibi uçucu bileşenler araştırılmıştır. Geleneksel kullanım yaygın olsa da klinik yarar kanıtı sınırlıdır; alerjiler ve yoğun esansiyel yağ preparatları için özel dikkat gerekir."},
+        aloe: {"traditional":"Aloe farklı sıcak iklim bölgelerinde ve bazı Güney Asya geleneklerinde cilt bakımı bağlamında kullanılmıştır. Yaprak jeliyle lateks bölümünü ayırmak gerekir; her aloe preparatını aynı özellikte kabul etmek hatalıdır.","osteopathic":"Cilt tahrişi, karın ağrısı veya bağırsak yakınmalarında önce neden ve mevcut hastalık değerlendirilir. Aloe içeren ürünler kas-iskelet sistemi için doğrudan yapı onarıcı olarak sunulmaz; özellikle ishal eğilimi olan kişilerde ürünün türü önemlidir.","clinical":"Aloe lateksi ve bazı tam yaprak ekstreleri ishal, elektrolit kaybı ve başka ciddi risklerle ilişkilidir. Haricen kullanılan saf jel ile ağızdan alınan ürünlerin güvenliği ve kanıt düzeyi farklıdır."},
+        nane: {"traditional":"Nane, Akdeniz ve Batı Asya yemek ve çay geleneklerinde sindirim rahatlığıyla ilişkilendirilir. Bazı geleneksel Doğu tıbbı yaklaşımlarında aromatik bitkilerin kullanılması, nane yağıyla her karın ağrısının tedavi edildiği anlamına gelmez.","osteopathic":"Karın spazmı ve duruşa eşlik eden kas gerginliğinde sindirim sistemi hastalıkları, stres, nefes alışkanlıkları ve hareket düzeyi bütüncül değerlendirilir. Reflüsü olan kişide nane yağının yakınmaları artırabileceği dikkate alınır.","clinical":"Enterik kaplı nane yağı preparatları için irritabl bağırsak sendromunda kısa dönem yarara ilişkin sınırlı kanıt vardır; nane çayına aynı etki doğrudan aktarılmaz. Reflü, yanma ve ilaç etkileşimleri açısından dikkat gerekir."},
+        psyllium: {"traditional":"Karnıyarık otu (psyllium) Güney Asya, özellikle Hint beslenme ve bitkisel geleneklerinde lif kaynağı olarak kullanılmıştır. Ayurveda literatüründeki yeri, tüm bağırsak hastalıklarının tek bir lifle tedavi edildiği anlamına gelmez.","osteopathic":"Dışkılama düzeni ve karın şişkinliğinin ele alınmasında beslenme lifi, su alımı, günlük hareket, kullanılan ilaçlar ve pelvik taban yakınmaları birlikte değerlendirilir. Karnıyarık otu mekanik bir lif desteği olarak ele alınabilir; bağırsak darlığı veya yutma sorunu varsa uygun olmayabilir.","clinical":"Psyllium çözünür lif içerir ve bazı kişilerde dışkı kıvamı ile kolesterol yönetimine yardımcı olabilir. Yeterli sıvı alımı şarttır; ilaçlarla aynı anda alınması emilimlerini etkileyebilir."},
+        rhodiola: {"traditional":"Rhodiola soğuk iklimli Kuzey Asya ve Sibirya bölgelerinin geleneksel bitkisel pratiklerinde anılır. “Adaptogen” terimi modern araştırma ve pazarlama dilinde yaygındır; geleneksel kullanımın klinik etkinlik kanıtı yerine geçmediği belirtilmelidir.","osteopathic":"Sürekli yorgunlukta kas-iskelet yakınmaları kadar anemi, uyku bozukluğu, tiroit sorunları ve psikososyal yük de değerlendirilir. Rhodiola kullanımı gündeme gelse bile kişinin efor toleransı ve toparlanma süreci kanıta dayalı tıbbi incelemeyle izlenmelidir.","clinical":"Stres ve yorgunlukla ilişkili çalışmaları küçük ve heterojendir; güvenilir tedavi etkisi kesinleşmemiştir. Uyarılma, çarpıntı eğilimi veya ilaç etkileşimleri olan kişilerde dikkatli değerlendirme gerekir."},
+        ginseng: {"traditional":"Panax ginseng, Doğu Asya geleneksel tıbbında uzun süredir kullanılır ve “qi” gibi kavramlarla açıklanabilir. Qi, modern fizyolojide doğrudan ölçülen bir organ işlevi değildir; geleneksel açıklama klinik sonuçların yerine geçirilmemelidir.","osteopathic":"Halsizlik ve hareket kapasitesinde azalma yaşayan kişilerde kas gücü, uyku, dengeli beslenme, kalp-damar durumu ve ilaçlar birlikte incelenir. Ginsengin canlılık vaadi altta yatan yorgunluk nedenlerinin araştırılmasını geciktirmemelidir.","clinical":"Ginsenositler farklı preparatlarda değişen miktarda bulunur. Performans ve bilişsel etkiler konusunda sonuçlar sınırlı veya tutarsızdır; kan şekeri, kanama riski, uykusuzluk ve ilaç etkileşimleri değerlendirilmelidir."}
+    };
+    Object.entries(phytoEditorialV664).forEach(([id,detail]) => {
+        if (herbCatalog[id]) Object.assign(herbCatalog[id],detail);
+    });
+
+
     const diseaseSets = {
         as: {
             title: 'Ankilozan Spondilit için Bitkisel Destekler',
@@ -13293,6 +13340,15 @@ function scrollSerumTitleBelowNavbarV514(vascularView) {
                     </ul>
                 </section>
             </div>
+            <section class="phyto-editorial-v664" aria-label="${herb.name} geleneksel ve osteopatik inceleme">
+                <div class="phyto-editorial-heading-v664"><span>BİTKİYE ÖZEL BİLİMSEL VE GELENEKSEL DEĞERLENDİRME</span><h4>${herb.name} hakkında bütüncül bakış</h4></div>
+                <div class="phyto-editorial-grid-v664">
+                    <article><span>01 · GELENEKSEL YAKLAŞIM</span><h5>Doğu Tıbbında Geleneksel Bakış</h5><p>${herb.traditional || ''}</p></article>
+                    <article><span>02 · FONKSİYONEL YAKLAŞIM</span><h5>Osteopatik ve Bütüncül Değerlendirme</h5><p>${herb.osteopathic || ''}</p></article>
+                    <article class="phyto-editorial-science-v664"><span>03 · KLİNİK ÇERÇEVE</span><h5>Bileşenler, Kanıt ve Güvenlik</h5><p>${herb.clinical || ''}</p></article>
+                </div>
+                <p class="phyto-editorial-disclaimer-v664">Geleneksel kullanım, etkinliği kanıtlanmış tedavi anlamına gelmez. Osteopatik değerlendirme de bitkisel ürünün klinik yararını garanti etmez. Hekim görüşü olmadan düzenli tedavinizi değiştirmeyin.</p>
+            </section>
             <div class="phyto-modal-warning-v350"><strong>Dikkat:</strong> ${herb.caution}</div>
         `;
         modal.classList.add('is-open');
@@ -13513,6 +13569,16 @@ function scrollSerumTitleBelowNavbarV514(vascularView) {
         detailImage.onerror = function(){ this.onerror=null; this.src='phyto-biberiye-v412.webp'; };
         detailTags.innerHTML = [`${context.badge} • ${context.diseaseName}`, ...(herb.tags || [])].map((tag,index) => `<span${index === 0 ? ' class="is-context-v413"' : ''}>${escapeText(tag)}</span>`).join('');
 
+        const editorialV664 = `<section class="phyto-editorial-v664 phyto-editorial-inline-v664" aria-label="${escapeText(herb.name)} için geleneksel ve osteopatik açıklamalar">
+          <div class="phyto-editorial-heading-v664"><span>FİTOTERAPİ • BÜTÜNCÜL DEĞERLENDİRME</span><h4>${escapeText(herb.name)} için farklı bakış açıları</h4></div>
+          <div class="phyto-editorial-grid-v664">
+            <article><span>01 · TARİHSEL BAĞLAM</span><h5>Doğu Tıbbında Geleneksel Bakış</h5><p>${escapeText(herb.traditional)}</p></article>
+            <article><span>02 · KLİNİK GÖRÜŞ</span><h5>Osteopatik ve Bütüncül Değerlendirme</h5><p>${escapeText(herb.osteopathic)}</p></article>
+            <article class="phyto-editorial-science-v664"><span>03 · KANIT VE GÜVENLİK</span><h5>Tıbbi Değerlendirme</h5><p>${escapeText(herb.clinical)}</p></article>
+          </div>
+          <p class="phyto-editorial-disclaimer-v664">Bu açıklamalar bilgilendirme amaçlıdır; geleneksel kullanım klinik etkililik kanıtı değildir. Tanı ve tedavi planı hekim tarafından bireysel olarak değerlendirilmelidir.</p>
+        </section>`;
+
         if (activeTab === 'benefits') {
             detailPanel.innerHTML = `
                 <div class="phyto-panel-eyebrow-v413"><span>${escapeText(context.badge)}</span> YAKINMA ODAKLARI</div>
@@ -13536,6 +13602,7 @@ function scrollSerumTitleBelowNavbarV514(vascularView) {
                     <article><span>03</span><strong>Destek olarak konumlandır</strong><p>Ürünün formu ve kullanım süresi, mevcut tedaviyi değiştirmeden hekimle birlikte planlanır.</p></article>
                 </div>
                 <div class="phyto-evidence-note-v413"><strong>Kanıt ve beklenti</strong><p>${escapeText(context.evidence)}</p></div>
+                ${editorialV664}
             `;
         } else if (activeTab === 'caution') {
             detailPanel.innerHTML = `
@@ -13561,6 +13628,7 @@ function scrollSerumTitleBelowNavbarV514(vascularView) {
                 <div class="phyto-section-head-v413"><span>ÖNE ÇIKAN YAKINMA ODAKLARI</span><small>${escapeText(context.badge)} • 3 BAŞLIK</small></div>
                 <ul class="phyto-herb-list-v351 phyto-herb-list-v413">${(context.focus || []).map(item => `<li>${escapeText(item)}</li>`).join('')}</ul>
                 <div class="phyto-evidence-note-v413"><strong>Tıbbi çerçeve</strong><p>${escapeText(context.evidence)}</p></div>
+                ${editorialV664}
             `;
         }
     }
@@ -13979,7 +14047,7 @@ function scrollSerumTitleBelowNavbarV514(vascularView) {
 })();
 
 // =========================================================
-// V362 - İĞNELİ UYGULAMALAR: OZON / PROLOTERAPİ / NÖRAL TERAPİ / NÖRALPRO
+// V362/V665 - İĞNELİ UYGULAMALAR: OZON / MİNOR OZON / PRP / PROLOTERAPİ / NÖRAL TERAPİ / NÖRALPRO
 // Serum kartlarındaki mantıkla özel bilgi sayfası açar.
 // =========================================================
 (function () {
@@ -14022,6 +14090,51 @@ function scrollSerumTitleBelowNavbarV514(vascularView) {
             ],
             note: 'Lokal ozon enjeksiyonu, mevcut tanı ve temel tedavinin yerine geçmez. Uygulamanın yöntemi, konsantrasyonu ve seans planı hekim değerlendirmesine göre belirlenmelidir.',
             safety: '<strong>Önemli güvenlik ayrımı:</strong> Burada anlatılan uygulama lokal enjeksiyondur. Ozon gazının doğrudan damar içine verilmesi aynı işlem değildir ve güvenli bir uygulama olarak değerlendirilmez.'
+        },
+        'Minor Ozon': {
+            chip: 'MİNÖR OTOHEMOTERAPİ · TIBBİ BİLGİ',
+            title: 'Minor Ozon (Minör Otohemoterapi)',
+            image: './injection-ozon-v80.png?v=150',
+            intro: 'Minör otohemoterapi, kişiden alınan az miktardaki venöz kanın vücut dışında, tıbbi oksijen-ozon karışımıyla kontrollü temas ettirilmesinin ardından kas içine geri uygulanması olarak tanımlanır. Lokal ozon enjeksiyonundan ve majör otohemoterapiden farklı bir yöntemdir. Etkinlik verileri sınırlı olduğundan yerleşik hastalık tedavilerinin yerine sunulamaz.',
+            tags: ['Kişinin kendi kanı', 'Kas içi uygulama', 'Sınırlı klinik kanıt', 'Hekim değerlendirmesi'],
+            panels: [
+                { kicker: 'TANIM', title: 'Minor ozon nasıl bir uygulamadır?', body: 'Minör otohemoterapide işlem için hastanın kendi kanı kullanılır. Türkiye’deki GETAT düzenleme tanımında kanın ozon-oksijen karışımı ile vücut dışında işlenerek kas içine geri uygulanması belirtilir. Damar içine ozon gazı verilmesi bu işlemin parçası değildir.' },
+                { kicker: 'BİYOLOJİK GEREKÇE', title: 'Hangi mekanizmalar araştırılıyor?', body: 'Ozonla temas sonucunda oluşan oksidatif sinyal moleküllerinin hücresel yanıtları ve immünolojik süreçleri etkileyebileceği öne sürülmektedir. Bunlar çoğunlukla deneysel ve mekanistik bulgulardır; belirli bir hastalıkta klinik yararın kanıtlandığı anlamına gelmez.' },
+                { kicker: 'KANIT DÜZEYİ', title: 'Hangi durumlarda değerlendirilebilir?', body: 'Tamamlayıcı tıp literatüründe farklı yakınmalar için kullanımı tarif edilse de minör otohemoterapiye özel, yeterli büyüklükte ve iyi kontrollü klinik çalışmalar azdır. Bağışıklık güçlendirme, enfeksiyon giderme veya kronik hastalıkları iyileştirme gibi iddialar kesin sonuç olarak sunulmamalıdır.' },
+                { kicker: 'ÖN DEĞERLENDİRME', title: 'Hekim neleri sorgular?', list: ['Mevcut tanı, şikâyetin nedeni ve kanıta dayalı temel tedavi planı', 'Enfeksiyon bulguları, kanama eğilimi, kullanılan antikoagülanlar ve kan hastalıkları', 'Daha önceki enjeksiyon reaksiyonları ve kişiye özel riskler'] },
+                { kicker: 'GÜVENLİK', title: 'Olası istenmeyen etkiler', body: 'Kan alma ve kas içi enjeksiyonla ilişkili ağrı, morarma, kanama, vazovagal yakınma ve enfeksiyon riski bulunur. Kanla temas eden ekipmanın sterilitesi ve tıbbi uygulama yetkinliği zorunludur. Ozonun solunması zararlı olabilir; damar içine gaz verilmesi ciddi komplikasyon riski taşır.' },
+                { kicker: 'BÜTÜNCÜL BAKIŞ', title: 'Osteopatik değerlendirme ile ilişkisi', body: 'Kas-iskelet veya kronik ağrı yakınmalarında postür, hareket kapasitesi, uyku, fiziksel yüklenme, beslenme ve eşlik eden hastalıklar birlikte değerlendirilir. Minör otohemoterapinin bu unsurlar üzerinde kanıtlanmış özgül bir etkisi gösterilmiş değildir; egzersiz, rehabilitasyon ve gerekli tıbbi tedavilerin yerine geçmez.' },
+                { kicker: 'SÜREÇ', title: 'Uygulama ve takip nasıl ele alınır?', body: 'Önce tıbbi gereklilik, belirsiz yarar, alternatifler ve riskler hakkında bilgilendirilmiş onam değerlendirilir. Uygulama ancak yetkili sağlık ortamında yürütülebilir; herkese uygun tek bir seans sayısı veya kesin sonuç süresi yoktur.' }
+            ],
+            note: 'Minor ozon, ozon-oksijen karışımının doğrudan ekleme verilmesi değildir. Minör otohemoterapinin bağımsız bir hastalık tedavisi olarak yararı henüz yüksek kaliteli klinik çalışmalarla netleştirilmemiştir. Kanıta dayalı teşhis, tedavi ve rehabilitasyon önceliklidir.',
+            safety: '<strong>Tıbbi uyarı:</strong> Bu uygulama bir bağışıklık artırma veya kesin iyileşme vaadi değildir. Solunum yoluyla ozon maruziyeti ve damar içine doğrudan gaz enjeksiyonu ciddi tehlike oluşturabilir. Kişisel uygunluk, hekim ve yetkili sağlık kuruluşunca değerlendirilmelidir.',
+            references: [
+                ['T.C. Sağlık Bakanlığı – GETAT Uygulama Yöntemleri', 'https://tcimanatolia.saglik.gov.tr/EN-8648/main-regulation.html'],
+                ['Tıbbi ozon literatürü: mekanizmalar ve kanıt sınırlılıkları', 'https://pmc.ncbi.nlm.nih.gov/articles/PMC13253314/']
+            ]
+        },
+        'PRP Tedavisi': {
+            chip: 'TROMBOSİTTEN ZENGİN PLAZMA · PRP',
+            title: 'PRP (Platelet-Rich Plasma)',
+            image: './treatment-prp-v98.png?v=150',
+            intro: 'PRP, kişinin kendi venöz kanından santrifüj gibi ayrıştırma işlemleriyle elde edilen, trombosit yoğunluğu artırılmış plazma fraksiyonudur. Seçilmiş kas-iskelet sistemi sorunlarında eklem içine veya hedef yumuşak doku bölgesine enjeksiyon olarak değerlendirilen ortobiyolojik bir yöntemdir.',
+            tags: ['Otolog kan ürünü', 'Trombositler ve büyüme faktörleri', 'Eklem & tendon', 'Rehabilitasyonla birlikte'],
+            panels: [
+                { kicker: 'TANIM', title: 'PRP nedir, nasıl elde edilir?', body: 'Kişiden alınan kan, steril ve uygun bir hazırlama sistemiyle bileşenlerine ayrılır; elde edilen trombositten zengin plazma, klinik endikasyona göre hedef bölgeye uygulanabilir. PRP tek bir standart ürün değildir: trombosit yoğunluğu, lökosit içeriği ve hazırlama yöntemleri sonuçları etkileyebilir.' },
+                { kicker: 'MEKANİZMA', title: 'Biyolojik olarak ne hedeflenir?', body: 'Trombositler; PDGF, TGF-β ve VEGF gibi büyüme faktörleri ile çeşitli sinyal molekülleri içerir. Bunların inflamatuvar yanıt ve doku iyileşme süreçleri üzerinde rol oynayabileceği araştırılmaktadır. Ancak bu mekanizmalar kıkırdağın kesin olarak yenilendiğini veya bağ dokusunun mutlaka onarıldığını göstermez.' },
+                { kicker: 'ENDİKASYON DEĞERLENDİRMESİ', title: 'Hangi kas-iskelet yakınmalarında gündeme gelir?', body: 'Özellikle hafif-orta dereceli diz osteoartriti PRP’nin araştırıldığı alanların başında gelir. Bazı tendinopatiler ve spor yaralanmalarında da çalışmalar yapılmıştır; etkinlik tanıya, dokuya ve uygulama protokolüne göre değişir. İleri eklem harabiyetinde rutin ve garantili sonuç beklenmemelidir.' },
+                { kicker: 'KLİNİK KANIT', title: 'Araştırmalar ne söylüyor?', body: 'Diz kireçlenmesinde bazı klinik çalışmalarda ağrı ve fonksiyon açısından yarar bildirilirken, araştırmaların kalitesi ve PRP hazırlama yöntemlerinin farklılığı sonuçları belirsizleştirir. 2026 tarihli AAPM&R rehberliği, standart konservatif yaklaşımlara rağmen yakınmaları süren hafif-orta diz osteoartritli seçilmiş hastalarda değerlendirmeyi önerir; bu tüm hastalar için kesin bir yarar anlamına gelmez.' },
+                { kicker: 'ÖN HAZIRLIK', title: 'Uygunluk nasıl belirlenir?', list: ['Tanının netleştirilmesi, muayene ve gerekirse görüntüleme bulguları', 'Kanama bozukluğu, trombosit sayısı, aktif enfeksiyon ve sistemik hastalıkların gözden geçirilmesi', 'Antikoagülan/antiplatelet tedaviler ve diğer ilaçların hekimce değerlendirilmesi; ilaçlar kendi kendine kesilmemelidir'] },
+                { kicker: 'YAN ETKİLER', title: 'Olası riskler nelerdir?', body: 'İğne yerinde ağrı, geçici şişlik, hassasiyet ve morarma görülebilir. Daha seyrek de olsa enfeksiyon, kanama veya eklemde inflamatuvar reaksiyon gelişebilir. Kanın işlenmesi, sterilite ve doğru anatomik hedef seçimi klinik güvenliğin temel unsurlarıdır.' },
+                { kicker: 'OSTEOPATİK DEĞERLENDİRME', title: 'Hareket ve bağ dokusu açısından nasıl ele alınır?', body: 'PRP kararı yalnız görüntüleme raporuna göre verilmez. Ekleme binen mekanik yükler, postür, kas kuvveti, yürüme paterni, hareket açıklığı ve tendon-kas zincirinin işlevi birlikte değerlendirilir. Hedef, enjeksiyondan bağımsız olarak ağrı yönetimini ve fonksiyonel rehabilitasyonu bütüncül planlamaktır.' },
+                { kicker: 'İZLEM', title: 'Tedavi sonrası yaklaşım nedir?', body: 'Yanıt yalnız ağrı şiddetiyle değil, hareket kapasitesi ve günlük işlevlerle birlikte izlenir. Kontrollü yüklenme, egzersiz tedavisi ve uygun fizyoterapi programı gerektiğinde plana eklenir. Seans sayısı ve iyileşme süresi için herkese uyan sabit bir şema yoktur.' }
+            ],
+            note: 'PRP, kişinin kendi kanından hazırlanan bir ortobiyolojik uygulamadır; kök hücre tedavisiyle aynı işlem değildir. Kıkırdak yenilenmesi veya ameliyat ihtiyacının kesin olarak ortadan kalkması gibi sonuçlar garanti edilemez. Klinik karar, muayene ve alternatiflerin değerlendirilmesiyle verilir.',
+            safety: '<strong>Güvenlik:</strong> Aktif enfeksiyon, belirgin hematolojik sorunlar veya kanama riski taşıyan durumlarda özel değerlendirme gerekir. Aspirin, kan sulandırıcılar veya diğer ilaçlar hekim önerisi olmadan bırakılmamalıdır.',
+            references: [
+                ['AAPM&R – Diz osteoartritinde PRP klinik rehberliği (2026)', 'https://www.aapmr.org/quality-practice/clinical-practice-guidelines/clinical-guidance/platelet-rich-plasma-%28prp%29-for-knee-osteoarthritis'],
+                ['AAOS – Diz osteoartritinde PRP teknik değerlendirmesi', 'https://pubmed.ncbi.nlm.nih.gov/38295392/']
+            ]
         },
         'Proloterapi': {
             chip: 'REJENERATİF ENJEKSİYON',
@@ -14070,6 +14183,972 @@ function scrollSerumTitleBelowNavbarV514(vascularView) {
         }
     };
 
+    // V666 — İğneli Uygulamalar: aktif 18 kartın tamamına ayrıntılı medikal sayfa.
+    // V665 Minor Ozon ve PRP bilgi sayfaları aynen korunur.
+    Object.assign(detailData, {
+    "Sırt Ağrısı, EPTE ve Egzersizler": {
+        "chip": "SIRT AĞRISI · PERKÜTAN ELEKTROLİZ · REHABİLİTASYON",
+        "title": "Sırt Ağrısı, EPTE ve Egzersizler",
+        "image": "./treatment-sirt-epte-v98.png?v=150",
+        "intro": "Sırt ağrısı tek bir hastalık değildir; miyofasyal aşırı yük, torakal eklem disfonksiyonu, tendon patolojisi veya omurga dışı nedenler rol oynayabilir. EPTE olarak anılan perkütan elektroliz, bazı yumuşak doku sorunlarında egzersizle birlikte araştırılan, iğne üzerinden düşük düzeyli elektrik akımı uygulayan girişimsel bir yöntemdir.",
+        "tags": [
+            "Ayırıcı tanı",
+            "Perkütan elektroliz",
+            "Terapötik egzersiz",
+            "Fonksiyon"
+        ],
+        "panels": [
+            {
+                "kicker": "TEMEL BİLGİ",
+                "title": "Bu başlık neyi ifade eder?",
+                "body": "Sırt ağrısı tek bir hastalık değildir; miyofasyal aşırı yük, torakal eklem disfonksiyonu, tendon patolojisi veya omurga dışı nedenler rol oynayabilir. EPTE olarak anılan perkütan elektroliz, bazı yumuşak doku sorunlarında egzersizle birlikte araştırılan, iğne üzerinden düşük düzeyli elektrik akımı uygulayan girişimsel bir yöntemdir."
+            },
+            {
+                "kicker": "BİYOLOJİK MEKANİZMA",
+                "title": "Biyolojik ve fizyolojik temel",
+                "body": "Elektroliz yöntemi iğne ucunda lokal elektrokimyasal yanıt oluşturmayı hedefler. Bunun tendona bağlı ağrıda anlamlı ve kalıcı doku iyileşmesine dönüştüğü kesin olarak kanıtlanmamıştır; egzersizin yüklenmeye toleransı geliştiren etkisinden ayrı değerlendirilmelidir."
+            },
+            {
+                "kicker": "KLİNİK KULLANIM",
+                "title": "Hangi hastalarda değerlendirilebilir?",
+                "body": "Seçilmiş tendinopati ve miyofasyal yakınmalarda, tanı netleştirildikten sonra gündeme gelebilir. Nefesle artan ağrı, travma, ateş, ani güçsüzlük, göğüs ağrısı veya açıklanamayan kilo kaybı varsa önce altta yatan neden araştırılır."
+            },
+            {
+                "kicker": "PLANLAMA",
+                "title": "Uygulama süreci nasıl planlanır?",
+                "body": "Hekim muayenesiyle ağrının mekanik, nörolojik veya visseral kökeni ayrılır. Gereken olgularda ultrasonla hedeflenen doku belirlenir; girişim yapılacaksa steril koşullar ve kademeli rehabilitasyon planı esastır."
+            },
+            {
+                "kicker": "KANIT DÜZEYİ",
+                "title": "Bilimsel çalışmaların sınırları",
+                "body": "EPTE/perkütan iğne elektrolizi için çalışmalar sınırlı ve yöntem açısından heterojendir. Terapötik egzersize eklendiğinde üstünlük tutarlı biçimde gösterilmemiştir; bütün sırt ağrılarına etkili olduğu söylenemez."
+            },
+            {
+                "kicker": "GÜVENLİK",
+                "title": "Olası riskler ve önlemler",
+                "body": "İğne girişinde ağrı, morarma, kanama, enfeksiyon ve yanlış hedefe uygulama riski vardır. Torakal bölgede derin girişimler akciğer ve damar yapılarına yakınlık nedeniyle ayrı uzmanlık ve dikkat gerektirir."
+            },
+            {
+                "kicker": "BÜTÜNCÜL BAKIŞ",
+                "title": "Osteopatik ve biyomekanik değerlendirme",
+                "body": "Torakal hareketlilik, kostovertebral mekanik, skapulotorasik kontrol, servikal-belden kaynaklanan yük aktarımı, solunum paterni ve çalışma ergonomisi birlikte değerlendirilir. Manuel yaklaşımlar gerektiğinde egzersiz ve tıbbi tedaviye destek olabilir; EPTE’nin yerine kanıtlanmış genel bir manuel protokol yoktur."
+            },
+            {
+                "kicker": "KLİNİK TAKİP",
+                "title": "Tedavi yanıtı ve işlevsel izlem",
+                "body": "Ağrı şiddeti kadar solunumla hareket konforu, sırt hareket açıklığı, günlük aktivite ve egzersize tolerans izlenir. Yeterli yanıt yoksa tanı ve yük yönetimi yeniden gözden geçirilir."
+            }
+        ],
+        "note": "Hastalık tanısı, riskler ve hedeflenen fonksiyon birlikte değerlendirilmelidir. Bu sayfa genel bilgi sağlar; uygulama kararı tıbbi muayene ve güncel bilimsel kanıtlara göre verilir.",
+        "safety": "<strong>Bilgilendirme:</strong> Enjeksiyonlar yalnızca eğitimli ve yetkili sağlık profesyonelleri tarafından, steril koşullarda ve uygun tıbbi endikasyonla uygulanmalıdır; hastalıkların kesin tedavisi olarak sunulamaz.",
+        "references": [
+            [
+                "PubMed – Perkütan elektroliz ve kas-iskelet hastalıkları: sistematik derleme (2026)",
+                "https://pubmed.ncbi.nlm.nih.gov/42806498/"
+            ]
+        ]
+    },
+    "Kuyruk Sokumu Ağrısı ve İmpar Blok": {
+        "chip": "KOKSİDİNİ · GANGLİON İMPAR BLOĞU",
+        "title": "Kuyruk Sokumu Ağrısı ve İmpar Blok",
+        "image": "./treatment-koksidini-impar-v98.png?v=150",
+        "intro": "Kuyruk sokumu ağrısı (koksidini), oturmakla artabilen sakrokoksigeal bölge ağrısıdır. Ganglion impar bloğu, özellikle dirençli koksidini veya seçilmiş perineal ağrılarda kullanılan, sempatik sinir iletiminin geçici olarak hedeflendiği girişimsel ağrı yaklaşımıdır.",
+        "tags": [
+            "Sakrokoksigeal anatomi",
+            "Koksidini",
+            "Girişimsel ağrı",
+            "Seçilmiş olgular"
+        ],
+        "panels": [
+            {
+                "kicker": "TEMEL BİLGİ",
+                "title": "Bu başlık neyi ifade eder?",
+                "body": "Kuyruk sokumu ağrısı (koksidini), oturmakla artabilen sakrokoksigeal bölge ağrısıdır. Ganglion impar bloğu, özellikle dirençli koksidini veya seçilmiş perineal ağrılarda kullanılan, sempatik sinir iletiminin geçici olarak hedeflendiği girişimsel ağrı yaklaşımıdır."
+            },
+            {
+                "kicker": "BİYOLOJİK MEKANİZMA",
+                "title": "Biyolojik ve fizyolojik temel",
+                "body": "Ganglion impar, sakrum ile koksiksin ön tarafında yer alan sempatik sinir yapısıdır. Hedefe uygun lokal anestezik blok, ağrı iletimini geçici olarak azaltabilir; anatomik bozukluğu veya altta yatan hastalığı doğrudan onarmaz."
+            },
+            {
+                "kicker": "KLİNİK KULLANIM",
+                "title": "Hangi hastalarda değerlendirilebilir?",
+                "body": "Düşme sonrası kalıcı ağrı, otururken belirgin hassasiyet ve konservatif yöntemlere rağmen devam eden koksidini seçilmiş değerlendirme alanlarıdır. Enfeksiyon, kitle, kırık, nörolojik kayıp ve pelvik organ kaynaklı nedenler öncelikle dışlanmalıdır."
+            },
+            {
+                "kicker": "PLANLAMA",
+                "title": "Uygulama süreci nasıl planlanır?",
+                "body": "Tıbbi öykü, palpasyon ve gerekirse görüntüleme ile tanı doğrulanır. Girişimsel ağrı hekimi, uygun hastada görüntüleme rehberliğinde hedef bölgeye yönelik blok planlayabilir; evde uygulanabilen bir enjeksiyon değildir."
+            },
+            {
+                "kicker": "KANIT DÜZEYİ",
+                "title": "Bilimsel çalışmaların sınırları",
+                "body": "Koksidinide olgu serileri ve sınırlı klinik araştırmalar olumlu sonuçlar bildirmiştir; ancak etki süresi ve hasta seçimine ilişkin kesinlik sınırlıdır. Her hastada kalıcı ağrısızlık beklenmemelidir."
+            },
+            {
+                "kicker": "GÜVENLİK",
+                "title": "Olası riskler ve önlemler",
+                "body": "Kanama, enfeksiyon, vazovagal yanıt, lokal anestezik reaksiyonu ve nadiren pelvik organ veya damar yaralanması gibi ciddi riskler değerlendirilir. Antikoagülan kullanımında özel planlama gerekir."
+            },
+            {
+                "kicker": "BÜTÜNCÜL BAKIŞ",
+                "title": "Osteopatik ve biyomekanik değerlendirme",
+                "body": "Pelvik taban yükü, oturma basıncı, sakrokoksigeal hareket, kalça hareketliliği, bel-pelvis dengesi ve dışkılama sırasında zorlanma bütüncül muayenede ele alınır. Ergonomik oturma desteği ve uygun fizyoterapi girişimle birlikte değerlendirilebilir."
+            },
+            {
+                "kicker": "KLİNİK TAKİP",
+                "title": "Tedavi yanıtı ve işlevsel izlem",
+                "body": "Oturma süresi, oturup kalkma sırasında ağrı, gece ağrısı ve fonksiyon kazanımı izlenir. Beklenmeyen nörolojik veya enfeksiyöz belirti gelişirse acil değerlendirme gerekir."
+            }
+        ],
+        "note": "Hastalık tanısı, riskler ve hedeflenen fonksiyon birlikte değerlendirilmelidir. Bu sayfa genel bilgi sağlar; uygulama kararı tıbbi muayene ve güncel bilimsel kanıtlara göre verilir.",
+        "safety": "<strong>Bilgilendirme:</strong> Enjeksiyonlar yalnızca eğitimli ve yetkili sağlık profesyonelleri tarafından, steril koşullarda ve uygun tıbbi endikasyonla uygulanmalıdır; hastalıkların kesin tedavisi olarak sunulamaz.",
+        "references": [
+            [
+                "NCBI Bookshelf – Sempatik sinir blokları ve ganglion impar",
+                "https://www.ncbi.nlm.nih.gov/books/NBK557637/"
+            ]
+        ]
+    },
+    "Sanakin Tedavisi": {
+        "chip": "OTOLOG KOŞULLANDIRILMIŞ SERUM · ACS",
+        "title": "Sanakin Tedavisi",
+        "image": "./treatment-sanakin-v98.png?v=150",
+        "intro": "Sanakin, kişinin kendi kanından özel işlem basamaklarıyla hazırlanan otolog koşullandırılmış serum (ACS) yaklaşımlarıyla ilişkili bir ürün/işlem ailesi olarak tanıtılır. Trombositten zengin plazma (PRP) ile aynı içerik veya aynı üretim süreci değildir.",
+        "tags": [
+            "Otolog serum",
+            "Sitokin araştırmaları",
+            "Eklem yakınmaları",
+            "Kanıt sınırları"
+        ],
+        "panels": [
+            {
+                "kicker": "TEMEL BİLGİ",
+                "title": "Bu başlık neyi ifade eder?",
+                "body": "Sanakin, kişinin kendi kanından özel işlem basamaklarıyla hazırlanan otolog koşullandırılmış serum (ACS) yaklaşımlarıyla ilişkili bir ürün/işlem ailesi olarak tanıtılır. Trombositten zengin plazma (PRP) ile aynı içerik veya aynı üretim süreci değildir."
+            },
+            {
+                "kicker": "BİYOLOJİK MEKANİZMA",
+                "title": "Biyolojik ve fizyolojik temel",
+                "body": "ACS üretimindeki inkübasyon ve ayrıştırma basamaklarında interlökin-1 reseptör antagonisti gibi bazı sinyal proteinlerinin düzeyinin değişmesi hedeflenebilir. Laboratuvar ölçümü, enjeksiyon sonrası eklemde klinik iyileşmenin kesin kanıtı değildir."
+            },
+            {
+                "kicker": "KLİNİK KULLANIM",
+                "title": "Hangi hastalarda değerlendirilebilir?",
+                "body": "Özellikle osteoartritli eklemlerde ağrı ve hareket kısıtlılığı açısından araştırılmıştır. Uygunluk; hastalığın evresi, aktif enfeksiyon, kan hastalıkları ve önceden denenen tedaviler dikkate alınarak ele alınır."
+            },
+            {
+                "kicker": "PLANLAMA",
+                "title": "Uygulama süreci nasıl planlanır?",
+                "body": "Venöz kan alımı, kontrollü işleme, serum ayrıştırma ve seçilmiş bölgeye enjeksiyon basamakları uygun sterilite ve ürün talimatlarıyla yapılır. Hazırlama koşulları ve son ürünün bileşimi yöntemler arasında değişebilir."
+            },
+            {
+                "kicker": "KANIT DÜZEYİ",
+                "title": "Bilimsel çalışmaların sınırları",
+                "body": "ACS üzerine randomize çalışmalar ve 2024 sistematik derlemesi bulunmaktadır; sonuçlar karşılaştırıcıya göre tutarsızdır ve plaseboya karşı güvenilir üstünlük gösterilememiştir. Rutin standart tedavi olarak kesin öneri çıkarılamaz."
+            },
+            {
+                "kicker": "GÜVENLİK",
+                "title": "Olası riskler ve önlemler",
+                "body": "Kan alma ve enjeksiyon bölgesinde ağrı, morarma, enfeksiyon, eklem içi alevlenme ve uygunsuz işleme bağlı riskler söz konusudur. Kanıtı belirsiz bir yarar için mevcut tedavi geciktirilmemelidir."
+            },
+            {
+                "kicker": "BÜTÜNCÜL BAKIŞ",
+                "title": "Osteopatik ve biyomekanik değerlendirme",
+                "body": "Eklemin mekaniği, kuadriseps/kalça kaslarının kuvveti, yürüme paterni, kilo yönetimi, uyku ve ağrı duyarlılığı birlikte değerlendirilir. Enjeksiyon tek başına mekanik yük yönetimi veya egzersizin yerini tutmaz."
+            },
+            {
+                "kicker": "KLİNİK TAKİP",
+                "title": "Tedavi yanıtı ve işlevsel izlem",
+                "body": "Ağrı, eklem efüzyonu, hareket açıklığı ve işlevsel ölçekler başlangıç ve takipte karşılaştırılır. Klinik fayda nesnel olarak izlenmezse tekrar uygulama kararı sorgulanır."
+            }
+        ],
+        "note": "Hastalık tanısı, riskler ve hedeflenen fonksiyon birlikte değerlendirilmelidir. Bu sayfa genel bilgi sağlar; uygulama kararı tıbbi muayene ve güncel bilimsel kanıtlara göre verilir.",
+        "safety": "<strong>Bilgilendirme:</strong> Enjeksiyonlar yalnızca eğitimli ve yetkili sağlık profesyonelleri tarafından, steril koşullarda ve uygun tıbbi endikasyonla uygulanmalıdır; hastalıkların kesin tedavisi olarak sunulamaz.",
+        "references": [
+            [
+                "PubMed – Osteoartritte otolog koşullandırılmış serum: sistematik derleme (2024)",
+                "https://pubmed.ncbi.nlm.nih.gov/38878817/"
+            ]
+        ]
+    },
+    "Ameliyatsız Diz Kireçlenmesi Tedavisi": {
+        "chip": "DİZ OSTEOARTRİTİ · AMELİYATSIZ YAKLAŞIMLAR",
+        "title": "Ameliyatsız Diz Kireçlenmesi Tedavisi",
+        "image": "./treatment-diz-kireclenmesi-v98.png?v=150",
+        "intro": "Diz osteoartriti, eklem kıkırdağı ile birlikte kemik, sinovyum ve çevre yumuşak dokuları etkileyen kronik eklem hastalığıdır. “Ameliyatsız tedavi” tek bir enjeksiyonun adı değil; egzersiz, yük yönetimi, kilo düzenlemesi ve uygun olgularda girişimlerin bir arada değerlendirildiği klinik plandır.",
+        "tags": [
+            "Kıkırdak & sinovyum",
+            "Egzersiz",
+            "Yük yönetimi",
+            "Enjeksiyon seçenekleri"
+        ],
+        "panels": [
+            {
+                "kicker": "TEMEL BİLGİ",
+                "title": "Bu başlık neyi ifade eder?",
+                "body": "Diz osteoartriti, eklem kıkırdağı ile birlikte kemik, sinovyum ve çevre yumuşak dokuları etkileyen kronik eklem hastalığıdır. “Ameliyatsız tedavi” tek bir enjeksiyonun adı değil; egzersiz, yük yönetimi, kilo düzenlemesi ve uygun olgularda girişimlerin bir arada değerlendirildiği klinik plandır."
+            },
+            {
+                "kicker": "BİYOLOJİK MEKANİZMA",
+                "title": "Biyolojik ve fizyolojik temel",
+                "body": "Ağrı ve işlev kaybı; sinovyal inflamasyon, subkondral kemik değişimleri, kas güçsüzlüğü ve mekanik yüklenmenin ortak sonucudur. Enjeksiyon seçenekleri bazı semptomları hedefleyebilir; hasarlı kıkırdağın geri getirildiği varsayılmamalıdır."
+            },
+            {
+                "kicker": "KLİNİK KULLANIM",
+                "title": "Hangi hastalarda değerlendirilebilir?",
+                "body": "Günlük hareketi kısıtlayan semptomatik osteoartritte önce fiziksel aktivite, uygun egzersiz, kilo ve eşlik eden metabolik sorunlar değerlendirilir. Eklem enjeksiyonları ancak belirli koşullarda muayene sonrası gündeme gelir."
+            },
+            {
+                "kicker": "PLANLAMA",
+                "title": "Uygulama süreci nasıl planlanır?",
+                "body": "Diz muayenesi, hareket açıklığı, efüzyon, aks dizilimi ve gereğinde görüntüleme ile şiddet belirlenir. Kortikosteroid, PRP veya hyaluronik asit gibi seçeneklerin farklı kanıt ve risk profilleri hasta ile ayrıca konuşulur."
+            },
+            {
+                "kicker": "KANIT DÜZEYİ",
+                "title": "Bilimsel çalışmaların sınırları",
+                "body": "Rehberler diz osteoartritinde egzersiz ve kilo yönetimini temel yaklaşım olarak görür. Hyaluronik asidin rutin kullanımı önerilmez; PRP için kanıt sınırlıdır ve ürün/formülasyonlar arası farklar büyüktür."
+            },
+            {
+                "kicker": "GÜVENLİK",
+                "title": "Olası riskler ve önlemler",
+                "body": "Eklem içi enfeksiyon, kanama ve geçici ağrı alevlenmesi enjeksiyon riskleridir; kortikosteroidin tekrarı ve glisemik etkiler gibi uygulamaya özgü konular ayrıca tartışılır."
+            },
+            {
+                "kicker": "BÜTÜNCÜL BAKIŞ",
+                "title": "Osteopatik ve biyomekanik değerlendirme",
+                "body": "Kalça kuvveti, diz çevresi kas kapasitesi, ayak-bilek mekaniği, yürüyüş, merdiven yüklenmesi ve denge birlikte değerlendirilir. Amaç sadece görüntüyü değil hastanın yürüme ve işlev kapasitesini iyileştirmektir."
+            },
+            {
+                "kicker": "KLİNİK TAKİP",
+                "title": "Tedavi yanıtı ve işlevsel izlem",
+                "body": "Merdiven çıkma, yürüme mesafesi, ağrı, uyku ve ilaç ihtiyacındaki değişiklikler izlenir. Kilitlenme, belirgin deformite veya giderek artan fonksiyon kaybı varsa ortopedi değerlendirmesi yapılır."
+            }
+        ],
+        "note": "Hastalık tanısı, riskler ve hedeflenen fonksiyon birlikte değerlendirilmelidir. Bu sayfa genel bilgi sağlar; uygulama kararı tıbbi muayene ve güncel bilimsel kanıtlara göre verilir.",
+        "safety": "<strong>Bilgilendirme:</strong> Enjeksiyonlar yalnızca eğitimli ve yetkili sağlık profesyonelleri tarafından, steril koşullarda ve uygun tıbbi endikasyonla uygulanmalıdır; hastalıkların kesin tedavisi olarak sunulamaz.",
+        "references": [
+            [
+                "AAOS – Diz osteoartritinde girişimsel olmayan tedaviler rehberi",
+                "https://www.aaos.org/OAK3CPG"
+            ]
+        ]
+    },
+    "Rejeneratif Tıp ve Ortobiyolojik Tedaviler": {
+        "chip": "ORTOBİYOLOJİK YAKLAŞIMLAR · KANIT VE DÜZENLEME",
+        "title": "Rejeneratif Tıp ve Ortobiyolojik Tedaviler",
+        "image": "./treatment-rejeneratif-ortobiyolojik-v98.png?v=150",
+        "intro": "Ortobiyolojik girişimler, trombosit kaynaklı ürünler, otolog serumlar ve hücresel veya hücre-dışı biyolojik ürünler gibi çok farklı yöntemleri kapsayan üst başlıktır. Bu yöntemleri aynı etkinlik, güvenlik ve yasal statüde kabul etmek doğru değildir.",
+        "tags": [
+            "PRP",
+            "Otolog serum",
+            "Hücresel ürünler",
+            "Düzenleyici değerlendirme"
+        ],
+        "panels": [
+            {
+                "kicker": "TEMEL BİLGİ",
+                "title": "Bu başlık neyi ifade eder?",
+                "body": "Ortobiyolojik girişimler, trombosit kaynaklı ürünler, otolog serumlar ve hücresel veya hücre-dışı biyolojik ürünler gibi çok farklı yöntemleri kapsayan üst başlıktır. Bu yöntemleri aynı etkinlik, güvenlik ve yasal statüde kabul etmek doğru değildir."
+            },
+            {
+                "kicker": "BİYOLOJİK MEKANİZMA",
+                "title": "Biyolojik ve fizyolojik temel",
+                "body": "Bazı ürünlerde büyüme faktörleri veya sinyal moleküllerinin biyolojik yanıtı etkilemesi hedeflenir. Moleküler düzeydeki aktivite klinikte kıkırdak, tendon veya bağın yeniden oluştuğunu kanıtlamaz."
+            },
+            {
+                "kicker": "KLİNİK KULLANIM",
+                "title": "Hangi hastalarda değerlendirilebilir?",
+                "body": "Kas-iskelet yakınmalarında araştırılmakla birlikte uygulamanın türü ve tanı ayrı ayrı ele alınmalıdır. Standart tedaviyle karşılaştırılmış klinik sonlanımlar ve ülkeye özgü ruhsat/izin durumu sorgulanmalıdır."
+            },
+            {
+                "kicker": "PLANLAMA",
+                "title": "Uygulama süreci nasıl planlanır?",
+                "body": "Her ürün için kaynağı, hücresel içeriği, hazırlama/sterilizasyon yöntemi, izlenebilirliği ve uygulama yolu farklıdır. Klinik karar yalnızca “rejeneratif” etiketi üzerinden verilmemelidir."
+            },
+            {
+                "kicker": "KANIT DÜZEYİ",
+                "title": "Bilimsel çalışmaların sınırları",
+                "body": "Bazı PRP protokolleri üzerinde klinik çalışma vardır; buna karşılık birçok hücresel ve eksozom ürünü deneysel durumdadır. Düzenleyici kurumlar kanıtlanmamış ürünlerin ortopedik sorunlarda pazarlanması konusunda uyarır."
+            },
+            {
+                "kicker": "GÜVENLİK",
+                "title": "Olası riskler ve önlemler",
+                "body": "Enfeksiyon, immün reaksiyon, kontaminasyon, ürün heterojenliği ve temel tedavinin gecikmesi risklerine dikkat edilmelidir. Donör kaynaklı ürünlerde ilave güvenlik soruları vardır."
+            },
+            {
+                "kicker": "BÜTÜNCÜL BAKIŞ",
+                "title": "Osteopatik ve biyomekanik değerlendirme",
+                "body": "Fonksiyon kaybının biyomekanik, nörolojik, inflamatuvar ve yaşam tarzıyla ilgili nedenleri birlikte değerlendirilir. Rehabilitasyon, yük yönetimi ve egzersiz tedavisi biyolojik enjeksiyon reklamlarıyla ikame edilmez."
+            },
+            {
+                "kicker": "KLİNİK TAKİP",
+                "title": "Tedavi yanıtı ve işlevsel izlem",
+                "body": "Etkinlik için doğrulanmış hasta odaklı sonuçlar (ağrı, işlev, hareket kapasitesi) takip edilir; yalnızca biyobelirteç veya görüntü değişimine dayanılarak başarı ilan edilmez."
+            }
+        ],
+        "note": "Hastalık tanısı, riskler ve hedeflenen fonksiyon birlikte değerlendirilmelidir. Bu sayfa genel bilgi sağlar; uygulama kararı tıbbi muayene ve güncel bilimsel kanıtlara göre verilir.",
+        "safety": "<strong>Bilgilendirme:</strong> Enjeksiyonlar yalnızca eğitimli ve yetkili sağlık profesyonelleri tarafından, steril koşullarda ve uygun tıbbi endikasyonla uygulanmalıdır; hastalıkların kesin tedavisi olarak sunulamaz.",
+        "references": [
+            [
+                "FDA – Kök hücre ve eksozom ürünleri güvenlik duyurusu",
+                "https://www.fda.gov/vaccines-blood-biologics/consumers-biologics/consumer-alert-regenerative-medicine-products-including-stem-cells-and-exosomes"
+            ],
+            [
+                "AAOS – Diz osteoartritinde girişimsel olmayan tedaviler rehberi",
+                "https://www.aaos.org/OAK3CPG"
+            ]
+        ]
+    },
+    "Kök Hücre Tedavisi": {
+        "chip": "HÜCRE TEMELLİ ÜRÜNLER · ARAŞTIRMA ve GÜVENLİK",
+        "title": "Kök Hücre Tedavisi",
+        "image": "./treatment-kok-hucre-v98.png?v=150",
+        "intro": "“Kök hücre tedavisi” tek bir enjeksiyon tekniği değildir. Kemik iliği veya yağ dokusu kaynaklı hücresel hazırlıklar ile laboratuvarda çoğaltılmış hücre ürünleri, biyolojik içerik ve düzenleme bakımından birbirinden farklıdır.",
+        "tags": [
+            "Hücresel biyoloji",
+            "Klinik araştırma",
+            "Ürün güvenliği",
+            "Etik bilgilendirme"
+        ],
+        "panels": [
+            {
+                "kicker": "TEMEL BİLGİ",
+                "title": "Bu başlık neyi ifade eder?",
+                "body": "“Kök hücre tedavisi” tek bir enjeksiyon tekniği değildir. Kemik iliği veya yağ dokusu kaynaklı hücresel hazırlıklar ile laboratuvarda çoğaltılmış hücre ürünleri, biyolojik içerik ve düzenleme bakımından birbirinden farklıdır."
+            },
+            {
+                "kicker": "BİYOLOJİK MEKANİZMA",
+                "title": "Biyolojik ve fizyolojik temel",
+                "body": "Hücrelerin salgıladığı biyolojik sinyallerin doku yanıtlarını etkileyebileceği araştırılır. Diz kıkırdağının veya hasarlı bağ dokusunun rutin hücre enjeksiyonuyla kesin olarak yenilendiği gösterilmiş değildir."
+            },
+            {
+                "kicker": "KLİNİK KULLANIM",
+                "title": "Hangi hastalarda değerlendirilebilir?",
+                "body": "Diz osteoartriti ve bazı tendon sorunları için çalışmalar bulunsa da uygulamanın kökeni, dozu ve hazırlanma biçimi sonuçları ciddi biçimde etkiler. Bu yaklaşımlar kanıtlanmış standart tedavilerin yerine konulmamalıdır."
+            },
+            {
+                "kicker": "PLANLAMA",
+                "title": "Uygulama süreci nasıl planlanır?",
+                "body": "Ürün kaynağı, hücresel kimliği, laboratuvar koşulları, yasal izinler, etik onay ve olası takip gereksinimi ayrı ayrı sorgulanır. Rutin klinik uygulama ile denetimli araştırma birbirine karıştırılmamalıdır."
+            },
+            {
+                "kicker": "KANIT DÜZEYİ",
+                "title": "Bilimsel çalışmaların sınırları",
+                "body": "Ortopedik hastalıklar için pazarlanan birçok hücresel ürünün güvenlik ve etkinliği yeterince doğrulanmamıştır. FDA, bu alanda yanlış yönlendirici tedavi vaatlerine karşı resmi güvenlik uyarıları yayımlamıştır; Türkiye’de geçerli mevzuat ayrıca gözetilmelidir."
+            },
+            {
+                "kicker": "GÜVENLİK",
+                "title": "Olası riskler ve önlemler",
+                "body": "Enfeksiyon, kontaminasyon, uygunsuz doku büyümesi, beklenmeyen bağışıklık tepkisi ve etkili tedavinin geciktirilmesi gibi riskler söz konusudur."
+            },
+            {
+                "kicker": "BÜTÜNCÜL BAKIŞ",
+                "title": "Osteopatik ve biyomekanik değerlendirme",
+                "body": "Kas kuvveti, mekanik eksen, yük toleransı, hareket kalitesi ve eşlik eden inflamatuvar hastalıklar ayrı değerlendirilir. Hücresel ürün kararı, kanıta dayalı hareket tedavisinin yerine geçmez."
+            },
+            {
+                "kicker": "KLİNİK TAKİP",
+                "title": "Tedavi yanıtı ve işlevsel izlem",
+                "body": "Yan etkiler kısa dönemde olduğu kadar uzun dönemde de izlenmelidir. Araştırma kapsamında ise önceden tanımlanmış klinik sonuçlar ve güvenlik izlemi gereklidir."
+            }
+        ],
+        "note": "Hastalık tanısı, riskler ve hedeflenen fonksiyon birlikte değerlendirilmelidir. Bu sayfa genel bilgi sağlar; uygulama kararı tıbbi muayene ve güncel bilimsel kanıtlara göre verilir.",
+        "safety": "<strong>Bilgilendirme:</strong> Enjeksiyonlar yalnızca eğitimli ve yetkili sağlık profesyonelleri tarafından, steril koşullarda ve uygun tıbbi endikasyonla uygulanmalıdır; hastalıkların kesin tedavisi olarak sunulamaz.",
+        "references": [
+            [
+                "FDA – Kök hücre ve eksozom ürünleri güvenlik duyurusu",
+                "https://www.fda.gov/vaccines-blood-biologics/consumers-biologics/consumer-alert-regenerative-medicine-products-including-stem-cells-and-exosomes"
+            ]
+        ]
+    },
+    "Ultrason Eşliğinde İğne Tedavileri": {
+        "chip": "GÖRÜNTÜLEME REHBERLİĞİ · HEDEF DOKU DOĞRULUĞU",
+        "title": "Ultrason Eşliğinde İğne Tedavileri",
+        "image": "./treatment-ultrason-igne-v98.png?v=150",
+        "intro": "Ultrason eşliğinde enjeksiyon, tek başına bir ilaç veya tedavi türü değildir; eklem, tendon kılıfı, bursa ve bazı sinir çevresi girişimlerde iğnenin hedef dokuya yönlendirilmesini sağlayan görüntüleme yöntemidir.",
+        "tags": [
+            "Ultrasonografi",
+            "Anatomik hedef",
+            "İğne doğruluğu",
+            "Steril uygulama"
+        ],
+        "panels": [
+            {
+                "kicker": "TEMEL BİLGİ",
+                "title": "Bu başlık neyi ifade eder?",
+                "body": "Ultrason eşliğinde enjeksiyon, tek başına bir ilaç veya tedavi türü değildir; eklem, tendon kılıfı, bursa ve bazı sinir çevresi girişimlerde iğnenin hedef dokuya yönlendirilmesini sağlayan görüntüleme yöntemidir."
+            },
+            {
+                "kicker": "BİYOLOJİK MEKANİZMA",
+                "title": "Biyolojik ve fizyolojik temel",
+                "body": "Yüksek frekanslı ses dalgaları sayesinde yumuşak dokular ve iğne konumu gerçek zamanlı izlenebilir. Görüntüleme hedefleme doğruluğunu artırabilir; enjekte edilen ilacın etkinliğini otomatik olarak artırmaz."
+            },
+            {
+                "kicker": "KLİNİK KULLANIM",
+                "title": "Hangi hastalarda değerlendirilebilir?",
+                "body": "Derin veya küçük eklemler, tendon kılıfları, bursalar ve hassas komşu anatomik yapılar içeren enjeksiyonlarda uygun görülebilir. Gerekçe hedefin anatomik olarak güvenli ve doğru seçilmesidir."
+            },
+            {
+                "kicker": "PLANLAMA",
+                "title": "Uygulama süreci nasıl planlanır?",
+                "body": "Ön görüntülemede anatomik varyasyonlar ve önemli damar/sinir yapıları değerlendirilir. Steril prob kılıfı, uygun jel ve iğne tekniğiyle işlem gerçekleştirilir."
+            },
+            {
+                "kicker": "KANIT DÜZEYİ",
+                "title": "Bilimsel çalışmaların sınırları",
+                "body": "Bazı eklem enjeksiyonlarında ultrason rehberliği anatomik işaretlere göre daha yüksek yerleştirme doğruluğu sağlar. Ağrı ve işlev sonuçlarındaki üstünlük tüm girişimler için aynı ölçüde gösterilmemiştir."
+            },
+            {
+                "kicker": "GÜVENLİK",
+                "title": "Olası riskler ve önlemler",
+                "body": "Görüntüleme kullanılsa da enfeksiyon, kanama, alerji ve yanlış uygulama riski sıfırlanmaz. Ultrasonu yorumlayan uygulayıcının eğitimi ve hedeflenen anatomik bölge önemlidir."
+            },
+            {
+                "kicker": "BÜTÜNCÜL BAKIŞ",
+                "title": "Osteopatik ve biyomekanik değerlendirme",
+                "body": "Dinamik ultrason bulguları, eklem hareketi ve doku yüklenmesiyle birlikte değerlendirilir. Görüntü bulgularının hastanın yakınmalarıyla eşleşmesi, gereksiz enjeksiyonların önüne geçmeye yardımcı olur."
+            },
+            {
+                "kicker": "KLİNİK TAKİP",
+                "title": "Tedavi yanıtı ve işlevsel izlem",
+                "body": "İşlem sonrası beklenen geçici hassasiyet ve hareket planı anlatılır; artan kızarıklık, ateş, ciddi ağrı veya nörolojik belirti için erken değerlendirme önerilir."
+            }
+        ],
+        "note": "Hastalık tanısı, riskler ve hedeflenen fonksiyon birlikte değerlendirilmelidir. Bu sayfa genel bilgi sağlar; uygulama kararı tıbbi muayene ve güncel bilimsel kanıtlara göre verilir.",
+        "safety": "<strong>Bilgilendirme:</strong> Enjeksiyonlar yalnızca eğitimli ve yetkili sağlık profesyonelleri tarafından, steril koşullarda ve uygun tıbbi endikasyonla uygulanmalıdır; hastalıkların kesin tedavisi olarak sunulamaz.",
+        "references": [
+            [
+                "ASRA – Görüntüleme rehberliğiyle enjeksiyon doğruluğu (2025)",
+                "https://rapm.bmj.com/content/rapm/early/2025/03/11/rapm-2024-105656.full.pdf"
+            ]
+        ]
+    },
+    "Magellan PRP": {
+        "chip": "CİHAZ DESTEKLİ PRP HAZIRLAMA YAKLAŞIMI",
+        "title": "Magellan PRP",
+        "image": "./treatment-magellan-prp-v98.png?v=150",
+        "intro": "Magellan PRP, kişinin kanından trombositten zengin plazmanın belirli bir cihaz/protokolle hazırlanmasına ilişkin bir yöntemdir. Marka veya santrifüj sisteminin adı, tek başına klinik üstünlük anlamına gelmez.",
+        "tags": [
+            "Otolog kan",
+            "Trombosit ayırma",
+            "Cihaz protokolü",
+            "Standardizasyon"
+        ],
+        "panels": [
+            {
+                "kicker": "TEMEL BİLGİ",
+                "title": "Bu başlık neyi ifade eder?",
+                "body": "Magellan PRP, kişinin kanından trombositten zengin plazmanın belirli bir cihaz/protokolle hazırlanmasına ilişkin bir yöntemdir. Marka veya santrifüj sisteminin adı, tek başına klinik üstünlük anlamına gelmez."
+            },
+            {
+                "kicker": "BİYOLOJİK MEKANİZMA",
+                "title": "Biyolojik ve fizyolojik temel",
+                "body": "Trombositlerin alfa granüllerinde bulunan büyüme faktörleri ve sinyal proteinleri araştırılmaktadır. Son üründeki trombosit, lökosit ve eritrosit oranları hazırlama parametrelerine göre değişir."
+            },
+            {
+                "kicker": "KLİNİK KULLANIM",
+                "title": "Hangi hastalarda değerlendirilebilir?",
+                "body": "Bazı diz osteoartriti ve tendon yakınmalarında PRP araştırmaları vardır; ancak Magellan cihazıyla hazırlanan ürünün başka PRP sistemlerine üstün olduğu genellenemez."
+            },
+            {
+                "kicker": "PLANLAMA",
+                "title": "Uygulama süreci nasıl planlanır?",
+                "body": "Kan alma, antikoagülan seçimi, santrifüj/ayırma, son ürün hacmi ve anatomik hedefin belirlenmesi işlemin temel basamaklarıdır. Steril, izlenebilir hazırlama gerekir."
+            },
+            {
+                "kicker": "KANIT DÜZEYİ",
+                "title": "Bilimsel çalışmaların sınırları",
+                "body": "PRP literatürü yöntemler arasında heterojendir ve diz osteoartritinde yarar olasılığına ilişkin kanıt sınırlıdır. Marka adı, plasebo kontrollü klinik kanıt yerine kullanılamaz."
+            },
+            {
+                "kicker": "GÜVENLİK",
+                "title": "Olası riskler ve önlemler",
+                "body": "Enjeksiyon bölgesinde ağrı, geçici alevlenme, hematom, enfeksiyon ve kan alma ile ilgili istenmeyen etkiler olabilir. Antikoagülanlar ve trombosit hastalıkları değerlendirilir."
+            },
+            {
+                "kicker": "BÜTÜNCÜL BAKIŞ",
+                "title": "Osteopatik ve biyomekanik değerlendirme",
+                "body": "Uygulama kararı, yüklenme kapasitesi, hareket açıklığı, kas kuvveti ve rehabilitasyona katılım gibi parametrelerle birlikte verilir. Dokuya aşırı yüklenme sürüyorsa biyolojik enjeksiyon tek başına çözüm oluşturmaz."
+            },
+            {
+                "kicker": "KLİNİK TAKİP",
+                "title": "Tedavi yanıtı ve işlevsel izlem",
+                "body": "Ağrı, fonksiyon ve aktiviteye dönüş süresi belirli aralıklarla kaydedilir. Gerekirse cihaz protokolü ve ürünün içerik bilgisi hasta dosyasında saklanır."
+            }
+        ],
+        "note": "Hastalık tanısı, riskler ve hedeflenen fonksiyon birlikte değerlendirilmelidir. Bu sayfa genel bilgi sağlar; uygulama kararı tıbbi muayene ve güncel bilimsel kanıtlara göre verilir.",
+        "safety": "<strong>Bilgilendirme:</strong> Enjeksiyonlar yalnızca eğitimli ve yetkili sağlık profesyonelleri tarafından, steril koşullarda ve uygun tıbbi endikasyonla uygulanmalıdır; hastalıkların kesin tedavisi olarak sunulamaz.",
+        "references": [
+            [
+                "AAOS – Diz osteoartritinde girişimsel olmayan tedaviler rehberi",
+                "https://www.aaos.org/OAK3CPG"
+            ]
+        ]
+    },
+    "Hyaluronik Asit Enjeksiyonu": {
+        "chip": "VİSKOSUPLEMENTASYON · EKLEM İÇİ UYGULAMA",
+        "title": "Hyaluronik Asit Enjeksiyonu",
+        "image": "./treatment-hyaluronik-asit-v98.png?v=150",
+        "intro": "Hyaluronik asit, sinovyal sıvıda doğal olarak bulunan bir polisakkarittir. Eklem içi preparatları özellikle diz osteoartritinde viskosuplementasyon olarak bilinir; amaç belirtileri yönetmektir, kıkırdağı kesin biçimde yeniden oluşturmak değildir.",
+        "tags": [
+            "Sinovyal sıvı",
+            "Diz osteoartriti",
+            "Eklemsel hareket",
+            "Rehber değerlendirmesi"
+        ],
+        "panels": [
+            {
+                "kicker": "TEMEL BİLGİ",
+                "title": "Bu başlık neyi ifade eder?",
+                "body": "Hyaluronik asit, sinovyal sıvıda doğal olarak bulunan bir polisakkarittir. Eklem içi preparatları özellikle diz osteoartritinde viskosuplementasyon olarak bilinir; amaç belirtileri yönetmektir, kıkırdağı kesin biçimde yeniden oluşturmak değildir."
+            },
+            {
+                "kicker": "BİYOLOJİK MEKANİZMA",
+                "title": "Biyolojik ve fizyolojik temel",
+                "body": "Hyaluronan ürünlerinin sinovyal ortamda kayganlık ve viskoelastik özellikleri etkilemesi hedeflenir. Bu biyofiziksel özellik her hastada anlamlı ağrı azalmasına dönüşmeyebilir."
+            },
+            {
+                "kicker": "KLİNİK KULLANIM",
+                "title": "Hangi hastalarda değerlendirilebilir?",
+                "body": "Özellikle diz osteoartritinde farklı ürünler araştırılmıştır. Hastalık şiddeti, önceki tedavilere yanıt ve hastanın beklentisi değerlendirilmeden rutin enjeksiyon önerilmemelidir."
+            },
+            {
+                "kicker": "PLANLAMA",
+                "title": "Uygulama süreci nasıl planlanır?",
+                "body": "Muayene sonrası seçilmiş eklemde steril enjeksiyon yapılır. Efüzyon varlığı ve anatomik güçlükler nedeniyle bazı durumlarda ultrason rehberliği veya önce eklem sıvısı değerlendirmesi gerekebilir."
+            },
+            {
+                "kicker": "KANIT DÜZEYİ",
+                "title": "Bilimsel çalışmaların sınırları",
+                "body": "AAOS diz osteoartriti rehberi, intraartiküler hyaluronik asidin rutin kullanımını önermemektedir. Çalışmaların sonuçları değişkendir; tüm hastalarda belirgin veya kalıcı fayda beklenmemelidir."
+            },
+            {
+                "kicker": "GÜVENLİK",
+                "title": "Olası riskler ve önlemler",
+                "body": "Geçici ağrı, şişlik, alevlenme, alerjik reaksiyon ve nadiren septik artrit mümkündür. Eklemde aktif enfeksiyon şüphesi varsa uygulanmaz."
+            },
+            {
+                "kicker": "BÜTÜNCÜL BAKIŞ",
+                "title": "Osteopatik ve biyomekanik değerlendirme",
+                "body": "Diz-kalça-ayak mekanik zinciri, kuadriseps kuvveti, yürüyüş ve yük kontrolü ele alınır. Enjeksiyon yapılmış olsa bile terapötik egzersiz, kilo yönetimi ve günlük hareket stratejileri temel önemdedir."
+            },
+            {
+                "kicker": "KLİNİK TAKİP",
+                "title": "Tedavi yanıtı ve işlevsel izlem",
+                "body": "İşlev, ağrı, şişlik ve aktivite hedefleri izlenir. Enjeksiyon sonrası ateşle seyreden sıcak-şiş eklem acil değerlendirme gerektirir."
+            }
+        ],
+        "note": "Hastalık tanısı, riskler ve hedeflenen fonksiyon birlikte değerlendirilmelidir. Bu sayfa genel bilgi sağlar; uygulama kararı tıbbi muayene ve güncel bilimsel kanıtlara göre verilir.",
+        "safety": "<strong>Bilgilendirme:</strong> Enjeksiyonlar yalnızca eğitimli ve yetkili sağlık profesyonelleri tarafından, steril koşullarda ve uygun tıbbi endikasyonla uygulanmalıdır; hastalıkların kesin tedavisi olarak sunulamaz.",
+        "references": [
+            [
+                "AAOS – Diz osteoartritinde girişimsel olmayan tedaviler rehberi",
+                "https://www.aaos.org/OAK3CPG"
+            ]
+        ]
+    },
+    "PRGF Tedavisi": {
+        "chip": "TROMBOSİT KAYNAKLI BÜYÜME FAKTÖRLERİ · PRGF",
+        "title": "PRGF Tedavisi",
+        "image": "./treatment-prgf-v104.png?v=150",
+        "intro": "PRGF (Plasma Rich in Growth Factors), hastanın kendi kanından elde edilen trombosit kökenli bileşenlerin belirli hazırlama yöntemleriyle kullanıldığı bir ortobiyolojik yaklaşımdır. PRP ile ortak biyolojik temeli vardır; ürünün hazırlanışı ve hücresel içeriği farklılaşabilir.",
+        "tags": [
+            "Otolog plazma",
+            "Büyüme faktörleri",
+            "Ürün standardizasyonu",
+            "Kas-iskelet sistemi"
+        ],
+        "panels": [
+            {
+                "kicker": "TEMEL BİLGİ",
+                "title": "Bu başlık neyi ifade eder?",
+                "body": "PRGF (Plasma Rich in Growth Factors), hastanın kendi kanından elde edilen trombosit kökenli bileşenlerin belirli hazırlama yöntemleriyle kullanıldığı bir ortobiyolojik yaklaşımdır. PRP ile ortak biyolojik temeli vardır; ürünün hazırlanışı ve hücresel içeriği farklılaşabilir."
+            },
+            {
+                "kicker": "BİYOLOJİK MEKANİZMA",
+                "title": "Biyolojik ve fizyolojik temel",
+                "body": "Trombosit kaynaklı PDGF ve TGF-β gibi sinyal proteinlerinin doku yanıtlarında rol oynadığı bilinmektedir. Ancak laboratuvar ortamındaki bu biyoloji, PRGF enjeksiyonunun tek başına tendon veya kıkırdağı yenilediğinin kanıtı değildir."
+            },
+            {
+                "kicker": "KLİNİK KULLANIM",
+                "title": "Hangi hastalarda değerlendirilebilir?",
+                "body": "Bazı eklem ve tendon yakınmalarında PRGF/PRP ailesi ürünler araştırılır. Farklı tanıların ve farklı hazırlama yöntemlerinin sonuçları doğrudan birbirine aktarılamaz."
+            },
+            {
+                "kicker": "PLANLAMA",
+                "title": "Uygulama süreci nasıl planlanır?",
+                "body": "Venöz kan alınır; ürün protokolüne göre trombosit içeriği ayrıştırılır ve anatomik hedefe enjeksiyon değerlendirilir. İçerik, hazırlama ve uygulama tekniği kayıt altına alınmalıdır."
+            },
+            {
+                "kicker": "KANIT DÜZEYİ",
+                "title": "Bilimsel çalışmaların sınırları",
+                "body": "PRGF’ye özel kaliteli çalışmalar PRP literatüründen daha sınırlı olabilir. Uygulamayı diğer PRP yöntemlerinden üstün gösteren evrensel bir sonuç bulunmamaktadır; klinik yarar hastalığa göre tartışılmalıdır."
+            },
+            {
+                "kicker": "GÜVENLİK",
+                "title": "Olası riskler ve önlemler",
+                "body": "Kan alma ve enjeksiyonla ilişkili ağrı, hematom, enfeksiyon veya geçici alevlenme görülebilir. Trombosit bozukluğu ve kullanılan ilaçlar değerlendirilmelidir."
+            },
+            {
+                "kicker": "BÜTÜNCÜL BAKIŞ",
+                "title": "Osteopatik ve biyomekanik değerlendirme",
+                "body": "Tendon yüklenmesi, eklem stabilitesi, postür, kas koordinasyonu ve uyku gibi iyileşmeyi etkileyen alanlar klinik plana dahil edilir. PRGF’nin fizik tedaviyi veya kanıta dayalı rehabilitasyonu ikame etmesi beklenmez."
+            },
+            {
+                "kicker": "KLİNİK TAKİP",
+                "title": "Tedavi yanıtı ve işlevsel izlem",
+                "body": "Fonksiyon, ağrı ve güvenli aktiviteye dönüş objektif aralıklarla ölçülür; ürünün adı üzerinden tedavi başarısı varsayılmaz."
+            }
+        ],
+        "note": "Hastalık tanısı, riskler ve hedeflenen fonksiyon birlikte değerlendirilmelidir. Bu sayfa genel bilgi sağlar; uygulama kararı tıbbi muayene ve güncel bilimsel kanıtlara göre verilir.",
+        "safety": "<strong>Bilgilendirme:</strong> Enjeksiyonlar yalnızca eğitimli ve yetkili sağlık profesyonelleri tarafından, steril koşullarda ve uygun tıbbi endikasyonla uygulanmalıdır; hastalıkların kesin tedavisi olarak sunulamaz.",
+        "references": [
+            [
+                "AAOS – Diz osteoartritinde girişimsel olmayan tedaviler rehberi",
+                "https://www.aaos.org/OAK3CPG"
+            ]
+        ]
+    },
+    "Alfa-2 Makroglobulin (A2M) Enjeksiyonu": {
+        "chip": "ALFA-2 MAKROGLOBULİN · DENEYSEL ORTOBİYOLOJİ",
+        "title": "Alfa-2 Makroglobulin (A2M) Enjeksiyonu",
+        "image": "./treatment-a2m-v104.png?v=150",
+        "intro": "Alfa-2 makroglobulin (A2M), kanda bulunan geniş spektrumlu proteaz inhibitörü bir proteindir. Eklem sıvısındaki bazı yıkıcı enzimleri bağlayabilme özelliği nedeniyle osteoartrit araştırmalarında ilgi görmektedir; enjeksiyonla klinik etkinliği henüz yerleşmiş değildir.",
+        "tags": [
+            "Proteaz inhibitörü",
+            "Sinovyal ortam",
+            "Deneysel yaklaşım",
+            "Kanıt değerlendirmesi"
+        ],
+        "panels": [
+            {
+                "kicker": "TEMEL BİLGİ",
+                "title": "Bu başlık neyi ifade eder?",
+                "body": "Alfa-2 makroglobulin (A2M), kanda bulunan geniş spektrumlu proteaz inhibitörü bir proteindir. Eklem sıvısındaki bazı yıkıcı enzimleri bağlayabilme özelliği nedeniyle osteoartrit araştırmalarında ilgi görmektedir; enjeksiyonla klinik etkinliği henüz yerleşmiş değildir."
+            },
+            {
+                "kicker": "BİYOLOJİK MEKANİZMA",
+                "title": "Biyolojik ve fizyolojik temel",
+                "body": "A2M’nin belirli matriks metalloproteinazlar ve proteolitik enzimlerle etkileşimi doku yıkımı mekanizmaları açısından araştırılır. Biyokimyasal bağlanma özelliği, eklem kıkırdağının hastada yeniden oluşacağı anlamına gelmez."
+            },
+            {
+                "kicker": "KLİNİK KULLANIM",
+                "title": "Hangi hastalarda değerlendirilebilir?",
+                "body": "Osteoartritte araştırma alanı olmakla birlikte hastalık tipine, ürün hazırlama yöntemine ve uygulama endikasyonuna ilişkin standart klinik protokol oluşmuş değildir."
+            },
+            {
+                "kicker": "PLANLAMA",
+                "title": "Uygulama süreci nasıl planlanır?",
+                "body": "Ürünün kaynağı, konsantrasyon yöntemi, sterilitesi, hasta seçimi ve yasal durumunun netleştirilmesi gerekir. “Kanından hazırlanıyor” ifadesi tek başına kalite güvencesi sayılmaz."
+            },
+            {
+                "kicker": "KANIT DÜZEYİ",
+                "title": "Bilimsel çalışmaların sınırları",
+                "body": "Klinik etkinliği doğrulayan büyük, bağımsız ve uzun dönemli randomize çalışmalar sınırlıdır. A2M birinci basamak diz osteoartriti yaklaşımı olarak gösterilmemelidir."
+            },
+            {
+                "kicker": "GÜVENLİK",
+                "title": "Olası riskler ve önlemler",
+                "body": "Eklem içi enfeksiyon, sterilite sorunları, sinovit, ağrı ve kan alma/enjeksiyon reaksiyonları değerlendirilmeli; kanıta dayalı tedavilerin geciktirilmesinden kaçınılmalıdır."
+            },
+            {
+                "kicker": "BÜTÜNCÜL BAKIŞ",
+                "title": "Osteopatik ve biyomekanik değerlendirme",
+                "body": "Eklem ağrısına yol açan biyomekanik yük, kas gücü, hareket kısıtlılığı ve metabolik eşlikçiler birlikte ele alınır. A2M’nin osteopatik tedavinin etkisini artırdığına ilişkin güçlü kanıt yoktur."
+            },
+            {
+                "kicker": "KLİNİK TAKİP",
+                "title": "Tedavi yanıtı ve işlevsel izlem",
+                "body": "Ağrı, eklem efüzyonu, işlev ve hareket açıklığı belirli aralıklarla izlenir. Kanıt eksikliği ve maliyet hakkında açık bilgilendirilmiş onam gerekir."
+            }
+        ],
+        "note": "Hastalık tanısı, riskler ve hedeflenen fonksiyon birlikte değerlendirilmelidir. Bu sayfa genel bilgi sağlar; uygulama kararı tıbbi muayene ve güncel bilimsel kanıtlara göre verilir.",
+        "safety": "<strong>Bilgilendirme:</strong> Enjeksiyonlar yalnızca eğitimli ve yetkili sağlık profesyonelleri tarafından, steril koşullarda ve uygun tıbbi endikasyonla uygulanmalıdır; hastalıkların kesin tedavisi olarak sunulamaz.",
+        "references": [
+            [
+                "AAOS – Diz osteoartritinde girişimsel olmayan tedaviler rehberi",
+                "https://www.aaos.org/OAK3CPG"
+            ]
+        ]
+    },
+    "Eksozom Tedavisi": {
+        "chip": "HÜCRE DIŞI VEZİKÜLLER · KLİNİK ARAŞTIRMA",
+        "title": "Eksozom Tedavisi",
+        "image": "./treatment-eksozom-v104.png?v=150",
+        "intro": "Eksozomlar, hücrelerin çevreleriyle iletişiminde rol alan hücre dışı veziküllerdir. “Eksozom tedavisi” adı altında pazarlanan ürünlerin kaynağı, içeriği ve saflığı birbirinden farklı olabilir; ortopedik hastalıkların standart tedavisi değildir.",
+        "tags": [
+            "Hücre dışı vezikül",
+            "Ürün saflığı",
+            "Klinik araştırma",
+            "Güvenlik"
+        ],
+        "panels": [
+            {
+                "kicker": "TEMEL BİLGİ",
+                "title": "Bu başlık neyi ifade eder?",
+                "body": "Eksozomlar, hücrelerin çevreleriyle iletişiminde rol alan hücre dışı veziküllerdir. “Eksozom tedavisi” adı altında pazarlanan ürünlerin kaynağı, içeriği ve saflığı birbirinden farklı olabilir; ortopedik hastalıkların standart tedavisi değildir."
+            },
+            {
+                "kicker": "BİYOLOJİK MEKANİZMA",
+                "title": "Biyolojik ve fizyolojik temel",
+                "body": "Hücre dışı veziküllerde protein, lipid ve nükleik asit bulunabilir. Hücreler arası sinyal iletimi araştırılmaktadır ancak laboratuvar bulguları insan ekleminde klinik onarımın kanıtı değildir."
+            },
+            {
+                "kicker": "KLİNİK KULLANIM",
+                "title": "Hangi hastalarda değerlendirilebilir?",
+                "body": "Tendon sorunları, osteoartrit ve doku iyileşmesi bağlamında erken araştırmalar mevcuttur; bu alanlarda rutin enjeksiyonla güvenilir yarar gösterilmiş değildir."
+            },
+            {
+                "kicker": "PLANLAMA",
+                "title": "Uygulama süreci nasıl planlanır?",
+                "body": "Ürünün üretim kaynağı, viral/mikrobiyal testleri, saflığı, saklama koşulları ve yasal araştırma statüsü belgelenmelidir. Kaynağı belirsiz ticari preparatlara karşı özel dikkat gerekir."
+            },
+            {
+                "kicker": "KANIT DÜZEYİ",
+                "title": "Bilimsel çalışmaların sınırları",
+                "body": "ABD FDA, hastalık tedavisi amacıyla kullanılan eksozom ürünlerinin onay gerektirdiğini ve onaylı eksozom ürünü bulunmadığını bildirmiştir. Yerel ruhsatlandırma ayrıca kontrol edilmelidir."
+            },
+            {
+                "kicker": "GÜVENLİK",
+                "title": "Olası riskler ve önlemler",
+                "body": "Bulaş, kontaminasyon, beklenmeyen immün yanıt ve uzun dönem belirsizlikler önemlidir. “Hücresiz olduğu için risksizdir” şeklindeki ifade tıbben doğru değildir."
+            },
+            {
+                "kicker": "BÜTÜNCÜL BAKIŞ",
+                "title": "Osteopatik ve biyomekanik değerlendirme",
+                "body": "Öncelik anatomik tanı, hareket analizi, kas-iskelet yük yönetimi ve kanıta dayalı rehabilitasyondur. Eksozomların osteopatik yaklaşımlara ek belirli yararı gösterilmemiştir."
+            },
+            {
+                "kicker": "KLİNİK TAKİP",
+                "title": "Tedavi yanıtı ve işlevsel izlem",
+                "body": "Araştırma koşulları dışında sonuç ve güvenliği doğrulanmamış uygulamalar konusunda bilgilendirme yapılmalı; klinik çalışmada ise önceden belirlenmiş güvenlik izlemi sağlanmalıdır."
+            }
+        ],
+        "note": "Hastalık tanısı, riskler ve hedeflenen fonksiyon birlikte değerlendirilmelidir. Bu sayfa genel bilgi sağlar; uygulama kararı tıbbi muayene ve güncel bilimsel kanıtlara göre verilir.",
+        "safety": "<strong>Bilgilendirme:</strong> Enjeksiyonlar yalnızca eğitimli ve yetkili sağlık profesyonelleri tarafından, steril koşullarda ve uygun tıbbi endikasyonla uygulanmalıdır; hastalıkların kesin tedavisi olarak sunulamaz.",
+        "references": [
+            [
+                "FDA – Kök hücre ve eksozom ürünleri güvenlik duyurusu",
+                "https://www.fda.gov/vaccines-blood-biologics/consumers-biologics/consumer-alert-regenerative-medicine-products-including-stem-cells-and-exosomes"
+            ]
+        ]
+    },
+    "Hidrojel Diz Tedavisi – Sıvı Diz Protezi": {
+        "chip": "EKLEM İÇİ HİDROJEL · ÜRÜNE ÖZGÜ DEĞERLENDİRME",
+        "title": "Hidrojel Diz Tedavisi – Sıvı Diz Protezi",
+        "image": "./treatment-hidrojel-diz-v104.png?v=150",
+        "intro": "Diz için hidrojel enjeksiyonları, farklı polimer yapılarındaki ürünleri kapsar. Halk arasında kullanılan “sıvı diz protezi” ifadesi yanıltıcı olabilir: Bu girişim cerrahi protez değildir ve yeni bir eklem oluşturmaz.",
+        "tags": [
+            "Diz osteoartriti",
+            "Hidrojel yapısı",
+            "Ürüne özgü kanıt",
+            "Hasta seçimi"
+        ],
+        "panels": [
+            {
+                "kicker": "TEMEL BİLGİ",
+                "title": "Bu başlık neyi ifade eder?",
+                "body": "Diz için hidrojel enjeksiyonları, farklı polimer yapılarındaki ürünleri kapsar. Halk arasında kullanılan “sıvı diz protezi” ifadesi yanıltıcı olabilir: Bu girişim cerrahi protez değildir ve yeni bir eklem oluşturmaz."
+            },
+            {
+                "kicker": "BİYOLOJİK MEKANİZMA",
+                "title": "Biyolojik ve fizyolojik temel",
+                "body": "Hidrojel ürünlerinde hedef, eklem ortamının fiziksel özelliklerini veya doku yanıtını etkilemektir; ancak mekanizma kullanılan polimerin türüne bağlıdır. Poliakrilamid hidrojel ile hyaluronan esaslı hidrojel aynı ürün değildir."
+            },
+            {
+                "kicker": "KLİNİK KULLANIM",
+                "title": "Hangi hastalarda değerlendirilebilir?",
+                "body": "Diz osteoartritinde belirli ürünler araştırılmıştır. Yaş, efüzyon, ileri deformite ve önceki tedavi yanıtı değerlendirilmeli; her hidrojelin onay durumu ayrıca sorgulanmalıdır."
+            },
+            {
+                "kicker": "PLANLAMA",
+                "title": "Uygulama süreci nasıl planlanır?",
+                "body": "Ürünün tam ticari adı, bileşimi, yasal izinleri ve eklem içi uygulama talimatı kontrol edilir. Steril enjeksiyon ve uygun anatomik hedef zorunludur; ürün tipine göre işlem sonrası öneriler değişir."
+            },
+            {
+                "kicker": "KANIT DÜZEYİ",
+                "title": "Bilimsel çalışmaların sınırları",
+                "body": "Hidrojel enjeksiyonlarına ilişkin veriler ürünlere göre farklıdır. Bazı poliakrilamid hidrojel araştırmaları umut verici bulgular bildirse de uzun dönem güvenlik ve klinik etki konusunda belirsizlikler devam etmektedir."
+            },
+            {
+                "kicker": "GÜVENLİK",
+                "title": "Olası riskler ve önlemler",
+                "body": "Enfeksiyon, inflamatuvar reaksiyon, ağrı alevlenmesi ve ürünle ilişkili gecikmiş reaksiyonlar açısından izlem gerekir. Kalıcılığı olan ürünlerde uzun dönem komplikasyon değerlendirmesi özellikle önemlidir."
+            },
+            {
+                "kicker": "BÜTÜNCÜL BAKIŞ",
+                "title": "Osteopatik ve biyomekanik değerlendirme",
+                "body": "Diz eklemini etkileyen kalça ve ayak bileği mekanikleri, kas kuvveti, denge ve yürüme toleransı birlikte değerlendirilir. Hidrojel uygulaması hareket eğitimi ve rehabilitasyonun yerine geçmez."
+            },
+            {
+                "kicker": "KLİNİK TAKİP",
+                "title": "Tedavi yanıtı ve işlevsel izlem",
+                "body": "Kullanılan ürünün adı mutlaka kayıt altına alınır; hareket mesafesi, ağrı ve eklem şişliği takip edilir. Kızarık-sıcak eklem veya ateşte acil tıbbi değerlendirme gerekir."
+            }
+        ],
+        "note": "Hastalık tanısı, riskler ve hedeflenen fonksiyon birlikte değerlendirilmelidir. Bu sayfa genel bilgi sağlar; uygulama kararı tıbbi muayene ve güncel bilimsel kanıtlara göre verilir.",
+        "safety": "<strong>Bilgilendirme:</strong> Enjeksiyonlar yalnızca eğitimli ve yetkili sağlık profesyonelleri tarafından, steril koşullarda ve uygun tıbbi endikasyonla uygulanmalıdır; hastalıkların kesin tedavisi olarak sunulamaz.",
+        "references": [
+            [
+                "PubMed – Diz osteoartritinde poliakrilamid hidrojel değerlendirmesi (2026)",
+                "https://pubmed.ncbi.nlm.nih.gov/42150308/"
+            ],
+            [
+                "AAOS – Diz osteoartritinde girişimsel olmayan tedaviler rehberi",
+                "https://www.aaos.org/OAK3CPG"
+            ]
+        ]
+    },
+    "Fibromiyalji ve Miyofasyal Ağrı": {
+        "chip": "YAYGIN AĞRI · MİYOFASYAL AĞRI · İĞNE SEÇENEKLERİ",
+        "title": "Fibromiyalji ve Miyofasyal Ağrı",
+        "image": "./treatment-fibromiyalji-v104.png?v=150",
+        "intro": "Fibromiyalji, yaygın ağrıya uyku, yorgunluk ve bilişsel yakınmaların eşlik edebildiği, ağrı işleme süreçlerindeki değişimlerle ilişkili bir klinik sendromdur. Miyofasyal ağrı ise daha bölgesel kas ve tetik nokta yakınmalarıyla seyreder; iki durum aynı değildir.",
+        "tags": [
+            "Ağrı duyarlılığı",
+            "Uyku ve yorgunluk",
+            "Tetik noktalar",
+            "Multidisipliner bakım"
+        ],
+        "panels": [
+            {
+                "kicker": "TEMEL BİLGİ",
+                "title": "Bu başlık neyi ifade eder?",
+                "body": "Fibromiyalji, yaygın ağrıya uyku, yorgunluk ve bilişsel yakınmaların eşlik edebildiği, ağrı işleme süreçlerindeki değişimlerle ilişkili bir klinik sendromdur. Miyofasyal ağrı ise daha bölgesel kas ve tetik nokta yakınmalarıyla seyreder; iki durum aynı değildir."
+            },
+            {
+                "kicker": "BİYOLOJİK MEKANİZMA",
+                "title": "Biyolojik ve fizyolojik temel",
+                "body": "Fibromiyaljide merkezi ağrı işleme ve duyarlılık mekanizmaları rol oynar. Bölgesel miyofasyal ağrıda kas yüklenmesi, hareket düzeni ve yerel hassasiyetler ön planda olabilir. Tek bir enjeksiyon bu çok boyutlu mekanizmaların tümünü düzeltmez."
+            },
+            {
+                "kicker": "KLİNİK KULLANIM",
+                "title": "Hangi hastalarda değerlendirilebilir?",
+                "body": "Uygun olgularda belirgin bölgesel tetik nokta ağrısı için lokal girişimler değerlendirilebilir. Fibromiyaljinin yaygın yakınmalarını tek iğneyle tedavi etme iddiası desteklenmemektedir."
+            },
+            {
+                "kicker": "PLANLAMA",
+                "title": "Uygulama süreci nasıl planlanır?",
+                "body": "Ayrıntılı öykü, nörolojik ve kas-iskelet muayenesi, uyku-ruh hâli değerlendirmesi ve ilaçların gözden geçirilmesi yapılır. Tetik nokta enjeksiyonu düşünülürse hedef ve kullanılacak içerik ayrıca belirlenir."
+            },
+            {
+                "kicker": "KANIT DÜZEYİ",
+                "title": "Bilimsel çalışmaların sınırları",
+                "body": "Düzenli aerobik ve kuvvet egzersizi, uyku düzeni ve gerektiğinde bilişsel-davranışçı yaklaşımlar çok bileşenli tedavinin temelidir. Tetik nokta enjeksiyonları seçilmiş bölgesel ağrılarda araştırılmış olup fibromiyaljide genel tedavinin yerini almaz."
+            },
+            {
+                "kicker": "GÜVENLİK",
+                "title": "Olası riskler ve önlemler",
+                "body": "Enjeksiyonlarda ağrı artışı, morarma, enfeksiyon, lokal anestezik reaksiyonları ve torakal bölgede derin iğnelerde nadir pnömotoraks gibi riskler söz konusu olabilir."
+            },
+            {
+                "kicker": "BÜTÜNCÜL BAKIŞ",
+                "title": "Osteopatik ve biyomekanik değerlendirme",
+                "body": "Postür, solunum, gevşeme, fiziksel aktivite düzeyi, dokunsal hassasiyet ve psikososyal yük birlikte değerlendirilir. Manuel teknikler kişiye göre destek sağlayabilir; temel yaklaşım güvenli hareket, uyku ve işlev kazanımıdır."
+            },
+            {
+                "kicker": "KLİNİK TAKİP",
+                "title": "Tedavi yanıtı ve işlevsel izlem",
+                "body": "Ağrı şiddetinin yanı sıra yorgunluk, uyku kalitesi, günlük işlev ve egzersiz sürdürülebilirliği izlenir. Farklı bir inflamatuvar veya nörolojik hastalık düşündüren yeni belirtilerde tanı gözden geçirilir."
+            }
+        ],
+        "note": "Hastalık tanısı, riskler ve hedeflenen fonksiyon birlikte değerlendirilmelidir. Bu sayfa genel bilgi sağlar; uygulama kararı tıbbi muayene ve güncel bilimsel kanıtlara göre verilir.",
+        "safety": "<strong>Bilgilendirme:</strong> Enjeksiyonlar yalnızca eğitimli ve yetkili sağlık profesyonelleri tarafından, steril koşullarda ve uygun tıbbi endikasyonla uygulanmalıdır; hastalıkların kesin tedavisi olarak sunulamaz.",
+        "references": []
+    }
+});
+    detailData["Ozon"].panels.push(...[
+    {
+        "kicker": "KANIT DÜZEYİ",
+        "title": "Bilimsel çalışmalar ne söylüyor?",
+        "body": "Lokal ozon enjeksiyonu bazı eklem ağrısı durumlarında araştırılmıştır; çalışmaların yöntemleri, dozları ve karşılaştırıcıları farklıdır. Uzun dönem üstünlük ve her hasta grubunda güvenilir etkinlik gösterilmiş değildir. Standart ağrı tedavilerinin yerine sunulmamalıdır."
+    },
+    {
+        "kicker": "RİSKLER",
+        "title": "İşlem öncesinde hangi riskler sorgulanır?",
+        "body": "Enjeksiyon bölgesinde ağrı, kanama, enfeksiyon ve anatomik hedefe bağlı doku yaralanması olasılığı değerlendirilir. Ozon gazının damara doğrudan verilmesi tehlikeli olup lokal enjeksiyonla karıştırılmamalıdır."
+    },
+    {
+        "kicker": "OSTEOPATİK BAKIŞ",
+        "title": "Kas-iskelet sistemi bir bütün olarak nasıl değerlendirilir?",
+        "body": "Ağrılı eklemin hareketi, kas gücü, komşu eklemlerden yük aktarımı, postür, solunum ve günlük aktivite değerlendirilir. Ozon enjeksiyonu uygulanması hareket eğitimi, egzersiz veya gerekli tıbbi tedaviye alternatif değildir."
+    },
+    {
+        "kicker": "KLİNİK İZLEM",
+        "title": "Yanıt nasıl takip edilir?",
+        "body": "Hastanın ağrısı, hareket açıklığı, şişlik ve günlük işlevi başlangıç verileriyle karşılaştırılır. Fayda yoksa tekrarlayan enjeksiyon yerine tanı ve rehabilitasyon planı yeniden ele alınır."
+    }
+]);
+    detailData["Ozon"].references = [["AAOS – Diz osteoartritinde girişimsel olmayan tedaviler rehberi", "https://www.aaos.org/OAK3CPG"]];
+    detailData["Proloterapi"].panels.push(...[
+    {
+        "kicker": "BİYOLOJİK MEKANİZMA",
+        "title": "Dekstroz enjeksiyonu ile ne hedeflenir?",
+        "body": "Hipertonik dekstroz gibi solüsyonların lokal hücresel yanıtı etkileyebileceği ileri sürülür. Bu hipotez, bağ ve tendonun yapısal olarak kesin güçlendirildiği şeklinde yorumlanamaz."
+    },
+    {
+        "kicker": "KANIT DÜZEYİ",
+        "title": "Araştırmalar hangi noktada?",
+        "body": "Kronik bel ağrısında proloterapiye ilişkin çalışmalar farklı protokoller kullanmıştır. Cochrane incelemesinde tek başına proloterapinin belirgin üstünlüğü gösterilememiş, eşlik eden egzersiz ve diğer tedaviler sonuçların yorumunu güçleştirmiştir."
+    },
+    {
+        "kicker": "OSTEOPATİK BAKIŞ",
+        "title": "Doku ve mekanik yük birlikte nasıl değerlendirilir?",
+        "body": "Entez bölgesi yakınmaları; kas kuvveti, eklem stabilitesi, hareket açıklığı, postür ve tekrarlayan yüklenme ile birlikte değerlendirilir. Proloterapi yapılsa da kişiye uygun egzersiz ve kademeli doku yüklemesi gerekir."
+    },
+    {
+        "kicker": "GÜVENLİK VE İZLEM",
+        "title": "İşlem sonrası neler izlenmelidir?",
+        "body": "Geçici ağrı artışı, hematom ve enfeksiyon riski anlatılır. Yakınma ve fonksiyon takibi yapılır; yeni nörolojik bulgu veya olağan dışı şişlikte yeniden tıbbi değerlendirme gerekir."
+    }
+]);
+    detailData["Proloterapi"].references = [["Cochrane – Kronik bel ağrısında proloterapi", "https://www.cochrane.org/evidence/CD004059_prolotherapy-injections-chronic-low-back-pain"]];
+    detailData["Nöral Terapi"].panels.push(...[
+    {
+        "kicker": "FİZYOLOJİ",
+        "title": "Lokal anestezikler ne yapar?",
+        "body": "Lokal anestezikler sinir hücrelerindeki voltaj bağımlı sodyum kanallarını geçici olarak bloke ederek ağrı iletimini azaltabilir. “Skarın bütün vücudu bozduğu” veya otonom sinir sisteminin kalıcı olarak sıfırlandığı gibi iddialar klinik gerçek olarak kabul edilemez."
+    },
+    {
+        "kicker": "UYGULAMA",
+        "title": "Hangi ön değerlendirme gerekir?",
+        "body": "Alerji, kalp ritim bozukluğu, nöbet öyküsü, gebelik, kullanılan ilaçlar ve bölgesel enfeksiyon değerlendirilir. Kullanılacak lokal anesteziğin türü ve dozu girişimi yapan hekim tarafından belirlenir."
+    },
+    {
+        "kicker": "OSTEOPATİK BAKIŞ",
+        "title": "Skar, fasya ve hareket birlikte nasıl yorumlanır?",
+        "body": "Skarın hareket sırasında gerilimi, bölgesel hassasiyet, eklem hareketi ve hastanın ağrı davranışı birlikte incelenebilir. Skar kaynaklı her yakınmanın nöral terapiyle giderileceğine dair yüksek nitelikli kanıt bulunmaz."
+    },
+    {
+        "kicker": "GÜVENLİK VE TAKİP",
+        "title": "Olası komplikasyonlar nelerdir?",
+        "body": "Morarma, enfeksiyon, alerjik reaksiyon ve nadiren lokal anestezik sistemik toksisitesi değerlendirilir. Enjeksiyon sonrası ağrı, işlev ve beklenmeyen belirtiler takip edilmelidir."
+    }
+]);
+    detailData["NöralPro"].panels.push(...[
+    {
+        "kicker": "İÇERİK ŞEFFAFLIĞI",
+        "title": "Ürün ve uygulama içeriği nasıl doğrulanır?",
+        "body": "NöralPro için tek bir evrensel, bilimsel olarak standardize edilmiş formül ve uygulama protokolü tanımlanmamıştır. Bu başlıkta kullanılacak maddenin tam adı, dozu, ruhsat/izin durumu ve uygulama yolu hastaya işlemden önce açıklanmalıdır."
+    },
+    {
+        "kicker": "KANIT DÜZEYİ",
+        "title": "Etkinlik hakkında ne söylenebilir?",
+        "body": "Uygulamanın içeriği ve hedeflenen tanı netleştirilmeden etkinlik iddiasında bulunulamaz. Belirli bir hasta grubunda yarar göstermek için müdahaleye özgü kontrollü çalışmalar gereklidir."
+    },
+    {
+        "kicker": "OSTEOPATİK BAKIŞ",
+        "title": "Bütüncül muayenenin yeri nedir?",
+        "body": "Ağrının kaynağı, postür, kas gücü, fasiyal hareketlilik, nörolojik bulgular ve günlük yüklenme birlikte değerlendirilir. Enjeksiyonla ilgili karar bu muayeneyi ve kanıta dayalı rehabilitasyonu ikame etmez."
+    },
+    {
+        "kicker": "GÜVENLİK VE ONAM",
+        "title": "Hasta hangi bilgileri almalıdır?",
+        "body": "Ürünün içeriği, olası alerjik reaksiyonlar, enfeksiyon/kanama riski, alternatifler, beklenen faydanın belirsizlikleri ve takip planı yazılı olarak paylaşılmalıdır."
+    }
+]);
+
     const cards = Array.from(view.querySelectorAll('.injection-card-v72'));
     const supportedCards = cards.filter(card => detailData[(card.querySelector('h2')?.textContent || '').trim()]);
     if (!supportedCards.length) return;
@@ -14096,6 +15175,7 @@ function scrollSerumTitleBelowNavbarV514(vascularView) {
     const topChip = detail.querySelector('#injectionSpecialTopChipV362');
     const backButton = detail.querySelector('#injectionSpecialBackV362');
     let lastTrigger = null;
+    let activeInjectionKeyV679 = null;
 
     function render(key) {
         const data = detailData[key];
@@ -14126,6 +15206,7 @@ function scrollSerumTitleBelowNavbarV514(vascularView) {
             </section>
             <div class="injection-special-note-v362"><strong>Klinik yaklaşım:</strong> ${data.note}</div>
             <div class="injection-ozone-safety-v362">${data.safety}</div>
+            ${data.references ? `<section class="injection-sources-v665" aria-label="Bilimsel kaynaklar"><h2>Bilimsel ve resmî kaynaklar</h2><ul>${data.references.map(ref => `<li><a href="${ref[1]}" target="_blank" rel="noopener noreferrer">${ref[0]} ↗</a></li>`).join('')}</ul></section>` : ''}
         `;
     }
 
@@ -14136,6 +15217,7 @@ function scrollSerumTitleBelowNavbarV514(vascularView) {
 
     function openDetail(key, trigger) {
         lastTrigger = trigger || null;
+        activeInjectionKeyV679 = key;
         render(key);
         view.classList.add('injection-detail-active-v362');
         detail.setAttribute('aria-hidden', 'false');
@@ -14143,6 +15225,7 @@ function scrollSerumTitleBelowNavbarV514(vascularView) {
     }
 
     function closeDetail() {
+        activeInjectionKeyV679 = null;
         view.classList.remove('injection-detail-active-v362');
         detail.setAttribute('aria-hidden', 'true');
         if (lastTrigger) {
@@ -14151,6 +15234,24 @@ function scrollSerumTitleBelowNavbarV514(vascularView) {
             });
         }
     }
+
+    // V679: İğne detayları URL'yi değiştirmediğinden yalnızca DOM ile
+    // geri dönmek yetmiyor; PRP metninin hangi karta ait olduğunu da sakla.
+    window.siteInjectionHistoryV679 = {
+        current: () => activeInjectionKeyV679,
+        restore: (key) => {
+            if (!key || !detailData[key]) {
+                activeInjectionKeyV679 = null;
+                view.classList.remove('injection-detail-active-v362');
+                detail.setAttribute('aria-hidden', 'true');
+                return;
+            }
+            activeInjectionKeyV679 = key;
+            render(key);
+            view.classList.add('injection-detail-active-v362');
+            detail.setAttribute('aria-hidden', 'false');
+        }
+    };
 
     supportedCards.forEach(card => {
         const key = (card.querySelector('h2')?.textContent || '').trim();
@@ -14215,6 +15316,20 @@ function scrollSerumTitleBelowNavbarV514(vascularView) {
         }
     }
     function close(){page.hidden=true;page.setAttribute('aria-hidden','true');document.body.classList.remove('osteo-manual-detail-open-v364'); if(lastFocus?.focus) lastFocus.focus();}
+    // V679: Manuel Uygulamalar içindeki postür/mobilizasyon vb. alt
+    // sayfalarda önceki başlığı ve içeriği geri yükle.
+    window.siteOsteoManualHistoryV679 = {
+        current: () => page.hidden ? null :
+            views.find(v => !v.hidden)?.dataset.manualViewV364 || null,
+        restore: (key) => {
+            if (key && meta[key]) open(key, null, {pushHistory:false});
+            else {
+                page.hidden = true;
+                page.setAttribute('aria-hidden','true');
+                document.body.classList.remove('osteo-manual-detail-open-v364');
+            }
+        }
+    };
     document.addEventListener('click',e=>{const b=e.target.closest('[data-osteo-manual-detail-v364]');if(!b)return;open(b.dataset.osteoManualDetailV364,b)});
     // V563: Geri butonu tarayıcı geçmişindeki başka sayfaya değil, her zaman
     // Osteopati > Manuel Uygulamalar'ın 01 numaralı sekmesine götürür.
@@ -18131,6 +19246,7 @@ function scrollSerumTitleBelowNavbarV514(vascularView) {
         '[data-legal-doc-page]', '[data-manual-view-v364]',
         '[data-focus-panel]',
         '[data-featured-article-card-v508]',
+        '[data-injection-detail-key-v362]', '[data-exercise-detail-v669]',
         '[role="tab"]', '[aria-current="page"]',
         '#traditionalOverviewV168', '#nutritionOverviewV175',
         '#featuredArticlesGridV508', '#featuredArticleReaderV510',
@@ -18176,7 +19292,11 @@ function scrollSerumTitleBelowNavbarV514(vascularView) {
             node.getAttribute('aria-current'), node.getAttribute('aria-selected'),
             node.hasAttribute('open') ? 1 : 0
         ]),
-        article: window.siteArticleReaderV511?.current?.() || null
+        article: window.siteArticleReaderV511?.current?.() || null,
+        injection: window.siteInjectionHistoryV679?.current?.() || null,
+        osteoTab: window.siteOsteoHistoryV679?.current?.() || null,
+        osteoManual: window.siteOsteoManualHistoryV679?.current?.() || null,
+        exercise: window.siteExerciseHistoryV679?.current?.() || null
     });
     const saveCurrent = () => {
         if (restoring) return;
@@ -18198,7 +19318,21 @@ function scrollSerumTitleBelowNavbarV514(vascularView) {
             (n.getAttribute('aria-hidden') === 'false' ? '1' : '0') +
             (n.hidden ? '1' : '0')
         ).join('');
-        return body + '|' + pages + '|' + (window.siteArticleReaderV511?.current?.() || '');
+        // V679: Osteopati panelleri / PRP gibi hash'siz alt detaylar ayrı geçmiş halkasıdır.
+        // Akordeon, kaydırma ve menü aç/kapat hareketleri sayfa geçişi değildir.
+        const inPage = [
+            ...document.querySelectorAll('[data-osteo-tab][aria-selected="true"]'),
+            ...document.querySelectorAll('[data-osteo-panel]:not([hidden])'),
+            ...document.querySelectorAll('[data-manual-view-v364]:not([hidden])'),
+            ...document.querySelectorAll('[data-health-detail-view].active'),
+            ...document.querySelectorAll('[data-treatment-detail-view].active'),
+            ...document.querySelectorAll('[data-exercise-detail-v669]:not([hidden])')
+        ].map(node => node.dataset.osteoTab || node.dataset.osteoPanel ||
+            node.dataset.manualViewV364 || node.dataset.healthDetailView ||
+            node.dataset.treatmentDetailView || node.dataset.exerciseDetailV669 || node.id).join(';');
+        return body + '|' + pages + '|' + inPage + '|' +
+            (window.siteArticleReaderV511?.current?.() || '') + '|' +
+            (window.siteInjectionHistoryV679?.current?.() || '');
     };
     const hasSubpage = () => Boolean(location.hash && location.hash !== '#anasayfa') ||
         Array.from(document.body.classList).some(c => /(page|detail|special|featured|standalone)-open/.test(c)) ||
@@ -18251,6 +19385,13 @@ function scrollSerumTitleBelowNavbarV514(vascularView) {
                 else if (!snapshotData.article && reader.current()) reader.close();
             }
             document.body.className = snapshotData.body || '';
+            // V679: Geçmişteki en ilk kayıt ana sayfadır; alt sayfa
+            // katmanının görsel modu geride kalmışsa ana ekranı tekrar aç.
+            if (atSiteDepth() === 0 && !location.hash &&
+                !/(?:page|detail|special|featured|standalone)-open/.test(document.body.className)) {
+                document.body.classList.remove('global-subpage-open-v405');
+                document.body.classList.add('global-home-open-v408');
+            }
             snapshotData.states.forEach((values, i) => {
                 const node = nodes[i];
                 if (!node || !node.isConnected) return;
@@ -18265,6 +19406,14 @@ function scrollSerumTitleBelowNavbarV514(vascularView) {
                 if (values[5]) node.setAttribute('open', '');
                 else node.removeAttribute('open');
             });
+            // Görünüm sınıfları eski hâline dönünce dinamik alt sayfa
+            // başlıkları ve içerikleri de ilgili önceki seçime geri alınır.
+            window.siteInjectionHistoryV679?.restore?.(snapshotData.injection || null);
+            window.siteOsteoManualHistoryV679?.restore?.(snapshotData.osteoManual || null);
+            window.siteExerciseHistoryV679?.restore?.(snapshotData.exercise || null);
+            if (snapshotData.osteoTab && snapshotData.body?.includes('osteo-standalone-open-v260')) {
+                window.siteOsteoHistoryV679?.restore?.(snapshotData.osteoTab);
+            }
             window.scrollTo({ left: snapshotData.x || 0, top: snapshotData.y || 0, behavior: 'instant' });
         } finally {
             restoring = false;
@@ -18309,7 +19458,7 @@ function scrollSerumTitleBelowNavbarV514(vascularView) {
     backButton.id = 'siteGlobalBackV511';
     backButton.className = 'site-global-back-v511';
     backButton.setAttribute('aria-label', 'Önceki sayfaya dön');
-    backButton.title = 'Geri dön (Alt + Sol Ok)';
+    backButton.title = 'Önceki ziyaret edilen bölüme dön';
     backButton.innerHTML = '<span aria-hidden="true">‹</span>';
     backButton.hidden = true;
     document.body.appendChild(backButton);
@@ -18328,6 +19477,8 @@ function scrollSerumTitleBelowNavbarV514(vascularView) {
         // V631: Bitkilere Dön kendi Fitoterapi yönlendirmesini yönetir;
         // geçmişi geri alan V511 bu butona müdahale etmemeli.
         '#deviceDetailBackV157', '#deviceDetailBreadcrumbBackV157',
+        '#injectionSpecialBackV362', '#osteoManualDetailBackV364',
+        '[data-exercise-detail-back-v669]', '[data-exercise-back-v669]',
         // V556: Serum detay geri butonları global history.back'e bağlanmaz.
         // Kendi V235–V334 close handler'ları normal şekilde çalışır.
     ].join(',');
@@ -18337,6 +19488,9 @@ function scrollSerumTitleBelowNavbarV514(vascularView) {
     document.addEventListener('click', (event) => {
         const target = event.target instanceof Element ? event.target : null;
         if (!target || restoring) return;
+        // V679: Menü içindeki programatik ikinci tıklama aynı gezinme değil;
+        // ayrıldığımız ana sayfanın geçmiş kaydını yanlışlıkla ezmesin.
+        if (window.__v548BridgeClick === true || window.__v533ImmediateNav === true) return;
         const back = target.closest(backSelectors);
         if (back && atSiteDepth() > 0) {
             event.preventDefault();
@@ -18344,7 +19498,7 @@ function scrollSerumTitleBelowNavbarV514(vascularView) {
             goBack();
             return;
         }
-        const control = target.closest('a,button,summary,[role="tab"]');
+        const control = target.closest('a,button,summary,[role="tab"],.injection-card-v72[data-injection-detail-key-v362]');
         if (!control || control === backButton) return;
         const isNavigation = !control.closest('form') && !control.matches(
             '[data-traditional-card-toggle],.traditional-card-details-v501 summary'
@@ -18367,7 +19521,7 @@ function scrollSerumTitleBelowNavbarV514(vascularView) {
                 history.pushState(cleanState(history.state), '', location.href);
             }
             updateBackVisibility();
-        }, 110);
+        }, 220);
     }, true);
 
     window.addEventListener('popstate', (event) => {
@@ -19221,121 +20375,7 @@ function scrollSerumTitleBelowNavbarV514(vascularView) {
 })();
 
 
-// ====================================================================
-// V646 — Ana sayfa karşılama videosu: her ana sayfa girişinde tek oynatma.
-// İlk açılışta loader bittikten sonra başlar; videonun sonunda son kareyi tutar.
-// Diğer sayfalardan geri gelindiğinde baştan oynar; slaytlar arası gezerken
-// tamamlanmış videoyu yeniden başlatmaz.
-// ====================================================================
-(function(){
-  'use strict';
-  const video = document.getElementById('homeDoctorVideoV569');
-  const slide = document.querySelector('#heroSliderV86 .doctor-slide-v86');
-  const loader = document.getElementById('pageLoader');
-  if (!video || !slide) return;
-  const source = video.querySelector('source[data-v616-src]');
-  const reducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)');
-  let wasOnHome = false;
-  let finishedThisVisit = false;
-  let waitingForVideo = false;
-  let sourceReady = false;
-
-  video.loop = false;
-  video.removeAttribute('loop');
-  video.autoplay = false;
-  video.removeAttribute('autoplay');
-  video.muted = true;
-  video.defaultMuted = true;
-  video.playsInline = true;
-
-  function pageReady(){
-    return !loader || (loader.classList.contains('hide') && window.getComputedStyle(loader).visibility === 'hidden');
-  }
-  function onHome(){
-    return document.body.classList.contains('global-home-open-v408');
-  }
-  function visibleDoctor(){
-    return onHome() && slide.classList.contains('is-active') && !document.hidden;
-  }
-  function loadOnce(){
-    if (sourceReady) return;
-    sourceReady = true;
-    if (source && source.dataset.v616Src){
-      source.src = source.dataset.v616Src;
-      video.preload = 'auto';
-      video.load();
-    }
-  }
-  function resetVisit(){
-    finishedThisVisit = false;
-    waitingForVideo = false;
-    video.pause();
-    if (video.readyState >= 1){
-      try { video.currentTime = 0; } catch (_error) {}
-    }
-    slide.classList.remove('home-video-finished-v646');
-  }
-  function finishVideo(){
-    finishedThisVisit = true;
-    waitingForVideo = false;
-    video.pause();
-    slide.classList.add('home-video-finished-v646');
-    // Oynatici videonun son goruntusunu korur: tekrar baslatma yok.
-  }
-  function startVideo(){
-    if (finishedThisVisit || !pageReady() || !visibleDoctor() || reducedMotion.matches) return;
-    if (video.ended){ finishVideo(); return; }
-    loadOnce();
-    if (!video.paused) return;
-    waitingForVideo = true;
-    const promise = video.play();
-    if (promise && typeof promise.catch === 'function'){
-      promise.catch(function(){ waitingForVideo = false; });
-    }
-  }
-  function sync(){
-    const home = onHome();
-    if (home !== wasOnHome){
-      wasOnHome = home;
-      if (home){
-        resetVisit();
-      } else {
-        resetVisit();
-      }
-    }
-    if (!home || !visibleDoctor()){
-      if (!video.paused) video.pause();
-      return;
-    }
-    if (finishedThisVisit || video.ended){
-      if (video.ended && !finishedThisVisit) finishVideo();
-      return;
-    }
-    if (reducedMotion.matches){
-      if (!video.paused) video.pause();
-      return;
-    }
-    startVideo();
-  }
-  video.addEventListener('ended', finishVideo);
-  video.addEventListener('canplay', function(){
-    if (waitingForVideo && !finishedThisVisit && video.paused) sync();
-  });
-  const observer = new MutationObserver(sync);
-  observer.observe(document.body,{attributes:true,attributeFilter:['class']});
-  observer.observe(slide,{attributes:true,attributeFilter:['class']});
-  if (loader){
-    observer.observe(loader,{attributes:true,attributeFilter:['class']});
-    loader.addEventListener('transitionend',sync);
-    window.addEventListener('load',function(){window.setTimeout(sync,850);},{once:true});
-  }
-  document.addEventListener('visibilitychange',sync);
-  window.addEventListener('pageshow',sync);
-  if (typeof reducedMotion.addEventListener === 'function') reducedMotion.addEventListener('change',sync);
-  else if (typeof reducedMotion.addListener === 'function') reducedMotion.addListener(sync);
-  if (document.readyState === 'loading') document.addEventListener('DOMContentLoaded',sync,{once:true});
-  else sync();
-})();
+// V668: Ana sayfa videosu kaldırıldı; sabit görsel için video oynatma denetimi yok.
 
 
 /* V571 - Gerçek klinik galerisi: yalnızca resme tıklanınca büyük göster. */
@@ -20186,8 +21226,7 @@ function scrollSerumTitleBelowNavbarV514(vascularView) {
 })();
 
 
-// V646: V625 mobil video bekletme ve zorunlu tekrar oynatma kontrolleri
-// kaldırıldı; masaüstü ve mobilde tek V646 video denetleyicisi çalışır.
+// V668: Ana sayfa sabit görsel, mobil video oynatıcı denetimi gerektirmez.
 
 
 // =========================================================
@@ -20285,3 +21324,80 @@ function scrollSerumTitleBelowNavbarV514(vascularView) {
   observer.observe(document.body,{attributes:true,attributeFilter:['class']});
   syncQuickBars();
 })();
+
+
+// =========================================================
+// V669 - Egzersiz alanlari / nefes cesitleri kart detaylari
+// Yalnizca Genel Saglik > Egzersizler kapsami
+// =========================================================
+(function () {
+    'use strict';
+    const root = document.querySelector('[data-health-detail-view="egzersizler"]');
+    if (!root || !root.querySelector('#exerciseOverviewV669')) return;
+    const overview = root.querySelector('#exerciseOverviewV669');
+    const panels = Array.from(root.querySelectorAll('[data-exercise-detail-v669]'));
+    let activePanel = null;
+    // V679: Geri/ileri yalnız HTML görünümünü değil, açık egzersiz
+    // seçimini de eşzamanlı geri yüklesin.
+    window.siteExerciseHistoryV679 = {
+        current: () => activePanel && !activePanel.hidden ? activePanel.dataset.exerciseDetailV669 : null,
+        restore: (key) => {
+            activePanel = panels.find(p => p.dataset.exerciseDetailV669 === key) || null;
+            overview.hidden = Boolean(activePanel);
+            panels.forEach(p => { p.hidden = p !== activePanel; });
+        }
+    };
+
+    function scrollExerciseTopV669() {
+        // Global ust menu ve mobil ust bosluk korunur.
+        window.scrollTo({top: 0, behavior: 'auto'});
+    }
+    function closeExerciseDetailV669(shouldFocus) {
+        if (!activePanel) return;
+        const key = activePanel.getAttribute('data-exercise-detail-v669');
+        activePanel.hidden = true;
+        activePanel = null;
+        overview.hidden = false;
+        if (shouldFocus) {
+            const card = root.querySelector('[data-exercise-open-v669="' + key + '"]');
+            if (card) card.focus({preventScroll:true});
+        }
+        scrollExerciseTopV669();
+    }
+    root.addEventListener('click', function (event) {
+        const openButton = event.target.closest('[data-exercise-open-v669]');
+        if (openButton && root.contains(openButton)) {
+            const key = openButton.getAttribute('data-exercise-open-v669');
+            const target = panels.find(panel => panel.getAttribute('data-exercise-detail-v669') === key);
+            if (!target) return;
+            event.preventDefault();
+            panels.forEach(panel => {panel.hidden = panel !== target;});
+            overview.hidden = true;
+            activePanel = target;
+            scrollExerciseTopV669();
+            const back = target.querySelector('[data-exercise-back-v669]');
+            if (back) back.focus({preventScroll:true});
+            return;
+        }
+        if (event.target.closest('[data-exercise-back-v669]')) {
+            event.preventDefault();
+            closeExerciseDetailV669(true);
+        }
+    });
+    document.addEventListener('keydown', function (event) {
+        if (event.key !== 'Escape' || !activePanel || !root.classList.contains('active')) return;
+        if (!document.body.classList.contains('general-health-detail-open-v75')) return;
+        event.preventDefault();
+        event.stopImmediatePropagation();
+        closeExerciseDetailV669(true);
+    }, true);
+    // Sekme degisimi veya ust menuden cikis sonrasi tekrar grid ile ac.
+    document.addEventListener('click', function(event) {
+        if (!activePanel) return;
+        const destination = event.target.closest('[data-health-detail], [data-health-top], #healthDetailHomeV75, [data-global-brand-v172], #healthDetailAreasV75, #healthDetailMediaV75');
+        if (destination && !root.contains(destination)) closeExerciseDetailV669(false);
+    }, true);
+    window.addEventListener('popstate', function () { closeExerciseDetailV669(false); });
+})();
+
+// V671: Egzersiz videoları doğrudan YouTube bağlantılarıdır; site içi iframe oynatıcı kaldırıldı.

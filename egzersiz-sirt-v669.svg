@@ -1,0 +1,11 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="640" height="360" viewBox="0 0 640 360" role="img" aria-label="Sırt ve Göğüs Kafesi için şematik hareket illüstrasyonu">
+      <defs><linearGradient id="bg" x1="0" y1="0" x2="1" y2="1"><stop stop-color="#123452"/><stop offset=".58" stop-color="#205980"/><stop offset="1" stop-color="#1e88b7"/></linearGradient><radialGradient id="glow"><stop stop-color="#69dfff" stop-opacity=".30"/><stop offset="1" stop-color="#b1faff" stop-opacity="0"/></radialGradient></defs>
+      <rect width="640" height="360" fill="url(#bg)"/><circle cx="335" cy="160" r="210" fill="url(#glow)"/><g fill="none" stroke="#bceafa" opacity=".16" stroke-width="2"><circle cx="320" cy="183" r="151"/><circle cx="320" cy="183" r="116"/><path d="M0 280 H640 M0 315 H640 M110 0 V360 M530 0 V360"/></g>
+      <g fill="none" stroke="#d0f4ff" stroke-width="13" stroke-linecap="round" stroke-linejoin="round" opacity=".92">
+       <circle cx="320" cy="66" r="25" stroke-width="10"/>
+       <path d="M315 95 L302 112 L288 162 L297 211 L276 267 L266 313 M325 95 L338 112 L352 162 L343 211 L364 267 L377 313"/>
+       <path d="M302 112 L265 116 L224 158 L207 212 M338 112 L375 116 L416 158 L433 212"/>
+       <path d="M296 208 Q320 220 344 208 M309 117 L320 188 L333 117" stroke-width="9"/>
+       </g>
+       <g fill="#d0f4ff" opacity=".65"><circle cx="266" cy="313" r="6"/><circle cx="377" cy="313" r="6"/></g><circle cx="320" cy="139" r="42" fill="#1e88b7" opacity=".28"/><circle cx="320" cy="139" r="24" fill="#1e88b7" opacity=".45"/><circle cx="320" cy="139" r="14" fill="#c8fdff" stroke="white" stroke-width="4"/><circle cx="320" cy="139" r="58" fill="none" stroke="#9be9fa" stroke-width="2" stroke-dasharray="8 11" opacity=".75"/><g fill="#effcff" opacity=".75"><circle cx="85" cy="92" r="5"/><circle cx="560" cy="235" r="5"/></g><path d="M47 260 v-32 h32 M560 80 h32 v32" fill="none" stroke="#aaf4ff" stroke-width="3" opacity=".5"/>
+    </svg>

@@ -7856,30 +7856,6 @@ body.about-page-open #hakkimdaPage .about-tab-index-v116{
 }
 
 
-/* V646: Aynı karşılama videosu PC ve mobilde bir kez oynar, son karede sabitlenir. */
-html body section#anasayfa.hero-home-v85 .doctor-slide-v86{
-  background-image:url("./ana-sayfa-doktor-karsilama-v646.jpg") !important;
-  background-position:center center !important;
-  background-size:cover !important;
-}
-html body section#anasayfa.hero-home-v85 .doctor-slide-v86 video#homeDoctorVideoV569{
-  background:#eaf3f8 url("./ana-sayfa-doktor-karsilama-v646.jpg") center center / cover no-repeat !important;
-  object-fit:cover !important;
-  object-position:center center !important;
-  transform:none !important;
-  transition:none !important;
-  animation:none !important;
-  opacity:1 !important;
-  visibility:visible !important;
-}
-@media(max-width:760px){
-  html body section#anasayfa.hero-home-v85 .doctor-slide-v86 video#homeDoctorVideoV569{
-    object-position:center center !important;
-    height:100% !important;
-  }
-}
-
-
 /* V648 — Önemli Videolar başlığı ve tüm TV programları bağlantısı */
 #medyaPage #mediaFixedV559 .media-modern-list-section-v642 .media-modern-section-head-v642{
   display:flex!important;
@@ -8271,3 +8247,1037 @@ html body .detox-info-close-v645:hover{background:#7050ca;color:#fff}
 
 /* V649: Ürogenital sistem altı görselli kart */
 .detox-view-v390 .detox-v663-guide[data-category="urogenital"] .detox-card-media-v391 img{object-position:center}
+
+
+/* V664 - Fitoterapi: 27 bitkiye ait geleneksel, osteopatik ve bilimsel değerlendirmeler */
+.phyto-editorial-v664{margin:22px 0 18px;padding:21px;border-radius:24px;border:1px solid #dcebe3;background:linear-gradient(140deg,#f6fcf8,#f2f9fd);color:#183f4c}
+.phyto-editorial-heading-v664{margin-bottom:16px}
+.phyto-editorial-heading-v664>span{display:block;font:800 11px/1.5 Inter,Arial,sans-serif;letter-spacing:.10em;color:#278065}
+.phyto-editorial-heading-v664 h4{margin:6px 0 0;font:850 clamp(19px,2.4vw,26px)/1.25 Inter,Arial,sans-serif;color:#143f51}
+.phyto-editorial-grid-v664{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:13px}
+.phyto-editorial-grid-v664 article{min-width:0;padding:18px;border-radius:18px;background:#fff;border:1px solid rgba(44,124,104,.13);box-shadow:0 8px 18px rgba(22,80,70,.05)}
+.phyto-editorial-grid-v664 article>span{display:block;margin-bottom:8px;font:800 10px/1.45 Inter,Arial,sans-serif;letter-spacing:.08em;color:#248067}
+.phyto-editorial-grid-v664 article h5{margin:0 0 10px;font:800 17px/1.35 Inter,Arial,sans-serif;color:#174456}
+.phyto-editorial-grid-v664 article p{margin:0;font:450 14px/1.78 Inter,Arial,sans-serif;color:#486976}
+.phyto-editorial-grid-v664 .phyto-editorial-science-v664{grid-column:1/-1;background:#fbfdf9;border-color:#dce9d7}
+.phyto-editorial-disclaimer-v664{margin:15px 2px 0;font:550 12px/1.7 Inter,Arial,sans-serif;color:#597584}
+.phyto-editorial-inline-v664{margin-top:20px}
+@media(max-width:760px){.phyto-editorial-v664{margin:14px 0 16px;padding:14px;border-radius:18px}.phyto-editorial-grid-v664{grid-template-columns:1fr;gap:10px}.phyto-editorial-grid-v664 article{padding:14px}.phyto-editorial-grid-v664 article h5{font-size:15px}.phyto-editorial-grid-v664 article p{font-size:13px;line-height:1.65}.phyto-editorial-disclaimer-v664{font-size:11.5px}}
+
+/* V665 – Yalnız İğneli Uygulamalar: Minor Ozon / PRP kart vurgusu ve kaynaklar */
+.injection-card-v72.injection-featured-v665 {position:relative;}
+.injection-card-label-v665 {display:inline-flex;align-items:center;max-width:100%;width:max-content;margin:0 0 10px;padding:7px 11px;border:1px solid rgba(17,131,190,.18);border-radius:999px;background:linear-gradient(135deg,#eaf8ff,#f4fbfd);color:#116f9f;font-weight:850;font-size:10px;letter-spacing:.08em;line-height:1.3;}
+.injection-sources-v665 {margin-top:15px;padding:20px 24px;border:1px solid #dbeaf1;border-radius:18px;background:#fff;color:#315e73;}
+.injection-sources-v665 h2 {font-size:17px;line-height:1.4;color:#123b55;margin:0 0 10px;}
+.injection-sources-v665 ul {margin:0;padding-left:20px;display:grid;gap:8px;}
+.injection-sources-v665 li {font-size:13px;line-height:1.6;overflow-wrap:anywhere;}
+.injection-sources-v665 a {color:#087cb4;text-decoration:underline;text-underline-offset:3px;}
+.injection-sources-v665 a:hover,.injection-sources-v665 a:focus-visible {color:#084f79;}
+@media(max-width:600px){.injection-sources-v665{padding:16px 18px;}.injection-sources-v665 h2{font-size:15px;}.injection-card-label-v665{font-size:9px;}
+.injection-special-topbar-v362{display:flex!important;flex-wrap:wrap!important;gap:8px!important;max-width:100%;padding:10px 12px!important;}
+.injection-special-back-v362{flex:0 1 auto;max-width:100%;white-space:normal;}
+.injection-special-chip-v362{flex:0 1 auto;max-width:100%;white-space:normal;overflow-wrap:anywhere;font-size:9px;padding:8px 10px;}
+.injection-special-heading-v362{flex:1 0 100%;order:3;text-align:left;min-width:0;}
+}
+
+
+/* V668 — Ana sayfa: sessiz video yerine tek sabit doktor görseli (PC ve mobil). */
+html body section#anasayfa.hero-home-v85 .doctor-slide-v86 {
+  background-color: #eaf3f8 !important;
+  background-image: url("./ana-sayfa-osteopati-doktor-v668.png") !important;
+  background-position: center center !important;
+  background-size: cover !important;
+  background-repeat: no-repeat !important;
+}
+html body section#anasayfa.hero-home-v85 .doctor-slide-v86 img.doctor-slide-static-v668 {
+  display: block !important;
+  position: absolute !important;
+  inset: 0 !important;
+  width: 100% !important;
+  height: 100% !important;
+  max-width: none !important;
+  max-height: none !important;
+  object-fit: cover !important;
+  object-position: center center !important;
+  opacity: 1 !important;
+  visibility: visible !important;
+  border: 0 !important;
+  border-radius: 0 !important;
+  transform: none !important;
+  transition: none !important;
+  animation: none !important;
+  filter: none !important;
+  pointer-events: none !important;
+  user-select: none !important;
+  z-index: 0 !important;
+}
+@media (max-width: 760px) {
+  html body section#anasayfa.hero-home-v85 .doctor-slide-v86 img.doctor-slide-static-v668 {
+    object-position: 54% center !important;
+  }
+}
+
+
+/* =========================================================
+   V669 - EGZERSIZLER: AGRI ALANLARI TARZI GORSELLI KARTLAR
+   Scoped: Yalnizca Genel Saglik > Egzersizler.
+   ========================================================= */
+#generalHealthDetailPageV75 .exercise-view-v669{background:linear-gradient(180deg,#f1f8fd 0%,#f7fafc 60%,#edf5fa 100%);min-height:calc(100vh - 120px);padding:12px 0 64px!important;box-sizing:border-box}
+#generalHealthDetailPageV75 .exercise-view-v669 [hidden]{display:none!important}
+#generalHealthDetailPageV75 .exercise-overview-v669,#generalHealthDetailPageV75 .exercise-details-holder-v669{width:min(1360px,calc(100% - 48px));margin:0 auto}
+#generalHealthDetailPageV75 .exercise-header-v669{text-align:center;padding:24px 12px 28px}
+#generalHealthDetailPageV75 .exercise-eyebrow-v669{display:inline-flex;align-items:center;gap:8px;color:#1989b6;font-weight:850;font-size:12px;letter-spacing:.16em;text-transform:uppercase}
+#generalHealthDetailPageV75 .exercise-header-v669 h1{font-size:clamp(32px,4.2vw,56px);margin:10px 0 10px;color:#103550;font-weight:900;line-height:1.16;letter-spacing:-.035em}
+#generalHealthDetailPageV75 .exercise-header-v669 h1 em{font-style:normal;background:linear-gradient(110deg,#168ac5,#23adbf);-webkit-background-clip:text;background-clip:text;color:transparent}
+#generalHealthDetailPageV75 .exercise-header-v669 p{margin:0 auto;max-width:760px;color:#49687b;line-height:1.6;font-size:15px}
+#generalHealthDetailPageV75 .exercise-grid-v669{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:22px;align-items:stretch}
+#generalHealthDetailPageV75 .exercise-card-v669{appearance:none;width:100%;min-width:0;display:flex;flex-direction:column;overflow:hidden;text-align:left;cursor:pointer;border:1px solid #d5e5ee;border-radius:23px;padding:0;background:#fff;color:#123954;box-shadow:0 12px 32px rgba(24,73,100,.08);transition:transform .23s ease,box-shadow .23s ease,border-color .23s ease;font-family:inherit}
+#generalHealthDetailPageV75 .exercise-card-v669:hover,#generalHealthDetailPageV75 .exercise-card-v669:focus-visible{transform:translateY(-6px);box-shadow:0 22px 48px rgba(19,86,121,.18);border-color:var(--exercise-accent-v669)}
+#generalHealthDetailPageV75 .exercise-card-v669:focus-visible{outline:3px solid #57aee0;outline-offset:3px}
+#generalHealthDetailPageV75 .exercise-card-media-v669{display:block;position:relative;height:194px;width:100%;overflow:hidden;background:#133a57}
+#generalHealthDetailPageV75 .exercise-card-media-v669 img{width:100%;height:100%;display:block;object-fit:cover;transition:transform .4s ease}
+#generalHealthDetailPageV75 .exercise-card-v669:hover img{transform:scale(1.045)}
+#generalHealthDetailPageV75 .exercise-card-index-v669{position:absolute;bottom:12px;left:13px;display:grid;place-items:center;width:37px;height:32px;border:1px solid rgba(255,255,255,.6);border-radius:12px;background:rgba(255,255,255,.92);color:#176b96;font-size:13px;font-weight:900;box-shadow:0 8px 18px rgba(0,26,55,.18)}
+#generalHealthDetailPageV75 .exercise-card-body-v669{flex:1;display:flex;flex-direction:column;align-items:flex-start;gap:10px;padding:20px 20px 18px}
+#generalHealthDetailPageV75 .exercise-card-body-v669>strong{font-size:21px;letter-spacing:-.02em;line-height:1.23;color:#123a55;font-weight:850}
+#generalHealthDetailPageV75 .exercise-card-desc-v669{font-size:13px;line-height:1.56;color:#526f81;flex:1}
+#generalHealthDetailPageV75 .exercise-card-cta-v669{display:inline-flex;align-items:center;gap:10px;padding:9px 12px;border-radius:11px;background:#edf6fb;border:1px solid #cce4f1;color:#126899;font-size:12px;font-weight:850;transition:background .2s,color .2s}
+#generalHealthDetailPageV75 .exercise-card-v669:hover .exercise-card-cta-v669,#generalHealthDetailPageV75 .exercise-card-v669:focus-visible .exercise-card-cta-v669{background:var(--exercise-accent-v669);color:#fff}
+#generalHealthDetailPageV75 .exercise-card-featured-v669{grid-column:1/-1;display:grid;grid-template-columns:minmax(0,1.05fr) minmax(0,1fr);min-height:195px}
+#generalHealthDetailPageV75 .exercise-card-featured-v669 .exercise-card-media-v669{height:100%;min-height:195px}
+#generalHealthDetailPageV75 .exercise-card-featured-v669 .exercise-card-body-v669{padding:28px 32px;justify-content:center}
+#generalHealthDetailPageV75 .exercise-card-featured-v669 .exercise-card-body-v669>strong{font-size:29px}
+#generalHealthDetailPageV75 .exercise-card-featured-v669 .exercise-card-desc-v669{flex:0;font-size:15px}
+#generalHealthDetailPageV75 .exercise-overview-note-v669{border:1px solid #d1e4ef;border-radius:15px;background:rgba(255,255,255,.85);margin:24px 0 0;padding:16px 20px;font-size:13px;color:#526d7c;line-height:1.65}
+#generalHealthDetailPageV75 .exercise-detail-v669{padding-top:14px}
+#generalHealthDetailPageV75 .exercise-back-v669{appearance:none;cursor:pointer;display:inline-flex;align-items:center;border:1px solid #c8e2f2;border-radius:12px;background:#fff;color:#137cb4;font-size:13px;font-family:inherit;font-weight:800;padding:12px 17px;box-shadow:0 6px 17px rgba(11,89,134,.07);margin:0 0 19px}
+#generalHealthDetailPageV75 .exercise-back-v669:hover,#generalHealthDetailPageV75 .exercise-back-v669:focus-visible{background:#e6f5fd;border-color:#84c8e7;outline-offset:3px}
+#generalHealthDetailPageV75 .exercise-detail-hero-v669{position:relative;overflow:hidden;display:grid;grid-template-columns:300px minmax(0,1fr);align-items:center;gap:27px;border-radius:24px;border:1px solid #d0e5f0;background:#fff;box-shadow:0 15px 36px rgba(19,75,112,.08);padding:0 30px 0 0;min-height:215px}
+#generalHealthDetailPageV75 .exercise-detail-hero-v669>img{width:100%;height:100%;min-height:215px;object-fit:cover}
+#generalHealthDetailPageV75 .exercise-detail-hero-v669 h2{color:#123b56;font-size:clamp(25px,3vw,39px);line-height:1.19;margin:9px 0 10px;font-weight:850}
+#generalHealthDetailPageV75 .exercise-detail-hero-v669 p{margin:0;color:#557084;font-size:15px;line-height:1.65}
+#generalHealthDetailPageV75 .exercise-detail-list-v669{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:16px;margin-top:24px}
+#generalHealthDetailPageV75 .exercise-step-v669{display:flex;gap:16px;align-items:flex-start;border:1px solid #d5e7f0;background:#fff;border-radius:17px;padding:22px 20px;box-shadow:0 8px 24px rgba(16,74,107,.05)}
+#generalHealthDetailPageV75 .exercise-step-num-v669{flex:0 0 42px;width:42px;height:42px;display:grid;place-items:center;border-radius:13px;background:linear-gradient(135deg,#248fc4,#1372a7);color:#fff;font-size:13px;font-weight:900}
+#generalHealthDetailPageV75 .exercise-step-v669 h3{margin:1px 0 8px;font-size:18px;color:#123b58;line-height:1.3}
+#generalHealthDetailPageV75 .exercise-step-v669 p{margin:0;line-height:1.7;color:#516c7d;font-size:14px}
+#generalHealthDetailPageV75 .exercise-safety-v669{border-left:4px solid #2495bf;padding:16px 20px;margin:24px 0;background:#e9f5fb;color:#32556b;font-size:13px;line-height:1.7;border-radius:0 12px 12px 0}
+#generalHealthDetailPageV75 .exercise-bottom-back-v669{margin-top:0}
+@media (max-width:1160px){#generalHealthDetailPageV75 .exercise-grid-v669{grid-template-columns:repeat(3,minmax(0,1fr));gap:18px}#generalHealthDetailPageV75 .exercise-card-featured-v669{grid-column:1/-1}#generalHealthDetailPageV75 .exercise-card-media-v669{height:180px}}
+@media (max-width:830px){#generalHealthDetailPageV75 .exercise-grid-v669{grid-template-columns:repeat(2,minmax(0,1fr));gap:15px}#generalHealthDetailPageV75 .exercise-card-featured-v669{grid-column:1/-1}#generalHealthDetailPageV75 .exercise-detail-hero-v669{grid-template-columns:230px minmax(0,1fr);gap:19px}#generalHealthDetailPageV75 .exercise-detail-hero-v669>img{min-height:205px}}
+@media (max-width:540px){#generalHealthDetailPageV75 .exercise-view-v669{padding-top:4px!important}#generalHealthDetailPageV75 .exercise-overview-v669,#generalHealthDetailPageV75 .exercise-details-holder-v669{width:calc(100% - 24px)}#generalHealthDetailPageV75 .exercise-header-v669{padding:19px 4px 23px}#generalHealthDetailPageV75 .exercise-header-v669 h1{font-size:33px}#generalHealthDetailPageV75 .exercise-header-v669 p{font-size:13px}#generalHealthDetailPageV75 .exercise-grid-v669{grid-template-columns:repeat(2,minmax(0,1fr));gap:10px}#generalHealthDetailPageV75 .exercise-card-v669{border-radius:16px}#generalHealthDetailPageV75 .exercise-card-media-v669{height:116px}#generalHealthDetailPageV75 .exercise-card-body-v669{padding:14px 11px;gap:7px}#generalHealthDetailPageV75 .exercise-card-body-v669>strong{font-size:16px}#generalHealthDetailPageV75 .exercise-card-desc-v669{font-size:11px;line-height:1.4}#generalHealthDetailPageV75 .exercise-card-cta-v669{font-size:10px;gap:5px;padding:7px 8px}#generalHealthDetailPageV75 .exercise-card-index-v669{bottom:7px;left:7px;width:28px;height:25px;font-size:10px;border-radius:8px}#generalHealthDetailPageV75 .exercise-card-featured-v669{grid-template-columns:1fr 1.2fr;min-height:160px}#generalHealthDetailPageV75 .exercise-card-featured-v669 .exercise-card-media-v669{height:100%;min-height:160px}#generalHealthDetailPageV75 .exercise-card-featured-v669 .exercise-card-body-v669{padding:15px 12px}#generalHealthDetailPageV75 .exercise-card-featured-v669 .exercise-card-body-v669>strong{font-size:19px}#generalHealthDetailPageV75 .exercise-card-featured-v669 .exercise-card-desc-v669{font-size:11px}#generalHealthDetailPageV75 .exercise-overview-note-v669{font-size:12px;padding:13px}#generalHealthDetailPageV75 .exercise-detail-hero-v669{display:block;padding:0 0 20px}#generalHealthDetailPageV75 .exercise-detail-hero-v669>img{width:100%;height:178px;min-height:0}#generalHealthDetailPageV75 .exercise-detail-hero-v669>div{padding:17px 18px 0}#generalHealthDetailPageV75 .exercise-detail-hero-v669 h2{font-size:25px}#generalHealthDetailPageV75 .exercise-detail-list-v669{grid-template-columns:1fr;gap:11px}#generalHealthDetailPageV75 .exercise-step-v669{padding:17px 14px}#generalHealthDetailPageV75 .exercise-step-v669 h3{font-size:16px}#generalHealthDetailPageV75 .exercise-step-v669 p{font-size:13px}}
+@media (prefers-reduced-motion:reduce){#generalHealthDetailPageV75 .exercise-card-v669,#generalHealthDetailPageV75 .exercise-card-media-v669 img{transition:none}}
+
+/* V670: Dr. Ceyhun Nuri YouTube videolari - Egzersizler yalnizca */
+.exercise-youtube-v670{margin:25px 0 18px;border:1px solid rgba(58,125,168,.23);border-radius:22px;padding:clamp(16px,2.7vw,28px);background:linear-gradient(145deg,#f4faff 0%,#fff 63%);box-shadow:0 12px 36px rgba(24,64,99,.07);color:#17314c}
+.exercise-youtube-head-v670{display:flex;gap:13px;align-items:flex-start;margin-bottom:18px}
+.exercise-youtube-mark-v670{flex:none;display:grid;place-items:center;width:42px;height:42px;border-radius:14px;background:#d92937;color:white;font-size:18px;box-shadow:0 5px 14px #d9293740}
+.exercise-youtube-head-v670 h3{margin:0 0 5px!important;font-size:clamp(18px,2vw,23px);line-height:1.3;color:#153c61}
+.exercise-youtube-head-v670 p{margin:0;line-height:1.55;color:#5a6e82;font-size:14px}
+.exercise-video-grid-v670{display:grid;grid-template-columns:repeat(auto-fit,minmax(min(100%,260px),1fr));gap:16px;margin-bottom:18px}
+.exercise-video-card-v670{min-width:0;overflow:hidden;border:1px solid #dce8f3;background:#fff;border-radius:16px;box-shadow:0 6px 15px #1238530d}
+.exercise-video-player-v670{position:relative;aspect-ratio:16/9;background:#122a40;overflow:hidden}
+.exercise-video-cover-v670{position:relative;display:block;padding:0!important;border:0!important;background:transparent;cursor:pointer;width:100%;height:100%;color:white}
+.exercise-video-cover-v670 img{display:block;width:100%;height:100%;object-fit:cover;transition:transform .28s ease}
+.exercise-video-cover-v670:hover img{transform:scale(1.04)}
+.exercise-video-play-v670{position:absolute;top:50%;left:50%;transform:translate(-50%,-50%);width:60px;height:44px;border-radius:13px;display:grid;place-items:center;background:#ed1d24;box-shadow:0 5px 18px #0007;color:#fff;font-size:21px;padding-left:3px}
+.exercise-video-copy-v670{padding:14px 16px 16px}
+.exercise-video-copy-v670 strong{display:block;font-size:15px;line-height:1.35;color:#173a59}
+.exercise-video-copy-v670 p{font-size:13px;line-height:1.5;color:#607589;margin:7px 0 12px}
+.exercise-video-copy-v670 a{font-size:13px;font-weight:700;color:#096c9e;text-decoration:none}
+.exercise-video-copy-v670 a:hover,.exercise-search-link-v670:hover{text-decoration:underline}
+.exercise-search-v670{border-top:1px solid #dbe8f2;padding-top:15px}
+.exercise-search-v670>span{display:block;font-size:13px;font-weight:700;color:#426782;margin-bottom:10px}
+.exercise-search-links-v670{display:flex;flex-wrap:wrap;gap:9px}
+.exercise-search-link-v670{display:inline-flex;align-items:center;gap:6px;padding:10px 14px;border-radius:50px;background:#eaf4fb;border:1px solid #c8dff0;color:#175680;text-decoration:none;font-size:13px;font-weight:700}
+.exercise-nefes-reference-v670{display:block;width:fit-content;margin-top:13px;color:#135783;text-decoration:underline;font-weight:700;font-size:13px}
+@media(max-width:600px){.exercise-youtube-v670{padding:15px;border-radius:16px;margin:18px 0}.exercise-video-grid-v670{grid-template-columns:1fr}.exercise-youtube-mark-v670{width:36px;height:36px}.exercise-search-link-v670{font-size:12px;padding:9px 11px}}
+
+/* V670 thumbnail offline fallback */
+.exercise-video-cover-v670{background:radial-gradient(circle at 80% 20%,#285578,#0f2d44 75%)}
+.exercise-video-fallback-v670{position:absolute;inset:0;display:grid;place-content:center;z-index:0;color:#b7d4e7;text-align:center;font-size:15px;line-height:1.7;letter-spacing:.04em;font-weight:700}
+.exercise-video-cover-v670 img{position:absolute;inset:0;z-index:1}
+.exercise-video-play-v670{z-index:2}
+
+/* V671: Exercise cards open real YouTube watch pages directly; keyboard-accessible links. */
+.exercise-video-cover-v670{text-decoration:none!important;outline-offset:-4px}
+.exercise-video-cover-v670:focus-visible{outline:3px solid #f5d77a;outline-offset:-4px}
+.exercise-video-cover-v670:hover .exercise-video-play-v670,.exercise-video-cover-v670:focus-visible .exercise-video-play-v670{background:#d9131a;transform:translate(-50%,-50%) scale(1.08)}
+
+
+/* V673 — Egzersizler: baslik sadece normal akista, goruntulerin ustune binmez.
+   Genel header { position:fixed } kurali bu alan icin artik kullanilmiyor. */
+#generalHealthDetailPageV75 .exercise-view-v669 {
+    padding-top: 24px !important;
+}
+#generalHealthDetailPageV75 .exercise-simple-title-v673 {
+    box-sizing: border-box;
+    position: relative !important;
+    inset: auto !important;
+    width: 100%;
+    height: auto !important;
+    min-height: 0 !important;
+    margin: 0 auto 24px !important;
+    padding: 34px 12px 6px !important;
+    display: block !important;
+    text-align: center;
+    background: transparent !important;
+    border: 0 !important;
+    box-shadow: none !important;
+    transform: none !important;
+    z-index: auto !important;
+}
+#generalHealthDetailPageV75 .exercise-simple-title-v673 h2 {
+    margin: 0 !important;
+    padding: 0 !important;
+    color: #123f5e !important;
+    font-size: clamp(28px, 3.4vw, 44px) !important;
+    font-weight: 800 !important;
+    line-height: 1.2 !important;
+    letter-spacing: -0.025em;
+    text-transform: none !important;
+    background: none !important;
+    -webkit-text-fill-color: #123f5e !important;
+}
+#generalHealthDetailPageV75 .exercise-simple-title-v673 + .exercise-grid-v669 {
+    margin-top: 0 !important;
+    position: relative;
+    z-index: 0;
+}
+@media (max-width: 600px) {
+    #generalHealthDetailPageV75 .exercise-view-v669 {
+        padding-top: 12px !important;
+    }
+    #generalHealthDetailPageV75 .exercise-simple-title-v673 {
+        padding: 20px 6px 0 !important;
+        margin-bottom: 18px !important;
+    }
+    #generalHealthDetailPageV75 .exercise-simple-title-v673 h2 {
+        font-size: 30px !important;
+    }
+}
+
+
+/* V674 - Egzersizler detaylarında yalnızca konu başlığı ve görsel; görselli hızlı geçiş */
+#generalHealthDetailPageV75 .exercise-detail-hero-v669 {
+    min-height: 185px;
+}
+#generalHealthDetailPageV75 .exercise-detail-hero-v669 > img {
+    min-height: 185px;
+}
+#generalHealthDetailPageV75 .exercise-detail-hero-v669 h2 {
+    margin: 0;
+}
+#generalHealthDetailPageV75 .exercise-switcher-v674 {
+    display: block;
+    box-sizing: border-box;
+    position: relative !important;
+    inset: auto !important;
+    width: 100%;
+    height: auto !important;
+    padding: 22px 23px 24px;
+    margin: 23px 0 2px;
+    background: linear-gradient(135deg,#103e5d 0%,#164d69 53%,#116276 100%);
+    color: #fff;
+    border: 1px solid rgba(17,105,132,.25);
+    border-radius: 23px;
+    box-shadow: 0 15px 32px rgba(20,68,97,.14);
+    transform: none !important;
+    z-index: auto;
+}
+#generalHealthDetailPageV75 .exercise-switcher-head-v674 {
+    display: flex;
+    align-items: center;
+    gap: 11px;
+    margin-bottom: 18px;
+}
+#generalHealthDetailPageV75 .exercise-switcher-head-v674 strong {
+    color: #fff;
+    font-weight: 850;
+    letter-spacing: .01em;
+    font-size: clamp(16px,1.7vw,20px);
+}
+#generalHealthDetailPageV75 .exercise-switcher-icon-v674 {
+    display: grid;
+    place-items: center;
+    width: 33px;
+    height: 33px;
+    font-size: 21px;
+    border-radius: 10px;
+    background: rgba(255,255,255,.16);
+    color: #fff;
+}
+#generalHealthDetailPageV75 .exercise-switcher-grid-v674 {
+    display: grid;
+    grid-template-columns: repeat(4,minmax(0,1fr));
+    gap: 10px;
+}
+#generalHealthDetailPageV75 .exercise-switch-card-v674 {
+    appearance: none;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    width: 100%;
+    min-width: 0;
+    min-height: 70px;
+    margin: 0;
+    padding: 9px;
+    text-align: left;
+    background: #fff;
+    color: #183e57;
+    border: 1px solid rgba(255,255,255,.78);
+    border-radius: 14px;
+    box-shadow: 0 4px 12px rgba(0,19,40,.09);
+    cursor: pointer;
+    font-family: inherit;
+    transition: background .2s,transform .2s,box-shadow .2s;
+}
+#generalHealthDetailPageV75 .exercise-switch-card-v674 > img {
+    flex: 0 0 52px;
+    width: 52px;
+    height: 52px;
+    object-fit: cover;
+    border-radius: 10px;
+    background: #dcecf5;
+}
+#generalHealthDetailPageV75 .exercise-switch-card-v674 > span:not(.exercise-switch-arrow-v674) {
+    flex: 1 1 auto;
+    min-width: 0;
+    overflow-wrap: break-word;
+    font-size: 12.5px;
+    font-weight: 800;
+    line-height: 1.3;
+    color: #173e5b;
+}
+#generalHealthDetailPageV75 .exercise-switch-arrow-v674 {
+    flex: 0 0 auto;
+    font-size: 17px;
+    color: #1285a9;
+    font-weight: 900;
+}
+#generalHealthDetailPageV75 .exercise-switch-card-v674:hover,
+#generalHealthDetailPageV75 .exercise-switch-card-v674:focus-visible {
+    background: #eaf8ff;
+    transform: translateY(-2px);
+    box-shadow: 0 8px 16px rgba(0,19,40,.15);
+    border-color: #76d0f0;
+}
+#generalHealthDetailPageV75 .exercise-switch-card-v674:focus-visible {
+    outline: 3px solid #9ee2fa;
+    outline-offset: 2px;
+}
+@media (max-width:1050px) {
+  #generalHealthDetailPageV75 .exercise-switcher-grid-v674 {
+      grid-template-columns: repeat(3,minmax(0,1fr));
+  }
+}
+@media (max-width:720px) {
+  #generalHealthDetailPageV75 .exercise-switcher-v674 {
+      padding: 16px 12px;
+      margin-top: 16px;
+      border-radius: 17px;
+  }
+  #generalHealthDetailPageV75 .exercise-switcher-grid-v674 {
+      grid-template-columns: repeat(2,minmax(0,1fr));
+      gap: 8px;
+  }
+  #generalHealthDetailPageV75 .exercise-switch-card-v674 {
+      min-height: 62px;
+      padding: 7px;
+      gap: 7px;
+  }
+  #generalHealthDetailPageV75 .exercise-switch-card-v674 > img {
+      flex-basis: 42px;
+      width: 42px;
+      height: 42px;
+      border-radius: 9px;
+  }
+  #generalHealthDetailPageV75 .exercise-switch-card-v674 > span:not(.exercise-switch-arrow-v674) {
+      font-size: 11.5px;
+  }
+  #generalHealthDetailPageV75 .exercise-switch-arrow-v674 {font-size: 14px;}
+}
+@media (max-width:400px) {
+  #generalHealthDetailPageV75 .exercise-switch-card-v674 > img {width: 36px;height: 36px;flex-basis:36px;}
+  #generalHealthDetailPageV75 .exercise-switch-card-v674 > span:not(.exercise-switch-arrow-v674) {font-size: 10.5px;}
+}
+@media (prefers-reduced-motion:reduce) {
+  #generalHealthDetailPageV75 .exercise-switch-card-v674 {transition: none;}
+}
+
+
+/* =========================================================
+   V675 - Üst sağ arama + randevu butonları daha sağda ve daha belirgin
+   ========================================================= */
+html body .v548-header-actions{
+  justify-self:end !important;
+  margin-left:18px !important;
+}
+html body .v548-search,
+html body .v548-appointment{
+  position:relative !important;
+  isolation:isolate !important;
+}
+html body .v548-search{
+  border:1px solid #b9d1e6 !important;
+  background:linear-gradient(180deg,#ffffff 0%,#eef5fb 100%) !important;
+  color:#0a3d73 !important;
+  box-shadow:0 10px 24px rgba(14,66,112,.10), inset 0 1px 0 rgba(255,255,255,.98) !important;
+}
+html body .v548-search svg{
+  width:25px !important;
+  height:25px !important;
+  stroke-width:2.15 !important;
+}
+html body .v548-search:hover,
+html body .v548-search:focus-visible{
+  background:linear-gradient(180deg,#ffffff 0%,#e5f5ff 100%) !important;
+  border-color:#7db7de !important;
+  color:#085894 !important;
+  box-shadow:0 14px 30px rgba(8,88,148,.16), inset 0 1px 0 rgba(255,255,255,.98) !important;
+}
+html body .v548-appointment{
+  margin-left:10px !important;
+  padding:0 24px !important;
+  min-height:54px !important;
+  border:1px solid rgba(5,76,132,.18) !important;
+  background:linear-gradient(135deg,#0d62a8 0%,#093f89 100%) !important;
+  box-shadow:0 14px 30px rgba(8,74,129,.22), inset 0 1px 0 rgba(255,255,255,.16) !important;
+}
+html body .v548-appointment span{
+  font-size:15px !important;
+  font-weight:800 !important;
+}
+html body .v548-appointment svg{
+  width:22px !important;
+  height:22px !important;
+  stroke-width:2.05 !important;
+}
+html body .v548-appointment b{
+  font-size:21px !important;
+  font-weight:700 !important;
+}
+html body .v548-appointment:hover,
+html body .v548-appointment:focus-visible{
+  background:linear-gradient(135deg,#1071bc 0%,#0a4c99 100%) !important;
+  box-shadow:0 18px 34px rgba(10,90,152,.28), inset 0 1px 0 rgba(255,255,255,.18) !important;
+  transform:translateY(-1px) !important;
+}
+@media (min-width:1181px){
+  html body .v548-header-actions{
+    margin-left:28px !important;
+    padding-right:6px !important;
+    gap:12px !important;
+  }
+  html body .v548-search,
+  html body .v548-hamburger{
+    width:48px !important;
+    height:48px !important;
+    min-width:48px !important;
+    flex:0 0 48px !important;
+  }
+  html body .v548-appointment{
+    min-height:52px !important;
+    padding:0 26px !important;
+    border-radius:26px !important;
+  }
+}
+@media (min-width:1181px) and (max-width:1360px){
+  html body .v548-header-actions{
+    margin-left:20px !important;
+    gap:10px !important;
+  }
+  html body .v548-search,
+  html body .v548-hamburger{
+    width:46px !important;
+    height:46px !important;
+    min-width:46px !important;
+    flex-basis:46px !important;
+  }
+  html body .v548-appointment{
+    min-height:48px !important;
+    padding:0 20px !important;
+  }
+}
+@media (max-width:1180px){
+  html body .v548-header-actions{
+    margin-left:auto !important;
+    gap:9px !important;
+  }
+  html body .v548-search,
+  html body .v548-hamburger{
+    box-shadow:0 8px 20px rgba(11,70,120,.10), inset 0 1px 0 rgba(255,255,255,.98) !important;
+  }
+  html body .v548-appointment{
+    margin-left:4px !important;
+  }
+}
+@media (max-width:640px){
+  html body .v548-search,
+  html body .v548-hamburger{
+    width:42px !important;
+    height:42px !important;
+    min-width:42px !important;
+  }
+  html body .v548-search svg,
+  html body .v548-hamburger svg{
+    width:22px !important;
+    height:22px !important;
+  }
+}
+
+
+/* ============================================================
+   V676 | Masaüstü üst menü - eşit yükseklik ve dengeli boşluklar
+   Mevcut işlevleri ve mobil alt menüyü değiştirmez.
+   ============================================================ */
+@media (min-width:1181px){
+  html body #v548PremiumNav .v548-header-inner{
+    display:grid !important;
+    grid-template-columns:minmax(235px,285px) minmax(0,1fr) max-content !important;
+    align-items:center !important;
+    max-width:1660px !important;
+    min-height:94px !important;
+    padding:12px 22px !important;
+    column-gap:20px !important;
+  }
+  html body #v548PremiumNav .v548-brand{
+    display:flex !important;
+    width:100% !important;
+    max-width:none !important;
+    min-width:0 !important;
+    align-items:center !important;
+    gap:11px !important;
+    overflow:visible !important;
+  }
+  html body #v548PremiumNav .v594-avatar-v594{
+    flex:0 0 60px !important;
+    width:60px !important;
+    height:60px !important;
+  }
+  html body #v548PremiumNav .v548-brand img{
+    flex:0 0 60px !important;
+    width:60px !important;
+    height:60px !important;
+  }
+  html body #v548PremiumNav .v548-brand-text strong{
+    font-size:24px !important;
+    line-height:1.12 !important;
+    letter-spacing:-.045em !important;
+  }
+  html body #v548PremiumNav .v548-brand-text small{
+    font-size:8px !important;
+    gap:5px !important;
+    line-height:1.35 !important;
+  }
+  html body #v548PremiumNav .v548-brand-text small span{width:19px !important;}
+  html body #v548PremiumNav .v548-nav{
+    display:flex !important;
+    width:100% !important;
+    flex-wrap:nowrap !important;
+    align-items:center !important;
+    justify-content:center !important;
+    min-width:0 !important;
+    gap:8px !important;
+  }
+  html body #v548PremiumNav .v548-nav > .v548-nav-item{
+    flex:0 0 auto !important;
+    height:50px !important;
+    min-height:50px !important;
+    padding:0 14px !important;
+    gap:7px !important;
+    font-size:13px !important;
+    font-weight:750 !important;
+    line-height:1 !important;
+    border-radius:26px !important;
+    white-space:nowrap !important;
+    transform:none !important;
+  }
+  html body #v548PremiumNav .v548-nav .v548-chevron{
+    flex:0 0 8px !important;
+    width:8px !important;
+    height:8px !important;
+  }
+  html body #v548PremiumNav .v548-header-actions{
+    display:flex !important;
+    align-items:center !important;
+    justify-content:flex-end !important;
+    flex:0 0 auto !important;
+    justify-self:end !important;
+    min-width:0 !important;
+    margin:0 !important;
+    padding:0 !important;
+    gap:12px !important;
+  }
+  html body #v548PremiumNav .v548-search{
+    flex:0 0 50px !important;
+    width:50px !important;
+    height:50px !important;
+    min-width:50px !important;
+    min-height:50px !important;
+    padding:0 !important;
+    border-radius:50% !important;
+  }
+  html body #v548PremiumNav .v548-search svg{
+    width:24px !important;
+    height:24px !important;
+  }
+  html body #v548PremiumNav .v548-appointment{
+    display:inline-flex !important;
+    flex:0 0 auto !important;
+    align-items:center !important;
+    justify-content:center !important;
+    width:214px !important;
+    min-width:214px !important;
+    height:50px !important;
+    min-height:50px !important;
+    margin:0 !important;
+    padding:0 15px !important;
+    gap:10px !important;
+    border-radius:26px !important;
+    white-space:nowrap !important;
+  }
+  html body #v548PremiumNav .v548-appointment span{
+    font-size:14px !important;
+    font-weight:800 !important;
+  }
+  html body #v548PremiumNav .v548-appointment svg{
+    flex:0 0 21px !important;
+    width:21px !important;
+    height:21px !important;
+  }
+  html body #v548PremiumNav .v548-appointment b{font-size:19px !important;}
+}
+@media (min-width:1181px) and (max-width:1480px){
+  html body #v548PremiumNav .v548-header-inner{
+    grid-template-columns:minmax(205px,245px) minmax(0,1fr) max-content !important;
+    column-gap:12px !important;
+    padding:10px 14px !important;
+    min-height:84px !important;
+  }
+  html body #v548PremiumNav .v594-avatar-v594,
+  html body #v548PremiumNav .v548-brand img{
+    flex-basis:51px !important;
+    width:51px !important;
+    height:51px !important;
+  }
+  html body #v548PremiumNav .v548-brand{gap:8px !important;}
+  html body #v548PremiumNav .v548-brand-text strong{font-size:20px !important;}
+  html body #v548PremiumNav .v548-brand-text small{font-size:7px !important;}
+  html body #v548PremiumNav .v548-brand-text small span{width:12px !important;}
+  html body #v548PremiumNav .v548-nav{gap:5px !important;}
+  html body #v548PremiumNav .v548-nav > .v548-nav-item{
+    height:46px !important;
+    min-height:46px !important;
+    padding:0 10px !important;
+    font-size:11.5px !important;
+    gap:5px !important;
+  }
+  html body #v548PremiumNav .v548-header-actions{gap:8px !important;}
+  html body #v548PremiumNav .v548-search{
+    flex-basis:46px !important;
+    width:46px !important;
+    min-width:46px !important;
+    height:46px !important;
+    min-height:46px !important;
+  }
+  html body #v548PremiumNav .v548-appointment{
+    width:180px !important;
+    min-width:180px !important;
+    height:46px !important;
+    min-height:46px !important;
+    padding:0 11px !important;
+    gap:7px !important;
+  }
+  html body #v548PremiumNav .v548-appointment span{font-size:12px !important;}
+  html body #v548PremiumNav .v548-appointment svg{width:19px !important;height:19px !important;flex-basis:19px !important;}
+  html body #v548PremiumNav .v548-appointment b{font-size:17px !important;}
+}
+@media (min-width:1181px) and (max-width:1260px){
+  html body #v548PremiumNav .v548-header-inner{
+    grid-template-columns:minmax(184px,207px) minmax(0,1fr) max-content !important;
+    column-gap:8px !important;
+    padding:8px 10px !important;
+  }
+  html body #v548PremiumNav .v548-brand-text strong{font-size:17px !important;}
+  html body #v548PremiumNav .v548-nav{gap:3px !important;}
+  html body #v548PremiumNav .v548-nav > .v548-nav-item{
+    padding:0 8px !important;
+    font-size:10.5px !important;
+    gap:4px !important;
+  }
+  html body #v548PremiumNav .v548-appointment{min-width:164px !important;width:164px !important;}
+}
+
+
+/* =========================================================
+   V677 | Ust menude kesin yatay hizalama
+   Logo / 6 es oranli menü butonu / Arama + Randevu ayri grid alanlari.
+   ========================================================= */
+@media (min-width:1181px){
+  html body #v548PremiumNav .v548-header-inner{
+    box-sizing:border-box !important;
+    display:grid !important;
+    grid-template-columns:clamp(220px,18vw,290px) minmax(0,1fr) 290px !important;
+    align-items:center !important;
+    column-gap:clamp(10px,1vw,18px) !important;
+    width:min(1696px,calc(100% - 32px)) !important;
+    max-width:1696px !important;
+    min-height:92px !important;
+    margin:0 auto !important;
+    padding:10px 6px !important;
+  }
+  html body #v548PremiumNav .v548-brand{
+    display:flex !important;
+    align-items:center !important;
+    justify-content:flex-start !important;
+    width:100% !important;
+    min-width:0 !important;
+    max-width:none !important;
+    margin:0 !important;
+    padding:0 !important;
+    gap:10px !important;
+  }
+  html body #v548PremiumNav .v594-avatar-v594,
+  html body #v548PremiumNav .v548-brand img{
+    width:56px !important;height:56px !important;
+    min-width:56px !important;flex:0 0 56px !important;
+  }
+  html body #v548PremiumNav .v548-brand-text{min-width:0 !important;max-width:100% !important;}
+  html body #v548PremiumNav .v548-brand-text strong{
+    font-size:clamp(17px,1.28vw,23px) !important;
+    white-space:nowrap !important;
+    line-height:1.1 !important;
+  }
+  html body #v548PremiumNav .v548-nav{
+    box-sizing:border-box !important;
+    display:grid !important;
+    grid-template-columns:minmax(0,1.82fr) minmax(0,1.35fr) minmax(0,.68fr) minmax(0,1.4fr) minmax(0,1.28fr) minmax(0,.72fr) !important;
+    width:100% !important;
+    max-width:990px !important;
+    min-width:0 !important;
+    align-items:center !important;
+    justify-self:center !important;
+    justify-content:stretch !important;
+    gap:7px !important;
+    margin:0 !important;
+    padding:0 !important;
+  }
+  html body #v548PremiumNav .v548-nav > .v548-nav-item{
+    box-sizing:border-box !important;
+    display:flex !important;
+    min-width:0 !important;
+    width:100% !important;
+    max-width:100% !important;
+    height:50px !important;
+    min-height:50px !important;
+    padding:0 8px !important;
+    margin:0 !important;
+    align-items:center !important;
+    justify-content:center !important;
+    gap:5px !important;
+    flex:none !important;
+    font-size:clamp(10.5px,.76vw,13px) !important;
+    font-weight:750 !important;
+    line-height:1 !important;
+    white-space:nowrap !important;
+    overflow:hidden !important;
+    text-overflow:ellipsis !important;
+    border-radius:26px !important;
+    transform:none !important;
+  }
+  html body #v548PremiumNav .v548-nav .v548-chevron{
+    display:inline-block !important;
+    flex:0 0 7px !important;
+    width:7px !important;height:7px !important;
+    margin-left:1px !important;
+  }
+  html body #v548PremiumNav .v548-header-actions{
+    box-sizing:border-box !important;
+    display:flex !important;
+    align-items:center !important;
+    justify-content:flex-end !important;
+    justify-self:end !important;
+    width:290px !important;
+    min-width:0 !important;
+    height:50px !important;
+    gap:10px !important;
+    padding:0 !important;
+    margin:0 !important;
+  }
+  html body #v548PremiumNav .v548-search{
+    box-sizing:border-box !important;
+    flex:0 0 50px !important;
+    width:50px !important;min-width:50px !important;
+    height:50px !important;min-height:50px !important;
+    padding:0 !important;margin:0 !important;
+    border-radius:50% !important;
+  }
+  html body #v548PremiumNav .v548-search svg{
+    width:24px !important;height:24px !important;
+  }
+  html body #v548PremiumNav .v548-appointment{
+    box-sizing:border-box !important;
+    flex:0 0 224px !important;
+    width:224px !important;min-width:224px !important;
+    height:50px !important;min-height:50px !important;
+    padding:0 15px !important;margin:0 !important;
+    display:flex !important;
+    align-items:center !important;justify-content:center !important;
+    gap:9px !important;border-radius:26px !important;
+  }
+  html body #v548PremiumNav .v548-appointment span{font-size:14px !important;line-height:1 !important;}
+  html body #v548PremiumNav .v548-appointment svg{width:21px !important;height:21px !important;flex:0 0 21px !important;}
+  html body #v548PremiumNav .v548-appointment b{font-size:19px !important;}
+}
+@media (min-width:1181px) and (max-width:1480px){
+  html body #v548PremiumNav .v548-header-inner{
+    grid-template-columns:clamp(220px,18vw,260px) minmax(0,1fr) 254px !important;
+    min-height:84px !important;
+    column-gap:11px !important;
+  }
+  html body #v548PremiumNav .v548-header-actions{width:254px !important;height:46px !important;gap:8px !important;}
+  html body #v548PremiumNav .v548-search{width:46px !important;min-width:46px !important;flex-basis:46px !important;height:46px !important;min-height:46px !important;}
+  html body #v548PremiumNav .v548-appointment{width:200px !important;min-width:200px !important;flex-basis:200px !important;height:46px !important;min-height:46px !important;}
+  html body #v548PremiumNav .v548-nav{gap:5px !important;}
+  html body #v548PremiumNav .v548-nav > .v548-nav-item{height:46px !important;min-height:46px !important;font-size:clamp(10px,.78vw,11.5px) !important;padding:0 6px !important;gap:4px !important;}
+  html body #v548PremiumNav .v548-appointment span{font-size:12px !important;}
+}
+@media (min-width:1181px) and (max-width:1280px){
+  html body #v548PremiumNav .v548-header-inner{
+    grid-template-columns:220px minmax(0,1fr) 230px !important;
+    column-gap:8px !important;
+    padding:8px 4px !important;
+  }
+  html body #v548PremiumNav .v548-brand{gap:7px !important;}
+  html body #v548PremiumNav .v594-avatar-v594,
+  html body #v548PremiumNav .v548-brand img{width:48px !important;height:48px !important;min-width:48px !important;flex-basis:48px !important;}
+  html body #v548PremiumNav .v548-brand-text strong{font-size:17px !important;}
+  html body #v548PremiumNav .v548-header-actions{width:230px !important;gap:7px !important;}
+  html body #v548PremiumNav .v548-search{width:44px !important;min-width:44px !important;flex-basis:44px !important;height:44px !important;min-height:44px !important;}
+  html body #v548PremiumNav .v548-appointment{width:179px !important;min-width:179px !important;flex-basis:179px !important;height:44px !important;min-height:44px !important;padding:0 9px !important;gap:6px !important;}
+  html body #v548PremiumNav .v548-nav{gap:4px !important;}
+  html body #v548PremiumNav .v548-nav > .v548-nav-item{font-size:10px !important;padding:0 5px !important;gap:3px !important;}
+}
+
+
+/* =========================================================
+   V678 - Arama butonu daha belirgin
+   ========================================================= */
+html body .v548-search{
+  width:54px !important;
+  height:54px !important;
+  min-width:54px !important;
+  flex:0 0 54px !important;
+  border:2px solid #8bbbe2 !important;
+  background:linear-gradient(180deg,#ffffff 0%,#eaf5ff 100%) !important;
+  color:#0b4e8e !important;
+  box-shadow:0 12px 26px rgba(9,82,140,.14), inset 0 1px 0 rgba(255,255,255,.98) !important;
+}
+html body .v548-search svg{
+  width:28px !important;
+  height:28px !important;
+  stroke-width:2.45 !important;
+}
+html body .v548-search:hover,
+html body .v548-search:focus-visible{
+  background:linear-gradient(180deg,#ffffff 0%,#dff1ff 100%) !important;
+  border-color:#3ea3df !important;
+  color:#085894 !important;
+  box-shadow:0 16px 34px rgba(8,88,148,.20), inset 0 1px 0 rgba(255,255,255,.98) !important;
+  transform:translateY(-1px) scale(1.02) !important;
+}
+html body .v548-search::after{
+  content:"";
+  position:absolute;
+  inset:-5px;
+  border-radius:50%;
+  border:1px solid rgba(62,163,223,.28);
+  pointer-events:none;
+}
+@media (max-width:1180px){
+  html body .v548-search{
+    width:50px !important;
+    height:50px !important;
+    min-width:50px !important;
+    flex-basis:50px !important;
+  }
+  html body .v548-search svg{
+    width:26px !important;
+    height:26px !important;
+  }
+}
+@media (max-width:640px){
+  html body .v548-search{
+    width:46px !important;
+    height:46px !important;
+    min-width:46px !important;
+    flex-basis:46px !important;
+  }
+  html body .v548-search svg{
+    width:24px !important;
+    height:24px !important;
+    stroke-width:2.35 !important;
+  }
+}
+
+
+/* V679 - Gerçek önceki sayfaya dönen sabit geri okunu erişilebilir tut */
+html body #siteGlobalBackV511.site-global-back-v511:not([hidden]) {
+  display:flex !important;
+  align-items:center !important;
+  justify-content:center !important;
+  background:linear-gradient(145deg,#133d60,#0c2441) !important;
+  border:1px solid rgba(255,255,255,.32) !important;
+  box-shadow:0 12px 26px rgba(5,35,62,.25) !important;
+}
+html body #siteGlobalBackV511.site-global-back-v511[hidden]{display:none !important;}
+
+
+/* ========================================================
+   V680 - Egzersizler: video küçük resimleri yerine belirgin
+   YouTube bağlantıları ve konu arama butonları
+   ======================================================== */
+.exercise-links-panel-v680{
+  margin:clamp(18px,3vw,36px) 0 26px;
+  padding:clamp(16px,2.5vw,30px);
+  border:1px solid #c6e1f1;
+  border-radius:24px;
+  background:linear-gradient(150deg,#f8fcff 0%,#edf8ff 100%);
+  box-shadow:0 12px 36px rgba(17,74,117,.07);
+  color:#103a5c;
+}
+.exercise-links-heading-v680{
+  display:flex;
+  align-items:center;
+  gap:14px;
+  margin-bottom:20px;
+}
+.exercise-links-heading-icon-v680{
+  width:52px;
+  height:52px;
+  flex:0 0 52px;
+  display:grid;
+  place-items:center;
+  border-radius:16px;
+  background:linear-gradient(140deg,#087cc0,#074d9a);
+  color:#fff;
+  font-weight:900;
+  font-size:28px;
+  box-shadow:0 8px 18px rgba(9,99,166,.18);
+}
+.exercise-links-heading-v680 h3{
+  margin:0 0 5px;
+  color:#08385d;
+  font-size:clamp(19px,2vw,25px);
+  font-weight:850;
+  line-height:1.2;
+}
+.exercise-links-heading-v680 p{
+  margin:0;
+  color:#55748b;
+  font-size:14px;
+  line-height:1.55;
+}
+.exercise-direct-list-v680{
+  display:grid;
+  grid-template-columns:repeat(2,minmax(0,1fr));
+  gap:12px;
+  margin-bottom:22px;
+}
+.exercise-direct-link-v680{
+  display:flex;
+  align-items:center;
+  gap:14px;
+  min-width:0;
+  min-height:104px;
+  padding:18px;
+  border:1px solid #bddbeb;
+  border-radius:18px;
+  background:#fff;
+  color:#123c61;
+  text-decoration:none;
+  box-shadow:0 6px 16px rgba(14,91,141,.06);
+  transition:transform .16s ease,border-color .16s ease,box-shadow .16s ease,background .16s ease;
+}
+.exercise-direct-link-v680:hover,.exercise-direct-link-v680:focus-visible{
+  transform:translateY(-2px);
+  border-color:#168bc7;
+  background:#f7fcff;
+  box-shadow:0 13px 26px rgba(9,102,168,.14);
+  outline:none;
+}
+.exercise-link-emblem-v680{
+  display:grid;
+  place-items:center;
+  width:44px;
+  height:44px;
+  flex:0 0 44px;
+  border-radius:14px;
+  background:#e0f3ff;
+  color:#087fbe;
+  font-size:26px;
+  font-weight:800;
+}
+.exercise-direct-copy-v680{display:flex;flex-direction:column;gap:6px;min-width:0;flex:1;}
+.exercise-direct-copy-v680 strong{color:#103c61;font-size:15px;line-height:1.35;font-weight:800;overflow-wrap:anywhere;}
+.exercise-direct-copy-v680 small{color:#5d788b;font-size:12px;line-height:1.5;}
+.exercise-direct-action-v680{flex:0 0 auto;color:#075e9d;font-size:12px;font-weight:800;white-space:nowrap;}
+.exercise-topics-v680{margin-top:10px;padding-top:18px;border-top:1px solid #d1e5f0;}
+.exercise-topics-v680>strong{display:block;margin:0 0 13px;color:#143d5f;font-size:16px;font-weight:850;}
+.exercise-topics-grid-v680{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:12px;}
+.exercise-topic-link-v680{
+  display:flex;
+  align-items:center;
+  gap:12px;
+  min-width:0;
+  min-height:66px;
+  padding:12px 17px;
+  border-radius:16px;
+  border:1px solid #89c5e8;
+  background:linear-gradient(135deg,#e5f5ff 0%,#fafdff 100%);
+  color:#0b548b;
+  text-decoration:none;
+  font-size:15px;
+  font-weight:800;
+  box-shadow:0 6px 17px rgba(8,107,170,.08);
+  transition:transform .16s ease,background .16s ease,border-color .16s ease,box-shadow .16s ease;
+}
+.exercise-topic-link-v680:hover,.exercise-topic-link-v680:focus-visible{
+  transform:translateY(-2px);
+  border-color:#178bcc;
+  background:#d9f0ff;
+  box-shadow:0 12px 22px rgba(13,114,178,.16);
+  outline:none;
+}
+.exercise-topic-icon-v680{width:32px;height:32px;display:grid;place-items:center;flex:0 0 32px;border-radius:10px;color:#fff;background:#117cb7;font-size:26px;line-height:1;}
+.exercise-topic-name-v680{flex:1;min-width:0;line-height:1.35;overflow-wrap:anywhere;}
+.exercise-topic-arrow-v680{font-size:21px;font-weight:900;}
+.exercise-reference-v680{
+  display:flex;align-items:center;gap:12px;
+  margin-top:15px;padding:15px 17px;
+  border:1px solid #acd9d6;border-radius:15px;
+  color:#12655c;background:#e9f8f5;
+  text-decoration:none;font-weight:800;font-size:14px;
+}
+.exercise-reference-v680:hover,.exercise-reference-v680:focus-visible{background:#d6f3ec;outline:2px solid #128879;outline-offset:2px;}
+.exercise-reference-v680>span:nth-child(2){flex:1;}
+@media(max-width:1050px){
+  .exercise-direct-list-v680{grid-template-columns:1fr;}
+  .exercise-direct-action-v680{font-size:12px;}
+}
+@media(max-width:680px){
+  .exercise-links-panel-v680{border-radius:18px;padding:16px;}
+  .exercise-links-heading-v680{gap:11px;}
+  .exercise-links-heading-icon-v680{width:44px;height:44px;flex-basis:44px;font-size:24px;}
+  .exercise-links-heading-v680 p{font-size:12px;}
+  .exercise-direct-link-v680{min-height:92px;gap:11px;padding:14px;flex-wrap:wrap;}
+  .exercise-link-emblem-v680{width:39px;height:39px;flex-basis:39px;}
+  .exercise-direct-copy-v680 strong{font-size:14px;}
+  .exercise-direct-action-v680{width:100%;padding-left:51px;}
+  .exercise-topics-grid-v680{grid-template-columns:1fr;gap:10px;}
+  .exercise-topic-link-v680{min-height:59px;padding:12px 14px;}
+}
+@media(prefers-reduced-motion:reduce){
+  .exercise-direct-link-v680,.exercise-topic-link-v680{transition:none;transform:none!important;}
+}
