@@ -1209,6 +1209,13 @@ updateAppointmentProgress();
 // V16 ACIK / KOYU TEMA
 // ================================
 
+// V718: Depolama kapalı/güvenlik gerekçesiyle engelli olsa da
+// menüler dahil diğer sayfa işlevleri çalışmaya devam etmeli.
+const safeSiteStorageV718 = {
+    getItem(key) { try { return window.localStorage.getItem(key); } catch (_) { return null; } },
+    setItem(key, value) { try { window.localStorage.setItem(key, value); } catch (_) { /* erişim engelli */ } }
+};
+
 const themeToggle =
     document.getElementById("themeToggle");
 
@@ -1260,7 +1267,7 @@ function applyTheme(theme) {
 
 
 const savedTheme =
-    localStorage.getItem(
+    safeSiteStorageV718.getItem(
         "ceyhunNuriTheme"
     );
 
@@ -1294,7 +1301,7 @@ if (themeToggle) {
                     ? "light"
                     : "dark";
 
-            localStorage.setItem(
+            safeSiteStorageV718.setItem(
                 "ceyhunNuriTheme",
                 newTheme
             );
@@ -1576,12 +1583,12 @@ function applyLanguage(language) {
         }
     });
 
-    localStorage.setItem("ceyhunNuriLanguage", language);
+    safeSiteStorageV718.setItem("ceyhunNuriLanguage", language);
 }
 
 if (languageSelect) {
     const savedLanguage =
-        localStorage.getItem("ceyhunNuriLanguage") || "tr";
+        safeSiteStorageV718.getItem("ceyhunNuriLanguage") || "tr";
 
     languageSelect.value = savedLanguage;
     applyLanguage(savedLanguage);
@@ -1895,7 +1902,7 @@ function getCurrentServiceLanguage() {
     }
 
     return (
-        localStorage.getItem("ceyhunNuriLanguage") ||
+        safeSiteStorageV718.getItem("ceyhunNuriLanguage") ||
         "tr"
     );
 }
@@ -7300,7 +7307,7 @@ window.addEventListener("load", async () => {
     const tabs=page.querySelectorAll("[data-device-detail-tab]");
     const panels=page.querySelectorAll("[data-device-detail-panel]");
     const openers=document.querySelectorAll("[data-device-detail-open]");
-    const meta={ems:{title:"EMS Yatak",hash:"#cihaz-ems-yatak"},magneto:{title:"Magneto",hash:"#cihaz-magneto"},induktif:{title:"İndüktif Magneto",hash:"#cihaz-induktif-magneto"},lenf:{title:"Lenf Drenaj",hash:"#cihaz-lenf-drenaj"},robotik:{title:"Robotik Lazer",hash:"#cihaz-robotik-lazer"}};
+    const meta={ems:{title:"EMS Cihazı",hash:"#cihaz-ems"},"ems-yatak":{title:"EMS Yatak",hash:"#cihaz-ems-yatak"},elektro:{title:"Elektroterapi Cihazı",hash:"#cihaz-elektroterapi"},magneto:{title:"Magneto",hash:"#cihaz-magneto"},induktif:{title:"İndüktif Magneto",hash:"#cihaz-induktif-magneto"},lenf:{title:"Lenf Drenaj / Pressoterapi",hash:"#cihaz-lenf-drenaj"},robotik:{title:"Robotik Lazer",hash:"#cihaz-robotik-lazer"},"ozon-cihaz":{title:"Ozon Terapi Sistemi",hash:"#cihaz-ozon-sistem"},modus:{title:"Modus Terapi Cihazı",hash:"#cihaz-modus"},segmenter:{title:"Dinamik Segmenter ve Yazılımı",hash:"#cihaz-segmenter"},hiemwave:{title:"Hiemwave Manyetik Uyarım",hash:"#cihaz-hiemwave"},isi:{title:"Kızılötesi Isı Terapisi",hash:"#cihaz-kizilotesi"}};
     function setDevice(name){const selected=meta[name]?name:"ems";tabs.forEach(b=>{const a=b.dataset.deviceDetailTab===selected;b.classList.toggle("active",a);b.setAttribute("aria-current",a?"page":"false")});panels.forEach(p=>{const a=p.dataset.deviceDetailPanel===selected;p.classList.toggle("active",a);p.hidden=!a});title.textContent=meta[selected].title;breadcrumbTitle.textContent=meta[selected].title;return selected}
     function hideKnown(){document.body.classList.remove("treatment-page-open","treatment-nav-scrolled","pain-page-open","pain-nav-scrolled","about-page-open","about-nav-scrolled","media-page-open","media-nav-scrolled","legal-page-open-v56","treatment-detail-open-v71","treatment-detail-nav-scrolled-v71","general-health-detail-open-v75","ankilozan-page-open-v87","info-guide-page-open-v143");["tedaviAlanlariPage","agriPage","hakkimdaPage","medyaPage","legalPageV56","treatmentDetailPageV71","generalHealthDetailPageV75","ankilozanFaqSectionV85","infoGuidePageV143"].forEach(id=>{const e=document.getElementById(id);if(e)e.setAttribute("aria-hidden","true")})}
     function openDevice(name,push=true){hideKnown();const selected=setDevice(name);document.body.classList.add("device-detail-page-open-v157");page.setAttribute("aria-hidden","false");if(push)history.pushState({page:"device-detail",device:selected},"",meta[selected].hash);window.scrollTo({top:0,behavior:"smooth"})}
@@ -17546,6 +17553,10 @@ function scrollSerumTitleBelowNavbarV514(vascularView) {
             recipe.support,
             recipe.tcmView,
             recipe.easternView,
+            detoxUyghurSummaryV717(recipe),
+            detoxWestSummaryV717(recipe).enzyme,
+            detoxWestSummaryV717(recipe).metabolism,
+            'Batı tıbbı Uygur tıbbı Çin tıbbı enzimler metabolizma detoksifikasyon',
             recipe.traditionalLabels,
             recipe.science,
             recipe.lifestyle,
@@ -17557,6 +17568,80 @@ function scrollSerumTitleBelowNavbarV514(vascularView) {
 
     window.siteDetoxCatalogV566 = recipes;
 
+    // V717: Tüm detoks/gıda içerikleri için iki ayrı, açıklayıcı yaklaşım.
+    // Geleneksel terminoloji fizyolojik işlevlerle eşdeğer tutulmaz.
+    const detoxEasternByCategoryV717 = {
+        mide: 'Çin tıbbında Mide Qi’sinin işlevi ve Dalak-Mide uyumu; Uygur tıbbında ise mizacın sıcaklık, soğukluk, nem ve kuruluk yönleriyle besine verilen yanıt tartışılır. Bu tanımlar tarihsel kuramsal yaklaşımlardır; mide asidi veya sindirim enzimi ölçümleriyle eşdeğer değildir.',
+        bagirsak: 'Çin tıbbında Dalak-Mide Qi’si, sıvıların dağılımı ve bağırsak düzeni birlikte yorumlanır. Uygur tıbbında mizacın kuru/nemli niteliği, öğün düzeni ve gıdanın tolere edilmesi ön plana çıkar. Bu açıklamalar, bağırsak florasını ya da kan biyokimyasını doğrudan ölçen bir sistem değildir.',
+        karaciger: 'Çin tıbbındaki “Karaciğer Qi akışı” fiziksel karaciğerin toksinleri temizleme kapasitesiyle aynı kavram değildir. Uygur tıbbında dört hılt ve mizacın dengesi üzerinden besinlerin geleneksel nitelikleri ele alınır; bunlar modern karaciğer biyokimyasının yerine geçmez.',
+        kalp: 'Çin tıbbında Kalp, Kan ve Qi arasındaki ilişki geleneksel bir açıklama çerçevesidir. Uygur tıbbında kan/hılt dengesi ve sıcak-soğuk mizacı beslenmeyle birlikte yorumlanır. Bu kavramlar damar tıkanıklığını, ritim bozukluğunu veya kalp hastalığını tanılamaz.',
+        kilo: 'Çin tıbbında Dalak Qi’si ve “nem” kavramları öğün düzeniyle birlikte yorumlanır. Uygur tıbbında kişinin mizacı, yiyeceğin sıcak-soğuk niteliği ve ölçülü beslenme ele alınır. Bu anlatımın modern kilo kaybı veya hormon ölçümleriyle doğrudan eşitliği yoktur.',
+        colyak: 'Çin tıbbında besinlerin sıcak/soğuk niteliği, Uygur tıbbında mizaca uygun beslenme gibi geleneksel açıklamalar bulunur. Ancak çölyak otoimmün bir hastalıktır; her iki tarihsel yaklaşım da zorunlu glutensiz diyetin ve tıbbi takibin yerine geçemez.',
+        urogenital: 'Çin tıbbında Böbrek Qi’si ve sıvıların dengesi geleneksel bir sistem olarak anlatılır. Uygur tıbbında mizacın sıcaklık ve nem yönleri değerlendirilir. Bu ifadeler, böbreğin glomerüler filtrasyon hızı, idrar tahlili veya enfeksiyon göstergeleri değildir.',
+        japon: 'Japon tek öğün yaklaşımı klasik Çin veya Uygur tıbbının tek başına ortak bir tedavi yöntemi değildir. Geleneksel öğün dengesi, yiyeceklerin sıcak/soğuk nitelikleri ve Uygur tıbbındaki mizaca uygunluk ayrı tarihsel bakışlar olarak tanıtılabilir.',
+        aclik: 'Çin tıbbında beslenme düzeninin Qi ve sindirim gücü ile bağlantısı tarihsel olarak ele alınır. Uygur tıbbında sıcaklık, kuruluk, sıvı ve mizacın dengesi üzerinde durulur. Uzun süreli açlığın toksinleri attırdığına ilişkin bu kuramlardan bilimsel sonuç çıkarılamaz.'
+    };
+    const detoxWesternByCategoryV717 = {
+        mide: {
+            enzyme:'Mide pepsini protein sindirimini başlatır; ince bağırsakta pankreasın amilaz, lipaz ve proteazları karbonhidrat, yağ ve proteinlerin parçalanmasında görev alır.',
+            metabolism:'Öğün içeriği, porsiyon, mide boşalma hızı ve kişisel tolerans sindirim yakınmalarını etkileyebilir. Hiçbir karışımın tek başına sindirim enzimlerini “arınma” amacıyla harekete geçirdiği kabul edilmez.',
+            elimination:'Mide toksinleri temizleyen bir filtre değildir. İlaç ve yabancı maddelerin metabolizmasında karaciğer, atılmasında böbrekler ve safra/bağırsak yolu rol oynar.'},
+        bagirsak: {
+            enzyme:'İnce bağırsakta pankreas ve bağırsak yüzeyi enzimleri besinleri sindirir. Kalın bağırsaktaki mikroorganizmalar bazı lifleri fermente ederek kısa zincirli yağ asitleri üretebilir.',
+            metabolism:'Lif, yeterli sıvı ve kişisel tolerans dışkı kıvamını ve bağırsak hareketlerini etkileyebilir. Bazı besinler hassas bağırsaklarda gaz veya şişkinliği artırabilir.',
+            elimination:'Bağırsaklar emilmeyen kalıntıları dışkıyla uzaklaştırır; ancak karaciğer ve böbrekler yerine “toksin temizliği” yapmaz. Lavman ve aşırı müshil uygulamaları tıbbi gerekçe olmadan önerilmez.'},
+        karaciger: {
+            enzyme:'Karaciğerde sitokrom P450 gibi Faz I enzimleri bazı ilaç ve maddeleri dönüştürür; Faz II konjugasyon tepkimeleri bazı ürünlerin daha kolay atılmasına yardımcı olur.',
+            metabolism:'Karaciğer karbonhidrat, yağ ve protein metabolizmasını düzenler; safra bileşenleri yağların sindirilmesine katkı sağlar. Bir gıdanın bu süreçleri “temizlediği” iddiası ayrı klinik kanıt gerektirir.',
+            elimination:'Dönüştürülen maddelerin bir bölümü safra yoluyla bağırsağa, bir bölümü böbreklerden idrara geçer. “Karaciğer detoks kürü” olarak pazarlanan karışımların toksin atımını hızlandırdığı gösterilmiş değildir.'},
+        kalp: {
+            enzyme:'Amilaz, lipaz ve proteaz gibi sindirim enzimleri gıdaların parçalanmasında rol alır. Kan lipitleri ve glikoz dengesi çok sayıda hormon ve enzimle düzenlenir.',
+            metabolism:'Dolaşım sağlığında beslenme örüntüsü, hareket, tansiyon, kan şekeri ve lipit değerleri birlikte önem taşır. Tek bir besin kalp damar hastalığını veya metabolik yükü “temizlemez”.',
+            elimination:'Kalp kanı dolaştırır; atık ürünlerin metabolizması ve uzaklaştırılmasında başlıca karaciğer, böbrek ve akciğerlerin normal işlevleri rol oynar.'},
+        kilo: {
+            enzyme:'Sindirim enzimleri besinlerin emilimini sağlar; enerji dengesini ise gıda alımı, aktivite, hormonlar ve dokuların metabolik gereksinimi birlikte belirler.',
+            metabolism:'Kilo değişiminde uzun dönem enerji dengesi ve sürdürülebilir öğün düzeni belirleyicidir. “Hızlı yağ yakımı” ya da “detoksla kilo verme” iddiaları güvenilir tedavi planının yerini tutmaz.',
+            elimination:'Vücut yağ dokusundaki enerji değişimi, karaciğerin ilaç metabolizmasıyla aynı olay değildir. Karaciğer ve böbreklerin doğal atılım işlevi özel bir içeceğe bağlı değildir.'},
+        colyak: {
+            enzyme:'Sindirim enzimleri besinleri parçalar; çölyakta glutenin tetiklediği bağışıklık yanıtı ince bağırsak yüzeyine zarar verebilir. Bir “detoks enzimi” çölyak hastalığını ortadan kaldırmaz.',
+            metabolism:'Glutensiz gıda seçimi ve çapraz bulaşmadan kaçınmak temel yaklaşım olmalıdır. Lif, demir ve diğer besin öğelerinin yeterliliği bireysel olarak değerlendirilir.',
+            elimination:'Çölyak tedavisi bağırsak “temizliği” değildir. Karaciğer ve böbrekler doğal atık uzaklaştırma işlevlerini sürdürür; glutensiz diyetin yerini kürler alamaz.'},
+        urogenital: {
+            enzyme:'Böbreklerin başlıca görevi enzimatik karaciğer metabolizmasını taklit etmek değil; glomerüler filtrasyon, geri emilim ve tübüler sekresyonla sıvı ve çözünmüş maddeleri düzenlemektir.',
+            metabolism:'Sıvı alımı, sodyum tüketimi, hastalıklar ve ilaçlar idrar miktarı ile elektrolit dengesini etkileyebilir. Böbrek taşı veya enfeksiyon söz konusuysa yaklaşım kişiye özeldir.',
+            elimination:'Üre, kreatinin ve bazı ilaç metabolitleri idrarla uzaklaştırılır. “Böbrek yıkama” kürleri normal organ işlevinin veya doktor değerlendirmesinin yerine geçmez.'},
+        japon: {
+            enzyme:'Öğün sıklığı değişse de pankreas ve bağırsak enzimleri gıdaların sindirimi için görev yapar. İnsülin ve diğer hormonlar öğün sonrası metabolizmayı düzenler.',
+            metabolism:'Tek öğünde beslenme herkes için uygun değildir; enerji, protein, lif ve mikro besin yeterliliği önemlidir. Öğün sıklığının tek başına vücudu toksinlerden arındırdığı gösterilmemiştir.',
+            elimination:'Besin alım sıklığı değişse de karaciğer ve böbrekler metabolizma ve atık uzaklaştırma işlevlerine devam eder. Diyabet veya düzenli ilaç kullanımı varsa öğün planı hekimle değerlendirilmelidir.'},
+        aclik: {
+            enzyme:'Açlıkta glikojen depoları kullanılır; süreç uzarsa yağ asitlerinin kullanımı ve karaciğerde keton üretimi artabilir. Bu metabolik değişimler “toksin temizliği” demek değildir.',
+            metabolism:'Açlık süresine, hastalıklara ve ilaçlara göre kan şekeri ile sıvı-elektrolit dengesi etkilenebilir. Uzun açlık diyabet, gebelik ve bazı kronik hastalıklarda riskli olabilir.',
+            elimination:'Karaciğer ve böbrekler açlık dışında da atık maddeleri işleyip uzaklaştırır. “Açlık detoksu”nun ayrı bir toksin atma avantajı kanıtlanmış değildir.'}
+    };
+    const detoxIngredientNotesV717 = [
+        [/zencefil|zerdeçal|tarçın|kimyon|rezene|nane|melisa|papatya|anason|hibiskus/i, 'Baharatlar ve bitkisel bileşenler tat ve biyoaktif maddeler sağlayabilir; bunların her birinin klinik etkisi ve ilaçlarla etkileşimi ayrıca değerlendirilmelidir.'],
+        [/yulaf|chia|keten|mercimek|kinoa|karabuğday|sebze|elma|armut|kivi|erik|havuç|brokoli/i, 'Bu öğündeki lif kaynakları sindirim düzeni ve tokluk üzerinde rol oynayabilir; etkinin büyüklüğü porsiyon ve bireysel toleransa bağlıdır.'],
+        [/yoğurt|kefir|miso/i, 'Fermente ürünlerin mikroorganizma içeriği ürün türüne göre değişir; her fermentenin “detoksifikasyonu artırdığı” söylenemez.'],
+        [/limon|nar|yaban mersini|böğürtlen|domates|pancar/i, 'Renkli bitkisel gıdalardaki vitamin ve fitokimyasallar beslenme çeşitliliğine katkı sağlayabilir; organlardan toksin attırdığı anlamına gelmez.'],
+        [/kahve|kakao|yeşil çay/i, 'Kafein ve diğer biyoaktif içeriklerin etkisi miktar, bireysel hassasiyet ve kullanılan ilaçlara göre değişir.'],
+        [/somon|yumurta|tofu|edamame|ceviz|badem/i, 'Protein veya yağ içeriği tokluk ve besin öğesi yeterliliğine katkı sağlayabilir; bu besinler karaciğer ya da böbrek “temizleme” aracı değildir.']
+    ];
+    function detoxIngredientSummaryV717(recipe) {
+        const name = String(recipe.name || '');
+        const matched = detoxIngredientNotesV717.filter(item => item[0].test(name)).slice(0,2).map(item => item[1]);
+        return matched.length ? matched.join(' ') : 'Bu içeriğin olası besinsel etkisi gerçek bileşimi, tüketilen miktar ve kişinin sağlık durumuyla birlikte değerlendirilir; otomatik bir “detoks” etkisi varsayılmaz.';
+    }
+    function detoxUyghurSummaryV717(recipe) {
+        const intro = detoxEasternByCategoryV717[recipe.category] || 'Çin tıbbında Qi ve Yin–Yang, Uygur tıbbında ise mizacın sıcaklık, soğukluk, kuruluk ve nem özellikleri geleneksel açıklamalarda kullanılır. Bu iki sistemin yaklaşımları ve kavramları birebir aynı değildir.';
+        return intro;
+    }
+    function detoxWestSummaryV717(recipe) {
+        return detoxWesternByCategoryV717[recipe.category] || detoxWesternByCategoryV717.bagirsak;
+    }
+
+    // V718: Searchable() doğrudan aşağıdaki V717 sabitlerini ve yardımcılarını
+    // kullanır. Tariflerin indeksini ancak tamamı oluşturulduktan sonra hazırla.
     const indexed = recipes.map((recipe, index) => ({
         ...recipe,
         index,
@@ -17570,7 +17655,7 @@ function scrollSerumTitleBelowNavbarV514(vascularView) {
     detoxInfoDialogV645.innerHTML = `
         <div class="detox-info-frame-v645">
             <div class="detox-info-toolbar-v645">
-                <span class="detox-info-identity-v645"><span class="detox-info-logo-v645" aria-hidden="true">☯</span><span><strong>DETOKS REHBERİ</strong><small>Çin ve Doğu tıbbı bakışı</small></span></span>
+                <span class="detox-info-identity-v645"><span class="detox-info-logo-v645" aria-hidden="true">☯</span><span><strong>DETOKS REHBERİ</strong><small>Geleneksel yorum + modern fizyoloji</small></span></span>
                 <button type="button" class="detox-info-close-v645" aria-label="Açıklama penceresini kapat">×</button>
             </div>
             <div class="detox-info-scroll-v645" tabindex="-1"><div class="detox-info-inner-v645"></div></div>
@@ -17590,18 +17675,36 @@ function scrollSerumTitleBelowNavbarV514(vascularView) {
         const media = recipe.image
             ? `<div class="detox-info-media-v645"><img src="${escapeHtml(recipe.image)}" alt="${escapeHtml(recipe.imageAlt || recipe.name)}" decoding="async"><span>${escapeHtml(recipe.categoryLabel)}</span></div>`
             : `<div class="detox-info-media-v645 is-guide"><b aria-hidden="true">${escapeHtml(recipe.icon || '✦')}</b><span>${escapeHtml(recipe.categoryLabel)}</span></div>`;
-        const panels = isGuide
-            ? `<div class="detox-info-lenses-v645">
-                    <section class="detox-info-lens-v645 is-science"><div><span aria-hidden="true">◎</span><h3>Bilimsel Değerlendirme</h3></div><p>${escapeHtml(recipe.science)}</p></section>
-                    <section class="detox-info-lens-v645 is-life"><div><span aria-hidden="true">✦</span><h3>Günlük Yaşama Yansıması</h3></div><p>${escapeHtml(recipe.lifestyle)}</p></section>
-               </div>`
-            : `<div class="detox-info-lenses-v645">
-                    <section class="detox-info-lens-v645 is-tcm"><div><span aria-hidden="true">☯</span><h3>Çin Tıbbı Bakışı</h3></div><p>${escapeHtml(recipe.tcmView)}</p></section>
-                    <section class="detox-info-lens-v645 is-east"><div><span aria-hidden="true">✦</span><h3>Doğu Tıbbı Bakışı</h3></div><p>${escapeHtml(recipe.easternView)}</p></section>
-               </div>`;
-        const frame = !isGuide && recipe.traditionalFrame
-            ? `<p class="detox-info-frame-note-v645"><strong>Geleneksel kavram notu:</strong> ${escapeHtml(recipe.traditionalFrame)}</p>` : '';
-        detoxInfoInnerV645.innerHTML = `${media}<div class="detox-info-body-v645"><span class="detox-info-category-v645">${escapeHtml(recipe.categoryLabel)}</span><h2 id="detoxInfoHeadingV645">${escapeHtml(recipe.name)}</h2><p class="detox-info-lead-v645">${escapeHtml(recipe.benefitSummary || recipe.support)}</p><div class="detox-info-tags-v645">${tags}</div>${panels}${frame}<p class="detox-info-warning-v645"><strong>Dikkat:</strong> ${escapeHtml(recipe.note)}</p></div>`;
+        const uyghur = detoxUyghurSummaryV717(recipe);
+        const western = detoxWestSummaryV717(recipe);
+        const traditional = (recipe.tcmView && recipe.tcmView.trim())
+            ? recipe.tcmView
+            : 'Bu başlık Çin tıbbının tarihsel beslenme ve denge kavramları açısından bilgilendirme amacıyla incelenebilir; tek başına belirli bir hastalık için tedavi anlamına gelmez.';
+        const westernScience = isGuide && recipe.science
+            ? `<p class="detox-v717-original-science"><strong>Bu konuya özel bilimsel not:</strong> ${escapeHtml(recipe.science)}</p>`
+            : '';
+        const panels = `<div class="detox-info-lenses-v645 detox-v717-two-lenses">
+            <section class="detox-info-lens-v645 detox-v717-east" aria-label="Çin ve Uygur tıbbı anlatımı">
+                <div class="detox-v717-lens-head"><span aria-hidden="true">☯</span><h3>01 · Çin ve Uygur Tıbbı</h3></div>
+                <h4>Çin tıbbı bu içeriğe nasıl bakar?</h4><p>${escapeHtml(traditional)}</p>
+                <h4>Uygur tıbbında nasıl yorumlanır?</h4><p>${escapeHtml(uyghur)}</p>
+                <p class="detox-v717-lens-note">Qi, Yin–Yang ve Uygur tıbbındaki mizac/hılt kavramları tarihsel açıklama modelleridir; modern organ fonksiyonları veya laboratuvar ölçümleriyle aynı değildir.</p>
+            </section>
+            <section class="detox-info-lens-v645 detox-v717-west" aria-label="Batı tıbbı metabolizma ve detoksifikasyon anlatımı">
+                <div class="detox-v717-lens-head"><span aria-hidden="true">⚕</span><h3>02 · Batı Tıbbı: Metabolizma ve Detoks</h3></div>
+                <h4>Enzimler hangi süreçlerde çalışır?</h4><p>${escapeHtml(western.enzyme)}</p>
+                <h4>Bu besin veya yaklaşım metabolizmayı nasıl ilgilendirir?</h4><p>${escapeHtml(western.metabolism)} ${escapeHtml(detoxIngredientSummaryV717(recipe))}</p>
+                <h4>Vücut atıkları nasıl uzaklaştırır?</h4><p>${escapeHtml(western.elimination)}</p>
+                ${westernScience}
+                <p class="detox-v717-lens-note">Vücudun doğal metabolizma ve boşaltım süreçleri, özel bir “detoks kürü”nün etkinliğinin kanıtı değildir.</p>
+            </section>
+        </div>`;
+        const frame = `<div class="detox-v717-sources"><strong>Okuma kaynakları:</strong>
+            <a href="https://www.nccih.nih.gov/health/detoxes-and-cleanses-what-you-need-to-know" rel="noopener noreferrer" target="_blank">NCCIH · Detoks uygulamaları</a>
+            <a href="https://nigms.nih.gov/biobeat/2023/09/what-happens-to-medicine-in-your-body" rel="noopener noreferrer" target="_blank">NIH · İlaçların metabolizması</a>
+            <a href="https://pmc.ncbi.nlm.nih.gov/articles/PMC4756788/" rel="noopener noreferrer" target="_blank">Geleneksel Uygur Tıbbı incelemesi</a>
+        </div>`;
+        detoxInfoInnerV645.innerHTML = `${media}<div class="detox-info-body-v645"><span class="detox-info-category-v645">${escapeHtml(recipe.categoryLabel)}</span><h2 id="detoxInfoHeadingV645">${escapeHtml(recipe.name)}</h2><p class="detox-info-lead-v645">${escapeHtml(recipe.benefitSummary || recipe.support)}</p><div class="detox-info-tags-v645">${tags}</div>${panels}${frame}<p class="detox-info-warning-v645"><strong>Dikkat:</strong> ${escapeHtml(recipe.note || 'Bu içerik genel bilgilendirme amaçlıdır; tedavi yerine geçmez.')}</p></div>`;
         detoxInfoDialogV645.setAttribute('aria-labelledby','detoxInfoHeadingV645');
         if (typeof detoxInfoDialogV645.showModal === 'function') detoxInfoDialogV645.showModal();
         else detoxInfoDialogV645.setAttribute('open','');
@@ -17662,7 +17765,7 @@ function scrollSerumTitleBelowNavbarV514(vascularView) {
                     <div class="detox-tags-v390">
                         ${(recipe.tags || []).slice(0,3).map(tag => `<span>${escapeHtml(tag)}</span>`).join('')}
                     </div>
-                    <span class="detox-info-open-v645" aria-hidden="true"><span>Faydalarını İncele</span><i aria-hidden="true">→</i></span>
+                    <span class="detox-info-open-v645" aria-hidden="true"><span>İki Bakış Açısını İncele</span><i aria-hidden="true">→</i></span>
                 </div>
             </article>`;
     }
@@ -22000,6 +22103,11 @@ function scrollSerumTitleBelowNavbarV514(vascularView) {
         if (typeof window.prepareGlobalDestinationV546 === 'function')
             window.prepareGlobalDestinationV546();
         document.body.classList.remove('global-home-open-v408');
+        // V718: Tam sayfalardan biri açılırken diğeri kesin olarak kapansın.
+        document.body.classList.remove('v712-health-page-open');
+        const healthPageV718 = document.getElementById('v712HealthPage');
+        healthPageV718?.setAttribute('aria-hidden', 'true');
+        nav?.querySelector('[data-v712-open="health"]')?.setAttribute('aria-expanded', 'false');
         document.body.classList.add('global-subpage-open-v405', 'v710-treatment-page-open');
         syncTopV711();
         page.setAttribute('aria-hidden', 'false');
@@ -22086,6 +22194,11 @@ function scrollSerumTitleBelowNavbarV514(vascularView) {
         if (typeof window.prepareGlobalDestinationV546 === 'function')
             window.prepareGlobalDestinationV546();
         document.body.classList.remove('global-home-open-v408');
+        // V718: Tedavi sayfası/menü durumu açık kalırsa sağlıklı geçiş bozulur.
+        document.body.classList.remove('v710-treatment-page-open');
+        const treatmentPageV718 = document.getElementById('v710TreatmentPage');
+        treatmentPageV718?.setAttribute('aria-hidden', 'true');
+        nav.querySelector('[data-v710-open="treatments"]')?.setAttribute('aria-expanded', 'false');
         document.body.classList.add('global-subpage-open-v405','v712-health-page-open');
         syncTop();
         page.setAttribute('aria-hidden','false');

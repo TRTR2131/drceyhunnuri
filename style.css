@@ -11024,3 +11024,174 @@ html body #v712HealthPage .v710-page-top{margin-bottom:22px!important;}
  html body #v712HealthPage .v710-page-inner{padding-top:14px!important;}
  html body #v712HealthPage .v710-page-top{margin-bottom:17px!important;}
 }
+
+/* =============== V713 · CİHAZ UYGULAMALARI =============== */
+.device-apps-hero-simple-v525{max-width:1800px;margin-inline:auto;padding:34px 38px 40px;gap:19px;border-radius:34px;background:linear-gradient(125deg,#031b2a,#063e5a 70%,#092d46)}
+.device-apps-copy-only-title-v525{padding:0 0 4px;background:none}
+.device-apps-copy-only-title-v525 h1{font-size:clamp(36px,4.6vw,70px);letter-spacing:-.045em}
+.device-tagline-v713{margin:12px 0 0!important;color:#c5dfe9!important;font-size:clamp(14px,1.25vw,18px)!important;line-height:1.4!important}
+.device-apps-grid-v293.device-apps-grid-v713{display:grid!important;grid-template-columns:repeat(2,minmax(0,1fr))!important;gap:16px!important;position:relative;z-index:2}
+.device-apps-grid-v713 .device-app-card-v713{width:100%;min-width:0;height:218px!important;min-height:218px!important;max-height:none!important;grid-column:auto!important;overflow:hidden;border-radius:24px;border:1px solid rgba(122,217,248,.54);background:#052539;text-align:left;box-shadow:0 12px 28px rgba(0,17,29,.16)}
+.device-apps-grid-v713 .device-app-card-v713 img{display:block;object-fit:cover;object-position:center center;filter:saturate(.9) contrast(1.025);height:100%}
+.device-apps-grid-v713 .device-app-card-v713 .device-app-card-shade-v293{background:linear-gradient(90deg,rgba(1,20,35,.95) 0%,rgba(3,28,43,.81) 42%,rgba(2,23,39,.12) 93%)}
+.device-apps-grid-v713 .device-app-card-v713 .device-app-card-copy-v293{display:grid;grid-template-columns:minmax(0,1fr) 42px;grid-template-rows:auto auto 1fr;padding:22px 24px;gap:6px 8px;align-content:start}
+.device-apps-grid-v713 .device-app-card-v713 strong{font-size:clamp(18px,1.62vw,27px);max-width:280px;line-height:1.08;text-shadow:0 1px 3px #00203a}
+.device-apps-grid-v713 .device-app-card-v713 em{margin-top:4px;max-width:250px;font-size:clamp(12px,1vw,15px);line-height:1.35}
+.device-apps-grid-v713 .device-app-card-v713 b{justify-self:end;border-color:#70d7fa;width:43px;height:43px;border-radius:50%;font-weight:500;font-size:24px;color:#fff;background:#075071}
+.device-apps-grid-v713 .device-app-card-v713 small{font-size:12px}
+.device-apps-grid-v713 .device-app-card-v713:hover{border-color:#83e4ff;box-shadow:0 17px 36px rgba(0,16,30,.24)}
+.device-extra-v713{position:relative;z-index:2;margin-top:28px;padding:28px 26px;background:rgba(1,17,29,.49);border:1px solid rgba(118,212,247,.25);border-radius:26px;color:#e3f8ff}
+.device-extra-head-v713 span{font-size:11px;letter-spacing:.19em;color:#69d6fc;font-weight:900}
+.device-extra-head-v713 h2{color:#fff;font-size:clamp(20px,2vw,29px);margin:7px 0 4px}
+.device-extra-head-v713 p,.device-extra-note-v713{font-size:13px;line-height:1.55;color:#b9d3df;margin:0}
+.device-extra-group-v713{margin-top:20px}
+.device-extra-group-v713 h3{font-size:16px;margin:0 0 10px;color:#e7f9ff}
+.device-extra-gallery-v713{display:grid;grid-template-columns:repeat(5,minmax(0,1fr));gap:11px}
+.device-photo-figure-v713{margin:0;min-width:0;overflow:hidden;border-radius:13px;background:rgba(255,255,255,.06);border:1px solid rgba(143,216,245,.22)}
+.device-photo-figure-v713 img{display:block;width:100%;aspect-ratio:4/3;object-fit:cover}
+.device-photo-figure-v713 figcaption{font-size:11px;line-height:1.35;color:#c8e3f0;padding:8px}
+.device-extra-note-v713{margin-top:17px}
+@media(max-width:900px){.device-apps-hero-simple-v525{padding:24px 18px}.device-apps-grid-v293.device-apps-grid-v713{gap:13px}.device-apps-grid-v713 .device-app-card-v713{min-height:198px!important;height:198px!important}.device-apps-grid-v713 .device-app-card-v713 .device-app-card-copy-v293{padding:17px}.device-extra-gallery-v713{grid-template-columns:repeat(3,minmax(0,1fr))}}
+@media(max-width:650px){.device-apps-hero-simple-v525{border-radius:20px;padding:18px 13px 24px}.device-apps-grid-v293.device-apps-grid-v713{grid-template-columns:minmax(0,1fr)!important;gap:12px}.device-apps-grid-v713 .device-app-card-v713{min-height:196px!important;height:196px!important;border-radius:18px}.device-apps-grid-v713 .device-app-card-v713 .device-app-card-copy-v293{padding:18px}.device-apps-grid-v713 .device-app-card-v713 strong{font-size:21px}.device-apps-grid-v713 .device-app-card-v713 em{font-size:12px}.device-extra-v713{padding:18px 13px}.device-extra-gallery-v713{grid-template-columns:repeat(2,minmax(0,1fr))}}
+
+/* ========== V714 • FOTOĞRAF GALERİLİ CİHAZ DETAYLARI ========== */
+.device-detail-intro-v157:has(.device-gallery-shell-v714){align-items:stretch}
+.device-gallery-shell-v714{min-width:0;display:flex;flex-direction:column;gap:10px;padding:14px;border:1px solid rgba(33,122,165,.17);border-radius:23px;background:linear-gradient(155deg,#f1f8fc,#ffffff);box-shadow:0 12px 34px rgba(18,73,108,.09)}
+.device-gallery-head-v714{display:flex;justify-content:space-between;align-items:center;gap:14px;padding:2px 4px 4px}
+.device-gallery-head-v714 span{color:#167ba9;font-weight:850;font-size:11px;letter-spacing:.11em}
+.device-gallery-head-v714 strong{font-size:12px;color:#2e6e8e;background:#e4f2fa;padding:6px 11px;border-radius:999px;white-space:nowrap}
+.device-gallery-grid-v714{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:11px;align-content:start;min-width:0}
+.device-gallery-tile-v714{display:flex;flex-direction:column;margin:0;min-width:0;overflow:hidden;border-radius:15px;border:1px solid #d2e5ef;background:#e9f4f9}
+.device-gallery-tile-v714 img{display:block;width:100%;height:auto;aspect-ratio:4/3;min-height:0!important;object-fit:contain;object-position:center;background:#eaf2f8}
+.device-gallery-tile-v714 figcaption{padding:8px 9px;font-weight:700;font-size:12px;line-height:1.35;color:#275673;background:#fff;min-height:48px}
+.device-gallery-count-1-v714{grid-template-columns:minmax(0,1fr)}
+.device-gallery-count-1-v714 .device-gallery-tile-v714 img{aspect-ratio:3/2}
+.device-gallery-count-3-v714 .device-gallery-tile-v714:last-child{grid-column:1 / -1}
+.device-gallery-count-3-v714 .device-gallery-tile-v714:last-child img{aspect-ratio:16/7}
+.device-gallery-note-v714{font-size:11px;color:#617b90;line-height:1.45;margin:1px 5px 0}
+@media (max-width:940px){.device-gallery-shell-v714{padding:11px}.device-gallery-grid-v714{gap:8px}.device-gallery-tile-v714 figcaption{font-size:11px;padding:7px 6px}}
+@media (max-width:480px){.device-gallery-head-v714 span{font-size:9px}.device-gallery-head-v714 strong{font-size:10px}.device-gallery-shell-v714{border-radius:17px}.device-gallery-tile-v714{border-radius:11px}.device-gallery-tile-v714 figcaption{font-size:10px;min-height:44px}}
+
+
+/* ============== V715 | ONAYLANAN CIHAZ UYGULAMALARI TASARIMI ============== */
+.device-apps-page-v293{background:linear-gradient(150deg,#e8f6fb,#f5fbfd 80%)!important}
+.device-apps-hero-v293.device-apps-hero-simple-v525{display:block!important;min-height:auto!important;width:min(1600px,calc(100% - 22px))!important;max-width:1600px!important;box-sizing:border-box;margin:16px auto 36px!important;padding:32px clamp(16px,2.7vw,46px) 43px!important;border-radius:35px!important;overflow:hidden;background:radial-gradient(ellipse at 50% 0,rgba(0,230,241,.15),transparent 44%),linear-gradient(150deg,#002538,#052a3d 60%,#002238)!important;box-shadow:0 22px 65px rgba(2,39,62,.2),inset 0 0 0 1px rgba(3,226,255,.27)!important}
+.device-apps-hero-v293 .device-apps-atmosphere-v293{pointer-events:none;opacity:.25}
+.device-apps-copy-v293.v715-device-title{width:100%!important;text-align:center!important;margin:0 auto 26px!important;max-width:none!important;padding:0 0 2px!important;background:none!important;border:0!important;box-shadow:none!important}
+.v715-device-crest{margin:0 auto 12px;display:grid;place-items:center;width:54px;height:48px;color:#51edf8;font-weight:800;font-size:38px;line-height:1;text-shadow:0 0 18px #00b8d4}
+.device-apps-copy-v293.v715-device-title h1{font-size:clamp(32px,4.1vw,62px)!important;line-height:1.12!important;color:#fff!important;max-width:none!important;margin:0!important;letter-spacing:-.04em!important;text-align:center!important}
+.device-apps-copy-v293.v715-device-title .device-tagline-v713{max-width:none!important;color:#d9eef4!important;text-align:center!important;margin:8px 0 0!important;font-size:clamp(13px,1.25vw,18px)!important}
+#deviceAppsGridV293.v715-device-grid{display:grid!important;grid-template-columns:repeat(2,minmax(0,1fr))!important;grid-template-rows:none!important;gap:14px 16px!important;min-height:0!important;align-items:stretch!important;max-width:none!important}
+#deviceAppsGridV293 .device-app-card-v715{height:auto!important;min-height:0!important;max-height:none!important;display:flex!important;flex-direction:column!important;gap:9px!important;padding:14px!important;position:relative!important;border-radius:20px!important;background:linear-gradient(120deg,#001a29,#062e3d)!important;border:1px solid #13b9ca!important;box-shadow:inset 0 0 22px rgba(0,210,226,.1),0 0 11px rgba(0,238,255,.15)!important;transition:transform .22s,border-color .22s,box-shadow .22s;overflow:hidden!important;isolation:isolate}
+#deviceAppsGridV293 .device-app-card-v715:hover,#deviceAppsGridV293 .device-app-card-v715:focus-visible{transform:translateY(-3px)!important;border-color:#88faff!important;box-shadow:0 10px 35px rgba(0,221,242,.19),inset 0 0 22px rgba(0,210,226,.09)!important}
+#deviceAppsGridV293 .v715-card-head{display:flex!important;align-items:center;gap:15px;min-width:0;width:100%;flex:0 0 auto}
+#deviceAppsGridV293 .v715-card-number{font-size:clamp(25px,2.4vw,38px);font-weight:900;line-height:1;color:#36f0f5;letter-spacing:-.035em;flex:0 0 56px;text-align:left;border-right:1px solid #38dfe9;padding-right:9px}
+#deviceAppsGridV293 .v715-card-info{display:flex;flex-direction:column;min-width:0;gap:2px;flex:1 1 auto;text-align:left}
+#deviceAppsGridV293 .v715-card-info strong{color:#fff!important;max-width:none!important;font-weight:850;font-size:clamp(16px,1.4vw,21px)!important;line-height:1.15!important;text-shadow:none}
+#deviceAppsGridV293 .v715-card-info em{display:block!important;color:#c6d9e2!important;max-width:none!important;font-style:normal!important;font-weight:500!important;font-size:clamp(11px,.95vw,13px)!important;line-height:1.38!important;margin:0!important}
+#deviceAppsGridV293 .v715-card-arrow{display:grid;place-items:center;color:#59f3ff;border:1.5px solid #28e8f7;border-radius:50%;font-size:21px;font-weight:500;width:37px;height:37px;flex:0 0 37px;line-height:1}
+#deviceAppsGridV293 .v715-card-picture{display:block!important;position:relative!important;overflow:hidden!important;border:1px solid rgba(118,241,249,.65);border-radius:13px;width:100%;height:auto;aspect-ratio:16/6.2;min-height:95px;flex:1 1 auto;background:#224455}
+#deviceAppsGridV293 .v715-card-picture img{display:block!important;position:absolute!important;inset:0!important;width:100%!important;height:100%!important;max-width:none!important;object-fit:cover!important;object-position:center center!important;filter:none!important;transform:none!important;transition:transform .25s ease}
+#deviceAppsGridV293 .device-app-card-v715:hover .v715-card-picture img{transform:scale(1.035)!important}
+#deviceAppsGridV293 .device-app-card-v715:focus-visible{outline:3px solid #fff!important;outline-offset:3px}
+.v715-gallery-shell .device-gallery-grid-v714{grid-template-columns:repeat(2,minmax(0,1fr))!important;gap:10px}
+.v715-gallery-shell .device-gallery-tile-v714:last-child{grid-column:auto!important}
+.v715-gallery-shell .device-gallery-tile-v714 img{aspect-ratio:4/3!important;object-fit:contain!important;background:#eaf2f8}
+@media(max-width:850px){.device-apps-hero-v293.device-apps-hero-simple-v525{padding:24px 16px!important;width:calc(100% - 12px)!important}#deviceAppsGridV293.v715-device-grid{gap:12px!important}#deviceAppsGridV293 .device-app-card-v715{padding:11px!important}#deviceAppsGridV293 .v715-card-number{flex-basis:40px;font-size:25px}#deviceAppsGridV293 .v715-card-info strong{font-size:16px!important}#deviceAppsGridV293 .v715-card-arrow{width:30px;height:30px;flex-basis:30px;font-size:18px}#deviceAppsGridV293 .v715-card-head{gap:8px}}
+@media(max-width:640px){.device-apps-hero-v293.device-apps-hero-simple-v525{border-radius:20px!important;margin:8px auto 26px!important;padding:19px 12px 24px!important}#deviceAppsGridV293.v715-device-grid{grid-template-columns:minmax(0,1fr)!important;gap:12px!important}.device-apps-copy-v293.v715-device-title{margin-bottom:19px!important}.v715-device-crest{font-size:30px;height:37px;margin-bottom:8px}#deviceAppsGridV293 .device-app-card-v715{border-radius:16px!important;padding:11px!important}#deviceAppsGridV293 .v715-card-picture{aspect-ratio:16/6.8}#deviceAppsGridV293 .v715-card-info strong{font-size:18px!important}#deviceAppsGridV293 .v715-card-info em{font-size:12px!important}#deviceAppsGridV293 .v715-card-number{font-size:29px;flex-basis:46px}.v715-gallery-shell .device-gallery-grid-v714{gap:7px}}
+@media (prefers-reduced-motion:reduce){#deviceAppsGridV293 .device-app-card-v715,#deviceAppsGridV293 .v715-card-picture img{transition:none!important}}
+
+
+/* ================================================================
+   V716 — Osteopati Açık Mavi-Gri (#DFEAF1) renk güncellemesi
+   YALNIZCA Osteopati ana sayfası; diğer sekmeler etkilenmez.
+   ================================================================ */
+body.treatment-detail-open-v71 .treatment-detail-view-v71.osteopathy-page-v95.osteo-unified-page-v701,
+body.treatment-detail-open-v71.osteo-main-fixed-v357 #treatmentDetailPageV71 .osteopathy-page-v95.osteo-unified-page-v701.active,
+body.treatment-detail-open-v71.osteo-main-open-v356 #treatmentDetailPageV71 .osteopathy-page-v95.osteo-unified-page-v701.active {
+  background: #DFEAF1 !important;
+}
+/* Eski beyaz/sisli katman yeni zemini örtmesin. */
+.osteopathy-page-v95.osteo-unified-page-v701 .osteo-unified-backdrop-v701 {
+  background: none !important;
+  opacity: 0 !important;
+}
+/* Sol büyük bölüm buz grisine; tekil bilgi ve yönlendirme kartları beyaz kalır. */
+body.treatment-detail-open-v71 .osteopathy-page-v95.osteo-unified-page-v701 .osteo-unified-content-v701 > .osteo-section-v105 {
+  background: #EFF5F8 !important;
+  border-color: rgba(79, 133, 163, .23) !important;
+  box-shadow: 0 20px 46px rgba(15, 65, 96, .10) !important;
+}
+body.treatment-detail-open-v71 .osteopathy-page-v95.osteo-unified-page-v701 .osteo-medical-overview-v704 {
+  background: linear-gradient(145deg, #F7FAFC 0%, #E8F2F7 100%) !important;
+  border-color: rgba(81, 146, 181, .27) !important;
+}
+body.treatment-detail-open-v71 .osteopathy-page-v95.osteo-unified-page-v701 .osteo-medical-grid-v704 article,
+body.treatment-detail-open-v71 .osteopathy-page-v95.osteo-unified-page-v701 .osteo-manual-card-v264,
+body.treatment-detail-open-v71 .osteopathy-page-v95.osteo-unified-page-v701 .osteo-faq-item-v370 {
+  background: #FFFFFF !important;
+}
+/* Açık arka planda uzun metinlerin kontrastı. */
+body.treatment-detail-open-v71 .osteopathy-page-v95.osteo-unified-page-v701 .osteo-medical-lead-v704 p,
+body.treatment-detail-open-v71 .osteopathy-page-v95.osteo-unified-page-v701 .osteo-medical-grid-v704 p,
+body.treatment-detail-open-v71 .osteopathy-page-v95.osteo-unified-page-v701 .osteo-manual-card-v264 p,
+body.treatment-detail-open-v71 .osteopathy-page-v95.osteo-unified-page-v701 .osteo-section-heading-v105 p {
+  color: #4F6B80 !important;
+}
+/* Sağdaki koyu anatomi panelinin okunaklı tasarımını koru. */
+body.treatment-detail-open-v71 .osteopathy-page-v95.osteo-unified-page-v701 .osteo-unified-side-v701 {
+  border-color: #24B2D7 !important;
+  background: linear-gradient(160deg, #052F42 0%, #064B62 100%) !important;
+  box-shadow: 0 25px 55px rgba(5, 42, 62, .22) !important;
+}
+
+
+/* V717 — Sadece Detoks Kürleri rehberinde iki ayrı yaklaşım */
+.detox-view-v390 .detox-dual-intro-v717{margin:14px 0 23px;padding:21px 23px;border-radius:22px;border:1px solid #cddfe9;background:linear-gradient(110deg,#f4fbff,#f4f6fc);box-shadow:0 10px 26px rgba(17,59,82,.07);color:#18445e}
+.detox-view-v390 .detox-dual-intro-heading-v717{display:flex;align-items:flex-start;gap:14px}
+.detox-view-v390 .detox-dual-intro-icon-v717{display:grid;place-items:center;width:46px;height:46px;flex:0 0 46px;border-radius:15px;background:#d9f0f7;color:#13728c;font-size:27px}
+.detox-view-v390 .detox-dual-intro-heading-v717 strong{font-size:20px;letter-spacing:-.025em;line-height:1.3}
+.detox-view-v390 .detox-dual-intro-heading-v717 p{margin:6px 0 0;color:#557589;font-size:13.5px;line-height:1.7}
+.detox-view-v390 .detox-dual-intro-tags-v717{display:flex;gap:9px;flex-wrap:wrap;margin:16px 0 10px}
+.detox-view-v390 .detox-dual-intro-tags-v717 span{padding:8px 13px;border-radius:999px;background:#e1f2ec;color:#1b6854;font-size:12px;font-weight:800}
+.detox-view-v390 .detox-dual-intro-tags-v717 span+span{background:#deedf8;color:#165987}
+.detox-view-v390 .detox-dual-intro-v717 small{display:block;color:#647b86;font-size:11.5px;line-height:1.6}
+html body .detox-info-dialog-v645 .detox-v717-two-lenses{grid-template-columns:1fr 1fr;gap:16px;align-items:start}
+html body .detox-info-dialog-v645 .detox-v717-two-lenses .detox-info-lens-v645{padding:20px;border-radius:18px}
+html body .detox-info-dialog-v645 .detox-v717-east{color:#1e6f57;border-color:#c8e6da;background:linear-gradient(150deg,#eefaf5,#ffffff)}
+html body .detox-info-dialog-v645 .detox-v717-west{color:#17618a;border-color:#c3deee;background:linear-gradient(150deg,#eaf6fe,#ffffff)}
+html body .detox-info-dialog-v645 .detox-v717-lens-head{display:flex;align-items:center;gap:11px;margin:0 0 16px}
+html body .detox-info-dialog-v645 .detox-v717-lens-head span{width:36px;height:36px;display:grid;place-items:center;flex:0 0 36px;border-radius:11px;color:white;background:linear-gradient(145deg,#1c9475,#116d68);font-size:19px}
+html body .detox-info-dialog-v645 .detox-v717-west .detox-v717-lens-head span{background:linear-gradient(145deg,#269bd0,#0c629f)}
+html body .detox-info-dialog-v645 .detox-v717-lens-head h3{font-size:16px;line-height:1.3;letter-spacing:-.016em}
+html body .detox-info-dialog-v645 .detox-v717-two-lenses h4{margin:15px 0 6px;color:#154359;font-size:13px;font-weight:900;line-height:1.4}
+html body .detox-info-dialog-v645 .detox-v717-two-lenses p{margin:0;color:#496779;font-size:12.7px;line-height:1.74}
+html body .detox-info-dialog-v645 .detox-v717-two-lenses .detox-v717-lens-note{margin-top:16px;padding:11px 12px;background:rgba(255,255,255,.8);border:1px solid rgba(72,115,120,.14);border-radius:11px;font-size:11.3px;color:#567380}
+html body .detox-info-dialog-v645 .detox-v717-two-lenses .detox-v717-original-science{margin-top:16px;border-left:3px solid #3294ba;padding:9px 0 9px 11px;background:rgba(255,255,255,.7)}
+html body .detox-info-dialog-v645 .detox-v717-sources{display:flex;flex-wrap:wrap;align-items:center;gap:9px;margin:18px 0 3px;padding:12px 14px;background:#f3f8fa;border:1px solid #dfebf0;border-radius:12px;color:#527182;font-size:11.7px;line-height:1.5}
+html body .detox-info-dialog-v645 .detox-v717-sources strong{color:#174969}
+html body .detox-info-dialog-v645 .detox-v717-sources a{color:#086f9c;text-decoration:underline;text-underline-offset:2px}
+@media(max-width:760px){.detox-view-v390 .detox-dual-intro-v717{padding:17px 15px;border-radius:16px}.detox-view-v390 .detox-dual-intro-heading-v717 strong{font-size:17px}html body .detox-info-dialog-v645 .detox-v717-two-lenses{grid-template-columns:1fr}html body .detox-info-dialog-v645 .detox-v717-two-lenses .detox-info-lens-v645{padding:17px}html body .detox-info-dialog-v645 .detox-v717-two-lenses p{font-size:12.5px}}
+
+/* ==============================================================
+   V719 — Öne Çıkanlar / tüm makale detayları
+   Makale başlıklarının büyük tekrarını görsel olarak kaldırır.
+   H1 DOM'da korunur (ekran okuyucu, makale ilişkileri ve eski
+   WordPress makaleleri için); içerik, liste kartları ve diğer
+   sayfaların başlıkları etkilenmez.
+   ============================================================== */
+#generalFeaturedPageV124 #featuredArticleReaderV510
+.featured-article-full-header-v510 > h1,
+#generalFeaturedPageV124 #featuredArticleReaderV510
+.featured-article-full-body-v510 h1 {
+  position: absolute !important;
+  width: 1px !important;
+  height: 1px !important;
+  padding: 0 !important;
+  margin: -1px !important;
+  overflow: hidden !important;
+  white-space: nowrap !important;
+  border: 0 !important;
+  clip: rect(0, 0, 0, 0) !important;
+  clip-path: inset(50%) !important;
+}
