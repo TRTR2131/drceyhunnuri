@@ -10564,6 +10564,7 @@ body.osteo-standalone-open-v260 #osteoSpecialViewV259 .osteo-special-head-v259{
     .osteo-medical-safety-v704{align-items:start;padding:15px;border-radius:17px}
 }
 
+
 /* ============================================================
    V707 — Birleşik osteopati SSS kartlarında tam metin ve
    açılış sırasında sabit, düzgün yerleşim
@@ -11644,4 +11645,950 @@ html body .detox-info-dialog-v645 .detox-v717-sources a{color:#086f9c;text-decor
 }
 .osteo-unified-side-v701 .osteo-side-icon-v701 > img{
     display:block; width:100%; height:100%; object-fit:cover; border-radius:inherit;
+}
+
+
+/* V728 - Tedavi Alanlari butonsuz tek akis duzeni */
+#treatmentSpecialViewV279.treatment-unified-mode-v728 > .as-special-shell-v274 > .as-special-tabs-v274,
+#treatmentSpecialViewV279.treatment-unified-mode-v728 #treatmentSpecialTabsV279{
+  display:none !important;
+}
+#treatmentSpecialViewV279.treatment-unified-mode-v728 > .as-special-shell-v274 > .as-special-content-v274{
+  display:block !important;
+  padding-top:18px !important;
+}
+#treatmentSpecialViewV279 .treatment-unified-flow-v728{
+  display:grid;
+  gap:24px;
+}
+#treatmentSpecialViewV279 .treatment-unified-block-v728{
+  padding:26px;
+  border-radius:28px;
+  border:1px solid #d6e8f3;
+  background:linear-gradient(180deg,#ffffff 0%,#f7fbfe 100%);
+  box-shadow:0 18px 40px rgba(15,46,74,.06);
+}
+#treatmentSpecialViewV279 .treatment-unified-head-v728{
+  margin-bottom:18px;
+}
+#treatmentSpecialViewV279 .treatment-unified-head-v728 span{
+  display:inline-block;
+  margin-bottom:10px;
+  color:#1984d0;
+  font-size:13px;
+  font-weight:800;
+  letter-spacing:.14em;
+  text-transform:uppercase;
+}
+#treatmentSpecialViewV279 .treatment-unified-head-v728 h3{
+  margin:0 0 10px;
+  color:#12395c;
+  font-family:"Sora","Inter",sans-serif;
+  font-size:clamp(28px,3vw,44px);
+  line-height:1.08;
+  font-weight:900;
+}
+#treatmentSpecialViewV279 .treatment-unified-head-v728 p{
+  margin:0;
+  color:#5a7690;
+  font-size:17px;
+  line-height:1.75;
+}
+#treatmentSpecialViewV279 .treatment-unified-block-v728 .as-special-panel-v274{
+  margin:0;
+}
+#treatmentSpecialViewV279 .treatment-unified-block-v728 .as-special-topic-stack-v274{
+  display:grid;
+  gap:18px;
+}
+#treatmentSpecialViewV279 .treatment-unified-block-v728 .ankilozan-faq-inner-v85{
+  width:100%;
+  margin:0;
+}
+#treatmentSpecialViewV279 .treatment-unified-block-v728 .phyto-focus-head-v232,
+#treatmentSpecialViewV279 .treatment-unified-block-v728 .phyto-herbal-focus-v232{
+  width:100%;
+}
+@media (max-width: 820px){
+  #treatmentSpecialViewV279 .treatment-unified-flow-v728{gap:18px;}
+  #treatmentSpecialViewV279 .treatment-unified-block-v728{padding:18px;border-radius:22px;}
+  #treatmentSpecialViewV279 .treatment-unified-head-v728 h3{font-size:clamp(22px,7vw,32px);}
+  #treatmentSpecialViewV279 .treatment-unified-head-v728 p{font-size:15px;line-height:1.7;}
+}
+
+
+/* V729 - Tedavi Alanlari gercek ANA sayfalarinda butonsuz tek akis */
+#ankilozanFaqSectionV85.treatment-main-v729 #asLauncherV274,
+#romatoidFaqSectionV198.treatment-main-v729 #raLauncherV279,
+#conditionDiseasePageV246.treatment-main-v729 #conditionLauncherV279 {display:none !important;}
+
+/* Butonlarin eski hero altinda biraktigi asiri bosluklari azalt. */
+#ankilozanFaqSectionV85.treatment-main-v729 .as-main-hero-v275 {
+  height:clamp(240px, 27vw, 440px) !important;
+  min-height:0 !important;
+}
+#ankilozanFaqSectionV85.treatment-main-v729 .as-main-hero-v275 > img{
+  object-fit:cover !important;
+}
+#romatoidFaqSectionV198.treatment-main-v729 .ra-hero-v280,
+#conditionDiseasePageV246.treatment-main-v729 .condition-hero-v280 {
+  height:clamp(280px, 30vw, 460px) !important;
+  min-height:0 !important;
+}
+#romatoidFaqSectionV198.treatment-main-v729 .ra-hero-v280 .ra-hero-media-v198 img,
+#conditionDiseasePageV246.treatment-main-v729 .condition-hero-v280 .condition-overview-media-v249 img {
+  min-height:0 !important;
+  height:100% !important;
+  object-fit:cover !important;
+}
+#romatoidFaqSectionV198.treatment-main-v729 .ra-hero-v280 .ra-hero-quote-v198,
+#conditionDiseasePageV246.treatment-main-v729 .condition-hero-v280 .condition-overview-media-v249 figcaption {display:none !important;}
+#romatoidFaqSectionV198.treatment-main-v729 .treatment-main-hero-title-v729,
+#conditionDiseasePageV246.treatment-main-v729 .treatment-main-hero-title-v729 {
+  position:absolute;bottom:22px;left:clamp(18px,4vw,55px);right:clamp(18px,4vw,55px);z-index:5;
+  padding:14px 20px;border-radius:20px;background:rgba(6,38,59,.78);
+  border:1px solid rgba(165,225,244,.28);color:#fff;backdrop-filter:blur(9px);
+}
+#romatoidFaqSectionV198.treatment-main-v729 .treatment-main-hero-title-v729 h1,
+#conditionDiseasePageV246.treatment-main-v729 .treatment-main-hero-title-v729 h1 {
+  color:#fff;font-size:clamp(26px,3.3vw,50px);line-height:1.09;margin:0 0 8px;font-weight:900;
+}
+#romatoidFaqSectionV198.treatment-main-v729 .treatment-main-hero-title-v729 p,
+#conditionDiseasePageV246.treatment-main-v729 .treatment-main-hero-title-v729 p {
+  color:#e6f4fc;font-size:clamp(13px,1.3vw,17px);line-height:1.5;margin:0;
+}
+
+/* AS sayfasinda V274'te gizlenen asil panel ve SSS'yi geri getir. */
+#ankilozanFaqSectionV85.treatment-main-v729 > #ankilozanDetailHubV196,
+#ankilozanFaqSectionV85.treatment-main-v729 > .ankilozan-faq-inner-v85,
+#ankilozanFaqSectionV85.treatment-main-v729 > #ankilozanHerbalSupportV233 {display:block !important;}
+#ankilozanFaqSectionV85.treatment-main-v729 #ankilozanDetailHubV196 .ankilozan-detail-head-v196,
+#ankilozanFaqSectionV85.treatment-main-v729 #ankilozanDetailHubV196 .ankilozan-detail-tabs-v196,
+#ankilozanFaqSectionV85.treatment-main-v729 .ankilozan-overview-interactive-v196 {display:none !important;}
+#ankilozanFaqSectionV85.treatment-main-v729 #ankilozanDetailHubV196 .ankilozan-detail-panels-v196 {
+  display:grid !important;grid-template-columns:1fr;gap:20px;
+}
+#ankilozanFaqSectionV85.treatment-main-v729 #ankilozanDetailHubV196 [data-ank-panel-v196] {
+  display:block !important;width:100% !important;margin:0 !important;
+  padding:clamp(20px,3vw,34px) !important;background:linear-gradient(145deg,#fff,#f7fbfe) !important;
+  border:1px solid #cce4f5;border-radius:26px;box-shadow:0 12px 28px rgba(19,70,111,.06);
+}
+
+/* RA: onceden sadece buton gorunen govdeyi ve SSS'yi ac. */
+#romatoidFaqSectionV198.ra-compact-v281.treatment-main-v729 .ra-detail-hub-v198,
+#romatoidFaqSectionV198.ra-compact-v281.treatment-main-v729 .ra-faq-shell-v198,
+#romatoidFaqSectionV198.ra-compact-v281.treatment-main-v729 .ra-visual-band-v198 {display:block !important;}
+#romatoidFaqSectionV198.treatment-main-v729 .ra-summary-v198,
+#romatoidFaqSectionV198.treatment-main-v729 .ra-side-nav-v200,
+#romatoidFaqSectionV198.treatment-main-v729 .ra-detail-tabs-v198,
+#romatoidFaqSectionV198.treatment-main-v729 .ra-detail-hub-v198 .ankilozan-detail-head-v196 {display:none !important;}
+#romatoidFaqSectionV198.treatment-main-v729 .ra-detail-layout-v200 {display:block !important;}
+#romatoidFaqSectionV198.treatment-main-v729 .ra-detail-content-v200,
+#romatoidFaqSectionV198.treatment-main-v729 .ra-detail-panels-v198 {width:100% !important;}
+#romatoidFaqSectionV198.treatment-main-v729 [data-ra-panel-v198] {
+  display:block !important;width:100% !important;margin:0 0 20px !important;
+  padding:clamp(20px,3vw,34px) !important;background:linear-gradient(145deg,#fff,#f7fbfe) !important;
+  border:1px solid #cce4f5;border-radius:26px;box-shadow:0 12px 28px rgba(19,70,111,.06);
+}
+#romatoidFaqSectionV198.treatment-main-v729 .ra-visual-band-v198 {
+  display:grid !important;grid-template-columns:repeat(3,minmax(0,1fr)) !important;
+}
+
+/* Condition: eski kaynak panel V728 ile klonlama icin kalsin, gorunen ana akis V729'dur. */
+#conditionDiseasePageV246.treatment-main-v729 .condition-detail-hub-v249 {display:none !important;}
+#conditionDiseasePageV246.condition-compact-v281.treatment-main-v729 .condition-faq-inner-v249,
+#conditionDiseasePageV246.condition-compact-v281.treatment-main-v729 .condition-herbal-focus-v249 {display:block !important;}
+#conditionDiseasePageV246.treatment-main-v729 .treatment-main-flow-v729 {
+  width:min(1510px,calc(100% - 44px));margin:26px auto 0;display:grid;gap:20px;
+}
+#conditionDiseasePageV246.treatment-main-v729 .treatment-main-card-v729 {
+  padding:clamp(20px,3vw,38px);background:linear-gradient(145deg,#fff 0%,#f6fbff 100%);
+  border:1px solid #cfe5f3;border-radius:28px;box-shadow:0 14px 35px rgba(23,73,111,.06);
+}
+#conditionDiseasePageV246 .treatment-main-heading-v729 {display:flex;align-items:center;gap:16px;margin-bottom:16px;}
+#conditionDiseasePageV246 .treatment-main-number-v729 {
+  flex:0 0 55px;width:55px;height:55px;display:grid;place-items:center;border-radius:16px;
+  background:linear-gradient(135deg,#22afe0,#0878b4);color:#fff;font-size:20px;font-weight:900;
+}
+#conditionDiseasePageV246 .treatment-main-kicker-v729 {color:#1596ce;font-weight:900;font-size:12px;letter-spacing:.12em;}
+#conditionDiseasePageV246 .treatment-main-heading-v729 h2 {
+  margin:4px 0 0;color:#113956;font-size:clamp(24px,3vw,40px);font-weight:900;line-height:1.15;
+}
+#conditionDiseasePageV246 .treatment-main-description-v729 {color:#516e84;font-size:17px;line-height:1.7;margin:0 0 18px;}
+#conditionDiseasePageV246 .treatment-main-items-v729 {display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:14px;}
+#conditionDiseasePageV246 .treatment-main-item-v729 {
+  padding:20px;border-radius:20px;background:#f1f8fd;border:1px solid #d8eaf5;
+}
+#conditionDiseasePageV246 .treatment-main-item-v729 strong {display:block;color:#133c59;font-size:18px;margin-bottom:8px;}
+#conditionDiseasePageV246 .treatment-main-item-v729 p {color:#58758a;line-height:1.65;margin:0;font-size:15px;}
+#conditionDiseasePageV246 .treatment-main-note-v729 {padding:17px 21px;margin-top:18px;border-radius:18px;background:#e8f7ff;border:1px solid #c8e6f8;color:#3d657c;line-height:1.6;}
+
+/* Tum hastaliklarin SSS'si soru basligi ve altinda surekli gorunen cevap. */
+#ankilozanFaqSectionV85.treatment-main-v729 > .ankilozan-faq-inner-v85 .ankilozan-faq-answer-v85,
+#conditionDiseasePageV246.treatment-main-v729 .condition-faq-inner-v249 .ankilozan-faq-answer-v85,
+#romatoidFaqSectionV198.treatment-main-v729 .ra-faq-shell-v198 .ra-faq-answer-v198 {display:block !important;}
+#ankilozanFaqSectionV85.treatment-main-v729 .treatment-main-faq-heading-v729,
+#conditionDiseasePageV246.treatment-main-v729 .treatment-main-faq-heading-v729,
+#romatoidFaqSectionV198.treatment-main-v729 .treatment-main-faq-heading-v729 {
+  cursor:default !important;color:#153d5b;font-size:clamp(17px,1.9vw,22px);
+  line-height:1.35;padding:20px 24px 10px;margin:0;font-weight:850;
+}
+#ankilozanFaqSectionV85.treatment-main-v729 .ankilozan-faq-plus-v85,
+#conditionDiseasePageV246.treatment-main-v729 .ankilozan-faq-plus-v85,
+#romatoidFaqSectionV198.treatment-main-v729 .ra-faq-plus-v198 {display:none !important;}
+#romatoidFaqSectionV198.treatment-main-v729 .ra-faq-answer-v198,
+#romatoidFaqSectionV198.treatment-main-v729 .ra-faq-item-v198 .ra-faq-answer-v198 {padding:0 24px 22px !important;}
+
+@media (max-width: 900px) {
+  #ankilozanFaqSectionV85.treatment-main-v729 .as-main-hero-v275 {height:240px !important;min-height:0 !important;display:block !important;}
+  #ankilozanFaqSectionV85.treatment-main-v729 .as-main-hero-v275 > img {position:absolute !important;inset:0 !important;width:100% !important;height:100% !important;min-height:0 !important;object-fit:cover !important;}
+  #romatoidFaqSectionV198.treatment-main-v729 .ra-hero-v280,
+  #conditionDiseasePageV246.treatment-main-v729 .condition-hero-v280 {height:320px !important;min-height:0 !important;}
+  #romatoidFaqSectionV198.treatment-main-v729 .ra-hero-v280 .ra-hero-media-v198,
+  #conditionDiseasePageV246.treatment-main-v729 .condition-hero-v280 .condition-overview-media-v249 {position:absolute !important;inset:0 !important;height:100% !important;}
+  #romatoidFaqSectionV198.treatment-main-v729 .ra-visual-band-v198 {grid-template-columns:1fr !important;}
+}
+@media (max-width: 650px) {
+  #conditionDiseasePageV246.treatment-main-v729 .treatment-main-flow-v729 {width:calc(100% - 18px);gap:16px;}
+  #conditionDiseasePageV246 .treatment-main-items-v729 {grid-template-columns:1fr;}
+  #conditionDiseasePageV246 .treatment-main-heading-v729 {align-items:flex-start;}
+  #conditionDiseasePageV246 .treatment-main-number-v729 {width:46px;height:46px;flex-basis:46px;font-size:16px;}
+  #conditionDiseasePageV246 .treatment-main-description-v729 {font-size:15px;}
+  #conditionDiseasePageV246 .treatment-main-item-v729 {padding:15px;}
+  #romatoidFaqSectionV198.treatment-main-v729 .ra-hero-v280,
+  #conditionDiseasePageV246.treatment-main-v729 .condition-hero-v280 {height:300px !important;}
+}
+
+
+/* V730 — Tedavi Alanlari: istenmeyen hizli gecis ve buyuk gorsel vitrini kaldir. */
+/* Hem ortak JS menusu hem de onceki hastalik sayfalarinin yerel kopyalari gizlenir. */
+#globalDiseaseSwitcherV422,
+#ankilozanFaqSectionV85 .disease-switcher-as-v250,
+#romatoidFaqSectionV198 .disease-switcher-ra-v250,
+#conditionDiseasePageV246 .disease-switcher-condition-v250 {
+    display: none !important;
+}
+/* AS, RA ve diger alti hastalikta devasa koyu vitrin / fotograf alanini gizle. */
+#ankilozanFaqSectionV85.treatment-main-v729 #asMainHeroV275,
+#romatoidFaqSectionV198.treatment-main-v729 .ra-hero-v198,
+#conditionDiseasePageV246.treatment-main-v729 .condition-overview-poster-v249 {
+    display: none !important;
+    height: 0 !important;
+    min-height: 0 !important;
+    padding: 0 !important;
+    margin: 0 !important;
+}
+/* Kaybolan vitrin yerine sadece sayfa adi: diger tum kartlar ve yazilar ayni. */
+#ankilozanFaqSectionV85 .treatment-page-title-v730,
+#romatoidFaqSectionV198 .treatment-page-title-v730,
+#conditionDiseasePageV246 .treatment-page-title-v730 {
+    max-width: 1600px;
+    margin: 18px auto 22px;
+    padding: 18px clamp(18px, 3vw, 36px);
+    background: #f2f9fd;
+    border: 1px solid #d3e7f4;
+    border-radius: 22px;
+}
+.treatment-page-title-v730 h1 {
+    margin: 0;
+    color: #143b58;
+    font-size: clamp(25px, 3.1vw, 42px);
+    line-height: 1.15;
+    font-weight: 850;
+}
+@media (max-width: 680px) {
+    #ankilozanFaqSectionV85 .treatment-page-title-v730,
+    #romatoidFaqSectionV198 .treatment-page-title-v730,
+    #conditionDiseasePageV246 .treatment-page-title-v730 {
+        margin: 10px 12px 16px;
+        padding: 15px 16px;
+        border-radius: 17px;
+    }
+}
+
+
+/* V731 - Tedavi alanlari: sadece hastaligin adi. Hicbir + butonu uretme. */
+#globalDiseaseSwitcherV422,
+#ankilozanFaqSectionV85 .disease-switcher-v250,
+#romatoidFaqSectionV198 .disease-switcher-v250,
+#conditionDiseasePageV246 .disease-switcher-v250 {
+    display: none !important;
+}
+#ankilozanFaqSectionV85 .treatment-page-title-v730,
+#romatoidFaqSectionV198 .treatment-page-title-v730,
+#conditionDiseasePageV246 .treatment-page-title-v730 {
+    background:transparent !important;
+    border:0 !important;
+    box-shadow:none !important;
+    border-radius:0 !important;
+    max-width:1600px !important;
+    margin:12px auto 18px !important;
+    padding:14px clamp(18px,3vw,32px) !important;
+}
+.treatment-page-title-v730 h1 {
+    font-size:clamp(26px,3.1vw,43px);
+    color:#113d5d;
+    line-height:1.18;
+    margin:0;
+}
+@media(max-width:640px) {
+    #ankilozanFaqSectionV85 .treatment-page-title-v730,
+    #romatoidFaqSectionV198 .treatment-page-title-v730,
+    #conditionDiseasePageV246 .treatment-page-title-v730 {
+        margin:8px 10px 14px !important;
+        padding:12px !important;
+    }
+}
+
+
+/* V732 - Tum tedavi alani ozel akista hastalik adi gorunsun */
+.treatment-special-view-v279 .treatment-disease-inline-title-v732{
+  width:min(1340px, calc(100% - 24px));
+  margin:0 auto 16px;
+  padding:0 6px;
+}
+.treatment-special-view-v279 .treatment-disease-inline-title-v732 h2{
+  margin:0;
+  color:#123f5d;
+  font-size:clamp(38px, 4vw, 64px);
+  line-height:1.02;
+  letter-spacing:-.045em;
+  font-weight:900;
+}
+@media (max-width:760px){
+  .treatment-special-view-v279 .treatment-disease-inline-title-v732{
+    width:calc(100% - 8px);
+    margin:0 auto 12px;
+    padding:0 4px;
+  }
+  .treatment-special-view-v279 .treatment-disease-inline-title-v732 h2{
+    font-size:clamp(28px, 8vw, 44px);
+    line-height:1.06;
+  }
+}
+
+
+/* V733 - Tedavi alanlari ozel sayfa ust baslikta sadece hastalik adi gorunsun */
+#treatmentSpecialViewV279 .as-special-head-v274 .as-special-kicker-v274,
+#treatmentSpecialViewV279 .as-special-head-v274 #treatmentSpecialDescV279,
+#treatmentSpecialViewV279 .as-special-head-v274 .special-disease-quick-v439,
+#treatmentSpecialViewV279 .as-special-head-v274 .v633-quick-disclosure,
+#treatmentSpecialViewV279 .as-special-head-v274 #treatmentSpecialIndexV279{
+  display:none !important;
+}
+#treatmentSpecialViewV279 .as-special-head-v274{
+  min-height:0 !important;
+  padding:18px 24px !important;
+  display:block !important;
+}
+#treatmentSpecialViewV279 .as-special-head-v274 .as-special-title-v274{
+  max-width:100% !important;
+}
+#treatmentSpecialViewV279 .as-special-head-v274 .as-special-title-v274 h2{
+  margin:0 !important;
+}
+@media (max-width:760px){
+  #treatmentSpecialViewV279 .as-special-head-v274{
+    padding:14px 16px !important;
+  }
+}
+
+
+/* V734 — RA ve diger hastaliklarda ilk icerigin hemen ustunde yalnizca ad. */
+#romatoidFaqSectionV198 > .treatment-page-title-v730,
+#conditionDiseasePageV246 > .treatment-page-title-v730 {
+  display:block !important;
+  width:min(1510px, calc(100% - 44px)) !important;
+  max-width:1510px !important;
+  margin:20px auto 12px !important;
+  padding:6px clamp(8px, 1.4vw, 18px) !important;
+  height:auto !important;
+  min-height:0 !important;
+  background:transparent !important;
+  border:0 !important;
+  box-shadow:none !important;
+}
+#romatoidFaqSectionV198 > .treatment-page-title-v730 h1,
+#conditionDiseasePageV246 > .treatment-page-title-v730 h1 {
+  margin:0 !important;
+  color:#103956 !important;
+  font-size:clamp(30px, 3.4vw, 54px) !important;
+  font-weight:900 !important;
+  line-height:1.08 !important;
+  letter-spacing:-.035em;
+}
+@media (max-width:650px){
+  #romatoidFaqSectionV198 > .treatment-page-title-v730,
+  #conditionDiseasePageV246 > .treatment-page-title-v730 {
+    width:calc(100% - 22px) !important;
+    margin:13px auto 10px !important;
+    padding:4px 3px !important;
+  }
+}
+
+/* ======================================================================
+   V735 - Tedavi alani sayfalari yenilemede dogrudan bilgi akisinda acilir.
+   Koyu secim vitrini kaldirilir; hastalik adi ilk bilgi kartinin ustundedir.
+   ====================================================================== */
+body.ankilozan-page-open-v87 #ankilozanFaqSectionV85 #asLauncherV274,
+body.romatoid-page-open-v198 #romatoidFaqSectionV198 #raLauncherV279,
+body.condition-disease-page-open-v246 #conditionDiseasePageV246 #conditionLauncherV279,
+body.ankilozan-page-open-v87 #ankilozanFaqSectionV85 #asMainHeroV275,
+body.romatoid-page-open-v198 #romatoidFaqSectionV198 .ra-hero-v198,
+body.condition-disease-page-open-v246 #conditionDiseasePageV246 .condition-overview-poster-v249 {
+  display:none !important;
+  height:0 !important;
+  min-height:0 !important;
+  margin:0 !important;
+  padding:0 !important;
+  overflow:hidden !important;
+}
+
+#ankilozanFaqSectionV85 > .treatment-page-title-v735,
+#romatoidFaqSectionV198 > .treatment-page-title-v735,
+#conditionDiseasePageV246 > .treatment-page-title-v735 {
+  display:flex !important;
+  align-items:center;
+  justify-content:space-between;
+  gap:18px;
+  width:min(1510px, calc(100% - 44px));
+  margin:24px auto 16px;
+  padding:20px clamp(22px, 3vw, 38px);
+  border:1px solid #cde5f4;
+  border-radius:24px;
+  background:linear-gradient(135deg, #ffffff 0%, #f0f9ff 100%);
+  box-shadow:0 14px 34px rgba(21,74,112,.07);
+}
+#ankilozanFaqSectionV85 .treatment-page-title-v735-copy,
+#romatoidFaqSectionV198 .treatment-page-title-v735-copy,
+#conditionDiseasePageV246 .treatment-page-title-v735-copy {
+  min-width:0;
+}
+.treatment-page-title-v735 .treatment-page-eyebrow-v735 {
+  display:block;
+  margin:0 0 7px;
+  color:#1097d1;
+  font-size:12px;
+  font-weight:900;
+  letter-spacing:.15em;
+  text-transform:uppercase;
+}
+.treatment-page-title-v735 h1 {
+  margin:0;
+  color:#103956;
+  font-size:clamp(30px, 3.5vw, 56px);
+  font-weight:900;
+  line-height:1.04;
+  letter-spacing:-.04em;
+}
+.treatment-page-title-v735 .treatment-page-section-v735 {
+  flex:0 0 auto;
+  padding:10px 15px;
+  border:1px solid #c8e5f5;
+  border-radius:999px;
+  color:#176184;
+  background:#eaf7fe;
+  font-size:13px;
+  font-weight:850;
+  white-space:nowrap;
+}
+
+/* Onceki baslik ayni anda gorunmesin. */
+#ankilozanFaqSectionV85 > .treatment-page-title-v730,
+#romatoidFaqSectionV198 > .treatment-page-title-v730,
+#conditionDiseasePageV246 > .treatment-page-title-v730 {
+  display:none !important;
+}
+
+@media (max-width:650px){
+  #ankilozanFaqSectionV85 > .treatment-page-title-v735,
+  #romatoidFaqSectionV198 > .treatment-page-title-v735,
+  #conditionDiseasePageV246 > .treatment-page-title-v735 {
+    width:calc(100% - 22px);
+    margin:13px auto 11px;
+    padding:16px 17px;
+    border-radius:18px;
+  }
+  .treatment-page-title-v735 .treatment-page-section-v735 {display:none;}
+  .treatment-page-title-v735 h1 {font-size:clamp(27px, 9vw, 40px);}
+}
+
+/* ======================================================================
+   V737 - Agri detaylari: butonsuz, tek sayfada kesintisiz bilgi akisi.
+   Karttan acilan sayfada tum basliklar ustte, aciklamalari hemen altindadir.
+   ====================================================================== */
+html body.pain-full-detail-open-v215 #painFullDetailPageV215.pain-full-detail-page-v417 .pain-full-main-v417 {
+  display:block !important;
+  width:min(1500px, 100%) !important;
+  max-width:1500px !important;
+  margin:0 auto !important;
+  padding:24px clamp(14px, 2.4vw, 34px) 72px !important;
+}
+html body.pain-full-detail-open-v215 #painFullDetailPageV215.pain-full-detail-page-v417 .pain-full-main-v417 > .pain-full-local-nav-v219,
+#painFullDetailPageV215.pain-full-detail-page-v417 .pain-full-main-v417 > .pain-full-local-nav-v219 {
+  display:none !important;
+  position:static !important;
+  width:0 !important;
+  height:0 !important;
+  min-height:0 !important;
+  margin:0 !important;
+  padding:0 !important;
+  overflow:hidden !important;
+  visibility:hidden !important;
+  pointer-events:none !important;
+}
+#painFullDetailPageV215.pain-full-detail-page-v417 .pain-full-panels-v219 {
+  display:grid !important;
+  grid-template-columns:minmax(0, 1fr) !important;
+  gap:24px !important;
+  width:100% !important;
+  margin:0 !important;
+}
+#painFullDetailPageV215.pain-full-detail-page-v417 [data-pain-full-panel-v215],
+#painFullDetailPageV215.pain-full-detail-page-v417 [data-pain-full-panel-v215][hidden] {
+  display:block !important;
+  width:100% !important;
+  min-width:0 !important;
+  margin:0 !important;
+  scroll-margin-top:130px;
+}
+
+/* Genel bakis: once baslik ve anlatim, yaninda tek medikal gorsel. */
+#painFullDetailPageV215.pain-full-detail-page-v417 .pain-overview-hero-v219 {
+  display:grid !important;
+  grid-template-columns:minmax(0, 1.16fr) minmax(340px, .84fr) !important;
+  grid-template-areas:"copy media" !important;
+  gap:18px !important;
+  align-items:stretch !important;
+}
+#painFullDetailPageV215.pain-full-detail-page-v417 .pain-overview-copy-v219 {
+  grid-area:copy !important;
+  min-height:420px !important;
+  justify-content:flex-start !important;
+  padding:clamp(32px, 4vw, 58px) !important;
+}
+#painFullDetailPageV215.pain-full-detail-page-v417 .pain-overview-copy-v219 h2 {
+  margin:0 0 18px !important;
+  font-size:clamp(42px, 5.2vw, 76px) !important;
+  line-height:1 !important;
+}
+#painFullDetailPageV215.pain-full-detail-page-v417 .pain-overview-copy-v219 > p {
+  max-width:900px !important;
+  margin:0 !important;
+  font-size:clamp(16px, 1.35vw, 19px) !important;
+  line-height:1.78 !important;
+}
+#painFullDetailPageV215.pain-full-detail-page-v417 .pain-overview-media-v219 {
+  grid-area:media !important;
+  min-height:420px !important;
+}
+#painFullDetailPageV215.pain-full-detail-page-v417 .pain-overview-quote-v219 {
+  display:none !important;
+}
+
+/* Genel bakis ve degerlendirme alt bilgileri: metin kartlari, butonsuz. */
+#painFullDetailPageV215.pain-full-detail-page-v417 .pain-full-card-grid-v219 {
+  display:grid !important;
+  grid-template-columns:repeat(3, minmax(0, 1fr)) !important;
+  gap:16px !important;
+  margin:18px 0 0 !important;
+}
+#painFullDetailPageV215.pain-full-detail-page-v417 .pain-full-info-card-v219 {
+  min-height:0 !important;
+  border-top:5px solid var(--pain-accent-v416, #1596d4) !important;
+}
+#painFullDetailPageV215.pain-full-detail-page-v417 .pain-full-card-image-v219 {
+  display:none !important;
+}
+#painFullDetailPageV215.pain-full-detail-page-v417 .pain-full-card-body-v219 {
+  display:block !important;
+  padding:25px 25px 27px !important;
+}
+#painFullDetailPageV215.pain-full-detail-page-v417 .pain-full-card-body-v219 strong {
+  display:block !important;
+  margin:0 0 10px !important;
+  color:#103b58 !important;
+  font-size:clamp(19px, 1.55vw, 24px) !important;
+  line-height:1.22 !important;
+}
+#painFullDetailPageV215.pain-full-detail-page-v417 .pain-full-card-body-v219 p {
+  margin:0 !important;
+  color:#5b778b !important;
+  font-size:15px !important;
+  line-height:1.72 !important;
+}
+#painFullDetailPageV215.pain-full-detail-page-v417 .pain-topic-link-v415,
+#painFullDetailPageV215.pain-full-detail-page-v417 .pain-topic-link-v416 {
+  display:none !important;
+}
+
+/* Diger dort bolum: baslik, hemen altinda anlatim ve ilgili maddeler. */
+#painFullDetailPageV215.pain-full-detail-page-v417 .pain-subtab-layout-v219 {
+  display:block !important;
+  min-height:0 !important;
+  padding:0 !important;
+}
+#painFullDetailPageV215.pain-full-detail-page-v417 .pain-full-panel-copy-v219 {
+  display:block !important;
+  min-height:0 !important;
+  padding:clamp(30px, 4vw, 54px) !important;
+  overflow:visible !important;
+}
+#painFullDetailPageV215.pain-full-detail-page-v417 .pain-full-panel-copy-v219 > span {
+  display:inline-flex !important;
+  margin:0 0 14px !important;
+}
+#painFullDetailPageV215.pain-full-detail-page-v417 .pain-full-panel-copy-v219 h2 {
+  max-width:1100px !important;
+  margin:0 0 16px !important;
+  font-size:clamp(34px, 4.1vw, 58px) !important;
+  line-height:1.05 !important;
+}
+#painFullDetailPageV215.pain-full-detail-page-v417 .pain-full-panel-copy-v219 > p {
+  max-width:1120px !important;
+  margin:0 !important;
+  font-size:clamp(16px, 1.28vw, 19px) !important;
+  line-height:1.78 !important;
+}
+#painFullDetailPageV215.pain-full-detail-page-v417 .pain-subtab-image-v219 {
+  display:none !important;
+}
+#painFullDetailPageV215.pain-full-detail-page-v417 .pain-full-list-card-v219 {
+  max-width:1120px !important;
+  margin-top:22px !important;
+}
+#painFullDetailPageV215.pain-full-detail-page-v417 .pain-full-list-card-v219 li {
+  font-size:15px !important;
+  line-height:1.65 !important;
+}
+#painFullDetailPageV215.pain-full-detail-page-v417 .pain-full-tags-v219 {
+  margin-top:24px !important;
+}
+
+@media (max-width:980px) {
+  #painFullDetailPageV215.pain-full-detail-page-v417 .pain-overview-hero-v219 {
+    grid-template-columns:1fr !important;
+    grid-template-areas:"copy" "media" !important;
+  }
+  #painFullDetailPageV215.pain-full-detail-page-v417 .pain-overview-copy-v219,
+  #painFullDetailPageV215.pain-full-detail-page-v417 .pain-overview-media-v219 {
+    min-height:0 !important;
+  }
+  #painFullDetailPageV215.pain-full-detail-page-v417 .pain-overview-media-v219 {
+    height:min(54vw, 430px) !important;
+  }
+  #painFullDetailPageV215.pain-full-detail-page-v417 .pain-full-card-grid-v219 {
+    grid-template-columns:1fr !important;
+  }
+}
+@media (max-width:700px) {
+  html body.pain-full-detail-open-v215 #painFullDetailPageV215.pain-full-detail-page-v417 .pain-full-main-v417 {
+    padding:12px 10px 42px !important;
+  }
+  #painFullDetailPageV215.pain-full-detail-page-v417 .pain-full-panels-v219 {
+    gap:14px !important;
+  }
+  #painFullDetailPageV215.pain-full-detail-page-v417 .pain-overview-copy-v219,
+  #painFullDetailPageV215.pain-full-detail-page-v417 .pain-full-panel-copy-v219 {
+    padding:25px 21px !important;
+    border-radius:22px !important;
+  }
+  #painFullDetailPageV215.pain-full-detail-page-v417 .pain-overview-copy-v219 h2 {
+    font-size:clamp(34px, 11vw, 46px) !important;
+  }
+  #painFullDetailPageV215.pain-full-detail-page-v417 .pain-full-panel-copy-v219 h2 {
+    font-size:clamp(29px, 9vw, 40px) !important;
+  }
+  #painFullDetailPageV215.pain-full-detail-page-v417 .pain-overview-media-v219 {
+    height:260px !important;
+    border-radius:22px !important;
+  }
+  #painFullDetailPageV215.pain-full-detail-page-v417 .pain-full-card-body-v219 {
+    padding:21px !important;
+  }
+}
+
+/* ======================================================================
+   V738 - Agri icerikleri genisletildi; medikal gorsel tamamen gorunur.
+   ====================================================================== */
+#painFullDetailPageV215.pain-full-detail-page-v417 .pain-overview-media-v219::before,
+#painFullDetailPageV215.pain-full-detail-page-v417 .pain-overview-media-v219::after {
+  display:none !important;
+  content:none !important;
+  inset:auto !important;
+  width:0 !important;
+  height:0 !important;
+  background:none !important;
+}
+#painFullDetailPageV215.pain-full-detail-page-v417 .pain-overview-media-v219 {
+  padding:0 !important;
+  background:#edf7fc !important;
+}
+#painFullDetailPageV215.pain-full-detail-page-v417 .pain-overview-media-v219 img {
+  display:block !important;
+  width:100% !important;
+  height:100% !important;
+  max-width:none !important;
+  margin:0 !important;
+  padding:0 !important;
+  object-fit:cover !important;
+  object-position:center center !important;
+  transform:none !important;
+}
+#painFullDetailPageV215.pain-full-detail-page-v417 .pain-overview-media-v219:hover img {
+  transform:none !important;
+}
+#painFullDetailPageV215.pain-full-detail-page-v417 .pain-full-info-card-v219 {
+  height:100% !important;
+}
+#painFullDetailPageV215.pain-full-detail-page-v417 .pain-full-card-body-v219 p,
+#painFullDetailPageV215.pain-full-detail-page-v417 .pain-full-panel-copy-v219 > p,
+#painFullDetailPageV215.pain-full-detail-page-v417 .pain-overview-copy-v219 > p {
+  text-wrap:pretty;
+}
+#painFullDetailPageV215.pain-full-detail-page-v417 .pain-full-list-card-v219 ul {
+  margin:0 !important;
+  padding-left:22px !important;
+}
+#painFullDetailPageV215.pain-full-detail-page-v417 .pain-full-list-card-v219 li + li {
+  margin-top:12px !important;
+}
+@media (max-width:980px) {
+  #painFullDetailPageV215.pain-full-detail-page-v417 .pain-overview-media-v219 img {
+    object-position:center center !important;
+  }
+}
+
+/* ======================================================================
+   V739 - Agri bilgi bolumleri kompakt: masaustunde ayni ekranda iki bolum.
+   Metinler korunur; tipografi, bosluk ve kart yukseklikleri sikilastirilir.
+   ====================================================================== */
+@media (min-width:761px) {
+  html body.pain-full-detail-open-v215 #painFullDetailPageV215.pain-full-detail-page-v417 .pain-full-main-v417 {
+    width:min(1660px, 100%) !important;
+    max-width:1660px !important;
+    padding:14px 20px 42px !important;
+  }
+  #painFullDetailPageV215.pain-full-detail-page-v417 .pain-full-panels-v219 {
+    gap:14px !important;
+  }
+  #painFullDetailPageV215.pain-full-detail-page-v417 .pain-full-panel-v219,
+  #painFullDetailPageV215.pain-full-detail-page-v417 [data-pain-full-panel-v215] {
+    min-height:0 !important;
+  }
+  #painFullDetailPageV215.pain-full-detail-page-v417 .pain-subtab-layout-v219 {
+    min-height:0 !important;
+  }
+  #painFullDetailPageV215.pain-full-detail-page-v417 .pain-full-panel-copy-v219 {
+    min-height:0 !important;
+    padding:18px 26px 19px !important;
+    border-radius:22px !important;
+  }
+  #painFullDetailPageV215.pain-full-detail-page-v417 .pain-full-panel-copy-v219::before {
+    width:4px !important;
+  }
+  #painFullDetailPageV215.pain-full-detail-page-v417 .pain-full-panel-copy-v219 > span {
+    margin:0 0 7px !important;
+    padding:5px 9px !important;
+    font-size:9px !important;
+    line-height:1.2 !important;
+    letter-spacing:.11em !important;
+  }
+  #painFullDetailPageV215.pain-full-detail-page-v417 .pain-full-panel-copy-v219 h2 {
+    max-width:1450px !important;
+    margin:0 0 8px !important;
+    font-size:clamp(28px, 2.35vw, 40px) !important;
+    line-height:1.06 !important;
+    letter-spacing:-.035em !important;
+  }
+  #painFullDetailPageV215.pain-full-detail-page-v417 .pain-full-panel-copy-v219 > p {
+    max-width:1450px !important;
+    font-size:13.5px !important;
+    line-height:1.48 !important;
+  }
+  #painFullDetailPageV215.pain-full-detail-page-v417 .pain-full-list-card-v219 {
+    max-width:1450px !important;
+    margin-top:10px !important;
+    padding:9px 14px !important;
+    border-radius:14px !important;
+  }
+  #painFullDetailPageV215.pain-full-detail-page-v417 .pain-full-list-card-v219 ul {
+    display:block !important;
+    margin:0 !important;
+    padding-left:19px !important;
+  }
+  #painFullDetailPageV215.pain-full-detail-page-v417 .pain-full-list-card-v219 li {
+    margin:3px 0 !important;
+    font-size:12.5px !important;
+    line-height:1.35 !important;
+  }
+  #painFullDetailPageV215.pain-full-detail-page-v417 .pain-full-list-card-v219 li + li {
+    margin-top:5px !important;
+  }
+  #painFullDetailPageV215.pain-full-detail-page-v417 .pain-full-tags-v219 {
+    gap:6px !important;
+    margin-top:12px !important;
+  }
+  #painFullDetailPageV215.pain-full-detail-page-v417 .pain-full-tags-v219 > span {
+    padding:7px 10px !important;
+    border-radius:10px !important;
+    font-size:11.5px !important;
+  }
+
+  /* Genel bakis ve alt bilgi kartlari da ayni kompakt ritme uyar. */
+  #painFullDetailPageV215.pain-full-detail-page-v417 .pain-overview-hero-v219 {
+    gap:12px !important;
+  }
+  #painFullDetailPageV215.pain-full-detail-page-v417 .pain-overview-copy-v219 {
+    min-height:335px !important;
+    padding:26px 30px !important;
+    border-radius:23px !important;
+  }
+  #painFullDetailPageV215.pain-full-detail-page-v417 .pain-overview-kicker-v219 {
+    margin-bottom:9px !important;
+    padding:5px 9px !important;
+    font-size:9px !important;
+  }
+  #painFullDetailPageV215.pain-full-detail-page-v417 .pain-overview-copy-v219 h2 {
+    margin:0 0 10px !important;
+    font-size:clamp(38px, 4vw, 58px) !important;
+    line-height:1 !important;
+  }
+  #painFullDetailPageV215.pain-full-detail-page-v417 .pain-overview-copy-v219 > p {
+    font-size:13.5px !important;
+    line-height:1.5 !important;
+  }
+  #painFullDetailPageV215.pain-full-detail-page-v417 .pain-overview-benefits-v219 {
+    gap:5px !important;
+    margin-top:13px !important;
+    padding-top:11px !important;
+  }
+  #painFullDetailPageV215.pain-full-detail-page-v417 .pain-overview-benefits-v219 > div {
+    min-height:35px !important;
+    padding:4px 9px 4px 5px !important;
+    grid-template-columns:28px minmax(0,1fr) !important;
+    gap:7px !important;
+    font-size:11px !important;
+  }
+  #painFullDetailPageV215.pain-full-detail-page-v417 .pain-overview-benefits-v219 b {
+    width:27px !important;
+    height:27px !important;
+  }
+  #painFullDetailPageV215.pain-full-detail-page-v417 .pain-overview-media-v219 {
+    min-height:335px !important;
+    border-radius:23px !important;
+  }
+  #painFullDetailPageV215.pain-full-detail-page-v417 .pain-full-card-grid-v219 {
+    gap:10px !important;
+    margin-top:10px !important;
+  }
+  #painFullDetailPageV215.pain-full-detail-page-v417 .pain-full-info-card-v219 {
+    border-top-width:3px !important;
+    border-radius:17px !important;
+  }
+  #painFullDetailPageV215.pain-full-detail-page-v417 .pain-full-card-body-v219 {
+    padding:14px 16px 15px !important;
+  }
+  #painFullDetailPageV215.pain-full-detail-page-v417 .pain-full-card-body-v219 strong {
+    margin:0 0 5px !important;
+    font-size:16px !important;
+  }
+  #painFullDetailPageV215.pain-full-detail-page-v417 .pain-full-card-body-v219 p {
+    font-size:12px !important;
+    line-height:1.42 !important;
+  }
+}
+
+@media (max-width:760px) {
+  #painFullDetailPageV215.pain-full-detail-page-v417 .pain-full-panel-copy-v219 {
+    padding:22px 18px !important;
+  }
+  #painFullDetailPageV215.pain-full-detail-page-v417 .pain-full-panel-copy-v219 h2 {
+    margin-bottom:10px !important;
+    font-size:clamp(27px, 8.3vw, 36px) !important;
+  }
+  #painFullDetailPageV215.pain-full-detail-page-v417 .pain-full-panel-copy-v219 > p {
+    font-size:14px !important;
+    line-height:1.55 !important;
+  }
+  #painFullDetailPageV215.pain-full-detail-page-v417 .pain-full-list-card-v219 {
+    margin-top:13px !important;
+    padding:12px 14px !important;
+  }
+  #painFullDetailPageV215.pain-full-detail-page-v417 .pain-full-list-card-v219 li {
+    font-size:13px !important;
+    line-height:1.45 !important;
+  }
+}
+
+/* ======================================================================
+   V740 - V739 kompakt duzeninde okunabilirligi bir kademe artir.
+   Masaustunde iki bolum gorunumu korunur.
+   ====================================================================== */
+@media (min-width:761px) {
+  html body.pain-full-detail-open-v215 #painFullDetailPageV215.pain-full-detail-page-v417 .pain-full-main-v417 {
+    padding:16px 22px 46px !important;
+  }
+  #painFullDetailPageV215.pain-full-detail-page-v417 .pain-full-panels-v219 {
+    gap:16px !important;
+  }
+  #painFullDetailPageV215.pain-full-detail-page-v417 .pain-full-panel-copy-v219 {
+    padding:21px 29px 22px !important;
+    border-radius:23px !important;
+  }
+  #painFullDetailPageV215.pain-full-detail-page-v417 .pain-full-panel-copy-v219 > span {
+    margin-bottom:8px !important;
+    padding:6px 10px !important;
+    font-size:10px !important;
+  }
+  #painFullDetailPageV215.pain-full-detail-page-v417 .pain-full-panel-copy-v219 h2 {
+    margin-bottom:9px !important;
+    font-size:clamp(31px, 2.55vw, 44px) !important;
+    line-height:1.07 !important;
+  }
+  #painFullDetailPageV215.pain-full-detail-page-v417 .pain-full-panel-copy-v219 > p {
+    font-size:14.5px !important;
+    line-height:1.52 !important;
+  }
+  #painFullDetailPageV215.pain-full-detail-page-v417 .pain-full-list-card-v219 {
+    margin-top:11px !important;
+    padding:11px 16px !important;
+    border-radius:15px !important;
+  }
+  #painFullDetailPageV215.pain-full-detail-page-v417 .pain-full-list-card-v219 li {
+    margin:4px 0 !important;
+    font-size:13.5px !important;
+    line-height:1.4 !important;
+  }
+  #painFullDetailPageV215.pain-full-detail-page-v417 .pain-full-list-card-v219 li + li {
+    margin-top:6px !important;
+  }
+  #painFullDetailPageV215.pain-full-detail-page-v417 .pain-full-tags-v219 > span {
+    padding:8px 11px !important;
+    font-size:12px !important;
+  }
+  #painFullDetailPageV215.pain-full-detail-page-v417 .pain-overview-copy-v219,
+  #painFullDetailPageV215.pain-full-detail-page-v417 .pain-overview-media-v219 {
+    min-height:360px !important;
+  }
+  #painFullDetailPageV215.pain-full-detail-page-v417 .pain-overview-copy-v219 {
+    padding:29px 33px !important;
+  }
+  #painFullDetailPageV215.pain-full-detail-page-v417 .pain-overview-copy-v219 h2 {
+    font-size:clamp(41px, 4.25vw, 62px) !important;
+  }
+  #painFullDetailPageV215.pain-full-detail-page-v417 .pain-overview-copy-v219 > p {
+    font-size:14.5px !important;
+    line-height:1.55 !important;
+  }
+  #painFullDetailPageV215.pain-full-detail-page-v417 .pain-full-card-body-v219 {
+    padding:16px 18px 17px !important;
+  }
+  #painFullDetailPageV215.pain-full-detail-page-v417 .pain-full-card-body-v219 strong {
+    font-size:17px !important;
+  }
+  #painFullDetailPageV215.pain-full-detail-page-v417 .pain-full-card-body-v219 p {
+    font-size:13px !important;
+    line-height:1.46 !important;
+  }
 }
