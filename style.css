@@ -11195,3 +11195,443 @@ html body .detox-info-dialog-v645 .detox-v717-sources a{color:#086f9c;text-decor
   clip: rect(0, 0, 0, 0) !important;
   clip-path: inset(50%) !important;
 }
+/* ======================================================================
+   V720 - DETOKS KÜRLERİ / FİTOTERAPİ TİPİ KOMPAKT KART TASARIMI
+   Yalnızca Detoks Kürleri (kurler) görünümü etkilenir.
+   Mevcut 58 içerik, filtreler, arama, tıklama ve çift-anlatım korunur.
+   ====================================================================== */
+
+/* Bitki rehberindeki gibi sık ve düzenli sütun yapısı */
+.detox-view-v390 #detoxRecipeGridV390.detox-recipe-grid-v390 {
+    display: grid !important;
+    grid-template-columns: repeat(4, minmax(0, 1fr)) !important;
+    gap: 17px !important;
+    align-items: stretch !important;
+    max-width: 100%;
+}
+
+.detox-view-v390 #detoxRecipeGridV390 .detox-recipe-card-v390 {
+    position: relative !important;
+    display: flex !important;
+    flex-direction: column !important;
+    min-width: 0 !important;
+    padding: 0 !important;
+    overflow: hidden !important;
+    border-radius: 22px !important;
+    background: linear-gradient(180deg, #fff 0%, #fbfefc 100%) !important;
+    border: 1px solid rgba(31, 116, 94, .17) !important;
+    box-shadow: 0 11px 29px rgba(18, 79, 68, .08) !important;
+    transition: transform .2s ease, box-shadow .2s ease, border-color .2s ease !important;
+}
+.detox-view-v390 #detoxRecipeGridV390 .detox-recipe-card-v390:hover {
+    border-color: rgba(28, 153, 118, .4) !important;
+    box-shadow: 0 18px 35px rgba(18, 79, 68, .13) !important;
+    transform: translateY(-4px) !important;
+}
+
+/* Önceki 105px ikon başlığı kaldırılır; yalnızca küçük sıra etiketi kalır. */
+.detox-view-v390 #detoxRecipeGridV390 .detox-card-top-v390 {
+    position: absolute !important;
+    top: 10px !important;
+    right: 10px !important;
+    left: auto !important;
+    width: auto !important;
+    height: auto !important;
+    min-height: 0 !important;
+    padding: 0 !important;
+    margin: 0 !important;
+    z-index: 2 !important;
+    border: 0 !important;
+    background: transparent !important;
+    pointer-events: none;
+}
+.detox-view-v390 #detoxRecipeGridV390 .detox-card-icon-v390 {
+    display: none !important;
+}
+.detox-view-v390 #detoxRecipeGridV390 .detox-card-number-v390 {
+    display: inline-grid !important;
+    place-items: center !important;
+    width: 35px !important;
+    height: 35px !important;
+    color: #176f60 !important;
+    background: rgba(255,255,255,.95) !important;
+    border: 1px solid rgba(24, 121, 101, .15) !important;
+    border-radius: 12px !important;
+    box-shadow: 0 4px 12px rgba(15, 53, 52, .12) !important;
+    font-size: 11px !important;
+    letter-spacing: 0 !important;
+}
+
+/* 1:1 kare ve dev görseller yerine fitoterapiyle eş boyda yatay fotoğraf */
+.detox-view-v390 #detoxRecipeGridV390 .detox-card-media-v391,
+.detox-view-v390 #detoxRecipeGridV390 .detox-v663-visual {
+    position: relative !important;
+    width: 100% !important;
+    height: 181px !important;
+    max-height: 181px !important;
+    min-height: 181px !important;
+    flex: 0 0 181px !important;
+    aspect-ratio: auto !important;
+    margin: 0 !important;
+    padding: 0 !important;
+    overflow: hidden !important;
+    border: 0 !important;
+    border-radius: 0 !important;
+    order: 0;
+    background: linear-gradient(135deg, #e6f3ee, #ecf6fa) !important;
+}
+.detox-view-v390 #detoxRecipeGridV390 .detox-card-media-v391 img {
+    display: block !important;
+    width: 100% !important;
+    height: 100% !important;
+    object-fit: cover !important;
+    object-position: center !important;
+    transition: transform .35s ease;
+}
+.detox-view-v390 #detoxRecipeGridV390 .detox-recipe-card-v390:hover .detox-card-media-v391 img {
+    transform: scale(1.035);
+}
+.detox-view-v390 #detoxRecipeGridV390 .detox-card-media-v391::after {
+    content: "";
+    position: absolute;
+    inset: auto 0 0;
+    height: 48%;
+    background: linear-gradient(0deg,rgba(6,39,33,.42),transparent);
+    pointer-events: none;
+}
+.detox-view-v390 #detoxRecipeGridV390 .detox-card-media-badge-v391 {
+    z-index: 1;
+    color: #104e45 !important;
+    background: rgba(255,255,255,.94) !important;
+    border: 1px solid rgba(255,255,255,.9) !important;
+    font-size: 9px !important;
+    padding: 6px 9px !important;
+    max-width: calc(100% - 25px);
+}
+.detox-view-v390 #detoxRecipeGridV390 .detox-card-media-placeholder-v391 {
+    width: 100%;
+    height: 100%;
+    border-radius: 0;
+}
+.detox-view-v390 #detoxRecipeGridV390 .detox-v663-visual > span {
+    width: 56px !important;
+    height: 56px !important;
+    border-radius: 16px !important;
+    font-size: 31px !important;
+}
+.detox-view-v390 #detoxRecipeGridV390 .detox-v663-visual > small {font-size: 10px;}
+
+/* Kısa başlık + 2 satırlık tanıtım + detay bağlantısı */
+.detox-view-v390 #detoxRecipeGridV390 .detox-card-copy-v390 {
+    display: flex !important;
+    flex-direction: column !important;
+    flex: 1 1 auto !important;
+    min-height: 0 !important;
+    padding: 16px 16px 15px !important;
+}
+.detox-view-v390 #detoxRecipeGridV390 .detox-card-category-v390 {
+    margin: 0 0 7px !important;
+    color: #19876b !important;
+    font-size: 9px !important;
+    line-height: 1.4 !important;
+    letter-spacing: .11em !important;
+}
+.detox-view-v390 #detoxRecipeGridV390 .detox-card-copy-v390 h3 {
+    color: #163e4a !important;
+    font-family: Sora, Inter, sans-serif !important;
+    font-size: clamp(15px, 1.2vw, 18px) !important;
+    line-height: 1.3 !important;
+    letter-spacing: -.025em !important;
+    margin: 0 0 9px !important;
+    display: -webkit-box;
+    -webkit-box-orient: vertical;
+    -webkit-line-clamp: 2;
+    line-clamp: 2;
+    overflow: hidden;
+}
+.detox-view-v390 #detoxRecipeGridV390 .detox-support-v390 {
+    color: #668091 !important;
+    font-size: 12px !important;
+    line-height: 1.55 !important;
+    margin: 0 0 11px !important;
+    display: -webkit-box;
+    -webkit-box-orient: vertical;
+    -webkit-line-clamp: 2;
+    line-clamp: 2;
+    overflow: hidden;
+}
+.detox-view-v390 #detoxRecipeGridV390 .detox-support-v390 strong {color: #376877 !important;}
+.detox-view-v390 #detoxRecipeGridV390 .detox-tags-v390 {
+    margin: 0 0 12px !important;
+    gap: 5px !important;
+    max-height: 27px;
+    overflow: hidden;
+}
+.detox-view-v390 #detoxRecipeGridV390 .detox-tags-v390 span {
+    font-size: 9px !important;
+    padding: 5px 7px !important;
+    background: #e8f6ef !important;
+    color: #237763 !important;
+}
+.detox-view-v390 #detoxRecipeGridV390 .detox-info-open-v645 {
+    display: flex !important;
+    width: 100% !important;
+    min-height: 35px !important;
+    padding: 7px 10px !important;
+    margin: auto 0 0 !important;
+    background: #eef8f4 !important;
+    color: #176e59 !important;
+    border: 1px solid rgba(29,133,99,.16) !important;
+    border-radius: 10px !important;
+    box-shadow: none !important;
+    font-size: 11px !important;
+    line-height: 1.3 !important;
+    transition: background .18s ease, color .18s ease !important;
+}
+.detox-view-v390 #detoxRecipeGridV390 .detox-recipe-card-v390:hover .detox-info-open-v645,
+.detox-view-v390 #detoxRecipeGridV390 .detox-recipe-card-v390:focus-visible .detox-info-open-v645 {
+    color: #fff !important;
+    background: #188b72 !important;
+    box-shadow: none !important;
+}
+
+/* Detay penceresindeki büyük banner da daha sade bir ölçüye iner. */
+.detox-info-dialog-v645 .detox-info-media-v645 {
+    height: 185px !important;
+    max-height: 185px !important;
+}
+.detox-info-dialog-v645 .detox-info-media-v645.is-guide {height: 135px !important;}
+
+@media (max-width: 1360px) {
+    .detox-view-v390 #detoxRecipeGridV390.detox-recipe-grid-v390 {
+        grid-template-columns: repeat(3,minmax(0,1fr)) !important;
+    }
+}
+@media (max-width: 970px) {
+    .detox-view-v390 #detoxRecipeGridV390.detox-recipe-grid-v390 {
+        grid-template-columns: repeat(2,minmax(0,1fr)) !important;
+        gap: 14px !important;
+    }
+}
+@media (max-width: 600px) {
+    .detox-view-v390 #detoxRecipeGridV390.detox-recipe-grid-v390 {
+        grid-template-columns: minmax(0,1fr) !important;
+        gap: 13px !important;
+    }
+    .detox-view-v390 #detoxRecipeGridV390 .detox-card-media-v391,
+    .detox-view-v390 #detoxRecipeGridV390 .detox-v663-visual {
+        height: 168px !important;
+        max-height: 168px !important;
+        min-height: 168px !important;
+        flex-basis: 168px !important;
+    }
+    .detox-view-v390 #detoxRecipeGridV390 .detox-card-copy-v390 {padding:14px 15px !important;}
+    .detox-view-v390 #detoxRecipeGridV390 .detox-card-copy-v390 h3 {font-size:17px !important;}
+    .detox-info-dialog-v645 .detox-info-media-v645 {height:148px !important;max-height:148px !important;}
+}
+
+/* V721 — Detoks rehberi: filtre durum yazısı kaldırıldı; yalnızca gerekirse sıfırlama butonu görünür. */
+.detox-view-v390 .detox-results-bar-v390.detox-tools-only-v721 {
+    min-height: 0;
+    padding: 0;
+    margin: 0 0 14px;
+    border: 0;
+    background: transparent;
+    box-shadow: none;
+    justify-content: flex-end;
+}
+.detox-view-v390 .detox-results-bar-v390.detox-tools-only-v721[hidden] { display: none !important; }
+
+
+/* V722 | Osteopati ana akista dort baslik, mevcut site estetik dili korunarak.
+   Bu kurallar SADECE osteopati manuel iceriginin yeni gorunumu icindir. */
+#osteoManualUnifiedV701 .osteo-inline-flow-v722,
+#osteoChiroV105 .osteo-inline-flow-v722 {
+  display:grid;
+  grid-template-columns:minmax(0,1fr);
+  gap:24px;
+  min-width:0;
+  margin-top:26px;
+}
+#osteoManualUnifiedV701 .osteo-inline-topic-v722,
+#osteoChiroV105 .osteo-inline-topic-v722 {
+  min-width:0;
+  padding:clamp(16px,2.2vw,28px);
+  border:1px solid #c2e2f2;
+  border-radius:26px;
+  background:linear-gradient(145deg,#ffffff 0%,#f8fcff 100%);
+  box-shadow:0 14px 36px rgba(21,84,119,.07);
+  scroll-margin-top:112px;
+}
+#osteoManualUnifiedV701 .osteo-inline-topic-head-v722,
+#osteoChiroV105 .osteo-inline-topic-head-v722 {
+  display:flex;align-items:center;gap:17px;
+  margin:0 0 20px;
+  padding:0 0 18px;
+  border-bottom:1px solid rgba(24,133,194,.14);
+}
+#osteoManualUnifiedV701 .osteo-inline-number-v722,
+#osteoChiroV105 .osteo-inline-number-v722 {
+  flex:0 0 58px;min-width:58px;height:58px;
+  display:grid;place-items:center;
+  border-radius:17px;
+  background:linear-gradient(145deg,#1eaee1,#0787c6);
+  box-shadow:0 12px 24px rgba(10,135,190,.15);
+  color:#fff;font-size:21px;font-weight:900;
+}
+#osteoManualUnifiedV701 .osteo-inline-heading-v722,
+#osteoChiroV105 .osteo-inline-heading-v722 {min-width:0}
+#osteoManualUnifiedV701 .osteo-inline-heading-v722 h3,
+#osteoChiroV105 .osteo-inline-heading-v722 h3 {
+  margin:0 0 5px;color:#123e5a;
+  font-size:clamp(23px,2.2vw,33px);line-height:1.15;font-weight:850;
+}
+#osteoManualUnifiedV701 .osteo-inline-heading-v722 p,
+#osteoChiroV105 .osteo-inline-heading-v722 p {
+  margin:0;color:#62819a;font-size:15px;line-height:1.5;
+}
+#osteoManualUnifiedV701 .osteo-inline-detail-v722,
+#osteoChiroV105 .osteo-inline-detail-v722 {display:block;min-width:0}
+#osteoManualUnifiedV701 .osteo-inline-detail-v722 > section,
+#osteoChiroV105 .osteo-inline-detail-v722 > section {max-width:100%;box-sizing:border-box}
+#osteoManualUnifiedV701 .osteo-inline-detail-v722 .posture-intro-v364,
+#osteoChiroV105 .osteo-inline-detail-v722 .posture-intro-v364 {
+  display:grid;grid-template-columns:minmax(0,1.15fr) minmax(225px,.85fr);
+  gap:18px;padding:clamp(16px,2vw,25px);
+  box-shadow:none;background:#f6fbff;
+}
+#osteoManualUnifiedV701 .osteo-inline-detail-v722 .posture-intro-v364 h2,
+#osteoChiroV105 .osteo-inline-detail-v722 .posture-intro-v364 h2,
+#osteoManualUnifiedV701 .osteo-inline-detail-v722 .manual-text-hero-v364 h2,
+#osteoChiroV105 .osteo-inline-detail-v722 .manual-text-hero-v364 h2 {
+  font-size:clamp(23px,2.35vw,34px);line-height:1.17;letter-spacing:-.025em;
+}
+#osteoManualUnifiedV701 .osteo-inline-detail-v722 .posture-visual-section-v364,
+#osteoChiroV105 .osteo-inline-detail-v722 .posture-visual-section-v364 {
+  display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1fr);
+  gap:18px;margin-top:18px;padding:clamp(15px,1.6vw,23px);
+  box-shadow:none;
+}
+#osteoManualUnifiedV701 .osteo-inline-detail-v722 .posture-visual-section-v364 h2,
+#osteoChiroV105 .osteo-inline-detail-v722 .posture-visual-section-v364 h2 {
+  font-size:clamp(21px,1.75vw,28px);line-height:1.2;
+}
+#osteoManualUnifiedV701 .osteo-inline-detail-v722 figure,
+#osteoChiroV105 .osteo-inline-detail-v722 figure {min-width:0;max-width:100%;margin:0}
+#osteoManualUnifiedV701 .osteo-inline-detail-v722 figure img,
+#osteoChiroV105 .osteo-inline-detail-v722 figure img {
+  width:100%;max-height:330px;height:auto;object-fit:contain;border-radius:16px;
+}
+#osteoManualUnifiedV701 .osteo-inline-detail-v722 p,
+#osteoChiroV105 .osteo-inline-detail-v722 p,
+#osteoManualUnifiedV701 .osteo-inline-detail-v722 li,
+#osteoChiroV105 .osteo-inline-detail-v722 li {font-size:clamp(14px,1vw,16px);line-height:1.65}
+@media(max-width:1150px){
+  #osteoManualUnifiedV701 .osteo-inline-detail-v722 .posture-intro-v364,
+  #osteoChiroV105 .osteo-inline-detail-v722 .posture-intro-v364,
+  #osteoManualUnifiedV701 .osteo-inline-detail-v722 .posture-visual-section-v364,
+  #osteoChiroV105 .osteo-inline-detail-v722 .posture-visual-section-v364 {
+    grid-template-columns:1fr;
+  }
+  #osteoManualUnifiedV701 .osteo-inline-detail-v722 .posture-visual-section-v364 figure,
+  #osteoChiroV105 .osteo-inline-detail-v722 .posture-visual-section-v364 figure {order:0}
+}
+@media(max-width:760px){
+  #osteoManualUnifiedV701 .osteo-inline-flow-v722,
+  #osteoChiroV105 .osteo-inline-flow-v722 {gap:15px;margin-top:18px}
+  #osteoManualUnifiedV701 .osteo-inline-topic-v722,
+  #osteoChiroV105 .osteo-inline-topic-v722 {padding:14px;border-radius:19px}
+  #osteoManualUnifiedV701 .osteo-inline-topic-head-v722,
+  #osteoChiroV105 .osteo-inline-topic-head-v722 {gap:12px;margin-bottom:14px}
+  #osteoManualUnifiedV701 .osteo-inline-number-v722,
+  #osteoChiroV105 .osteo-inline-number-v722 {flex-basis:46px;min-width:46px;height:46px;font-size:17px;border-radius:13px}
+  #osteoManualUnifiedV701 .osteo-inline-heading-v722 h3,
+  #osteoChiroV105 .osteo-inline-heading-v722 h3 {font-size:clamp(20px,6vw,27px)}
+  #osteoManualUnifiedV701 .osteo-inline-heading-v722 p,
+  #osteoChiroV105 .osteo-inline-heading-v722 p {font-size:13px}
+  #osteoManualUnifiedV701 .osteo-inline-detail-v722 .posture-intro-v364,
+  #osteoChiroV105 .osteo-inline-detail-v722 .posture-intro-v364,
+  #osteoManualUnifiedV701 .osteo-inline-detail-v722 .posture-visual-section-v364,
+  #osteoChiroV105 .osteo-inline-detail-v722 .posture-visual-section-v364 {padding:15px;gap:13px;border-radius:17px}
+  #osteoManualUnifiedV701 .osteo-inline-detail-v722 figure img,
+  #osteoChiroV105 .osteo-inline-detail-v722 figure img {max-height:260px}
+}
+
+
+/* V723: Osteopati | Mobilizasyon ve Pelvis/Omurga ek gorselleri. */
+#osteoManualUnifiedV701 .osteo-illustration-intro-v723,
+#osteoChiroV105 .osteo-illustration-intro-v723,
+#osteoManualDetailPageV364 .osteo-illustration-intro-v723 {
+ width:100%;flex:0 0 100%;margin:12px 0 0;
+ border-radius:17px;overflow:hidden;border:1px solid rgba(42,143,195,.20);
+ background:#eff8fc;box-shadow:0 7px 18px rgba(10,75,110,.10);
+}
+#osteoManualUnifiedV701 .osteo-illustration-intro-v723 img,
+#osteoChiroV105 .osteo-illustration-intro-v723 img,
+#osteoManualDetailPageV364 .osteo-illustration-intro-v723 img {
+ display:block;width:100%;height:auto;aspect-ratio:1.75/1;object-fit:cover;
+}
+#osteoManualUnifiedV701 .osteo-inline-detail-v722 .pelvis-spine-section-v369 img,
+#osteoManualUnifiedV701 .osteo-inline-detail-v722 .mobilization-visual-v367 img,
+#osteoChiroV105 .osteo-inline-detail-v722 .pelvis-spine-section-v369 img,
+#osteoChiroV105 .osteo-inline-detail-v722 .mobilization-visual-v367 img {
+ display:block;width:100%;height:auto;aspect-ratio:1.52/1;object-fit:contain;
+ background:#f4fbff;border-radius:15px;
+}
+/* '04 Pelvis & Omurga' separator removed, so the content begins naturally. */
+#osteoManualUnifiedV701 #osteo-inline-pelvis-omurga-v722 .osteo-inline-detail-v722,
+#osteoChiroV105 #osteo-inline-pelvis-omurga-fallback-v722 .osteo-inline-detail-v722 {
+ margin-top:0;
+}
+@media(max-width:760px){
+ #osteoManualUnifiedV701 .osteo-illustration-intro-v723,
+ #osteoChiroV105 .osteo-illustration-intro-v723,
+ #osteoManualDetailPageV364 .osteo-illustration-intro-v723 {margin-top:10px;border-radius:13px}
+}
+
+
+/* ===============================================================
+   V725 — Osteopati: sade ana baslik, acma-kapama olmadan 15 SSS.
+   Sadece Osteopati FAQ alanlari; diger modullere etkisi yoktur.
+   =============================================================== */
+.osteopathy-page-v95 .osteo-section-heading-v105.osteo-only-heading-v725{margin:0 0 24px!important;}
+.osteopathy-page-v95 .osteo-only-heading-v725 h2{margin:0!important;color:#123e5d!important;font-size:clamp(30px,3.6vw,56px)!important;line-height:1.1!important;}
+.osteopathy-page-v95 .osteo-faq-static-v725 .osteo-faq-head-v370{margin-bottom:22px!important;}
+.osteopathy-page-v95 .osteo-faq-static-v725 .osteo-faq-head-v370 h2{margin:0!important;color:#123e5d!important;font-size:clamp(28px,3.4vw,48px)!important;line-height:1.12!important;}
+/* Soru + yanit ayni beyaz kartta; ana akista tek sutun. */
+.osteopathy-page-v95 .osteo-faq-static-v725 .osteo-faq-grid-v370,
+.osteopathy-page-v95 .osteo-faq-static-v725 .osteo-faq-grid-v370.osteo-faq-independent-v708,
+.osteopathy-page-v95 .osteo-faq-static-v725 .osteo-faq-grid-v370.osteo-faq-independent-v371{
+  display:grid!important;grid-template-columns:minmax(0,1fr)!important;gap:16px!important;align-items:start!important;
+}
+.osteopathy-page-v95 .osteo-faq-static-v725 .osteo-faq-item-v370{
+  padding:22px 24px!important;min-width:0!important;min-height:0!important;height:auto!important;
+  border:1px solid #cde5f2!important;border-radius:22px!important;background:#fff!important;
+  box-shadow:0 8px 28px rgba(22,94,138,.06)!important;overflow:visible!important;
+}
+.osteopathy-page-v95 .osteo-faq-static-v725 .osteo-faq-static-question-v725{
+  display:grid!important;grid-template-columns:48px minmax(0,1fr)!important;align-items:center!important;
+  gap:15px!important;min-height:0!important;margin-bottom:14px!important;padding:0 0 15px!important;
+  border-bottom:1px solid #e3eff6!important;
+}
+.osteopathy-page-v95 .osteo-faq-static-v725 .osteo-faq-question-v370{display:flex!important;flex-direction:column!important;gap:5px!important;min-width:0!important;}
+.osteopathy-page-v95 .osteo-faq-static-v725 .osteo-faq-question-v370 small{color:#1695cd!important;font:800 11px/1.4 Inter,sans-serif!important;letter-spacing:.12em!important;}
+.osteopathy-page-v95 .osteo-faq-static-v725 .osteo-faq-question-v370 strong{color:#143e5d!important;font:800 clamp(17px,1.6vw,23px)/1.33 Sora,Inter,sans-serif!important;white-space:normal!important;}
+.osteopathy-page-v95 .osteo-faq-static-v725 .osteo-faq-answer-v105{
+  display:block!important;visibility:visible!important;opacity:1!important;max-height:none!important;
+  height:auto!important;overflow:visible!important;transform:none!important;padding:0!important;transition:none!important;
+}
+.osteopathy-page-v95 .osteo-faq-static-v725 .osteo-faq-answer-inner-v370{display:block!important;padding:0!important;max-height:none!important;}
+.osteopathy-page-v95 .osteo-faq-static-v725 .osteo-faq-answer-lead-v370{margin-bottom:12px!important;}
+.osteopathy-page-v95 .osteo-faq-static-v725 .osteo-faq-answer-lead-v370 p,
+.osteopathy-page-v95 .osteo-faq-static-v725 .osteo-faq-answer-points-v370 li{
+  color:#526f82!important;font-size:15px!important;line-height:1.68!important;
+}
+.osteopathy-page-v95 .osteo-faq-static-v725 .osteo-faq-answer-points-v370{color:#173f5b!important;}
+.osteopathy-page-v95 .osteo-faq-static-v725 .osteo-faq-toggle-v370{display:none!important;}
+@media(max-width:700px){
+ .osteopathy-page-v95 .osteo-faq-static-v725 .osteo-faq-item-v370{padding:17px 15px!important;}
+ .osteopathy-page-v95 .osteo-faq-static-v725 .osteo-faq-static-question-v725{grid-template-columns:40px minmax(0,1fr)!important;gap:11px!important;}
+ .osteopathy-page-v95 .osteo-faq-static-v725 .osteo-faq-answer-lead-v370 p,
+ .osteopathy-page-v95 .osteo-faq-static-v725 .osteo-faq-answer-points-v370 li{font-size:14px!important;}
+}

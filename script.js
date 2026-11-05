@@ -10179,7 +10179,7 @@ function scrollSerumTitleBelowNavbarV514(vascularView) {
 
     const tabMeta = {
         manual: { title: 'Manuel Uygulamalar', text: 'Osteopati ve eklem hareketliliğine yönelik içerikler.', index: '01' },
-        exercise: { title: 'Egzersiz & Hareket', text: 'Hareket kapasitesi ve kişiye uygun egzersiz başlıkları.', index: '02' },
+        exercise: { title: 'Osteopati Videolar', text: 'Hareket kapasitesi ve kişiye uygun egzersiz başlıkları.', index: '02' },
         sports: { title: 'Spor Yaralanmaları', text: 'Spor yüklenmesi, hareket zinciri ve fonksiyon başlıkları.', index: '03' },
         pain: { title: 'Ağrı Rehberi', text: 'Ağrı bölgeleri ayrı bir içerik alanında incelenir.', index: '04' },
         faq: { title: 'Soru & Cevap', text: 'Osteopati hakkında sık sorulan sorular ve kısa yanıtlar.', index: '05' },
@@ -15666,7 +15666,7 @@ function scrollSerumTitleBelowNavbarV514(vascularView) {
 // =========================================================
 (function(){
     const section = document.getElementById('osteoFaqV105');
-    if (!section) return;
+    if (!section || section.classList.contains('osteo-faq-static-v725')) return;
 
     const items = Array.from(section.querySelectorAll('.osteo-faq-item-v370'));
 
@@ -15717,7 +15717,7 @@ function scrollSerumTitleBelowNavbarV514(vascularView) {
 // =========================================================
 (function(){
     const section = document.getElementById('osteoFaqV105');
-    if (!section) return;
+    if (!section || section.classList.contains('osteo-faq-static-v725')) return;
 
     const grid = section.querySelector('.osteo-faq-grid-v370');
     if (!grid) return;
@@ -16070,11 +16070,11 @@ function scrollSerumTitleBelowNavbarV514(vascularView) {
         {title:'İltihabi Bağırsak', category:'Tedavi Alanı', desc:'İltihabi bağırsak hastalıkları bilgi sayfası.', keys:'iltihabi inflamatuar bagirsak bağırsak ibd', steps:['[data-phyto-disease="iltihabi-bagirsak"]'], icon:'İB'},
         {title:'Kronik Yorgunluk', category:'Tedavi Alanı', desc:'Uzun süren yorgunluk ve enerji düşüklüğü hakkında bilgi sayfası.', keys:'kronik yorgunluk enerji halsizlik', steps:['[data-phyto-disease="kronik-yorgunluk"]'], icon:'KY'},
 
-        {title:'Postür Analizi', category:'Osteopati', desc:'Oturma, ayakta durma ve yürüyüş paternlerini inceleyen özel sayfa.', keys:'postur postür duruş oturus oturuş yuruyus yürüyüş analiz', steps:['[data-treatment-detail="osteopati"]','[data-osteo-tab-target="manual"]','[data-osteo-manual-detail-v364="postur"]'], icon:'P'},
-        {title:'Somato-Visseral Bağlantı', category:'Osteopati', desc:'Diyafram, solunum, gövde ve kas-iskelet ilişkileri.', keys:'somato visseral visceral diyafram solunum govde gövde', steps:['[data-treatment-detail="osteopati"]','[data-osteo-tab-target="manual"]','[data-osteo-manual-detail-v364="somato-visseral"]'], icon:'SV'},
-        {title:'Mobilizasyon', category:'Osteopati', desc:'Eklem ve omurga hareketliliğine yönelik manuel yaklaşım sayfası.', keys:'mobilizasyon eklem hareket omurga segmental', steps:['[data-treatment-detail="osteopati"]','[data-osteo-tab-target="manual"]','[data-osteo-manual-detail-v364="mobilizasyon"]'], icon:'M'},
-        {title:'Pelvis & Omurga', category:'Osteopati', desc:'Pelvis, boyun, toraks ve bel arasındaki hareket ve yük aktarımı ilişkileri.', keys:'pelvis omurga bel toraks boyun tilt yuk aktarimi', steps:['[data-treatment-detail="osteopati"]','[data-osteo-tab-target="manual"]','[data-osteo-manual-detail-v364="pelvis-omurga"]'], icon:'PO'},
-        {title:'Egzersiz & Hareket', category:'Osteopati', desc:'Bölgelere göre egzersiz videoları ve hareket içerikleri.', keys:'egzersiz hareket video boyun kol omuz bel diz', steps:['[data-treatment-detail="osteopati"]','[data-osteo-tab-target="exercise"]'], icon:'↗'},
+        {title:'Postür Analizi', category:'Osteopati', desc:'Oturma, ayakta durma ve yürüyüş paternlerini inceleyen özel sayfa.', keys:'postur postür duruş oturus oturuş yuruyus yürüyüş analiz', steps:['[data-treatment-detail="osteopati"]','[data-osteo-tab-target="manual"]'], inlineTarget:'#osteo-inline-postur-v722', icon:'P'},
+        {title:'Somato-Visseral Bağlantı', category:'Osteopati', desc:'Diyafram, solunum, gövde ve kas-iskelet ilişkileri.', keys:'somato visseral visceral diyafram solunum govde gövde', steps:['[data-treatment-detail="osteopati"]','[data-osteo-tab-target="manual"]'], inlineTarget:'#osteo-inline-somato-visseral-v722', icon:'SV'},
+        {title:'Mobilizasyon', category:'Osteopati', desc:'Eklem ve omurga hareketliliğine yönelik manuel yaklaşım sayfası.', keys:'mobilizasyon eklem hareket omurga segmental', steps:['[data-treatment-detail="osteopati"]','[data-osteo-tab-target="manual"]'], inlineTarget:'#osteo-inline-mobilizasyon-v722', icon:'M'},
+        {title:'Pelvis & Omurga', category:'Osteopati', desc:'Pelvis, boyun, toraks ve bel arasındaki hareket ve yük aktarımı ilişkileri.', keys:'pelvis omurga bel toraks boyun tilt yuk aktarimi', steps:['[data-treatment-detail="osteopati"]','[data-osteo-tab-target="manual"]'], inlineTarget:'#osteo-inline-pelvis-omurga-v722', icon:'PO'},
+        {title:'Osteopati Videolar', category:'Osteopati', desc:'Bölgelere göre egzersiz videoları ve hareket içerikleri.', keys:'egzersiz hareket video boyun kol omuz bel diz', steps:['[data-treatment-detail="osteopati"]','[data-osteo-tab-target="exercise"]'], icon:'↗'},
         {title:'Spor Yaralanmaları', category:'Osteopati', desc:'Spor ve yüklenmeyle ilişkili değerlendirme içerikleri.', keys:'spor yaralanma yuklenme yüklenme fonksiyon', steps:['[data-treatment-detail="osteopati"]','[data-osteo-tab-target="sports"]'], icon:'S'},
         {title:'Osteopati Soru & Cevap', category:'Osteopati', desc:'Osteopati hakkında sık sorulan sorular ve ayrıntılı cevaplar.', keys:'osteopati soru cevap merak edilenler faq', steps:['[data-treatment-detail="osteopati"]','[data-osteo-tab-target="faq"]'], icon:'?'},
         {title:'Bilimsel Yayınlar', category:'Osteopati', desc:'Osteopati ve hareket alanındaki akademik kaynaklar.', keys:'bilimsel yayin yayın makale akademik kaynak', steps:['[data-treatment-detail="osteopati"]','[data-osteo-tab-target="articles"]'], icon:'≡'}
@@ -16301,6 +16301,11 @@ function scrollSerumTitleBelowNavbarV514(vascularView) {
                 if(token!==currentNavigation)return;
                 click(selector);
                 if(i<(item.steps.length-1))await wait(470);
+            }
+            // V722: Dört manuel başlığın bağımsız sayfası yerine osteopati ana akışına git.
+            if(item.inlineTarget && token===currentNavigation){
+                await wait(260);
+                if(token===currentNavigation)focusCard(item.inlineTarget);
             }
         }
     }
@@ -17481,6 +17486,39 @@ function scrollSerumTitleBelowNavbarV514(vascularView) {
         if (removedDetoxCategoriesV646.has(recipes[index].category)) recipes.splice(index,1);
     }
 
+    // V721: Bağırsak Sistemi listesine iki yeni beslenme tarifi eklendi (10 -> 12).
+    // Doğu/Çin-Uygur ve Batı tıbbı açıklamaları mevcut ayrıntı penceresiyle oluşturulur.
+    recipes.push(
+        {
+            id:'bagirsak-11', category:'bagirsak', categoryLabel:'Bağırsak Sistemi', icon:'🥕',
+            name:'Kabaklı Havuç Çorbası',
+            support:'İyi pişmiş sebzeler ve sıvıyla hazırlanmış, hafif bir sıcak öğün alternatifidir; bağırsak toleransına göre porsiyon ayarlanabilir.',
+            ingredients:['1 küçük kabak','1 küçük havuç','1,5 su bardağı su','1 çay kaşığı zeytinyağı'],
+            prep:'Kabağı ve havucu küçük doğrayıp suda tamamen yumuşayana dek pişirin. Çatalla ezin veya blenderdan geçirin; son olarak zeytinyağı ekleyin. Ilık servis edin.',
+            note:'Şiddetli karın ağrısı, dışkıda kan, uzun süren ishal ya da kabızlık varsa tıbbi değerlendirme gerekir. Çorba herhangi bir bağırsak hastalığının tedavisi veya detoks uygulaması değildir.',
+            tags:['pişmiş sebze','sıcak öğün','porsiyon dengesi'],
+            keywords:'bağırsak bagirsak kabak havuç havuc sebze çorbası corba sindirim sıcak öğün',
+            image:null,
+            imageAlt:'Kabak ve havuçla hazırlanan sebze çorbası',
+            tcmView:'Geleneksel Çin tıbbı beslenme yorumunda iyi pişmiş, ılık ve yumuşak sebzeler Dalak-Mide Qi’si ile ilişkilendirilir. Bu, bilimsel olarak ölçülmüş bir tedavi etkisi değil geleneksel bir sınıflandırmadır.',
+            easternView:'Uygur tıbbının mizaç ve sıcak-soğuk dengesine ilişkin tarihsel yorumunda yumuşak, ılık öğünler kişisel tolerans çerçevesinde ele alınabilir; hastalık tedavisi iddiası içermez.'
+        },
+        {
+            id:'bagirsak-12', category:'bagirsak', categoryLabel:'Bağırsak Sistemi', icon:'🥛',
+            name:'Muzlu Yulaflı Kefir İçeceği',
+            support:'Muz, yulaf ve sade kefirle hazırlanan, lif ve protein içeren küçük porsiyonlu bir ara öğün seçeneğidir.',
+            ingredients:['¾ su bardağı sade kefir','½ küçük olgun muz','1 yemek kaşığı yulaf','isteğe göre bir tutam tarçın'],
+            prep:'Yulafı 5 dakika kefirde bekletin. Muzla birlikte blenderdan geçirin; istenirse tarçın ekleyin. Bekletmeden küçük porsiyon halinde tüketin.',
+            note:'Süt alerjisi olanlara uygun değildir. Laktoz intoleransında, hassas bağırsaklarda ve düşük lif toleransında malzemeler kişiye göre düzenlenmelidir. Kanıtlanmış bir detoks veya tedavi değildir.',
+            tags:['kefir','yulaf','muz'],
+            keywords:'bağırsak bagirsak muz yulaf kefir fermente lif protein ara öğün',
+            image:recipes.find(item => item.id === 'ince-03')?.image || null,
+            imageAlt:'Muz ve kefirle hazırlanmış açık renkli içecek',
+            tcmView:'Geleneksel Çin tıbbında tahıl ve olgun meyveler, beslenme düzeni ve kişisel sıcak-soğuk toleransı bağlamında yorumlanabilir. Kefir geleneksel Çin tıbbının klasik bir bileşeni değildir.',
+            easternView:'Uygur tıbbı açısından fermente süt ve meyve bileşimi, kişinin mizacı ile sindirim toleransı üzerinden açıklanabilir; bu tarihsel yorum bilimsel bir tedavi kanıtı değildir.'
+        }
+    );
+
     window.detoxRecipesV390 = recipes;
     window.detoxRecipesV391 = recipes;
     window.detoxRecipesV392 = recipes;
@@ -17493,6 +17531,7 @@ function scrollSerumTitleBelowNavbarV514(vascularView) {
     const searchButton = document.getElementById('detoxSearchButtonV390');
     const clearButton = document.getElementById('detoxSearchClearV390');
     const resetButton = document.getElementById('detoxResetV390');
+    const detoxResultsToolsV721 = document.getElementById('detoxResultsToolsV721');
     const empty = document.getElementById('detoxEmptyV390');
     const count = document.getElementById('detoxResultCountV390');
     const activeLabel = document.getElementById('detoxActiveCategoryV390');
@@ -17780,6 +17819,7 @@ function scrollSerumTitleBelowNavbarV514(vascularView) {
         if (activeLabel) activeLabel.textContent = categoryLabels[activeCategory] || 'Seçili kategori';
         if (clearButton) clearButton.hidden = !input.value.trim();
         if (resetButton) resetButton.hidden = activeCategory === 'all' && !input.value.trim();
+        if (detoxResultsToolsV721) detoxResultsToolsV721.hidden = !resetButton || resetButton.hidden;
 
         tabs.querySelectorAll('[data-detox-category-v390]').forEach(button => {
             const isActive = button.dataset.detoxCategoryV390 === activeCategory;
@@ -21330,7 +21370,7 @@ function scrollSerumTitleBelowNavbarV514(vascularView) {
                 </div>
                 <div class="v618-mobile-quick-grid">
                     <button type="button" class="v618-mobile-quick-btn" data-v618-osteo-tab="manual"><strong>Manuel Uygulamalar</strong><small>Osteopati • mobilite</small></button>
-                    <button type="button" class="v618-mobile-quick-btn" data-v618-osteo-tab="exercise"><strong>Egzersiz & Hareket</strong><small>Video • hareket planı</small></button>
+                    <button type="button" class="v618-mobile-quick-btn" data-v618-osteo-tab="exercise"><strong>Osteopati Videolar</strong><small>Video • hareket planı</small></button>
                     <button type="button" class="v618-mobile-quick-btn" data-v618-osteo-tab="sports"><strong>Spor Yaralanmaları</strong><small>Yüklenme • fonksiyon</small></button>
                     <button type="button" class="v618-mobile-quick-btn" data-v618-osteo-tab="pain"><strong>Ağrı Rehberi</strong><small>Bölgelere göre incele</small></button>
                     <button type="button" class="v618-mobile-quick-btn" data-v618-osteo-tab="faq"><strong>Soru & Cevap</strong><small>Merak edilenler</small></button>
@@ -21994,7 +22034,7 @@ function scrollSerumTitleBelowNavbarV514(vascularView) {
     'use strict';
     function initIndependentFaqV708() {
         const section = document.getElementById('osteoFaqUnifiedV701');
-        if (!section || section.dataset.v708Ready === 'true') return;
+        if (!section || section.classList.contains('osteo-faq-static-v725') || section.dataset.v708Ready === 'true') return;
         const grid = section.querySelector('.osteo-faq-grid-v370');
         if (!grid) return;
         const cards = Array.from(grid.querySelectorAll(':scope > .osteo-faq-item-v370'));
