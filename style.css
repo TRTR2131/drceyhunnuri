@@ -11635,3 +11635,13 @@ html body .detox-info-dialog-v645 .detox-v717-sources a{color:#086f9c;text-decor
  .osteopathy-page-v95 .osteo-faq-static-v725 .osteo-faq-answer-lead-v370 p,
  .osteopathy-page-v95 .osteo-faq-static-v725 .osteo-faq-answer-points-v370 li{font-size:14px!important;}
 }
+
+/* V727 — Osteopati sağ paneli: bilimsel yayınlar ve video görselleri.
+   Kart boyutu, metinler, sekme bağlantıları ve sayfa düzeni korunur. */
+.osteo-unified-side-v701 .osteo-side-icon-v701:has(> img){
+    overflow:hidden; padding:0; border:1px solid #20d7f2; border-radius:14px;
+    background:#00556e; box-shadow:0 0 0 1px rgba(43,219,240,.08),0 0 14px rgba(17,200,238,.18);
+}
+.osteo-unified-side-v701 .osteo-side-icon-v701 > img{
+    display:block; width:100%; height:100%; object-fit:cover; border-radius:inherit;
+}
