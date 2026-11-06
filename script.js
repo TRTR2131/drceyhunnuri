@@ -6752,6 +6752,18 @@ window.addEventListener("load", async () => {
             )
         );
 
+    // V760: Üst sekme düğmeleri kaldırıldı; Hakkımda içeriği tek sayfada
+    // dört bölüm halinde alt alta akıyor. Eski sekme yöneticisi diğer
+    // panelleri erişilebilirlik bakımından gizlemesin.
+    if (buttons.length === 0) {
+        panels.forEach(panel => {
+            panel.setAttribute("aria-hidden", "false");
+        });
+        // Diğer yönlendirmelerin mevcut çağrılarını bozmamak için korunur.
+        window.resetAboutTabsV116 = function () {};
+        return;
+    }
+
     function activateAboutTabV116(name, focusButton = false) {
         buttons.forEach(button => {
             const active =
@@ -7180,11 +7192,12 @@ window.addEventListener("load", async () => {
         if (heroText) heroText.textContent = guideCopyV225[selected].hero;
         if (summaryText) summaryText.textContent = guideCopyV225[selected].summary;
 
+        // V761: Üç hasta rehberi artık sekmeyle gizlenmez, alt alta görünür.
+        // "gorus-bildirimi" ayrı akışta kaldığı için burada açılmaz.
         views.forEach(view => {
-            view.classList.toggle(
-                "active",
-                view.dataset.infoGuideView === selected
-            );
+            view.classList.toggle("active", [
+                "randevu-oncesi", "uygulama-sonrasi", "randevu-gunu"
+            ].includes(view.dataset.infoGuideView));
         });
 
         switchButtons.forEach(button => {
@@ -7213,7 +7226,22 @@ window.addEventListener("load", async () => {
             "#" + selected
         );
 
-        window.scrollTo({ top: 0, behavior: "instant" });
+        // V761: Haricî menüden ikinci/üçüncü rehbere gelinirse ilgili
+        // başlığa kaydır; ilk rehberde sayfa en baştan açılsın.
+        jumpToGuideV761(selected);
+    }
+
+    function jumpToGuideV761(selected) {
+        const target = Array.from(views).find(view => view.dataset.infoGuideView === selected);
+        window.requestAnimationFrame(() => {
+            if (!document.body.classList.contains("info-guide-open-v143")) return;
+            if (!target || selected === "randevu-oncesi") {
+                window.scrollTo({ top: 0, behavior: "instant" });
+                return;
+            }
+            const y = Math.max(0, target.getBoundingClientRect().top + window.scrollY - 118);
+            window.scrollTo({ top: y, behavior: "instant" });
+        });
     }
 
     function closeGuideV143() {
@@ -7238,9 +7266,8 @@ window.addEventListener("load", async () => {
                 "",
                 "#" + selected
             );
-            // V506: Uzun bir rehberden başka birine geçerken sayfa
-            // ortasında kalmasın, doğrudan yeni rehberin başlangıcını göster.
-            window.scrollTo({ top: 0, behavior: "instant" });
+            // V761: Eski gizli navigasyon bağlantıları ilgili bölüme kaydırır.
+            jumpToGuideV761(selected);
         });
     });
 
@@ -13926,12 +13953,6 @@ function scrollSerumTitleBelowNavbarV514(vascularView) {
         const herb = catalog[activeHerb];
         if (!herb) return;
         const context = getDiseaseContent(activeDisease, activeHerb);
-        detailTabs.forEach(btn => {
-            const selected = btn.dataset.phytoHerbTabV351 === activeTab;
-            btn.classList.toggle('is-active', selected);
-            btn.setAttribute('aria-pressed', String(selected));
-            btn.setAttribute('aria-controls', 'phytoHerbPanelV351');
-        });
         if (detailKicker) detailKicker.textContent = `${context.badge} • ${context.diseaseName.toLocaleUpperCase('tr-TR')}`;
         detailTitle.textContent = herb.name || 'Bitki Detayı';
         detailSubtitle.textContent = `${context.diseaseName} • ${herb.subtitle || 'bitkisel destek'} • hastalığa özel değerlendirme`;
@@ -13941,7 +13962,8 @@ function scrollSerumTitleBelowNavbarV514(vascularView) {
         detailImage.src = phytoAssetV686(activeHerb, 'kart') || herb.image || 'phyto-biberiye-v412.webp';
         detailImage.alt = `${herb.name || 'Bitki'} botanik görseli`;
         detailImage.onerror = function(){ this.onerror=null; this.src='phyto-biberiye-v412.webp'; };
-        detailTags.innerHTML = [`${context.badge} • ${context.diseaseName}`, ...(herb.tags || [])].map((tag,index) => `<span${index === 0 ? ' class="is-context-v413"' : ''}>${escapeText(tag)}</span>`).join('');
+        // V754: Bitki görseli üzerindeki hastalık ve konu etiketleri kaldırıldı.
+        detailTags.innerHTML = '';
 
         const editorialV664 = `<section class="phyto-editorial-v664 phyto-editorial-inline-v664" aria-label="${escapeText(herb.name)} için geleneksel ve osteopatik açıklamalar">
           <div class="phyto-editorial-heading-v664"><span>FİTOTERAPİ • BÜTÜNCÜL DEĞERLENDİRME</span><h4>${escapeText(herb.name)} için farklı bakış açıları</h4></div>
@@ -13953,10 +13975,20 @@ function scrollSerumTitleBelowNavbarV514(vascularView) {
           <p class="phyto-editorial-disclaimer-v664">Bu açıklamalar bilgilendirme amaçlıdır; geleneksel kullanım klinik etkililik kanıtı değildir. Tanı ve tedavi planı hekim tarafından bireysel olarak değerlendirilmelidir.</p>
         </section>`;
 
-        if (activeTab === 'benefits') {
-            detailPanel.innerHTML = `
-                <div class="phyto-panel-eyebrow-v413"><span>${escapeText(context.badge)}</span> YAKINMA ODAKLARI</div>
-                <h3>${escapeText(context.diseaseName)} kapsamında hangi yakınmalar öne çıkıyor?</h3>
+        detailPanel.innerHTML = `
+            <section class="phyto-flow-section-v753" id="phytoFlowOverviewV753">
+                <div class="phyto-flow-heading-v753"><span>01</span><div><small>GENEL BAKIŞ</small><h3>${escapeText(herb.name)}${herb.subtitle ? ` <em>(${escapeText(herb.subtitle)})</em>` : ''}</h3></div></div>
+                <p class="phyto-panel-lead-v413">${escapeText(context.summary)}</p>
+                <div class="phyto-overview-grid-v413">
+                    <article class="is-wide-v413"><small>NEDEN BU LİSTEDE?</small><strong>${escapeText(context.diseaseName)} bağlamı</strong><p>${escapeText(context.why)}</p></article>
+                    <article><small>YAKLAŞIM</small><strong>Destekleyici kullanım</strong><p>Mevcut tedavinin yerine değil, yakınma ve yaşam kalitesi odaklı tamamlayıcı planın parçası olarak düşünülür.</p></article>
+                    <article><small>PLANLAMA</small><strong>Kişiye özel değerlendirme</strong><p>Ürün formu, ilaçlar, eşlik eden hastalıklar ve kişisel tolerans birlikte ele alınır.</p></article>
+                </div>
+                ${editorialV664}
+            </section>
+
+            <section class="phyto-flow-section-v753" id="phytoFlowComplaintsV753">
+                <div class="phyto-flow-heading-v753"><span>02</span><div><small>YAKINMA ODAKLARI</small><h3>Hangi yakınmalar öne çıkıyor?</h3></div></div>
                 <p class="phyto-panel-lead-v413">${escapeText(context.summary)}</p>
                 <div class="phyto-focus-grid-v413">
                     ${(context.focus || []).map((item,index) => `
@@ -13964,11 +13996,10 @@ function scrollSerumTitleBelowNavbarV514(vascularView) {
                     `).join('')}
                 </div>
                 <div class="phyto-evidence-note-v413"><strong>Değerlendirme çerçevesi</strong><p>${escapeText(context.evidence)}</p></div>
-            `;
-        } else if (activeTab === 'usage') {
-            detailPanel.innerHTML = `
-                <div class="phyto-panel-eyebrow-v413"><span>${escapeText(context.badge)}</span> BU HASTALIKTA NEDEN?</div>
-                <h3>${escapeText(herb.name)} neden bu listede yer alıyor?</h3>
+            </section>
+
+            <section class="phyto-flow-section-v753" id="phytoFlowWhyV753">
+                <div class="phyto-flow-heading-v753"><span>03</span><div><small>BU HASTALIKTA NEDEN?</small><h3>${escapeText(herb.name)} neden bu listede?</h3></div></div>
                 <p class="phyto-panel-lead-v413">${escapeText(context.why)}</p>
                 <div class="phyto-assessment-grid-v413">
                     <article><span>01</span><strong>Yakınmayı tanımla</strong><p>${escapeText((context.focus || [])[0] || 'Kişinin öncelikli yakınması belirlenir.')}</p></article>
@@ -13976,35 +14007,18 @@ function scrollSerumTitleBelowNavbarV514(vascularView) {
                     <article><span>03</span><strong>Destek olarak konumlandır</strong><p>Ürünün formu ve kullanım süresi, mevcut tedaviyi değiştirmeden hekimle birlikte planlanır.</p></article>
                 </div>
                 <div class="phyto-evidence-note-v413"><strong>Kanıt ve beklenti</strong><p>${escapeText(context.evidence)}</p></div>
-                ${editorialV664}
-            `;
-        } else if (activeTab === 'caution') {
-            detailPanel.innerHTML = `
-                <div class="phyto-panel-eyebrow-v413"><span>GÜVENLİK</span> DİKKAT EDİLECEKLER</div>
-                <h3>${escapeText(herb.name)} kullanmadan önce bilinmesi gerekenler</h3>
+            </section>
+
+            <section class="phyto-flow-section-v753 phyto-flow-safety-v753" id="phytoFlowSafetyV753">
+                <div class="phyto-flow-heading-v753"><span>04</span><div><small>GÜVENLİK NOTLARI</small><h3>Kullanmadan önce bilinmesi gerekenler</h3></div></div>
                 <p class="phyto-panel-lead-v413">Bitkisel olması, her ürünün her kişi için veya her dozda güvenli olduğu anlamına gelmez.</p>
                 <div class="phyto-warning-grid-v413">
                     <article><span aria-hidden="true">!</span><div><strong>Bitkiye özel uyarı</strong><p>${escapeText(herb.caution || 'Düzenli ilaç kullanan kişiler hekime danışmadan bitkisel ürün başlamamalıdır.')}</p></div></article>
                     <article><span aria-hidden="true">i</span><div><strong>${escapeText(context.diseaseName)} için önemli not</strong><p>${escapeText(context.evidence)}</p></div></article>
                 </div>
                 <div class="phyto-safety-footer-v413">Mevcut ilaçların dozu değiştirilmemeli veya kesilmemelidir. Yeni bir ürün başlanmadan önce hekim ya da eczacıyla olası etkileşimler kontrol edilmelidir.</div>
-            `;
-        } else {
-            detailPanel.innerHTML = `
-                <div class="phyto-panel-eyebrow-v413"><span>${escapeText(context.badge)}</span> HASTALIĞA ÖZEL GENEL BAKIŞ</div>
-                <h3>${escapeText(herb.name)}${herb.subtitle ? ` <small>(${escapeText(herb.subtitle)})</small>` : ''}</h3>
-                <p class="phyto-panel-lead-v413">${escapeText(context.summary)}</p>
-                <div class="phyto-overview-grid-v413">
-                    <article class="is-wide-v413"><small>NEDEN BU LİSTEDE?</small><strong>${escapeText(context.diseaseName)} bağlamı</strong><p>${escapeText(context.why)}</p></article>
-                    <article><small>YAKLAŞIM</small><strong>Destekleyici kullanım</strong><p>Mevcut tedavinin yerine değil, yakınma ve yaşam kalitesi odaklı tamamlayıcı planın parçası olarak düşünülür.</p></article>
-                    <article><small>PLANLAMA</small><strong>Kişiye özel değerlendirme</strong><p>Ürün formu, ilaçlar, eşlik eden hastalıklar ve kişisel tolerans birlikte ele alınır.</p></article>
-                </div>
-                <div class="phyto-section-head-v413"><span>ÖNE ÇIKAN YAKINMA ODAKLARI</span><small>${escapeText(context.badge)} • 3 BAŞLIK</small></div>
-                <ul class="phyto-herb-list-v351 phyto-herb-list-v413">${(context.focus || []).map(item => `<li>${escapeText(item)}</li>`).join('')}</ul>
-                <div class="phyto-evidence-note-v413"><strong>Tıbbi çerçeve</strong><p>${escapeText(context.evidence)}</p></div>
-                ${editorialV664}
-            `;
-        }
+            </section>
+        `;
     }
 
     function openHerbDetail(key, diseaseKey = '') {
@@ -22974,4 +22988,116 @@ function scrollSerumTitleBelowNavbarV514(vascularView) {
             document.addEventListener('DOMContentLoaded', () => open(false),{once:true});
         else open(false);
     }
+})();
+
+
+// ===================================================================
+// V751 — ANA HERO: HASTALIĞA ÖZEL KISA BAŞLIKLAR VE DOĞRUDAN KONU GEÇİŞİ
+// ===================================================================
+(function () {
+    'use strict';
+    const slider = document.getElementById('heroSliderV86');
+    if (!slider) return;
+
+    const topicNames = {
+        'ankilozan': {
+            neden:'Nedenleri', belirtiler:'Bulgular', 'nasil-gecer':'Rahatlama', tani:'Tanı',
+            tedavi:'Tedavi', egzersiz:'Omurga Egzersizi', gunluk:'Günlük Rutin'
+        },
+        'romatoid': {
+            neden:'Risk Etkenleri', belirtiler:'Eklem Bulguları', 'nasil-gecer':'Alevlenme', tani:'Tanı',
+            tedavi:'Tedavi', egzersiz:'Eklem Hareketi', gunluk:'Eklem Koruma'
+        },
+        'bas-agrisi-migren': {
+            neden:'Tetikleyiciler', belirtiler:'Migren Bulguları', 'nasil-gecer':'Atak Yönetimi', tani:'Tanı',
+            tedavi:'Tedavi', egzersiz:'Boyun Hareketi', gunluk:'Günlük Rutin'
+        },
+        'bel-sirt-agrisi': {
+            neden:'Nedenler', belirtiler:'Uyarı Bulguları', 'nasil-gecer':'Rahatlama', tani:'Değerlendirme',
+            tedavi:'Tedavi', egzersiz:'Güvenli Hareket', gunluk:'Ergonomi'
+        },
+        'fibromiyalji': {
+            neden:'Etkenler', belirtiler:'Belirti Örüntüsü', 'nasil-gecer':'Rahatlama', tani:'Değerlendirme',
+            tedavi:'Tedavi', egzersiz:'Kademeli Hareket', gunluk:'Uyku ve Rutin'
+        },
+        'huzursuz-bacak': {
+            neden:'Nedenler', belirtiler:'Gece Bulguları', 'nasil-gecer':'Rahatlama', tani:'Değerlendirme',
+            tedavi:'Tedavi', egzersiz:'Esneme', gunluk:'Uyku Düzeni'
+        },
+        'iltihabi-bagirsak': {
+            neden:'Nedenler', belirtiler:'Bağırsak Bulguları', 'nasil-gecer':'Alevlenme', tani:'Tanı',
+            tedavi:'Tedavi', egzersiz:'Güvenli Aktivite', gunluk:'Beslenme'
+        },
+        'kronik-yorgunluk': {
+            neden:'Nedenler', belirtiler:'Belirti Örüntüsü', 'nasil-gecer':'Enerji Yönetimi', tani:'Değerlendirme',
+            tedavi:'Tedavi', egzersiz:'Kademeli Hareket', gunluk:'Uyku Düzeni'
+        }
+    };
+    const primaryNames = {
+        ankilozan:'AS Rehberini Aç', romatoid:'Artrit Rehberini Aç',
+        'bas-agrisi-migren':'Migren Rehberini Aç', 'bel-sirt-agrisi':'Bel–Sırt Rehberini Aç',
+        fibromiyalji:'Fibromiyalji Rehberini Aç', 'huzursuz-bacak':'HBS Rehberini Aç',
+        'iltihabi-bagirsak':'Bağırsak Rehberini Aç', 'kronik-yorgunluk':'Yorgunluk Rehberini Aç'
+    };
+
+    function setButtonLabel(button, label) {
+        const textNode = Array.from(button.childNodes).reverse().find(node => node.nodeType === Node.TEXT_NODE);
+        if (textNode) textNode.nodeValue = label;
+        else button.append(document.createTextNode(label));
+        button.setAttribute('aria-label', label + ' başlığına git');
+    }
+
+    function prepareSlide(slide, disease) {
+        const labels = topicNames[disease];
+        if (!labels) return;
+        slide.querySelectorAll('.home-feature-chip-v85').forEach(button => {
+            const topic = button.dataset.ankTopicV197 || button.dataset.raHeroTopicV202 || button.dataset.conditionHeroTopicV309;
+            if (labels[topic]) setButtonLabel(button, labels[topic]);
+        });
+        const primary = slide.querySelector('.home-feature-primary-v85');
+        if (primary && primaryNames[disease]) {
+            primary.textContent = primaryNames[disease];
+            primary.setAttribute('aria-label', primaryNames[disease]);
+        }
+    }
+
+    prepareSlide(slider.querySelector('[data-hero-slide="ankilozan"]'), 'ankilozan');
+    prepareSlide(slider.querySelector('[data-hero-slide="romatoid"]'), 'romatoid');
+    slider.querySelectorAll('[data-condition-hero-disease-v309]').forEach(slide => {
+        const disease = slide.dataset.conditionHeroDiseaseV309;
+        prepareSlide(slide, disease);
+        if (disease === 'huzursuz-bacak') {
+            const title = slide.querySelector('.condition-home-slide-title-v309');
+            if (title) title.textContent = 'Huzursuz Bacak';
+        }
+    });
+
+    function openTopic(disease, topic) {
+        if (disease === 'ankilozan') {
+            window.openAnkilozanPageV87?.({skipScroll:true, pushHistory:true});
+            window.setTimeout(() => window.openAnkilozanDetailV196?.(topic, true), 90);
+            return;
+        }
+        if (disease === 'romatoid') {
+            window.openRomatoidPageV198?.(true);
+            window.setTimeout(() => window.openRomatoidDetailV198?.(topic, true), 110);
+            return;
+        }
+        window.openConditionDiseaseV249?.(disease, true);
+        window.setTimeout(() => window.renderConditionDiseaseTopicV279?.(topic, true), 90);
+    }
+
+    window.addEventListener('click', event => {
+        if (!(event.target instanceof Element)) return;
+        const button = event.target.closest('#heroSliderV86 .home-feature-chip-v85');
+        if (!button) return;
+        const disease = button.dataset.ankTopicV197 ? 'ankilozan' :
+            button.dataset.raHeroTopicV202 ? 'romatoid' : button.dataset.conditionDiseaseV309;
+        const topic = button.dataset.ankTopicV197 || button.dataset.raHeroTopicV202 || button.dataset.conditionHeroTopicV309;
+        if (!disease || !topic) return;
+        event.preventDefault();
+        event.stopPropagation();
+        event.stopImmediatePropagation();
+        openTopic(disease, topic);
+    }, true);
 })();

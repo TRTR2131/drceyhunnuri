@@ -12997,3 +12997,389 @@ html body .traditional-detail-view-v330.active .traditional-tabs-stage-v330.v747
 }
 
 
+
+
+/* =====================================================================
+   V751 — ANA SAYFA TEDAVİ ALANLARI: HİZALI METİN VE KISA KONU BUTONLARI
+   ===================================================================== */
+html body #anasayfa #heroSliderV86 .ankylosing-slide-content-v86,
+html body #anasayfa #heroSliderV86 .romatoid-slide-content-v202,
+html body #anasayfa #heroSliderV86 .condition-home-slide-content-v309{
+    left:clamp(112px,8vw,154px)!important;
+    top:clamp(116px,15vh,150px)!important;
+    bottom:auto!important;
+    width:min(1120px,calc(100% - 310px))!important;
+    max-width:1120px!important;
+    display:grid!important;
+    grid-template-columns:minmax(0,1fr)!important;
+    align-content:end!important;
+    justify-items:start!important;
+    color:#fff!important;
+}
+html body #anasayfa #heroSliderV86 .home-feature-tag-v85{
+    margin:0 0 18px!important;
+    min-height:44px!important;
+    padding:0 22px!important;
+    font-size:16px!important;
+    line-height:1!important;
+}
+html body #anasayfa #heroSliderV86 .ankylosing-slide-title-v86,
+html body #anasayfa #heroSliderV86 .romatoid-slide-title-v202,
+html body #anasayfa #heroSliderV86 .condition-home-slide-title-v309{
+    width:100%!important;
+    min-height:88px!important;
+    margin:0!important;
+    display:flex!important;
+    align-items:center!important;
+    padding:0!important;
+    font-size:clamp(54px,5.05vw,78px)!important;
+    line-height:1.02!important;
+    letter-spacing:-.045em!important;
+    white-space:nowrap!important;
+}
+html body #anasayfa #heroSliderV86 .ankylosing-slide-content-v86>p,
+html body #anasayfa #heroSliderV86 .romatoid-slide-content-v202>p,
+html body #anasayfa #heroSliderV86 .condition-home-slide-content-v309>p{
+    width:min(900px,100%)!important;
+    min-height:74px!important;
+    margin:6px 0 18px!important;
+    display:flex!important;
+    align-items:flex-start!important;
+    color:rgba(255,255,255,.94)!important;
+    font-size:clamp(17px,1.25vw,21px)!important;
+    line-height:1.62!important;
+    text-wrap:pretty!important;
+}
+html body #anasayfa #heroSliderV86 .home-feature-topics-v85{
+    width:min(980px,100%)!important;
+    min-height:108px!important;
+    margin:0!important;
+    display:grid!important;
+    grid-template-columns:repeat(4,minmax(0,max-content))!important;
+    align-content:start!important;
+    gap:10px 12px!important;
+}
+html body #anasayfa #heroSliderV86 .home-feature-chip-v85{
+    min-width:0!important;
+    min-height:48px!important;
+    height:48px!important;
+    padding:0 18px 0 14px!important;
+    display:inline-flex!important;
+    align-items:center!important;
+    justify-content:flex-start!important;
+    gap:10px!important;
+    border:1px solid rgba(198,231,251,.36)!important;
+    background:rgba(255,255,255,.12)!important;
+    color:#fff!important;
+    font-size:15px!important;
+    line-height:1!important;
+    font-weight:800!important;
+    white-space:nowrap!important;
+    box-shadow:inset 0 1px 0 rgba(255,255,255,.12)!important;
+}
+html body #anasayfa #heroSliderV86 .home-feature-chip-v85 span{
+    display:grid!important;
+    place-items:center!important;
+    flex:0 0 34px!important;
+    width:34px!important;
+    height:34px!important;
+    margin-left:-5px!important;
+    border:1px solid rgba(114,210,255,.46)!important;
+    border-radius:50%!important;
+    background:rgba(24,130,189,.42)!important;
+    color:#eaf9ff!important;
+    font-size:14px!important;
+}
+html body #anasayfa #heroSliderV86 .home-feature-chip-v85:hover,
+html body #anasayfa #heroSliderV86 .home-feature-chip-v85:focus-visible{
+    background:rgba(29,148,211,.46)!important;
+    border-color:rgba(139,220,255,.72)!important;
+    transform:translateY(-1px)!important;
+}
+html body #anasayfa #heroSliderV86 .home-feature-primary-v85{
+    min-height:58px!important;
+    margin:14px 0 0!important;
+    padding:0 26px!important;
+    border-radius:18px!important;
+    font-size:18px!important;
+    white-space:nowrap!important;
+}
+
+@media (max-width:1300px){
+    html body #anasayfa #heroSliderV86 .ankylosing-slide-content-v86,
+    html body #anasayfa #heroSliderV86 .romatoid-slide-content-v202,
+    html body #anasayfa #heroSliderV86 .condition-home-slide-content-v309{
+        left:96px!important;
+        width:min(980px,calc(100% - 210px))!important;
+    }
+    html body #anasayfa #heroSliderV86 .ankylosing-slide-title-v86,
+    html body #anasayfa #heroSliderV86 .romatoid-slide-title-v202,
+    html body #anasayfa #heroSliderV86 .condition-home-slide-title-v309{
+        font-size:clamp(48px,5.25vw,68px)!important;
+    }
+}
+@media (max-width:900px){
+    html body #anasayfa #heroSliderV86 .ankylosing-slide-content-v86,
+    html body #anasayfa #heroSliderV86 .romatoid-slide-content-v202,
+    html body #anasayfa #heroSliderV86 .condition-home-slide-content-v309{
+        left:24px!important;
+        right:24px!important;
+        top:auto!important;
+        bottom:30px!important;
+        width:auto!important;
+        max-width:none!important;
+    }
+    html body #anasayfa #heroSliderV86 .ankylosing-slide-title-v86,
+    html body #anasayfa #heroSliderV86 .romatoid-slide-title-v202,
+    html body #anasayfa #heroSliderV86 .condition-home-slide-title-v309{
+        min-height:0!important;
+        font-size:clamp(40px,8vw,58px)!important;
+        white-space:normal!important;
+    }
+    html body #anasayfa #heroSliderV86 .ankylosing-slide-content-v86>p,
+    html body #anasayfa #heroSliderV86 .romatoid-slide-content-v202>p,
+    html body #anasayfa #heroSliderV86 .condition-home-slide-content-v309>p{
+        min-height:0!important;
+        margin:12px 0 16px!important;
+        font-size:16px!important;
+        line-height:1.5!important;
+    }
+    html body #anasayfa #heroSliderV86 .home-feature-topics-v85{
+        grid-template-columns:repeat(2,minmax(0,1fr))!important;
+        min-height:0!important;
+        width:100%!important;
+        max-height:174px!important;
+        overflow:auto!important;
+    }
+    html body #anasayfa #heroSliderV86 .home-feature-chip-v85{
+        width:100%!important;
+        font-size:14px!important;
+    }
+}
+@media (max-width:560px){
+    html body #anasayfa #heroSliderV86 .home-feature-tag-v85{min-height:36px!important;padding:0 15px!important;font-size:13px!important;margin-bottom:10px!important}
+    html body #anasayfa #heroSliderV86 .ankylosing-slide-title-v86,
+    html body #anasayfa #heroSliderV86 .romatoid-slide-title-v202,
+    html body #anasayfa #heroSliderV86 .condition-home-slide-title-v309{font-size:clamp(34px,10.5vw,48px)!important}
+    html body #anasayfa #heroSliderV86 .home-feature-topics-v85{gap:8px!important}
+    html body #anasayfa #heroSliderV86 .home-feature-chip-v85{height:44px!important;min-height:44px!important;padding-right:10px!important;font-size:12px!important}
+    html body #anasayfa #heroSliderV86 .home-feature-chip-v85 span{flex-basis:30px!important;width:30px!important;height:30px!important}
+    html body #anasayfa #heroSliderV86 .home-feature-primary-v85{min-height:50px!important;margin-top:10px!important;font-size:15px!important}
+}
+
+
+/* V752 — Kullanıcının işaretlediği sabit sol geri oku kaldırıldı. */
+html body #siteGlobalBackV511.site-global-back-v511,
+html body #siteGlobalBackV511.site-global-back-v511:not([hidden]){
+    display:none!important;
+    visibility:hidden!important;
+    pointer-events:none!important;
+}
+
+
+/* V753 — Bitki detayları butonsuz, dört içerik başlığı alt alta. */
+body.phyto-herb-detail-open-v351 #phytoHerbDetailV351 .phyto-herb-shell-v351{
+    grid-template-columns:minmax(0,1fr)!important;
+    gap:24px!important;
+}
+body.phyto-herb-detail-open-v351 #phytoHerbDetailV351 .phyto-herb-head-v351,
+body.phyto-herb-detail-open-v351 #phytoHerbDetailV351 .phyto-herb-main-v351{
+    grid-column:1/-1!important;
+}
+body.phyto-herb-detail-open-v351 #phytoHerbDetailV351 .phyto-herb-tabs-v351{
+    display:none!important;
+}
+body.phyto-herb-detail-open-v351 #phytoHerbDetailV351 .phyto-herb-panel-v351{
+    display:flex!important;
+    flex-direction:column!important;
+    gap:22px!important;
+}
+body.phyto-herb-detail-open-v351 #phytoHerbDetailV351 .phyto-flow-section-v753{
+    position:relative!important;
+    padding:clamp(22px,3vw,38px)!important;
+    border:1px solid #d8e9e0!important;
+    border-radius:22px!important;
+    background:rgba(255,255,255,.9)!important;
+    box-shadow:0 10px 26px rgba(20,77,59,.045)!important;
+    overflow:hidden!important;
+}
+body.phyto-herb-detail-open-v351 #phytoHerbDetailV351 .phyto-flow-section-v753::before{
+    content:''!important;
+    position:absolute!important;
+    inset:0 auto 0 0!important;
+    width:5px!important;
+    background:linear-gradient(180deg,#238565,#6ab895)!important;
+}
+body.phyto-herb-detail-open-v351 #phytoHerbDetailV351 .phyto-flow-heading-v753{
+    display:flex!important;
+    align-items:flex-start!important;
+    gap:16px!important;
+    margin:0 0 20px!important;
+}
+body.phyto-herb-detail-open-v351 #phytoHerbDetailV351 .phyto-flow-heading-v753>span{
+    flex:0 0 44px!important;
+    height:44px!important;
+    display:grid!important;
+    place-items:center!important;
+    border-radius:14px!important;
+    background:#def1e8!important;
+    color:#17684f!important;
+    font-weight:800!important;
+    font-size:14px!important;
+}
+body.phyto-herb-detail-open-v351 #phytoHerbDetailV351 .phyto-flow-heading-v753 small{
+    display:block!important;
+    margin:0 0 5px!important;
+    color:#25805f!important;
+    font-size:11px!important;
+    line-height:1.3!important;
+    letter-spacing:.13em!important;
+    font-weight:800!important;
+}
+body.phyto-herb-detail-open-v351 #phytoHerbDetailV351 .phyto-flow-heading-v753 h3{
+    margin:0!important;
+    font-size:clamp(24px,2.5vw,36px)!important;
+    line-height:1.18!important;
+}
+body.phyto-herb-detail-open-v351 #phytoHerbDetailV351 .phyto-flow-heading-v753 h3 em{
+    font-style:normal!important;
+    font-size:.72em!important;
+    font-weight:650!important;
+    color:#4e7064!important;
+}
+body.phyto-herb-detail-open-v351 #phytoHerbDetailV351 .phyto-flow-safety-v753::before{
+    background:linear-gradient(180deg,#b98030,#e2b764)!important;
+}
+body.phyto-herb-detail-open-v351 #phytoHerbDetailV351 .phyto-flow-safety-v753 .phyto-flow-heading-v753>span{
+    background:#f7ecd8!important;
+    color:#8a5a19!important;
+}
+@media(max-width:700px){
+    body.phyto-herb-detail-open-v351 #phytoHerbDetailV351 .phyto-herb-shell-v351{
+        display:block!important;
+    }
+    body.phyto-herb-detail-open-v351 #phytoHerbDetailV351 .phyto-flow-section-v753{
+        padding:20px 16px 20px 20px!important;
+        border-radius:18px!important;
+    }
+    body.phyto-herb-detail-open-v351 #phytoHerbDetailV351 .phyto-flow-heading-v753{
+        gap:12px!important;
+        margin-bottom:16px!important;
+    }
+    body.phyto-herb-detail-open-v351 #phytoHerbDetailV351 .phyto-flow-heading-v753>span{
+        flex-basis:38px!important;
+        height:38px!important;
+        border-radius:12px!important;
+    }
+}
+
+
+/* V754 — Fitoterapi bitki detayındaki üst hastalık/konu etiketleri kaldırıldı. */
+body.phyto-herb-detail-open-v351 #phytoHerbDetailV351 .phyto-herb-tags-v351:empty{
+    display:none!important;
+    margin:0!important;
+    padding:0!important;
+}
+
+
+/* V759 - Hakkimda bolumu osteopati gibi butonsuz ve alt alta akis */
+#hakkimdaPage .about-tabs-shell-v759{
+  width:min(1840px, calc(100% - 28px)) !important;
+  height:auto !important;
+  min-height:0 !important;
+  display:block !important;
+  margin:0 auto !important;
+}
+body.about-page-open #hakkimdaPage .about-page-content-v116{
+  height:auto !important;
+  min-height:100vh !important;
+  overflow:visible !important;
+  padding:112px 18px 46px !important;
+  display:block !important;
+}
+#hakkimdaPage .about-tabs-shell-v759 .about-tabs-header-v116{
+  position:relative !important;
+  overflow:hidden !important;
+  min-height:116px !important;
+  height:auto !important;
+  padding:18px 22px !important;
+  margin-bottom:18px !important;
+  display:block !important;
+  border-radius:30px !important;
+}
+#hakkimdaPage .about-tabs-shell-v759 .about-tabs-nav-v116{
+  display:none !important;
+}
+#hakkimdaPage .about-tabs-shell-v759 .about-tabs-title-v116{
+  display:block !important;
+}
+#hakkimdaPage .about-tabs-shell-v759 .about-tabs-title-v116 > span{
+  margin-bottom:8px !important;
+}
+#hakkimdaPage .about-tabs-shell-v759 .about-tabs-title-v116 h1{
+  margin:0 !important;
+  font-size:clamp(34px, 3.2vw, 58px) !important;
+  line-height:1.02 !important;
+}
+#hakkimdaPage .about-tabs-shell-v759 .about-tabs-stage-v116,
+#hakkimdaPage .about-tabs-shell-v759 .about-tabs-stage-v759{
+  position:relative !important;
+  display:flex !important;
+  flex-direction:column !important;
+  gap:24px !important;
+  height:auto !important;
+  min-height:0 !important;
+  overflow:visible !important;
+  margin-top:0 !important;
+  padding-top:0 !important;
+}
+#hakkimdaPage .about-tabs-shell-v759 .about-tab-panel-v116,
+#hakkimdaPage .about-tabs-shell-v759 .about-tab-panel-v116.active,
+#hakkimdaPage .about-tabs-shell-v759 .about-flow-panel-v759{
+  position:relative !important;
+  inset:auto !important;
+  display:block !important;
+  width:100% !important;
+  height:auto !important;
+  min-height:0 !important;
+  visibility:visible !important;
+  opacity:1 !important;
+  pointer-events:auto !important;
+  transform:none !important;
+  overflow:visible !important;
+  margin:0 !important;
+}
+#hakkimdaPage .about-tabs-shell-v759 .about-tab-panel-v116:not(.active){
+  display:block !important;
+}
+#hakkimdaPage .about-tabs-shell-v759 .about-flow-panel-v759 + .about-flow-panel-v759{
+  margin-top:0 !important;
+}
+@media (max-width: 1000px){
+  body.about-page-open #hakkimdaPage .about-page-content-v116{
+    padding:104px 14px 28px !important;
+  }
+  #hakkimdaPage .about-tabs-shell-v759{
+    width:min(100% - 16px, 1840px) !important;
+  }
+  #hakkimdaPage .about-tabs-shell-v759 .about-tabs-header-v116{
+    padding:16px 18px !important;
+    margin-bottom:14px !important;
+    border-radius:24px !important;
+  }
+  #hakkimdaPage .about-tabs-shell-v759 .about-tabs-title-v116 h1{
+    font-size:clamp(28px, 8vw, 42px) !important;
+  }
+  #hakkimdaPage .about-tabs-shell-v759 .about-tabs-stage-v116,
+  #hakkimdaPage .about-tabs-shell-v759 .about-tabs-stage-v759{
+    gap:18px !important;
+  }
+}
+
+/* V761 - Hasta rehberi: üst sekmeler olmadan üç içerik tek akışta. */
+body.info-guide-open-v143 #infoGuidePageV143 .info-guide-content-v143 > .info-guide-view-v143.active + .info-guide-view-v143.active {
+    margin-top: clamp(28px, 4vw, 48px);
+}
+body.info-guide-open-v143 #infoGuidePageV143 .info-guide-content-v143 > .info-guide-view-v143 {
+    scroll-margin-top: 118px;
+}
