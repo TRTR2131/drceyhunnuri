@@ -4635,6 +4635,7 @@ html body .nutrition-recipe-dialog-v601 .nutrition-recipe-dialog-close-v601:focu
 @media (max-width: 780px){
   #v618OsteoMobileQuickV618{display:block}
 }
+
 @media (max-width: 760px){
   .v618-mobile-quick-section{display:block}
   .v618-mobile-quick-grid{grid-template-columns:1fr 1fr}
@@ -12592,3 +12593,407 @@ html body.pain-full-detail-open-v215 #painFullDetailPageV215.pain-full-detail-pa
     line-height:1.46 !important;
   }
 }
+
+/* ======================================================================
+   V741 - Igneli uygulama kartlarindaki medikal gorselleri fitoterapi
+   bitki kartlarinin kompakt oranina getir.
+   ====================================================================== */
+body.treatment-detail-open-v71 [data-treatment-detail-view="igne"] .injection-grid-v96 {
+  gap:18px !important;
+  align-items:stretch !important;
+}
+
+body.treatment-detail-open-v71 [data-treatment-detail-view="igne"] .injection-card-v96 {
+  padding:20px !important;
+}
+
+body.treatment-detail-open-v71 [data-treatment-detail-view="igne"] .injection-card-v96 h2 {
+  min-height:52px !important;
+  margin-bottom:12px !important;
+  font-size:21px !important;
+  line-height:1.16 !important;
+}
+
+body.treatment-detail-open-v71 [data-treatment-detail-view="igne"] .injection-card-label-v665 {
+  margin-bottom:8px !important;
+  padding:6px 10px !important;
+}
+
+body.treatment-detail-open-v71 [data-treatment-detail-view="igne"] .injection-photo-v79 {
+  width:100% !important;
+  height:180px !important;
+  min-height:180px !important;
+  max-height:180px !important;
+  margin-bottom:14px !important;
+  border-radius:16px !important;
+}
+
+body.treatment-detail-open-v71 [data-treatment-detail-view="igne"] .injection-photo-v79 img {
+  display:block !important;
+  width:100% !important;
+  height:100% !important;
+  object-fit:cover !important;
+  object-position:center center !important;
+}
+
+body.treatment-detail-open-v71 [data-treatment-detail-view="igne"] .injection-card-v96 p {
+  font-size:14px !important;
+  line-height:1.58 !important;
+}
+
+body.treatment-detail-open-v71 [data-treatment-detail-view="igne"] .injection-card-v72.injection-detail-ready-v362 {
+  padding-bottom:70px !important;
+}
+
+@media (max-width:1280px) and (min-width:761px) {
+  body.treatment-detail-open-v71 [data-treatment-detail-view="igne"] .injection-photo-v79 {
+    height:175px !important;
+    min-height:175px !important;
+    max-height:175px !important;
+  }
+}
+
+@media (max-width:760px) {
+  body.treatment-detail-open-v71 [data-treatment-detail-view="igne"] .injection-grid-v96 {
+    gap:15px !important;
+  }
+  body.treatment-detail-open-v71 [data-treatment-detail-view="igne"] .injection-card-v96 {
+    padding:18px !important;
+  }
+  body.treatment-detail-open-v71 [data-treatment-detail-view="igne"] .injection-card-v96 h2 {
+    min-height:0 !important;
+    font-size:20px !important;
+  }
+  body.treatment-detail-open-v71 [data-treatment-detail-view="igne"] .injection-photo-v79 {
+    height:190px !important;
+    min-height:190px !important;
+    max-height:190px !important;
+  }
+}
+
+/* ======================================================================
+   V742 - Igneli uygulama kartlarinda etiket, baslik ve gorsel satirlarini
+   ortak hizada tut.
+   ====================================================================== */
+@media (min-width:761px) {
+  body.treatment-detail-open-v71 [data-treatment-detail-view="igne"] .injection-card-v96 {
+    display:grid !important;
+    grid-template-rows:32px 64px 194px minmax(0, 1fr) !important;
+    align-content:stretch !important;
+  }
+
+  body.treatment-detail-open-v71 [data-treatment-detail-view="igne"] .injection-card-v96 .injection-card-label-v665 {
+    grid-row:1 !important;
+    align-self:start !important;
+    margin:0 !important;
+  }
+
+  body.treatment-detail-open-v71 [data-treatment-detail-view="igne"] .injection-card-v96 h2 {
+    grid-row:2 !important;
+    align-self:start !important;
+    min-height:0 !important;
+    margin:0 !important;
+  }
+
+  body.treatment-detail-open-v71 [data-treatment-detail-view="igne"] .injection-card-v96 .injection-photo-v79 {
+    grid-row:3 !important;
+    align-self:start !important;
+    margin:0 0 14px !important;
+  }
+
+  body.treatment-detail-open-v71 [data-treatment-detail-view="igne"] .injection-card-v96 > p {
+    grid-row:4 !important;
+    align-self:start !important;
+  }
+}
+
+/* ======================================================================
+   V743 - Damar yolu detaylarini tek sutunda, uygulamaya ozel medikal
+   baslik ve aciklamalarla sun.
+   ====================================================================== */
+html body.treatment-detail-open-v71 [data-treatment-detail-view="damar-yolu"] .vitamin-c-special-tab-v235 .vitamin-c-editorial-v234,
+html body.treatment-detail-open-v71 [data-treatment-detail-view="damar-yolu"] .vitamin-c-special-tab-v235 > .vitamin-c-subpanel-v236 > .vitamin-c-editorial-v234 {
+  display:block !important;
+  grid-template-columns:1fr !important;
+  width:min(1240px, calc(100% - 28px)) !important;
+  padding:clamp(20px, 3vw, 36px) !important;
+}
+
+html body.treatment-detail-open-v71 [data-treatment-detail-view="damar-yolu"] .vitamin-c-doc-head-v234 {
+  display:block !important;
+  max-width:none !important;
+  margin:0 0 18px !important;
+  padding:0 0 18px !important;
+  border-bottom:1px solid rgba(16,83,127,.12) !important;
+}
+
+html body.treatment-detail-open-v71 [data-treatment-detail-view="damar-yolu"] .vitamin-c-doc-head-v234 .vitamin-c-doc-kicker-v234 {
+  display:inline-flex !important;
+  margin-bottom:9px !important;
+  font-size:11px !important;
+}
+
+html body.treatment-detail-open-v71 [data-treatment-detail-view="damar-yolu"] .vitamin-c-doc-head-v234 h2 {
+  display:block !important;
+  margin:0 !important;
+  font-size:clamp(27px, 3vw, 40px) !important;
+  line-height:1.15 !important;
+}
+
+html body.treatment-detail-open-v71 [data-treatment-detail-view="damar-yolu"] .iv-clinical-summary-v743 {
+  margin:0 0 20px !important;
+  padding:20px 22px !important;
+  border:1px solid rgba(25,137,196,.16) !important;
+  border-left:4px solid #168dcc !important;
+  border-radius:16px !important;
+  background:linear-gradient(145deg,#f2faff,#fff) !important;
+}
+
+html body.treatment-detail-open-v71 [data-treatment-detail-view="damar-yolu"] .iv-clinical-summary-v743 p {
+  margin:0 !important;
+  color:#3f6178 !important;
+  font-family:"Times New Roman",Times,serif !important;
+  font-size:15px !important;
+  line-height:1.65 !important;
+}
+
+html body.treatment-detail-open-v71 [data-treatment-detail-view="damar-yolu"] .iv-clinical-summary-v743 p + p {
+  margin-top:10px !important;
+}
+
+html body.treatment-detail-open-v71 [data-treatment-detail-view="damar-yolu"] .iv-detail-grid-v420 {
+  display:grid !important;
+  grid-template-columns:minmax(0,1fr) !important;
+  gap:14px !important;
+  margin-top:0 !important;
+}
+
+html body.treatment-detail-open-v71 [data-treatment-detail-view="damar-yolu"] .iv-detail-grid-v420 .vitamin-c-doc-section-v234 {
+  width:100% !important;
+  max-width:none !important;
+  min-height:0 !important;
+  height:auto !important;
+  margin:0 !important;
+  padding:22px 24px !important;
+  border-radius:18px !important;
+}
+
+html body.treatment-detail-open-v71 [data-treatment-detail-view="damar-yolu"] .iv-detail-grid-v420 .vitamin-c-doc-section-v234 h3 {
+  margin:0 0 12px !important;
+  font-size:clamp(20px, 2vw, 27px) !important;
+  line-height:1.22 !important;
+}
+
+html body.treatment-detail-open-v71 [data-treatment-detail-view="damar-yolu"] .iv-detail-grid-v420 .vitamin-c-doc-section-v234 p,
+html body.treatment-detail-open-v71 [data-treatment-detail-view="damar-yolu"] .iv-detail-grid-v420 .vitamin-c-doc-section-v234 li {
+  font-size:15px !important;
+  line-height:1.62 !important;
+}
+
+html body.treatment-detail-open-v71 [data-treatment-detail-view="damar-yolu"] .iv-source-head-v420 {
+  display:block !important;
+  max-width:none !important;
+  margin:24px 0 12px !important;
+  padding-top:22px !important;
+}
+
+html body.treatment-detail-open-v71 [data-treatment-detail-view="damar-yolu"] .vitamin-c-link-panel-v234 {
+  max-width:none !important;
+  margin:0 !important;
+  grid-template-columns:minmax(0,1fr) !important;
+  gap:12px !important;
+}
+
+html body.treatment-detail-open-v71 [data-treatment-detail-view="damar-yolu"] .iv-source-card-v420 {
+  min-height:0 !important;
+  padding:18px 20px !important;
+}
+
+html body.treatment-detail-open-v71 [data-treatment-detail-view="damar-yolu"] .vitamin-c-final-note-v234 {
+  max-width:none !important;
+  margin:18px 0 0 !important;
+  padding:15px 17px !important;
+}
+
+@media (max-width:700px) {
+  html body.treatment-detail-open-v71 [data-treatment-detail-view="damar-yolu"] .vitamin-c-special-tab-v235 .vitamin-c-editorial-v234,
+  html body.treatment-detail-open-v71 [data-treatment-detail-view="damar-yolu"] .vitamin-c-special-tab-v235 > .vitamin-c-subpanel-v236 > .vitamin-c-editorial-v234 {
+    width:min(100% - 18px, 1240px) !important;
+    padding:18px 15px !important;
+  }
+  html body.treatment-detail-open-v71 [data-treatment-detail-view="damar-yolu"] .iv-clinical-summary-v743,
+  html body.treatment-detail-open-v71 [data-treatment-detail-view="damar-yolu"] .iv-detail-grid-v420 .vitamin-c-doc-section-v234 {
+    padding:17px 16px !important;
+  }
+  html body.treatment-detail-open-v71 [data-treatment-detail-view="damar-yolu"] .iv-detail-grid-v420 .vitamin-c-doc-section-v234 h3 {
+    font-size:20px !important;
+  }
+  html body.treatment-detail-open-v71 [data-treatment-detail-view="damar-yolu"] .iv-clinical-summary-v743 p,
+  html body.treatment-detail-open-v71 [data-treatment-detail-view="damar-yolu"] .iv-detail-grid-v420 .vitamin-c-doc-section-v234 p,
+  html body.treatment-detail-open-v71 [data-treatment-detail-view="damar-yolu"] .iv-detail-grid-v420 .vitamin-c-doc-section-v234 li {
+    font-size:14px !important;
+    line-height:1.56 !important;
+  }
+}
+/* ==============================================================
+   V744 — Bilgi: Tedavi Uygulamaları ile aynı görselli tam sayfa
+   ============================================================== */
+html body #v744InfoPage[aria-hidden="true"]{display:none!important}
+html body #v744InfoPage[aria-hidden="false"]{
+  position:fixed!important;top:var(--v744-header-bottom,100px)!important;right:0!important;bottom:0!important;left:0!important;
+  display:block!important;z-index:19000!important;width:100vw!important;max-width:none!important;min-height:0!important;
+  padding:0!important;margin:0!important;border:0!important;overflow-y:auto!important;overflow-x:hidden!important;
+  overscroll-behavior:contain!important;background:linear-gradient(130deg,#f7fbff 0%,#eaf4fc 52%,#f7fbff 100%)!important;color:#123c58!important
+}
+html body.v744-info-page-open{overflow:hidden!important}
+html body #v744InfoPage,html body #v744InfoPage *{box-sizing:border-box}
+html body #v744InfoPage .v744-page-inner{width:min(1520px,calc(100% - 48px));margin:0 auto;padding:18px 0 42px}
+html body #v744InfoPage .v744-page-top{display:flex;align-items:flex-end;justify-content:space-between;gap:18px;margin-bottom:20px}
+html body #v744InfoPage .v744-eyebrow{display:block;margin-bottom:7px;color:#0784c1;font:800 12px/1.3 Inter,Arial,sans-serif;letter-spacing:.18em}
+html body #v744InfoPage .v744-title-area h1{margin:0!important;color:#103754!important;font:800 clamp(30px,3vw,46px)/1.08 Inter,Arial,sans-serif!important;letter-spacing:-.035em}
+html body #v744InfoPage .v744-title-area p{margin:7px 0 0!important;color:#647f92;font:500 14px/1.45 Inter,Arial,sans-serif}
+html body #v744InfoPage .v744-grid{display:grid!important;grid-template-columns:repeat(3,minmax(0,1fr))!important;gap:18px!important;align-items:stretch!important}
+html body #v744InfoPage .v744-card{display:flex!important;flex-direction:column!important;align-items:stretch!important;min-width:0!important;width:100%!important;min-height:238px!important;padding:0!important;margin:0!important;overflow:hidden!important;background:#fff!important;border:1px solid #d6e7f6!important;border-radius:23px!important;box-shadow:0 12px 30px rgba(35,79,113,.08)!important;text-align:left!important;font-family:Inter,Arial,sans-serif!important;cursor:pointer!important;transition:transform .18s ease,box-shadow .18s ease,border-color .18s ease!important}
+html body #v744InfoPage .v744-card:hover{transform:translateY(-3px)!important;border-color:#87c5e7!important;box-shadow:0 17px 34px rgba(20,90,143,.14)!important}
+html body #v744InfoPage .v744-card:focus-visible{outline:3px solid #118ccc!important;outline-offset:2px!important}
+html body #v744InfoPage .v744-photo{display:block!important;position:relative!important;flex:none!important;width:100%!important;height:132px!important;background:#e7f2fb!important;overflow:hidden!important}
+html body #v744InfoPage .v744-photo img{display:block!important;width:100%!important;height:100%!important;object-fit:cover!important;object-position:center!important;transition:transform .22s ease!important}
+html body #v744InfoPage .v744-card:first-child .v744-photo img{object-position:center 20%!important}
+html body #v744InfoPage .v744-card:hover .v744-photo img{transform:scale(1.025)!important}
+html body #v744InfoPage .v744-content{display:flex!important;flex:1!important;flex-direction:column!important;align-items:flex-start!important;gap:7px!important;min-width:0!important;width:100%!important;padding:15px 18px 17px!important}
+html body #v744InfoPage .v744-content strong{color:#113b58!important;font:800 clamp(18px,1.35vw,23px)/1.2 Inter,Arial,sans-serif!important;letter-spacing:-.025em}
+html body #v744InfoPage .v744-desc{color:#647f95!important;font:500 14px/1.45 Inter,Arial,sans-serif!important}
+html body #v744InfoPage .v744-link{margin-top:auto;color:#087cbd!important;font:800 13px/1.3 Inter,Arial,sans-serif!important}
+@media(max-width:1100px){
+  html body #v744InfoPage .v744-grid{grid-template-columns:repeat(2,minmax(0,1fr))!important}
+  html body #v744InfoPage .v744-card{min-height:226px!important}
+  html body #v744InfoPage .v744-photo{height:124px!important}
+}
+@media(max-width:680px){
+  html body #v744InfoPage .v744-page-inner{width:calc(100% - 28px);padding:14px 0 32px}
+  html body #v744InfoPage .v744-page-top{margin-bottom:15px}
+  html body #v744InfoPage .v744-title-area h1{font-size:30px!important}
+  html body #v744InfoPage .v744-title-area p{font-size:13px}
+  html body #v744InfoPage .v744-grid{grid-template-columns:minmax(0,1fr)!important;gap:14px!important}
+  html body #v744InfoPage .v744-card{min-height:0!important;border-radius:19px!important}
+  html body #v744InfoPage .v744-photo{height:154px!important}
+  html body #v744InfoPage .v744-content{gap:6px!important;padding:14px 15px!important}
+  html body #v744InfoPage .v744-content strong{font-size:19px!important}
+  html body #v744InfoPage .v744-desc{font-size:12.5px!important}
+  html body #v744InfoPage .v744-link{font-size:12px!important}
+}
+@media(prefers-reduced-motion:reduce){html body #v744InfoPage .v744-card,html body #v744InfoPage .v744-photo img{transition:none!important}}
+
+
+/* V746 — Bilgi kartlarında başlıklara özel yeni görseller */
+html body #v744InfoPage .v744-photo[class*="v746-photo-"] img{object-position:center!important}
+html body #v744InfoPage .v744-card:first-child .v744-photo img{object-position:center!important}
+
+
+/* ==============================================================
+   V747 — Geleneksel tedavi içerikleri butonsuz, tek sayfa akışında
+   ============================================================== */
+html body .traditional-detail-view-v330.active .traditional-detail-hero-v330{
+  display:grid!important;
+}
+html body .traditional-detail-view-v330 .traditional-hero-tabs-v330,
+html body .traditional-detail-view-v330 .traditional-chip-row-v330,
+html body .traditional-detail-view-v330 .traditional-subpage-header-v331{
+  display:none!important;
+}
+html body .traditional-detail-view-v330.active .traditional-tabs-stage-v330.v747-linear-stage{
+  display:block!important;
+  width:min(1460px,calc(100% - 34px))!important;
+  margin:0 auto 46px!important;
+  padding:4px 0 28px!important;
+  border:0!important;
+  border-radius:0!important;
+  background:transparent!important;
+  box-shadow:none!important;
+  min-height:0!important;
+}
+html body .traditional-detail-view-v330 .traditional-tab-panel-v330.v747-visible-panel{
+  display:block!important;
+  opacity:1!important;
+  visibility:visible!important;
+  transform:none!important;
+  animation:none!important;
+  margin:0 0 22px!important;
+  padding:0!important;
+}
+html body .traditional-detail-view-v330 .traditional-tab-panel-v330.v747-visible-panel + .traditional-tab-panel-v330.v747-visible-panel{
+  padding-top:10px!important;
+  border-top:1px solid rgba(31,139,198,.13)!important;
+}
+html body .traditional-detail-view-v330 .traditional-intro-card-v167{
+  min-height:0!important;
+  height:100%!important;
+}
+html body .traditional-detail-view-v330 .v747-inline-detail{
+  display:block!important;
+  width:100%!important;
+  margin:14px 0 0!important;
+  padding:14px 0 0!important;
+  border-top:1px solid rgba(36,135,192,.12)!important;
+  animation:none!important;
+}
+html body .traditional-detail-view-v330 .v747-inline-detail p{
+  margin:0 0 11px!important;
+  color:#476b84!important;
+  font-size:14px!important;
+  line-height:1.75!important;
+  font-weight:450!important;
+}
+html body .traditional-detail-view-v330 .v747-inline-detail p:last-child{margin-bottom:0!important}
+html body .traditional-detail-view-v330 .traditional-faq-list-v167{
+  display:grid!important;
+  grid-template-columns:repeat(2,minmax(0,1fr))!important;
+  gap:14px!important;
+}
+html body .traditional-detail-view-v330 .v747-faq-item{
+  min-width:0!important;
+  padding:22px!important;
+  border:1px solid rgba(36,139,199,.12)!important;
+  border-radius:22px!important;
+  background:linear-gradient(180deg,rgba(255,255,255,.99),rgba(247,251,253,.99))!important;
+  box-shadow:0 12px 28px rgba(17,76,111,.06)!important;
+}
+html body .traditional-detail-view-v330 .v747-faq-item h3{
+  margin:0 0 10px!important;
+  color:#143b59!important;
+  font-size:17px!important;
+  line-height:1.35!important;
+}
+html body .traditional-detail-view-v330 .v747-faq-item p{
+  margin:0!important;
+  padding:0!important;
+  color:#55748d!important;
+  font-size:14px!important;
+  line-height:1.68!important;
+}
+@media(max-width:1100px){
+  html body .traditional-detail-view-v330.active .traditional-tabs-stage-v330.v747-linear-stage{width:min(940px,calc(100% - 32px))!important}
+}
+@media(max-width:760px){
+  html body .traditional-detail-view-v330.active .traditional-tabs-stage-v330.v747-linear-stage{width:calc(100% - 20px)!important;margin-bottom:28px!important}
+  html body .traditional-detail-view-v330 .traditional-faq-list-v167{grid-template-columns:1fr!important}
+  html body .traditional-detail-view-v330 .v747-faq-item{padding:18px!important;border-radius:18px!important}
+}
+html body .traditional-detail-view-v330 .traditional-detail-hero-copy-v330 > p{
+  display:block!important;
+  margin:2px 0 0!important;
+  color:#55748d!important;
+  font-size:15px!important;
+  line-height:1.75!important;
+}
+
+
+/* V748 — Geleneksel tedavide büyük tanıtım görselleri ve hero metinleri kaldırıldı */
+html body .traditional-detail-view-v330.active .traditional-tabs-stage-v330.v747-linear-stage{
+  padding-top:24px!important;
+}
+@media(max-width:760px){
+  html body .traditional-detail-view-v330.active .traditional-tabs-stage-v330.v747-linear-stage{padding-top:14px!important}
+}
+
+

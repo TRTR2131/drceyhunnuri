@@ -393,6 +393,13 @@
             window.toggleHealthPageV712?.();
             return;
         }
+        // V744: Bilgi de Tedavi Uygulamaları ile aynı görselli tam sayfa akışını kullanır.
+        if (button.dataset.v744Open === 'info') {
+            event.preventDefault();
+            closeAll();
+            window.toggleInfoPageV744?.();
+            return;
+        }
         const toggle=button.dataset.v548Toggle;
         if(toggle){event.preventDefault(); if(openMenu===toggle)closeMenus();else openDropdown(toggle);return;}
         const action=button.dataset.v548Action;
@@ -414,6 +421,7 @@
     window.addEventListener('resize',()=>{if(window.innerWidth>1180){root.classList.remove('v548-mobile-open');if(mobileButton)mobileButton.setAttribute('aria-expanded','false');}});
     window.v710NavigateToTreatment = value => routeTo('treatment',value);
     window.v712NavigateToHealth = value => routeTo('health', value);
+    window.v744NavigateToInfo = (kind, value) => routeTo(kind, value);
     // Kept route handling centralized in V546; only visual nav state is local.
 })();
 
@@ -3033,7 +3041,7 @@ if (
             'legal-page-open-v56',
             'info-guide-open-v143', 'info-guide-page-open-v143',
             'site-feedback-open-v332',
-            'v710-treatment-page-open', 'v712-health-page-open'
+            'v710-treatment-page-open', 'v712-health-page-open', 'v744-info-page-open'
         ];
         body.classList.remove(...competingClasses);
 
@@ -3045,7 +3053,7 @@ if (
             'ankilozanSpecialViewV274', 'treatmentSpecialViewV279',
             'osteoSpecialViewV259', 'deviceDetailPageV157',
             'generalFeaturedPageV124', 'legalPageV56', 'infoGuidePageV143',
-            'siteFeedbackPageV332', 'phytoHerbDetailV351', 'v710TreatmentPage', 'v712HealthPage'
+            'siteFeedbackPageV332', 'phytoHerbDetailV351', 'v710TreatmentPage', 'v712HealthPage', 'v744InfoPage'
         ];
         independentPages.forEach(function (id) {
             const page = document.getElementById(id);
@@ -3101,6 +3109,7 @@ if (
         const body = document.body;
         if (body.classList.contains('v710-treatment-page-open')) return 'treatments';
         if (body.classList.contains('v712-health-page-open')) return 'health';
+        if (body.classList.contains('v744-info-page-open')) return 'info';
         if (body.classList.contains('media-page-open')) return 'media';
         if (body.classList.contains('pain-page-open') || body.classList.contains('pain-full-detail-open-v215')) return 'pain';
         if (body.classList.contains('general-health-detail-open-v75')) return 'health';
@@ -12387,9 +12396,8 @@ function scrollSerumTitleBelowNavbarV514(vascularView) {
 
 
 // =========================================================
-// V331 - GELENEKSEL TEDAVİ / GERÇEK ÖZEL ALT SAYFA MİMARİSİ
-// Hero içindeki 3 buton aşağıdaki içerikleri açmaz; seçilen konu
-// ayrı bir özel görünüm olarak açılır. Alt sayfadan uygulamaya geri dönülür.
+// V747 - GELENEKSEL TEDAVİ / BUTONSUZ TEK SAYFA İÇERİK AKIŞI
+// Akupunktur, sülük ve hacamat sayfaları doğrudan medikal içerikle başlar.
 // =========================================================
 (function () {
     const treatmentView = document.querySelector('[data-treatment-detail-view="geleneksel-tedavi"]');
@@ -12397,186 +12405,21 @@ function scrollSerumTitleBelowNavbarV514(vascularView) {
 
     const detailViews = Array.from(treatmentView.querySelectorAll('[data-traditional-detail]'));
 
-    const applicationLabels = {
-        akupunktur: 'Akupunktur',
-        suluk: 'Sülük Uygulaması',
-        hacamat: 'Hacamat'
-    };
-
-    const sectionDescriptions = {
-        degerlendirme: 'Uygulamanın hangi başlıklarda değerlendirilebileceğini ayrı bir içerik alanında inceleyin.',
-        dikkat: 'Uygulama öncesinde göz önünde bulundurulması gereken güvenlik ve uygunluk başlıklarını inceleyin.',
-        sss: 'Uygulama hakkında sık sorulan soruları ve kısa yanıtları ayrı bir içerik alanında inceleyin.'
-    };
-
-    function getTopicKey(tabName) {
-        if (tabName.endsWith('-dikkat')) return 'dikkat';
-        if (tabName.endsWith('-sss')) return 'sss';
-        return 'degerlendirme';
-    }
-
-    function setPanels(detailView, tabName) {
-        const buttons = Array.from(detailView.querySelectorAll('[data-traditional-tab]'));
-        const panels = Array.from(detailView.querySelectorAll('[data-traditional-panel]'));
-        const targetPanel = panels.find(panel => panel.dataset.traditionalPanel === tabName);
-        if (!targetPanel) return null;
-
-        buttons.forEach(button => {
-            const active = button.dataset.traditionalTab === tabName;
-            button.classList.toggle('is-active', active);
-            button.setAttribute('aria-selected', active ? 'true' : 'false');
-        });
-        panels.forEach(panel => {
-            const active = panel === targetPanel;
-            panel.classList.toggle('is-active', active);
-            panel.setAttribute('aria-hidden', active ? 'false' : 'true');
-        });
-        return targetPanel;
-    }
-
-    function closeSubPage(detailView, shouldScroll) {
+    function revealAll(detailView) {
         if (!detailView) return;
         detailView.classList.remove('is-traditional-subpage-open-v331');
-        const hero = detailView.querySelector('.traditional-detail-hero-v330');
-        const stage = detailView.querySelector('.traditional-tabs-stage-v330');
-        if (hero) hero.setAttribute('aria-hidden', 'false');
-        if (stage) stage.setAttribute('aria-hidden', 'true');
-
+        detailView.querySelector('.traditional-tabs-stage-v330')?.setAttribute('aria-hidden', 'false');
         detailView.querySelectorAll('[data-traditional-panel]').forEach(panel => {
-            panel.classList.remove('is-active');
-            panel.setAttribute('aria-hidden', 'true');
+            panel.classList.add('is-active', 'v747-visible-panel');
+            panel.setAttribute('aria-hidden', 'false');
         });
-        detailView.querySelectorAll('[data-traditional-tab]').forEach(button => {
-            button.classList.remove('is-active');
-            button.setAttribute('aria-selected', 'false');
-        });
-
-        if (shouldScroll !== false) {
-            window.setTimeout(() => detailView.scrollIntoView({ behavior: 'smooth', block: 'start' }), 30);
-        }
     }
 
-    function openSubPage(detailView, tabName) {
-        if (!detailView || !tabName) return;
-        const targetPanel = setPanels(detailView, tabName);
-        if (!targetPanel) return;
-
-        detailView.classList.add('is-traditional-subpage-open-v331');
-        const hero = detailView.querySelector('.traditional-detail-hero-v330');
-        const stage = detailView.querySelector('.traditional-tabs-stage-v330');
-        if (hero) hero.setAttribute('aria-hidden', 'true');
-        if (stage) stage.setAttribute('aria-hidden', 'false');
-
-        window.setTimeout(() => {
-            const nav = document.querySelector('.treatment-detail-nav-modern-v160');
-            const navBottom = nav && nav.getBoundingClientRect().height
-                ? Math.max(0, nav.getBoundingClientRect().bottom)
-                : 100;
-            // Keep the entire dark heading below the fixed site menu.
-            const destination = (stage || detailView).getBoundingClientRect().top
-                + window.scrollY - Math.max(112, navBottom + 18);
-            window.scrollTo({ top: Math.max(0, destination), behavior: 'smooth' });
-        }, 60);
-    }
-
-    function buildSubPageHeader(detailView, panel, applicationName, buttons) {
-        if (panel.querySelector('.traditional-subpage-header-v331')) return;
-        const panelName = panel.dataset.traditionalPanel || '';
-        const sourceButton = buttons.find(button => button.dataset.traditionalTab === panelName);
-        const title = sourceButton ? sourceButton.querySelector('b')?.textContent.trim() : 'Özel İçerik';
-        const topicKey = getTopicKey(panelName);
-
-        const header = document.createElement('header');
-        header.className = 'traditional-subpage-header-v331';
-        header.innerHTML = `
-            <div class="traditional-subpage-top-v331">
-                <button type="button" class="traditional-subpage-back-v331" data-traditional-sub-back>
-                    <span>←</span><b>Geleneksel Tedavi</b>
-                </button>
-                <span class="traditional-subpage-eyebrow-v331">GELENEKSEL & TAMAMLAYICI TIP · ÖZEL İÇERİK</span>
-            </div>
-            <div class="traditional-subpage-title-row-v331">
-                <div>
-                    <h1>${title}</h1>
-                    <p>${sectionDescriptions[topicKey]}</p>
-                </div>
-                <div class="traditional-subpage-index-v331">${sourceButton ? sourceButton.querySelector('span')?.textContent.trim() : '01'}<small>/03</small></div>
-            </div>
-            <nav class="traditional-subpage-switcher-v331" aria-label="${applicationName} özel içerik geçişleri"></nav>
-        `;
-
-        const switcher = header.querySelector('.traditional-subpage-switcher-v331');
-        buttons.forEach(button => {
-            const clone = document.createElement('button');
-            clone.type = 'button';
-            clone.dataset.traditionalSubSwitch = button.dataset.traditionalTab;
-            clone.innerHTML = `<span>${button.querySelector('span')?.textContent.trim() || ''}</span><b>${button.querySelector('b')?.textContent.trim() || ''}</b>`;
-            if (button.dataset.traditionalTab === panelName) clone.classList.add('is-active');
-            switcher.appendChild(clone);
-        });
-
-        panel.prepend(header);
-    }
-
-    detailViews.forEach(detailView => {
-        const appKey = detailView.dataset.traditionalDetail || '';
-        const applicationName = applicationLabels[appKey] || 'Geleneksel Tedavi';
-        const heroButtons = Array.from(detailView.querySelectorAll('.traditional-hero-tabs-v330 [data-traditional-tab]'));
-        const panels = Array.from(detailView.querySelectorAll('[data-traditional-panel]'));
-        const stage = detailView.querySelector('.traditional-tabs-stage-v330');
-
-        if (stage) stage.setAttribute('aria-hidden', 'true');
-        panels.forEach(panel => {
-            panel.classList.remove('is-active');
-            panel.setAttribute('aria-hidden', 'true');
-            buildSubPageHeader(detailView, panel, applicationName, heroButtons);
-        });
-        heroButtons.forEach(button => {
-            button.classList.remove('is-active');
-            button.setAttribute('aria-selected', 'false');
-            button.addEventListener('click', event => {
-                event.preventDefault();
-                openSubPage(detailView, button.dataset.traditionalTab);
-            });
-        });
-
-        detailView.addEventListener('click', event => {
-            const back = event.target.closest('[data-traditional-sub-back]');
-            if (back) {
-                event.preventDefault();
-                closeSubPage(detailView, true);
-                return;
-            }
-            const switchButton = event.target.closest('[data-traditional-sub-switch]');
-            if (switchButton) {
-                event.preventDefault();
-                openSubPage(detailView, switchButton.dataset.traditionalSubSwitch);
-            }
-        });
-    });
-
-    // Uygulama kartından yeni detay sayfasına her girişte yalnızca giriş/hero görünür.
+    detailViews.forEach(revealAll);
     treatmentView.querySelectorAll('[data-traditional-open]').forEach(opener => {
         opener.addEventListener('click', () => {
-            const name = opener.dataset.traditionalOpen;
-            const detailView = detailViews.find(view => view.dataset.traditionalDetail === name);
-            if (!detailView) return;
-
-            const directTopic = opener.dataset.traditionalDirect;
-            window.setTimeout(() => {
-                if (directTopic) {
-                    openSubPage(detailView, `${name}-${directTopic}`);
-                    return;
-                }
-                closeSubPage(detailView, false);
-            }, 20);
-        });
-    });
-
-    // Ana geleneksel tedaviye dönüşte alt sayfa durumlarını temizle.
-    treatmentView.querySelectorAll('[data-traditional-back]').forEach(back => {
-        back.addEventListener('click', () => {
-            detailViews.forEach(view => closeSubPage(view, false));
+            const target = detailViews.find(view => view.dataset.traditionalDetail === opener.dataset.traditionalOpen);
+            window.setTimeout(() => revealAll(target), 30);
         });
     });
 })();
@@ -18532,6 +18375,7 @@ function scrollSerumTitleBelowNavbarV514(vascularView) {
             before: ['Böbrek fonksiyonları ve diyaliz öyküsü', 'Valproat başta olmak üzere kullanılan ilaçlar', 'Nöbet öyküsü, gebelik-emzirme durumu ve önceki reaksiyonlar', 'Beklenen yararın ölçülebilir bir hedefe dayanıp dayanmadığı'],
             risks: ['Bulantı, karın krampları ve damar yolu bölgesinde rahatsızlık görülebilir.', 'Nöbet öyküsü olanlarda özel dikkat gerekir.', 'Kilo kaybı veya sportif performans için tek başına garantili sonuç vermez.'],
             evidence: 'Levokarnitinin tıbbi kullanım alanları tanımlıdır; buna karşılık genel “yağ yakma” ve zindelik amaçlı IV kullanım için kanıt düzeyi aynı güçte değildir. Bu yüzden vaat değil, endikasyon ve takip üzerinden konuşuyorum.',
+            headings: ['Eksiklik ve endikasyon ne zaman değerlendirilir?', 'Metabolik inceleme ve güvenlik taraması', 'Nöbet öyküsü, tolerans ve damar yolu riskleri', 'L-karnitin kanıtını kullanım amacına göre okumak'],
             sources: [['NIH ODS: Karnitin – sağlık profesyonelleri için bilgi', 'https://ods.od.nih.gov/factsheets/Carnitine-HealthProfessional/'], ['DailyMed: Levokarnitin enjeksiyon ürün bilgileri', 'https://dailymed.nlm.nih.gov/dailymed/search.cfm?query=levocarnitine%20injection']]
         },
         seleniumDetailV244: {
@@ -18543,6 +18387,7 @@ function scrollSerumTitleBelowNavbarV514(vascularView) {
             before: ['Selenyum düzeyi ve toplam günlük alım', 'Tiroid hastalığı ve kullanılan tiroid ilaçları', 'Böbrek-karaciğer fonksiyonları', 'Saç-tırnak değişikliği, metalik tat veya önceki yüksek doz kullanımı'],
             risks: ['Fazla alım; bulantı, metalik tat, saç-tırnak değişiklikleri ve sinir sistemi belirtilerine yol açabilir.', 'Takviyelerle alınan toplam doz hesaba katılmalıdır.', 'Eksiklik gösterilmeden tekrarlayan uygulama planlamam.'],
             evidence: 'Selenyumun fizyolojik rolü iyi bilinmektedir; fakat normal düzeye sahip kişilerde IV uygulamanın hastalıkları önlediği veya enerjiyi belirgin artırdığı gösterilmiş değildir. Hedefim düzeyi “ne kadar yüksek o kadar iyi” yapmak değil, gereksinimi doğru karşılamaktır.',
+            headings: ['Selenyum eksikliği hangi bulgularla desteklenir?', 'Tiroid, böbrek ve toplam alım değerlendirmesi', 'Dar güvenlik aralığı ve selenoz riski', 'Eksiklik tedavisi ile rutin IV kullanımını ayırmak'],
             sources: [['NIH ODS: Selenyum – sağlık profesyonelleri için bilgi', 'https://ods.od.nih.gov/factsheets/Selenium-HealthProfessional/'], ['DailyMed: Selenyum içeren enjeksiyon ürün bilgileri', 'https://dailymed.nlm.nih.gov/dailymed/search.cfm?query=selenious%20acid%20injection']]
         },
         nadDetailV242: {
@@ -18554,6 +18399,7 @@ function scrollSerumTitleBelowNavbarV514(vascularView) {
             before: ['Kalp-damar, böbrek ve karaciğer hastalıkları', 'Gebelik-emzirme, düzenli ilaçlar ve alerji öyküsü', 'Uygulama sırasında göğüs sıkışması, bulantı veya kramp gelişme riski', 'Beklentinin gerçekçi olup olmadığı'],
             risks: ['Bulantı, karın krampları, baş ağrısı, flushing ve göğüste sıkışma hissi bildirilebilir.', 'Hız ve doz toleransı etkileyebilir; yakın izlem gerekir.', 'Uzun dönem yarar ve güvenlik verileri sınırlıdır.'],
             evidence: 'NAD biyolojisi güçlü bir araştırma alanıdır; ancak biyolojik olarak önemli olmak, IV uygulamanın klinik yararının kanıtlandığı anlamına gelmez. Bu ayrımı hastaya açıkça anlatıyorum.',
+            headings: ['Yorgunlukta önce hangi nedenler dışlanır?', 'IV NAD+ öncesi kardiyometabolik değerlendirme', 'İnfüzyon hızına bağlı yakınmalar ve izlem', 'NAD biyolojisi ile klinik yararı ayırmak'],
             sources: [['PubMed: IV NAD+ klinik araştırmaları', 'https://pubmed.ncbi.nlm.nih.gov/?term=intravenous+NAD%2B+clinical+trial'], ['PubMed: NAD metabolizması ve insan çalışmaları', 'https://pubmed.ncbi.nlm.nih.gov/?term=NAD+metabolism+human+clinical+trial']]
         },
         glutathioneDetailV241: {
@@ -18565,6 +18411,7 @@ function scrollSerumTitleBelowNavbarV514(vascularView) {
             before: ['Astım ve ciddi alerji öyküsü', 'Gebelik-emzirme ve kullanılan ilaçlar', 'Karaciğer-böbrek fonksiyonları', 'Uygulamanın hangi ölçülebilir hedef için planlandığı'],
             risks: ['Alerjik reaksiyon, bronkospazm, bulantı veya damar yolu reaksiyonu gelişebilir.', 'Cilt rengini açma amacıyla kullanımın güvenliği ve etkinliği konusunda önemli belirsizlikler vardır.', 'Ürün kalitesi, hazırlanma ve sterilite en az içerik kadar önemlidir.'],
             evidence: 'Glutatyonun hücresel rolü iyi tanımlıdır; IV uygulamanın klinik sonuçları ise hastalığa ve protokole göre değişir. Bu nedenle genel bir “toksin temizleme” sözü vermiyorum.',
+            headings: ['Glutatyon hangi klinik hedefle gündeme gelir?', 'Karaciğer, böbrek, astım ve ilaç değerlendirmesi', 'Alerjik reaksiyon ve bronkospazm açısından güvenlik', 'Hücresel antioksidan rolü klinik sonuç demek değildir'],
             sources: [['PubMed: İntravenöz glutatyon klinik araştırmaları', 'https://pubmed.ncbi.nlm.nih.gov/?term=intravenous+glutathione+clinical+trial'], ['FDA: Steril/kompoze enjeksiyon ürünlerinde güvenlik uyarıları', 'https://www.fda.gov/drugs/human-drug-compounding']]
         },
         vitaminCDetailV234: {
@@ -18576,6 +18423,7 @@ function scrollSerumTitleBelowNavbarV514(vascularView) {
             before: ['Böbrek fonksiyonu, böbrek taşı ve oksalat öyküsü', 'Yüksek doz planlanıyorsa G6PD eksikliği riski', 'Demir yüklenmesi hastalıkları ve kullanılan ilaçlar', 'Bazı kan şekeri ölçüm cihazlarında yanlış sonuç riski'],
             risks: ['Damar yolu irritasyonu, sıvı yükü ve elektrolit sorunları görülebilir.', 'Böbrek hastalığı veya taş öyküsünde oksalatla ilişkili risk artabilir.', 'G6PD eksikliğinde yüksek doz hemoliz riski taşıyabilir; uygun tarama gerekir.'],
             evidence: 'C vitamininin eksiklik tedavisindeki yeri nettir. Yüksek doz IV kullanımın kanser, enfeksiyon, yorgunluk veya kronik ağrı üzerindeki sonuçları ise aynı kesinlikte değildir ve çalışma sonuçları karışıktır. Bu nedenle kanıtı, hedefi ve belirsizliği birlikte anlatıyorum.',
+            headings: ['IV C vitamini için tıbbi gereksinim nasıl belirlenir?', 'Böbrek, G6PD ve demir yükü değerlendirmesi', 'Oksalat, hemoliz ve sıvı-elektrolit riskleri', 'Eksiklik tedavisi ile yüksek doz kullanımını ayırmak'],
             sources: [['NIH ODS: C vitamini – sağlık profesyonelleri için bilgi', 'https://ods.od.nih.gov/factsheets/VitaminC-HealthProfessional/'], ['NCI: Yüksek doz C vitamini hakkında kanser bilgi özeti', 'https://www.cancer.gov/about-cancer/treatment/cam/patient/vitamin-c-pdq']]
         },
         ozoneDetailV239: {
@@ -18587,6 +18435,7 @@ function scrollSerumTitleBelowNavbarV514(vascularView) {
             before: ['G6PD eksikliği ve ciddi anemi riski', 'Kanama-pıhtılaşma sorunları ve kan sulandırıcı ilaçlar', 'Gebelik, kontrolsüz tiroid hastalığı ve ciddi kardiyovasküler durumlar', 'Kullanılacak yöntemin sterilite ve cihaz güvenliği'],
             risks: ['Gazın doğrudan damar içine verilmesi güvenli bir yaklaşım değildir.', 'Damar yolu, enfeksiyon, reaksiyon ve dolaşım yükü riskleri yönteme göre değişir.', 'Kanıt düzeyi sınırlı alanlarda kesin sonuç veya hastalık tedavisi vaadi verilmemelidir.'],
             evidence: 'Ozonla ilgili mekanizma çalışmaları ve bazı klinik araştırmalar bulunsa da, sonuçların kalitesi ve genellenebilirliği uygulama alanına göre değişir. Düzenleyici kurumların yaklaşımı ülkeden ülkeye farklıdır; bu nedenle yöntemi kanıt ve güvenlik sınırlarıyla birlikte anlatıyorum.',
+            headings: ['Tamamlayıcı ozon yaklaşımı hangi çerçevede ele alınır?', 'G6PD, hemogram, pıhtılaşma ve damar yolu kontrolü', 'Uygulama yoluna bağlı güvenlik sınırları', 'Ozon araştırmalarını protokole göre değerlendirmek'],
             sources: [['PubMed: Medikal ozon klinik araştırmaları', 'https://pubmed.ncbi.nlm.nih.gov/?term=medical+ozone+randomized+clinical+trial'], ['eCFR: Ozon için ABD düzenleyici güvenlik çerçevesi', 'https://www.ecfr.gov/current/title-21/chapter-I/subchapter-H/part-801/subpart-H/section-801.415']]
         },
         majorOzoneDetailV240: {
@@ -18598,6 +18447,7 @@ function scrollSerumTitleBelowNavbarV514(vascularView) {
             before: ['Hemogram, anemi ve G6PD eksikliği riski', 'Kanama-pıhtılaşma öyküsü ve antikoagülan kullanımı', 'Ciddi kalp-akciğer hastalığı, gebelik ve aktif enfeksiyon', 'Damar erişimi, sıvı dengesi ve önceki seans reaksiyonları'],
             risks: ['Damar yolu komplikasyonu, enfeksiyon, baş dönmesi, tansiyon değişikliği veya vazovagal reaksiyon görülebilir.', 'Hatalı uygulama yolu ve uygun olmayan cihaz ciddi risk oluşturabilir.', 'Kanıtın sınırlı olduğu hastalıklarda sonuç garantisi verilmez.'],
             evidence: 'Majör otohemoterapi üzerine yayınlar vardır; ancak protokoller ve çalışma kalitesi değişkendir. Ben olası biyolojik mekanizmayı, gösterilmiş klinik yararla aynı şeymiş gibi anlatmıyorum.',
+            headings: ['Majör otohemoterapi için klinik uygunluk', 'Kapalı sistem, hemogram ve pıhtılaşma kontrolleri', 'Damar erişimi, enfeksiyon ve dolaşım reaksiyonları', 'Değişken protokoller ve kanıtın sınırları'],
             sources: [['PubMed: Ozon otohemoterapi klinik araştırmaları', 'https://pubmed.ncbi.nlm.nih.gov/?term=ozone+autohemotherapy+clinical+trial'], ['eCFR: Ozon için ABD düzenleyici güvenlik çerçevesi', 'https://www.ecfr.gov/current/title-21/chapter-I/subchapter-H/part-801/subpart-H/section-801.415']]
         }
     };
@@ -18639,21 +18489,25 @@ function scrollSerumTitleBelowNavbarV514(vascularView) {
                     <span class="vitamin-c-doc-kicker-v234">${item.kicker}</span>
                     <h2>${item.title}</h2>
                 </header>
+                <section class="iv-clinical-summary-v743" aria-label="Uygulamaya özel klinik açıklama">
+                    <p>${item.intro}</p>
+                    ${item.what.map(paragraph => `<p>${paragraph}</p>`).join('')}
+                </section>
                 <div class="iv-detail-grid-v420">
                     <section class="vitamin-c-doc-section-v234">
-                        <h3>1. Hangi durumda gündeme alırım?</h3>
+                        <h3>1. ${item.headings[0]}</h3>
                         ${list(item.consider)}
                     </section>
                     <section class="vitamin-c-doc-section-v234">
-                        <h3>2. Uygulama öncesinde nelere bakarım?</h3>
+                        <h3>2. ${item.headings[1]}</h3>
                         ${list(item.before)}
                     </section>
                     <section class="vitamin-c-doc-section-v234">
-                        <h3>3. Riskler ve dikkat edilmesi gerekenler</h3>
+                        <h3>3. ${item.headings[2]}</h3>
                         ${list(item.risks)}
                     </section>
                     <section class="vitamin-c-doc-section-v234">
-                        <h3>4. Bilimsel kanıtı nasıl yorumluyorum?</h3>
+                        <h3>4. ${item.headings[3]}</h3>
                         <p>${item.evidence}</p>
                     </section>
                 </div>
@@ -22977,7 +22831,7 @@ function scrollSerumTitleBelowNavbarV514(vascularView) {
             'as-special-open-v274', 'treatment-special-open-v279',
             'osteo-standalone-open-v260', 'device-detail-page-open-v157',
             'general-featured-open-v124',
-            'v710-treatment-page-open', 'v712-health-page-open'
+            'v710-treatment-page-open', 'v712-health-page-open', 'v744-info-page-open'
         );
         body.classList.add('treatment-page-open', 'global-subpage-open-v405');
         body.classList.remove('global-home-open-v408');
@@ -23036,4 +22890,88 @@ function scrollSerumTitleBelowNavbarV514(vascularView) {
         window.setTimeout(() => enforceTreatmentAreasV736(false), 0);
         window.setTimeout(() => enforceTreatmentAreasV736(false), 160);
     });
+})();
+// ===================================================================
+// V744 — Bilgi: görselli tam sayfa kartlar ve mevcut hedeflere yönlendirme
+// ===================================================================
+(function () {
+    'use strict';
+    const page = document.getElementById('v744InfoPage');
+    const nav = document.getElementById('v548PremiumNav');
+    if (!page || !nav) return;
+    const trigger = nav.querySelector('[data-v744-open="info"]');
+    const cards = page.querySelectorAll('[data-v744-kind]');
+
+    function syncTop() {
+        const bottom = Math.max(0, Math.ceil(nav.getBoundingClientRect().bottom));
+        if (bottom) page.style.setProperty('--v744-header-bottom', bottom + 'px');
+    }
+    function hide() {
+        document.body.classList.remove('v744-info-page-open');
+        page.setAttribute('aria-hidden', 'true');
+        trigger?.setAttribute('aria-expanded', 'false');
+    }
+    function open(push = true) {
+        if (typeof window.prepareGlobalDestinationV546 === 'function')
+            window.prepareGlobalDestinationV546();
+        document.body.classList.remove('global-home-open-v408','v710-treatment-page-open','v712-health-page-open');
+        document.getElementById('v710TreatmentPage')?.setAttribute('aria-hidden','true');
+        document.getElementById('v712HealthPage')?.setAttribute('aria-hidden','true');
+        nav.querySelector('[data-v710-open="treatments"]')?.setAttribute('aria-expanded','false');
+        nav.querySelector('[data-v712-open="health"]')?.setAttribute('aria-expanded','false');
+        document.body.classList.add('global-subpage-open-v405','v744-info-page-open');
+        syncTop();
+        page.setAttribute('aria-hidden','false');
+        trigger?.setAttribute('aria-expanded','true');
+        page.scrollTop = 0;
+        if (push && location.hash !== '#bilgi')
+            history.pushState({page:'bilgi'},'','#bilgi');
+    }
+    function close() {
+        hide();
+        if (location.hash === '#bilgi' && history.state?.page === 'bilgi' && history.length > 1) {
+            history.back();
+        } else {
+            if (location.hash === '#bilgi')
+                history.replaceState(history.state,'',location.pathname + location.search);
+            const home = nav.querySelector('.v548-brand');
+            if (home) home.click();
+            else {
+                document.body.classList.remove('global-subpage-open-v405');
+                document.body.classList.add('global-home-open-v408');
+            }
+        }
+    }
+    window.openInfoPageV744 = open;
+    window.toggleInfoPageV744 = () => {
+        if (document.body.classList.contains('v744-info-page-open')) close();
+        else open(true);
+    };
+
+    cards.forEach(card => card.addEventListener('click', () => {
+        const kind = card.getAttribute('data-v744-kind');
+        const value = card.getAttribute('data-v744-value') || '';
+        if (!kind) return;
+        hide();
+        window.v744NavigateToInfo?.(kind,value);
+    }));
+
+    let frame = 0;
+    window.addEventListener('resize', () => {
+        if (frame) cancelAnimationFrame(frame);
+        frame = requestAnimationFrame(() => { frame=0; syncTop(); });
+    }, {passive:true});
+    window.addEventListener('popstate', () => {
+        if (location.hash === '#bilgi') {
+            open(false);
+            [120,420].forEach(delay => window.setTimeout(() => {
+                if (location.hash === '#bilgi' && !document.body.classList.contains('v744-info-page-open')) open(false);
+            },delay));
+        } else hide();
+    });
+    if (location.hash === '#bilgi') {
+        if (document.readyState === 'loading')
+            document.addEventListener('DOMContentLoaded', () => open(false),{once:true});
+        else open(false);
+    }
 })();
