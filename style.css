@@ -13376,10 +13376,180 @@ body.about-page-open #hakkimdaPage .about-page-content-v116{
   }
 }
 
-/* V761 - Hasta rehberi: üst sekmeler olmadan üç içerik tek akışta. */
-body.info-guide-open-v143 #infoGuidePageV143 .info-guide-content-v143 > .info-guide-view-v143.active + .info-guide-view-v143.active {
-    margin-top: clamp(28px, 4vw, 48px);
+
+/* V771 / Geleneksel Tedavi ana ekranı koyu premium tasarım */
+article[data-treatment-detail-view="geleneksel-tedavi"] #traditionalOverviewV168 > .traditional-launchpad-v496,
+article[data-treatment-detail-view="geleneksel-tedavi"] #traditionalOverviewV168 > .traditional-overview-hero-v170{display:none !important}
+article[data-treatment-detail-view="geleneksel-tedavi"] #traditionalOverviewV168 > .traditional-content-v167{display:block !important}
+article[data-treatment-detail-view="geleneksel-tedavi"] .traditional-overview-v168{padding:0 0 24px !important;background:transparent !important}
+article[data-treatment-detail-view="geleneksel-tedavi"] .traditional-overview-content-v168{width:min(1480px, calc(100% - 34px)) !important;margin:18px auto 10px !important;padding:38px 34px 34px !important;border-radius:34px !important;position:relative !important;overflow:hidden !important;background:radial-gradient(circle at 0% 0%, rgba(218,176,84,.12), transparent 30%),radial-gradient(circle at 100% 100%, rgba(218,176,84,.10), transparent 28%),linear-gradient(135deg, #04131d 0%, #071b27 42%, #0a2331 100%) !important;border:1px solid rgba(214,170,73,.32) !important;box-shadow:0 30px 70px rgba(2, 11, 18, .45), inset 0 1px 0 rgba(255,255,255,.05) !important}
+article[data-treatment-detail-view="geleneksel-tedavi"] .traditional-overview-content-v168::before{content:"";position:absolute;inset:0;background:linear-gradient(180deg, rgba(255,255,255,.02), transparent 18%, transparent 82%, rgba(214,170,73,.06));pointer-events:none}
+article[data-treatment-detail-view="geleneksel-tedavi"] .traditional-overview-head-v169{position:relative !important;z-index:1 !important;max-width:880px !important;margin:0 0 28px !important;padding:0 !important}
+article[data-treatment-detail-view="geleneksel-tedavi"] .traditional-overview-head-v169 > span,
+article[data-treatment-detail-view="geleneksel-tedavi"] .traditional-overview-info-band-v169,
+article[data-treatment-detail-view="geleneksel-tedavi"] .traditional-overview-note-v168{display:none !important}
+article[data-treatment-detail-view="geleneksel-tedavi"] .traditional-overview-head-v169 h2{margin:0 !important;color:#f4e7c2 !important;font-family:Georgia, "Times New Roman", serif !important;font-size:clamp(52px, 6vw, 94px) !important;line-height:.94 !important;letter-spacing:-.04em !important;text-shadow:0 8px 28px rgba(0,0,0,.24) !important}
+article[data-treatment-detail-view="geleneksel-tedavi"] .traditional-overview-head-v169 p{display:none !important}
+article[data-treatment-detail-view="geleneksel-tedavi"] .traditional-entry-grid-v329{position:relative !important;z-index:1 !important;display:grid !important;grid-template-columns:repeat(3, minmax(0,1fr)) !important;gap:22px !important}
+article[data-treatment-detail-view="geleneksel-tedavi"] .traditional-entry-card-v169{display:flex !important;flex-direction:column !important;height:100% !important;border-radius:28px !important;overflow:hidden !important;background:linear-gradient(180deg, rgba(8,20,29,.92), rgba(5,17,26,.98)) !important;border:1px solid rgba(214,170,73,.45) !important;box-shadow:0 22px 54px rgba(0,0,0,.30), inset 0 1px 0 rgba(255,255,255,.04) !important;transition:transform .25s ease, box-shadow .25s ease, border-color .25s ease !important}
+article[data-treatment-detail-view="geleneksel-tedavi"] .traditional-entry-card-v169:hover{transform:translateY(-4px) !important;border-color:rgba(227,193,111,.75) !important;box-shadow:0 28px 64px rgba(0,0,0,.36), 0 0 0 1px rgba(214,170,73,.18) inset !important}
+article[data-treatment-detail-view="geleneksel-tedavi"] .traditional-entry-grid-v329 .traditional-entry-media-v168{aspect-ratio:1.32 / 1 !important;min-height:260px !important;position:relative !important}
+article[data-treatment-detail-view="geleneksel-tedavi"] .traditional-entry-grid-v329 .traditional-entry-media-v168::after{content:"";position:absolute;inset:0;background:linear-gradient(180deg, rgba(0,0,0,.12), rgba(0,0,0,.48));pointer-events:none}
+article[data-treatment-detail-view="geleneksel-tedavi"] .traditional-entry-grid-v329 .traditional-entry-media-v168 img{width:100% !important;height:100% !important;object-fit:cover !important;filter:saturate(1.04) contrast(1.02) brightness(.93) !important}
+article[data-treatment-detail-view="geleneksel-tedavi"] .traditional-entry-overlay-v169{left:16px !important;right:16px !important;bottom:16px !important;padding:14px 16px !important;border-radius:18px !important;background:linear-gradient(180deg, rgba(7,15,22,.74), rgba(7,15,22,.86)) !important;border:1px solid rgba(214,170,73,.24) !important;backdrop-filter:blur(10px) !important;-webkit-backdrop-filter:blur(10px) !important}
+article[data-treatment-detail-view="geleneksel-tedavi"] .traditional-entry-overlay-v169 span{color:rgba(246,221,160,.84) !important;font-size:10px !important;letter-spacing:.16em !important}
+article[data-treatment-detail-view="geleneksel-tedavi"] .traditional-entry-overlay-v169 strong{color:#ffffff !important;font-size:18px !important;line-height:1.28 !important}
+article[data-treatment-detail-view="geleneksel-tedavi"] .traditional-entry-card-v169 .traditional-entry-body-v168{padding:24px 24px 22px !important;display:flex !important;flex:1 1 auto !important;flex-direction:column !important;background:transparent !important}
+article[data-treatment-detail-view="geleneksel-tedavi"] .traditional-entry-kicker-v168{display:inline-flex !important;align-items:center !important;width:max-content !important;padding:7px 12px !important;border-radius:999px !important;background:rgba(214,170,73,.11) !important;border:1px solid rgba(214,170,73,.25) !important;color:#f0cb76 !important;font-size:11px !important;font-weight:800 !important;letter-spacing:.12em !important}
+article[data-treatment-detail-view="geleneksel-tedavi"] .traditional-entry-card-v169 .traditional-entry-body-v168 h3{margin:16px 0 12px !important;color:#ffffff !important;font-family:Georgia, "Times New Roman", serif !important;font-size:clamp(28px, 2.2vw, 44px) !important;line-height:1 !important;letter-spacing:-.03em !important}
+article[data-treatment-detail-view="geleneksel-tedavi"] .traditional-entry-card-v169 .traditional-entry-body-v168 p{margin:0 0 18px !important;color:rgba(231,238,244,.90) !important;font-size:17px !important;line-height:1.68 !important}
+article[data-treatment-detail-view="geleneksel-tedavi"] .traditional-entry-tags-v168{display:none !important}
+article[data-treatment-detail-view="geleneksel-tedavi"] .traditional-detail-button-v168{margin-top:auto !important;align-self:flex-start !important;min-width:188px !important;min-height:54px !important;padding:0 22px !important;border-radius:999px !important;background:linear-gradient(180deg, rgba(214,170,73,.15), rgba(214,170,73,.07)) !important;border:1px solid rgba(214,170,73,.58) !important;color:#f3d88f !important;box-shadow:0 12px 28px rgba(0,0,0,.26), inset 0 1px 0 rgba(255,255,255,.07) !important;font-size:18px !important;font-weight:800 !important;letter-spacing:-.01em !important}
+article[data-treatment-detail-view="geleneksel-tedavi"] .traditional-detail-button-v168:hover{transform:translateY(-2px) !important;background:linear-gradient(180deg, rgba(214,170,73,.22), rgba(214,170,73,.10)) !important;border-color:rgba(235,202,123,.78) !important;color:#ffe6a7 !important;box-shadow:0 16px 34px rgba(0,0,0,.32), 0 0 18px rgba(214,170,73,.12) !important}
+article[data-treatment-detail-view="geleneksel-tedavi"] .traditional-detail-button-v168 span{color:inherit !important}
+@media (max-width: 1180px){article[data-treatment-detail-view="geleneksel-tedavi"] .traditional-entry-grid-v329{grid-template-columns:1fr !important}article[data-treatment-detail-view="geleneksel-tedavi"] .traditional-overview-head-v169 h2{font-size:clamp(44px, 8vw, 76px) !important}}
+@media (max-width: 760px){article[data-treatment-detail-view="geleneksel-tedavi"] .traditional-overview-content-v168{width:min(100%, calc(100% - 16px)) !important;padding:24px 16px 18px !important;border-radius:26px !important}article[data-treatment-detail-view="geleneksel-tedavi"] .traditional-overview-head-v169{margin-bottom:18px !important}article[data-treatment-detail-view="geleneksel-tedavi"] .traditional-overview-head-v169 h2{font-size:clamp(38px, 12vw, 60px) !important}article[data-treatment-detail-view="geleneksel-tedavi"] .traditional-entry-grid-v329{gap:16px !important}article[data-treatment-detail-view="geleneksel-tedavi"] .traditional-entry-grid-v329 .traditional-entry-media-v168{min-height:228px !important}article[data-treatment-detail-view="geleneksel-tedavi"] .traditional-entry-card-v169 .traditional-entry-body-v168{padding:18px 18px 18px !important}article[data-treatment-detail-view="geleneksel-tedavi"] .traditional-entry-card-v169 .traditional-entry-body-v168 p{font-size:15px !important;line-height:1.58 !important}article[data-treatment-detail-view="geleneksel-tedavi"] .traditional-detail-button-v168{min-width:100% !important;justify-content:center !important}}
+
+/* V772 — Geleneksel Tedavi ana ekraninda kenardan kenara tam genislik */
+article[data-treatment-detail-view="geleneksel-tedavi"] #traditionalOverviewV168 > .traditional-content-v167.traditional-overview-content-v168 {
+    box-sizing: border-box !important;
+    width: 100% !important;
+    max-width: none !important;
+    min-width: 0 !important;
+    margin: 0 !important;
+    padding: clamp(24px, 3vw, 54px) clamp(18px, 3vw, 64px) clamp(24px, 3vw, 48px) !important;
+    border-radius: 0 !important;
 }
-body.info-guide-open-v143 #infoGuidePageV143 .info-guide-content-v143 > .info-guide-view-v143 {
-    scroll-margin-top: 118px;
+@media (max-width: 760px) {
+    article[data-treatment-detail-view="geleneksel-tedavi"] #traditionalOverviewV168 > .traditional-content-v167.traditional-overview-content-v168 {
+        padding: 22px 14px 28px !important;
+        border-radius: 0 !important;
+    }
+}
+
+/* V774 - Geleneksel Tedavi ilk ekranda kartların tamamını gösteren kompakt düzen.
+   Sadece ana girişin üç kartına uygulanır; detay sayfaları değişmez. */
+article[data-treatment-detail-view="geleneksel-tedavi"] #traditionalOverviewV168 > .traditional-content-v167.traditional-overview-content-v168 {
+    padding-top: clamp(16px, 2.2vh, 28px) !important;
+    padding-bottom: clamp(16px, 2.2vh, 28px) !important;
+}
+article[data-treatment-detail-view="geleneksel-tedavi"] #traditionalOverviewV168 .traditional-overview-head-v169 {
+    margin-bottom: clamp(12px, 1.7vh, 20px) !important;
+}
+article[data-treatment-detail-view="geleneksel-tedavi"] #traditionalOverviewV168 .traditional-overview-head-v169 h2 {
+    font-size: clamp(40px, 4.3vw, 76px) !important;
+    line-height: 1.02 !important;
+}
+article[data-treatment-detail-view="geleneksel-tedavi"] #traditionalOverviewV168 .traditional-entry-grid-v329 {
+    gap: clamp(12px, 1.35vw, 22px) !important;
+    align-items: stretch !important;
+}
+article[data-treatment-detail-view="geleneksel-tedavi"] #traditionalOverviewV168 .traditional-entry-grid-v329 .traditional-entry-media-v168 {
+    aspect-ratio: auto !important;
+    height: clamp(168px, 27vh, 250px) !important;
+    min-height: 0 !important;
+    max-height: 250px !important;
+    flex: 0 0 auto !important;
+    overflow: hidden !important;
+}
+article[data-treatment-detail-view="geleneksel-tedavi"] #traditionalOverviewV168 .traditional-entry-grid-v329 .traditional-entry-media-v168 img {
+    display: block !important;
+    width: 100% !important;
+    height: 100% !important;
+    object-fit: cover !important;
+}
+article[data-treatment-detail-view="geleneksel-tedavi"] #traditionalOverviewV168 .traditional-entry-card-v169 .traditional-entry-body-v168 {
+    padding: clamp(13px, 1.6vh, 20px) clamp(16px, 1.6vw, 24px) 17px !important;
+}
+article[data-treatment-detail-view="geleneksel-tedavi"] #traditionalOverviewV168 .traditional-entry-card-v169 .traditional-entry-body-v168 h3 {
+    margin: 9px 0 8px !important;
+    font-size: clamp(28px, 2.05vw, 38px) !important;
+}
+article[data-treatment-detail-view="geleneksel-tedavi"] #traditionalOverviewV168 .traditional-entry-card-v169 .traditional-entry-body-v168 p {
+    margin: 0 0 13px !important;
+    font-size: clamp(14px, 1vw, 16px) !important;
+    line-height: 1.48 !important;
+}
+article[data-treatment-detail-view="geleneksel-tedavi"] #traditionalOverviewV168 .traditional-detail-button-v168 {
+    min-height: 44px !important;
+    font-size: 16px !important;
+    padding: 0 20px !important;
+}
+@media (max-width: 1180px) {
+    article[data-treatment-detail-view="geleneksel-tedavi"] #traditionalOverviewV168 .traditional-entry-grid-v329 .traditional-entry-media-v168 {
+        height: clamp(174px, 24vh, 250px) !important;
+    }
+}
+@media (max-width: 760px) {
+    article[data-treatment-detail-view="geleneksel-tedavi"] #traditionalOverviewV168 > .traditional-content-v167.traditional-overview-content-v168 {
+        padding: 18px 12px 22px !important;
+    }
+    article[data-treatment-detail-view="geleneksel-tedavi"] #traditionalOverviewV168 .traditional-overview-head-v169 h2 {
+        font-size: clamp(36px, 10vw, 52px) !important;
+    }
+    article[data-treatment-detail-view="geleneksel-tedavi"] #traditionalOverviewV168 .traditional-entry-grid-v329 .traditional-entry-media-v168 {
+        height: clamp(160px, 26vh, 215px) !important;
+    }
+    article[data-treatment-detail-view="geleneksel-tedavi"] #traditionalOverviewV168 .traditional-entry-card-v169 .traditional-entry-body-v168 {
+        padding: 14px 16px 16px !important;
+    }
+    article[data-treatment-detail-view="geleneksel-tedavi"] #traditionalOverviewV168 .traditional-entry-card-v169 .traditional-entry-body-v168 p {
+        font-size: 14px !important;
+    }
+}
+
+
+/* V775 - Geleneksel Tedavi: 3 karttaki posterler yerine mevcut MP4 videolar */
+article[data-treatment-detail-view="geleneksel-tedavi"] #traditionalOverviewV168 .traditional-entry-media-v168 video.traditional-card-video-v775 {
+    position: absolute !important;
+    inset: 0 !important;
+    display: block !important;
+    width: 100% !important;
+    height: 100% !important;
+    max-width: none !important;
+    max-height: none !important;
+    border: 0 !important;
+    border-radius: 0 !important;
+    background: transparent !important;
+    object-fit: cover !important;
+    object-position: center !important;
+    filter: saturate(1.04) contrast(1.02) brightness(.93) !important;
+    pointer-events: none;
+}
+/* Autoplay kapalı kullanıcı ayarında video kontrollü oynatılabilir. */
+article[data-treatment-detail-view="geleneksel-tedavi"] #traditionalOverviewV168 .traditional-entry-media-v168 video.traditional-card-video-v775[controls] {
+    pointer-events: auto;
+}
+
+
+/* V776 / Geleneksel Tedavi kartları: tamamı tıklanabilir, klavyeyle erişilebilir */
+article[data-treatment-detail-view="geleneksel-tedavi"] #traditionalOverviewV168 .traditional-entry-card-v169[data-traditional-card-open-v776] {
+  cursor: pointer !important;
+}
+article[data-treatment-detail-view="geleneksel-tedavi"] #traditionalOverviewV168 .traditional-entry-card-v169[data-traditional-card-open-v776]:focus-visible {
+  outline: 3px solid #efcb7d !important;
+  outline-offset: 4px !important;
+  border-color: #efcb7d !important;
+}
+
+
+/* V777 - Geleneksel Tedavi ana ekranı beyaz arka plan */
+article[data-treatment-detail-view="geleneksel-tedavi"] #traditionalOverviewV168,
+article[data-treatment-detail-view="geleneksel-tedavi"] .traditional-overview-v168{
+    background:#ffffff !important;
+}
+article[data-treatment-detail-view="geleneksel-tedavi"] #traditionalOverviewV168 > .traditional-content-v167.traditional-overview-content-v168{
+    background:linear-gradient(180deg, #ffffff 0%, #fbfdff 100%) !important;
+    border:1px solid rgba(20, 77, 117, .12) !important;
+    box-shadow:0 20px 44px rgba(18, 70, 105, .08) !important;
+}
+article[data-treatment-detail-view="geleneksel-tedavi"] .traditional-overview-content-v168::before{
+    background:linear-gradient(180deg, rgba(20,77,117,.02), transparent 18%, transparent 82%, rgba(20,77,117,.03)) !important;
+}
+article[data-treatment-detail-view="geleneksel-tedavi"] #traditionalOverviewV168 .traditional-overview-head-v169 h2{
+    color:#123e5d !important;
+    text-shadow:none !important;
+}
+article[data-treatment-detail-view="geleneksel-tedavi"] #traditionalOverviewV168 .traditional-entry-card-v169{
+    box-shadow:0 18px 42px rgba(10, 49, 74, .10), inset 0 1px 0 rgba(255,255,255,.04) !important;
 }
