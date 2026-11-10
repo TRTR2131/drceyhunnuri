@@ -15444,3 +15444,14 @@ body.phyto-herb-detail-open-v351 #phytoHerbDetailV351::after,
     pointer-events: auto !important;
   }
 }
+
+
+/* V807 — Mobilde sayfa pinch/double-tap zoom kontrolü.
+   Yatay ve dikey kaydırma ile carousel sürüklemeleri korunur.
+   Kullanıcının tarayıcı/erişilebilirlik tercihlerinin bu ayarı
+   geçersiz kılabileceği göz önünde bulundurulmalıdır. */
+@media (hover: none) and (pointer: coarse) {
+  html, body {
+    touch-action: pan-x pan-y !important;
+  }
+}

@@ -3971,6 +3971,15 @@ if (
 
         if (!mediaPage) return;
 
+        // V769: Eski medya geçişleri yalnızca birkaç sayfayı kapatıyordu.
+        // Cihaz detayları, Hakkımda ve yeni tam ekran menüler açık
+        // kalmasın: mevcut merkezi sayfa temizleyicisini de kullan.
+        if (typeof window.prepareGlobalDestinationV546 === 'function') {
+            window.prepareGlobalDestinationV546();
+        }
+        document.body.classList.remove('global-home-open-v408');
+        document.body.classList.add('global-subpage-open-v405');
+
         document.body.classList.remove(
             "treatment-page-open",
             "treatment-nav-scrolled",
@@ -3994,7 +4003,7 @@ if (
 
         window.scrollTo({
             top: 0,
-            behavior: "smooth"
+            behavior: "auto"
         });
     }
 
@@ -6752,18 +6761,6 @@ window.addEventListener("load", async () => {
             )
         );
 
-    // V760: Üst sekme düğmeleri kaldırıldı; Hakkımda içeriği tek sayfada
-    // dört bölüm halinde alt alta akıyor. Eski sekme yöneticisi diğer
-    // panelleri erişilebilirlik bakımından gizlemesin.
-    if (buttons.length === 0) {
-        panels.forEach(panel => {
-            panel.setAttribute("aria-hidden", "false");
-        });
-        // Diğer yönlendirmelerin mevcut çağrılarını bozmamak için korunur.
-        window.resetAboutTabsV116 = function () {};
-        return;
-    }
-
     function activateAboutTabV116(name, focusButton = false) {
         buttons.forEach(button => {
             const active =
@@ -7192,12 +7189,15 @@ window.addEventListener("load", async () => {
         if (heroText) heroText.textContent = guideCopyV225[selected].hero;
         if (summaryText) summaryText.textContent = guideCopyV225[selected].summary;
 
-        // V761: Üç hasta rehberi artık sekmeyle gizlenmez, alt alta görünür.
-        // "gorus-bildirimi" ayrı akışta kaldığı için burada açılmaz.
+        // V780: Üç randevu rehberi artık tek sayfada, sırasıyla alt alta.
+        // Geri bildirim gibi rehber dışındaki paneller açılmaz.
+        const collectiveGuidesV780 = new Set([
+            "randevu-oncesi", "uygulama-sonrasi", "randevu-gunu"
+        ]);
         views.forEach(view => {
-            view.classList.toggle("active", [
-                "randevu-oncesi", "uygulama-sonrasi", "randevu-gunu"
-            ].includes(view.dataset.infoGuideView));
+            const visible = collectiveGuidesV780.has(view.dataset.infoGuideView);
+            view.classList.toggle("active", visible);
+            view.setAttribute("aria-hidden", String(!visible));
         });
 
         switchButtons.forEach(button => {
@@ -7226,22 +7226,7 @@ window.addEventListener("load", async () => {
             "#" + selected
         );
 
-        // V761: Haricî menüden ikinci/üçüncü rehbere gelinirse ilgili
-        // başlığa kaydır; ilk rehberde sayfa en baştan açılsın.
-        jumpToGuideV761(selected);
-    }
-
-    function jumpToGuideV761(selected) {
-        const target = Array.from(views).find(view => view.dataset.infoGuideView === selected);
-        window.requestAnimationFrame(() => {
-            if (!document.body.classList.contains("info-guide-open-v143")) return;
-            if (!target || selected === "randevu-oncesi") {
-                window.scrollTo({ top: 0, behavior: "instant" });
-                return;
-            }
-            const y = Math.max(0, target.getBoundingClientRect().top + window.scrollY - 118);
-            window.scrollTo({ top: y, behavior: "instant" });
-        });
+        window.scrollTo({ top: 0, behavior: "instant" });
     }
 
     function closeGuideV143() {
@@ -7266,8 +7251,9 @@ window.addEventListener("load", async () => {
                 "",
                 "#" + selected
             );
-            // V761: Eski gizli navigasyon bağlantıları ilgili bölüme kaydırır.
-            jumpToGuideV761(selected);
+            // V506: Uzun bir rehberden başka birine geçerken sayfa
+            // ortasında kalmasın, doğrudan yeni rehberin başlangıcını göster.
+            window.scrollTo({ top: 0, behavior: "instant" });
         });
     });
 
@@ -7343,7 +7329,7 @@ window.addEventListener("load", async () => {
     const tabs=page.querySelectorAll("[data-device-detail-tab]");
     const panels=page.querySelectorAll("[data-device-detail-panel]");
     const openers=document.querySelectorAll("[data-device-detail-open]");
-    const meta={ems:{title:"EMS Cihazı",hash:"#cihaz-ems"},"ems-yatak":{title:"EMS Yatak",hash:"#cihaz-ems-yatak"},elektro:{title:"Elektroterapi Cihazı",hash:"#cihaz-elektroterapi"},magneto:{title:"Magneto",hash:"#cihaz-magneto"},induktif:{title:"İndüktif Magneto",hash:"#cihaz-induktif-magneto"},lenf:{title:"Lenf Drenaj / Pressoterapi",hash:"#cihaz-lenf-drenaj"},robotik:{title:"Robotik Lazer",hash:"#cihaz-robotik-lazer"},"ozon-cihaz":{title:"Ozon Terapi Sistemi",hash:"#cihaz-ozon-sistem"},modus:{title:"Modus Terapi Cihazı",hash:"#cihaz-modus"},segmenter:{title:"Dinamik Segmenter ve Yazılımı",hash:"#cihaz-segmenter"},hiemwave:{title:"Hiemwave Manyetik Uyarım",hash:"#cihaz-hiemwave"},isi:{title:"Kızılötesi Isı Terapisi",hash:"#cihaz-kizilotesi"}};
+    const meta={ems:{title:"EMS Cihazı",hash:"#cihaz-ems"},"ems-yatak":{title:"EMS Yatak",hash:"#cihaz-ems-yatak"},elektro:{title:"Biorezonans",hash:"#cihaz-elektroterapi"},magneto:{title:"Magneto",hash:"#cihaz-magneto"},induktif:{title:"İndüktif Magneto",hash:"#cihaz-induktif-magneto"},lenf:{title:"Lenf Drenaj / Pressoterapi",hash:"#cihaz-lenf-drenaj"},robotik:{title:"Robotik Lazer",hash:"#cihaz-robotik-lazer"},"ozon-cihaz":{title:"Ozon Terapi Sistemi",hash:"#cihaz-ozon-sistem"},modus:{title:"Modus Terapi Cihazı",hash:"#cihaz-modus"},segmenter:{title:"Dinamik Segmenter ve Yazılımı",hash:"#cihaz-segmenter"},hiemwave:{title:"Hiemwave Manyetik Uyarım",hash:"#cihaz-hiemwave"},isi:{title:"Kızılötesi Isı Terapisi",hash:"#cihaz-kizilotesi"}};
     function setDevice(name){const selected=meta[name]?name:"ems";tabs.forEach(b=>{const a=b.dataset.deviceDetailTab===selected;b.classList.toggle("active",a);b.setAttribute("aria-current",a?"page":"false")});panels.forEach(p=>{const a=p.dataset.deviceDetailPanel===selected;p.classList.toggle("active",a);p.hidden=!a});title.textContent=meta[selected].title;breadcrumbTitle.textContent=meta[selected].title;return selected}
     function hideKnown(){document.body.classList.remove("treatment-page-open","treatment-nav-scrolled","pain-page-open","pain-nav-scrolled","about-page-open","about-nav-scrolled","media-page-open","media-nav-scrolled","legal-page-open-v56","treatment-detail-open-v71","treatment-detail-nav-scrolled-v71","general-health-detail-open-v75","ankilozan-page-open-v87","info-guide-page-open-v143");["tedaviAlanlariPage","agriPage","hakkimdaPage","medyaPage","legalPageV56","treatmentDetailPageV71","generalHealthDetailPageV75","ankilozanFaqSectionV85","infoGuidePageV143"].forEach(id=>{const e=document.getElementById(id);if(e)e.setAttribute("aria-hidden","true")})}
     function openDevice(name,push=true){hideKnown();const selected=setDevice(name);document.body.classList.add("device-detail-page-open-v157");page.setAttribute("aria-hidden","false");if(push)history.pushState({page:"device-detail",device:selected},"",meta[selected].hash);window.scrollTo({top:0,behavior:"smooth"})}
@@ -18495,7 +18481,13 @@ function scrollSerumTitleBelowNavbarV514(vascularView) {
                 majorOzoneDetailV240: 'Majör Ozon Uygulaması',
                 ozoneDetailV239: 'Ozonlu Serum'
             };
-            intro.innerHTML = `<h1>${titleOnlyV513[id] || item.title}</h1>`;
+            // V783: Görsel-solda / metin-sağda girişini koru; yalnızca adı güncelle.
+            const visualHeadingV783 = intro.querySelector('.vascular-hero-copy-v783 h1');
+            if (visualHeadingV783) {
+                visualHeadingV783.textContent = titleOnlyV513[id] || item.title;
+            } else {
+                intro.innerHTML = `<h1>${titleOnlyV513[id] || item.title}</h1>`;
+            }
         }
         if (editorial) {
             editorial.innerHTML = `
@@ -22731,8 +22723,10 @@ function scrollSerumTitleBelowNavbarV514(vascularView) {
         }
         title.querySelector('h1').textContent = diseaseName;
         title.hidden = false;
-        if (beforeElement && title.nextElementSibling !== beforeElement) {
-            beforeElement.insertAdjacentElement('beforebegin', title);
+        // V782: Hastalik girisi tum tedavilerde sabit gezinme satirindan hemen sonra.
+        const nav = page.querySelector(':scope > nav');
+        if (nav && nav.nextElementSibling !== title) {
+            nav.insertAdjacentElement('afterend', title);
         } else if (!title.isConnected) {
             page.prepend(title);
         }
@@ -22752,7 +22746,7 @@ function scrollSerumTitleBelowNavbarV514(vascularView) {
             if (!document.body.classList.contains('ankilozan-page-open-v87')) {
                 window.openAnkilozanPageV87?.({ pushHistory:false, skipScroll:true });
             }
-            makeTitleV735(page, name, page?.querySelector('#ankilozanDetailHubV196'));
+            makeTitleV735(page, name, page?.querySelector(':scope > nav')?.nextElementSibling);
             return;
         }
 
@@ -22766,7 +22760,7 @@ function scrollSerumTitleBelowNavbarV514(vascularView) {
                 panel.hidden = false;
                 panel.classList.add('is-active');
             });
-            makeTitleV735(page, name, page?.querySelector('#romatoidDetailHubV198'));
+            makeTitleV735(page, name, page?.querySelector(':scope > nav')?.nextElementSibling);
             return;
         }
 
@@ -22777,8 +22771,7 @@ function scrollSerumTitleBelowNavbarV514(vascularView) {
             if (!document.body.classList.contains('condition-disease-page-open-v246') || current !== slug) {
                 window.openConditionDiseaseV249?.(slug, false);
             }
-            const flow = page?.querySelector('#conditionFlowV729');
-            makeTitleV735(page, name, flow);
+            makeTitleV735(page, name, page?.querySelector(':scope > nav')?.nextElementSibling);
         }
     }
 
@@ -23100,4 +23093,273 @@ function scrollSerumTitleBelowNavbarV514(vascularView) {
         event.stopImmediatePropagation();
         openTopic(disease, topic);
     }, true);
+})();
+
+
+// V775 - Geleneksel Tedavi üç kartındaki daha önce yüklenen v612 MP4 dosyalarını oynat.
+// Ana sayfa gizliyken video indirilmez; bölümden çıkıldığında videolar durur.
+(function(){
+    'use strict';
+    const overview=document.getElementById('traditionalOverviewV168');
+    const detail=document.querySelector('[data-treatment-detail-view="geleneksel-tedavi"]');
+    const shell=document.getElementById('treatmentDetailPageV71');
+    if(!overview || !detail || !shell)return;
+    const videos=Array.from(overview.querySelectorAll('video[data-traditional-card-video-v775]'));
+    if(videos.length!==3)return;
+    const reduceMotion=window.matchMedia('(prefers-reduced-motion: reduce)');
+    const saveData=Boolean(navigator.connection && navigator.connection.saveData);
+    const inView=new WeakMap();
+    videos.forEach(v=>inView.set(v,false));
+
+    function isOpen(){
+        return !document.hidden &&
+            document.body.classList.contains('treatment-detail-open-v71') &&
+            shell.getAttribute('aria-hidden')!=='true' &&
+            detail.classList.contains('active') &&
+            overview.classList.contains('active');
+    }
+    function sync(){
+        const open=isOpen();
+        videos.forEach(video=>{
+            const visible=open && inView.get(video);
+            if(!visible){
+                if(!video.paused)video.pause();
+                return;
+            }
+            video.muted=true;
+            video.defaultMuted=true;
+            video.loop=true;
+            video.playsInline=true;
+            // Veri tasarrufunda ve azaltılmış hareket tercihinde manuel oynatma.
+            const manual=reduceMotion.matches || saveData;
+            video.controls=manual;
+            if(!video.dataset.v775Loaded){
+                video.dataset.v775Loaded='1';
+                video.src=video.getAttribute('data-src');
+                video.preload=manual?'none':'metadata';
+                if(!manual)video.load();
+            }
+            if(!manual && video.paused && !video.error){
+                const promise=video.play();
+                if(promise && typeof promise.catch==='function'){
+                    promise.catch(()=>{
+                        // Bazı tarayıcılar otomatik oynatmayı engellerse, kullanıcı elle başlatabilsin.
+                        if(isOpen() && inView.get(video))video.controls=true;
+                    });
+                }
+            }
+        });
+    }
+    if('IntersectionObserver' in window){
+        const watcher=new IntersectionObserver(entries=>{
+            entries.forEach(entry=>inView.set(entry.target,entry.isIntersecting));
+            sync();
+        },{threshold:.02});
+        videos.forEach(v=>watcher.observe(v));
+    }else{
+        videos.forEach(v=>inView.set(v,true));
+    }
+    const observer=new MutationObserver(sync);
+    observer.observe(document.body,{attributes:true,attributeFilter:['class']});
+    observer.observe(shell,{attributes:true,attributeFilter:['aria-hidden','hidden']});
+    observer.observe(detail,{attributes:true,attributeFilter:['class','hidden']});
+    observer.observe(overview,{attributes:true,attributeFilter:['class','aria-hidden','hidden']});
+    document.addEventListener('visibilitychange',sync);
+    if(reduceMotion.addEventListener)reduceMotion.addEventListener('change',sync);
+    else if(reduceMotion.addListener)reduceMotion.addListener(sync);
+    window.addEventListener('pageshow',sync);
+    sync();
+})();
+
+
+// V776 / Geleneksel Tedavi: kartın görseli, metni veya boş alanı tıklandığında ilgili detaya git.
+// Mevcut Detaylı İncele butonunun click handler'ını kullanarak sayfa geçmişini korur.
+(function(){
+  'use strict';
+  const overview=document.getElementById('traditionalOverviewV168');
+  if(!overview)return;
+  const cards=overview.querySelectorAll('[data-traditional-card-open-v776]');
+  cards.forEach(card=>{
+    const destination=card.getAttribute('data-traditional-card-open-v776');
+    const original=card.querySelector('[data-traditional-open="'+destination+'"]');
+    if(!original)return;
+    const activate=()=>original.click();
+    card.addEventListener('click',event=>{
+      // Gerçek Detaylı İncele butonunun kendi handler'ı zaten navigasyon yapar.
+      if(event.target instanceof Element && event.target.closest('[data-traditional-open]'))return;
+      activate();
+    });
+    card.addEventListener('keydown',event=>{
+      if(event.target!==card)return;
+      if(event.key==='Enter'||event.key===' '){
+        event.preventDefault();
+        activate();
+      }
+    });
+  });
+})();
+
+
+// ============================================================================
+// V782 — TEDAVI ALANLARI: ANKILOZAN SPONDILIT ILE AYNI GIRIS TASARIMI / 8 HASTALIK
+// Sol: baslik, kisaca aciklama, uc bilgi satiri. Sag: hastaliga ozgu gorsel.
+// Alt kisimdaki orijinal tedavi bilgileri ve soru-cevaplar korunur.
+// ============================================================================
+(function () {
+  'use strict';
+  const pages = [
+    {id:'ankilozanFaqSectionV85', key:'ankilozan-spondilit'},
+    {id:'romatoidFaqSectionV198', key:'romatoid-artrit'},
+    {id:'conditionDiseasePageV246', key:'condition'}
+  ];
+  const information = {
+    'ankilozan-spondilit': {
+      title:'Ankilozan Spondilit',
+      summary:'Ankilozan spondilit, özellikle omurga ve sakroiliak eklemleri etkileyebilen kronik iltihaplı bir romatizmal hastalıktır. Hastanın yakınmaları, muayene bulguları, hareket kapasitesi ve tedavi süreci birlikte değerlendirilir.',
+      image:'./disease-ankilozan-spondilit-v77.png?v=150',
+      points:[
+        'Bel, pelvis ve omurganın hareketi birlikte değerlendirilir.',
+        'Sabah tutukluğu, günlük yaşam ve egzersiz kapasitesi incelenir.',
+        'Romatoloji takibi ve kişiye uygun hareket planı birlikte ele alınır.'
+      ]
+    },
+    'romatoid-artrit': {
+      title:'Romatoid Artrit',
+      summary:'Romatoid artrit, eklemlerde ağrı, şişlik ve tutukluğa neden olabilen kronik iltihaplı bir romatizmal hastalıktır. Eklem muayenesi, hastalık aktivitesi ve günlük hareket kapasitesi birlikte değerlendirilir.',
+      image:'./romatoid-artrit-hero-v199.png?v=199',
+      points:[
+        'Eklem şişliği, hassasiyet ve sabah tutukluğu değerlendirilir.',
+        'El, el bileği ve diğer eklemlerin günlük işlevi incelenir.',
+        'Romatoloji tedavisi, uygun hareket ve eklem koruma önerileri birlikte ele alınır.'
+      ]
+    },
+    'bas-agrisi-migren': {points:[
+      'Ağrının süresi, sıklığı ve kişiye özgü tetikleyicileri sorgulanır.',
+      'Boyun, duruş ve eşlik eden nörolojik belirtiler birlikte değerlendirilir.',
+      'Atak takibi, gerekli tıbbi tedavi ve yaşam düzeni birlikte planlanır.'
+    ]},
+    'bel-sirt-agrisi': {points:[
+      'Omurga, kaslar ve eklem hareketleri birlikte değerlendirilir.',
+      'Ağrının yüklenme, duruş ve günlük aktivitelerle ilişkisi incelenir.',
+      'Muayene bulgularına göre kişiye uygun hareket planı oluşturulur.'
+    ]},
+    'fibromiyalji': {points:[
+      'Yaygın ağrının dağılımı ve günlük yaşama etkisi değerlendirilir.',
+      'Uyku kalitesi, yorgunluk ve ağrı hassasiyeti birlikte incelenir.',
+      'Kademeli hareket ve çok bileşenli yakınma yönetimi ele alınır.'
+    ]},
+    'huzursuz-bacak': {points:[
+      'Bacaklardaki huzursuzluk ve hareket ihtiyacının zamanı sorgulanır.',
+      'Uyku düzeni, ilaçlar ve gerektiğinde demir durumu değerlendirilir.',
+      'Yakınmalara göre tıbbi takip ve günlük yaşam düzeni planlanır.'
+    ]},
+    'iltihabi-bagirsak': {points:[
+      'Sindirim yakınmaları ve hastalığın seyri birlikte değerlendirilir.',
+      'Beslenme, sıvı alımı ve günlük yaşam etkileri incelenir.',
+      'Gastroenteroloji takibi ve kişiye özel destek planı ele alınır.'
+    ]},
+    'kronik-yorgunluk': {points:[
+      'Yorgunluğun süresi, şiddeti ve günlük yaşama etkisi sorgulanır.',
+      'Uyku, ilaçlar ve olası altta yatan nedenler değerlendirilir.',
+      'Tıbbi bulgulara ve kişinin kapasitesine uygun takip planlanır.'
+    ]}
+  };
+  const icons = ['●','◆','✦'];
+  let raf = 0;
+  function dataFor(page) {
+    if (page.key !== 'condition') return {...information[page.key], key:page.key};
+    const current = window.getConditionDiseaseStateV279?.();
+    const key = current?.key || decodeURIComponent(location.hash.slice(1)).replace(/-ozel$/, '');
+    const source = window.conditionDiseaseDataV279?.[key];
+    if (!source) return null; // Kapali sayfada gecici ornek baslik olusturma.
+    return {
+      key, title:source.title, summary:source.summary,
+      image:source.image,
+      points: information[key]?.points || [
+        'Hastalığın yakınmaları ve tıbbi öykü birlikte değerlendirilir.',
+        'Muayene bulguları ve günlük yaşam etkileri incelenir.',
+        'Kişiye özgü takip ve tedavi yaklaşımı ele alınır.'
+      ]
+    };
+  }
+  function ensure(page) {
+    const root = document.getElementById(page.id);
+    if (!root) return;
+    const info = dataFor(page);
+    if (!info) return;
+    let header = root.querySelector(':scope > header.treatment-page-title-v735');
+    if (!header) {
+      header = document.createElement('header');
+      header.className='treatment-page-title-v735';
+      header.innerHTML='<div class="treatment-page-title-v735-copy"><span class="treatment-page-eyebrow-v735">TEDAVİ ALANI</span><h1></h1></div><span class="treatment-page-section-v735">Bütüncül değerlendirme</span>';
+    }
+    const nav = root.querySelector(':scope > nav');
+    if (nav && nav.nextElementSibling !== header) nav.insertAdjacentElement('afterend', header);
+    else if (!header.isConnected) root.prepend(header);
+    header.classList.add('v781-disease-intro','v782-disease-intro');
+    header.hidden=false;
+    const left = header.querySelector('.treatment-page-title-v735-copy');
+    if (!left) return;
+    const heading=left.querySelector('h1');
+    if (heading && heading.textContent !== info.title) heading.textContent=info.title;
+    let lead=left.querySelector('.v781-disease-lead');
+    if (!lead) {
+      lead=document.createElement('p');
+      lead.className='v781-disease-lead';
+      heading?.insertAdjacentElement('afterend',lead);
+    }
+    if (lead.textContent !== info.summary) lead.textContent=info.summary;
+    let highlights=left.querySelector('.v781-disease-highlights');
+    if (!highlights) {
+      highlights=document.createElement('div');
+      highlights.className='v781-disease-highlights';
+      highlights.setAttribute('aria-label','Değerlendirmede öne çıkanlar');
+      left.appendChild(highlights);
+    }
+    if (highlights.dataset.disease !== info.key) {
+      highlights.replaceChildren();
+      info.points.forEach((point,i) => {
+        const row=document.createElement('div');row.className='v781-disease-highlight';
+        const dot=document.createElement('span');dot.className='v781-disease-dot';dot.setAttribute('aria-hidden','true');dot.textContent=icons[i];
+        const content=document.createElement('span');content.textContent=point;
+        row.append(dot,content);highlights.appendChild(row);
+      });
+      highlights.dataset.disease=info.key;
+    }
+    let figure=header.querySelector('.v781-disease-image-wrap');
+    if (!figure) {
+      figure=document.createElement('figure');figure.className='v781-disease-image-wrap';
+      const image=document.createElement('img');image.loading='eager';image.decoding='async';
+      figure.appendChild(image);header.appendChild(figure);
+    }
+    const image=figure.querySelector('img');
+    if(image) {
+      if (image.getAttribute('src')!==info.image) image.setAttribute('src',info.image);
+      const alt=info.title+' ile ilgili medikal bilgilendirme görseli';
+      if (image.getAttribute('alt')!==alt) image.setAttribute('alt',alt);
+    }
+  }
+  function update() { pages.forEach(ensure); }
+  function schedule() { if(raf) cancelAnimationFrame(raf); raf=requestAnimationFrame(()=>{raf=0;update();}); }
+  function start() {
+    update();
+    pages.forEach(({id})=>{
+      const root=document.getElementById(id);
+      if(root) new MutationObserver(schedule).observe(root,{childList:true});
+    });
+    ['conditionTitleV249','conditionSummaryV249'].forEach(id=>{
+      const el=document.getElementById(id);
+      if(el) new MutationObserver(schedule).observe(el,{childList:true,subtree:true,characterData:true});
+    });
+    const originalImage=document.getElementById('conditionImageV249');
+    if(originalImage) new MutationObserver(schedule).observe(originalImage,{attributes:true,attributeFilter:['src']});
+    ['hashchange','popstate','pageshow','load'].forEach(event=>window.addEventListener(event,schedule));
+    document.addEventListener('click',e=>{
+      if(e.target.closest('[data-disease], [data-disease-switch-v250], .ankilozan-card-link-v87, .romatoid-card-link-v198, .condition-card-link-v246')) schedule();
+    },true);
+    // V735'in gecikmeli baslik yenilemesi ve hastalik degisimi sonrasinda da ayarlayin.
+    schedule();
+  }
+  if(document.readyState==='loading') document.addEventListener('DOMContentLoaded',start,{once:true});
+  else start();
 })();
