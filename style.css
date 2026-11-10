@@ -13553,3 +13553,1708 @@ article[data-treatment-detail-view="geleneksel-tedavi"] #traditionalOverviewV168
 article[data-treatment-detail-view="geleneksel-tedavi"] #traditionalOverviewV168 .traditional-entry-card-v169{
     box-shadow:0 18px 42px rgba(10, 49, 74, .10), inset 0 1px 0 rgba(255,255,255,.04) !important;
 }
+
+/* V778 — Mobil ana sayfa: taşan hero kontrol alanlarını ve katman çakışmasını düzeltir.
+   Yalnızca küçük ekranlarda ana sayfaya uygulanır. */
+@media (max-width: 760px) {
+  html body section#anasayfa.hero.hero-v31.hero-home-v85 {
+    height: clamp(450px, calc(100svh - 170px), 720px) !important;
+    min-height: clamp(450px, calc(100svh - 170px), 720px) !important;
+    max-height: none !important;
+    overflow: hidden !important;
+  }
+  html body section#anasayfa.hero-home-v85 .hero-slider-v86,
+  html body section#anasayfa.hero-home-v85 .hero-slider-v86 > .hero-slide-v86,
+  html body section#anasayfa.hero-home-v85 .hero-slider-v86 > .doctor-slide-v86 {
+    height: 100% !important;
+    min-height: 0 !important;
+    max-height: 100% !important;
+    overflow: hidden !important;
+  }
+  html body section#anasayfa.hero-home-v85 .doctor-slide-v86 img.doctor-slide-static-v668 {
+    top: 0 !important;
+    bottom: 0 !important;
+    height: 100% !important;
+    width: 100% !important;
+    object-fit: cover !important;
+    object-position: center 40% !important;
+  }
+  html body section#anasayfa.hero-home-v85 .doctor-slide-bottom-v86 {
+    position: absolute !important;
+    left: 50% !important;
+    right: auto !important;
+    bottom: 72px !important;
+    transform: translateX(-50%) !important;
+    width: calc(100% - 26px) !important;
+    max-width: 450px !important;
+    display: grid !important;
+    grid-template-columns: repeat(2, minmax(0,1fr)) !important;
+    gap: 10px !important;
+    align-items: stretch !important;
+    justify-items: stretch !important;
+    margin: 0 !important;
+    padding: 0 !important;
+    z-index: 8 !important;
+  }
+  html body section#anasayfa.hero-home-v85 .doctor-slide-bottom-v86 > #heroGeneralButtonV124,
+  html body section#anasayfa.hero-home-v85 .doctor-slide-bottom-v86 > #heroAboutButton {
+    box-sizing: border-box !important;
+    display: flex !important;
+    align-items: center !important;
+    justify-content: center !important;
+    width: 100% !important;
+    min-width: 0 !important;
+    max-width: 100% !important;
+    min-height: 48px !important;
+    height: 48px !important;
+    margin: 0 !important;
+    padding: 7px 9px !important;
+    border-radius: 15px !important;
+    font-size: clamp(13px, 3.5vw, 16px) !important;
+    font-weight: 800 !important;
+    line-height: 1.18 !important;
+    letter-spacing: 0 !important;
+    white-space: normal !important;
+    text-align: center !important;
+    text-wrap: balance;
+    overflow: hidden !important;
+  }
+  html body section#anasayfa.hero-home-v85 #heroAboutButton::before,
+  html body section#anasayfa.hero-home-v85 #heroAboutButton::after {
+    display: none !important;
+  }
+  html body section#anasayfa.hero-home-v85 .home-social-dock-v132 {
+    left: 50% !important;
+    right: auto !important;
+    bottom: 11px !important;
+    transform: translateX(-50%) !important;
+    padding: 5px !important;
+    gap: 5px !important;
+    max-width: calc(100% - 22px) !important;
+    z-index: 9 !important;
+  }
+  html body section#anasayfa.hero-home-v85 .home-social-dock-v132 .home-social-icon-v132 {
+    width: 38px !important;
+    height: 38px !important;
+  }
+  html body section#anasayfa.hero-home-v85 .hero-slider-arrow-v86 {
+    top: 43% !important;
+    width: 38px !important;
+    height: 38px !important;
+    font-size: 20px !important;
+    z-index: 6 !important;
+  }
+  /* Ana sayfada üst randevu ve sosyal erişim bulunduğundan tekrarlanan sabit
+     Ara / WhatsApp / Yol Tarifi çubuğu içeriklerin üstünü örtmesin. */
+  html body.global-home-open-v408 > .mobile-action-bar {
+    display: none !important;
+  }
+}
+
+
+/* V780 - Görsel referanslı metin temizliği, birleşik rehber ve okunabilir KVKK. */
+/* Resim üzerindeki kaldırılan yazı alanının gölgesini de kaldır. */
+#hakkimdaPage .about-doctor-photo-v116 figcaption{display:none !important;}
+/* Randevu rehberleri bir grup halinde ve alt alta; diğer bilgi kartları korunur. */
+#v744InfoPage .v744-grid .v780-guide-collection{
+  grid-column:1 / -1 !important; display:grid !important; grid-template-columns:minmax(0,1fr) !important;
+  gap:16px !important; min-width:0 !important; width:100% !important;
+}
+#v744InfoPage .v780-guide-collection .v744-card{
+  display:grid !important;grid-template-columns:minmax(180px, 35%) minmax(0,1fr) !important;
+  min-height:190px !important; max-width:100% !important; align-items:stretch !important;
+}
+#v744InfoPage .v780-guide-collection .v744-photo{
+  height:100% !important;min-height:190px !important;max-height:230px !important;
+}
+#v744InfoPage .v780-guide-collection .v744-content{
+  min-width:0 !important;align-self:center !important;
+}
+@media(max-width:680px){
+  #v744InfoPage .v780-guide-collection .v744-card{grid-template-columns:minmax(0,1fr) !important;min-height:0 !important;}
+  #v744InfoPage .v780-guide-collection .v744-photo{height:160px !important;min-height:160px !important;max-height:170px !important;}
+}
+/* Üç randevu rehberi aynı detay sayfasında. Dördüncü görüş-bildirimi görünmez. */
+body.info-guide-open-v143 #infoGuidePageV143 .info-guide-content-v143 > .info-guide-view-v143[data-info-guide-view="randevu-oncesi"],
+body.info-guide-open-v143 #infoGuidePageV143 .info-guide-content-v143 > .info-guide-view-v143[data-info-guide-view="uygulama-sonrasi"],
+body.info-guide-open-v143 #infoGuidePageV143 .info-guide-content-v143 > .info-guide-view-v143[data-info-guide-view="randevu-gunu"]{
+   display:block !important;opacity:1 !important;visibility:visible !important;animation:none !important;
+   margin-bottom:24px !important;
+}
+body.info-guide-open-v143 #infoGuidePageV143 .info-guide-content-v143 > .info-guide-view-v143[data-info-guide-view="gorus-bildirimi"]{display:none !important;}
+/* Sayfa yolu metni kaldırıldı; geri butonu ve ev simgesi korunur. */
+body.info-guide-open-v143 #infoGuidePageV143 .info-guide-breadcrumb-v225{gap:10px !important;}
+/* Belge ve diğer rehber simgeleri minimal, tutarlı konturlu görünür. */
+#infoGuidePageV143 .info-guide-item-icon-v225.info-guide-item-icon-v780{
+  width:50px !important;height:50px !important;display:grid !important;place-items:center !important;
+  border-radius:16px !important; background:linear-gradient(145deg,#ffffff,#eff8fd) !important;
+  border:1px solid rgba(25,133,191,.16) !important;color:#1476a8 !important;
+  box-shadow:0 9px 22px rgba(19,90,132,.08) !important;
+}
+#infoGuidePageV143 .info-guide-item-icon-v780 svg{
+  width:26px !important;height:26px !important;stroke-width:1.7 !important;
+}
+/* Öneri üst bandında sadece ana başlık görünür; iletişim formu aşağıda kalır. */
+#siteFeedbackPageV332 .site-feedback-hero-v332{display:block !important;min-height:0 !important;}
+#siteFeedbackPageV332 .site-feedback-hero-copy-v332{width:100% !important;max-width:none !important;}
+#siteFeedbackPageV332 .site-feedback-hero-copy-v332 h1{max-width:100% !important;}
+#siteFeedbackPageV332 .site-feedback-hero-copy-v332 > p,
+#siteFeedbackPageV332 .site-feedback-kicker-v332,
+#siteFeedbackPageV332 .site-feedback-pills-v332,
+#siteFeedbackPageV332 .site-feedback-side-v332,
+#siteFeedbackPageV332 .site-feedback-privacy-v332{display:none !important;}
+/* Genişletilen form açıklaması ve KVKK sayfasında satır aralığı/okunabilirlik. */
+#siteFeedbackPageV332 .site-feedback-form-heading-v332 p{
+  max-width:590px !important;font-size:15px !important;line-height:1.75 !important;
+}
+#legalPageV56 .legal-doc-v56.legal-doc-v780{max-width:1150px !important;margin:0 auto !important;}
+#legalPageV56 .legal-doc-v780 h2{font-size:clamp(28px,3vw,42px) !important;line-height:1.16 !important;}
+#legalPageV56 .legal-doc-v780 h3{margin:26px 0 10px !important;line-height:1.3 !important;}
+#legalPageV56 .legal-doc-v780 p,#legalPageV56 .legal-doc-v780 li{
+  font-size:clamp(14px,1.15vw,16px) !important;line-height:1.78 !important;color:#3b5a70 !important;
+}
+#legalPageV56 .legal-doc-v780 ul{padding-left:22px !important;}
+#legalPageV56 .legal-doc-v780 .legal-contact-v56{margin:18px 0 24px !important;}
+
+
+/* V781 — Tedavi Alanlari / Agri sayfasiyla uyumlu iki sutunlu hastalik girisleri.
+   AS, RA ve diger alti hastaligin mevcut bilgi akisini ve baglantilarini degistirmez. */
+#ankilozanFaqSectionV85 > header.treatment-page-title-v735.v781-disease-intro,
+#romatoidFaqSectionV198 > header.treatment-page-title-v735.v781-disease-intro,
+#conditionDiseasePageV246 > header.treatment-page-title-v735.v781-disease-intro {
+  box-sizing:border-box !important;
+  display:grid !important;
+  grid-template-columns:minmax(0, 1.22fr) minmax(320px, .96fr) !important;
+  align-items:stretch !important;
+  justify-content:stretch !important;
+  gap:16px !important;
+  width:min(1840px, calc(100% - 32px)) !important;
+  max-width:1840px !important;
+  height:auto !important;
+  min-height:0 !important;
+  margin:22px auto 22px !important;
+  padding:0 !important;
+  background:transparent !important;
+  border:0 !important;
+  border-radius:0 !important;
+  box-shadow:none !important;
+  overflow:visible !important;
+  scroll-margin-top:100px;
+}
+#ankilozanFaqSectionV85 .v781-disease-intro .treatment-page-title-v735-copy,
+#romatoidFaqSectionV198 .v781-disease-intro .treatment-page-title-v735-copy,
+#conditionDiseasePageV246 .v781-disease-intro .treatment-page-title-v735-copy {
+  box-sizing:border-box !important;
+  display:flex !important;
+  flex-direction:column !important;
+  align-items:stretch !important;
+  width:100% !important;
+  min-width:0 !important;
+  padding:clamp(22px,3vw,42px) clamp(20px,3.2vw,46px) !important;
+  border-radius:28px !important;
+  border:1px solid #d7eaf4 !important;
+  border-top:5px solid #128ccb !important;
+  box-shadow:0 18px 44px rgba(16,70,110,.07) !important;
+  background:linear-gradient(150deg,#ffffff 0%,#f5fbff 100%) !important;
+}
+#ankilozanFaqSectionV85 .v781-disease-intro .treatment-page-eyebrow-v735,
+#romatoidFaqSectionV198 .v781-disease-intro .treatment-page-eyebrow-v735,
+#conditionDiseasePageV246 .v781-disease-intro .treatment-page-eyebrow-v735 {
+  display:inline-flex !important;
+  width:max-content !important;
+  margin:0 0 12px !important;
+  padding:7px 12px !important;
+  border-radius:999px !important;
+  border:1px solid #b9e1f5 !important;
+  background:#ebf8ff !important;
+  color:#0c86bd !important;
+  font-size:11px !important;
+  font-weight:900 !important;
+  line-height:1.1 !important;
+  letter-spacing:.13em !important;
+}
+#ankilozanFaqSectionV85 .v781-disease-intro h1,
+#romatoidFaqSectionV198 .v781-disease-intro h1,
+#conditionDiseasePageV246 .v781-disease-intro h1 {
+  margin:0 0 16px !important;
+  padding:0 !important;
+  color:#103c59 !important;
+  font-family:"Sora",Inter,Arial,sans-serif !important;
+  font-size:clamp(32px,4.15vw,72px) !important;
+  font-weight:900 !important;
+  line-height:1.06 !important;
+  letter-spacing:-.045em !important;
+  overflow-wrap:anywhere !important;
+}
+.v781-disease-intro .v781-disease-lead {
+  margin:0 0 18px !important;
+  color:#52738d !important;
+  font-size:clamp(15px,1.08vw,18px) !important;
+  font-weight:450 !important;
+  line-height:1.72 !important;
+}
+.v781-disease-intro .v781-disease-highlights {
+  display:flex !important;
+  flex-direction:column !important;
+  gap:8px !important;
+  margin-top:auto !important;
+  padding-top:15px !important;
+  border-top:1px solid #d9eaf4 !important;
+}
+.v781-disease-intro .v781-disease-highlight {
+  box-sizing:border-box !important;
+  display:flex !important;
+  align-items:center !important;
+  gap:12px !important;
+  min-width:0 !important;
+  padding:12px 14px !important;
+  border:1px solid #e0edf5 !important;
+  border-radius:16px !important;
+  background:#f7fbfe !important;
+  color:#315e7c !important;
+  font-size:14px !important;
+  line-height:1.5 !important;
+  font-weight:550 !important;
+}
+.v781-disease-intro .v781-disease-dot {
+  display:flex !important;
+  flex:0 0 28px !important;
+  width:28px !important;
+  height:28px !important;
+  justify-content:center !important;
+  align-items:center !important;
+  border-radius:9px !important;
+  background:#e4f5fd !important;
+  color:#1393c8 !important;
+  font-size:15px !important;
+  font-weight:900 !important;
+}
+.v781-disease-intro .treatment-page-section-v735 {display:none !important;}
+.v781-disease-intro .v781-disease-image-wrap {
+  box-sizing:border-box !important;
+  display:block !important;
+  margin:0 !important;
+  padding:12px !important;
+  min-width:0 !important;
+  min-height:340px !important;
+  overflow:hidden !important;
+  border:1px solid #b7dffc !important;
+  border-radius:28px !important;
+  background:#ffffff !important;
+  box-shadow:0 18px 44px rgba(16,70,110,.09) !important;
+}
+.v781-disease-intro .v781-disease-image-wrap img {
+  display:block !important;
+  width:100% !important;
+  height:100% !important;
+  min-height:340px !important;
+  max-height:600px !important;
+  object-fit:cover !important;
+  object-position:center !important;
+  border-radius:21px !important;
+  background:#e8f5fc !important;
+}
+/* Onceki yalniz-baslik surumu gorunmesin; eski detay icerigi yerinde kalir. */
+#ankilozanFaqSectionV85 > .treatment-page-title-v730,
+#romatoidFaqSectionV198 > .treatment-page-title-v730,
+#conditionDiseasePageV246 > .treatment-page-title-v730 {display:none !important;}
+@media(max-width:960px){
+ #ankilozanFaqSectionV85 > header.treatment-page-title-v735.v781-disease-intro,
+ #romatoidFaqSectionV198 > header.treatment-page-title-v735.v781-disease-intro,
+ #conditionDiseasePageV246 > header.treatment-page-title-v735.v781-disease-intro {
+   grid-template-columns:minmax(0,1fr) !important;
+   gap:12px !important;
+ }
+ .v781-disease-intro .v781-disease-image-wrap{min-height:230px !important;}
+ .v781-disease-intro .v781-disease-image-wrap img{height:clamp(240px,45vw,420px) !important;min-height:0 !important;max-height:420px !important;}
+}
+@media(max-width:600px){
+ #ankilozanFaqSectionV85 > header.treatment-page-title-v735.v781-disease-intro,
+ #romatoidFaqSectionV198 > header.treatment-page-title-v735.v781-disease-intro,
+ #conditionDiseasePageV246 > header.treatment-page-title-v735.v781-disease-intro{
+   width:calc(100% - 20px) !important;
+   margin:12px auto 16px !important;
+   gap:10px !important;
+   scroll-margin-top:72px;
+ }
+ #ankilozanFaqSectionV85 .v781-disease-intro .treatment-page-title-v735-copy,
+ #romatoidFaqSectionV198 .v781-disease-intro .treatment-page-title-v735-copy,
+ #conditionDiseasePageV246 .v781-disease-intro .treatment-page-title-v735-copy {padding:23px 18px !important;border-radius:20px !important;}
+ #ankilozanFaqSectionV85 .v781-disease-intro h1,
+ #romatoidFaqSectionV198 .v781-disease-intro h1,
+ #conditionDiseasePageV246 .v781-disease-intro h1{font-size:clamp(27px,8vw,42px) !important;line-height:1.08 !important;}
+ .v781-disease-intro .v781-disease-lead{font-size:15px !important;line-height:1.66 !important;}
+ .v781-disease-intro .v781-disease-highlight{padding:10px 12px !important;font-size:13px !important;}
+ .v781-disease-intro .v781-disease-image-wrap{padding:8px !important;border-radius:20px !important;min-height:200px !important;}
+ .v781-disease-intro .v781-disease-image-wrap img{height:clamp(220px,55vw,320px) !important;border-radius:15px !important;}
+}
+
+
+/* V782 — Tedavi Alanlarinin 8 hastaliginda ayni giris (sol bilgi / sag gorsel). */
+#ankilozanFaqSectionV85 > .v782-disease-intro,
+#romatoidFaqSectionV198 > .v782-disease-intro,
+#conditionDiseasePageV246 > .v782-disease-intro {
+  position:relative !important;
+  z-index:2 !important;
+  margin-top:16px !important;
+  margin-bottom:18px !important;
+}
+/* Yeni girisin onune bos veya eski bir kapak gelmesini engelle. */
+#ankilozanFaqSectionV85.treatment-main-v729 .ankilozan-overview-v195,
+#romatoidFaqSectionV198.treatment-main-v729 .ra-hero-v198,
+#conditionDiseasePageV246.treatment-main-v729 .condition-overview-poster-v249 {
+  display:none !important;
+}
+/* Metin ve gorsel her hastalikta dengeli yukseklikte ve tam genislikte. */
+#ankilozanFaqSectionV85 .v782-disease-intro .treatment-page-title-v735-copy,
+#romatoidFaqSectionV198 .v782-disease-intro .treatment-page-title-v735-copy,
+#conditionDiseasePageV246 .v782-disease-intro .treatment-page-title-v735-copy {justify-content:flex-start !important;}
+.v782-disease-intro .v781-disease-image-wrap {align-self:stretch !important;}
+.v782-disease-intro .v781-disease-image-wrap img {min-height:100% !important;max-height:100% !important;}
+@media (max-width:960px) {
+ .v782-disease-intro .v781-disease-image-wrap img {min-height:0 !important;max-height:420px !important;}
+}
+@media (max-width:600px) {
+ #ankilozanFaqSectionV85 > .v782-disease-intro,
+ #romatoidFaqSectionV198 > .v782-disease-intro,
+ #conditionDiseasePageV246 > .v782-disease-intro {margin-top:10px !important;}
+ .v782-disease-intro .v781-disease-image-wrap img {max-height:320px !important;}
+}
+
+
+/* V783 - Damar Yolu / Tedavi Alanlari ile ayni tasarim, gorsel SOLDA / yazi SAGDA */
+html body [data-treatment-detail-view="damar-yolu"] .vascular-overview-v783,
+html body [data-treatment-detail-view="damar-yolu"] .vitamin-c-special-intro-v235.serum-title-only-v513.vascular-detail-hero-v783 {
+  box-sizing:border-box !important;
+  display:grid !important;
+  grid-template-columns:minmax(320px,.96fr) minmax(0,1.22fr) !important;
+  align-items:stretch !important;
+  gap:16px !important;
+  width:min(1840px,calc(100% - 32px)) !important;
+  max-width:1840px !important;
+  min-height:0 !important;
+  height:auto !important;
+  margin:18px auto 24px !important;
+  padding:0 !important;
+  overflow:visible !important;
+  background:transparent !important;
+  border:0 !important;
+  border-radius:0 !important;
+  box-shadow:none !important;
+  color:#103c59 !important;
+  scroll-margin-top:110px;
+}
+html body [data-treatment-detail-view="damar-yolu"] .vascular-hero-image-v783{
+  box-sizing:border-box !important;
+  display:block !important;
+  width:100% !important;
+  min-width:0 !important;
+  min-height:370px !important;
+  margin:0 !important;
+  padding:12px !important;
+  background:#fff !important;
+  border:1px solid #b7dffc !important;
+  border-radius:28px !important;
+  box-shadow:0 18px 44px rgba(16,70,110,.09) !important;
+  overflow:hidden !important;
+}
+html body [data-treatment-detail-view="damar-yolu"] .vascular-hero-image-v783 img{
+  display:block !important;
+  width:100% !important;
+  height:100% !important;
+  max-height:570px !important;
+  min-height:340px !important;
+  border-radius:21px !important;
+  object-fit:cover !important;
+  object-position:center !important;
+  background:#e8f5fc !important;
+}
+html body [data-treatment-detail-view="damar-yolu"] .vascular-hero-copy-v783{
+  box-sizing:border-box !important;
+  display:flex !important;
+  flex-direction:column !important;
+  min-width:0 !important;
+  width:100% !important;
+  padding:clamp(22px,3vw,42px) clamp(20px,3.2vw,46px) !important;
+  background:linear-gradient(150deg,#fff 0%,#f5fbff 100%) !important;
+  border:1px solid #d7eaf4 !important;
+  border-top:5px solid #128ccb !important;
+  border-radius:28px !important;
+  box-shadow:0 18px 44px rgba(16,70,110,.07) !important;
+  color:#103c59 !important;
+}
+html body [data-treatment-detail-view="damar-yolu"] .vascular-hero-kicker-v783{
+  display:inline-flex !important;
+  width:max-content !important;
+  max-width:100% !important;
+  margin:0 0 12px !important;
+  padding:7px 12px !important;
+  border:1px solid #b9e1f5 !important;
+  border-radius:999px !important;
+  background:#ebf8ff !important;
+  color:#0c86bd !important;
+  font:900 11px/1.2 "Sora",Arial,sans-serif !important;
+  letter-spacing:.13em !important;
+}
+html body [data-treatment-detail-view="damar-yolu"] .vascular-hero-copy-v783 h1{
+  margin:0 0 16px !important;
+  color:#103c59 !important;
+  font-family:"Sora",Inter,Arial,sans-serif !important;
+  font-size:clamp(30px,3.7vw,66px) !important;
+  font-weight:900 !important;
+  line-height:1.08 !important;
+  letter-spacing:-.045em !important;
+  overflow-wrap:anywhere !important;
+}
+html body [data-treatment-detail-view="damar-yolu"] .vascular-hero-copy-v783 p{
+  margin:0 0 18px !important;
+  color:#52738d !important;
+  font:450 clamp(15px,1.07vw,18px)/1.72 "Sora",Arial,sans-serif !important;
+}
+html body [data-treatment-detail-view="damar-yolu"] .vascular-hero-highlights-v783{
+  display:flex !important;
+  flex-direction:column !important;
+  gap:8px !important;
+  margin-top:auto !important;
+  padding-top:15px !important;
+  border-top:1px solid #d9eaf4 !important;
+}
+html body [data-treatment-detail-view="damar-yolu"] .vascular-hero-highlight-v783{
+  display:flex !important;
+  align-items:center !important;
+  gap:12px !important;
+  padding:11px 14px !important;
+  min-width:0 !important;
+  border:1px solid #e0edf5 !important;
+  border-radius:16px !important;
+  background:#f7fbfe !important;
+  color:#315e7c !important;
+  font:550 14px/1.5 "Sora",Arial,sans-serif !important;
+}
+html body [data-treatment-detail-view="damar-yolu"] .vascular-hero-highlight-v783 span{
+  flex:0 0 28px !important;
+  display:grid !important;
+  place-items:center !important;
+  width:28px !important;
+  height:28px !important;
+  border-radius:9px !important;
+  background:#e4f5fd !important;
+  color:#1393c8 !important;
+  font-size:15px !important;
+  font-weight:900 !important;
+}
+/* Detaylarda eski h1 kapak kutusu yerine ortak yatay hero. */
+html body [data-treatment-detail-view="damar-yolu"] .vitamin-c-special-tab-v235 .vitamin-c-special-intro-v235.serum-title-only-v513.vascular-detail-hero-v783 {
+  display:grid !important;
+  width:min(1840px,calc(100% - 32px)) !important;
+  min-height:0 !important;
+  max-height:none !important;
+  margin:18px auto 22px !important;
+  padding:0 !important;
+  border:0 !important;
+  box-shadow:none !important;
+  background:transparent !important;
+  border-radius:0 !important;
+}
+/* Baslik eski h1-only katman stilinden etkilenmesin. */
+html body [data-treatment-detail-view="damar-yolu"] .vitamin-c-special-tab-v235 .vascular-detail-hero-v783 h1{
+  color:#103c59 !important;
+  font-size:clamp(30px,3.7vw,66px) !important;
+  white-space:normal !important;
+  line-height:1.08 !important;
+  text-shadow:none !important;
+  text-align:left !important;
+}
+/* Serum liste kartlarinda da gorsel solda, yazi sagda. Iki sutunlu, kisa kart yapisi. */
+html body [data-treatment-detail-view="damar-yolu"] > .serum-grid-modern-v307 {
+  display:grid !important;
+  grid-template-columns:repeat(2,minmax(0,1fr)) !important;
+  gap:18px !important;
+  width:min(1840px,calc(100% - 32px)) !important;
+  margin:0 auto 28px !important;
+}
+html body [data-treatment-detail-view="damar-yolu"] > .serum-grid-modern-v307 > .serum-card-premium-v570 {
+  display:grid !important;
+  grid-template-columns:minmax(0, .84fr) minmax(0, 1.16fr) !important;
+  align-items:stretch !important;
+  min-height:206px !important;
+  height:auto !important;
+  border:1px solid #c7e3f3 !important;
+  border-radius:22px !important;
+  overflow:hidden !important;
+}
+html body [data-treatment-detail-view="damar-yolu"] > .serum-grid-modern-v307 .serum-premium-photo-v570{
+  display:block !important;
+  flex:none !important;
+  width:100% !important;
+  height:100% !important;
+  min-height:206px !important;
+  margin:0 !important;
+  padding:0 !important;
+  border-radius:0 !important;
+  aspect-ratio:auto !important;
+}
+html body [data-treatment-detail-view="damar-yolu"] > .serum-grid-modern-v307 .serum-premium-photo-v570 img{
+  display:block !important;
+  width:100% !important;
+  height:100% !important;
+  min-height:206px !important;
+  object-fit:cover !important;
+}
+html body [data-treatment-detail-view="damar-yolu"] > .serum-grid-modern-v307 .serum-premium-content-v570{
+  display:flex !important;
+  flex-direction:column !important;
+  flex:1 !important;
+  justify-content:center !important;
+  margin:0 !important;
+  padding:22px !important;
+  border-radius:0 !important;
+  min-width:0 !important;
+}
+@media(max-width:1120px){
+  html body [data-treatment-detail-view="damar-yolu"] > .serum-grid-modern-v307{grid-template-columns:minmax(0,1fr) !important;}
+}
+@media(max-width:900px){
+  html body [data-treatment-detail-view="damar-yolu"] .vascular-overview-v783,
+  html body [data-treatment-detail-view="damar-yolu"] .vitamin-c-special-tab-v235 .vitamin-c-special-intro-v235.serum-title-only-v513.vascular-detail-hero-v783{
+    grid-template-columns:minmax(0,1fr) !important;
+    gap:12px !important;
+  }
+  html body [data-treatment-detail-view="damar-yolu"] .vascular-hero-image-v783{min-height:230px !important;}
+  html body [data-treatment-detail-view="damar-yolu"] .vascular-hero-image-v783 img{
+    height:clamp(240px,45vw,420px) !important;
+    min-height:0 !important;
+    max-height:420px !important;
+  }
+}
+@media(max-width:600px){
+  html body [data-treatment-detail-view="damar-yolu"] .vascular-overview-v783,
+  html body [data-treatment-detail-view="damar-yolu"] .vitamin-c-special-tab-v235 .vitamin-c-special-intro-v235.serum-title-only-v513.vascular-detail-hero-v783{
+    width:calc(100% - 20px) !important;
+    margin:12px auto 16px !important;
+    gap:10px !important;
+    scroll-margin-top:72px;
+  }
+  html body [data-treatment-detail-view="damar-yolu"] .vascular-hero-copy-v783{padding:23px 18px !important;border-radius:20px !important;}
+  html body [data-treatment-detail-view="damar-yolu"] .vascular-hero-copy-v783 h1{font-size:clamp(27px,8vw,42px) !important;}
+  html body [data-treatment-detail-view="damar-yolu"] .vascular-hero-copy-v783 p{font-size:15px !important;line-height:1.66 !important;}
+  html body [data-treatment-detail-view="damar-yolu"] .vascular-hero-highlight-v783{font-size:13px !important;padding:10px 12px !important;}
+  html body [data-treatment-detail-view="damar-yolu"] .vascular-hero-image-v783{padding:8px !important;min-height:200px !important;border-radius:20px !important;}
+  html body [data-treatment-detail-view="damar-yolu"] .vascular-hero-image-v783 img{height:clamp(220px,55vw,320px) !important;border-radius:15px !important;}
+  html body [data-treatment-detail-view="damar-yolu"] > .serum-grid-modern-v307{width:calc(100% - 20px) !important;grid-template-columns:minmax(0,1fr) !important;gap:13px !important;}
+  html body [data-treatment-detail-view="damar-yolu"] > .serum-grid-modern-v307 > .serum-card-premium-v570{grid-template-columns:minmax(0,1fr) !important;}
+  html body [data-treatment-detail-view="damar-yolu"] > .serum-grid-modern-v307 .serum-premium-photo-v570{height:185px !important;min-height:0 !important;}
+  html body [data-treatment-detail-view="damar-yolu"] > .serum-grid-modern-v307 .serum-premium-photo-v570 img{height:185px !important;min-height:0 !important;}
+}
+
+
+/* V784 — Serum listesi eskisi gibi, C vitamini detayinda metin solda / gorsel sagda. */
+/* Detay acilirken genel bolumun yanlislikla gorunmesine ek koruma. */
+html body [data-treatment-detail-view="damar-yolu"].serum-focus-v334 > .vascular-overview-v783,
+html body [data-treatment-detail-view="damar-yolu"].serum-focus-v334 > .injection-header-v71{
+  display:none !important;
+}
+/* Yalniz C vitamini detayinin girisi ters yerlesimli. */
+html body [data-treatment-detail-view="damar-yolu"] #vitaminCInfoPanelV236 > .vascular-detail-hero-v783 {
+  display:grid !important;
+  grid-template-columns:minmax(0,1.12fr) minmax(0,.88fr) !important;
+  align-items:stretch !important;
+  gap:18px !important;
+}
+html body [data-treatment-detail-view="damar-yolu"] #vitaminCInfoPanelV236 > .vascular-detail-hero-v783 > .vascular-hero-copy-v783 {
+  grid-column:1 !important;
+  grid-row:1 !important;
+}
+html body [data-treatment-detail-view="damar-yolu"] #vitaminCInfoPanelV236 > .vascular-detail-hero-v783 > .vascular-hero-image-v783 {
+  grid-column:2 !important;
+  grid-row:1 !important;
+}
+/* C vitamininin devamindaki aciklamalar, kaynaklar ve bilgi kutulari alt alta. */
+html body [data-treatment-detail-view="damar-yolu"] #vitaminCInfoPanelV236 > .vitamin-c-editorial-v234 {
+  box-sizing:border-box !important;
+  display:flex !important;
+  flex-direction:column !important;
+  align-items:stretch !important;
+  gap:16px !important;
+  grid-template-columns:none !important;
+}
+html body [data-treatment-detail-view="damar-yolu"] #vitaminCInfoPanelV236 > .vitamin-c-editorial-v234 > * {
+  box-sizing:border-box !important;
+  width:100% !important;
+  max-width:none !important;
+  min-width:0 !important;
+  flex:0 0 auto !important;
+}
+html body [data-treatment-detail-view="damar-yolu"] #vitaminCInfoPanelV236 .vitamin-c-link-panel-v234 {
+  display:grid !important;
+  grid-template-columns:minmax(0,1fr) !important;
+}
+@media(max-width:900px){
+  html body [data-treatment-detail-view="damar-yolu"] #vitaminCInfoPanelV236 > .vascular-detail-hero-v783 {
+    grid-template-columns:minmax(0,1fr) !important;
+  }
+  html body [data-treatment-detail-view="damar-yolu"] #vitaminCInfoPanelV236 > .vascular-detail-hero-v783 > .vascular-hero-copy-v783 {
+    grid-column:1 !important;
+    grid-row:1 !important;
+  }
+  html body [data-treatment-detail-view="damar-yolu"] #vitaminCInfoPanelV236 > .vascular-detail-hero-v783 > .vascular-hero-image-v783 {
+    grid-column:1 !important;
+    grid-row:2 !important;
+  }
+}
+
+
+/* V785 — Damar Yolu ana listesinde gorsel ustte, detayli bilgi altta. */
+html body [data-treatment-detail-view="damar-yolu"] > .serum-grid-modern-v307 {
+  display:grid !important;
+  grid-template-columns:repeat(2,minmax(0,1fr)) !important;
+  align-items:stretch !important;
+  gap:22px !important;
+}
+html body [data-treatment-detail-view="damar-yolu"] > .serum-grid-modern-v307 > .serum-card-premium-v570 {
+  display:flex !important;
+  flex-direction:column !important;
+  align-items:stretch !important;
+  min-width:0 !important;
+  min-height:0 !important;
+  height:auto !important;
+  border-radius:24px !important;
+}
+html body [data-treatment-detail-view="damar-yolu"] > .serum-grid-modern-v307 > .serum-card-premium-v570 > .serum-premium-photo-v570 {
+  display:block !important;
+  flex:none !important;
+  width:100% !important;
+  height:clamp(215px,22vw,305px) !important;
+  min-height:0 !important;
+  max-height:305px !important;
+  margin:0 !important;
+  padding:0 !important;
+  border-radius:0 !important;
+  aspect-ratio:auto !important;
+  overflow:hidden !important;
+  background:linear-gradient(180deg,#ecf7fd,#e4f2fa) !important;
+}
+html body [data-treatment-detail-view="damar-yolu"] > .serum-grid-modern-v307 > .serum-card-premium-v570 > .serum-premium-photo-v570 img {
+  display:block !important;
+  width:100% !important;
+  height:100% !important;
+  min-height:0 !important;
+  object-fit:contain !important;
+  object-position:center !important;
+}
+html body [data-treatment-detail-view="damar-yolu"] > .serum-grid-modern-v307 > .serum-card-premium-v570 > .serum-premium-content-v570 {
+  display:flex !important;
+  flex:1 1 auto !important;
+  flex-direction:column !important;
+  justify-content:flex-start !important;
+  min-height:0 !important;
+  min-width:0 !important;
+  width:100% !important;
+  margin:0 !important;
+  padding:22px 25px 24px !important;
+  gap:0 !important;
+  border-radius:0 !important;
+  background:#fff !important;
+}
+html body [data-treatment-detail-view="damar-yolu"] > .serum-grid-modern-v307 > .serum-card-premium-v570 h2 {
+  font-size:clamp(21px,1.7vw,27px) !important;
+  margin:0 0 12px !important;
+}
+html body [data-treatment-detail-view="damar-yolu"] > .serum-grid-modern-v307 > .serum-card-premium-v570 .serum-card-brief-v681 {
+  font-size:clamp(14px,1vw,16px) !important;
+  line-height:1.65 !important;
+  color:#496b82 !important;
+  margin:0 0 22px !important;
+  font-weight:500 !important;
+}
+html body [data-treatment-detail-view="damar-yolu"] > .serum-grid-modern-v307 > .serum-card-premium-v570 .serum-premium-button-v570 {
+  min-height:48px !important;
+  margin-top:auto !important;
+  font-size:15px !important;
+}
+/* Tum serum detaylarinda metin solda / gorsel sagda. */
+html body [data-treatment-detail-view="damar-yolu"] .vitamin-c-special-tab-v235 .vitamin-c-special-intro-v235.serum-title-only-v513.vascular-detail-hero-v783[data-vascular-serum-v783] {
+  display:grid !important;
+  grid-template-columns:minmax(0,1.10fr) minmax(0,.90fr) !important;
+  gap:18px !important;
+  align-items:stretch !important;
+}
+html body [data-treatment-detail-view="damar-yolu"] .vitamin-c-special-tab-v235 .vascular-detail-hero-v783[data-vascular-serum-v783] > .vascular-hero-copy-v783 {
+  grid-column:1 !important;
+  grid-row:1 !important;
+}
+html body [data-treatment-detail-view="damar-yolu"] .vitamin-c-special-tab-v235 .vascular-detail-hero-v783[data-vascular-serum-v783] > .vascular-hero-image-v783 {
+  grid-column:2 !important;
+  grid-row:1 !important;
+}
+/* Tum uygulama detaylarindaki devam aciklamalari tek sutunda. */
+html body [data-treatment-detail-view="damar-yolu"] .vitamin-c-special-tab-v235 .vitamin-c-subpanel-v236 > .vitamin-c-editorial-v234 {
+  box-sizing:border-box !important;
+  display:flex !important;
+  flex-direction:column !important;
+  align-items:stretch !important;
+  gap:16px !important;
+  grid-template-columns:none !important;
+}
+html body [data-treatment-detail-view="damar-yolu"] .vitamin-c-special-tab-v235 .vitamin-c-subpanel-v236 > .vitamin-c-editorial-v234 > * {
+  box-sizing:border-box !important;
+  width:100% !important;
+  max-width:none !important;
+  min-width:0 !important;
+  flex:0 0 auto !important;
+}
+@media(max-width:1120px) {
+  html body [data-treatment-detail-view="damar-yolu"] > .serum-grid-modern-v307 {grid-template-columns:repeat(2,minmax(0,1fr)) !important;}
+}
+@media(max-width:900px) {
+  html body [data-treatment-detail-view="damar-yolu"] .vitamin-c-special-tab-v235 .vitamin-c-special-intro-v235.serum-title-only-v513.vascular-detail-hero-v783[data-vascular-serum-v783] {
+    grid-template-columns:minmax(0,1fr) !important;
+  }
+  html body [data-treatment-detail-view="damar-yolu"] .vitamin-c-special-tab-v235 .vascular-detail-hero-v783[data-vascular-serum-v783] > .vascular-hero-copy-v783 {
+    grid-column:1 !important;
+    grid-row:1 !important;
+  }
+  html body [data-treatment-detail-view="damar-yolu"] .vitamin-c-special-tab-v235 .vascular-detail-hero-v783[data-vascular-serum-v783] > .vascular-hero-image-v783 {
+    grid-column:1 !important;
+    grid-row:2 !important;
+  }
+}
+@media(max-width:700px) {
+  html body [data-treatment-detail-view="damar-yolu"] > .serum-grid-modern-v307 {grid-template-columns:minmax(0,1fr) !important;gap:16px !important;}
+  html body [data-treatment-detail-view="damar-yolu"] > .serum-grid-modern-v307 > .serum-card-premium-v570 > .serum-premium-photo-v570 {height:230px !important;max-height:none !important;}
+  html body [data-treatment-detail-view="damar-yolu"] > .serum-grid-modern-v307 > .serum-card-premium-v570 > .serum-premium-content-v570 {padding:20px 18px 21px !important;}
+  html body [data-treatment-detail-view="damar-yolu"] > .serum-grid-modern-v307 > .serum-card-premium-v570 .serum-card-brief-v681 {font-size:14px !important;line-height:1.6 !important;}
+}
+
+/* V786 - Damar Yolu Uygulamalari: ana listede ilk satirda uc kompakt serum karti.
+   Yalniz liste kartlarini etkiler; serum detay sayfalari degismez. */
+@media (min-width: 1100px) {
+  html body [data-treatment-detail-view="damar-yolu"] > .serum-grid-modern-v307 {
+    grid-template-columns: repeat(3, minmax(0, 1fr)) !important;
+    gap: 16px !important;
+  }
+}
+@media (min-width: 701px) and (max-width: 1099px) {
+  html body [data-treatment-detail-view="damar-yolu"] > .serum-grid-modern-v307 {
+    grid-template-columns: repeat(2, minmax(0, 1fr)) !important;
+    gap: 15px !important;
+  }
+}
+html body [data-treatment-detail-view="damar-yolu"] > .serum-grid-modern-v307 > .serum-card-premium-v570 {
+  min-height: 0 !important;
+  height: auto !important;
+  border-radius: 19px !important;
+  overflow: hidden !important;
+}
+html body [data-treatment-detail-view="damar-yolu"] > .serum-grid-modern-v307 > .serum-card-premium-v570 > .serum-premium-photo-v570 {
+  height: clamp(130px, 11vw, 170px) !important;
+  min-height: 0 !important;
+  max-height: 170px !important;
+  flex: 0 0 auto !important;
+}
+html body [data-treatment-detail-view="damar-yolu"] > .serum-grid-modern-v307 > .serum-card-premium-v570 > .serum-premium-photo-v570 img {
+  width: 100% !important;
+  height: 100% !important;
+  min-height: 0 !important;
+  object-fit: contain !important;
+}
+html body [data-treatment-detail-view="damar-yolu"] > .serum-grid-modern-v307 > .serum-card-premium-v570 > .serum-premium-content-v570 {
+  padding: 15px 17px 17px !important;
+  gap: 0 !important;
+}
+html body [data-treatment-detail-view="damar-yolu"] > .serum-grid-modern-v307 > .serum-card-premium-v570 h2 {
+  font-size: clamp(18px, 1.35vw, 24px) !important;
+  margin: 0 0 8px !important;
+  line-height: 1.18 !important;
+}
+html body [data-treatment-detail-view="damar-yolu"] > .serum-grid-modern-v307 > .serum-card-premium-v570 .serum-card-brief-v681 {
+  font-size: 13px !important;
+  line-height: 1.45 !important;
+  margin: 0 0 13px !important;
+  overflow: visible !important;
+  -webkit-line-clamp: unset !important;
+  line-clamp: unset !important;
+}
+html body [data-treatment-detail-view="damar-yolu"] > .serum-grid-modern-v307 > .serum-card-premium-v570 .serum-premium-button-v570 {
+  min-height: 42px !important;
+  font-size: 13px !important;
+  padding: 9px 12px !important;
+}
+@media (max-width: 700px) {
+  html body [data-treatment-detail-view="damar-yolu"] > .serum-grid-modern-v307 {
+    grid-template-columns: minmax(0, 1fr) !important;
+    gap: 14px !important;
+  }
+  html body [data-treatment-detail-view="damar-yolu"] > .serum-grid-modern-v307 > .serum-card-premium-v570 > .serum-premium-photo-v570 {
+    height: 160px !important;
+    max-height: 160px !important;
+  }
+  html body [data-treatment-detail-view="damar-yolu"] > .serum-grid-modern-v307 > .serum-card-premium-v570 > .serum-premium-content-v570 {
+    padding: 15px 16px 17px !important;
+  }
+}
+
+
+/* V787 - İğneli uygulamalar: tüm özel detaylarda yazılar solda, görsel sağda. */
+.injection-view-v71 .injection-special-detail-v362 .injection-special-hero-v362 {
+  grid-template-columns: minmax(0, 1.15fr) minmax(0, .85fr) !important;
+}
+.injection-view-v71 .injection-special-detail-v362 .injection-special-hero-v362 > .injection-special-copy-v362 {
+  grid-column: 1 !important;
+  grid-row: 1 !important;
+  min-width: 0 !important;
+}
+.injection-view-v71 .injection-special-detail-v362 .injection-special-hero-v362 > .injection-special-media-v362 {
+  grid-column: 2 !important;
+  grid-row: 1 !important;
+  min-width: 0 !important;
+}
+@media (max-width: 900px) {
+  .injection-view-v71 .injection-special-detail-v362 .injection-special-hero-v362 {
+    grid-template-columns: minmax(0, 1fr) !important;
+  }
+  .injection-view-v71 .injection-special-detail-v362 .injection-special-hero-v362 > .injection-special-copy-v362 {
+    grid-column: 1 !important;
+    grid-row: 1 !important;
+  }
+  .injection-view-v71 .injection-special-detail-v362 .injection-special-hero-v362 > .injection-special-media-v362 {
+    grid-column: 1 !important;
+    grid-row: 2 !important;
+  }
+}
+
+
+/* ============== V788 | CIHAZ UYGULAMALARI TEDAVI ALANLARI DUZENI ============== */
+.device-detail-intro-v157{grid-template-columns:minmax(0,1.04fr) minmax(320px,.96fr)!important;gap:24px!important;align-items:stretch!important}
+.device-detail-intro-v157 .device-detail-intro-copy-v157{order:1!important;border-radius:30px!important;padding:34px 32px!important;justify-content:flex-start!important}
+.device-detail-intro-v157 .device-gallery-shell-v714{order:2!important;align-self:stretch!important;border-radius:28px!important;padding:16px!important}
+.device-detail-intro-v157 .device-detail-intro-copy-v157 h2{margin:16px 0 14px!important;font-size:clamp(28px,2.9vw,42px)!important;line-height:1.08!important}
+.device-detail-intro-v157 .device-detail-intro-copy-v157 p{font-size:16px!important;line-height:1.78!important;color:#5f778a!important}
+.device-detail-intro-v157 .device-detail-pills-v157{display:grid!important;grid-template-columns:1fr!important;gap:11px!important;margin-top:22px!important}
+.device-detail-intro-v157 .device-detail-pills-v157 span{display:flex!important;align-items:center!important;justify-content:flex-start!important;min-height:50px!important;padding:0 16px!important;border-radius:16px!important;background:linear-gradient(180deg,#f3fbff,#ffffff)!important;border:1px solid rgba(23,143,208,.14)!important;box-shadow:0 8px 22px rgba(17,74,111,.05)!important;font-size:14px!important;font-weight:800!important;color:#154f72!important}
+.device-detail-intro-v157 .device-detail-pills-v157 span::before{content:"•";display:inline-block;margin-right:10px;color:#1688c9;font-size:18px;line-height:1}
+.device-detail-intro-v157 .device-gallery-head-v714{padding:0 2px 4px!important}
+.device-detail-intro-v157 .device-gallery-grid-v714{grid-template-columns:1fr!important;gap:10px!important}
+.device-detail-intro-v157 .device-gallery-count-2-v714{grid-template-columns:1fr!important}
+.device-detail-intro-v157 .device-gallery-tile-v714{border-radius:18px!important;overflow:hidden!important}
+.device-detail-intro-v157 .device-gallery-tile-v714 img{aspect-ratio:4/3!important;object-fit:cover!important;background:#edf6fb!important}
+.device-detail-intro-v157 .device-gallery-count-1-v714 .device-gallery-tile-v714 img{aspect-ratio:4/3!important}
+.device-detail-intro-v157 .device-gallery-tile-v714 figcaption{min-height:0!important;padding:9px 11px!important;font-size:12px!important}
+@media (max-width:1040px){.device-detail-intro-v157{grid-template-columns:1fr!important}.device-detail-intro-v157 .device-detail-intro-copy-v157,.device-detail-intro-v157 .device-gallery-shell-v714{order:initial!important}.device-detail-intro-v157 .device-gallery-grid-v714{grid-template-columns:repeat(2,minmax(0,1fr))!important}.device-detail-intro-v157 .device-gallery-count-1-v714{grid-template-columns:1fr!important}}
+@media (max-width:700px){.device-detail-intro-v157 .device-detail-intro-copy-v157{padding:24px 20px!important;border-radius:24px!important}.device-detail-intro-v157 .device-gallery-shell-v714{padding:12px!important;border-radius:22px!important}.device-detail-intro-v157 .device-gallery-grid-v714{grid-template-columns:1fr!important}}
+
+
+/* V790 — Geleneksel Tedavi detayları: Tedavi Alanları ile aynı görsel düzen */
+html body .traditional-detail-view-v330 .v790-traditional-hero{
+  box-sizing:border-box!important;display:grid!important;grid-template-columns:minmax(0,1.2fr) minmax(320px,.96fr)!important;
+  gap:16px!important;align-items:stretch!important;width:100%!important;min-width:0!important;
+  margin:0 auto 24px!important;padding:0!important;background:transparent!important;border:0!important;
+  box-shadow:none!important;overflow:visible!important;scroll-margin-top:92px!important;
+}
+html body .traditional-detail-view-v330 .v790-traditional-hero-copy{
+  box-sizing:border-box!important;display:flex!important;flex-direction:column!important;justify-content:flex-start!important;
+  min-width:0!important;padding:clamp(24px,3vw,42px) clamp(20px,3vw,46px)!important;
+  border:1px solid #d7eaf4!important;border-top:5px solid #128ccb!important;border-radius:28px!important;
+  background:linear-gradient(145deg,#fff 0%,#f5fbff 100%)!important;box-shadow:0 18px 44px rgba(16,70,110,.07)!important;
+}
+html body .traditional-detail-view-v330 .v790-traditional-eyebrow{
+  display:inline-flex!important;align-self:flex-start!important;width:max-content!important;max-width:100%!important;
+  margin:0 0 12px!important;padding:7px 12px!important;border:1px solid #b9e1f5!important;
+  border-radius:999px!important;background:#ebf8ff!important;color:#0c86bd!important;
+  font-size:11px!important;line-height:1.1!important;font-weight:900!important;letter-spacing:.13em!important;
+}
+html body .traditional-detail-view-v330 .v790-traditional-hero h1{
+  margin:0 0 16px!important;color:#103c59!important;font-family:'Sora',Inter,Arial,sans-serif!important;
+  font-size:clamp(34px,4.1vw,68px)!important;line-height:1.07!important;letter-spacing:-.045em!important;font-weight:900!important;overflow-wrap:anywhere!important;
+}
+html body .traditional-detail-view-v330 .v790-traditional-lead{
+  margin:0 0 18px!important;color:#52738d!important;font-size:clamp(15px,1.06vw,18px)!important;
+  font-weight:450!important;line-height:1.72!important;
+}
+html body .traditional-detail-view-v330 .v790-traditional-highlights{
+  display:flex!important;flex-direction:column!important;gap:8px!important;margin-top:auto!important;
+  padding-top:15px!important;border-top:1px solid #d9eaf4!important;
+}
+html body .traditional-detail-view-v330 .v790-traditional-highlight{
+  box-sizing:border-box!important;display:flex!important;align-items:center!important;gap:12px!important;
+  min-width:0!important;padding:12px 14px!important;border:1px solid #e0edf5!important;border-radius:16px!important;
+  background:#f7fbfe!important;color:#315e7c!important;font-size:14px!important;line-height:1.5!important;font-weight:600!important;
+}
+html body .traditional-detail-view-v330 .v790-traditional-dot{
+  display:flex!important;flex:0 0 28px!important;align-items:center!important;justify-content:center!important;
+  width:28px!important;height:28px!important;border-radius:9px!important;background:#e4f5fd!important;color:#1393c8!important;font-size:15px!important;font-weight:900!important;
+}
+html body .traditional-detail-view-v330 .v790-traditional-image-wrap{
+  box-sizing:border-box!important;display:flex!important;margin:0!important;padding:12px!important;min-width:0!important;
+  min-height:340px!important;overflow:hidden!important;border:1px solid #b7dffc!important;
+  border-radius:28px!important;background:#fff!important;box-shadow:0 18px 44px rgba(16,70,110,.09)!important;
+}
+html body .traditional-detail-view-v330 .v790-traditional-image-wrap img{
+  display:block!important;width:100%!important;height:100%!important;min-height:340px!important;max-height:600px!important;
+  object-fit:cover!important;object-position:center!important;border-radius:21px!important;background:#e8f5fc!important;
+}
+/* Açıklamalar, değerlendirme başlıkları ve soru-cevaplar alt alta kalsın. */
+html body .traditional-detail-view-v330 .traditional-intro-grid-v167,
+html body .traditional-detail-view-v330 .traditional-benefit-grid-v167,
+html body .traditional-detail-view-v330 .traditional-faq-list-v167{
+  display:grid!important;grid-template-columns:minmax(0,1fr)!important;gap:14px!important;
+}
+html body .traditional-detail-view-v330 .traditional-intro-card-v167,
+html body .traditional-detail-view-v330 .traditional-benefit-grid-v167 article{
+  box-sizing:border-box!important;min-width:0!important;height:auto!important;min-height:0!important;padding:22px 24px!important;
+}
+@media(max-width:960px){
+ html body .traditional-detail-view-v330 .v790-traditional-hero{grid-template-columns:minmax(0,1fr)!important;gap:12px!important;}
+ html body .traditional-detail-view-v330 .v790-traditional-image-wrap{min-height:230px!important;}
+ html body .traditional-detail-view-v330 .v790-traditional-image-wrap img{height:clamp(240px,45vw,420px)!important;min-height:0!important;max-height:420px!important;}
+}
+@media(max-width:600px){
+ html body .traditional-detail-view-v330 .v790-traditional-hero{gap:10px!important;margin:0 auto 18px!important;}
+ html body .traditional-detail-view-v330 .v790-traditional-hero-copy{padding:23px 18px!important;border-radius:20px!important;}
+ html body .traditional-detail-view-v330 .v790-traditional-hero h1{font-size:clamp(27px,8vw,42px)!important;}
+ html body .traditional-detail-view-v330 .v790-traditional-lead{font-size:15px!important;line-height:1.66!important;}
+ html body .traditional-detail-view-v330 .v790-traditional-highlight{font-size:13px!important;padding:10px 12px!important;}
+ html body .traditional-detail-view-v330 .v790-traditional-image-wrap{padding:8px!important;border-radius:20px!important;min-height:200px!important;}
+ html body .traditional-detail-view-v330 .v790-traditional-image-wrap img{height:clamp(220px,55vw,320px)!important;border-radius:15px!important;}
+ html body .traditional-detail-view-v330 .traditional-intro-card-v167,html body .traditional-detail-view-v330 .traditional-benefit-grid-v167 article{padding:19px!important;}
+}
+
+
+/* V791 — Egzersiz detaylarında Ağrılar / Tedavi Alanları stili.
+   Üstte başlık; solda mevcut YouTube bağlantıları, sağda ilgili egzersiz görseli. */
+#generalHealthDetailPageV75 .exercise-showcase-v791{
+  display:grid !important;
+  grid-template-columns:minmax(0,1.15fr) minmax(330px,.85fr) !important;
+  gap:22px !important;
+  align-items:start !important;
+  width:100%;
+  margin:0 0 26px;
+}
+#generalHealthDetailPageV75 .exercise-showcase-main-v791{
+  min-width:0;
+  padding:24px;
+  background:linear-gradient(155deg,#ffffff 0%,#f5fbff 100%);
+  border:1px solid #cfe5f1;
+  border-top:5px solid #1696d0;
+  border-radius:25px;
+  box-shadow:0 14px 38px rgba(20,83,119,.06);
+}
+#generalHealthDetailPageV75 .exercise-showcase-title-v791{
+  padding:0 4px 18px;
+  margin:0;
+}
+#generalHealthDetailPageV75 .exercise-showcase-eyebrow-v791{
+  display:inline-flex;
+  margin:0 0 10px;
+  padding:7px 12px;
+  border:1px solid #b8dff3;
+  border-radius:999px;
+  background:#ebf7ff;
+  color:#087cb7;
+  font-size:11px;
+  font-weight:900;
+  letter-spacing:.12em;
+}
+#generalHealthDetailPageV75 .exercise-showcase-title-v791 h2{
+  margin:0;
+  color:#103d5d;
+  font-size:clamp(29px,3.5vw,50px);
+  font-weight:850;
+  line-height:1.1;
+  letter-spacing:-.035em;
+  overflow-wrap:break-word;
+}
+#generalHealthDetailPageV75 .exercise-showcase-v791 .exercise-links-panel-v680{
+  margin:0 !important;
+  padding:20px !important;
+  background:#f4faff;
+  border:1px solid #d8eaf5;
+  border-radius:19px;
+  box-shadow:none;
+}
+#generalHealthDetailPageV75 .exercise-showcase-v791 .exercise-links-heading-v680{
+  margin-bottom:16px;
+}
+#generalHealthDetailPageV75 .exercise-showcase-v791 .exercise-direct-list-v680{
+  grid-template-columns:1fr !important;
+  margin-bottom:16px;
+}
+#generalHealthDetailPageV75 .exercise-showcase-v791 .exercise-direct-link-v680{
+  min-height:80px;
+  padding:13px;
+}
+#generalHealthDetailPageV75 .exercise-showcase-v791 .exercise-topics-grid-v680{
+  grid-template-columns:repeat(2,minmax(0,1fr));
+}
+#generalHealthDetailPageV75 .exercise-showcase-image-v791{
+  margin:0;
+  padding:12px;
+  min-width:0;
+  border:1px solid #cae3f1;
+  border-radius:25px;
+  background:#fff;
+  box-shadow:0 16px 36px rgba(20,83,119,.08);
+  overflow:hidden;
+}
+#generalHealthDetailPageV75 .exercise-showcase-image-v791 img{
+  display:block;
+  width:100%;
+  height:clamp(290px,34vw,480px);
+  max-height:480px;
+  object-fit:cover;
+  object-position:center;
+  border-radius:17px;
+}
+@media(max-width:1000px){
+  #generalHealthDetailPageV75 .exercise-showcase-v791{
+    grid-template-columns:minmax(0,1fr) !important;
+  }
+  #generalHealthDetailPageV75 .exercise-showcase-image-v791 img{
+    height:clamp(210px,44vw,400px);
+  }
+}
+@media(max-width:600px){
+  #generalHealthDetailPageV75 .exercise-showcase-v791{gap:14px !important;}
+  #generalHealthDetailPageV75 .exercise-showcase-main-v791{padding:16px;border-radius:20px;}
+  #generalHealthDetailPageV75 .exercise-showcase-title-v791{padding:0 2px 14px;}
+  #generalHealthDetailPageV75 .exercise-showcase-title-v791 h2{font-size:clamp(25px,7vw,34px);}
+  #generalHealthDetailPageV75 .exercise-showcase-v791 .exercise-links-panel-v680{padding:14px !important;}
+  #generalHealthDetailPageV75 .exercise-showcase-v791 .exercise-topics-grid-v680{grid-template-columns:1fr;}
+  #generalHealthDetailPageV75 .exercise-showcase-image-v791{padding:8px;border-radius:20px;}
+  #generalHealthDetailPageV75 .exercise-showcase-image-v791 img{height:clamp(190px,58vw,280px);border-radius:13px;}
+}
+
+/* V793 — Egzersiz detay üst başlık: beyaz zemin ve genel header çakışması düzeltmesi */
+html body #generalHealthDetailPageV75 .exercise-detail-v669 .exercise-showcase-v791 .exercise-showcase-title-v791 {
+  position: relative !important;
+  inset: auto !important;
+  top: auto !important;
+  right: auto !important;
+  bottom: auto !important;
+  left: auto !important;
+  display: block !important;
+  width: 100% !important;
+  height: auto !important;
+  min-height: 0 !important;
+  max-width: 100% !important;
+  box-sizing: border-box !important;
+  padding: 4px 4px 20px !important;
+  margin: 0 !important;
+  background: #ffffff !important;
+  color: #103d5d !important;
+  border: 0 !important;
+  border-radius: 0 !important;
+  box-shadow: none !important;
+  transform: none !important;
+  z-index: auto !important;
+  text-align: left !important;
+  overflow: visible !important;
+}
+html body #generalHealthDetailPageV75 .exercise-detail-v669 .exercise-showcase-title-v791 h2 {
+  display: block !important;
+  position: static !important;
+  width: auto !important;
+  max-width: 100% !important;
+  height: auto !important;
+  margin: 0 !important;
+  padding: 0 !important;
+  color: #103d5d !important;
+  -webkit-text-fill-color: #103d5d !important;
+  background: none !important;
+  font-size: clamp(29px, 3.5vw, 50px) !important;
+  line-height: 1.14 !important;
+  overflow-wrap: anywhere !important;
+}
+html body #generalHealthDetailPageV75 .exercise-detail-v669 .exercise-showcase-main-v791 {
+  background: #ffffff !important;
+}
+@media (max-width: 600px) {
+  html body #generalHealthDetailPageV75 .exercise-detail-v669 .exercise-showcase-title-v791 h2 {
+    font-size: clamp(25px, 7vw, 34px) !important;
+  }
+}
+
+
+/* V797 - Estetiğe Bakış: 7 konunun görsel, başlık, açıklama ve detayları tek sayfada */
+article[data-treatment-detail-view="estetik"].aesthetic-flow-v797{
+  background:linear-gradient(180deg,#f4faff 0%,#ffffff 100%)!important;
+  color:#143e58!important;
+  min-height:100vh!important;
+  overflow:visible!important;
+  padding:24px 0 56px!important;
+}
+.aesthetic-flow-v797 .aesthetic-flow-wrap-v797{
+  width:min(1160px,calc(100% - 34px))!important;
+  max-width:1160px!important;
+  margin:0 auto!important;
+}
+.aesthetic-flow-v797 .aesthetic-flow-page-head-v797{
+  display:block!important;
+  position:relative!important;top:auto!important;left:auto!important;right:auto!important;bottom:auto!important;transform:none!important;
+  margin:0 0 24px!important;
+  padding:32px clamp(20px,4vw,48px)!important;
+  border:1px solid #d4e8f1!important;
+  border-radius:28px!important;
+  background:#ffffff!important;
+  box-shadow:0 12px 36px rgba(20,75,107,.055)!important;
+}
+.aesthetic-flow-v797 .aesthetic-flow-page-head-v797>span{
+  display:block!important;color:#087aaa!important;font-size:12px!important;font-weight:850!important;
+  letter-spacing:.14em!important;margin-bottom:12px!important;
+}
+.aesthetic-flow-v797 .aesthetic-flow-page-head-v797 h1{
+  margin:0 0 14px!important;color:#123d59!important;font-size:clamp(38px,5vw,64px)!important;
+  line-height:1.05!important;letter-spacing:-.045em!important;
+}
+.aesthetic-flow-v797 .aesthetic-flow-page-head-v797 p{
+  max-width:940px!important;margin:0!important;color:#567387!important;font-size:clamp(16px,1.5vw,19px)!important;line-height:1.7!important;
+}
+.aesthetic-flow-v797 .aesthetic-flow-list-v797{
+  display:flex!important;flex-direction:column!important;gap:26px!important;
+}
+.aesthetic-flow-v797 .aesthetic-flow-section-v797{
+  display:block!important;position:relative!important;visibility:visible!important;opacity:1!important;
+  width:100%!important;min-width:0!important;margin:0!important;padding:0 0 28px!important;
+  border:1px solid #d5e8f1!important;border-radius:28px!important;overflow:hidden!important;
+  background:#fff!important;box-shadow:0 14px 38px rgba(15,65,95,.07)!important;
+}
+.aesthetic-flow-v797 .aesthetic-flow-figure-v797{
+  display:block!important;position:relative!important;width:100%!important;height:clamp(215px,24vw,330px)!important;
+  min-height:0!important;margin:0!important;background:#e6f4f9!important;overflow:hidden!important;
+  border-bottom:1px solid #d5e8f1!important;
+}
+.aesthetic-flow-v797 .aesthetic-flow-figure-v797 img{
+  display:block!important;width:100%!important;height:100%!important;object-fit:cover!important;
+  object-position:center!important;max-width:none!important;border:0!important;
+}
+.aesthetic-flow-v797 .aesthetic-read-header-v528{
+  display:block!important;position:static!important;width:auto!important;max-width:none!important;
+  padding:clamp(20px,3.5vw,40px) clamp(20px,4vw,48px) 14px!important;
+  margin:0!important;min-height:0!important;transform:none!important;
+  color:#143e58!important;background:#ffffff!important;border:0!important;
+  border-radius:0!important;box-shadow:none!important;text-align:left!important;
+}
+.aesthetic-flow-v797 .aesthetic-flow-number-v797{
+  display:inline-flex!important;align-items:center!important;justify-content:center!important;
+  min-width:42px!important;height:36px!important;border-radius:12px!important;
+  background:#e5f5fe!important;border:1px solid #c5e8f9!important;color:#087fab!important;
+  font-size:15px!important;font-weight:900!important;margin-bottom:15px!important;
+}
+.aesthetic-flow-v797 .aesthetic-read-header-v528 .aesthetic-read-category-v528{
+  display:block!important;color:#25849f!important;font-size:11px!important;letter-spacing:.14em!important;
+  margin:0 0 12px!important;
+}
+.aesthetic-flow-v797 .aesthetic-read-header-v528 h2{
+  margin:0 0 12px!important;padding:0!important;max-width:none!important;
+  color:#103d5b!important;font-size:clamp(29px,4vw,48px)!important;line-height:1.12!important;
+  letter-spacing:-.035em!important;text-align:left!important;
+}
+.aesthetic-flow-v797 .aesthetic-read-subtitle-v528{
+  display:block!important;max-width:none!important;color:#1b607d!important;
+  font-size:clamp(17px,2vw,21px)!important;font-weight:750!important;line-height:1.5!important;
+  margin:0 0 12px!important;
+}
+.aesthetic-flow-v797 .aesthetic-read-intro-v528,
+.aesthetic-flow-v797 .aesthetic-read-header-v528 p{
+  color:#567387!important;font-size:16px!important;line-height:1.85!important;
+  text-align:left!important;
+}
+.aesthetic-flow-v797 .aesthetic-reading-grid-v528,
+.aesthetic-flow-v797 .aesthetic-faq-grid-v528{
+  display:grid!important;grid-template-columns:minmax(0,1fr)!important;
+  gap:13px!important;margin:10px clamp(20px,4vw,48px) 16px!important;
+  padding:0!important;width:auto!important;max-width:none!important;
+}
+/* İlk dört konunun alt başlıkları giriş başlığının içine yerleştirilmişti. */
+.aesthetic-flow-v797 .aesthetic-read-header-v528 .aesthetic-reading-grid-v528,
+.aesthetic-flow-v797 .aesthetic-read-header-v528 .aesthetic-faq-grid-v528{
+  margin:20px 0 12px!important;
+}
+.aesthetic-flow-v797 .aesthetic-chapter-v528,
+.aesthetic-flow-v797 .aesthetic-flow-question-v797{
+  display:block!important;min-height:0!important;margin:0!important;padding:20px 22px!important;
+  border:1px solid #dcebf3!important;background:#f7fbfd!important;
+  border-radius:18px!important;box-shadow:none!important;
+}
+.aesthetic-flow-v797 .aesthetic-chapter-v528 h3,
+.aesthetic-flow-v797 .aesthetic-flow-question-v797 h3{
+  color:#124965!important;font-size:clamp(17px,2vw,22px)!important;
+  line-height:1.32!important;margin:0 0 10px!important;
+}
+.aesthetic-flow-v797 .aesthetic-chapter-v528 p,
+.aesthetic-flow-v797 .aesthetic-flow-question-v797 p,
+.aesthetic-flow-v797 .aesthetic-chapter-v528 li{
+  color:#4d6c80!important;font-size:15px!important;line-height:1.8!important;
+}
+.aesthetic-flow-v797 .aesthetic-reading-footnote-v528,
+.aesthetic-flow-v797 .ae694-source-note{
+  margin:12px clamp(20px,4vw,48px) 0!important;padding:12px 16px!important;
+  border-radius:13px!important;font-size:13px!important;line-height:1.65!important;
+}
+.aesthetic-flow-v797 a{color:#0879ac!important;text-decoration:underline!important;text-underline-offset:3px!important}
+@media(max-width:700px){
+ article[data-treatment-detail-view="estetik"].aesthetic-flow-v797{padding:12px 0 32px!important}
+ .aesthetic-flow-v797 .aesthetic-flow-wrap-v797{width:calc(100% - 20px)!important}
+ .aesthetic-flow-v797 .aesthetic-flow-page-head-v797{padding:23px 18px!important;border-radius:20px!important}
+ .aesthetic-flow-v797 .aesthetic-flow-list-v797{gap:16px!important}
+ .aesthetic-flow-v797 .aesthetic-flow-section-v797{border-radius:20px!important;padding-bottom:20px!important}
+ .aesthetic-flow-v797 .aesthetic-flow-figure-v797{height:210px!important}
+ .aesthetic-flow-v797 .aesthetic-read-header-v528{padding:20px 18px 12px!important}
+ .aesthetic-flow-v797 .aesthetic-reading-grid-v528,
+ .aesthetic-flow-v797 .aesthetic-faq-grid-v528{margin:8px 18px 12px!important}
+ .aesthetic-flow-v797 .aesthetic-chapter-v528,
+ .aesthetic-flow-v797 .aesthetic-flow-question-v797{padding:17px 16px!important}
+ .aesthetic-flow-v797 .aesthetic-reading-footnote-v528,
+ .aesthetic-flow-v797 .ae694-source-note{margin-left:18px!important;margin-right:18px!important}
+}
+
+
+/* V798 - Estetiğe Bakış | Tedavi Alanları gibi sol yazı, sağ görsel, altta detaylar */
+article[data-treatment-detail-view="estetik"].aesthetic-flow-v797 .aesthetic-flow-wrap-v797{
+  width:min(1650px,calc(100% - 32px))!important;
+  max-width:1650px!important;
+}
+article[data-treatment-detail-view="estetik"].aesthetic-flow-v797 .aesthetic-flow-list-v797{
+  gap:24px!important;
+}
+article[data-treatment-detail-view="estetik"].aesthetic-flow-v797 .aesthetic-flow-section-v797{
+  padding:0 0 26px!important;
+  overflow:hidden!important;
+  border-radius:28px!important;
+}
+article[data-treatment-detail-view="estetik"] .aesthetic-flow-hero-v798{
+  display:grid!important;
+  grid-template-columns:minmax(0,1.08fr) minmax(0,.92fr)!important;
+  gap:0!important;
+  align-items:stretch!important;
+  min-width:0!important;
+  border-bottom:1px solid #d9e9f2!important;
+  background:linear-gradient(120deg,#ffffff 0%,#f5fbff 100%)!important;
+}
+article[data-treatment-detail-view="estetik"] .aesthetic-flow-hero-v798 > .aesthetic-read-header-v528{
+  order:1!important;
+  display:flex!important;
+  flex-direction:column!important;
+  justify-content:center!important;
+  position:relative!important;
+  inset:auto!important;
+  width:auto!important;
+  min-width:0!important;
+  max-width:100%!important;
+  margin:0!important;
+  padding:clamp(25px,3.5vw,54px)!important;
+  background:transparent!important;
+  border:0!important;
+  border-radius:0!important;
+  box-shadow:none!important;
+  text-align:left!important;
+}
+article[data-treatment-detail-view="estetik"] .aesthetic-flow-hero-v798 > .aesthetic-read-header-v528 h2{
+  font-size:clamp(30px,3.8vw,55px)!important;
+  line-height:1.1!important;
+  margin-bottom:14px!important;
+}
+article[data-treatment-detail-view="estetik"] .aesthetic-flow-hero-v798 > .aesthetic-read-header-v528 .aesthetic-read-intro-v528{
+  margin-top:4px!important;
+  margin-bottom:0!important;
+}
+article[data-treatment-detail-view="estetik"] .aesthetic-flow-hero-v798 > .aesthetic-flow-figure-v797{
+  order:2!important;
+  display:flex!important;
+  position:relative!important;
+  flex-direction:column!important;
+  align-self:stretch!important;
+  justify-content:center!important;
+  box-sizing:border-box!important;
+  width:100%!important;
+  height:auto!important;
+  min-height:300px!important;
+  max-height:560px!important;
+  margin:0!important;
+  padding:17px!important;
+  overflow:hidden!important;
+  border-left:1px solid #d9e9f2!important;
+  border-bottom:0!important;
+  border-radius:0!important;
+  background:#eff8fd!important;
+}
+article[data-treatment-detail-view="estetik"] .aesthetic-flow-hero-v798 .aesthetic-flow-figure-v797 img{
+  display:block!important;
+  flex:1 1 auto!important;
+  width:100%!important;
+  height:100%!important;
+  min-height:0!important;
+  max-height:100%!important;
+  margin:0!important;
+  object-fit:cover!important;
+  object-position:center!important;
+  border-radius:19px!important;
+  box-shadow:0 15px 36px rgba(23,77,111,.09)!important;
+}
+article[data-treatment-detail-view="estetik"] .aesthetic-flow-section-v797 > .aesthetic-reading-grid-v528,
+article[data-treatment-detail-view="estetik"] .aesthetic-flow-section-v797 > .aesthetic-faq-grid-v528{
+  display:grid!important;
+  grid-template-columns:minmax(0,1fr)!important;
+  gap:14px!important;
+  margin:25px clamp(22px,3.5vw,48px) 16px!important;
+  padding:0!important;
+}
+article[data-treatment-detail-view="estetik"] .aesthetic-flow-section-v797 > .ae639-sources{
+  margin:16px clamp(22px,3.5vw,48px)!important;
+}
+@media(max-width:950px){
+  article[data-treatment-detail-view="estetik"] .aesthetic-flow-hero-v798{
+    grid-template-columns:minmax(0,1fr)!important;
+  }
+  article[data-treatment-detail-view="estetik"] .aesthetic-flow-hero-v798 > .aesthetic-read-header-v528{
+    order:1!important;padding:28px!important;
+  }
+  article[data-treatment-detail-view="estetik"] .aesthetic-flow-hero-v798 > .aesthetic-flow-figure-v797{
+    order:2!important;min-height:250px!important;max-height:430px!important;
+    height:clamp(250px,48vw,420px)!important;
+    border-left:0!important;border-top:1px solid #d9e9f2!important;
+  }
+}
+@media(max-width:600px){
+  article[data-treatment-detail-view="estetik"].aesthetic-flow-v797 .aesthetic-flow-wrap-v797{
+    width:calc(100% - 20px)!important;
+  }
+  article[data-treatment-detail-view="estetik"] .aesthetic-flow-hero-v798 > .aesthetic-read-header-v528{
+    padding:22px 20px!important;
+  }
+  article[data-treatment-detail-view="estetik"] .aesthetic-flow-hero-v798 > .aesthetic-read-header-v528 h2{
+    font-size:clamp(28px,7.7vw,38px)!important;
+  }
+  article[data-treatment-detail-view="estetik"] .aesthetic-flow-hero-v798 > .aesthetic-flow-figure-v797{
+    min-height:200px!important;max-height:280px!important;height:230px!important;
+    padding:10px!important;
+  }
+  article[data-treatment-detail-view="estetik"] .aesthetic-flow-hero-v798 .aesthetic-flow-figure-v797 img{
+    border-radius:13px!important;
+  }
+  article[data-treatment-detail-view="estetik"] .aesthetic-flow-section-v797 > .aesthetic-reading-grid-v528,
+  article[data-treatment-detail-view="estetik"] .aesthetic-flow-section-v797 > .aesthetic-faq-grid-v528{
+    margin:16px 18px 12px!important;
+  }
+  article[data-treatment-detail-view="estetik"] .aesthetic-flow-section-v797 > .ae639-sources{
+    margin:14px 18px!important;
+  }
+}
+
+/* V798 son rötuş: giriş numarası küçük rozet olarak sol hizalı kalsın */
+article[data-treatment-detail-view="estetik"] .aesthetic-flow-hero-v798 .aesthetic-flow-number-v797{
+  align-self:flex-start!important;
+  flex:0 0 auto!important;
+  display:inline-flex!important;
+  width:auto!important;
+  min-width:42px!important;
+  max-width:max-content!important;
+  padding:0 12px!important;
+  margin-bottom:14px!important;
+}
+
+
+/* V799 - Bütüncül Estetik: dört yaşam evresini eksiksiz göster */
+article[data-treatment-detail-view="estetik"] #aestheticTopic01V797 .aesthetic-flow-hero-v798 .aesthetic-flow-figure-v797 img {
+    object-fit: contain !important;
+    object-position: center !important;
+    background: #e3eef8 !important;
+}
+
+
+/* V801 | Kullanıcının sağladığı cihaz fotoğrafları tam kadraj görünür */
+#deviceDetailPageV157 .device-gallery-tile-v714 img[src*="-v801.webp"] {
+  object-fit: contain !important;
+  object-position: center !important;
+  background: #eaf3f9 !important;
+}
+
+
+/* V802 - Cihaz detay hero arka planını tedavi alanları tarzına yaklaştır */
+.device-detail-page-v157{
+  background: linear-gradient(180deg, #f6fbff 0%, #ffffff 220px) !important;
+}
+.device-detail-page-hero-v157{
+  background:
+    radial-gradient(circle at 16% 84%, rgba(42,172,232,.10), transparent 24%),
+    radial-gradient(circle at 84% 16%, rgba(82,194,245,.08), transparent 22%),
+    linear-gradient(180deg, #f8fcff 0%, #eef7fc 58%, #ffffff 100%) !important;
+  border-bottom: 1px solid rgba(18,105,151,.10) !important;
+  box-shadow: inset 0 -1px 0 rgba(255,255,255,.92) !important;
+}
+.device-detail-page-hero-v157::before,
+.device-detail-page-hero-v157::after{
+  border-color: rgba(21,139,205,.10) !important;
+}
+.device-detail-page-hero-inner-v157 > span{
+  color:#1787c7 !important;
+}
+.device-detail-page-hero-inner-v157 h1{
+  color:#113f61 !important;
+  text-shadow:none !important;
+}
+.device-detail-breadcrumb-v157{
+  color:#6d8698 !important;
+}
+.device-detail-breadcrumb-v157 button{
+  color:#1787c7 !important;
+}
+.device-detail-breadcrumb-v157 strong{
+  color:#5f778a !important;
+}
+@media (max-width: 700px){
+  .device-detail-page-v157{
+    background: linear-gradient(180deg, #f7fbfe 0%, #ffffff 170px) !important;
+  }
+  .device-detail-page-hero-v157{
+    background:
+      radial-gradient(circle at 12% 88%, rgba(42,172,232,.09), transparent 26%),
+      radial-gradient(circle at 88% 10%, rgba(82,194,245,.08), transparent 24%),
+      linear-gradient(180deg, #f9fcff 0%, #eff8fd 60%, #ffffff 100%) !important;
+  }
+}
+
+/* V803 — Bilgi sayfası kartları, Tedavi Uygulamaları gibi eşit 3 sütun */
+/* Rehberlerin HTML grubu ve navigasyon davranışı korunur; yalnız görsel grid düzleştirilir. */
+html body #v744InfoPage .v744-grid > .v780-guide-collection {
+  display: contents !important;
+  grid-column: auto !important;
+}
+html body #v744InfoPage .v744-grid {
+  grid-template-columns: repeat(3, minmax(0, 1fr)) !important;
+  gap: 24px !important;
+  align-items: stretch !important;
+}
+html body #v744InfoPage .v744-grid .v744-card {
+  display: flex !important;
+  flex-direction: column !important;
+  grid-template-columns: none !important;
+  width: 100% !important;
+  height: 100% !important;
+  min-width: 0 !important;
+  min-height: 0 !important;
+  max-width: none !important;
+  align-items: stretch !important;
+  overflow: hidden !important;
+  border-radius: 25px !important;
+}
+html body #v744InfoPage .v744-grid .v744-photo {
+  display: block !important;
+  flex: 0 0 auto !important;
+  width: 100% !important;
+  height: 214px !important;
+  min-height: 0 !important;
+  max-height: none !important;
+}
+html body #v744InfoPage .v744-grid .v744-photo img {
+  width: 100% !important;
+  height: 100% !important;
+  object-fit: cover !important;
+  object-position: center !important;
+}
+html body #v744InfoPage .v744-grid .v744-content {
+  flex: 1 1 auto !important;
+  display: flex !important;
+  flex-direction: column !important;
+  align-items: flex-start !important;
+  justify-content: flex-start !important;
+  gap: 10px !important;
+  width: 100% !important;
+  min-width: 0 !important;
+  padding: 21px 25px 24px !important;
+  align-self: stretch !important;
+}
+html body #v744InfoPage .v744-grid .v744-content strong {
+  font-size: clamp(20px, 1.7vw, 26px) !important;
+}
+html body #v744InfoPage .v744-grid .v744-desc {
+  flex: 1 1 auto !important;
+  font-size: 15px !important;
+  line-height: 1.5 !important;
+}
+html body #v744InfoPage .v744-grid .v744-link {
+  margin-top: auto !important;
+  font-size: 14px !important;
+}
+@media (max-width: 1100px) {
+  html body #v744InfoPage .v744-grid {
+    grid-template-columns: repeat(2, minmax(0, 1fr)) !important;
+    gap: 18px !important;
+  }
+  html body #v744InfoPage .v744-grid .v744-photo { height: 180px !important; }
+}
+@media (max-width: 680px) {
+  html body #v744InfoPage .v744-grid {
+    grid-template-columns: minmax(0, 1fr) !important;
+    gap: 16px !important;
+  }
+  html body #v744InfoPage .v744-grid .v744-card { border-radius: 19px !important; }
+  html body #v744InfoPage .v744-grid .v744-photo { height: 170px !important; }
+  html body #v744InfoPage .v744-grid .v744-content {
+    padding: 17px 19px 20px !important;
+    gap: 8px !important;
+  }
+  html body #v744InfoPage .v744-grid .v744-content strong { font-size: 21px !important; }
+  html body #v744InfoPage .v744-grid .v744-desc { font-size: 14px !important; }
+}
+
+/* ============================================================
+   V804 — Fitoterapi bitki detay ekranı beyaz arka plan
+   Boswellia ve diğer bitki detaylarında dış arka plan sade beyaz.
+   ============================================================ */
+body.phyto-herb-detail-open-v351 #phytoHerbDetailV351,
+.phyto-herb-detail-v351,
+.phyto-herb-detail-v351 .phyto-herb-shell-v351{
+  background:#ffffff !important;
+  background-image:none !important;
+}
+
+body.phyto-herb-detail-open-v351 #phytoHerbDetailV351::before,
+body.phyto-herb-detail-open-v351 #phytoHerbDetailV351::after,
+.phyto-herb-detail-v351::before,
+.phyto-herb-detail-v351::after,
+.phyto-herb-detail-v351 .phyto-herb-shell-v351::before,
+.phyto-herb-detail-v351 .phyto-herb-shell-v351::after{
+  content:none !important;
+  display:none !important;
+}
+
+/* =============================================================
+   V805 | Ana sayfa mobil kadraj ve taşan hero kontrolleri
+   Masaüstü ve diğer sekmeler değişmez.
+   ============================================================= */
+@media (max-width: 760px) {
+  html body section#anasayfa.hero.hero-v31.hero-home-v85 {
+    width: 100% !important;
+    height: clamp(400px, 58svh, 510px) !important;
+    min-height: clamp(400px, 58svh, 510px) !important;
+    max-height: 510px !important;
+    overflow: hidden !important;
+  }
+  html body section#anasayfa.hero-home-v85 .hero-slider-v86,
+  html body section#anasayfa.hero-home-v85 .hero-slider-v86 > .hero-slide-v86,
+  html body section#anasayfa.hero-home-v85 .hero-slider-v86 > .doctor-slide-v86 {
+    width: 100% !important;
+    height: 100% !important;
+    min-height: 0 !important;
+    max-height: 100% !important;
+    overflow: hidden !important;
+  }
+  html body section#anasayfa.hero-home-v85 .doctor-slide-v86 img.doctor-slide-static-v668 {
+    position: absolute !important;
+    inset: 0 !important;
+    width: 100% !important;
+    height: 100% !important;
+    object-fit: cover !important;
+    object-position: 50% 36% !important;
+    transform: none !important;
+    filter: none !important;
+    animation: none !important;
+    opacity: 1 !important;
+  }
+  html body section#anasayfa.hero-home-v85 .doctor-slide-bottom-v86 {
+    position: absolute !important;
+    left: 50% !important;
+    right: auto !important;
+    bottom: 76px !important;
+    width: calc(100% - 30px) !important;
+    max-width: 440px !important;
+    height: auto !important;
+    min-height: 0 !important;
+    padding: 0 !important;
+    margin: 0 !important;
+    display: grid !important;
+    grid-template-columns: repeat(2, minmax(0,1fr)) !important;
+    justify-items: stretch !important;
+    align-items: center !important;
+    gap: 9px !important;
+    transform: translateX(-50%) !important;
+    opacity: 1 !important;
+    visibility: visible !important;
+    filter: none !important;
+    animation: none !important;
+    transition: none !important;
+    z-index: 30 !important;
+  }
+  html body section#anasayfa.hero-home-v85 .doctor-slide-bottom-v86 > #heroGeneralButtonV124,
+  html body section#anasayfa.hero-home-v85 .doctor-slide-bottom-v86 > #heroAboutButton {
+    position: relative !important;
+    top: auto !important;
+    right: auto !important;
+    bottom: auto !important;
+    left: auto !important;
+    width: 100% !important;
+    min-width: 0 !important;
+    max-width: 100% !important;
+    height: 46px !important;
+    min-height: 46px !important;
+    margin: 0 !important;
+    padding: 8px 10px !important;
+    display: flex !important;
+    align-items: center !important;
+    justify-content: center !important;
+    border-radius: 14px !important;
+    font-size: clamp(12px, 3.7vw, 15px) !important;
+    font-weight: 800 !important;
+    line-height: 1.2 !important;
+    white-space: nowrap !important;
+    overflow: hidden !important;
+    text-overflow: ellipsis !important;
+    text-align: center !important;
+    opacity: 1 !important;
+    visibility: visible !important;
+    filter: none !important;
+    transform: none !important;
+    animation: none !important;
+    transition: none !important;
+    box-shadow: 0 8px 24px rgba(8,38,59,.18) !important;
+  }
+  html body section#anasayfa.hero-home-v85 .doctor-slide-bottom-v86 > #heroGeneralButtonV124 {
+    background: linear-gradient(135deg,#f63f71,#e71c55) !important;
+    color: #fff !important;
+    border: 1px solid rgba(255,255,255,.28) !important;
+  }
+  html body section#anasayfa.hero-home-v85 .doctor-slide-bottom-v86 > #heroAboutButton {
+    background: rgba(250,254,255,.94) !important;
+    color: #133e58 !important;
+    border: 1px solid rgba(255,255,255,.88) !important;
+    backdrop-filter: blur(12px) !important;
+    -webkit-backdrop-filter: blur(12px) !important;
+  }
+  html body section#anasayfa.hero-home-v85 .doctor-slide-bottom-v86 > #heroAboutButton::before,
+  html body section#anasayfa.hero-home-v85 .doctor-slide-bottom-v86 > #heroAboutButton::after {
+    content: none !important;
+    display: none !important;
+  }
+  html body section#anasayfa.hero-home-v85 .home-social-dock-v132 {
+    position: absolute !important;
+    left: 50% !important;
+    right: auto !important;
+    bottom: 13px !important;
+    width: max-content !important;
+    max-width: calc(100% - 24px) !important;
+    padding: 5px !important;
+    margin: 0 !important;
+    gap: clamp(3px, 1vw, 7px) !important;
+    transform: translateX(-50%) !important;
+    opacity: 1 !important;
+    filter: none !important;
+    z-index: 31 !important;
+  }
+  html body section#anasayfa.hero-home-v85 .home-social-dock-v132 .home-social-icon-v132 {
+    flex: 0 0 39px !important;
+    width: 39px !important;
+    height: 39px !important;
+    min-width: 0 !important;
+  }
+  html body section#anasayfa.hero-home-v85 .hero-slider-arrow-v86 {
+    top: 42% !important;
+    width: 39px !important;
+    height: 39px !important;
+    z-index: 15 !important;
+  }
+  html body.global-home-open-v408 > .mobile-action-bar {
+    display: none !important;
+    visibility: hidden !important;
+  }
+}
