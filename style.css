@@ -13724,12 +13724,12 @@ body.info-guide-open-v143 #infoGuidePageV143 .info-guide-breadcrumb-v225{gap:10p
 #conditionDiseasePageV246 > header.treatment-page-title-v735.v781-disease-intro {
   box-sizing:border-box !important;
   display:grid !important;
-  grid-template-columns:minmax(0, 1.22fr) minmax(320px, .96fr) !important;
+  grid-template-columns:minmax(0, 1.16fr) minmax(320px, .84fr) !important;
   align-items:stretch !important;
   justify-content:stretch !important;
-  gap:16px !important;
-  width:min(1840px, calc(100% - 32px)) !important;
-  max-width:1840px !important;
+  gap:18px !important;
+  width:min(1540px, calc(100% - 96px)) !important;
+  max-width:1540px !important;
   height:auto !important;
   min-height:0 !important;
   margin:22px auto 22px !important;
@@ -13864,6 +13864,7 @@ body.info-guide-open-v143 #infoGuidePageV143 .info-guide-breadcrumb-v225{gap:10p
  #conditionDiseasePageV246 > header.treatment-page-title-v735.v781-disease-intro {
    grid-template-columns:minmax(0,1fr) !important;
    gap:12px !important;
+   width:min(1040px, calc(100% - 32px)) !important;
  }
  .v781-disease-intro .v781-disease-image-wrap{min-height:230px !important;}
  .v781-disease-intro .v781-disease-image-wrap img{height:clamp(240px,45vw,420px) !important;min-height:0 !important;max-height:420px !important;}
@@ -15657,3 +15658,703 @@ html body #v548PremiumNav .v548-header-actions > button.v548-appointment > span 
   }
 }
 /* V813 | MOBIL ZOOM KISITLAMASI SON */
+
+
+/* ===============================================================
+   V814 | ESTETIGE BAKIS: KOMPAKT SOL BASLIK + SAGDA YAS GORSELI
+   Yalnizca estetik sayfasinin ust baslik kartina uygulanir.
+   Ilk bolum ve diger kartlar, tipografi ve tum diger sayfalar aynen kalir.
+   =============================================================== */
+article[data-treatment-detail-view="estetik"].aesthetic-flow-v797
+  .aesthetic-flow-page-head-v797 {
+    display: grid !important;
+    grid-template-columns: minmax(0, 0.94fr) minmax(0, 1.06fr) !important;
+    align-items: center !important;
+    gap: clamp(16px, 2.3vw, 38px) !important;
+    padding: clamp(20px, 2.3vw, 34px) !important;
+    min-height: 0 !important;
+    overflow: hidden !important;
+    background: linear-gradient(115deg, #ffffff 0%, #f8fcff 100%) !important;
+}
+article[data-treatment-detail-view="estetik"]
+  .aesthetic-flow-heading-copy-v814 {
+    min-width: 0;
+    align-self: center;
+}
+article[data-treatment-detail-view="estetik"]
+  .aesthetic-flow-heading-copy-v814 > span {
+    display: block !important;
+    color: #087aaa !important;
+    font-size: clamp(11px, 1vw, 13px) !important;
+    font-weight: 750 !important;
+    letter-spacing: .13em !important;
+    margin-bottom: 12px !important;
+}
+article[data-treatment-detail-view="estetik"]
+  .aesthetic-flow-heading-copy-v814 > h1 {
+    margin: 0 0 12px !important;
+    color: #123d59 !important;
+    font-size: clamp(38px, 3.6vw, 58px) !important;
+    line-height: 1.05 !important;
+    letter-spacing: -.025em !important;
+}
+article[data-treatment-detail-view="estetik"]
+  .aesthetic-flow-heading-copy-v814 > p {
+    max-width: 52ch !important;
+    margin: 0 !important;
+    color: #567387 !important;
+    font-size: clamp(15px, 1.12vw, 17px) !important;
+    line-height: 1.65 !important;
+}
+article[data-treatment-detail-view="estetik"]
+  .aesthetic-flow-heading-image-v814 {
+    display: block;
+    width: 100%;
+    min-width: 0;
+    margin: 0 !important;
+    overflow: hidden;
+    border: 1px solid #e0edf4;
+    border-radius: 22px;
+    background: #eaf3f9;
+    aspect-ratio: 1.76 / 1;
+}
+article[data-treatment-detail-view="estetik"]
+  .aesthetic-flow-heading-image-v814 > img {
+    display: block;
+    width: 100% !important;
+    height: 100% !important;
+    object-fit: cover !important;
+    object-position: center center !important;
+    border-radius: 0 !important;
+}
+@media (max-width: 900px) {
+  article[data-treatment-detail-view="estetik"].aesthetic-flow-v797
+    .aesthetic-flow-page-head-v797 {
+      grid-template-columns: minmax(0, 1fr) !important;
+      gap: 20px !important;
+      padding: 22px !important;
+    }
+  article[data-treatment-detail-view="estetik"]
+    .aesthetic-flow-heading-image-v814 {
+      border-radius: 17px;
+    }
+  article[data-treatment-detail-view="estetik"]
+    .aesthetic-flow-heading-copy-v814 > h1 {
+      font-size: clamp(36px, 7.6vw, 52px) !important;
+    }
+}
+@media (max-width: 600px) {
+  article[data-treatment-detail-view="estetik"].aesthetic-flow-v797
+    .aesthetic-flow-page-head-v797 {
+      padding: 19px 16px !important;
+      gap: 16px !important;
+    }
+  article[data-treatment-detail-view="estetik"]
+    .aesthetic-flow-heading-copy-v814 > span {
+      font-size: 11px !important;
+      margin-bottom: 9px !important;
+    }
+  article[data-treatment-detail-view="estetik"]
+    .aesthetic-flow-heading-copy-v814 > h1 {
+      font-size: clamp(34px, 9vw, 44px) !important;
+      margin-bottom: 9px !important;
+    }
+  article[data-treatment-detail-view="estetik"]
+    .aesthetic-flow-heading-copy-v814 > p {
+      font-size: 15px !important;
+      line-height: 1.6 !important;
+    }
+}
+/* V814 | ESTETIGE BAKIS BASLIK DUZENI SON */
+
+
+/* =========================================================
+   V815 | ESTETIGE BAKIS: TEK YAS GORSELI / ILK KARTTA METIN
+   Sadece birinci estetik konu kartinin ikinci sutununu etkiler.
+   Ustteki V814 gorseli, diger konu kartlari ve mobil duzen korunur.
+   ========================================================= */
+article[data-treatment-detail-view="estetik"]
+  #aestheticTopic01V797 .aesthetic-flow-hero-v798 > .aesthetic-flow-text-panel-v815 {
+  order: 2 !important;
+  display: flex !important;
+  flex-direction: column !important;
+  align-items: flex-start !important;
+  justify-content: center !important;
+  box-sizing: border-box !important;
+  min-width: 0 !important;
+  width: 100% !important;
+  padding: clamp(26px, 3.3vw, 54px) !important;
+  margin: 0 !important;
+  border-left: 1px solid #d9e9f2 !important;
+  background: linear-gradient(125deg, #f3f9fd 0%, #eaf5fb 100%) !important;
+}
+article[data-treatment-detail-view="estetik"]
+  #aestheticTopic01V797 .aesthetic-flow-text-eyebrow-v815 {
+  display: block !important;
+  margin: 0 0 16px !important;
+  color: #0e81b2 !important;
+  font-size: clamp(11px, .85vw, 13px) !important;
+  font-family: "Manrope", "Inter", "Segoe UI", Arial, sans-serif !important;
+  font-weight: 750 !important;
+  letter-spacing: .12em !important;
+  line-height: 1.6 !important;
+}
+article[data-treatment-detail-view="estetik"]
+  #aestheticTopic01V797 .aesthetic-flow-text-panel-v815 .aesthetic-read-intro-v528 {
+  display: block !important;
+  margin: 0 !important;
+  max-width: 62ch !important;
+  color: #486b80 !important;
+  font-family: "Manrope", "Inter", "Segoe UI", Arial, sans-serif !important;
+  font-size: clamp(15px, 1.05vw, 17px) !important;
+  font-weight: 450 !important;
+  line-height: 1.82 !important;
+  text-align: left !important;
+}
+@media (max-width: 950px) {
+  article[data-treatment-detail-view="estetik"]
+    #aestheticTopic01V797 .aesthetic-flow-hero-v798 > .aesthetic-flow-text-panel-v815 {
+    border-left: 0 !important;
+    border-top: 1px solid #d9e9f2 !important;
+    padding: 26px 28px !important;
+  }
+}
+@media (max-width: 600px) {
+  article[data-treatment-detail-view="estetik"]
+    #aestheticTopic01V797 .aesthetic-flow-hero-v798 > .aesthetic-flow-text-panel-v815 {
+    padding: 22px 18px !important;
+  }
+  article[data-treatment-detail-view="estetik"]
+    #aestheticTopic01V797 .aesthetic-flow-text-panel-v815 .aesthetic-read-intro-v528 {
+    font-size: 15px !important;
+    line-height: 1.72 !important;
+  }
+}
+/* V815 | ESTETIGE BAKIS TEK GORSEL SON */
+
+
+/* V816 | MOBIL TEDAVI ALANLARI VE AGRI: GORSEL ONCE, METIN SONRA
+   Tedavi Alanlarindaki 8 hastalik girisinde medya ustte, aciklamalar altta.
+   Agri detaylarinin Genel Bakis panelinde de ayni akisi kullan.
+   Yalnizca mobil/tablet; masaustu ve diger sayfalar degismez. */
+@media (max-width: 960px) {
+  /* Tedavi Alanlari: Ankilozan, Romatoid ve diger hastaliklarin ortak girisi */
+  #ankilozanFaqSectionV85 > header.treatment-page-title-v735.v781-disease-intro,
+  #romatoidFaqSectionV198 > header.treatment-page-title-v735.v781-disease-intro,
+  #conditionDiseasePageV246 > header.treatment-page-title-v735.v781-disease-intro {
+    display: grid !important;
+    grid-template-columns: minmax(0, 1fr) !important;
+    grid-template-areas: "v816-media" "v816-copy" !important;
+    align-items: start !important;
+  }
+  #ankilozanFaqSectionV85 > header.treatment-page-title-v735.v781-disease-intro > .v781-disease-image-wrap,
+  #romatoidFaqSectionV198 > header.treatment-page-title-v735.v781-disease-intro > .v781-disease-image-wrap,
+  #conditionDiseasePageV246 > header.treatment-page-title-v735.v781-disease-intro > .v781-disease-image-wrap {
+    grid-area: v816-media !important;
+    width: 100% !important;
+  }
+  #ankilozanFaqSectionV85 > header.treatment-page-title-v735.v781-disease-intro > .treatment-page-title-v735-copy,
+  #romatoidFaqSectionV198 > header.treatment-page-title-v735.v781-disease-intro > .treatment-page-title-v735-copy,
+  #conditionDiseasePageV246 > header.treatment-page-title-v735.v781-disease-intro > .treatment-page-title-v735-copy {
+    grid-area: v816-copy !important;
+    width: 100% !important;
+  }
+  /* Agri detaylari: Genel Bakis fotografi aciklama kartlarinin uzerinde */
+  #painFullDetailPageV215.pain-full-detail-page-v417 .pain-overview-hero-v219 {
+    display: grid !important;
+    grid-template-columns: minmax(0, 1fr) !important;
+    grid-template-areas: "media" "copy" !important;
+  }
+  #painFullDetailPageV215.pain-full-detail-page-v417 .pain-overview-media-v219 {
+    grid-area: media !important;
+  }
+  #painFullDetailPageV215.pain-full-detail-page-v417 .pain-overview-copy-v219 {
+    grid-area: copy !important;
+  }
+}
+/* V816 | MOBIL GORSEL METIN SIRALAMASI SON */
+
+
+/* ============================================================
+   V817 | TEDAVI ALANLARI — OSTEOPATI ILE AYNI ICERIK DILI
+   8 hastaligin klinik girisi, numarali konu kartlari ve SSS'si.
+   Metinler / gorseller / rota ve menu davranisi korunur.
+   ============================================================ */
+#ankilozanFaqSectionV85, #romatoidFaqSectionV198, #conditionDiseasePageV246 {
+  --v817-blue:#118bc6;
+  --v817-ink:#123d5b;
+  --v817-border:#c4e3f2;
+  --v817-paper:#f6fbff;
+}
+/* Osteopati ana bilgilendirme kutusunun ayni mimarisi. */
+#ankilozanFaqSectionV85 > .v817-clinical-overview,
+#romatoidFaqSectionV198 > .v817-clinical-overview,
+#conditionDiseasePageV246 > .v817-clinical-overview {
+  box-sizing:border-box !important;
+  position:relative !important;
+  display:grid !important;
+  gap:24px !important;
+  width:min(1600px,calc(100% - 34px)) !important;
+  margin:12px auto 28px !important;
+  padding:clamp(24px,3vw,42px) !important;
+  background:radial-gradient(circle at 100% 0%,rgba(55,183,229,.13),transparent 38%),linear-gradient(145deg,#fff 0%,#f5fbfe 65%,#eef8fc 100%) !important;
+  border:1px solid rgba(66,168,218,.28) !important;
+  border-radius:30px !important;
+  box-shadow:0 20px 45px rgba(16,70,101,.08) !important;
+  overflow:hidden !important;
+}
+.v817-clinical-lead {max-width:1100px;position:relative;z-index:1}
+.v817-clinical-kicker {
+  display:inline-flex;align-items:center;gap:12px;
+  margin:0 0 14px;color:#0c8dcc;font:800 11px/1.4 Manrope,Inter,sans-serif;
+  letter-spacing:.15em;
+}
+.v817-clinical-kicker::before {content:"";height:9px;width:9px;border-radius:50%;background:#28b6e7;box-shadow:0 0 0 7px rgba(40,182,231,.12)}
+.v817-clinical-lead h2 {
+  margin:0 0 16px;color:#103d5b;
+  font-family:"Bodoni Moda",Georgia,serif !important;
+  font-weight:600;font-size:clamp(30px,3vw,48px);line-height:1.13;
+  letter-spacing:-.01em;overflow-wrap:break-word;
+}
+.v817-clinical-lead p {max-width:1100px;margin:0;color:#58768b;font:500 clamp(14px,1.18vw,17px)/1.78 Manrope,Inter,sans-serif}
+.v817-clinical-grid {display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:16px;min-width:0}
+.v817-clinical-card {
+  box-sizing:border-box;display:grid;grid-template-columns:44px minmax(0,1fr);align-items:start;gap:15px;
+  min-width:0;padding:21px 19px;border:1px solid rgba(76,171,214,.24);
+  border-radius:22px;background:rgba(255,255,255,.82);box-shadow:0 12px 28px rgba(21,76,108,.05);
+}
+.v817-clinical-index {display:grid;place-items:center;width:44px;height:44px;border-radius:15px;background:linear-gradient(145deg,#1fb5e9,#0b88cf);color:#fff;font:850 14px/1 Manrope,Inter,sans-serif}
+.v817-clinical-card small {display:block;color:#0d91cb;margin:2px 0 8px;font:800 11px/1.3 Manrope,Inter,sans-serif;letter-spacing:.13em}
+.v817-clinical-card h3 {margin:0 0 8px;color:#143f5c;font:700 19px/1.24 "Bodoni Moda",Georgia,serif !important}
+.v817-clinical-card p {margin:0;color:#5e798d;font:500 13.5px/1.65 Manrope,Inter,sans-serif}
+
+/* Osteopatideki manuel konu kartlari ile ayni gorunum ve dikey akis. */
+#ankilozanFaqSectionV85.treatment-main-v729 > #ankilozanDetailHubV196,
+#romatoidFaqSectionV198.treatment-main-v729 > #romatoidDetailHubV198,
+#conditionDiseasePageV246.treatment-main-v729 > #conditionFlowV729 {
+  box-sizing:border-box !important;width:min(1600px,calc(100% - 34px)) !important;
+  max-width:1600px !important;margin:0 auto 26px !important;
+}
+#ankilozanFaqSectionV85.treatment-main-v729 #ankilozanDetailHubV196 .ankilozan-detail-panels-v196,
+#romatoidFaqSectionV198.treatment-main-v729 #romatoidDetailHubV198 .ra-detail-panels-v198,
+#conditionDiseasePageV246.treatment-main-v729 #conditionFlowV729 {
+  display:grid !important;grid-template-columns:minmax(0,1fr) !important;gap:22px !important;
+}
+#ankilozanFaqSectionV85.treatment-main-v729 [data-ank-panel-v196],
+#romatoidFaqSectionV198.treatment-main-v729 [data-ra-panel-v198],
+#conditionDiseasePageV246.treatment-main-v729 .treatment-main-card-v729 {
+  box-sizing:border-box !important;display:block !important;
+  min-width:0 !important;width:100% !important;margin:0 !important;
+  padding:clamp(18px,2.25vw,30px) !important;
+  border:1px solid var(--v817-border) !important;
+  border-radius:26px !important;
+  background:linear-gradient(145deg,#fff 0%,#f8fcff 100%) !important;
+  box-shadow:0 14px 36px rgba(21,84,119,.07) !important;
+  animation:none !important;
+  scroll-margin-top:112px;
+}
+#ankilozanFaqSectionV85.treatment-main-v729 .ankilozan-detail-panel-copy-v196,
+#romatoidFaqSectionV198.treatment-main-v729 .ankilozan-detail-panel-copy-v196 {
+  max-width:none !important;margin:0 0 17px !important;
+  padding:0 0 19px !important;border-bottom:1px solid rgba(24,133,194,.15);
+}
+#ankilozanFaqSectionV85 .ankilozan-detail-kicker-v196,
+#romatoidFaqSectionV198 .ankilozan-detail-kicker-v196,
+#conditionDiseasePageV246 .treatment-main-kicker-v729 {
+  color:#0c8dcc !important;font:800 11px/1.5 Manrope,Inter,sans-serif !important;
+  letter-spacing:.15em !important;
+}
+#ankilozanFaqSectionV85.treatment-main-v729 .ankilozan-detail-panel-copy-v196 h3,
+#romatoidFaqSectionV198.treatment-main-v729 .ankilozan-detail-panel-copy-v196 h3,
+#conditionDiseasePageV246 .treatment-main-heading-v729 h2 {
+  margin:8px 0 10px !important;color:#123e5a !important;
+  font:600 clamp(25px,2.5vw,36px)/1.16 "Bodoni Moda",Georgia,serif !important;
+  letter-spacing:0 !important;overflow-wrap:break-word;
+}
+#ankilozanFaqSectionV85.treatment-main-v729 .ankilozan-detail-panel-copy-v196 > p,
+#romatoidFaqSectionV198.treatment-main-v729 .ankilozan-detail-panel-copy-v196 > p,
+#conditionDiseasePageV246 .treatment-main-description-v729 {
+  margin:0 !important;color:#59778c !important;font:500 clamp(14px,1.1vw,16px)/1.75 Manrope,Inter,sans-serif !important;
+}
+#ankilozanFaqSectionV85.treatment-main-v729 .ankilozan-detail-grid-v196,
+#romatoidFaqSectionV198.treatment-main-v729 .ankilozan-detail-grid-v196,
+#conditionDiseasePageV246 .treatment-main-items-v729 {
+  display:grid !important;grid-template-columns:repeat(2,minmax(0,1fr)) !important;gap:15px !important;
+}
+#ankilozanFaqSectionV85.treatment-main-v729 .ankilozan-detail-mini-v196,
+#romatoidFaqSectionV198.treatment-main-v729 .ankilozan-detail-mini-v196,
+#conditionDiseasePageV246 .treatment-main-item-v729 {
+  box-sizing:border-box !important;min-height:0 !important;padding:21px !important;
+  border:1px solid #d8eaf5 !important;border-radius:20px !important;
+  background:#f3f9fd !important;box-shadow:none !important;
+}
+#ankilozanFaqSectionV85.treatment-main-v729 .ankilozan-detail-mini-v196 strong,
+#romatoidFaqSectionV198.treatment-main-v729 .ankilozan-detail-mini-v196 strong,
+#conditionDiseasePageV246 .treatment-main-item-v729 strong {
+  display:block;color:#173f5b;font:700 19px/1.3 "Bodoni Moda",Georgia,serif !important;margin:0 0 8px;
+}
+#ankilozanFaqSectionV85.treatment-main-v729 .ankilozan-detail-mini-v196 p,
+#romatoidFaqSectionV198.treatment-main-v729 .ankilozan-detail-mini-v196 p,
+#conditionDiseasePageV246 .treatment-main-item-v729 p {
+  color:#58768c !important;font:500 14.5px/1.73 Manrope,Inter,sans-serif !important;margin:0 !important;
+}
+#ankilozanFaqSectionV85.treatment-main-v729 .ankilozan-detail-note-v196,
+#romatoidFaqSectionV198.treatment-main-v729 .ankilozan-detail-note-v196,
+#conditionDiseasePageV246 .treatment-main-note-v729 {
+  margin-top:18px !important;padding:16px 19px !important;
+  border:1px solid #c8e6f8 !important;border-radius:17px !important;
+  background:#eaf7fc !important;color:#3d657c !important;
+  font:500 14px/1.7 Manrope,Inter,sans-serif !important;
+}
+/* Osteopatideki gibi solda numara, sagda baslik. */
+#ankilozanFaqSectionV85.treatment-main-v729 [data-ank-panel-v196] .ankilozan-detail-panel-copy-v196,
+#romatoidFaqSectionV198.treatment-main-v729 [data-ra-panel-v198] .ankilozan-detail-panel-copy-v196 {
+  position:relative !important;padding-left:77px !important;min-height:60px;
+}
+#ankilozanFaqSectionV85.treatment-main-v729 [data-ank-panel-v196] .ankilozan-detail-panel-copy-v196::before,
+#romatoidFaqSectionV198.treatment-main-v729 [data-ra-panel-v198] .ankilozan-detail-panel-copy-v196::before {
+  content:attr(data-v817-number);position:absolute;left:0;top:0;
+  display:grid;place-items:center;width:57px;height:57px;
+  border-radius:17px;background:linear-gradient(145deg,#1eaee1,#0787c6);
+  color:white;font:800 19px/1 Manrope,Inter,sans-serif;
+}
+#conditionDiseasePageV246 .treatment-main-heading-v729 {
+  padding-bottom:19px !important;border-bottom:1px solid rgba(24,133,194,.15);
+}
+/* Soru-cevap kartlari: Osteopati'deki iki sutunlu acik bilgi akisi. */
+#ankilozanFaqSectionV85.treatment-main-v729 > .ankilozan-faq-inner-v85,
+#romatoidFaqSectionV198.treatment-main-v729 > .ra-faq-shell-v198,
+#conditionDiseasePageV246.treatment-main-v729 > .condition-faq-inner-v249 {
+  box-sizing:border-box !important;display:block !important;
+  width:min(1600px,calc(100% - 34px)) !important;margin:0 auto 26px !important;
+  padding:clamp(20px,2.5vw,34px) !important;
+  border:1px solid #c4e3f2 !important;border-radius:28px !important;
+  background:linear-gradient(145deg,#fff,#f6fbff) !important;
+  box-shadow:0 14px 36px rgba(21,84,119,.06) !important;
+}
+#ankilozanFaqSectionV85.treatment-main-v729 .ankilozan-faq-list-v85,
+#romatoidFaqSectionV198.treatment-main-v729 .ra-faq-list-v198,
+#conditionDiseasePageV246.treatment-main-v729 .condition-faq-inner-v249 .ankilozan-faq-list-v85 {
+  display:grid !important;grid-template-columns:repeat(2,minmax(0,1fr)) !important;gap:15px !important;
+}
+#ankilozanFaqSectionV85.treatment-main-v729 .ankilozan-faq-item-v85,
+#romatoidFaqSectionV198.treatment-main-v729 .ra-faq-item-v198,
+#conditionDiseasePageV246.treatment-main-v729 .condition-faq-inner-v249 .ankilozan-faq-item-v85 {
+  box-sizing:border-box !important;min-width:0 !important;height:auto !important;
+  margin:0 !important;padding:4px !important;border:1px solid #d9eaf4 !important;
+  border-radius:20px !important;background:#fff !important;
+  break-inside:avoid !important;
+}
+#ankilozanFaqSectionV85.treatment-main-v729 .ankilozan-faq-heading-v85 h2,
+#romatoidFaqSectionV198.treatment-main-v729 .ra-faq-heading-v198 h2,
+#conditionDiseasePageV246.treatment-main-v729 .ankilozan-faq-heading-v85 h2 {
+  font:600 clamp(29px,2.8vw,42px)/1.13 "Bodoni Moda",Georgia,serif !important;
+  color:#123d5b !important;
+}
+/* Bitkisel destekler: mevcut metinler ayni, kart yapisi osteopatiyle uyumlu. */
+#ankilozanFaqSectionV85.treatment-main-v729 > .ankilozan-herbal-focus-v233,
+#conditionDiseasePageV246.treatment-main-v729 > .condition-herbal-focus-v249 {
+  box-sizing:border-box !important;width:min(1600px,calc(100% - 34px)) !important;
+  max-width:1600px !important;margin:0 auto 30px !important;
+  border:1px solid var(--v817-border) !important;border-radius:28px !important;
+  background:#f8fcff !important;
+}
+@media (max-width: 1000px) {
+  #ankilozanFaqSectionV85 > .v817-clinical-overview,
+  #romatoidFaqSectionV198 > .v817-clinical-overview,
+  #conditionDiseasePageV246 > .v817-clinical-overview {gap:18px !important}
+  .v817-clinical-grid {grid-template-columns:minmax(0,1fr)}
+}
+@media (max-width: 760px) {
+  #ankilozanFaqSectionV85 > .v817-clinical-overview,
+  #romatoidFaqSectionV198 > .v817-clinical-overview,
+  #conditionDiseasePageV246 > .v817-clinical-overview {
+    width:calc(100% - 20px) !important;padding:20px 16px !important;
+    border-radius:22px !important;margin:10px auto 17px !important;
+  }
+  .v817-clinical-lead h2 {font-size:clamp(28px,8vw,35px)}
+  .v817-clinical-card {padding:17px 15px;border-radius:18px;grid-template-columns:40px minmax(0,1fr);gap:12px}
+  .v817-clinical-index {width:40px;height:40px;border-radius:13px}
+  #ankilozanFaqSectionV85.treatment-main-v729 > #ankilozanDetailHubV196,
+  #romatoidFaqSectionV198.treatment-main-v729 > #romatoidDetailHubV198,
+  #conditionDiseasePageV246.treatment-main-v729 > #conditionFlowV729,
+  #ankilozanFaqSectionV85.treatment-main-v729 > .ankilozan-faq-inner-v85,
+  #romatoidFaqSectionV198.treatment-main-v729 > .ra-faq-shell-v198,
+  #conditionDiseasePageV246.treatment-main-v729 > .condition-faq-inner-v249 {
+    width:calc(100% - 20px) !important;
+  }
+  #ankilozanFaqSectionV85.treatment-main-v729 #ankilozanDetailHubV196 .ankilozan-detail-panels-v196,
+  #romatoidFaqSectionV198.treatment-main-v729 #romatoidDetailHubV198 .ra-detail-panels-v198,
+  #conditionDiseasePageV246.treatment-main-v729 #conditionFlowV729 {gap:15px !important}
+  #ankilozanFaqSectionV85.treatment-main-v729 [data-ank-panel-v196],
+  #romatoidFaqSectionV198.treatment-main-v729 [data-ra-panel-v198],
+  #conditionDiseasePageV246.treatment-main-v729 .treatment-main-card-v729 {padding:18px 15px !important;border-radius:19px !important}
+  #ankilozanFaqSectionV85.treatment-main-v729 .ankilozan-detail-grid-v196,
+  #romatoidFaqSectionV198.treatment-main-v729 .ankilozan-detail-grid-v196,
+  #conditionDiseasePageV246 .treatment-main-items-v729,
+  #ankilozanFaqSectionV85.treatment-main-v729 .ankilozan-faq-list-v85,
+  #romatoidFaqSectionV198.treatment-main-v729 .ra-faq-list-v198,
+  #conditionDiseasePageV246.treatment-main-v729 .condition-faq-inner-v249 .ankilozan-faq-list-v85 {
+    grid-template-columns:minmax(0,1fr) !important;
+  }
+  #ankilozanFaqSectionV85.treatment-main-v729 [data-ank-panel-v196] .ankilozan-detail-panel-copy-v196,
+  #romatoidFaqSectionV198.treatment-main-v729 [data-ra-panel-v198] .ankilozan-detail-panel-copy-v196 {
+    padding-left:58px !important;min-height:47px;
+  }
+  #ankilozanFaqSectionV85.treatment-main-v729 [data-ank-panel-v196] .ankilozan-detail-panel-copy-v196::before,
+  #romatoidFaqSectionV198.treatment-main-v729 [data-ra-panel-v198] .ankilozan-detail-panel-copy-v196::before {
+    width:44px;height:44px;border-radius:13px;font-size:15px;
+  }
+}
+/* V817 son. */
+
+
+/* V818 | Tedavi Alanlari — Osteopati gibi numarali, uzun anlatimli bolumler.
+   Sekiz hastaligin mevcut metinleri kullanilir. Diger sayfalara dokunulmaz. */
+#ankilozanFaqSectionV85.v818-ready > .v817-clinical-overview,
+#romatoidFaqSectionV198.v818-ready > .v817-clinical-overview,
+#conditionDiseasePageV246.v818-ready > .v817-clinical-overview,
+#ankilozanFaqSectionV85.v818-ready #ankilozanDetailHubV196,
+#romatoidFaqSectionV198.v818-ready #romatoidDetailHubV198,
+#conditionDiseasePageV246.v818-ready #conditionDetailHubV249,
+#conditionDiseasePageV246.v818-ready #conditionFlowV729,
+#romatoidFaqSectionV198.v818-ready .ra-summary-v198 {
+  display:none !important;
+}
+:is(#ankilozanFaqSectionV85,#romatoidFaqSectionV198,#conditionDiseasePageV246) > .v818-rich-flow {
+  box-sizing:border-box !important;
+  display:block !important;
+  width:min(1380px,calc(100% - 96px)) !important;
+  max-width:1380px !important;
+  margin:26px auto 34px !important;
+  padding:0 !important;
+  color:#18435c;
+}
+.v818-flow-heading {
+  margin:0 0 26px !important;
+  padding:4px 6px 14px;
+  border-bottom:1px solid #cfe4ed;
+}
+.v818-flow-heading > span {
+  display:block;color:#118ac7;font:800 12px/1.35 Manrope,Inter,Arial,sans-serif;
+  letter-spacing:.16em;margin:0 0 10px;
+}
+.v818-flow-heading h2 {
+  margin:0 !important;color:#123f5c;
+  font:600 clamp(28px,3.2vw,45px)/1.16 'Bodoni Moda',Georgia,serif !important;
+}
+.v818-rich-article {
+  box-sizing:border-box !important;
+  display:block !important;
+  position:relative;
+  width:100% !important;
+  margin:0 0 24px !important;
+  padding:clamp(24px,2.7vw,44px) !important;
+  background:linear-gradient(155deg,#fff 25%,#f8fcfe 100%) !important;
+  border:1px solid #d1e7f2 !important;
+  border-radius:32px !important;
+  box-shadow:0 15px 34px rgba(24,83,119,.045) !important;
+  scroll-margin-top:105px;
+}
+.v818-topic-flag {
+  display:flex !important;align-items:center !important;gap:13px !important;
+  margin:0 0 22px;
+}
+.v818-topic-number {
+  display:grid;place-items:center;width:60px;height:60px;flex:0 0 60px;
+  background:linear-gradient(140deg,#24a9d8,#0a86c3);
+  border-radius:18px;color:#fff;
+  font:800 20px/1 Manrope,Inter,Arial,sans-serif;
+}
+.v818-topic-label {
+  color:#118cbe !important;letter-spacing:.14em;
+  font:800 clamp(12px,1vw,14px)/1.35 Manrope,Inter,Arial,sans-serif !important;
+}
+.v818-topic-layout {
+  display:grid !important;grid-template-columns:minmax(0,1.05fr) minmax(0,.95fr) !important;
+  align-items:start;gap:clamp(28px,4vw,70px);
+}
+.v818-topic-copy, .v818-topic-detail {min-width:0 !important;}
+.v818-topic-copy h3 {
+  margin:0 0 20px !important;
+  color:#113d56 !important;
+  font:600 clamp(29px,3.25vw,49px)/1.16 'Bodoni Moda',Georgia,serif !important;
+  letter-spacing:.002em !important;
+  overflow-wrap:anywhere;
+}
+.v818-topic-copy p {
+  margin:0 0 15px !important;
+  color:#456c7e !important;
+  font:500 clamp(15px,1.22vw,18px)/1.76 Manrope,Inter,Arial,sans-serif !important;
+}
+.v818-topic-copy p.v818-lead {
+  color:#315e76 !important;
+  font-weight:650 !important;
+}
+.v818-topic-list {
+  list-style:none !important;list-style-type:none !important;
+  padding:0 !important;margin:3px 0 0 !important;
+  display:grid !important;gap:17px !important;
+}
+.v818-topic-list li {
+  position:relative;box-sizing:border-box !important;
+  display:block !important;
+  padding:1px 0 16px 27px !important;
+  margin:0 !important;
+  background:transparent !important;border:0 !important;
+  border-bottom:1px solid #e0edf4 !important;
+  color:#42677b;
+  font:500 clamp(14px,1.12vw,17px)/1.67 Manrope,Inter,Arial,sans-serif !important;
+}
+.v818-topic-list li:last-child {border-bottom:0 !important;}
+.v818-topic-list li::before {
+  content:'';position:absolute;left:2px;top:11px;
+  width:9px;height:9px;border-radius:50%;background:#1b95c7;
+  box-shadow:0 0 0 5px #e5f4fb;
+}
+.v818-topic-list strong {
+  display:block !important;
+  margin-bottom:4px !important;
+  color:#163e58 !important;
+  font:700 clamp(17px,1.32vw,21px)/1.4 'Bodoni Moda',Georgia,serif !important;
+}
+.v818-topic-list span {display:block;}
+.v818-topic-note {
+  margin-top:22px !important;
+  padding:14px 17px !important;
+  border-left:3px solid #31a6d8 !important;
+  background:#edf7fc !important;
+  border-radius:0 12px 12px 0 !important;
+  color:#3a657d !important;
+  font:500 14px/1.7 Manrope,Inter,Arial,sans-serif !important;
+}
+@media(max-width:960px) {
+  .v818-topic-layout {grid-template-columns:1fr !important;gap:12px !important;}
+  .v818-topic-detail {padding-top:4px;}
+}
+@media(max-width:760px) {
+  :is(#ankilozanFaqSectionV85,#romatoidFaqSectionV198,#conditionDiseasePageV246) > .v818-rich-flow {
+    width:calc(100% - 20px) !important;margin:18px auto 22px !important;
+  }
+  .v818-rich-article {padding:19px 16px !important;border-radius:21px !important;margin-bottom:16px !important;}
+  .v818-topic-flag {margin-bottom:18px !important;gap:12px !important;}
+  .v818-topic-number {width:47px;height:47px;flex-basis:47px;border-radius:14px;font-size:16px;}
+  .v818-topic-copy h3 {font-size:clamp(26px,7.8vw,36px) !important;line-height:1.18 !important;}
+  .v818-topic-copy p {font-size:15px !important;line-height:1.7 !important;}
+  .v818-topic-list {gap:11px !important;}
+  .v818-topic-list li {padding-bottom:12px !important;font-size:14px !important;}
+  .v818-topic-list strong {font-size:18px !important;}
+  .v818-flow-heading h2 {font-size:29px !important;}
+}
+/* V818 end */
+
+
+/* ============================================================
+   V819 | TEDAVI ALANLARI: GORSELLI BES NUMARALI KART
+   OSTEOPATI DENGESI: 1 yazi/gorsel, 2 gorsel/yazi, ...
+   ============================================================ */
+:is(#ankilozanFaqSectionV85,#romatoidFaqSectionV198,#conditionDiseasePageV246) > .v819-rich-flow {
+  width:min(1380px,calc(100% - 96px)) !important;
+}
+.v819-rich-flow > .v819-rich-article {
+  padding:clamp(20px,2.6vw,38px) !important;
+  margin-bottom:20px !important;
+  background:#fff !important;
+  border:1px solid #c8e4f0 !important;
+  border-radius:30px !important;
+  scroll-margin-top:125px;
+}
+.v819-layout {
+  display:grid !important;
+  grid-template-columns:minmax(0,1fr) minmax(0,.97fr) !important;
+  gap:clamp(24px,3.8vw,58px) !important;
+  align-items:center !important;
+}
+.v819-rich-article:nth-of-type(even) .v819-media {grid-column:1;grid-row:1;}
+.v819-rich-article:nth-of-type(even) .v819-copy {grid-column:2;grid-row:1;}
+.v819-copy {min-width:0 !important;}
+.v819-copy .v818-topic-flag {margin:0 0 18px !important;}
+.v819-copy .v818-topic-number {width:47px;height:47px;flex-basis:47px;border-radius:14px;font-size:17px;}
+.v819-copy .v818-topic-label {font-size:12px !important;}
+.v819-copy .v819-title {
+  color:#153e57 !important;
+  margin:0 0 16px !important;
+  font:600 clamp(29px,3.1vw,45px)/1.14 "Bodoni Moda",Georgia,serif !important;
+  letter-spacing:0 !important;
+}
+.v819-copy .v819-lead,.v819-copy .v819-description {
+  margin:0 0 16px !important;
+  font:500 clamp(15px,1.18vw,17px)/1.75 Manrope,Inter,Arial,sans-serif !important;
+  color:#4b6b7e !important;
+}
+.v819-points {margin:12px 0 0 !important;padding-left:22px !important;list-style:disc !important;}
+.v819-points li {
+  font:500 clamp(14px,1.08vw,16px)/1.65 Manrope,Inter,sans-serif !important;
+  color:#426579 !important;
+  list-style:disc !important;
+  margin:0 0 9px !important;
+  padding:0 !important;
+  display:list-item !important;
+}
+.v819-points li strong {font-weight:750;color:#173f5c !important;margin-right:.35em;}
+.v819-media {min-width:0 !important;margin:0 !important;}
+.v819-media img {
+  width:100% !important;
+  height:auto !important;
+  aspect-ratio:1.48 !important;
+  display:block !important;
+  object-fit:contain !important;
+  background:#eef8fd !important;
+  border-radius:22px !important;
+  border:1px solid #d4e8f1 !important;
+}
+.v819-media figcaption {
+  margin-top:10px;color:#68869a;
+  font:600 12px/1.5 Manrope,Inter,sans-serif;
+}
+@media(max-width:900px) {
+  .v819-layout {display:flex !important;flex-direction:column !important;gap:18px !important;}
+  .v819-media {order:-1 !important;width:100% !important;}
+  .v819-copy {order:0 !important;width:100% !important;}
+  .v819-media img {aspect-ratio:1.45 !important;}
+}
+@media(max-width:600px) {
+  :is(#ankilozanFaqSectionV85,#romatoidFaqSectionV198,#conditionDiseasePageV246) > .v819-rich-flow {width:calc(100% - 20px) !important;}
+  .v819-rich-flow > .v819-rich-article {padding:15px !important;border-radius:22px !important;margin-bottom:15px !important;}
+  .v819-copy .v819-title {font-size:clamp(27px,8.5vw,36px) !important;}
+  .v819-copy .v819-lead,.v819-copy .v819-description {font-size:15px !important;}
+  .v819-points li {font-size:14px !important;}
+  .v819-media img {border-radius:17px !important;}
+}
+/* V819 SON */
+
+
+/* ============================================================
+   V822 | TEDAVI ALANLARI: SSS alanlarini gizle, yeni gorsel akisi
+   ============================================================ */
+:is(#ankilozanFaqSectionV85,#romatoidFaqSectionV198,#conditionDiseasePageV246) .ankilozan-faq-inner-v85,
+:is(#ankilozanFaqSectionV85,#romatoidFaqSectionV198,#conditionDiseasePageV246) .ra-faq-shell-v198,
+:is(#ankilozanFaqSectionV85,#romatoidFaqSectionV198,#conditionDiseasePageV246) .condition-faq-inner-v249 {
+  display:none !important;
+}
+.as-launch-card-v274[data-as-special-target-v274="faq"],
+.as-launch-card-v274[data-treatment-special-target-v279="faq"] {
+  display:none !important;
+}
+.v819-media img {
+  object-fit:cover !important;
+  background:linear-gradient(135deg,#f5fbff 0%,#e7f4fb 100%) !important;
+}
+.v819-media figcaption {
+  font-size:13px !important;
+}
+/* V822 SON */
+
+/* V823: SSS kutularini ve soru-cevap yonlendirme kutularini kesin gizle. */
+#ankilozanFaqSectionV85 .ankilozan-faq-inner-v85,
+#romatoidFaqSectionV198 .ra-faq-shell-v198,
+#conditionDiseasePageV246 .condition-faq-inner-v249,
+.as-launch-card-v274[data-as-special-target-v274="faq"],
+.as-launch-card-v274[data-treatment-special-target-v279="faq"] { display:none !important; }
+/* Uyumlu genişlik: V820'nin yan boşluk düzeni korunur. */
+/* V823 end */
