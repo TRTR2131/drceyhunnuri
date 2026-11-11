@@ -23363,3 +23363,23 @@ function scrollSerumTitleBelowNavbarV514(vascularView) {
   if(document.readyState==='loading') document.addEventListener('DOMContentLoaded',start,{once:true});
   else start();
 })();
+
+
+/* V813 | MOBIL PINCH-ZOOM GUARD — ONLY MULTI-TOUCH GESTURES */
+(function () {
+  "use strict";
+  function isMobileTouch() {
+    return window.matchMedia &&
+      window.matchMedia('(hover: none) and (pointer: coarse) and (max-width: 1024px)').matches;
+  }
+  function blockPinch(event) {
+    if (!isMobileTouch()) return;
+    if (event.touches && event.touches.length < 2) return;
+    if (event.cancelable) event.preventDefault();
+  }
+  document.addEventListener('touchstart', blockPinch, {passive: false, capture: true});
+  document.addEventListener('touchmove', blockPinch, {passive: false, capture: true});
+  document.addEventListener('gesturestart', blockPinch, {passive: false, capture: true});
+  document.addEventListener('gesturechange', blockPinch, {passive: false, capture: true});
+})();
+/* V813 | MOBIL PINCH-ZOOM GUARD END */

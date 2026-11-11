@@ -15455,3 +15455,205 @@ body.phyto-herb-detail-open-v351 #phytoHerbDetailV351::after,
     touch-action: pan-x pan-y !important;
   }
 }
+
+/* V810 | BODONI MODA — LÜKS PARFÜM TİPOGRAFİSİ
+   Sadece yazı tipleri, başlık kalınlıkları ve harf aralıkları düzenlenmiştir.
+   Uzun medikal metinler erişilebilir ve okunaklı kalır. */
+:root {
+  --font-heading-v324: "Bodoni Moda", Georgia, "Times New Roman", serif;
+  --font-heading-v429: "Bodoni Moda", Georgia, "Times New Roman", serif;
+  --font-body-v324: "Manrope", "Inter", "Segoe UI", Arial, sans-serif;
+  --font-body-v429: "Manrope", "Inter", "Segoe UI", Arial, sans-serif;
+  --v810-font-display: "Bodoni Moda", Georgia, "Times New Roman", serif;
+  --v810-font-body: "Manrope", "Inter", "Segoe UI", Arial, sans-serif;
+}
+
+/* Gövde, menüler ve form alanları: sade, modern, kolay okunan font. */
+html body,
+html body p,
+html body li,
+html body label,
+html body a,
+html body button,
+html body input,
+html body textarea,
+html body select,
+html body option,
+html body small,
+html body figcaption,
+html body summary,
+html body details,
+html body td,
+html body th,
+html body blockquote,
+html body address,
+html body .global-connected-nav-v402,
+html body .global-connected-menu-v402,
+html body .global-connected-panel-v402,
+html body .global-connected-nav-v402 button,
+html body [class*="menu"] button,
+html body [class*="nav"] button {
+  font-family: var(--v810-font-body) !important;
+}
+
+/* Büyük başlıklar ve marka ismi: Bodoni Moda. */
+html body h1,
+html body h2,
+html body h3,
+html body h4,
+html body h5,
+html body h6,
+html body .logo,
+html body .section-title,
+html body .page-title,
+html body .hero-title,
+html body .card-title,
+html body .global-connected-brand-copy-v402 strong,
+html body [class*="-heading-v"],
+html body [class*="-title-v"],
+html body [class*="card"] > strong,
+html body [class*="card"] [class*="title"],
+html body [class*="section"] [class*="heading"] {
+  font-family: var(--v810-font-display) !important;
+  font-optical-sizing: auto;
+  font-synthesis: none;
+  letter-spacing: 0.006em !important;
+}
+
+/* Parfüm evi estetiği: daha zarif, fakat zayıf olmayan başlık kalınlığı. */
+html body h1,
+html body .hero-title,
+html body .page-title {
+  font-weight: 500 !important;
+}
+html body h2,
+html body h3,
+html body h4,
+html body h5,
+html body h6,
+html body .card-title,
+html body [class*="-heading-v"],
+html body [class*="-title-v"],
+html body [class*="card"] > strong,
+html body [class*="card"] [class*="title"] {
+  font-weight: 600 !important;
+}
+html body .global-connected-brand-copy-v402 strong,
+html body .logo {
+  font-weight: 600 !important;
+  letter-spacing: 0.035em !important;
+}
+
+/* Küçük ekranlarda harf aralıklarını dar tutarak Türkçe başlıkları koru. */
+@media (max-width: 760px) {
+  html body h1,
+  html body h2,
+  html body h3,
+  html body h4,
+  html body [class*="-heading-v"],
+  html body [class*="-title-v"] {
+    letter-spacing: 0 !important;
+  }
+}
+/* V810 | BODONI MODA END */
+
+
+
+/* ================================================================
+   V811 | PREMIUM UST MENU TIPOGRAFISI (RALEWAY)
+   Yalnizca ekrandaki ana menu dugmeleri ve Randevu Al metni.
+   Buton boyutlari, renkler, bosluklar, ikonlar ve fonksiyonlar ayni.
+   ================================================================ */
+html body #v548PremiumNav nav.v548-nav > button.v548-nav-item,
+html body #v548PremiumNav nav.v548-nav > button.v548-nav-item > span:not(.v548-chevron),
+html body #v548PremiumNav .v548-header-actions > button.v548-appointment,
+html body #v548PremiumNav .v548-header-actions > button.v548-appointment > span {
+    font-family: "Raleway", "Manrope", "Segoe UI", Arial, sans-serif !important;
+    font-synthesis: none;
+}
+
+/* Zarif ama mobilde de okunakli menu etiketleri. */
+html body #v548PremiumNav nav.v548-nav > button.v548-nav-item {
+    font-weight: 600 !important;
+    letter-spacing: 0.01em !important;
+}
+
+/* Randevu Al: ayni karakterin daha guclu, premium vurgusu. */
+html body #v548PremiumNav .v548-header-actions > button.v548-appointment > span {
+    font-weight: 700 !important;
+    letter-spacing: 0.025em !important;
+}
+
+/* Dar ekranlarda menulerin sigmasi degismesin. */
+@media (max-width: 1280px) {
+    html body #v548PremiumNav nav.v548-nav > button.v548-nav-item,
+    html body #v548PremiumNav .v548-header-actions > button.v548-appointment > span {
+        letter-spacing: 0 !important;
+    }
+}
+/* V811 | PREMIUM UST MENU BITIS */
+
+
+/* ===============================================================
+   V812 | HAKKIMDA MASAUSTU KAYDIRMA DUZELTMESI
+   V760'tan beri dort Hakkimda bolumu alt alta gorunuyor.
+   Onceki 100dvh / overflow:hidden masaustu kilidi uzun
+   icerigin tekerlek, touchpad veya PageDown ile kaymasini
+   engelliyordu. Yalnizca acik Hakkimda sayfasina uygulanir;
+   diger sayfalar, tasarim, tipografi ve mobil duzen korunur.
+   =============================================================== */
+@media (min-width: 1001px) {
+    html:has(body.about-page-open) {
+        height: auto !important;
+        min-height: 100% !important;
+        overflow-y: auto !important;
+        overflow-x: hidden !important;
+    }
+    body.about-page-open {
+        height: auto !important;
+        min-height: 100vh !important;
+        overflow-y: auto !important;
+        overflow-x: hidden !important;
+    }
+    body.about-page-open #hakkimdaPage {
+        height: auto !important;
+        min-height: 100vh !important;
+        max-height: none !important;
+        overflow: visible !important;
+    }
+    body.about-page-open #hakkimdaPage .about-page-content-v116,
+    body.about-page-open #hakkimdaPage .about-tabs-shell-v759,
+    body.about-page-open #hakkimdaPage .about-tabs-stage-v759 {
+        height: auto !important;
+        min-height: 0 !important;
+        max-height: none !important;
+        overflow: visible !important;
+    }
+    /* Mesleki Egitim kartlari altindaki eski icerik kutusu
+       overscroll-behavior:contain ile tekerlegi yutuyordu.
+       Dort panel alt alta oldugundan burada dahili kaydirma yok. */
+    body.about-page-open #hakkimdaPage #aboutPanelEducationV116,
+    body.about-page-open #hakkimdaPage #aboutPanelEducationV116 .about-education-layout-v116 {
+        overscroll-behavior: auto !important;
+    }
+    body.about-page-open #hakkimdaPage #aboutPanelEducationV116 .about-education-layout-v116 {
+        height: auto !important;
+        min-height: 0 !important;
+        max-height: none !important;
+        overflow: visible !important;
+    }
+}
+/* V812 | HAKKIMDA KAYDIRMA DUZELTMESI SON */
+
+
+/* V813 | MOBIL ZOOM KISITLAMASI — SAYFA KAYDIRMASI KORUNUR
+   pan-x/pan-y: tek parmak kaydirma ve yatay kart surukleme acik,
+   native pinch-zoom hareketi sinirli. Bazi tarayicilar erisilebilirlik
+   ayarlarindan dolayi bu kisitlamayi gecersiz kilabilir. */
+@media (hover: none) and (pointer: coarse) and (max-width: 1024px) {
+  html,
+  body {
+    touch-action: pan-x pan-y !important;
+  }
+}
+/* V813 | MOBIL ZOOM KISITLAMASI SON */
