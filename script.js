@@ -8714,7 +8714,7 @@ window.addEventListener("load", async () => {
     painImageMap['bel-sirt'] = painImageMap['bel'] || painImageMap['sirt'] || '';
     painImageMap['omuz-kol'] = painImageMap['omuz'] || '';
     painImageMap['kalca-diz'] = painImageMap['kalca'] || painImageMap['diz'] || '';
-    painImageMap['cene-bas'] = './disease-bas-agrisi-migren-v77.png?v=150';
+    painImageMap['cene-bas'] = './disease-bas-agrisi-migren-v77.webp?v=150';
     function slugifyTopicV415(value) {
       return String(value||'detay').toLocaleLowerCase('tr-TR')
         .normalize('NFD').replace(/[\u0300-\u036f]/g,'')
@@ -8983,7 +8983,7 @@ window.addEventListener("load", async () => {
     const raData = {
         title: 'Romatoid Artrit',
         desc: 'Romatoid artritte küçük eklem yakınmaları, sabah tutukluğu ve inflamatuar aktivite ön planda olabilir. Romatoid artrite özel bitkisel bölüm sonraki adımda aynı yapıyla hazırlanacaktır.',
-        image: './disease-romatoid-artrit-v77.png?v=150',
+        image: './disease-romatoid-artrit-v77.webp?v=150',
         alt: 'Romatoid artritte el ve el bileği eklemlerini gösteren medikal görsel',
         points: [
             ['El & El Bileği', 'Simetrik küçük eklem tutulumu ve günlük yaşam fonksiyonları değerlendirilir.'],
@@ -9925,7 +9925,7 @@ function scrollSerumTitleBelowNavbarV514(vascularView) {
         'bas-agrisi-migren': {
             title: 'Baş Ağrısı ve Migren',
             kicker: 'BAŞ • BOYUN • SİNİR SİSTEMİ',
-            image: './disease-bas-agrisi-migren-v77.png?v=150',
+            image: './disease-bas-agrisi-migren-v77.webp?v=150',
             alt: 'Baş ağrısı ve migreni temsil eden medikal görsel',
             caption: 'Baş • Boyun • Tetikleyiciler • Nörolojik Değerlendirme',
             summary: 'Baş ağrısı ve migren; ağrının tipi, süresi, tetikleyicileri, boyun-kas ilişkisi ve eşlik eden nörolojik belirtiler birlikte değerlendirilerek ele alınmalıdır.',
@@ -9942,7 +9942,7 @@ function scrollSerumTitleBelowNavbarV514(vascularView) {
             herbNote:'Migren bazı bitki ve gıdalardan etkilenebilir. Özellikle düzenli ilaç kullananlarda bitkisel ürünler hekim görüşü olmadan başlanmamalıdır.'
         },
         'bel-sirt-agrisi': {
-            title:'Bel ve Sırt Ağrısı', kicker:'OMURGA • KAS • POSTÜR', image:'./disease-bel-sirt-agrisi-v77.png?v=150', alt:'Bel ve sırt ağrısını temsil eden omurga görseli', caption:'Omurga • Kas Dengesi • Hareket • Postür',
+            title:'Bel ve Sırt Ağrısı', kicker:'OMURGA • KAS • POSTÜR', image:'./disease-bel-sirt-agrisi-v77.webp?v=150', alt:'Bel ve sırt ağrısını temsil eden omurga görseli', caption:'Omurga • Kas Dengesi • Hareket • Postür',
             summary:'Bel ve sırt ağrısı; kaslar, eklemler, diskler, postür, günlük yüklenme ve bazı sistemik nedenlerin birlikte değerlendirilmesini gerektiren çok nedenli bir yakınmadır.', pills:['Omurga','Kas Dengesi','Postür','Hareket'],
             neden:[['Kas ve yumuşak doku','Aşırı yüklenme, hareketsizlik veya kas dengesizlikleri ağrıya katkıda bulunabilir.'],['Disk ve eklem yapıları','Omurga diskleri ve faset eklemler bazı ağrı tiplerinde rol oynayabilir.'],['Postür ve ergonomi','Uzun oturma, tekrarlayan eğilme ve uygunsuz çalışma pozisyonları yakınmaları artırabilir.'],['Sistemik nedenler','Daha nadir olarak inflamatuar, enfeksiyöz veya diğer sistemik nedenler araştırılabilir.']],
             belirtiler:[['Bölgesel ağrı','Bel veya sırt bölgesinde lokal ağrı ve hassasiyet görülebilir.'],['Sertlik','Uzun oturma veya sabah saatlerinde sertlik hissi olabilir.'],['Yayılım','Bazı durumlarda ağrı kalçaya, bacağa veya gövdeye yayılabilir.'],['Nörolojik bulgular','Uyuşma, kuvvet kaybı veya idrar-dışkı kontrol sorunu varsa acil değerlendirme gerekir.']],
@@ -9955,7 +9955,7 @@ function scrollSerumTitleBelowNavbarV514(vascularView) {
             herbs:[['Zerdeçal (Kurkumin)','phyto-zerdecal-v131.jpg','İnflamasyon yolları üzerindeki etkileri nedeniyle destekleyici beslenme kapsamında değerlendirilebilir.'],['Boswellia (Akgünlük)','phyto-boswellia-v131.jpg','Eklem ve yumuşak doku rahatlığı bağlamında araştırılmış bitkisel içeriklerden biridir.'],['Zencefil','phyto-zencefil-v131.jpg','Genel ağrı ve inflamasyon mekanizmaları açısından araştırılmaktadır.'],['Omega-3','phyto-omega3-v131.jpg','İnflamatuar yükü azaltmaya yönelik dengeli beslenme planının bir parçası olabilir.']], herbNote:'Bel ve sırt ağrısında bitkisel ürünler altta yatan nedeni ortadan kaldırmaz. Ağrının kaynağının değerlendirilmesi ve hareket planı önceliklidir.'
         },
         'fibromiyalji': {
-            title:'Fibromiyalji', kicker:'YAYGIN AĞRI • UYKU • YORGUNLUK', image:'./disease-fibromiyalji-v77.png?v=150', alt:'Fibromiyaljide yaygın ağrı bölgelerini gösteren medikal görsel', caption:'Yaygın Ağrı • Uyku • Enerji • Günlük Yaşam',
+            title:'Fibromiyalji', kicker:'YAYGIN AĞRI • UYKU • YORGUNLUK', image:'./disease-fibromiyalji-v77.webp?v=150', alt:'Fibromiyaljide yaygın ağrı bölgelerini gösteren medikal görsel', caption:'Yaygın Ağrı • Uyku • Enerji • Günlük Yaşam',
             summary:'Fibromiyalji; yaygın ağrı, hassasiyet, uyku bozukluğu, yorgunluk ve bilişsel yakınmaların birlikte görülebildiği kronik bir ağrı sendromudur.', pills:['Yaygın Ağrı','Uyku','Yorgunluk','Hareket'],
             neden:[['Ağrı işleme hassasiyeti','Merkezi sinir sisteminin ağrıyı işleme biçimindeki hassasiyet önemli rol oynar.'],['Uyku bozukluğu','Dinlendirmeyen uyku ağrı ve yorgunluğu artırabilir.'],['Stres yanıtı','Yoğun stres belirtilerin alevlenmesiyle ilişkili olabilir.'],['Tek bir neden yok','Genetik, biyolojik ve çevresel faktörler birlikte etkili olabilir.']],
             belirtiler:[['Yaygın ağrı','Vücudun farklı bölgelerinde uzun süreli ağrı görülebilir.'],['Yorgunluk','Dinlenmeye rağmen devam eden enerji düşüklüğü sık görülür.'],['Uyku sorunu','Uyku süresi yeterli olsa bile dinlenmiş hissetmeme olabilir.'],['Bilişsel yakınmalar','Dikkat ve odaklanmada güçlük bazı kişilerde belirgin olabilir.']],
@@ -9968,7 +9968,7 @@ function scrollSerumTitleBelowNavbarV514(vascularView) {
             herbs:[['Zerdeçal (Kurkumin)','phyto-zerdecal-v131.jpg','İnflamatuar yollar açısından araştırılmaktadır; fibromiyalji için tek başına tedavi değildir.'],['Zencefil','phyto-zencefil-v131.jpg','Genel antioksidan ve inflamasyon süreçleri bağlamında destekleyici olarak değerlendirilebilir.'],['Omega-3','phyto-omega3-v131.jpg','Dengeli beslenme planının bir parçası olarak değerlendirilebilen yağ asidi kaynaklarındandır.'],['Biberiye','phyto-biberiye-v131.jpg','Antioksidan polifenoller içerir; fibromiyaljide doğrudan klinik kanıt sınırlıdır.']], herbNote:'Fibromiyaljide bitkisel ürünlerden mucizevi ve hızlı sonuç beklenmemelidir. Uyku, hareket ve kişiye uygun tıbbi plan temel yaklaşımdır.'
         },
         'huzursuz-bacak': {
-            title:'Huzursuz Bacak Sendromu', kicker:'BACAKLAR • UYKU • SİNİR SİSTEMİ', image:'./disease-huzursuz-bacak-v77.png?v=150', alt:'Huzursuz bacak sendromunu temsil eden medikal görsel', caption:'Gece Yakınmaları • Uyku • Demir Durumu • Sinir Sistemi',
+            title:'Huzursuz Bacak Sendromu', kicker:'BACAKLAR • UYKU • SİNİR SİSTEMİ', image:'./disease-huzursuz-bacak-v77.webp?v=150', alt:'Huzursuz bacak sendromunu temsil eden medikal görsel', caption:'Gece Yakınmaları • Uyku • Demir Durumu • Sinir Sistemi',
             summary:'Huzursuz Bacak Sendromu; özellikle dinlenme sırasında bacakları hareket ettirme ihtiyacı, rahatsız edici duyumlar ve uyku bozukluğu ile seyredebilir.', pills:['Gece Yakınmaları','Uyku','Demir Durumu','İlaçlar'],
             neden:[['Demir durumu','Düşük demir depoları bazı kişilerde belirtilerle ilişkili olabilir.'],['Sinir sistemi','Dopaminerjik sistem ve sinir sistemi mekanizmaları rol oynayabilir.'],['Gebelik','Gebelik döneminde geçici olarak daha sık görülebilir.'],['Eşlik eden durumlar','Böbrek hastalıkları ve bazı ilaçlar belirtileri etkileyebilir.']],
             belirtiler:[['Hareket ettirme isteği','Bacaklarda güçlü hareket ettirme ihtiyacı oluşabilir.'],['Dinlenmede artış','Yakınmalar oturma veya uzanma sırasında belirginleşir.'],['Hareketle rahatlama','Yürüme veya bacakları oynatma geçici rahatlama sağlayabilir.'],['Gece artışı','Belirtiler akşam ve gece saatlerinde daha belirgin olabilir.']],
@@ -9981,7 +9981,7 @@ function scrollSerumTitleBelowNavbarV514(vascularView) {
             herbs:[['Zencefil','phyto-zencefil-v131.jpg','Genel beslenme desteği olarak değerlendirilebilir; huzursuz bacak için doğrudan etkinlik kanıtı sınırlıdır.'],['Biberiye','phyto-biberiye-v131.jpg','Geleneksel kullanım alanı vardır; huzursuz bacak tedavisi olarak kabul edilmez.'],['Kekik','phyto-kekik-v131.jpg','Antioksidan bileşenler içerir; HBS için doğrudan klinik kanıt bulunmamaktadır.'],['Civanperçemi','phyto-civanpercemi-v131.jpg','Geleneksel kullanım geçmişi vardır; huzursuz bacak için kanıt sınırlıdır ve ilaç etkileşimleri dikkate alınmalıdır.']], herbNote:'Huzursuz Bacak Sendromunda bitkisel ürünlerin doğrudan etkinliğine ilişkin kanıt sınırlıdır. Demir eksikliği ve diğer nedenlerin araştırılması önceliklidir.'
         },
         'iltihabi-bagirsak': {
-            title:'İltihabi Bağırsak Hastalıkları', kicker:'BAĞIRSAK • ENFLAMASYON • BESLENME', image:'./disease-iltihabi-bagirsak-v77.png?v=150', alt:'İltihabi bağırsak hastalıklarını temsil eden medikal görsel', caption:'Bağırsak • Beslenme • Enflamasyon • Takip',
+            title:'İltihabi Bağırsak Hastalıkları', kicker:'BAĞIRSAK • ENFLAMASYON • BESLENME', image:'./disease-iltihabi-bagirsak-v77.webp?v=150', alt:'İltihabi bağırsak hastalıklarını temsil eden medikal görsel', caption:'Bağırsak • Beslenme • Enflamasyon • Takip',
             summary:'İltihabi bağırsak hastalıkları, bağırsak duvarında kronik iltihapla seyreden ve gastroenteroloji takibi gerektiren hastalık grubudur; beslenme ve destekler tedavinin yerine geçmez.', pills:['Bağırsak','Beslenme','Alevlenme','Gastroenteroloji'],
             neden:[['Genetik yatkınlık','Aile öyküsü ve genetik faktörler hastalık riskine katkı sağlayabilir.'],['Bağışıklık yanıtı','Bağırsak dokusunda uygunsuz veya aşırı bağışıklık yanıtı rol oynar.'],['Mikrobiyota','Bağırsak mikrobiyotasındaki değişiklikler araştırılan mekanizmalardandır.'],['Çevresel etkenler','Sigara, yaşam tarzı ve çevresel faktörlerin etkisi hastalık tipine göre değişebilir.']],
             belirtiler:[['İshal','Uzun süren veya tekrarlayan ishal görülebilir.'],['Karın ağrısı','Karın ağrısı ve kramp sık yakınmalardandır.'],['Kanama','Dışkıda kan özellikle ülseratif kolitte görülebilir ve değerlendirme gerektirir.'],['Kilo-yorgunluk','Kilo kaybı, iştahsızlık ve yorgunluk eşlik edebilir.']],
@@ -9994,7 +9994,7 @@ function scrollSerumTitleBelowNavbarV514(vascularView) {
             herbs:[['Zerdeçal (Kurkumin)','phyto-zerdecal-v131.jpg','İnflamatuar bağırsak süreçlerinde araştırılmıştır; tedavinin yerine geçmez ve uygunluk hekimce değerlendirilmelidir.'],['Zencefil','phyto-zencefil-v131.jpg','Sindirim sistemi yakınmaları açısından geleneksel kullanımı vardır; aktif hastalıkta tolerans kişiden kişiye değişebilir.'],['Boswellia (Akgünlük)','phyto-boswellia-v131.jpg','İnflamatuar yollar açısından araştırılmıştır; klinik kanıt ve ürün standardizasyonu sınırlıdır.'],['Omega-3','phyto-omega3-v131.jpg','Genel antiinflamatuar beslenme kapsamında değerlendirilebilir; sonuçlar hastalık ve kişiye göre değişebilir.']], herbNote:'İltihabi bağırsak hastalıklarında bitkisel ürünler alevlenme döneminde uygun olmayabilir. Gastroenteroloji tedavisini değiştirmeden önce mutlaka hekime danışılmalıdır.'
         },
         'kronik-yorgunluk': {
-            title:'Kronik Yorgunluk', kicker:'ENERJİ • UYKU • METABOLİK DENGE', image:'./disease-kronik-yorgunluk-v77.png?v=150', alt:'Kronik yorgunluğu temsil eden medikal görsel', caption:'Enerji • Uyku • Beslenme • Sistemik Değerlendirme',
+            title:'Kronik Yorgunluk', kicker:'ENERJİ • UYKU • METABOLİK DENGE', image:'./disease-kronik-yorgunluk-v77.webp?v=150', alt:'Kronik yorgunluğu temsil eden medikal görsel', caption:'Enerji • Uyku • Beslenme • Sistemik Değerlendirme',
             summary:'Uzun süren yorgunluk tek başına bir tanı değildir; uyku, beslenme, anemi, tiroid, enfeksiyonlar, ilaçlar, psikolojik yük ve diğer tıbbi nedenler birlikte değerlendirilmelidir.', pills:['Enerji','Uyku','Tiroid','Beslenme'],
             neden:[['Uyku bozuklukları','Yetersiz veya kalitesiz uyku uzun süreli yorgunluğun sık nedenlerindendir.'],['Anemi ve eksiklikler','Demir, B12 veya diğer besin eksiklikleri enerji düzeyini etkileyebilir.'],['Tiroid ve metabolizma','Tiroid ve bazı metabolik bozukluklar yorgunluğa yol açabilir.'],['Enfeksiyon ve stres','Enfeksiyon sonrası dönem, yoğun stres veya bazı ilaçlar tabloya katkı sağlayabilir.']],
             belirtiler:[['Enerji düşüklüğü','Dinlenmeyle tam düzelmeyen günlük enerji kaybı olabilir.'],['Düşük efor toleransı','Daha önce kolay olan aktiviteler zorlayıcı hale gelebilir.'],['Odaklanma güçlüğü','Dikkat ve zihinsel dayanıklılıkta azalma görülebilir.'],['Uyku düzensizliği','Aşırı uyuma veya dinlendirmeyen uyku eşlik edebilir.']],
@@ -11327,7 +11327,7 @@ function scrollSerumTitleBelowNavbarV514(vascularView) {
         hero.setAttribute('aria-label', 'Ankilozan Spondilit ana bilgilendirme görseli');
         hero.innerHTML = `
             <img
-                src="./disease-ankilozan-spondilit-v77.png?v=150"
+                src="./disease-ankilozan-spondilit-v77.webp?v=150"
                 alt="Ankilozan Spondilit; omurga ve sakroiliak eklem bölgesini anlatan ana bilgilendirme görseli"
                 loading="lazy"
                 decoding="async"
@@ -14448,7 +14448,7 @@ function scrollSerumTitleBelowNavbarV514(vascularView) {
         'Ozon': {
             chip: 'LOKAL OZON ENJEKSİYONU',
             title: 'Lokal Ozon Enjeksiyonu',
-            image: './injection-ozon-v80.png?v=150',
+            image: './injection-ozon-v80.webp?v=150',
             intro: 'Tıbbi ozon jeneratöründe medikal oksijenden hazırlanan kontrollü oksijen-ozon gaz karışımının, hekim tarafından seçilmiş eklem çevresi veya yumuşak doku bölgelerine lokal olarak uygulanmasını ifade eder.',
             tags: ['Lokal uygulama', 'Eklem & yumuşak doku', 'Kişiye özel planlama'],
             panels: [
@@ -14483,7 +14483,7 @@ function scrollSerumTitleBelowNavbarV514(vascularView) {
         'Minor Ozon': {
             chip: 'MİNÖR OTOHEMOTERAPİ · TIBBİ BİLGİ',
             title: 'Minor Ozon (Minör Otohemoterapi)',
-            image: './injection-ozon-v80.png?v=150',
+            image: './injection-ozon-v80.webp?v=150',
             intro: 'Minör otohemoterapi, kişiden alınan az miktardaki venöz kanın vücut dışında, tıbbi oksijen-ozon karışımıyla kontrollü temas ettirilmesinin ardından kas içine geri uygulanması olarak tanımlanır. Lokal ozon enjeksiyonundan ve majör otohemoterapiden farklı bir yöntemdir. Etkinlik verileri sınırlı olduğundan yerleşik hastalık tedavilerinin yerine sunulamaz.',
             tags: ['Kişinin kendi kanı', 'Kas içi uygulama', 'Sınırlı klinik kanıt', 'Hekim değerlendirmesi'],
             panels: [
@@ -14505,7 +14505,7 @@ function scrollSerumTitleBelowNavbarV514(vascularView) {
         'PRP Tedavisi': {
             chip: 'TROMBOSİTTEN ZENGİN PLAZMA · PRP',
             title: 'PRP (Platelet-Rich Plasma)',
-            image: './treatment-prp-v98.png?v=150',
+            image: './treatment-prp-v98.webp?v=150',
             intro: 'PRP, kişinin kendi venöz kanından santrifüj gibi ayrıştırma işlemleriyle elde edilen, trombosit yoğunluğu artırılmış plazma fraksiyonudur. Seçilmiş kas-iskelet sistemi sorunlarında eklem içine veya hedef yumuşak doku bölgesine enjeksiyon olarak değerlendirilen ortobiyolojik bir yöntemdir.',
             tags: ['Otolog kan ürünü', 'Trombositler ve büyüme faktörleri', 'Eklem & tendon', 'Rehabilitasyonla birlikte'],
             panels: [
@@ -14528,7 +14528,7 @@ function scrollSerumTitleBelowNavbarV514(vascularView) {
         'Proloterapi': {
             chip: 'REJENERATİF ENJEKSİYON',
             title: 'Proloterapi',
-            image: './injection-proloterapi-v80.png?v=150',
+            image: './injection-proloterapi-v80.webp?v=150',
             intro: 'Proloterapi, özellikle bağ, tendon ve eklem çevresindeki seçilmiş kas-iskelet sistemi yakınmalarında kullanılan enjeksiyon temelli bir yaklaşımdır. En sık kullanılan solüsyonlardan biri hipertonik dekstrozdur.',
             tags: ['Bağ & tendon', 'Entez bölgeleri', 'Doku iyileşme yanıtı'],
             panels: [
@@ -14543,7 +14543,7 @@ function scrollSerumTitleBelowNavbarV514(vascularView) {
         'Nöral Terapi': {
             chip: 'LOKAL ANESTEZİK TEMELLİ YAKLAŞIM',
             title: 'Nöral Terapi',
-            image: './injection-noral-terapi-v80.png?v=150',
+            image: './injection-noral-terapi-v80.webp?v=150',
             intro: 'Nöral terapi; seçilmiş deri, skar, tetik nokta veya belirli anatomik alanlara lokal anestezik içeren enjeksiyonların planlanabildiği tamamlayıcı bir yaklaşımdır.',
             tags: ['Skar değerlendirmesi', 'Tetik noktalar', 'Ağrı modülasyonu'],
             panels: [
@@ -14558,7 +14558,7 @@ function scrollSerumTitleBelowNavbarV514(vascularView) {
         'NöralPro': {
             chip: 'KİŞİYE ÖZEL ENJEKSİYON PLANI',
             title: 'NöralPro',
-            image: './injection-noralpro-v80.png?v=150',
+            image: './injection-noralpro-v80.webp?v=150',
             intro: 'NöralPro, klinikte muayene ve hedef doku değerlendirmesi sonrasında kişiye özel planlanan enjeksiyon yaklaşımı olarak ele alınır. İçerik, bölge ve seans planı hastaya göre belirlenir.',
             tags: ['Kişiye özel', 'Hedef doku', 'Klinik planlama'],
             panels: [
@@ -14578,7 +14578,7 @@ function scrollSerumTitleBelowNavbarV514(vascularView) {
     "Sırt Ağrısı, EPTE ve Egzersizler": {
         "chip": "SIRT AĞRISI · PERKÜTAN ELEKTROLİZ · REHABİLİTASYON",
         "title": "Sırt Ağrısı, EPTE ve Egzersizler",
-        "image": "./treatment-sirt-epte-v98.png?v=150",
+        "image": "./treatment-sirt-epte-v98.webp?v=150",
         "intro": "Sırt ağrısı tek bir hastalık değildir; miyofasyal aşırı yük, torakal eklem disfonksiyonu, tendon patolojisi veya omurga dışı nedenler rol oynayabilir. EPTE olarak anılan perkütan elektroliz, bazı yumuşak doku sorunlarında egzersizle birlikte araştırılan, iğne üzerinden düşük düzeyli elektrik akımı uygulayan girişimsel bir yöntemdir.",
         "tags": [
             "Ayırıcı tanı",
@@ -14640,7 +14640,7 @@ function scrollSerumTitleBelowNavbarV514(vascularView) {
     "Kuyruk Sokumu Ağrısı ve İmpar Blok": {
         "chip": "KOKSİDİNİ · GANGLİON İMPAR BLOĞU",
         "title": "Kuyruk Sokumu Ağrısı ve İmpar Blok",
-        "image": "./treatment-koksidini-impar-v98.png?v=150",
+        "image": "./treatment-koksidini-impar-v98.webp?v=150",
         "intro": "Kuyruk sokumu ağrısı (koksidini), oturmakla artabilen sakrokoksigeal bölge ağrısıdır. Ganglion impar bloğu, özellikle dirençli koksidini veya seçilmiş perineal ağrılarda kullanılan, sempatik sinir iletiminin geçici olarak hedeflendiği girişimsel ağrı yaklaşımıdır.",
         "tags": [
             "Sakrokoksigeal anatomi",
@@ -14702,7 +14702,7 @@ function scrollSerumTitleBelowNavbarV514(vascularView) {
     "Sanakin Tedavisi": {
         "chip": "OTOLOG KOŞULLANDIRILMIŞ SERUM · ACS",
         "title": "Sanakin Tedavisi",
-        "image": "./treatment-sanakin-v98.png?v=150",
+        "image": "./treatment-sanakin-v98.webp?v=150",
         "intro": "Sanakin, kişinin kendi kanından özel işlem basamaklarıyla hazırlanan otolog koşullandırılmış serum (ACS) yaklaşımlarıyla ilişkili bir ürün/işlem ailesi olarak tanıtılır. Trombositten zengin plazma (PRP) ile aynı içerik veya aynı üretim süreci değildir.",
         "tags": [
             "Otolog serum",
@@ -14764,7 +14764,7 @@ function scrollSerumTitleBelowNavbarV514(vascularView) {
     "Ameliyatsız Diz Kireçlenmesi Tedavisi": {
         "chip": "DİZ OSTEOARTRİTİ · AMELİYATSIZ YAKLAŞIMLAR",
         "title": "Ameliyatsız Diz Kireçlenmesi Tedavisi",
-        "image": "./treatment-diz-kireclenmesi-v98.png?v=150",
+        "image": "./treatment-diz-kireclenmesi-v98.webp?v=150",
         "intro": "Diz osteoartriti, eklem kıkırdağı ile birlikte kemik, sinovyum ve çevre yumuşak dokuları etkileyen kronik eklem hastalığıdır. “Ameliyatsız tedavi” tek bir enjeksiyonun adı değil; egzersiz, yük yönetimi, kilo düzenlemesi ve uygun olgularda girişimlerin bir arada değerlendirildiği klinik plandır.",
         "tags": [
             "Kıkırdak & sinovyum",
@@ -14826,7 +14826,7 @@ function scrollSerumTitleBelowNavbarV514(vascularView) {
     "Rejeneratif Tıp ve Ortobiyolojik Tedaviler": {
         "chip": "ORTOBİYOLOJİK YAKLAŞIMLAR · KANIT VE DÜZENLEME",
         "title": "Rejeneratif Tıp ve Ortobiyolojik Tedaviler",
-        "image": "./treatment-rejeneratif-ortobiyolojik-v98.png?v=150",
+        "image": "./treatment-rejeneratif-ortobiyolojik-v98.webp?v=150",
         "intro": "Ortobiyolojik girişimler, trombosit kaynaklı ürünler, otolog serumlar ve hücresel veya hücre-dışı biyolojik ürünler gibi çok farklı yöntemleri kapsayan üst başlıktır. Bu yöntemleri aynı etkinlik, güvenlik ve yasal statüde kabul etmek doğru değildir.",
         "tags": [
             "PRP",
@@ -14892,7 +14892,7 @@ function scrollSerumTitleBelowNavbarV514(vascularView) {
     "Kök Hücre Tedavisi": {
         "chip": "HÜCRE TEMELLİ ÜRÜNLER · ARAŞTIRMA ve GÜVENLİK",
         "title": "Kök Hücre Tedavisi",
-        "image": "./treatment-kok-hucre-v98.png?v=150",
+        "image": "./treatment-kok-hucre-v98.webp?v=150",
         "intro": "“Kök hücre tedavisi” tek bir enjeksiyon tekniği değildir. Kemik iliği veya yağ dokusu kaynaklı hücresel hazırlıklar ile laboratuvarda çoğaltılmış hücre ürünleri, biyolojik içerik ve düzenleme bakımından birbirinden farklıdır.",
         "tags": [
             "Hücresel biyoloji",
@@ -14954,7 +14954,7 @@ function scrollSerumTitleBelowNavbarV514(vascularView) {
     "Ultrason Eşliğinde İğne Tedavileri": {
         "chip": "GÖRÜNTÜLEME REHBERLİĞİ · HEDEF DOKU DOĞRULUĞU",
         "title": "Ultrason Eşliğinde İğne Tedavileri",
-        "image": "./treatment-ultrason-igne-v98.png?v=150",
+        "image": "./treatment-ultrason-igne-v98.webp?v=150",
         "intro": "Ultrason eşliğinde enjeksiyon, tek başına bir ilaç veya tedavi türü değildir; eklem, tendon kılıfı, bursa ve bazı sinir çevresi girişimlerde iğnenin hedef dokuya yönlendirilmesini sağlayan görüntüleme yöntemidir.",
         "tags": [
             "Ultrasonografi",
@@ -15016,7 +15016,7 @@ function scrollSerumTitleBelowNavbarV514(vascularView) {
     "Magellan PRP": {
         "chip": "CİHAZ DESTEKLİ PRP HAZIRLAMA YAKLAŞIMI",
         "title": "Magellan PRP",
-        "image": "./treatment-magellan-prp-v98.png?v=150",
+        "image": "./treatment-magellan-prp-v98.webp?v=150",
         "intro": "Magellan PRP, kişinin kanından trombositten zengin plazmanın belirli bir cihaz/protokolle hazırlanmasına ilişkin bir yöntemdir. Marka veya santrifüj sisteminin adı, tek başına klinik üstünlük anlamına gelmez.",
         "tags": [
             "Otolog kan",
@@ -15078,7 +15078,7 @@ function scrollSerumTitleBelowNavbarV514(vascularView) {
     "Hyaluronik Asit Enjeksiyonu": {
         "chip": "VİSKOSUPLEMENTASYON · EKLEM İÇİ UYGULAMA",
         "title": "Hyaluronik Asit Enjeksiyonu",
-        "image": "./treatment-hyaluronik-asit-v98.png?v=150",
+        "image": "./treatment-hyaluronik-asit-v98.webp?v=150",
         "intro": "Hyaluronik asit, sinovyal sıvıda doğal olarak bulunan bir polisakkarittir. Eklem içi preparatları özellikle diz osteoartritinde viskosuplementasyon olarak bilinir; amaç belirtileri yönetmektir, kıkırdağı kesin biçimde yeniden oluşturmak değildir.",
         "tags": [
             "Sinovyal sıvı",
@@ -18541,14 +18541,14 @@ function scrollSerumTitleBelowNavbarV514(vascularView) {
     // Tum hastaliklar yalnizca sabit baslik ile acilir.
     return;
     const diseaseImagesV421 = {
-        as: './disease-ankilozan-spondilit-v77.png?v=150',
-        ra: './romatoid-artrit-hero-v199.png?v=202',
-        'bas-agrisi-migren': './disease-bas-agrisi-migren-v77.png?v=150',
-        'bel-sirt-agrisi': './disease-bel-sirt-agrisi-v77.png?v=150',
-        fibromiyalji: './disease-fibromiyalji-v77.png?v=150',
-        'huzursuz-bacak': './disease-huzursuz-bacak-v77.png?v=150',
-        'iltihabi-bagirsak': './disease-iltihabi-bagirsak-v77.png?v=150',
-        'kronik-yorgunluk': './disease-kronik-yorgunluk-v77.png?v=150'
+        as: './disease-ankilozan-spondilit-v77.webp?v=150',
+        ra: './romatoid-artrit-hero-v199.webp?v=202',
+        'bas-agrisi-migren': './disease-bas-agrisi-migren-v77.webp?v=150',
+        'bel-sirt-agrisi': './disease-bel-sirt-agrisi-v77.webp?v=150',
+        fibromiyalji: './disease-fibromiyalji-v77.webp?v=150',
+        'huzursuz-bacak': './disease-huzursuz-bacak-v77.webp?v=150',
+        'iltihabi-bagirsak': './disease-iltihabi-bagirsak-v77.webp?v=150',
+        'kronik-yorgunluk': './disease-kronik-yorgunluk-v77.webp?v=150'
     };
 
     const pageConfigsV421 = [
@@ -18705,14 +18705,14 @@ function scrollSerumTitleBelowNavbarV514(vascularView) {
     // V731: Bu ortak + butonlu hizli gecis kaldirildi; hastalik adi basligi kalir.
     return;
     const diseasesV422 = [
-        ['as', 'AS', 'Ankilozan Spondilit', './disease-ankilozan-spondilit-v77.png?v=150'],
-        ['ra', 'RA', 'Romatoid Artrit', './romatoid-artrit-hero-v199.png?v=202'],
-        ['bas-agrisi-migren', '01', 'Baş Ağrısı & Migren', './disease-bas-agrisi-migren-v77.png?v=150'],
-        ['bel-sirt-agrisi', '02', 'Bel & Sırt Ağrısı', './disease-bel-sirt-agrisi-v77.png?v=150'],
-        ['fibromiyalji', '03', 'Fibromiyalji', './disease-fibromiyalji-v77.png?v=150'],
-        ['huzursuz-bacak', '04', 'Huzursuz Bacak', './disease-huzursuz-bacak-v77.png?v=150'],
-        ['iltihabi-bagirsak', '05', 'İltihabi Bağırsak', './disease-iltihabi-bagirsak-v77.png?v=150'],
-        ['kronik-yorgunluk', '06', 'Kronik Yorgunluk', './disease-kronik-yorgunluk-v77.png?v=150']
+        ['as', 'AS', 'Ankilozan Spondilit', './disease-ankilozan-spondilit-v77.webp?v=150'],
+        ['ra', 'RA', 'Romatoid Artrit', './romatoid-artrit-hero-v199.webp?v=202'],
+        ['bas-agrisi-migren', '01', 'Baş Ağrısı & Migren', './disease-bas-agrisi-migren-v77.webp?v=150'],
+        ['bel-sirt-agrisi', '02', 'Bel & Sırt Ağrısı', './disease-bel-sirt-agrisi-v77.webp?v=150'],
+        ['fibromiyalji', '03', 'Fibromiyalji', './disease-fibromiyalji-v77.webp?v=150'],
+        ['huzursuz-bacak', '04', 'Huzursuz Bacak', './disease-huzursuz-bacak-v77.webp?v=150'],
+        ['iltihabi-bagirsak', '05', 'İltihabi Bağırsak', './disease-iltihabi-bagirsak-v77.webp?v=150'],
+        ['kronik-yorgunluk', '06', 'Kronik Yorgunluk', './disease-kronik-yorgunluk-v77.webp?v=150']
     ];
 
     const toolbar = document.createElement('section');
@@ -23216,7 +23216,7 @@ function scrollSerumTitleBelowNavbarV514(vascularView) {
     'ankilozan-spondilit': {
       title:'Ankilozan Spondilit',
       summary:'Ankilozan spondilit, özellikle omurga ve sakroiliak eklemleri etkileyebilen kronik iltihaplı bir romatizmal hastalıktır. Hastanın yakınmaları, muayene bulguları, hareket kapasitesi ve tedavi süreci birlikte değerlendirilir.',
-      image:'./disease-ankilozan-spondilit-v77.png?v=150',
+      image:'./disease-ankilozan-spondilit-v77.webp?v=150',
       points:[
         'Bel, pelvis ve omurganın hareketi birlikte değerlendirilir.',
         'Sabah tutukluğu, günlük yaşam ve egzersiz kapasitesi incelenir.',
@@ -23226,7 +23226,7 @@ function scrollSerumTitleBelowNavbarV514(vascularView) {
     'romatoid-artrit': {
       title:'Romatoid Artrit',
       summary:'Romatoid artrit, eklemlerde ağrı, şişlik ve tutukluğa neden olabilen kronik iltihaplı bir romatizmal hastalıktır. Eklem muayenesi, hastalık aktivitesi ve günlük hareket kapasitesi birlikte değerlendirilir.',
-      image:'./romatoid-artrit-hero-v199.png?v=199',
+      image:'./romatoid-artrit-hero-v199.webp?v=199',
       points:[
         'Eklem şişliği, hassasiyet ve sabah tutukluğu değerlendirilir.',
         'El, el bileği ve diğer eklemlerin günlük işlevi incelenir.',
