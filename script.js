@@ -8871,7 +8871,7 @@ window.addEventListener("load", async () => {
 
     cards.forEach(card=>{
       const cta=card.querySelector('.pain-card-body-v76 span');
-      if(cta) cta.textContent='Ağrı Alanını İncele';
+      if(cta) cta.textContent='Detayları Gör ↗';
       card.addEventListener('click',event=>{
         event.preventDefault();
         openDetail(card.dataset.pain,card,true);
@@ -13945,6 +13945,146 @@ function scrollSerumTitleBelowNavbarV514(vascularView) {
     const menuV687 = document.getElementById('v548PremiumNav');
     if (menuV687 && 'ResizeObserver' in window) new ResizeObserver(syncPhytoOffsetV687).observe(menuV687);
 
+    // V845: Her bitki için içerik editörlüğü yapılan üç açıklayıcı soru-cevap alanı.
+    // Genel bilgilendirme metnidir; hastalığa özgü tedavi vaadi içermez.
+    const phytoPlantQuestionsV845 = {
+    "zerdecal": {
+        "what": "Zerdeçal (Curcuma longa), zencefil ailesinden bir bitkinin sarı renkli kök gövdesidir. Yemeklerde baharat olarak kullanılır; kurkumin ise içeriğindeki en çok araştırılan bileşenlerden biridir. Geleneksel olarak sindirim konforu ve eklem yakınmaları için kullanılmıştır. Mutfaktaki baharat ile yüksek yoğunluklu kurkumin takviyesinin etki ve riskleri aynı değildir.",
+        "effects": "Kurkuminin inflamasyonla ilişkili biyolojik süreçler üzerindeki etkileri araştırılmaktadır. Bazı küçük çalışmalarda özellikle diz kireçlenmesinde ağrı ve hareket konforu açısından iyileşme bildirilse de çalışma ve ürünler birbirinden farklıdır. Ankilozan spondilit, romatoid artrit veya başka bir romatizmal hastalığı tedavi ettiği gösterilmiş değildir; ilaçların yerine geçmez.",
+        "care": "Yemekte kullanılan miktarlar ile kapsül ve yüksek emilimli ekstreler ayrı değerlendirilmelidir. Takviyeler mide rahatsızlığına yol açabilir; bazı yoğun veya emilimi artırılmış kurkumin ürünleriyle karaciğer hasarı bildirilmiştir. Safra yolu hastalığı, karaciğer sorunu, gebelik veya kanı etkileyen ilaçların kullanımı söz konusuysa hekim görüşü alınmalıdır."
+    },
+    "boswellia": {
+        "what": "Boswellia, akgünlük adıyla bilinen bazı Boswellia türlerinin reçinesinden elde edilen bitkisel bir içeriktir. Boswellik asitler nedeniyle özellikle kas-eklem yakınmalarıyla ilgili takviyelerde kullanılır. Reçinenin geleneksel kullanımı uzun olsa da her ürünün içerdiği etken madde miktarı ve kalitesi farklıdır.",
+        "effects": "Boswellia ekstreleri için özellikle diz osteoartritine ilişkin sınırlı sayıda klinik çalışma vardır; bazı çalışmalarda ağrı ve günlük hareket konforunda küçük iyileşmeler görülmüştür. Ancak sonuçlar tüm eklem hastalıklarına genellenemez. Romatoid artrit, ankilozan spondilit veya inflamatuvar bağırsak hastalığını tedavi ettiğine dair yeterli kanıt bulunmaz.",
+        "care": "Bulantı, mide rahatsızlığı ve cilt reaksiyonları görülebilir. Reçine, standart ekstre ve karışım ürünler birbirinin yerine kullanılmamalıdır. Gebelik ve emzirme döneminde güvenlilik verileri sınırlıdır. Düzenli ilaç kullananların ürün içeriğini hekim veya eczacıyla gözden geçirmesi uygun olur."
+    },
+    "omega3": {
+        "what": "Omega-3 bir bitki değil, EPA ve DHA gibi çoklu doymamış yağ asitlerini içeren bir beslenme başlığıdır. Balık yağı ve alg kaynaklı ürünlerde bulunur; bitkisel kaynaklardaki ALA ise farklı bir omega-3 türüdür. Hücre zarlarının normal yapısında rol oynarlar ve dengeli beslenmenin bir parçasıdırlar.",
+        "effects": "Bazı romatoid artrit çalışmalarında omega-3 desteğiyle eklem hassasiyeti veya sabah sertliği açısından sınırlı faydalar bildirilmiştir. Etki kişiden kişiye ve kullanılan ürüne göre değişir. Ankilozan spondilit gibi hastalıklarda kanıt daha belirsizdir. Omega-3 tek başına romatizmal hastalığı kontrol altına almaz ve reçeteli tedavinin alternatifi değildir.",
+        "care": "Balık tüketimi ile yüksek doz EPA/DHA kapsülleri aynı değildir. Yüksek doz ürünler mide yakınması, balık tadı ve bazı kişilerde kalp ritmiyle ilgili riskler oluşturabilir. Kan sulandırıcı kullananlar, ritim bozukluğu bulunanlar ve ameliyat planlanan kişiler kişisel uygunluğu hekimleriyle görüşmelidir."
+    },
+    "isirgan": {
+        "what": "Isırgan otu (Urtica dioica) yaprağı, kökü ve tohumu farklı amaçlarla kullanılan bir bitkidir. Anadolu’da çay ve gıda olarak bilinir. Yaprak preparatlarının geleneksel kullanımında idrar yolu ve dönemsel eklem rahatlığı gibi başlıklar yer alır; kök için ise farklı kullanım alanları söz konusudur.",
+        "effects": "Isırganın bazı bileşenleri laboratuvar çalışmalarında incelenmiş olsa da kas-eklem ağrılarını veya dolaşım bozukluklarını tedavi ettiğine ilişkin güvenilir klinik veri sınırlıdır. Hafif idrar söktürücü özelliklerinden söz edilmesi, ödemin nedenini tedavi ettiği anlamına gelmez. Bacak şişmesi veya sürekli ağrı mutlaka değerlendirilmelidir.",
+        "care": "Bitkinin hangi kısmının kullanıldığı ve hazırlama biçimi önemlidir. Bazı kişilerde mide şikâyeti ya da alerjik reaksiyon yapabilir. Diüretik, tansiyon ve diyabet ilaçları kullananlar ile böbrek veya kalp hastalığı bulunanlar kontrolsüz bitkisel ürün almamalıdır."
+    },
+    "sarimsak": {
+        "what": "Sarımsak (Allium sativum), yemeklerde sık kullanılan ve organosülfür bileşikleri içeren bir besindir. Geleneksel kullanımı dolaşım ve genel sağlıkla ilişkilendirilmiştir. Taze sarımsak, olgunlaştırılmış sarımsak özütü ve yoğun takviye formlarının içerikleri aynı değildir.",
+        "effects": "Bazı klinik çalışmalarda sarımsak preparatlarının kan basıncı veya kan yağları üzerinde küçük değişiklikler oluşturabildiği gösterilmiştir. Bulgular ürün tipine ve dozuna bağlıdır; kalp-damar hastalıklarını önlediği ya da tedavi ettiği şeklinde kesin bir sonuç çıkarılamaz. Bağışıklığı güçlendirdiği yönündeki iddiaların da kanıtı sınırlıdır.",
+        "care": "Gıda miktarlarında tüketim genellikle iyi tolere edilir; yoğun takviyeler mide yanması, kötü koku ve kanama eğilimiyle ilişkili olabilir. Kan sulandırıcı veya trombosit önleyici ilaç kullananlar ve ameliyat planlanan kişiler takviyeyi hekimlerine bildirmelidir."
+    },
+    "civanpercemi": {
+        "what": "Civanperçemi (Achillea millefolium), Papatyagiller ailesinden aromatik bir bitkidir. Geleneksel olarak bitki çayı şeklinde hafif sindirim rahatsızlıkları ve adet dönemindeki kramplarla ilişkilendirilir. Kullanılan bitki kısmı ve ürünün içeriği farklı preparatlarda değişebilir.",
+        "effects": "Civanperçeminin bazı bileşenleri laboratuvarda araştırılmıştır; ancak kas gevşetme, inflamatuvar hastalıkları baskılama veya kronik ağrıyı giderme gibi iddiaları destekleyen güçlü insan çalışmaları yoktur. Geleneksel sindirim konforu kullanımı ile kanıtlanmış tıbbi etki birbirinden ayrılmalıdır.",
+        "care": "Papatya, ambrosia veya aynı ailedeki bitkilere alerjisi olanlarda reaksiyon görülebilir. Gebelikte yoğun preparatlardan kaçınılması gerekir; emzirme ve çocukluk için güvenlilik verileri yetersizdir. Sürekli karın ağrısı ve kanama gibi bulgular bitki çayıyla geçiştirilmemelidir."
+    },
+    "zencefil": {
+        "what": "Zencefil (Zingiber officinale), taze veya kurutulmuş kök gövdesi kullanılan bir baharattır. Özellikle bulantı ve sindirim yakınmaları için geleneksel kullanımı yaygındır. Gingerol ve şogaol gibi bileşenleri üzerinde araştırmalar yapılmaktadır.",
+        "effects": "Zencefilin belirli bulantı türlerinde yardımcı olabileceğine dair klinik veriler vardır; özellikle gebelik bulantısı konusunda olumlu çalışmalar bulunsa da kişiye göre değerlendirme gerekir. Diz osteoartriti ağrısında küçük etkiler bildiren araştırmalar da vardır, ancak sonuçlar kesin değildir. Migreni veya iltihaplı romatizmayı tedavi ettiği söylenemez.",
+        "care": "Çay ve yemek miktarları yoğun ekstrelerden farklıdır. Mide yanması, gaz ya da ishal yapabilir. Kanama riski olan kişiler, kan sulandırıcı alanlar ve gebelikte takviye düşünülüyorsa önce hekim görüşü alınmalıdır; düzenli ilaçlar bırakılmamalıdır."
+    },
+    "yesilcay": {
+        "what": "Yeşil çay (Camellia sinensis), çay yapraklarının az oksitlenmiş hâlinden hazırlanır. Kafein ve kateşin adı verilen polifenoller içerir. Günlük içecek olarak tüketimi ile yüksek doz yeşil çay ekstresi birbirinden ayrı ele alınmalıdır.",
+        "effects": "Kafein kısa süreli uyanıklık ve dikkat artışı sağlayabilir. Yeşil çayın antioksidan bileşikleri laboratuvarda çalışılmıştır; bu bulgular kanserin, romatizmal hastalıkların veya metabolik hastalıkların önlendiği anlamına gelmez. Kilo kaybı ve kronik inflamasyonu azaltmaya yönelik takviyeler için kanıt sınırlı ve değişkendir.",
+        "care": "Kafein çarpıntı, kaygı ve uyku bozukluğunu artırabilir. Özellikle yüksek EGCG içeren konsantre ekstrelerle karaciğer hasarı bildirilmiştir. Karaciğer hastalığı bulunanlar, ilaç kullananlar ve gebeler için yoğun takviyelerde bireysel değerlendirme gerekir."
+    },
+    "kekik": {
+        "what": "Kekik adı Türkiye’de farklı Thymus ve Origanum türleri için kullanılabilir. Yemeklerde baharat, bazen çay veya uçucu yağ biçiminde kullanılır. Timol ve karvakrol gibi bileşiklerin oranı bitki türüne ve ürüne göre değişir.",
+        "effects": "Aromatik kekik türleri geleneksel olarak boğaz, öksürük ve sindirim konforuyla ilişkilendirilir. Bazı özütlerin antimikrobiyal etkileri laboratuvarda gösterilmiştir; bunlar insanlarda enfeksiyonları tedavi ettiği veya antibiyotik yerine kullanılabileceği anlamına gelmez. Eklem ağrılarını giderdiğine yönelik güvenilir klinik kanıt da yetersizdir.",
+        "care": "Uçucu yağlar yoğun bileşikler taşır ve ağızdan gelişigüzel alınmamalıdır; ciltte tahrişe veya alerjiye yol açabilir. Bitki çayı, yemek baharatı ve esansiyel yağ farklı ürünlerdir. Küçük çocuklar, gebeler ve kronik hastalığı bulunanlarda uygunluk ayrıca değerlendirilmelidir."
+    },
+    "corekotu": {
+        "what": "Çörek otu (Nigella sativa), mutfakta tohum olarak kullanılan ve yağ preparatları da bulunan bir bitkidir. Timokinon adı verilen bileşeni nedeniyle araştırmalarda sık geçer. Orta Doğu ve Güney Asya geleneklerinde farklı amaçlarla kullanılmıştır.",
+        "effects": "Küçük insan çalışmalarında bazı kan şekeri, kan yağı veya inflamasyon göstergelerinde değişimler bildirilmiştir. Ancak çalışmaların yöntemleri ve ürünleri farklı olduğu için bu sonuçlar diyabeti, astımı, romatizmayı veya bağışıklık hastalıklarını tedavi ettiği anlamına gelmez. İddiaları doğrulamak için daha nitelikli araştırmalar gerekir.",
+        "care": "Tohumun yemeklerde kullanımı ile yağ ve yoğun kapsüller aynı değildir. Mide rahatsızlığı ve alerjik reaksiyonlar olabilir. Şeker veya tansiyon ilaçları kullananlar, gebeler ve düzenli tedavi alanlar hekim görüşü olmadan yüksek doz preparat kullanmamalıdır."
+    },
+    "kusburnu": {
+        "what": "Kuşburnu (Rosa canina ve ilişkili türler), yabani gülün meyvesidir. Çay, marmelat ve bazı toz preparatlarda kullanılır. C vitamini ve polifenoller içerebilir; ancak kurutma ve hazırlama yöntemi vitamin miktarını değiştirebilir.",
+        "effects": "Kuşburnu meyvesi dengeli beslenmede yer alabilir. Bazı standart kuşburnu tozları için diz kireçlenmesindeki ağrı üzerine küçük çalışmalar vardır; sonuçlar tüm ürünlere veya iltihaplı romatizmal hastalıklara genellenemez. Bağışıklık hastalıklarını tedavi ettiğini söylemek doğru değildir.",
+        "care": "Asitli yapısı bazı kişilerde mide rahatsızlığı oluşturabilir. Reçel ve şekerli içecekler ile standardize takviyeler aynı besin değerine sahip değildir. Diyabeti, böbrek taşı öyküsü veya düzenli ilaç kullanımı bulunan kişiler ürün seçimini hekimleriyle değerlendirmelidir."
+    },
+    "beyazsogut": {
+        "what": "Beyaz söğüt (Salix alba) ve bazı yakın söğüt türlerinin kabuğu, salisin adı verilen bileşikler içerir. Geleneksel olarak ağrı ve ateşle ilişkili kullanılmıştır. Salisin vücutta salisilatlarla ilişkili maddelere dönüşebilir; bu nedenle sıradan bir bitki çayı gibi düşünülmemelidir.",
+        "effects": "Söğüt kabuğu için bel ağrısı ve bazı ağrı türlerinde sınırlı klinik araştırmalar yapılmıştır, ancak çalışma sonuçları ve dozlar değişkendir. Ağrının nedenini ortadan kaldırdığı kanıtlanmış değildir. Aspirinle kimyasal ilişkisi bulunması, aspirin yerine güvenle kullanılabileceği anlamına gelmez.",
+        "care": "Aspirin veya salisilat alerjisi, mide ülseri, kanama eğilimi, kan sulandırıcı kullanımı ve gebelik durumlarında ciddi sakıncalar olabilir. Çocuk ve ergenlerde özellikle ateşli viral hastalıklarla birlikte kullanılmamalıdır. Ağrıda hekimin önerdiği tedavi yerine geçirilmemelidir."
+    },
+    "papatya": {
+        "what": "Papatya (Matricaria chamomilla), çiçekleri çay olarak kullanılan bir bitkidir. Geleneksel olarak hafif sindirim rahatsızlıkları ve rahatlama amacıyla tercih edilir. “Papatya” adı altında farklı türler satılabildiği için doğru bitkinin tanımlanması önemlidir.",
+        "effects": "Papatya çayının hafif şişkinlik ve sindirim konforunda geleneksel kullanımı vardır. Kaygı ve uyku üzerine bazı küçük araştırmalar bulunsa da belirgin uyku bozukluğu veya anksiyete hastalığını tedavi ettiği gösterilmiş değildir. Kas-iskelet ağrısını doğrudan geçirdiğine ilişkin güçlü klinik kanıt yoktur.",
+        "care": "Papatyagiller ailesine alerjisi olanlarda ciddi reaksiyon görülebilir. Yoğun ekstreler, çaydan farklı güvenlik profiline sahip olabilir. Düzenli ilaç kullananlar, gebeler ve emzirenler için uygun ürün ve miktar hekimle görüşülmelidir."
+    },
+    "biberiye": {
+        "what": "Biberiye (Salvia rosmarinus; eski adı Rosmarinus officinalis), Akdeniz kökenli aromatik bir bitkidir. Yemek baharatı, çay ve uçucu yağ formunda kullanılır. Bitkide rosmarinik asit ve çeşitli aromatik bileşikler bulunur.",
+        "effects": "Biberiyenin bazı maddelerinin antioksidan özellikleri laboratuvar çalışmalarında gösterilmiştir. Koku ve dikkat üzerine küçük araştırmalar yapılmış olsa da hafıza kaybını, damar hastalığını veya kronik ağrıyı tedavi ettiği sonucuna varılamaz. Baharat olarak beslenmeye katkısı ile tıbbi etki iddiaları ayrı değerlendirilmelidir.",
+        "care": "Yoğun biberiye uçucu yağı ağızdan alınmamalı, cilde uygulanacaksa da tahriş riski dikkate alınmalıdır. Epilepsi, gebelik, düzenli ilaç kullanımı ve alerji gibi durumlarda yoğun preparatların uygunluğu uzmanla değerlendirilmelidir."
+    },
+    "melisa": {
+        "what": "Melisa (Melissa officinalis), oğulotu olarak da bilinen hoş kokulu bir bitkidir. Yaprakları çay ve bazı ekstrelerde kullanılır. Geleneksel bitkisel kullanımında hafif stres belirtileri, uykuya geçiş güçlüğü ve sindirim konforu öne çıkar.",
+        "effects": "Melisa için sakinleşme ve hafif uyku yakınmaları üzerine sınırlı sayıda küçük çalışma bulunur. Bazı kişilerde gevşeme hissi olabilir ancak depresyon, kronik uykusuzluk veya kaygı bozukluğunu tedavi ettiği gösterilmiş değildir. Hafif sindirim şikâyetlerinde kullanımının önemli bölümü geleneksel deneyime dayanır.",
+        "care": "Uyku getirici ilaçlar ve sakinleştiricilerle birlikte alındığında uyuşukluk artabilir. Bitki çayı ile yoğun ekstre farklıdır. Günlük işlevi bozan uykusuzlukta altta yatan nedenin değerlendirilmesi önemlidir; gebelik, emzirme ve çocuklukta ürün seçimi hekimle görüşülmelidir."
+    },
+    "atescicegi": {
+        "what": "Ateş çiçeği adı bu katalogda feverfew (Tanacetum parthenium) bitkisini ifade eder. Papatyagillerden olan bu bitki geleneksel olarak özellikle tekrarlayan baş ağrısıyla ilişkilendirilmiştir. Ürünlerin partenolid içeriği değişebilir.",
+        "effects": "Feverfew ekstreleri migren ataklarını önleme amacıyla araştırılmıştır; bazı çalışmalarda sınırlı yarar görülürken diğerlerinde belirgin etki bulunmamıştır. Ani başlayan şiddetli baş ağrısını gidermek için güvenilir bir akut tedavi olarak kabul edilemez. Migren ilaçlarının yerine kullanılmamalıdır.",
+        "care": "Ağız içinde tahriş ve aft, mide yakınması veya alerji yapabilir. Gebelikte uygun değildir; kanama riski olanlarda ve kan sulandırıcı kullananlarda dikkat gerekir. Düzenli kullanımı bırakırken ve başka ilaçlarla birleştirirken hekim görüşü alınmalıdır."
+    },
+    "lavanta": {
+        "what": "Lavanta (Lavandula angustifolia), çiçeği ve uçucu yağı kullanılan aromatik bir bitkidir. Koku uygulamaları, çaylar ve bazı standardize ağızdan alınan preparatlar birbirinden farklıdır. Geleneksel kullanımında gevşeme ve uyku ön plandadır.",
+        "effects": "Lavanta kokusunun öznel rahatlama hissine etkisi araştırılmıştır. Belirli standardize ağızdan lavanta yağı ürünleriyle kaygı belirtileri üzerine klinik çalışmalar bulunur; sonuçlar herhangi bir lavanta yağının aynı etkiyi göstereceği anlamına gelmez. Kronik uykusuzluğu veya psikiyatrik hastalıkları tek başına tedavi ettiği söylenemez.",
+        "care": "Esansiyel yağlar doktor önerisi olmadan içilmemelidir. Ciltte tahriş veya alerji görülebilir; sakinleştirici ilaçlarla birlikte uyuşukluk artabilir. Çocukluk, gebelik ve emzirme dönemlerinde ürün türü ve maruziyet biçimi özellikle önemlidir."
+    },
+    "ashwagandha": {
+        "what": "Ashwagandha (Withania somnifera), Ayurveda geleneğinde kullanılan ve genellikle kök ekstresi olarak sunulan bir bitkidir. Stres, yorgunluk ve uyku başlıklarıyla anılır. Geleneksel “adaptogen” tanımı tek başına bilimsel etkinlik veya güvenlilik kanıtı değildir.",
+        "effects": "Bazı kısa süreli ve küçük klinik çalışmalarda algılanan stres ve uyku kalitesi üzerinde olumlu sonuçlar bildirilmiştir. Çalışmaların süresi, ürün içeriği ve katılımcı sayısı sınırlıdır. Hormon bozukluklarını, kronik yorgunluk sendromunu veya otoimmün hastalıkları tedavi ettiği gösterilmiş değildir.",
+        "care": "Karaciğer hasarı olguları bildirilmiştir. Tiroid hormonları ve bağışıklık sistemiyle ilişkili ilaçlarla etkileşim olasılığı dikkate alınmalıdır; gebelikte önerilmez. Karaciğer veya tiroid hastalığı olanlar ve düzenli ilaç kullananlar hekim değerlendirmesi olmadan takviye kullanmamalıdır."
+    },
+    "pasiflora": {
+        "what": "Pasiflora (Passiflora incarnata), çiçekli bir sarmaşık bitkisidir. Toprak üstü kısımları geleneksel olarak hafif huzursuzluk ve uykuya geçiş güçlüğü için bitki çayları veya ekstrelerde kullanılır.",
+        "effects": "Pasiflora üzerine kaygı ve uyku konularında küçük çalışmalar yapılmış olsa da etkinlik ve uzun süreli güvenlik konusunda yeterli veri yoktur. Kişinin rahatlama hissi değişken olabilir. Panik bozukluk, depresyon ve kalıcı uykusuzluk için kanıtlanmış tedavilerin yerine geçmez.",
+        "care": "Uyku hâli ve baş dönmesi oluşturabilir; sakinleştirici ilaçlar veya alkolle birlikte bu etkiler artabilir. Gebelikte kullanılmamalı; emzirme ve çocuklarda uzman görüşü alınmalıdır. Kullanım sonrasında araç veya dikkat gerektiren işlerde temkinli olunmalıdır."
+    },
+    "ginkgo": {
+        "what": "Ginkgo biloba, yapraklarından standardize ekstreler üretilen bir ağaç türüdür. Geleneksel kullanımı özellikle dolaşım ve bellek başlıklarında bilinse de yaprak ekstresi, tohum ve gıda ürünleri aynı değildir.",
+        "effects": "Ginkgo ekstreleri bilişsel yakınmalar ve bazı dolaşım sorunları için çalışılmıştır. Sağlıklı kişilerde hafızayı belirgin biçimde güçlendirdiği gösterilmemiştir; demansı önlediğine dair ikna edici kanıt yoktur. Mevcut hastalığı tedavi ettiği veya beyin damarlarını “açtığı” yönündeki iddialar doğru değildir.",
+        "care": "Kanama riskini artırabilen ilaçlarla etkileşim olasılığı ve bazı kişilerde baş ağrısı veya mide rahatsızlığı söz konusudur. Ginkgo tohumları zehirli olabilir ve yenmemelidir. Epilepsi, ameliyat planı ve düzenli ilaç kullanımı varsa hekimle görüşülmelidir."
+    },
+    "kediotu": {
+        "what": "Kediotu (Valeriana officinalis), özellikle kökü kullanılan bir bitkidir. Geleneksel olarak hafif sinirlilik ve uykuya geçiş zorluğunda bitkisel ürünlerde yer alır. Farklı preparatların etkin madde miktarları ve hazırlama yöntemleri değişir.",
+        "effects": "Kediotu ekstrelerinin uyku kalitesini iyileştirip iyileştirmediğine ilişkin çalışma sonuçları birbiriyle uyumlu değildir. Bazı kişiler rahatlama hissetse de kronik uykusuzluğu tedavi ettiğine dair güvenilir ve tutarlı kanıt yeterli değildir. Düzenli uykusuzlukta uyku düzeni, ilaçlar ve eşlik eden hastalıklar değerlendirilmelidir.",
+        "care": "Sersemlik, baş ağrısı ve ertesi gün uyuşukluk görülebilir. Alkol, uyku ilaçları veya başka sakinleştiricilerle birleştirilmemelidir. Gebelik, emzirme ve çocuklukta güvenlilik verileri sınırlıdır; uzun süreli kullanım hekimle değerlendirilmelidir."
+    },
+    "rezene": {
+        "what": "Rezene (Foeniculum vulgare), mutfakta baharat ve çay yapımında kullanılan aromatik bir bitkidir. Halk arasında “rezene tohumu” denilen kısım botanik olarak meyvedir. Geleneksel kullanımı özellikle yemek sonrası gaz ve hafif sindirim rahatsızlığıyla ilişkilidir.",
+        "effects": "Rezene meyvesi bazı Avrupa bitkisel monograflarında hafif şişkinlik ve gaz şikâyetlerinde geleneksel kullanım kapsamında ele alınır. Bu durum her üründe güçlü klinik etki kanıtı olduğu anlamına gelmez. İrritabl bağırsak hastalığını veya uzun süren karın ağrısını tedavi ettiği söylenemez.",
+        "care": "Rezene ve maydanozgiller ailesine alerjisi olanlarda dikkat gerekir. Yoğun uçucu yağlar çayla aynı değildir ve kontrolsüz ağızdan alınmamalıdır. Özellikle bebekler, gebeler ve hormonal duyarlılığı olan kişilerde yoğun ürünlerden önce tıbbi görüş alınmalıdır."
+    },
+    "aloe": {
+        "what": "Aloe vera, yapraklarında saydam jel ve yaprak kabuğuna yakın kısımda farklı bileşikler içeren bir bitkidir. Dıştan kullanılan jel ile ağızdan alınan aloe lateksi aynı ürün değildir. Jel, cilt bakımı ve hafif tahrişlerle ilişkilendirilir.",
+        "effects": "Aloe jeli için bazı yüzeysel cilt sorunlarına ilişkin sınırlı araştırmalar vardır; etkinlik sonuçları ürün ve kullanım amacına göre farklıdır. Ağızdan aloe preparatlarının bağırsakları “temizlediği” veya kronik hastalıkları iyileştirdiği gösterilmiş değildir. Aloe lateksinin güçlü müshil etkisi güvenli bir günlük kullanım anlamına gelmez.",
+        "care": "Aloe lateksi şiddetli ishal, sıvı-elektrolit kaybı ve böbrek sorunları oluşturabilir; ağızdan kontrolsüz kullanılmamalıdır. Jel de ciltte alerji yapabilir. Gebelik, emzirme, böbrek hastalığı ve düzenli ilaç kullanımı durumlarında ürün formu mutlaka değerlendirilmelidir."
+    },
+    "nane": {
+        "what": "Nane, özellikle Mentha × piperita (tıbbi nane) ve başka Mentha türlerini kapsayan aromatik bitkilere verilen addır. Yaprakları çay ve gıda olarak; nane yağı ise belirli preparatlarda kullanılır. Çay ile enterik kaplı nane yağı kapsülü birbirinden farklıdır.",
+        "effects": "Bazı klinik çalışmalarda özel formdaki nane yağı kapsüllerinin irritabl bağırsak sendromunda karın ağrısı ve spazm yakınmalarını hafifletebildiği görülmüştür. Bu etki tüm nane çaylarına veya uçucu yağlara genellenemez. Enfeksiyonu, ülseri ya da başka bir bağırsak hastalığını tedavi ettiği söylenemez.",
+        "care": "Nane ve özellikle nane yağı mide yanması veya reflüyü artırabilir. Saf uçucu yağ doğrudan içilmemeli, küçük çocukların yüzüne ve burun çevresine uygulanmamalıdır. Safra kesesi veya ciddi sindirim hastalığı olanlar uygun formu hekimleriyle görüşmelidir."
+    },
+    "psyllium": {
+        "what": "Karnıyarık otu (Plantago ovata) tohum kabuğundan elde edilen psyllium, su tutabilen çözünür bir lif kaynağıdır. Geleneksel bitkisel kullanımın yanında beslenmede de yer alır. Bağırsakta hacim oluşturarak dışkı kıvamının düzenlenmesine yardımcı olabilir.",
+        "effects": "Psyllium için kabızlıkta dışkılama düzeni ve uygun beslenme kapsamında kan yağlarından LDL kolesterol üzerinde küçük iyileşmeler açısından klinik kanıt vardır. Yeterli sıvıyla alındığında bazı kişilerde dışkı kıvamını normalleştirmeye yardım edebilir. İltihaplı bağırsak hastalıklarının alevlenmesini tek başına kontrol altına alan bir tedavi değildir.",
+        "care": "Mutlaka yeterli suyla alınmalıdır; az sıvıyla yutulması boğulma veya bağırsak tıkanıklığı riski doğurabilir. Yutma güçlüğü ya da bağırsak tıkanması şüphesi olanlar kullanmamalıdır. Bazı ilaçların emilimini etkileyebileceği için kullanım saatleri hekim veya eczacıyla planlanmalıdır."
+    },
+    "rhodiola": {
+        "what": "Rhodiola rosea, soğuk iklimlerde yetişen ve kökü bazı takviyelerde kullanılan bir bitkidir. Geleneksel anlatımlarda dayanıklılık ve yorgunlukla ilişkilendirilir. “Adaptogen” sözcüğü bu alanda yaygındır, fakat tek başına tıbbi etkinlik kanıtı değildir.",
+        "effects": "Stresle ilişkili yorgunluk ve zihinsel performans üzerine küçük araştırmalar yapılmıştır. Sonuçlar ürün standardizasyonu ve çalışma tasarımlarına göre değiştiğinden net bir yarar düzeyi ortaya konmuş değildir. Kronik yorgunluğun, depresyonun veya hormonal bozuklukların tedavisi olarak sunulamaz.",
+        "care": "Uykusuzluk, huzursuzluk veya çarpıntı hissi oluşturabilir. Özellikle psikiyatrik ilaç, uyarıcı veya başka takviyeler kullananlarda etkileşim ihtimali değerlendirilmelidir. Gebelik ve emzirme döneminde yeterli güvenlilik verisi yoktur."
+    },
+    "ginseng": {
+        "what": "Ginseng denildiğinde bu katalogda Panax ginseng, yani Asya ginsengi kastedilir. Kökünden elde edilen ekstreler geleneksel Doğu Asya uygulamalarında kullanılmıştır. Ginsenosidler araştırılan bileşenleridir; Amerikan ve Sibirya ginsengiyle aynı bitki değildir.",
+        "effects": "Yorgunluk hissi, bazı metabolik göstergeler ve zihinsel işlevler üzerine klinik araştırmalar vardır; sonuçlar küçük ve değişkendir. Genel performansı kesin artırdığı, bağışıklık hastalıklarını iyileştirdiği veya diyabeti tedavi ettiği gösterilmiş değildir. Belirli bir ekstreyle elde edilen sonuç başka bir ginseng ürününe taşınamaz.",
+        "care": "Uykusuzluk, baş ağrısı ve mide yakınması yapabilir. Kan şekeri ilaçları ve warfarin başta olmak üzere bazı ilaçlarla etkileşim olasılığı bulunmaktadır. Gebelik ve emzirme döneminde, kronik hastalıklarda ve düzenli tedavi sırasında hekim onayı olmadan kullanılmamalıdır."
+    }
+};
+
     function renderDetail() {
         const herb = catalog[activeHerb];
         if (!herb) return;
@@ -13961,60 +14101,72 @@ function scrollSerumTitleBelowNavbarV514(vascularView) {
         // V754: Bitki görseli üzerindeki hastalık ve konu etiketleri kaldırıldı.
         detailTags.innerHTML = '';
 
-        const editorialV664 = `<section class="phyto-editorial-v664 phyto-editorial-inline-v664" aria-label="${escapeText(herb.name)} için geleneksel ve osteopatik açıklamalar">
-          <div class="phyto-editorial-heading-v664"><span>FİTOTERAPİ • BÜTÜNCÜL DEĞERLENDİRME</span><h4>${escapeText(herb.name)} için farklı bakış açıları</h4></div>
-          <div class="phyto-editorial-grid-v664">
-            <article><span>01 · TARİHSEL BAĞLAM</span><h5>Doğu Tıbbında Geleneksel Bakış</h5><p>${escapeText(herb.traditional)}</p></article>
-            <article><span>02 · KLİNİK GÖRÜŞ</span><h5>Osteopatik ve Bütüncül Değerlendirme</h5><p>${escapeText(herb.osteopathic)}</p></article>
-            <article class="phyto-editorial-science-v664"><span>03 · KANIT VE GÜVENLİK</span><h5>Tıbbi Değerlendirme</h5><p>${escapeText(herb.clinical)}</p></article>
-          </div>
-          <p class="phyto-editorial-disclaimer-v664">Bu açıklamalar bilgilendirme amaçlıdır; geleneksel kullanım klinik etkililik kanıtı değildir. Tanı ve tedavi planı hekim tarafından bireysel olarak değerlendirilmelidir.</p>
-        </section>`;
-
-        detailPanel.innerHTML = `
-            <section class="phyto-flow-section-v753" id="phytoFlowOverviewV753">
-                <div class="phyto-flow-heading-v753"><span>01</span><div><small>GENEL BAKIŞ</small><h3>${escapeText(herb.name)}${herb.subtitle ? ` <em>(${escapeText(herb.subtitle)})</em>` : ''}</h3></div></div>
-                <p class="phyto-panel-lead-v413">${escapeText(context.summary)}</p>
-                <div class="phyto-overview-grid-v413">
-                    <article class="is-wide-v413"><small>NEDEN BU LİSTEDE?</small><strong>${escapeText(context.diseaseName)} bağlamı</strong><p>${escapeText(context.why)}</p></article>
-                    <article><small>YAKLAŞIM</small><strong>Destekleyici kullanım</strong><p>Mevcut tedavinin yerine değil, yakınma ve yaşam kalitesi odaklı tamamlayıcı planın parçası olarak düşünülür.</p></article>
-                    <article><small>PLANLAMA</small><strong>Kişiye özel değerlendirme</strong><p>Ürün formu, ilaçlar, eşlik eden hastalıklar ve kişisel tolerans birlikte ele alınır.</p></article>
+        // V845: Tekrarlayan hastalık temalı kutular yerine üç soru-cevap başlığı.
+        const info = phytoPlantQuestionsV845[activeHerb] || {
+            what: `${herb.name} hakkında güvenilir bilgi için kullanılan bitki türü, kısmı ve ürün formu ayrı ayrı tanımlanmalıdır.`,
+            effects: 'Geleneksel kullanım bilgileri klinik etkinlik kanıtıyla aynı değildir. Ürüne özgü araştırmalar değerlendirilmelidir.',
+            care: herb.caution || 'Düzenli ilaç kullanımı ve özel sağlık durumlarında hekim veya eczacı görüşü alınmalıdır.'
+        };
+        if (detailKicker) detailKicker.textContent = 'FİTOTERAPİ • BİTKİ REHBERİ';
+        detailSubtitle.textContent = `${herb.subtitle || 'Bitkisel içerik'} • Kullanım alanları, araştırmalar ve güvenlik`;
+        const guidePrimaryImage = phytoAssetV686(activeHerb, 'kart') || herb.image || 'phyto-biberiye-v412.webp';
+        const guideSecondaryImage = phytoAssetV686(activeHerb, 'hero') || guidePrimaryImage;
+        const questions = [
+            {
+                n:'01',
+                theme:'tanitim',
+                kicker:'BİTKİYİ TANIYALIM',
+                title:`${herb.name} nedir, neye yarar?`,
+                text:info.what,
+                image:guidePrimaryImage,
+                caption:'Bitkiyi tanımaya yönelik bilgilendirme görseli',
+                alt:`${herb.name} bitkisini tanıtmaya yönelik görsel`,
+                reverse:false
+            },
+            {
+                n:'02',
+                theme:'etkiler',
+                kicker:'ETKİLER VE ARAŞTIRMALAR',
+                title:`${herb.name} etkileri nelerdir?`,
+                text:info.effects,
+                image:guideSecondaryImage,
+                caption:'Bitkinin etkileri ve araştırma başlıklarına yönelik bilgilendirme görseli',
+                alt:`${herb.name} etkilerini anlatan bilgilendirme görseli`,
+                reverse:true
+            },
+            {
+                n:'03',
+                theme:'guvenlik',
+                kicker:'KULLANIM VE GÜVENLİK',
+                title:`${herb.name} kullanılırken nelere dikkat edilmeli?`,
+                text:info.care,
+                image:guidePrimaryImage,
+                caption:'Kullanım ve güvenliğe yönelik bilgilendirme görseli',
+                alt:`${herb.name} güvenlik ve kullanım bilgilerini destekleyen görsel`,
+                reverse:false
+            }
+        ];
+        detailPanel.innerHTML = `<div class="phyto-v845-guide phyto-v846-guide" aria-label="${escapeText(herb.name)} için üç başlıklı bitki rehberi">
+            ${questions.map(question => `<section class="phyto-v845-question phyto-v845-${question.theme} phyto-v846-question" aria-label="${escapeText(question.title)}">
+                <div class="phyto-v846-question-grid${question.reverse ? ' is-reverse' : ''}">
+                    <div class="phyto-v846-question-copy">
+                        <div class="phyto-v845-question-head">
+                            <span class="phyto-v845-number">${question.n}</span>
+                            <div class="phyto-v845-head-copy"><small>${question.kicker}</small><h3>${escapeText(question.title)}</h3></div>
+                        </div>
+                        <p>${escapeText(question.text)}</p>
+                    </div>
+                    <figure class="phyto-v846-question-figure">
+                        <img src="${escapeText(question.image)}" alt="${escapeText(question.alt)}" loading="lazy" decoding="async" onerror="this.onerror=null;this.src='phyto-biberiye-v412.webp';">
+                        <figcaption>${escapeText(question.caption)}</figcaption>
+                    </figure>
                 </div>
-                ${editorialV664}
-            </section>
-
-            <section class="phyto-flow-section-v753" id="phytoFlowComplaintsV753">
-                <div class="phyto-flow-heading-v753"><span>02</span><div><small>YAKINMA ODAKLARI</small><h3>Hangi yakınmalar öne çıkıyor?</h3></div></div>
-                <p class="phyto-panel-lead-v413">${escapeText(context.summary)}</p>
-                <div class="phyto-focus-grid-v413">
-                    ${(context.focus || []).map((item,index) => `
-                        <article><span>${String(index + 1).padStart(2,'0')}</span><div><strong>Yakınma odağı</strong><p>${escapeText(item)}</p></div></article>
-                    `).join('')}
-                </div>
-                <div class="phyto-evidence-note-v413"><strong>Değerlendirme çerçevesi</strong><p>${escapeText(context.evidence)}</p></div>
-            </section>
-
-            <section class="phyto-flow-section-v753" id="phytoFlowWhyV753">
-                <div class="phyto-flow-heading-v753"><span>03</span><div><small>BU HASTALIKTA NEDEN?</small><h3>${escapeText(herb.name)} neden bu listede?</h3></div></div>
-                <p class="phyto-panel-lead-v413">${escapeText(context.why)}</p>
-                <div class="phyto-assessment-grid-v413">
-                    <article><span>01</span><strong>Yakınmayı tanımla</strong><p>${escapeText((context.focus || [])[0] || 'Kişinin öncelikli yakınması belirlenir.')}</p></article>
-                    <article><span>02</span><strong>Kişisel uygunluğu kontrol et</strong><p>Kullanılan ilaçlar, eşlik eden hastalıklar, gebelik durumu ve alerji öyküsü birlikte değerlendirilir.</p></article>
-                    <article><span>03</span><strong>Destek olarak konumlandır</strong><p>Ürünün formu ve kullanım süresi, mevcut tedaviyi değiştirmeden hekimle birlikte planlanır.</p></article>
-                </div>
-                <div class="phyto-evidence-note-v413"><strong>Kanıt ve beklenti</strong><p>${escapeText(context.evidence)}</p></div>
-            </section>
-
-            <section class="phyto-flow-section-v753 phyto-flow-safety-v753" id="phytoFlowSafetyV753">
-                <div class="phyto-flow-heading-v753"><span>04</span><div><small>GÜVENLİK NOTLARI</small><h3>Kullanmadan önce bilinmesi gerekenler</h3></div></div>
-                <p class="phyto-panel-lead-v413">Bitkisel olması, her ürünün her kişi için veya her dozda güvenli olduğu anlamına gelmez.</p>
-                <div class="phyto-warning-grid-v413">
-                    <article><span aria-hidden="true">!</span><div><strong>Bitkiye özel uyarı</strong><p>${escapeText(herb.caution || 'Düzenli ilaç kullanan kişiler hekime danışmadan bitkisel ürün başlamamalıdır.')}</p></div></article>
-                    <article><span aria-hidden="true">i</span><div><strong>${escapeText(context.diseaseName)} için önemli not</strong><p>${escapeText(context.evidence)}</p></div></article>
-                </div>
-                <div class="phyto-safety-footer-v413">Mevcut ilaçların dozu değiştirilmemeli veya kesilmemelidir. Yeni bir ürün başlanmadan önce hekim ya da eczacıyla olası etkileşimler kontrol edilmelidir.</div>
-            </section>
-        `;
+            </section>`).join('')}
+            <p class="phyto-v845-disclaimer">Bilgilendirme amaçlıdır. Geleneksel kullanım kanıtlanmış tedavi anlamına gelmez. Ürünlerin etki ve riskleri içerik, doz ve kişisel sağlık durumuna göre değişir; mevcut tıbbi tedaviler bırakılmamalıdır.</p>
+            <button class="phyto-v847-bottom-back" type="button" data-v847-phyto-back>← Bitkilere Dön</button>
+        </div>`;
+        // V847: Üst başlık kaldırıldı; bitki listesine dönüş, rehberin sonunda korunuyor.
+        detailPanel.querySelector('[data-v847-phyto-back]')?.addEventListener('click', () => closeHerbDetail({returnToFitoterapi:true}));
     }
 
     function openHerbDetail(key, diseaseKey = '') {
@@ -17721,6 +17873,196 @@ function scrollSerumTitleBelowNavbarV514(vascularView) {
         }
     );
 
+
+    // V857: Japon Tek Öğün ve Açlık/Oruç sekmelerinde yalnızca bilimsel ve tıbbi içerik.
+    // Diğer kürler, görseller ve kart yapısı korunur.
+    const detoxAcademicGuidesV856 = {
+  "japon-gida-01": {
+    "name": "Tek Öğün Beslenmenin Tıbbi Değerlendirmesi",
+    "support": "Günde tek öğün (OMAD) beslenmenin etkileri toplam enerji alımı, besin yeterliliği ve metabolik riskler üzerinden değerlendirilir.",
+    "benefitSummary": "Günde tek öğün (OMAD) beslenmenin etkileri toplam enerji alımı, besin yeterliliği ve metabolik riskler üzerinden değerlendirilir.",
+    "science": "Günde tek öğün beslenmede besin alımı kısa bir zaman aralığına sıkışır. Zaman kısıtlı beslenme araştırmalarında bazı yetişkinlerde kilo ve kan şekeri göstergelerinde sınırlı iyileşmeler gözlenmiştir; ancak bu çalışmaların çoğu OMAD ile aynı yöntem değildir. Günde tek öğünün dengeli çok öğünlü beslenmeye uzun dönemde üstün olduğunu gösteren güçlü klinik kanıt bulunmamaktadır.",
+    "clinical": "Klinik değerlendirmede enerji ve protein yeterliliği, kilo değişimi, kan şekeri yanıtı, kas kütlesi, ilaç kullanımı ve yaşam düzeni birlikte incelenir. Günde tek öğün, herkes için önerilecek standart bir tıbbi beslenme yöntemi değildir.",
+    "note": "İnsülin veya kan şekeri düşürücü ilaç kullananlarda hipoglisemi riski değerlendirilmelidir. Gebelik, emzirme, büyüme dönemi ve yeme bozukluğu öyküsünde uzman görüşü olmadan uygulanmamalıdır.",
+    "icon": "🩺",
+    "tags": [
+      "Tek öğün",
+      "Klinik kanıt",
+      "Besin yeterliliği"
+    ]
+  },
+  "japon-gida-02": {
+    "name": "Tek Öğünde Besin Çeşitliliği ve Beslenme Yeterliliği",
+    "support": "Az sayıda öğünde yeterli protein, lif, vitamin ve mineral almak klinik beslenme açısından temel sorundur.",
+    "benefitSummary": "Az sayıda öğünde yeterli protein, lif, vitamin ve mineral almak klinik beslenme açısından temel sorundur.",
+    "science": "Beslenme örüntüsünün sağlık üzerindeki etkisi yalnızca öğün sayısına değil, günlük toplam enerjiye, besin kalitesine ve çeşitliliğe bağlıdır. Tek öğün düzeninde sebze, tam tahıl, yeterli protein ve uygun yağ kaynaklarının tamamını dengeli miktarda tüketmek güçleşebilir. Çeşitlilik eksikliği uzun dönemde bazı mikrobesinlerin yetersiz alınmasına yol açabilir.",
+    "clinical": "Beslenme öyküsü ve porsiyonlar incelenir; gerektiğinde diyetisyen değerlendirmesiyle toplam protein, lif, demir, B12 vitamini ve diğer besin öğelerinin yeterliliği kontrol edilir. Öğün sayısı kişinin gereksinimlerine göre düzenlenir.",
+    "note": "İstem dışı kilo kaybı, yetersiz besin alımı veya sürekli halsizlikte tek öğün düzeni yeniden değerlendirilmelidir.",
+    "icon": "🩺",
+    "tags": [
+      "Beslenme yeterliliği",
+      "Protein",
+      "Mikrobesinler"
+    ]
+  },
+  "japon-gida-03": {
+    "name": "Kas Kütlesi ve Protein Dağılımı",
+    "support": "Öğün aralıkları değerlendirilirken kas sağlığı, günlük protein miktarı ve fiziksel aktivite göz ardı edilmemelidir.",
+    "benefitSummary": "Öğün aralıkları değerlendirilirken kas sağlığı, günlük protein miktarı ve fiziksel aktivite göz ardı edilmemelidir.",
+    "science": "Kas protein sentezinin sürdürülmesinde yeterli günlük protein ve direnç egzersizi önem taşır. Tüm proteini tek öğünde toplamak özellikle ileri yaşta veya iştahı düşük kişilerde gereksinimi karşılamayı zorlaştırabilir. Öğün başına protein dağılımının yararı kişiye göre değişir; tek öğünün kas sağlığı için üstün olduğu gösterilmiş değildir.",
+    "clinical": "Kas gücü, fiziksel aktivite düzeyi, kilo seyri, iştah ve böbrek hastalığı gibi durumlar değerlendirilir. Gerekli olduğunda protein alımının gün içine bölündüğü daha uygulanabilir bir öğün düzeni planlanır.",
+    "note": "İleri yaş, sarkopeni, yoğun fiziksel aktivite veya istemsiz kilo kaybında uzun açlık ve tek öğün planları özel değerlendirme gerektirir.",
+    "icon": "🩺",
+    "tags": [
+      "Kas sağlığı",
+      "Protein",
+      "Öğün dağılımı"
+    ]
+  },
+  "japon-gida-04": {
+    "name": "Yeme Hızı, Tokluk ve Glisemik Yanıt",
+    "support": "Öğün süresi ve yeme hızı, tokluk hissi ve besin tüketimini etkileyebilen davranışsal faktörlerdir.",
+    "benefitSummary": "Öğün süresi ve yeme hızı, tokluk hissi ve besin tüketimini etkileyebilen davranışsal faktörlerdir.",
+    "science": "Yeme hızı, öğün sırasında dikkat ve gıdanın yapısı, tokluk algısı ve toplam tüketimle ilişkilendirilmektedir. Bununla birlikte yavaş yemek tek başına hastalık tedavisi değildir; kan şekeri yanıtı ve metabolik sonuçlar öğünün içeriği ve miktarına da bağlıdır. Tek öğünle çok büyük porsiyon tüketilmesi bazı kişilerde mide-bağırsak yakınmalarını artırabilir.",
+    "clinical": "Aşırı açlık sonrası hızlı yeme, mide rahatsızlığı, kan şekeri dalgalanmaları ve yeme davranışındaki zorluklar sorgulanır. Amaç yeterli, düzenli ve kişinin yaşamına uyabilecek bir beslenme planı oluşturmaktır.",
+    "note": "Yeme bozukluğu öyküsü, tıkınırcasına yeme atakları veya belirgin öğün kaygısı varsa kısıtlayıcı planlardan önce uzman desteği değerlendirilmelidir.",
+    "icon": "🩺",
+    "tags": [
+      "Tokluk",
+      "Yeme hızı",
+      "Metabolik yanıt"
+    ]
+  },
+  "japon-gida-05": {
+    "name": "Açlıkta Enerji Metabolizması ve Detoks İddiaları",
+    "support": "Açlık sırasında enerji kaynaklarının değişmesi, vücudun özel bir toksin temizleme sürecine girdiğini kanıtlamaz.",
+    "benefitSummary": "Açlık sırasında enerji kaynaklarının değişmesi, vücudun özel bir toksin temizleme sürecine girdiğini kanıtlamaz.",
+    "science": "Açlık süresi uzadıkça glikojen depolarının kullanımı değişebilir; yağ asidi oksidasyonu ve keton üretimi artabilir. Bu normal bir metabolik uyumdur. Karaciğer ve böbrekler atıkların metabolizması ve uzaklaştırılmasında açlık olmadan da görev yapar. Tek öğün beslenmenin vücuttan toksinleri özel olarak uzaklaştırdığını doğrulayan güçlü klinik kanıt yoktur.",
+    "clinical": "Tıbbi yaklaşımda belirsiz “arınma” iddiaları yerine ağırlık, bel çevresi, glisemik ölçümler, kan basıncı ve beslenme yeterliliği gibi izlenebilir göstergeler kullanılır. Açlığın süresi değil, güvenli ve sürdürülebilir sonuçları değerlendirilir.",
+    "note": "Baş dönmesi, bayılma, belirgin halsizlik veya kan şekeri düşüklüğü belirtilerinde açlığı sürdürmek güvenli olmayabilir.",
+    "icon": "🩺",
+    "tags": [
+      "Enerji metabolizması",
+      "Ketonlar",
+      "Kanıt düzeyi"
+    ]
+  },
+  "japon-gida-06": {
+    "name": "Tek Öğün Kimler İçin Uygun Olmayabilir?",
+    "support": "Günde tek öğün beslenme kararı kişisel hastalıklar, ilaçlar ve beslenme durumu değerlendirilmeden verilmemelidir.",
+    "benefitSummary": "Günde tek öğün beslenme kararı kişisel hastalıklar, ilaçlar ve beslenme durumu değerlendirilmeden verilmemelidir.",
+    "science": "Tek öğün araştırmaları sınırlı sayıda katılımcı, kısa takip süresi ve farklı yöntemler nedeniyle tüm toplum için kesin sonuç vermez. Uzun süreli enerji açığı, yetersiz protein alımı ve bazı ilaçlarla aç kalmak risk oluşturabilir. Elde edilen bulgular, bu yöntemin tüm bireyler için üstün olduğunu göstermemektedir.",
+    "clinical": "Diyabet tedavisi, gebelik, emzirme, böbrek hastalığı, yeme bozukluğu öyküsü, yaşlılıkta kas kaybı ve düşük vücut ağırlığı özellikle sorgulanır. Uygun bir öğün planı hekim ve diyetisyen tarafından kişiselleştirilebilir.",
+    "note": "İnsülin, sulfonilüre veya başka hipoglisemi riski olan ilaçlar sağlık uzmanı önerisi olmadan değiştirilmemeli; açlık planı öncesinde tıbbi görüş alınmalıdır.",
+    "icon": "🩺",
+    "tags": [
+      "Bireysel risk",
+      "İlaçlar",
+      "Klinik uygunluk"
+    ]
+  },
+  "aclik-gida-01": {
+    "name": "Oruç ve Aralıklı Açlık: Tıbbi Tanım",
+    "support": "Oruç modelleri süre, sıvı alımı ve kalori kısıtlaması açısından farklıdır; tıbbi etkileri aynı kabul edilmez.",
+    "benefitSummary": "Oruç modelleri süre, sıvı alımı ve kalori kısıtlaması açısından farklıdır; tıbbi etkileri aynı kabul edilmez.",
+    "science": "Zaman kısıtlı beslenme, alternatif gün açlığı ve sıvı alınmayan oruç birbirinden farklı fizyolojik koşullar oluşturur. Araştırmalarda kullanılan protokolün süresi, kalori içeriği ve su tüketimi sonuçların yorumunu belirler. Bir yöntemde elde edilen kilo veya glukoz bulgularını bütün oruç biçimlerine genellemek bilimsel değildir.",
+    "clinical": "Hekim değerlendirmesinde açlığın süresi, sıvı tüketimi, öğünlerin içeriği, uyku, fiziksel aktivite, hastalıklar ve kullanılan ilaçlar birlikte incelenir. Her bireye standart bir oruç protokolü önerilmez.",
+    "note": "Sıvının da kısıtlandığı uzun süreli açlıklarda susuz kalma riski artabilir. İlaç kullananlarda açlık öncesi hekim değerlendirmesi önemlidir.",
+    "icon": "🩺",
+    "tags": [
+      "Aralıklı açlık",
+      "Oruç tipleri",
+      "Tıbbi değerlendirme"
+    ]
+  },
+  "aclik-gida-02": {
+    "name": "Açlık Fizyolojisi: Glikojen, Yağ ve Ketonlar",
+    "support": "Açlık sırasında enerji kullanımının değişmesi beklenen bir fizyolojik uyumdur, tek başına tedavi etkisi anlamına gelmez.",
+    "benefitSummary": "Açlık sırasında enerji kullanımının değişmesi beklenen bir fizyolojik uyumdur, tek başına tedavi etkisi anlamına gelmez.",
+    "science": "Yemek sonrasında enerji için glukoz kullanımı öne çıkar. Açlık uzadıkça karaciğer glikojen depoları azalabilir, yağ asidi kullanımı ve keton cisimlerinin üretimi artabilir. Bu geçişin hızı kişinin beslenmesi, fiziksel aktivitesi, metabolik durumu ve açlığın süresine bağlıdır. İnsanlarda otofaji gibi hücresel süreçlerin belirli bir oruç saatinde kesin olarak başladığı söylenemez.",
+    "clinical": "Baş dönmesi, halsizlik, glukoz dalgalanması, ilaç kullanımı ve egzersiz toleransı değerlendirilir. Klinik sonuçlar yalnızca açlık saatiyle değil; toplam beslenme, hidrasyon ve metabolik verilerle birlikte yorumlanır.",
+    "note": "Hipoglisemi riski taşıyan veya kontrolsüz metabolik hastalığı bulunan kişiler açlık uygulamalarını hekimle değerlendirmelidir.",
+    "icon": "🩺",
+    "tags": [
+      "Glikojen",
+      "Keton metabolizması",
+      "Fizyoloji"
+    ]
+  },
+  "aclik-gida-03": {
+    "name": "Sirkadiyen Ritim ve Öğün Zamanlaması",
+    "support": "Öğünlerin saatleri, uyku düzeni ve biyolojik ritim metabolik sağlık çalışmalarının önemli değişkenleridir.",
+    "benefitSummary": "Öğünlerin saatleri, uyku düzeni ve biyolojik ritim metabolik sağlık çalışmalarının önemli değişkenleridir.",
+    "science": "Sirkadiyen ritim insülin duyarlılığı, iştah ve enerji metabolizmasıyla ilişkilidir. Bazı kontrollü araştırmalarda gündüz saatlerine yerleştirilen zaman kısıtlı beslenme ile kardiyometabolik göstergelerde sınırlı iyileşmeler bildirilmiştir. Sonuçlar uygulama süresi, kalori alımı, uyku ve kişisel özelliklerden etkilenebilir; tüm kişiler için tek bir en iyi öğün saati belirlenmiş değildir.",
+    "clinical": "Vardiyalı çalışma, uyku süresi, diyabet ilaçları, egzersiz saatleri ve beslenme düzeni değerlendirilir. Gerektiğinde öğün zamanlaması, kişinin düzenli uyku ve yeterli besin alımını destekleyecek şekilde planlanır.",
+    "note": "Gece çalışanlar veya uyku bozukluğu yaşayanlar katı bir zaman penceresine geçmeden önce kişisel değerlendirme yaptırmalıdır.",
+    "icon": "🩺",
+    "tags": [
+      "Biyolojik saat",
+      "Öğün zamanı",
+      "Metabolik sağlık"
+    ]
+  },
+  "aclik-gida-04": {
+    "name": "Oruç Sonrası Beslenme ve Sıvı Dengesi",
+    "support": "Uzun açlığın ardından sıvı ve yeterli besin alımının planlanması klinik güvenlik açısından önemlidir.",
+    "benefitSummary": "Uzun açlığın ardından sıvı ve yeterli besin alımının planlanması klinik güvenlik açısından önemlidir.",
+    "science": "Açlık ve sıvı kısıtlaması, koşullara bağlı olarak hidrasyon, kan basıncı ve kan şekeri üzerinde etkili olabilir. Yeniden beslenmede toplam enerji, protein, lif ve sıvı yeterliliği önemlidir. Uzun süre ciddi yetersiz beslenmiş kişilerde yeniden beslenme sendromu gibi özel riskler ortaya çıkabilir; sıradan kısa süreli oruçla aynı kabul edilmemelidir.",
+    "clinical": "İshal, kusma, böbrek veya kalp hastalığı, diüretik kullanımı ve glisemik durum sorgulanır. Oruç sonrasında büyük tek öğün yerine tolere edilebilir, dengeli bir beslenme planı seçilebilir.",
+    "note": "Uzun süreli ciddi beslenme yetersizliği, belirgin kilo kaybı veya sıvı-elektrolit bozukluğu varsa yeniden beslenme tıbbi gözetim gerektirebilir.",
+    "icon": "🩺",
+    "tags": [
+      "Sıvı dengesi",
+      "Yeniden beslenme",
+      "Elektrolitler"
+    ]
+  },
+  "aclik-gida-05": {
+    "name": "Aralıklı Orucun Bilimsel Kanıtları ve Sınırları",
+    "support": "Bazı yetişkinlerde kilo ve metabolik göstergeler değişebilir; uzun dönem üstünlük ve tedavi iddiaları için kanıtlar sınırlıdır.",
+    "benefitSummary": "Bazı yetişkinlerde kilo ve metabolik göstergeler değişebilir; uzun dönem üstünlük ve tedavi iddiaları için kanıtlar sınırlıdır.",
+    "science": "Randomize çalışmaların bir bölümünde zaman kısıtlı beslenme ve aralıklı açlıkla kilo kaybı veya bazı glisemik göstergelerde iyileşme bildirilmiştir. Ancak yöntemler çoğu araştırmada benzer düzeyde kalori kısıtlamasına karşı belirgin üstünlük göstermemiştir. Süre, katılımcı grubu ve müdahale biçimleri farklı olduğundan uzun dönemde hastalık tedavisi sağlandığı sonucu çıkarılamaz.",
+    "clinical": "Vücut ağırlığı, bel çevresi, kan şekeri veya HbA1c, kan basıncı, ilaçlar ve yaşam kalitesi gibi sonuçlar takip edilir. Açlık, gerekli tıbbi tedavilerin yerini alan bir yöntem olarak sunulmaz.",
+    "note": "Araştırma sonuçları belirli katılımcı gruplarına aittir; kişisel tedavi kararı için sağlık uzmanı değerlendirmesi gerekir.",
+    "icon": "🩺",
+    "tags": [
+      "Klinik araştırma",
+      "Kanıt düzeyi",
+      "Metabolik göstergeler"
+    ]
+  },
+  "aclik-gida-06": {
+    "name": "Oruçta Güvenlik ve Tıbbi Uygunluk",
+    "support": "Açlığın güvenliği; yaş, metabolik hastalıklar, sıvı alımı, ilaçlar ve beslenme durumuna göre değişir.",
+    "benefitSummary": "Açlığın güvenliği; yaş, metabolik hastalıklar, sıvı alımı, ilaçlar ve beslenme durumuna göre değişir.",
+    "science": "Açlık süresince hipoglisemi, susuz kalma, baş ağrısı, halsizlik, tansiyon düşüklüğü ve bazı ilaçların alınma zamanında sorunlar görülebilir. İnsülin veya kan şekerini düşüren ilaç kullananlarda risk artabilir. Sıvı alınmayan oruçta hidrasyon durumu ayrıca önem kazanır.",
+    "clinical": "Hekim; diyabet, böbrek ve kalp hastalığı, gebelik, emzirme, yeme bozuklukları, düşük kilo, ilaçların zamanlaması ve fiziksel iş yükünü değerlendirir. Bazı kişilerde açlık planı uygun olmayabilir; ilaç değişikliği yalnızca sağlık ekibiyle yapılmalıdır.",
+    "note": "Gebeler, emzirenler, çocuklar, yeme bozukluğu öyküsü olanlar ve hipoglisemi riski yüksek kişiler uzman değerlendirmesi olmadan uzun açlık denememelidir.",
+    "icon": "🩺",
+    "tags": [
+      "Hasta güvenliği",
+      "Hipoglisemi",
+      "İlaç etkileşimleri"
+    ]
+  }
+};
+    recipes.forEach(recipe => {
+        const fresh = detoxAcademicGuidesV856[recipe.id];
+        if (!fresh) return;
+        recipe.name = fresh.name;
+        recipe.support = fresh.support;
+        recipe.benefitSummary = fresh.benefitSummary;
+        recipe.tcmView = fresh.science;
+        recipe.easternView = fresh.science;
+        recipe.science = fresh.science;
+        recipe.lifestyle = fresh.clinical;
+        recipe.note = fresh.note;
+        recipe.tags = fresh.tags;
+        recipe.icon = fresh.icon;
+        recipe.keywords = [fresh.name,fresh.tags.join(' '),'Japon tek öğün bilimsel tıbbi açlık oruç metabolizma'].join(' ');
+        // Yalnızca yazılar değişiyor: fotoğraflar, kart şablonu ve tıklama korunur.
+    });
+
     window.detoxRecipesV390 = recipes;
     window.detoxRecipesV391 = recipes;
     window.detoxRecipesV392 = recipes;
@@ -17940,12 +18282,39 @@ function scrollSerumTitleBelowNavbarV514(vascularView) {
                 <p class="detox-v717-lens-note">Vücudun doğal metabolizma ve boşaltım süreçleri, özel bir “detoks kürü”nün etkinliğinin kanıtı değildir.</p>
             </section>
         </div>`;
+        // V857: Yalnızca Japon Tek Öğün ve Açlık/Oruç için tek bilimsel/tıbbi panel.
+        let academicPanelsV856 = panels;
+        let academicSourcesV856 = null;
+        if (recipe.category === 'japon' || recipe.category === 'aclik') {
+            const isJapanese = recipe.category === 'japon';
+            academicPanelsV856 = `<div class="detox-info-lenses-v645 detox-v717-two-lenses detox-v856-academic detox-v857-medical-only">
+                <section class="detox-info-lens-v645 detox-v717-west detox-v856-lens" aria-label="Bilimsel ve tıbbi bakış">
+                    <div class="detox-v717-lens-head"><span aria-hidden="true">⚕</span><h3>Bilimsel ve Tıbbi Bakış</h3></div>
+                    <h4>Bilimsel araştırmalar ne gösteriyor?</h4>
+                    <p>${escapeHtml(recipe.science || '')}</p>
+                    <h4>Klinik değerlendirmede nelere dikkat edilir?</h4>
+                    <p>${escapeHtml(recipe.lifestyle || '')}</p>
+                    <p class="detox-v717-lens-note">Bu bilgiler genel tıbbi bilgilendirme amaçlıdır; açlık ve tek öğün beslenme, mevcut tıbbi tedavilerin yerine geçmez.</p>
+                </section>
+            </div>`;
+            academicSourcesV856 = isJapanese
+                ? `<div class="detox-v717-sources"><strong>Akademik okuma:</strong>
+                    <a href="https://pubmed.ncbi.nlm.nih.gov/39348690/" rel="noopener noreferrer" target="_blank">PubMed · Öğün zamanlaması klinik çalışması</a>
+                    <a href="https://www.niddk.nih.gov/health-information/professionals/diabetes-discoveries-practice/patients-intermittent-fasting" rel="noopener noreferrer" target="_blank">NIDDK · Aralıklı oruç</a>
+                    <a href="https://www.nccih.nih.gov/health/detoxes-and-cleanses-what-you-need-to-know" rel="noopener noreferrer" target="_blank">NCCIH · Detoks iddiaları</a>
+                </div>`
+                : `<div class="detox-v717-sources"><strong>Akademik okuma:</strong>
+                    <a href="https://www.nih.gov/news-events/nih-research-matters/time-restricted-eating-metabolic-syndrome" rel="noopener noreferrer" target="_blank">NIH · Öğün zamanlaması araştırması</a>
+                    <a href="https://diabetesjournals.org/care/article/49/Supplement_1/S89/163932/5-Facilitating-Positive-Health-Behaviors-and-Well" rel="noopener noreferrer" target="_blank">ADA 2026 · Açlık ve diyabet güvenliği</a>
+                    <a href="https://www.nccih.nih.gov/health/detoxes-and-cleanses-what-you-need-to-know" rel="noopener noreferrer" target="_blank">NCCIH · Detoks iddiaları</a>
+                </div>`;
+        }
         const frame = `<div class="detox-v717-sources"><strong>Okuma kaynakları:</strong>
             <a href="https://www.nccih.nih.gov/health/detoxes-and-cleanses-what-you-need-to-know" rel="noopener noreferrer" target="_blank">NCCIH · Detoks uygulamaları</a>
             <a href="https://nigms.nih.gov/biobeat/2023/09/what-happens-to-medicine-in-your-body" rel="noopener noreferrer" target="_blank">NIH · İlaçların metabolizması</a>
             <a href="https://pmc.ncbi.nlm.nih.gov/articles/PMC4756788/" rel="noopener noreferrer" target="_blank">Geleneksel Uygur Tıbbı incelemesi</a>
         </div>`;
-        detoxInfoInnerV645.innerHTML = `${media}<div class="detox-info-body-v645"><span class="detox-info-category-v645">${escapeHtml(recipe.categoryLabel)}</span><h2 id="detoxInfoHeadingV645">${escapeHtml(recipe.name)}</h2><p class="detox-info-lead-v645">${escapeHtml(recipe.benefitSummary || recipe.support)}</p><div class="detox-info-tags-v645">${tags}</div>${panels}${frame}<p class="detox-info-warning-v645"><strong>Dikkat:</strong> ${escapeHtml(recipe.note || 'Bu içerik genel bilgilendirme amaçlıdır; tedavi yerine geçmez.')}</p></div>`;
+        detoxInfoInnerV645.innerHTML = `${media}<div class="detox-info-body-v645"><span class="detox-info-category-v645">${escapeHtml(recipe.categoryLabel)}</span><h2 id="detoxInfoHeadingV645">${escapeHtml(recipe.name)}</h2><p class="detox-info-lead-v645">${escapeHtml(recipe.benefitSummary || recipe.support)}</p><div class="detox-info-tags-v645">${tags}</div>${academicPanelsV856}${academicSourcesV856 || frame}<p class="detox-info-warning-v645"><strong>Dikkat:</strong> ${escapeHtml(recipe.note || 'Bu içerik genel bilgilendirme amaçlıdır; tedavi yerine geçmez.')}</p></div>`;
         detoxInfoDialogV645.setAttribute('aria-labelledby','detoxInfoHeadingV645');
         if (typeof detoxInfoDialogV645.showModal === 'function') detoxInfoDialogV645.showModal();
         else detoxInfoDialogV645.setAttribute('open','');
@@ -18002,7 +18371,7 @@ function scrollSerumTitleBelowNavbarV514(vascularView) {
                 <div class="detox-card-copy-v390">
                     <span class="detox-card-category-v390">${escapeHtml(recipe.categoryLabel)}</span>
                     <h3>${escapeHtml(recipe.name)}</h3>
-                    <p class="detox-support-v390"><strong>Hangi alanlarda değerlendirilir?</strong> ${escapeHtml(recipe.benefitSummary || recipe.support)}</p>
+                    <p class="detox-support-v390"><strong>${recipe.category === 'japon' || recipe.category === 'aclik' ? 'Akademik ve tıbbi bakış:' : 'Hangi alanlarda değerlendirilir?'}</strong> ${escapeHtml(recipe.benefitSummary || recipe.support)}</p>
                     <div class="detox-tags-v390">
                         ${(recipe.tags || []).slice(0,3).map(tag => `<span>${escapeHtml(tag)}</span>`).join('')}
                     </div>
@@ -24076,6 +24445,9 @@ function scrollSerumTitleBelowNavbarV514(vascularView) {
     if(autoplay){player.muted=true;const result=player.play();if(result && result.catch)result.catch(()=>{});}
   }
   function switchOverviewVideo(key){
+    // V844: V843 detayları kendi video oynatıcısını yönetir.
+    // Sayfa kayarken V841'in aynı video kaynağını yeniden yüklemesini engelle.
+    if (document.getElementById('v843TraditionalBack')) return;
     if(!config[key]||key===activeKey)return;
     activeKey=key;
     if(caption)caption.textContent=config[key].title;
@@ -24202,7 +24574,11 @@ function scrollSerumTitleBelowNavbarV514(vascularView) {
       tab.tabIndex=chosen?0:-1;
     });
     panels.forEach(panel=>{panel.hidden=panel.dataset.v842Panel!==key;});
-    if(video){video.pause();video.removeAttribute('src');video.load();video.hidden=true;}
+    // V844: V843 ayrıntı görünümündeyken sadece sekme/içerik/görseli değiştir.
+    // Video kaynağına dokunma; tekrar yükleme titremeye yol açıyordu.
+    if(video && !document.getElementById('v843TraditionalBack')){
+      video.pause();video.removeAttribute('src');video.load();video.hidden=true;
+    }
     fallbackUsed=false;
     img.src=src[key].image;
     img.alt=src[key].label+' uygulaması';
@@ -24225,7 +24601,8 @@ function scrollSerumTitleBelowNavbarV514(vascularView) {
       pick(keys[next]);tabs[next].focus();
     });
   });
-  if(btn&&video){
+  // V844: V842'nin eski play handler'ı V843 ile çakışmasın.
+  if(btn&&video&&!document.getElementById('v843TraditionalBack')){
     btn.addEventListener('click',()=>{
       video.src=src[active].video;
       video.poster=img.currentSrc||src[active].image;
@@ -24277,7 +24654,11 @@ function scrollSerumTitleBelowNavbarV514(vascularView) {
   }
   function clearVideo(){
     if(!video)return;
-    video.pause();video.removeAttribute('src');video.load();video.hidden=true;
+    video.pause();
+    // Kaynak yalnızca kart listesine dönüşte kaldırılır, kaydırmada asla değişmez.
+    if(video.hasAttribute('src')){video.removeAttribute('src');video.load();}
+    delete video.dataset.v844Source;
+    video.hidden=true;
     if(poster)poster.hidden=false;
     if(play)play.hidden=false;
   }
@@ -24299,14 +24680,27 @@ function scrollSerumTitleBelowNavbarV514(vascularView) {
     if(mediaTitle)mediaTitle.textContent=labels[key];
     if(poster){poster.hidden=false;poster.src=config[key].image;}
     if(video){
-      video.pause();video.setAttribute('poster',config[key].image);
-      video.src=config[key].video;video.load();video.hidden=false;
-      video.muted=true;video.loop=true;video.playsInline=true;
-      if(!reduceMotion&&!saveData){
-        const p=video.play();if(p&&p.catch)p.catch(()=>{video.hidden=true;poster.hidden=false;play.hidden=false;});
+      // V844: Tek sahip, tek kaynak ataması. V841/V842 scroll veya tab olayları
+      // bu oynatıcıyı durduramaz veya arka arkaya load() edemez.
+      const changed=video.dataset.v844Source!==key;
+      if(changed){
+        video.pause();
+        video.hidden=true;
+        video.dataset.v844Source=key;
+        video.setAttribute('poster',config[key].image);
+        video.preload='metadata';
+        video.muted=true;
+        video.loop=false; // Kısa MP4'lerin döngü birleşimindeki sıçramayı önle.
+        video.playsInline=true;
+        video.src=config[key].video;
+        video.load();
+      }
+      if(play)play.hidden=false;
+      if(!reduceMotion&&!saveData&&changed){
+        const p=video.play();
+        if(p&&p.catch)p.catch(()=>{video.pause();video.hidden=true;if(poster)poster.hidden=false;if(play)play.hidden=false;});
       }
     }
-    if(play)play.hidden=!!(video&&!video.paused);
     // In-panel links on the fixed video column follow the currently visible heading.
     const links=main.querySelectorAll('.v843-media-action');
     if(links[0])links[0].setAttribute('href','#v843Evaluation');
@@ -24368,7 +24762,316 @@ function scrollSerumTitleBelowNavbarV514(vascularView) {
     if(img.dataset.v843FallbackDone)return;
     img.dataset.v843FallbackDone='1';img.src=img.dataset.fallback||img.src;
   }));
-  if(video){video.addEventListener('error',()=>{video.pause();video.hidden=true;if(poster)poster.hidden=false;if(play)play.hidden=false;});}
-  // Existing V842 script also manages the play button: leave its handler intact as manual fallback.
+  // V844: Tek video kontrolü. Görüntü, ilk kare gerçekten oynatılana dek
+  // statik kapak üzerinde bekler; yükleme esnasında siyah/beyaz titreme olmaz.
+  if(video){
+    video.loop=false;
+    video.addEventListener('playing',()=>{
+      if(!overview.classList.contains('v843-detail-open'))return;
+      video.hidden=false;
+      if(poster)poster.hidden=true;
+      if(play)play.hidden=true;
+    });
+    video.addEventListener('ended',()=>{
+      video.pause();video.hidden=true;
+      if(poster)poster.hidden=false;
+      if(play)play.hidden=false;
+    });
+    video.addEventListener('error',()=>{
+      video.pause();video.hidden=true;
+      if(poster)poster.hidden=false;
+      if(play)play.hidden=false;
+    });
+    if(play)play.addEventListener('click',event=>{
+      event.preventDefault();event.stopPropagation();
+      if(!current)return;
+      if(video.dataset.v844Source!==current){
+        video.dataset.v844Source=current;
+        video.src=config[current].video;
+        video.load();
+      }
+      if(video.ended){try{video.currentTime=0;}catch(_e){}}
+      const promise=video.play();
+      if(promise&&promise.catch)promise.catch(()=>{video.hidden=true;if(poster)poster.hidden=false;play.hidden=false;});
+    });
+  }
   showGallery();
+})();
+
+
+/* V850 — Damar Yolu detaylarını solda yazı / sağda sticky görsel düzenine çevir */
+(function(){
+  function buildV850VascularLayout(){
+    var root = document.querySelector('[data-treatment-detail-view="damar-yolu"]');
+    if(!root) return;
+    var panels = root.querySelectorAll('.vitamin-c-special-tab-v235 > .vitamin-c-subpanel-v236');
+    panels.forEach(function(panel, index){
+      if(panel.dataset.v850Built === '1') return;
+      var detailSection = panel.closest('.vitamin-c-special-tab-v235');
+      var hero = panel.querySelector(':scope > .vascular-detail-hero-v783');
+      var editorial = panel.querySelector(':scope > .vitamin-c-editorial-v234');
+      if(!detailSection || !hero || !editorial) return;
+      var copy = hero.querySelector('.vascular-hero-copy-v783');
+      var figure = hero.querySelector('.vascular-hero-image-v783');
+      if(!copy || !figure) return;
+
+      var title = (copy.querySelector('h1') && copy.querySelector('h1').textContent.trim()) || (detailSection.querySelector('.vitamin-c-special-title-v235 strong') && detailSection.querySelector('.vitamin-c-special-title-v235 strong').textContent.trim()) || 'Damar Yolu Uygulaması';
+      var kicker = (copy.querySelector('.vascular-hero-kicker-v783') && copy.querySelector('.vascular-hero-kicker-v783').textContent.trim()) || 'DAMAR YOLU UYGULAMASI';
+      var desc = (copy.querySelector('p') && copy.querySelector('p').textContent.trim()) || '';
+      var note = (detailSection.querySelector('.serum-premium-description-v570') && detailSection.querySelector('.serum-premium-description-v570').textContent.trim()) || 'Uygulanacak içerik ve seans planı hekim değerlendirmesine göre belirlenir.';
+      var highlights = Array.prototype.map.call(copy.querySelectorAll('.vascular-hero-highlight-v783'), function(item){
+        return item.textContent.replace(/\s+/g, ' ').trim();
+      }).filter(Boolean);
+
+      var infoId = 'v850-vascular-info-' + (index + 1);
+      var linksId = 'v850-vascular-links-' + (index + 1);
+
+      var shell = document.createElement('div');
+      shell.className = 'v850-vascular-shell';
+
+      var main = document.createElement('div');
+      main.className = 'v850-vascular-main';
+
+      var intro = document.createElement('section');
+      intro.className = 'v850-vascular-intro';
+      intro.id = infoId;
+      intro.innerHTML = '<span class="v850-vascular-kicker">' + kicker + '</span>' +
+        '<h1>' + title + '</h1>' +
+        (desc ? ('<p>' + desc + '</p>') : '');
+
+      if(highlights.length){
+        var points = document.createElement('div');
+        points.className = 'v850-vascular-points';
+        highlights.forEach(function(text){
+          var item = document.createElement('div');
+          item.className = 'v850-vascular-point';
+          item.innerHTML = '<span aria-hidden="true">•</span><strong>' + text + '</strong>';
+          points.appendChild(item);
+        });
+        intro.appendChild(points);
+      }
+
+      editorial.classList.add('v850-vascular-editorial');
+
+      // V852: Kaynakları sol sütundan alıp sağdaki "Detaylı İçerik" kartına bağla.
+      // İçerik kopyalanmaz; orijinal kaynaklar ve gerçek URL'ler taşınır.
+      var sourceHeadV852 = editorial.querySelector(':scope > .iv-source-head-v420');
+      var sourceCardsV852 = editorial.querySelector(':scope > .vitamin-c-link-panel-v234');
+      var hasSourcesV852 = !!(sourceHeadV852 && sourceCardsV852 && sourceCardsV852.querySelector('a[href]'));
+      var sourcesDialogV852 = null;
+      if(hasSourcesV852){
+        sourcesDialogV852 = document.createElement('dialog');
+        sourcesDialogV852.className = 'v852-sources-dialog';
+        sourcesDialogV852.id = linksId;
+        sourcesDialogV852.setAttribute('aria-label', title + ' – bilimsel kaynaklar');
+        var sourcesTopV852 = document.createElement('div');
+        sourcesTopV852.className = 'v852-sources-top';
+        var sourcesNameV852 = document.createElement('div');
+        sourcesNameV852.className = 'v852-sources-title';
+        var sourcesKickerV852 = document.createElement('span');
+        sourcesKickerV852.textContent = 'DAMAR YOLU • BİLİMSEL KAYNAKLAR';
+        var sourcesTitleV852 = document.createElement('h2');
+        sourcesTitleV852.textContent = title;
+        sourcesNameV852.append(sourcesKickerV852, sourcesTitleV852);
+        var closeSourcesV852 = document.createElement('button');
+        closeSourcesV852.type = 'button';
+        closeSourcesV852.className = 'v852-sources-close';
+        closeSourcesV852.setAttribute('aria-label', 'Kaynaklar penceresini kapat');
+        closeSourcesV852.textContent = '×';
+        closeSourcesV852.addEventListener('click', function(){sourcesDialogV852.close();});
+        sourcesTopV852.append(sourcesNameV852, closeSourcesV852);
+        sourcesDialogV852.append(sourcesTopV852, sourceHeadV852, sourceCardsV852);
+        // Modal alandaki öğeler, gizlenen serum panelinin dışında da görünür.
+        document.body.appendChild(sourcesDialogV852);
+        sourcesDialogV852.addEventListener('click', function(event){
+          if(event.target === sourcesDialogV852) sourcesDialogV852.close();
+        });
+      }
+
+      main.appendChild(intro);
+      main.appendChild(editorial);
+
+      var aside = document.createElement('aside');
+      aside.className = 'v850-vascular-aside';
+      // V851: Osteopati panelindeki tek satırlık üst etiket düzenini koru.
+      // Uzun detay başlıkları burada tekrarlanmaz; ana başlık sol sütundadır.
+      var serumLabelV851 = {
+        ozone:'OZONLU SERUM', vitc:'C VİTAMİNİ', karnitin:'L-KARNİTİN',
+        selenium:'SELENYUM', nad:'IV NAD+', glutathione:'GLUTATYON', major:'MAJÖR OZON'
+      };
+      var serumKeyV851 = hero.getAttribute('data-vascular-serum-v783') || '';
+      var shortTitleV851 = serumLabelV851[serumKeyV851] || title;
+      aside.innerHTML = '<div class="v850-vascular-side-head"><strong>UYGULAMA GÖRSELİ</strong><span>' + shortTitleV851 + '</span></div>';
+
+      var media = document.createElement('div');
+      media.className = 'v850-vascular-media';
+      media.appendChild(figure);
+      aside.appendChild(media);
+
+      var badge = document.createElement('div');
+      badge.className = 'v850-vascular-badge';
+      badge.innerHTML = '<span aria-hidden="true">✦</span>Hekim değerlendirmesi ve planlama';
+      aside.appendChild(badge);
+
+      var actions = document.createElement('div');
+      actions.className = 'v850-vascular-actions';
+      actions.innerHTML = '<a class="v850-vascular-action" href="#' + infoId + '"><span class="v850-vascular-action-icon">▤</span><span class="v850-vascular-action-copy"><strong>Uygulama Bilgileri</strong><small>Değerlendirme ve planlama</small></span><span class="v850-vascular-action-arrow">↗</span></a>' +
+        (hasSourcesV852
+          ? '<button class="v850-vascular-action v852-sources-trigger" type="button" aria-haspopup="dialog" aria-controls="' + linksId + '"><span class="v850-vascular-action-icon">☰</span><span class="v850-vascular-action-copy"><strong>Detaylı İçerik</strong><small>Bilimsel kaynaklar ve bağlantılar</small></span><span class="v850-vascular-action-arrow">↗</span></button>'
+          : '<a class="v850-vascular-action" href="#' + infoId + '"><span class="v850-vascular-action-icon">☰</span><span class="v850-vascular-action-copy"><strong>Detaylı İçerik</strong><small>Uygulama bilgileri</small></span><span class="v850-vascular-action-arrow">↗</span></a>');
+      if(hasSourcesV852){
+        actions.querySelector('.v852-sources-trigger').addEventListener('click', function(){
+          if(sourcesDialogV852 && !sourcesDialogV852.open) sourcesDialogV852.showModal();
+        });
+      }
+      aside.appendChild(actions);
+
+      var sideNote = document.createElement('div');
+      sideNote.className = 'v850-vascular-note';
+      sideNote.textContent = 'Uygunluk, içerik ve uygulama planı hekim değerlendirmesi sonrasında belirlenir.';
+      aside.appendChild(sideNote);
+
+      shell.appendChild(main);
+      shell.appendChild(aside);
+
+      hero.remove();
+      panel.appendChild(shell);
+      panel.dataset.v850Built = '1';
+      detailSection.classList.add('v850-vascular-ready');
+    });
+  }
+
+  if(document.readyState === 'loading'){
+    document.addEventListener('DOMContentLoaded', buildV850VascularLayout);
+  }else{
+    buildV850VascularLayout();
+  }
+  window.addEventListener('load', buildV850VascularLayout);
+})();
+
+/* =============================================================
+ * V855 | Damar Yolu: Osteopati ile aynı gerçek kart yapısı
+ * V835'in taşıdığı mevcut 5 içerik parçası korunur; V854'ün
+ * önceki silme işlemi yerine kartlar birebir yeniden yerleştirilir.
+ * ============================================================= */
+(function(){
+  'use strict';
+  const root = document.querySelector('[data-treatment-detail-view="damar-yolu"]');
+  if(!root) return;
+
+  const clinicPhotos = [
+    {src:'./klinik-gercek-0750-v571.webp', alt:'Sağlık kuruluşumuzun uygulama odasından gerçek fotoğraf', caption:'Klinik değerlendirme için kullanılan uygulama odasından görsel'},
+    {src:'./klinik-gercek-0752-v571.webp', alt:'Sağlık kuruluşumuzdaki uygulama alanından gerçek fotoğraf', caption:'Uygulama öncesi hazırlığın yapıldığı klinik ortama ait fotoğraf'},
+    {src:'./klinik-gercek-0753-v571.webp', alt:'Sağlık kuruluşumuzun tedavi odasından gerçek fotoğraf', caption:'Güvenlik ve takip planlamasında kullanılan klinik alandan görsel'},
+    {src:'./klinik-gercek-0749-v571.webp', alt:'Sağlık kuruluşumuzdan gerçek fotoğraf', caption:'Klinik değerlendirme ve bilgilendirme alanından fotoğraf'}
+  ];
+
+  const steps = [
+    {name:'UYGULAMAYA GENEL BAKIŞ', caption:'Uygulamayı tanımaya yönelik serum görseli'},
+    {name:'KLİNİK DEĞERLENDİRME'},
+    {name:'UYGULAMA ÖNCESİ KONTROLLER'},
+    {name:'GÜVENLİK VE RİSKLER'},
+    {name:'BİLİMSEL DEĞERLENDİRME'}
+  ];
+
+  function moveContentFromOriginal(oldCopy, target) {
+    const headings = Array.from(oldCopy.querySelectorAll(
+      ':scope > .vitamin-c-doc-head-v234, :scope > .vitamin-c-doc-section-v234, :scope > .iv-clinical-summary-v743'
+    ));
+    let hasHeading = false;
+    headings.forEach(function(section){
+      Array.from(section.children).forEach(function(child){
+        if(child.matches('.vitamin-c-doc-kicker-v234')) return;
+        if(child.matches('h2, h3')){
+          if(!hasHeading){
+            const h = document.createElement('h2');
+            h.textContent = child.textContent.replace(/^\s*\d+\s*[.\-)]+\s*/, '').trim();
+            target.appendChild(h);
+            hasHeading = true;
+          }
+          return;
+        }
+        if(child.matches('.vitamin-c-doc-kicker-v234')) return;
+        // Moves the original DOM node to preserve disease links, citations and text.
+        target.appendChild(child);
+      });
+    });
+    if(!hasHeading){
+      const h = document.createElement('h2');
+      h.textContent = 'Uygulama ve klinik değerlendirme';
+      target.prepend(h);
+    }
+  }
+
+  function createOsteoCard(legacy, index, originalImg, serumName){
+    const oldCopy = legacy.querySelector('.v835-vascular-copy');
+    if(!oldCopy) return null;
+    const card = document.createElement('section');
+    card.className = 'posture-visual-section-v364 v855-vascular-osteo-card' + (index%2 === 1 ? ' is-reverse-v364' : '');
+    const copy = document.createElement('div');
+    copy.className = 'posture-copy-v364';
+    const num = document.createElement('span');
+    num.className = 'posture-number-v364';
+    num.textContent = String(index+1).padStart(2,'0');
+    const label = document.createElement('small');
+    label.textContent = steps[index].name;
+    copy.append(num,label);
+    moveContentFromOriginal(oldCopy, copy);
+
+    const figure = document.createElement('figure');
+    figure.className = 'v855-vascular-photo-figure';
+    const img = document.createElement('img');
+    img.decoding = 'async';
+    img.loading = index===0 ? 'eager' : 'lazy';
+    const pic = index===0 ? {
+      src: originalImg,
+      alt: serumName + ' serum görseli',
+      caption: serumName + ' uygulamasına ait temsili serum görseli'
+    } : clinicPhotos[index-1];
+    img.src = pic.src;
+    img.alt = pic.alt;
+    // Reuse a known site asset if a clinical gallery image path is unavailable.
+    img.addEventListener('error',function(){
+      if(this.dataset.v855Fallback === '1') return;
+      this.dataset.v855Fallback = '1';
+      this.src = originalImg;
+      this.alt = serumName + ' serum görseli';
+    },{once:true});
+    const caption = document.createElement('figcaption');
+    caption.textContent = pic.caption;
+    figure.append(img,caption);
+    card.append(copy,figure);
+    return card;
+  }
+
+  function build(){
+    const details = root.querySelectorAll(':scope > .vitamin-c-special-tab-v235');
+    details.forEach(function(detail){
+      const editorial = detail.querySelector('.v850-vascular-main > .v850-vascular-editorial');
+      const oldFlow = editorial && editorial.querySelector(':scope > .v835-vascular-flow');
+      if(!editorial || !oldFlow || editorial.dataset.v855Built==='1') return;
+      const rows = Array.from(oldFlow.querySelectorAll(':scope > .v835-vascular-article'));
+      if(rows.length !== 5) return;
+      const serumName = (detail.querySelector('.v850-vascular-intro h1') || {}).textContent || 'Damar Yolu Uygulaması';
+      const serumPhoto = detail.querySelector('.v850-vascular-aside .v850-vascular-media img');
+      const originalImg = serumPhoto && serumPhoto.getAttribute('src') || './serum-ozon-gercek-v570.webp';
+      const group = document.createElement('div');
+      group.className = 'v855-vascular-osteo-flow osteo-inline-flow-v722 osteo-inline-detail-v722';
+      group.setAttribute('aria-label',serumName + ' hakkında beş görselli bilgi kartı');
+      rows.forEach(function(row,index){
+        const stage = createOsteoCard(row,index,originalImg,serumName.trim());
+        if(stage) group.appendChild(stage);
+      });
+      if(group.children.length !== 5) return;
+      oldFlow.replaceWith(group);
+      editorial.dataset.v855Built = '1';
+      detail.classList.add('v855-vascular-osteo-ready');
+    });
+  }
+
+  if(document.readyState==='loading'){
+    document.addEventListener('DOMContentLoaded',function(){requestAnimationFrame(build);});
+  }else{requestAnimationFrame(build);}
+  window.addEventListener('load',build);
+  root.addEventListener('click',function(){requestAnimationFrame(build);});
 })();
