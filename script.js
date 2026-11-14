@@ -17695,8 +17695,7 @@ function scrollSerumTitleBelowNavbarV514(vascularView) {
         recipe.tags = (detoxRecipeProfileMapV643[recipe.id] || []).map(key => detoxTraditionalProfilesV643[key]?.label).filter(Boolean).slice(0,3);
         recipe.keywords = [recipe.name, recipe.categoryLabel, recipe.traditionalLabels, recipe.benefitSummary].join(' ');
         recipe.imageAlt = `${recipe.name} hakkında geleneksel kullanım alanlarını anlatan görsel`;
-        delete recipe.ingredients;
-        delete recipe.prep;
+        // V894: Orijinal ölçülü tarifler artık detay ekranında gösterilir; silinmez.
     });
 
     // V663: Doğu/Çin/Japon yaklaşımları ve ürogenital sistem için eğitim kartları.
@@ -18225,6 +18224,341 @@ function scrollSerumTitleBelowNavbarV514(vascularView) {
         // Yalnızca yazılar değişiyor: fotoğraflar, kart şablonu ve tıklama korunur.
     });
 
+    // V893: Japon Tek Öğün kategorisi ve ona ait kartlar tamamen listeden çıkarılır.
+    // Diğer detoks kategorilerinin verilerini ve çalışma mantığını değiştirme.
+    for (let i = recipes.length - 1; i >= 0; i -= 1) {
+        if (recipes[i].category === 'japon') recipes.splice(i, 1);
+    }
+
+    // V894: Aktif 54 kartın tamamında tür, ölçü, hazırlanış ve organ/sistem odaklı kısa açıklama.
+    // Tarifler genel beslenme örnekleridir; organ temizleme / hastalık tedavisi iddiası yoktur.
+    const detoxRecipeDetailsV894 = {
+    "mide-01": {
+        "recipeType": "Ilık aromalı içecek",
+        "organBenefit": "Mide: Zencefilin hafif bulantı hissine ilişkin bazı veriler vardır; limon reflü yakınmasını artırabilir."
+    },
+    "mide-02": {
+        "recipeType": "Bitki çayı / demleme",
+        "organBenefit": "Mide ve bağırsak: Sıcak sıvı alımına katkı sağlar; gaz/şişkinlik için klinik kanıt sınırlıdır."
+    },
+    "mide-03": {
+        "recipeType": "Meyveli bitki çayı",
+        "organBenefit": "Mide: Şekersiz, hafif aromalı sıvı alternatifi sunar; papatya bir mide hastalığını tedavi etmez."
+    },
+    "mide-04": {
+        "recipeType": "Meyve kompostosu",
+        "organBenefit": "Mide ve bağırsak: Pişmiş armut su ve bir miktar lif sağlar; sindirim toleransı kişiye göre değişir."
+    },
+    "mide-05": {
+        "recipeType": "Bitki çayı / demleme",
+        "organBenefit": "Mide: Kafeinsiz içecek olarak sıvı alımına eşlik eder; melisanın klinik etkisine ilişkin kanıt sınırlıdır."
+    },
+    "ince-01": {
+        "recipeType": "Bitki çayı / demleme",
+        "organBenefit": "Bağırsak: Gaz ve şişkinlik yakınması için geleneksel olarak kullanılır; tıbbi etki kesin değildir."
+    },
+    "ince-02": {
+        "recipeType": "Bitki çayı / demleme",
+        "organBenefit": "Bağırsak ve mide: Ilık sıvı alternatifidir; nane bazı kişilerde reflüyü artırabilir."
+    },
+    "ince-03": {
+        "recipeType": "Fermente sütlü içecek",
+        "organBenefit": "Bağırsak: Kefir protein ve fermente kültürler içerir; mikrobiyota etkisi ürüne ve kişiye göre değişir."
+    },
+    "ince-04": {
+        "recipeType": "Meyveli bitki çayı",
+        "organBenefit": "Bağırsak: Sıvı alımına katkı sağlar; bağırsak hastalığı için tedavi olarak kullanılmaz."
+    },
+    "ince-05": {
+        "recipeType": "Baharatlı ılık içecek",
+        "organBenefit": "Bağırsak: Kimyonun geleneksel sindirim kullanımı vardır; “gaz giderici tedavi” etkisi kanıtlanmış değildir."
+    },
+    "kalin-01": {
+        "recipeType": "Lifli içecek",
+        "organBenefit": "Kalın bağırsak: Suyla yeterince şişmiş chia, günlük lif alımını artırmaya yardımcı olabilir."
+    },
+    "kalin-02": {
+        "recipeType": "Kuru meyve kompostosu",
+        "organBenefit": "Kalın bağırsak: Kuru erikteki lif ve sorbitol bazı kişilerde dışkılama düzenine yardımcı olabilir."
+    },
+    "kalin-03": {
+        "recipeType": "Yoğurtlu ara öğün",
+        "organBenefit": "Kalın bağırsak: Öğütülmüş keten tohumu lif sağlar; yeterli sıvıyla tüketilmesi önemlidir."
+    },
+    "kalin-04": {
+        "recipeType": "Posalı smoothie",
+        "organBenefit": "Kalın bağırsak: Armut, kivi ve yulafla alınan lif normal bağırsak işlevini destekleyebilir."
+    },
+    "kalin-05": {
+        "recipeType": "Kefirli smoothie",
+        "organBenefit": "Bağırsak: Yulaf ve elma lif, kefir protein sağlar; tek başına mikrobiyota tedavisi değildir."
+    },
+    "karaciger-01": {
+        "recipeType": "Posalı sebze-meyve içeceği",
+        "organBenefit": "Karaciğer: Meyve ve sebze çeşitliliği dengeli beslenmeye katkı verir; karaciğeri doğrudan temizlemez."
+    },
+    "karaciger-02": {
+        "recipeType": "Posalı sebze-meyve içeceği",
+        "organBenefit": "Karaciğer: Pancar ve havuç mikrobesinler sağlar; karaciğer enzimlerini “arındırdığı” kanıtlı değildir."
+    },
+    "karaciger-03": {
+        "recipeType": "Baharatlı sıcak demleme",
+        "organBenefit": "Karaciğer: Şekersiz sıcak içecek alternatifidir; zerdeçal karaciğer hastalığının tedavisi değildir."
+    },
+    "karaciger-04": {
+        "recipeType": "Sebzeli smoothie",
+        "organBenefit": "Karaciğer: Brokoli ve yeşillikler lif ve mikrobesin sağlar; “toksin atıcı” etki iddia edilmez."
+    },
+    "karaciger-05": {
+        "recipeType": "Şekersiz kahve",
+        "organBenefit": "Karaciğer: Kahve tüketimi bazı gözlemsel çalışmalarda karaciğer göstergeleriyle ilişkili bulunmuştur; tedavi değildir."
+    },
+    "kalp-01": {
+        "recipeType": "Posalı meyve içeceği",
+        "organBenefit": "Kalp-damar: Meyvelerden lif ve polifenol alınır; kan basıncı veya damar hastalığını tek başına tedavi etmez."
+    },
+    "kalp-02": {
+        "recipeType": "Bitki çayı / demleme",
+        "organBenefit": "Kalp-damar: Şekersiz içecek seçeneğidir; hibiskus tansiyon ilaçlarıyla birlikte dikkat gerektirebilir."
+    },
+    "kalp-03": {
+        "recipeType": "Kefirli yulaf smoothie",
+        "organBenefit": "Kalp-damar: Yulaftaki beta-glukanlar dengeli diyet kapsamında kolesterol yönetimiyle ilişkilidir."
+    },
+    "kalp-04": {
+        "recipeType": "Kefirli ara öğün",
+        "organBenefit": "Kalp-damar: Ceviz doymamış yağlar, kefir protein sağlar; toplam beslenme düzeni belirleyicidir."
+    },
+    "kalp-05": {
+        "recipeType": "Tuzsuz sebzeli ayran",
+        "organBenefit": "Kalp ve böbrek: İlave tuzu azaltmak kan basıncı kontrolü açısından yararlı beslenme tercihidir."
+    },
+    "kilo-01": {
+        "recipeType": "Aromalı su",
+        "organBenefit": "Kilo yönetimi: Şekerli içeceklerin yerine kullanılabilir; doğrudan yağ yakımı sağlamaz."
+    },
+    "kilo-02": {
+        "recipeType": "Yoğurtlu lifli ara öğün",
+        "organBenefit": "Kilo yönetimi: Protein ve lif içeren küçük porsiyon tokluğa katkı sağlayabilir."
+    },
+    "kilo-03": {
+        "recipeType": "Yulaflı smoothie",
+        "organBenefit": "Kilo yönetimi: Elma ve yulaf lif sağlar; enerji içeriği porsiyona göre değerlendirilmelidir."
+    },
+    "kilo-04": {
+        "recipeType": "Az tuzlu / tuzsuz ayran",
+        "organBenefit": "Kilo yönetimi: Şekerli içecek yerine protein içeren bir seçenek sunar; tek başına zayıflatmaz."
+    },
+    "kilo-05": {
+        "recipeType": "Kefirli ara öğün",
+        "organBenefit": "Kilo yönetimi: Şekersiz kakao ve küçük muz porsiyonuyla tatlı isteğine alternatif olabilir."
+    },
+    "colyak-01": {
+        "recipeType": "Glutensiz kinoa salatası",
+        "organBenefit": "İnce bağırsak: Kinoa doğal olarak glutensizdir; çölyakta çapraz bulaşmadan korunmak şarttır."
+    },
+    "colyak-02": {
+        "recipeType": "Glutensiz yulaf lapası",
+        "organBenefit": "İnce bağırsak: Sertifikalı glutensiz yulaf lif sağlar; çölyakta bireysel yulaf toleransı değerlendirilir."
+    },
+    "colyak-03": {
+        "recipeType": "Glutensiz sebze çorbası",
+        "organBenefit": "İnce bağırsak: Mercimek protein ve lif sağlar; çölyak tedavisinin temeli ömür boyu glutensiz diyettir."
+    },
+    "colyak-04": {
+        "recipeType": "Yoğurtlu soğuk kase",
+        "organBenefit": "İnce bağırsak: Glutensiz ara öğündür; süt proteinine alerjisi olanlara uygun değildir."
+    },
+    "colyak-05": {
+        "recipeType": "Fırın meyve tatlısı",
+        "organBenefit": "İnce bağırsak: Un içermeyen tatlı alternatifi; ürünlerin çapraz bulaşma riski kontrol edilmelidir."
+    },
+    "uro-01": {
+        "recipeType": "Örnek ara öğün · yoğurt ve armut",
+        "organBenefit": "Böbrek: Normal böbrek işlevinde yeterli ve dengeli beslenmeye örnektir; böbreği “temizleyen” kür değildir.",
+        "ingredients": [
+            "4 yemek kaşığı sade yoğurt",
+            "½ küçük armut"
+        ],
+        "prep": "Armutu yıkayıp küçük doğrayın. Yoğurtla karıştırarak küçük ara öğün olarak tüketin. Böbrek hastalığında protein, potasyum ve sıvı kısıtlamaları bireyselleştirilmelidir."
+    },
+    "uro-02": {
+        "recipeType": "Örnek ara öğün · salatalıklı yoğurt",
+        "organBenefit": "Mesane ve idrar yolları: Sıvı içeren gıdadır; idrar yolu enfeksiyonunu tedavi etmez.",
+        "ingredients": [
+            "4 yemek kaşığı sade yoğurt",
+            "¼ küçük salatalık",
+            "1 yemek kaşığı su"
+        ],
+        "prep": "Salatalığı temizleyip ince doğrayın; yoğurt ve suyla karıştırın. Tuz eklemeyin. Bu gıda enfeksiyon tedavisi değildir."
+    },
+    "uro-03": {
+        "recipeType": "Örnek öğün · lifli yoğurt kasesi",
+        "organBenefit": "Pelvik taban ve bağırsak: Yeterli lif, kabızlığın önlenmesine destek olabilir; pelvik taban tedavisi değildir.",
+        "ingredients": [
+            "4 yemek kaşığı sade yoğurt",
+            "1 yemek kaşığı yulaf",
+            "¼ küçük armut"
+        ],
+        "prep": "Yulafı yoğurtta 10 dakika yumuşatın, doğranmış armudu ekleyin. Lifli gıdaları bireysel toleransa göre artırın."
+    },
+    "aclik-gida-01": {
+        "recipeType": "Örnek dengeli öğün · mercimek tabağı",
+        "organBenefit": "Metabolizma: Protein, lif ve enerji yeterliliği açısından örnektir; kişiye özel oruç süresi önerisi değildir.",
+        "ingredients": [
+            "4 yemek kaşığı pişmiş yeşil mercimek",
+            "1 küçük kase mevsim salatası",
+            "4 yemek kaşığı sade yoğurt"
+        ],
+        "prep": "Mercimeği iyice haşlayın; salata ve yoğurtla dengeli bir tabak oluşturun. Bu örnek, herhangi bir açlık süresi veya tek öğün zorunluluğu önermez."
+    },
+    "aclik-gida-02": {
+        "recipeType": "Örnek öğün · yulaflı yoğurt",
+        "organBenefit": "Karaciğer ve kas metabolizması: Karbonhidrat ve protein içeren öğün örneğidir; ketozisi tedavi amaçlı hedeflemez.",
+        "ingredients": [
+            "4 yemek kaşığı sade yoğurt",
+            "2 yemek kaşığı yulaf",
+            "¼ küçük elma"
+        ],
+        "prep": "Yulafı yoğurtla karıştırıp 10 dakika bekletin; ince doğranmış elmayı ekleyin. Normal bir öğün veya ara öğün seçeneğidir."
+    },
+    "aclik-gida-03": {
+        "recipeType": "Örnek gündüz öğünü · yumurta tabağı",
+        "organBenefit": "Metabolik sağlık: Düzenli öğün planı ve yeterli besin alımı açısından örnektir; zorunlu bir saat protokolü değildir.",
+        "ingredients": [
+            "1 haşlanmış yumurta",
+            "1 küçük domates",
+            "1 dilim tam tahıllı ekmek"
+        ],
+        "prep": "Yumurtayı tam pişirin; domates ve ekmekle servis edin. Öğün saatini uykunuza, ilaçlarınıza ve besin gereksiniminize göre planlayın."
+    },
+    "aclik-gida-04": {
+        "recipeType": "Örnek hafif öğün · sebze çorbası",
+        "organBenefit": "Sindirim ve sıvı dengesi: Normal açlık sonrası toleransa uygun hafif öğün olabilir; uzun açlık sonrası tıbbi takip gerekebilir.",
+        "ingredients": [
+            "½ küçük kabak",
+            "½ küçük havuç",
+            "1 su bardağı su",
+            "1 çay kaşığı zeytinyağı"
+        ],
+        "prep": "Sebzeleri doğrayıp suyla 15–20 dakika yumuşayana kadar pişirin; ezip yağı ekleyin. Normal açlık sonrası ılık ve küçük porsiyonla başlayın; uzun süreli ciddi açlıkta tıbbi gözetim gerekir."
+    },
+    "aclik-gida-05": {
+        "recipeType": "Örnek dengeli tabak · nohut salatası",
+        "organBenefit": "Metabolizma ve kalp-damar: Lif ve bitkisel protein sağlar; açlığın klinik yararını kanıtlamaz.",
+        "ingredients": [
+            "4 yemek kaşığı haşlanmış nohut",
+            "1 küçük kase yeşillik",
+            "1 çay kaşığı zeytinyağı"
+        ],
+        "prep": "Nohudu iyice haşlayın; yıkanmış yeşillik ve zeytinyağıyla karıştırın. Tek başına açlığın yararını göstermez; dengeli öğün örneğidir."
+    },
+    "mide-06": {
+        "recipeType": "Yumuşak pirinç lapası",
+        "organBenefit": "Mide: Az baharatlı ve yumuşak bir öğün seçeneğidir; hastalığa özgü bir tedavi değildir.",
+        "ingredients": [
+            "2 yemek kaşığı pirinç",
+            "1 su bardağı içme suyu",
+            "⅓ küçük olgun muz"
+        ],
+        "prep": "Pirinci yıkayıp suyla 15–20 dakika iyice yumuşayana kadar pişirin. Ilıdıktan sonra muzu ezip ekleyin; küçük porsiyon servis edin."
+    },
+    "karaciger-06": {
+        "recipeType": "Buharda sebze / zeytinyağlı",
+        "organBenefit": "Karaciğer: Enginar lif ve sebze çeşitliliği sunar; karaciğeri temizleme iddiası yoktur.",
+        "ingredients": [
+            "½ su bardağı pişmiş enginar kalbi",
+            "1 çay kaşığı zeytinyağı",
+            "1 çay kaşığı limon suyu"
+        ],
+        "prep": "Enginarı yumuşayana kadar buharda pişirin. Zeytinyağı ve limon suyuyla harmanlayıp yan yemek olarak servis edin."
+    },
+    "kalp-06": {
+        "recipeType": "Tuzsuz domates salatası",
+        "organBenefit": "Kalp-damar: Sebze ve zeytinyağı içerir; ilave tuz içermemesi kan basıncı yönetimiyle uyumludur.",
+        "ingredients": [
+            "1 orta boy domates",
+            "1 çay kaşığı zeytinyağı",
+            "3–4 taze fesleğen yaprağı"
+        ],
+        "prep": "Domatesi yıkayıp doğrayın. Fesleğen ve zeytinyağı ekleyin; ilave tuz kullanmadan salata olarak servis edin."
+    },
+    "kilo-06": {
+        "recipeType": "Kinoalı sebze salatası",
+        "organBenefit": "Kilo yönetimi: Lifli ve ölçülü porsiyonlu tabaktır; uzun vadeli enerji dengesi önemlidir.",
+        "ingredients": [
+            "⅓ su bardağı pişmiş kinoa",
+            "½ küçük salatalık",
+            "1 küçük avuç yeşillik",
+            "1 çay kaşığı zeytinyağı"
+        ],
+        "prep": "Kinoayı iyice yıkayıp haşlayın, soğutun. Sebzeleri ince doğrayıp zeytinyağıyla karıştırın; tek porsiyon servis edin."
+    },
+    "colyak-06": {
+        "recipeType": "Glutensiz karabuğday kasesi",
+        "organBenefit": "İnce bağırsak: Doğal olarak glutensiz karabuğday çeşitlilik sağlar; çapraz bulaşma kontrolü gerekir.",
+        "ingredients": [
+            "3 yemek kaşığı pişmiş karabuğday",
+            "4 yemek kaşığı sade yoğurt",
+            "2 yemek kaşığı yaban mersini"
+        ],
+        "prep": "Glutenle çapraz bulaşmamış karabuğdayı haşlayıp soğutun. Yoğurt ve yaban mersiniyle karıştırıp kase olarak tüketin."
+    },
+    "aclik-gida-06": {
+        "recipeType": "Örnek ara öğün · elma ve yoğurt",
+        "organBenefit": "Metabolik güvenlik: Uygun kişilere örnek dengeli ara öğündür; diyabet ilacı kullananlarda açlık kararı hekimindir.",
+        "ingredients": [
+            "½ küçük elma",
+            "4 yemek kaşığı sade yoğurt"
+        ],
+        "prep": "Elmayı doğrayıp yoğurtla birleştirin. Hipoglisemi riski olanlar açlık denemeden önce hekimle görüşmelidir; bu ara öğün ilaç ayarı yerine geçmez."
+    },
+    "uro-04": {
+        "recipeType": "Örnek içecek · tuzsuz ayran",
+        "organBenefit": "Böbrek ve dolaşım: Sıvı ve sodyum dengesinde kişisel gereksinim esastır; sıvı kısıtlaması olanlara uygun olmayabilir.",
+        "ingredients": [
+            "½ su bardağı sade yoğurt",
+            "½ su bardağı içme suyu"
+        ],
+        "prep": "Yoğurdu suyla çırpıp tuz eklemeden ayran hazırlayın. Kalp veya böbrek hastalığında sıvı ve mineral miktarı hekimin planına göre ayarlanmalıdır."
+    },
+    "uro-05": {
+        "recipeType": "Örnek içecek · limon dilimli su",
+        "organBenefit": "Böbrek ve idrar yolları: Şekersiz su içmeyi kolaylaştırır; taşın türüne göre tedavi farklılaşır.",
+        "ingredients": [
+            "1 su bardağı içme suyu",
+            "1 ince dilim limon"
+        ],
+        "prep": "Limon dilimini yıkanmış hâlde suya ekleyin. Normal içme suyunun alternatifi olarak tüketin; böbrek taşı tedavisi olarak görmeyin."
+    },
+    "uro-06": {
+        "recipeType": "Örnek ara öğün · sebzeli yoğurt",
+        "organBenefit": "Mesane ve bağırsak: Su içeren sebzeler ve lif günlük beslenmeyi destekler; enfeksiyon tedavisi değildir.",
+        "ingredients": [
+            "½ küçük salatalık",
+            "½ küçük havuç",
+            "2 yemek kaşığı sade yoğurt"
+        ],
+        "prep": "Sebzeleri yıkayıp çubuk şeklinde kesin. Yoğurdu dip sos olarak sunun; ilave tuz eklemeyin."
+    },
+    "bagirsak-11": {
+        "recipeType": "Kabaklı havuç çorbası",
+        "organBenefit": "Bağırsak: İyi pişmiş sebze ve sıvı içerir; posa toleransı kişisel duruma bağlıdır."
+    },
+    "bagirsak-12": {
+        "recipeType": "Kefirli smoothie",
+        "organBenefit": "Bağırsak: Yulaf lif, kefir protein sağlar; gastrointestinal hastalıklarda kişisel tolerans önemlidir."
+    }
+};
+    recipes.forEach(recipe => {
+        const detail = detoxRecipeDetailsV894[recipe.id];
+        if (!detail) return;
+        recipe.recipeTypeV894 = detail.recipeType;
+        recipe.organBenefitV894 = detail.organBenefit;
+        if (detail.ingredients) recipe.ingredients = detail.ingredients;
+        if (detail.prep) recipe.prep = detail.prep;
+    });
+
     window.detoxRecipesV390 = recipes;
     window.detoxRecipesV391 = recipes;
     window.detoxRecipesV392 = recipes;
@@ -18244,6 +18578,9 @@ function scrollSerumTitleBelowNavbarV514(vascularView) {
     const totalCount = document.getElementById('detoxTotalCountV390');
 
     if (!root || !grid || !tabs || !input) return;
+    // V893: Tümü sayacı, Japon Tek Öğün kartları çıkarıldıktan sonraki gerçek toplamdır.
+    const allCountBadgeV893 = tabs.querySelector('[data-detox-category-v390="all"] span');
+    if (allCountBadgeV893) allCountBadgeV893.textContent = String(recipes.length);
     if (totalCount) totalCount.textContent = String(recipes.length);
 
     let activeCategory = 'all';
@@ -18296,16 +18633,13 @@ function scrollSerumTitleBelowNavbarV514(vascularView) {
             recipe.name,
             recipe.categoryLabel,
             recipe.support,
-            recipe.tcmView,
-            recipe.easternView,
-            detoxUyghurSummaryV717(recipe),
-            detoxWestSummaryV717(recipe).enzyme,
-            detoxWestSummaryV717(recipe).metabolism,
-            'Batı tıbbı Uygur tıbbı Çin tıbbı enzimler metabolizma detoksifikasyon',
-            recipe.traditionalLabels,
             recipe.science,
             recipe.lifestyle,
             recipe.note,
+            recipe.recipeTypeV894,
+            recipe.organBenefitV894,
+            ...(recipe.ingredients || []),
+            recipe.prep,
             recipe.keywords,
             ...(recipe.tags || []),
         ].join(' '));
@@ -18396,11 +18730,11 @@ function scrollSerumTitleBelowNavbarV514(vascularView) {
     // V645: Beslenme bölümündeki gibi bağımsız açıklama penceresi.
     const detoxInfoDialogV645 = document.createElement('dialog');
     detoxInfoDialogV645.className = 'detox-info-dialog-v645';
-    detoxInfoDialogV645.setAttribute('aria-label','Detoks rehberi ayrıntılı açıklama');
+    detoxInfoDialogV645.setAttribute('aria-label','Detoks rehberi tarif ayrıntıları');
     detoxInfoDialogV645.innerHTML = `
         <div class="detox-info-frame-v645">
             <div class="detox-info-toolbar-v645">
-                <span class="detox-info-identity-v645"><span class="detox-info-logo-v645" aria-hidden="true">☯</span><span><strong>DETOKS REHBERİ</strong><small>Geleneksel yorum + modern fizyoloji</small></span></span>
+                <span class="detox-info-identity-v645"><span class="detox-info-logo-v645" aria-hidden="true">🥗</span><span><strong>DETOKS REHBERİ</strong><small>Tarif, hazırlanış ve kısa faydalar</small></span></span>
                 <button type="button" class="detox-info-close-v645" aria-label="Açıklama penceresini kapat">×</button>
             </div>
             <div class="detox-info-scroll-v645" tabindex="-1"><div class="detox-info-inner-v645"></div></div>
@@ -18420,63 +18754,21 @@ function scrollSerumTitleBelowNavbarV514(vascularView) {
         const media = recipe.image
             ? `<div class="detox-info-media-v645"><img src="${escapeHtml(recipe.image)}" alt="${escapeHtml(recipe.imageAlt || recipe.name)}" decoding="async"><span>${escapeHtml(recipe.categoryLabel)}</span></div>`
             : `<div class="detox-info-media-v645 is-guide"><b aria-hidden="true">${escapeHtml(recipe.icon || '✦')}</b><span>${escapeHtml(recipe.categoryLabel)}</span></div>`;
-        const uyghur = detoxUyghurSummaryV717(recipe);
-        const western = detoxWestSummaryV717(recipe);
-        const traditional = (recipe.tcmView && recipe.tcmView.trim())
-            ? recipe.tcmView
-            : 'Bu başlık Çin tıbbının tarihsel beslenme ve denge kavramları açısından bilgilendirme amacıyla incelenebilir; tek başına belirli bir hastalık için tedavi anlamına gelmez.';
-        const westernScience = isGuide && recipe.science
-            ? `<p class="detox-v717-original-science"><strong>Bu konuya özel bilimsel not:</strong> ${escapeHtml(recipe.science)}</p>`
-            : '';
-        const panels = `<div class="detox-info-lenses-v645 detox-v717-two-lenses">
-            <section class="detox-info-lens-v645 detox-v717-east" aria-label="Çin ve Uygur tıbbı anlatımı">
-                <div class="detox-v717-lens-head"><span aria-hidden="true">☯</span><h3>01 · Çin ve Uygur Tıbbı</h3></div>
-                <h4>Çin tıbbı bu içeriğe nasıl bakar?</h4><p>${escapeHtml(traditional)}</p>
-                <h4>Uygur tıbbında nasıl yorumlanır?</h4><p>${escapeHtml(uyghur)}</p>
-                <p class="detox-v717-lens-note">Qi, Yin–Yang ve Uygur tıbbındaki mizac/hılt kavramları tarihsel açıklama modelleridir; modern organ fonksiyonları veya laboratuvar ölçümleriyle aynı değildir.</p>
-            </section>
-            <section class="detox-info-lens-v645 detox-v717-west" aria-label="Batı tıbbı metabolizma ve detoksifikasyon anlatımı">
-                <div class="detox-v717-lens-head"><span aria-hidden="true">⚕</span><h3>02 · Batı Tıbbı: Metabolizma ve Detoks</h3></div>
-                <h4>Enzimler hangi süreçlerde çalışır?</h4><p>${escapeHtml(western.enzyme)}</p>
-                <h4>Bu besin veya yaklaşım metabolizmayı nasıl ilgilendirir?</h4><p>${escapeHtml(western.metabolism)} ${escapeHtml(detoxIngredientSummaryV717(recipe))}</p>
-                <h4>Vücut atıkları nasıl uzaklaştırır?</h4><p>${escapeHtml(western.elimination)}</p>
-                ${westernScience}
-                <p class="detox-v717-lens-note">Vücudun doğal metabolizma ve boşaltım süreçleri, özel bir “detoks kürü”nün etkinliğinin kanıtı değildir.</p>
-            </section>
-        </div>`;
-        // V857: Yalnızca Japon Tek Öğün ve Açlık/Oruç için tek bilimsel/tıbbi panel.
-        let academicPanelsV856 = panels;
-        let academicSourcesV856 = null;
-        if (recipe.category === 'japon' || recipe.category === 'aclik') {
-            const isJapanese = recipe.category === 'japon';
-            academicPanelsV856 = `<div class="detox-info-lenses-v645 detox-v717-two-lenses detox-v856-academic detox-v857-medical-only">
-                <section class="detox-info-lens-v645 detox-v717-west detox-v856-lens" aria-label="Bilimsel ve tıbbi bakış">
-                    <div class="detox-v717-lens-head"><span aria-hidden="true">⚕</span><h3>Bilimsel ve Tıbbi Bakış</h3></div>
-                    <h4>Bilimsel araştırmalar ne gösteriyor?</h4>
-                    <p>${escapeHtml(recipe.science || '')}</p>
-                    <h4>Klinik değerlendirmede nelere dikkat edilir?</h4>
-                    <p>${escapeHtml(recipe.lifestyle || '')}</p>
-                    <p class="detox-v717-lens-note">Bu bilgiler genel tıbbi bilgilendirme amaçlıdır; açlık ve tek öğün beslenme, mevcut tıbbi tedavilerin yerine geçmez.</p>
-                </section>
-            </div>`;
-            academicSourcesV856 = isJapanese
-                ? `<div class="detox-v717-sources"><strong>Akademik okuma:</strong>
-                    <a href="https://pubmed.ncbi.nlm.nih.gov/39348690/" rel="noopener noreferrer" target="_blank">PubMed · Öğün zamanlaması klinik çalışması</a>
-                    <a href="https://www.niddk.nih.gov/health-information/professionals/diabetes-discoveries-practice/patients-intermittent-fasting" rel="noopener noreferrer" target="_blank">NIDDK · Aralıklı oruç</a>
-                    <a href="https://www.nccih.nih.gov/health/detoxes-and-cleanses-what-you-need-to-know" rel="noopener noreferrer" target="_blank">NCCIH · Detoks iddiaları</a>
-                </div>`
-                : `<div class="detox-v717-sources"><strong>Akademik okuma:</strong>
-                    <a href="https://www.nih.gov/news-events/nih-research-matters/time-restricted-eating-metabolic-syndrome" rel="noopener noreferrer" target="_blank">NIH · Öğün zamanlaması araştırması</a>
-                    <a href="https://diabetesjournals.org/care/article/49/Supplement_1/S89/163932/5-Facilitating-Positive-Health-Behaviors-and-Well" rel="noopener noreferrer" target="_blank">ADA 2026 · Açlık ve diyabet güvenliği</a>
-                    <a href="https://www.nccih.nih.gov/health/detoxes-and-cleanses-what-you-need-to-know" rel="noopener noreferrer" target="_blank">NCCIH · Detoks iddiaları</a>
-                </div>`;
-        }
-        const frame = `<div class="detox-v717-sources"><strong>Okuma kaynakları:</strong>
-            <a href="https://www.nccih.nih.gov/health/detoxes-and-cleanses-what-you-need-to-know" rel="noopener noreferrer" target="_blank">NCCIH · Detoks uygulamaları</a>
-            <a href="https://nigms.nih.gov/biobeat/2023/09/what-happens-to-medicine-in-your-body" rel="noopener noreferrer" target="_blank">NIH · İlaçların metabolizması</a>
-            <a href="https://pmc.ncbi.nlm.nih.gov/articles/PMC4756788/" rel="noopener noreferrer" target="_blank">Geleneksel Uygur Tıbbı incelemesi</a>
-        </div>`;
-        detoxInfoInnerV645.innerHTML = `${media}<div class="detox-info-body-v645"><span class="detox-info-category-v645">${escapeHtml(recipe.categoryLabel)}</span><h2 id="detoxInfoHeadingV645">${escapeHtml(recipe.name)}</h2><p class="detox-info-lead-v645">${escapeHtml(recipe.benefitSummary || recipe.support)}</p><div class="detox-info-tags-v645">${tags}</div>${academicPanelsV856}${academicSourcesV856 || frame}<p class="detox-info-warning-v645"><strong>Dikkat:</strong> ${escapeHtml(recipe.note || 'Bu içerik genel bilgilendirme amaçlıdır; tedavi yerine geçmez.')}</p></div>`;
+        // V894: Her kart için ilk bakışta okunan ölçülü tarif ve kısa, gerçekçi sistem açıklaması.
+        const detoxExampleV894 = recipe.kind === 'guide' || recipe.category === 'aclik';
+        const recipeSectionV894 = `<section class="detox-v894-recipe" aria-label="Malzemeler, hazırlanış ve kısa değerlendirme">
+            <div class="detox-v894-head">
+                <span class="detox-v894-eyebrow">${detoxExampleV894 ? 'PRATİK BESLENME ÖRNEĞİ' : 'ÖLÇÜLÜ TARİF'}</span>
+                <h3>${escapeHtml(recipe.recipeTypeV894 || 'Beslenme tarifi')}</h3>
+                <p>${detoxExampleV894 ? 'Bu bölüm konuyla ilişkili günlük bir gıda örneğidir; tıbbi tedavi veya açlık protokolü değildir.' : 'Ölçüler yaklaşık 1 küçük porsiyon içindir; içeceklerin miktarı tarifte belirtilir.'}</p>
+            </div>
+            <div class="detox-v894-columns">
+                <div><h4>Malzemeler ve miktarları</h4><ul>${(recipe.ingredients || []).map(ingredient => `<li>${escapeHtml(ingredient)}</li>`).join('')}</ul></div>
+                <div><h4>Nasıl hazırlanır, nasıl tüketilir?</h4><p>${escapeHtml(recipe.prep || 'Hazırlık bilgisi bulunamadı.')}</p></div>
+            </div>
+            <div class="detox-v894-benefit"><p>${escapeHtml(recipe.organBenefitV894 || '')}</p></div>
+        </section>`;
+        detoxInfoInnerV645.innerHTML = `${media}<div class="detox-info-body-v645"><span class="detox-info-category-v645">${escapeHtml(recipe.categoryLabel)}</span><h2 id="detoxInfoHeadingV645">${escapeHtml(recipe.name)}</h2><p class="detox-info-lead-v645">${escapeHtml(recipe.benefitSummary || recipe.support)}</p><div class="detox-info-tags-v645">${tags}</div>${recipeSectionV894}<p class="detox-info-warning-v645"><strong>Dikkat:</strong> ${escapeHtml(recipe.note || 'Bu içerik genel bilgilendirme amaçlıdır; tedavi yerine geçmez.')}</p></div>`;
         detoxInfoDialogV645.setAttribute('aria-labelledby','detoxInfoHeadingV645');
         if (typeof detoxInfoDialogV645.showModal === 'function') detoxInfoDialogV645.showModal();
         else detoxInfoDialogV645.setAttribute('open','');
@@ -18512,8 +18804,9 @@ function scrollSerumTitleBelowNavbarV514(vascularView) {
                         <span class="detox-card-category-v390">${escapeHtml(recipe.categoryLabel)}</span>
                         <h3>${escapeHtml(recipe.name)}</h3>
                         <p class="detox-support-v390">${escapeHtml(recipe.support)}</p>
+                        <p class="detox-v894-card-fact"><strong>Örnek:</strong> ${escapeHtml(recipe.recipeTypeV894 || 'Beslenme örneği')}</p>
                         <div class="detox-tags-v390"><span>Bilimsel yaklaşım</span><span>Güvenlik</span></div>
-                        <span class="detox-info-open-v645" aria-hidden="true"><span>Açıklamayı İncele</span><i aria-hidden="true">→</i></span>
+                        <span class="detox-info-open-v645" aria-hidden="true"><span>Tarifi ve Hazırlanışı Gör</span><i aria-hidden="true">→</i></span>
                     </div>
                 </article>`;
         }
@@ -18534,10 +18827,11 @@ function scrollSerumTitleBelowNavbarV514(vascularView) {
                     <span class="detox-card-category-v390">${escapeHtml(recipe.categoryLabel)}</span>
                     <h3>${escapeHtml(recipe.name)}</h3>
                     <p class="detox-support-v390"><strong>${recipe.category === 'japon' || recipe.category === 'aclik' ? 'Akademik ve tıbbi bakış:' : 'Hangi alanlarda değerlendirilir?'}</strong> ${escapeHtml(recipe.benefitSummary || recipe.support)}</p>
+                    <p class="detox-v894-card-fact"><strong>Tür:</strong> ${escapeHtml(recipe.recipeTypeV894 || 'Tarif')}</p>
                     <div class="detox-tags-v390">
                         ${(recipe.tags || []).slice(0,3).map(tag => `<span>${escapeHtml(tag)}</span>`).join('')}
                     </div>
-                    <span class="detox-info-open-v645" aria-hidden="true"><span>İki Bakış Açısını İncele</span><i aria-hidden="true">→</i></span>
+                    <span class="detox-info-open-v645" aria-hidden="true"><span>Tarifi ve Hazırlanışı Gör</span><i aria-hidden="true">→</i></span>
                 </div>
             </article>`;
     }
@@ -25441,3 +25735,68 @@ function scrollSerumTitleBelowNavbarV514(vascularView) {
     if (location.hash === '#igne') scheduleRouteRepair();
 })();
 /* V890 SON */
+
+
+/* V903: Destek arayuzu support-widget.js dosyasinda; V902 WhatsApp kodu kaldirildi. */
+
+
+/* V904: Destek açma/kapama ve talep arayüzü, ana script.js içinde. */
+/* V903: Public visitor support — API-backed, no fake sends and no WhatsApp forwarding. */
+(function () {
+  'use strict';
+  function el(id) { return document.getElementById(id); }
+  const root=el('v903SupportRoot'); if(!root)return;
+  const trigger=el('v903SupportTrigger'), panel=el('v903SupportPanel'), close=el('v903SupportClose');
+  const start=el('v903SupportStart'), chat=el('v903SupportChat'), notice=el('v903SupportNotice');
+  const first=el('v903SupportFirstMessage'), consent=el('v903SupportConsent'), form=el('v903SupportStartForm');
+  const create=el('v903SupportCreate'), thread=el('v903SupportThread'), replyForm=el('v903SupportReplyForm'), reply=el('v903SupportReply'), replySend=el('v903SupportReplySend');
+  const ticketNo=el('v903SupportTicketNumber'), ticketStatus=el('v903SupportTicketStatus');
+  const cfg=window.CN_SUPPORT_CONFIG||{}, configured=!!(cfg.url && cfg.publishableKey && /^https:\/\/[^/]+\.supabase\.co\/?$/.test(cfg.url.trim()));
+  const storageKey='cn_support_v903_ticket'; let current=null, selected='Randevu', busy=false, poll=null;
+  function info(s,error){notice.textContent=s||'';notice.classList.toggle('is-error',!!error);}
+  function api(action,data){
+    if(!configured)return Promise.reject(new Error('Destek sistemi henüz etkinleştirilmedi.'));
+    return fetch(cfg.url.replace(/\/$/,'')+'/functions/v1/'+(cfg.functionName||'support-api'),{
+      method:'POST',headers:{'Content-Type':'application/json','apikey':cfg.publishableKey},
+      body:JSON.stringify(Object.assign({action:action},data||{}))
+    }).then(async function(response){let result={};try{result=await response.json();}catch(_e){}
+      if(!response.ok||!result.ok)throw new Error(result.error||'Bağlantı kurulamadı.');return result;
+    });
+  }
+  function saveTicket(t){current=t;try{localStorage.setItem(storageKey,JSON.stringify(t));}catch(_e){}}
+  function loadTicket(){try{const t=JSON.parse(localStorage.getItem(storageKey)||'null');if(t&&/^[a-f0-9-]{36}$/.test(t.ticket_id)&&/^[a-f0-9]{64}$/.test(t.visitor_token))return t;}catch(_e){}return null;}
+  function showStart(){chat.hidden=true;start.hidden=false;}
+  function showChat(){chat.hidden=false;start.hidden=true;}
+  function stamp(s){if(!s)return'';const d=new Date(s);return isNaN(d)?'':d.toLocaleString('tr-TR',{dateStyle:'short',timeStyle:'short'});}
+  function render(data){showChat();const ticket=data.ticket||{};ticketNo.textContent=(ticket.id||current.ticket_id).slice(0,8).toUpperCase();
+    ticketStatus.textContent=ticket.status==='answered'?'Yanıtlandı':ticket.status==='closed'?'Kapatıldı':'Yanıt bekliyor';
+    thread.replaceChildren();const messages=Array.isArray(data.messages)?data.messages:[];
+    messages.forEach(function(m){const bubble=document.createElement('div');bubble.className='v903-support-bubble '+(m.sender==='visitor'?'is-visitor':'is-agent');
+      const body=document.createElement('div');body.textContent=m.body;const meta=document.createElement('small');meta.textContent=(m.sender==='visitor'?'Siz':'Klinik ekibi')+' • '+stamp(m.created_at);bubble.append(body,meta);thread.append(bubble);});thread.scrollTop=thread.scrollHeight;
+  }
+  async function refresh(silent){if(!current||busy||!configured)return;try{const data=await api('visitor_get',current);render(data);if(!silent)info('Mesajlar güncellendi.');}
+    catch(e){if(!silent)info(e.message,true);if(/bulunamadı|erişim|erişim kodu/i.test(e.message))info('Bu konuşmaya erişilemiyor. Yeni talep oluşturabilirsiniz.',true);}}
+  function openPanel(){panel.hidden=false;trigger.setAttribute('aria-expanded','true');if(current)refresh(true);if(!configured)info('Özel destek sistemi kurulum aşamasında. Şu an mesaj gönderilemiyor.');close.focus({preventScroll:true});}
+  function closePanel(){panel.hidden=true;trigger.setAttribute('aria-expanded','false');trigger.focus({preventScroll:true});}
+  trigger.addEventListener('click',function(){panel.hidden?openPanel():closePanel();});close.addEventListener('click',closePanel);
+  const privacyLink=el('v903SupportPrivacyLink');
+  if(privacyLink)privacyLink.addEventListener('click',function(e){e.preventDefault();closePanel();const legal=document.querySelector('.info-legal-open-v56[data-legal-doc=\"aydinlatma\"]');if(legal)legal.click();});
+  document.addEventListener('keydown',function(e){if(e.key==='Escape'&&!panel.hidden){e.preventDefault();e.stopImmediatePropagation();closePanel();}},true);
+  document.addEventListener('pointerdown',function(e){if(!panel.hidden&&!root.contains(e.target)){panel.hidden=true;trigger.setAttribute('aria-expanded','false');}});
+  root.querySelectorAll('[data-support-topic]').forEach(function(b){b.addEventListener('click',function(){selected=b.dataset.supportTopic;root.querySelectorAll('[data-support-topic]').forEach(x=>x.classList.toggle('is-selected',x===b));});});
+  form.addEventListener('submit',async function(e){e.preventDefault();if(busy||!configured)return info('Mesajlar ancak güvenli sunucu bağlantısı tamamlandığında gönderilebilir.',true);
+    if(!consent.checked)return info('Lütfen bilgilendirmeyi onaylayın.',true);if(first.value.trim().length<10)return info('Mesajınız en az 10 karakter olmalı.',true);
+    busy=true;create.disabled=true;info('Mesaj iletiliyor…');try{const result=await api('new',{subject:selected,body:first.value.trim(),consent:true,website:el('v903SupportHoneypot').value});
+      saveTicket({ticket_id:result.ticket.id,visitor_token:result.visitor_token});first.value='';render(result);info('Mesaj kaydedildi. Yanıtları bu tarayıcıdan takip edebilirsiniz.');}
+    catch(e){info('Mesaj gönderilemedi: '+e.message,true);}finally{busy=false;create.disabled=false;}
+  });
+  replyForm.addEventListener('submit',async function(e){e.preventDefault();if(busy||!current||!configured)return;const body=reply.value.trim();if(body.length<2)return info('Mesajınızı yazın.',true);
+    busy=true;replySend.disabled=true;info('Gönderiliyor…');try{const result=await api('visitor_send',Object.assign({},current,{body}));reply.value='';render(result);info('Yeni mesajınız kaydedildi.');}
+    catch(e){info(e.message,true);}finally{busy=false;replySend.disabled=false;}
+  });
+  el('v903SupportRefresh').addEventListener('click',function(){refresh(false);});
+  el('v903SupportNew').addEventListener('click',function(){if(!window.confirm('Yeni bir talep başlatılsın mı? Eski konuşma bu tarayıcıdaki erişiminden çıkacak.'))return;try{localStorage.removeItem(storageKey);}catch(_e){}current=null;showStart();info('Yeni talep oluşturabilirsiniz.');});
+  if(!configured){create.disabled=true;replySend.disabled=true;info('Destek sistemi kurulum aşamasında. Şu an mesaj gönderilemiyor.');}
+  else{current=loadTicket();if(current)refresh(true);poll=setInterval(function(){if(!panel.hidden&&current&&!busy)refresh(true);},25000);}
+})();
+

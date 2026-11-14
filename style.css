@@ -19734,3 +19734,576 @@ html body article[data-treatment-detail-view="estetik"] .v864-aesthetic-media im
  border:1px solid #d3e7f0 !important; border-radius:22px !important; box-sizing:border-box !important;
 }
 @media(max-width:900px){html body article[data-treatment-detail-view="estetik"] .v864-aesthetic-media img{border-radius:16px !important;}}
+
+
+/* =============================================================
+   V892 | Yalniz mobil/tablet: GORSEL ONCE, METIN SONRA
+   Masaustundeki sag-sol alternans degistirilmez.
+   Kapsam: damar yolu, tedavi alanlari, agri, osteopati,
+   geleneksel tedavi, igneli uygulamalar, estetige bakis.
+   ============================================================= */
+@media screen and (max-width:900px) {
+  /* Tedavi Alanlari ve ayni .v819-layout temelini kullanan tum zengin kartlar. */
+  html body .v819-rich-article > .v819-layout,
+  html body .v831-pain-article > .v819-layout,
+  html body .v862-injection-article > .v819-layout,
+  html body #osteoManualUnifiedV701 .v870-osteo-card > .v870-osteo-card-layout {
+    display:flex !important;
+    flex-direction:column !important;
+    align-items:stretch !important;
+    gap:18px !important;
+  }
+  html body .v819-rich-article > .v819-layout > .v819-media,
+  html body .v831-pain-article > .v819-layout > .v819-media,
+  html body .v862-injection-article > .v819-layout > .v819-media,
+  html body #osteoManualUnifiedV701 .v870-osteo-card .v819-media {
+    order:-1 !important;
+    grid-column:auto !important;
+    grid-row:auto !important;
+    width:100% !important;
+  }
+  html body .v819-rich-article > .v819-layout > .v819-copy,
+  html body .v831-pain-article > .v819-layout > .v819-copy,
+  html body .v862-injection-article > .v819-layout > .v819-copy,
+  html body #osteoManualUnifiedV701 .v870-osteo-card .v819-copy {
+    order:1 !important;
+    grid-column:auto !important;
+    grid-row:auto !important;
+    width:100% !important;
+  }
+
+  /* V869 / V835: Damar Yolu serumlarindaki 7 x 5 kartta sorunlu sira. */
+  html body [data-treatment-detail-view="damar-yolu"]
+    .v835-vascular-flow .v835-vascular-article > .v835-vascular-layout {
+    display:flex !important;
+    flex-direction:column !important;
+    align-items:stretch !important;
+    gap:18px !important;
+  }
+  html body [data-treatment-detail-view="damar-yolu"]
+    .v835-vascular-flow .v835-vascular-article .v835-vascular-media {
+    order:-1 !important;
+    grid-column:auto !important;
+    grid-row:auto !important;
+    align-self:stretch !important;
+    width:100% !important;
+  }
+  html body [data-treatment-detail-view="damar-yolu"]
+    .v835-vascular-flow .v835-vascular-article .v835-vascular-copy {
+    order:1 !important;
+    grid-column:auto !important;
+    grid-row:auto !important;
+    align-self:stretch !important;
+    width:100% !important;
+  }
+
+  /* Estetige bakis 01-04: tum kartlarin ustunde resim. */
+  html body article[data-treatment-detail-view="estetik"]
+    .v864-aesthetic-article > .v864-aesthetic-layout {
+    display:flex !important;
+    flex-direction:column !important;
+    align-items:stretch !important;
+  }
+  html body article[data-treatment-detail-view="estetik"]
+    .v864-aesthetic-article .v864-aesthetic-media {
+    order:-1 !important;
+    grid-column:auto !important;
+    grid-row:auto !important;
+    width:100% !important;
+  }
+  html body article[data-treatment-detail-view="estetik"]
+    .v864-aesthetic-article .v864-aesthetic-copy {
+    order:1 !important;
+    grid-column:auto !important;
+    grid-row:auto !important;
+    width:100% !important;
+  }
+
+  /* Akupunktur, Suluk, Hacamat yazili kartlari. */
+  html body #traditionalOverviewV168.v843-detail-open #v842TraditionalMain
+    .traditional-osteo-flow-v877 > .posture-visual-section-v364 {
+    display:flex !important;
+    flex-direction:column !important;
+    align-items:stretch !important;
+  }
+  html body #traditionalOverviewV168.v843-detail-open #v842TraditionalMain
+    .traditional-osteo-flow-v877 > .posture-visual-section-v364 figure {
+    order:-1 !important;
+    grid-column:auto !important;
+    grid-row:auto !important;
+    width:100% !important;
+  }
+  html body #traditionalOverviewV168.v843-detail-open #v842TraditionalMain
+    .traditional-osteo-flow-v877 > .posture-visual-section-v364 .posture-copy-v364 {
+    order:1 !important;
+    grid-column:auto !important;
+    grid-row:auto !important;
+    width:100% !important;
+  }
+}
+/* V892 son */
+
+/* V894 — Sadece Detoks Kürleri tarif anlatımı ve mobil yerleşim */
+.detox-v894-recipe{margin:20px 0 24px;padding:clamp(18px,2.6vw,28px);background:linear-gradient(145deg,#fbfcf9,#f4f8f3);border:1px solid #dfe9df;border-radius:20px;color:#23362b}
+.detox-v894-head .detox-v894-eyebrow{display:block;font-size:11px;font-weight:750;letter-spacing:.12em;color:#548467;margin-bottom:6px}
+.detox-v894-head h3{margin:0 0 7px!important;font-size:clamp(20px,2.2vw,25px)!important;line-height:1.3;color:#234634}
+.detox-v894-head p{margin:0 0 18px;color:#546a5a;font-size:14px;line-height:1.65}
+.detox-v894-columns{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1.12fr);gap:16px}
+.detox-v894-columns>div{min-width:0;padding:17px;background:#fff;border:1px solid #e5ece6;border-radius:13px}
+.detox-v894-columns h4{margin:0 0 12px!important;color:#315f45;font-size:15px!important;line-height:1.4}
+.detox-v894-columns ul{margin:0;padding-left:20px;list-style:disc}
+.detox-v894-columns li{margin:0 0 8px;color:#34473b;font-size:14px;line-height:1.6}
+.detox-v894-columns p{margin:0;color:#34473b;font-size:14px;line-height:1.8}
+.detox-v894-benefit{margin-top:14px;padding:16px 18px;background:#e9f3ea;border-left:3px solid #75a17c;border-radius:12px}
+.detox-v894-benefit strong{display:block;font-size:14px;color:#265a3a;margin-bottom:6px}
+.detox-v894-benefit p{margin:0;font-size:14px;color:#34513c;line-height:1.7}
+.detox-v894-caution{font-size:12px!important;color:#67726a!important;line-height:1.7!important;margin:13px 0 0!important}
+.detox-v894-card-fact{font-size:13px!important;line-height:1.5!important;color:#486553!important;margin:9px 0!important}
+.detox-v894-card-fact strong{color:#2f6645}
+@media(max-width:720px){.detox-v894-recipe{padding:16px;margin:16px 0 18px;border-radius:14px}.detox-v894-columns{grid-template-columns:1fr;gap:10px}.detox-v894-columns>div{padding:14px}}
+
+/* V898 — Osteopati uygulama videosu: 2. görseldeki masaüstü görünümü.
+   Tam tarayıcı genişliğinde açık renk fon üzerinde ortalanmış panel.
+   Yalnızca video açılışını etkiler; X, yazılar ve diğer sayfalar korunur. */
+@media (min-width: 901px) {
+  body.treatment-detail-open-v71 .v870-osteo-page .v870-osteo-video-screen:not([hidden]) {
+    box-sizing: border-box !important;
+    width: min(100%, 1008px) !important;
+    max-width: 100% !important;
+    margin-inline: auto !important;
+  }
+  body.treatment-detail-open-v71 .v870-osteo-page .v870-video-frame {
+    width: 100% !important;
+    height: auto !important;
+    aspect-ratio: 16 / 9 !important;
+    max-height: none !important;
+    overflow: hidden !important;
+  }
+  body.treatment-detail-open-v71 .v870-osteo-page .v870-video-frame video {
+    width: 100% !important;
+    height: 100% !important;
+    object-fit: contain !important;
+  }
+}
+/* V898 son */
+
+
+/* ==========================================================
+   V899 — OSTEOPATİ UYGULAMA VİDEOSU / GERÇEK TAM EKRAN
+   Sadece Osteopati giriş videosu görünürken etkindir.
+   X → yazılı içerik davranışı ve diğer sayfalar korunur.
+   ========================================================== */
+/* Video açıkken navigasyon üstte kalıp X düğmesini örtmesin. */
+body.treatment-detail-open-v71:has(.v870-osteo-page.active #v870OsteoVideoScreen:not([hidden]))
+  .treatment-detail-nav-modern-v160 {
+  display: none !important;
+}
+/* Global scrollbar-gutter:stable kuralının sağda beyaz şerit bırakmasını önle. */
+html:has(body.treatment-detail-open-v71 .v870-osteo-page.active #v870OsteoVideoScreen:not([hidden])) {
+  scrollbar-gutter: auto !important;
+  overflow: hidden !important;
+}
+/* Videonun katmanı, sayfa gezinti çubuğunun önüne çıkar. */
+body.treatment-detail-open-v71:has(.v870-osteo-page.active #v870OsteoVideoScreen:not([hidden]))
+  #treatmentDetailPageV71 {
+  z-index: 18000 !important;
+  overflow: hidden !important;
+}
+body.treatment-detail-open-v71 .v870-osteo-page.active
+  #v870OsteoVideoScreen:not([hidden]) {
+  position: fixed !important;
+  inset: 0 !important;
+  box-sizing: border-box !important;
+  z-index: 18001 !important;
+  display: flex !important;
+  flex-direction: column !important;
+  width: 100vw !important;
+  min-width: 0 !important;
+  max-width: none !important;
+  height: 100vh !important;
+  height: 100dvh !important;
+  min-height: 0 !important;
+  max-height: none !important;
+  margin: 0 !important;
+  padding: clamp(12px, 1.55vw, 26px) !important;
+  border: 0 !important;
+  border-radius: 0 !important;
+  box-shadow: none !important;
+  overflow: hidden !important;
+}
+body.treatment-detail-open-v71 .v870-osteo-page.active
+  #v870OsteoVideoScreen:not([hidden]) .v870-video-head {
+  display: flex !important;
+  align-items: center !important;
+  flex: 0 0 auto !important;
+  min-height: 0 !important;
+  margin: 0 0 clamp(8px, 1.2vh, 15px) !important;
+  gap: 14px !important;
+}
+body.treatment-detail-open-v71 .v870-osteo-page.active
+  #v870OsteoVideoScreen:not([hidden]) .v870-video-head h2 {
+  font-size: clamp(22px, 2.15vw, 40px) !important;
+  line-height: 1.08 !important;
+}
+body.treatment-detail-open-v71 .v870-osteo-page.active
+  #v870OsteoVideoScreen:not([hidden]) .v870-video-frame {
+  flex: 1 1 0% !important;
+  display: block !important;
+  box-sizing: border-box !important;
+  min-width: 0 !important;
+  min-height: 0 !important;
+  width: 100% !important;
+  height: 100% !important;
+  max-width: none !important;
+  max-height: none !important;
+  aspect-ratio: auto !important;
+  margin: 0 !important;
+  border-radius: 16px !important;
+  overflow: hidden !important;
+}
+body.treatment-detail-open-v71 .v870-osteo-page.active
+  #v870OsteoVideoScreen:not([hidden]) .v870-video-frame video {
+  display: block !important;
+  width: 100% !important;
+  height: 100% !important;
+  object-fit: contain !important;
+}
+/* Önceki alt bilgi satırı videoya ayrılan alanı daraltmasın. */
+body.treatment-detail-open-v71 .v870-osteo-page.active
+  #v870OsteoVideoScreen:not([hidden]) .v870-video-lower {
+  display: none !important;
+}
+@media (max-width: 760px) {
+  body.treatment-detail-open-v71 .v870-osteo-page.active
+    #v870OsteoVideoScreen:not([hidden]) {
+    padding: 10px !important;
+  }
+  body.treatment-detail-open-v71 .v870-osteo-page.active
+    #v870OsteoVideoScreen:not([hidden]) .v870-video-head {
+    flex-wrap: wrap !important;
+    gap: 8px !important;
+  }
+  body.treatment-detail-open-v71 .v870-osteo-page.active
+    #v870OsteoVideoScreen:not([hidden]) .v870-video-head h2 {
+    font-size: clamp(17px, 4.1vw, 23px) !important;
+  }
+  body.treatment-detail-open-v71 .v870-osteo-page.active
+    #v870OsteoVideoScreen:not([hidden]) .v870-video-eyebrow {
+    font-size: 9px !important;
+  }
+  body.treatment-detail-open-v71 .v870-osteo-page.active
+    #v870OsteoVideoScreen:not([hidden]) .v875-osteo-close-controls {
+    margin-left: auto !important;
+  }
+  body.treatment-detail-open-v71 .v870-osteo-page.active
+    #v870OsteoVideoScreen:not([hidden]) .v870-video-frame {
+    border-radius: 12px !important;
+  }
+}
+/* V899 son */
+
+
+/* =============================================================
+ V900 — Osteopati video ekranında X ve açıklama daima görünür.
+ V899 tam ekran video davranışı korunur; yalnızca üst sağ kontrol
+ grubu sabitlenir. X hâlihazırda yazılı içeriği açmaktadır.
+ ============================================================= */
+body.treatment-detail-open-v71 .v870-osteo-page.active
+  #v870OsteoVideoScreen:not([hidden]) .v875-osteo-close-controls {
+  position: fixed !important;
+  top: max(14px, env(safe-area-inset-top, 0px)) !important;
+  right: max(18px, env(safe-area-inset-right, 0px)) !important;
+  left: auto !important;
+  bottom: auto !important;
+  z-index: 2147483000 !important;
+  display: flex !important;
+  flex-direction: row !important;
+  align-items: center !important;
+  justify-content: flex-end !important;
+  flex-wrap: nowrap !important;
+  width: auto !important;
+  max-width: calc(100vw - 24px) !important;
+  margin: 0 !important;
+  gap: 10px !important;
+  opacity: 1 !important;
+  visibility: visible !important;
+  pointer-events: auto !important;
+}
+body.treatment-detail-open-v71 .v870-osteo-page.active
+  #v870OsteoVideoScreen:not([hidden]) .v875-osteo-close-hint {
+  display: inline-flex !important;
+  align-items: center !important;
+  justify-content: center !important;
+  min-height: 54px !important;
+  max-width: min(340px, calc(100vw - 112px)) !important;
+  margin: 0 !important;
+  padding: 10px 15px !important;
+  color: #0b5377 !important;
+  background: #f3fbff !important;
+  border: 1px solid #93d7f2 !important;
+  border-radius: 16px !important;
+  box-sizing: border-box !important;
+  box-shadow: 0 6px 18px rgba(1,24,44,.25) !important;
+  font: 700 12px/1.4 Inter,Arial,sans-serif !important;
+  opacity: 1 !important;
+  visibility: visible !important;
+}
+body.treatment-detail-open-v71 .v870-osteo-page.active
+  #v870OsteoVideoScreen:not([hidden]) .v870-video-close {
+  position: relative !important;
+  display: grid !important;
+  place-items: center !important;
+  flex: 0 0 58px !important;
+  width: 58px !important;
+  height: 58px !important;
+  min-width: 58px !important;
+  min-height: 58px !important;
+  padding: 0 !important;
+  margin: 0 !important;
+  border: 1px solid #93d7f2 !important;
+  border-radius: 17px !important;
+  background: #f3fbff !important;
+  color: #075478 !important;
+  font: 600 42px/1 Arial,sans-serif !important;
+  box-shadow: 0 6px 18px rgba(1,24,44,.27) !important;
+  cursor: pointer !important;
+  opacity: 1 !important;
+  visibility: visible !important;
+  pointer-events: auto !important;
+}
+@media (max-width: 760px) {
+  body.treatment-detail-open-v71 .v870-osteo-page.active
+    #v870OsteoVideoScreen:not([hidden]) .v875-osteo-close-controls {
+    top: max(8px, env(safe-area-inset-top, 0px)) !important;
+    right: max(8px, env(safe-area-inset-right, 0px)) !important;
+    gap: 6px !important;
+    width: auto !important;
+  }
+  body.treatment-detail-open-v71 .v870-osteo-page.active
+    #v870OsteoVideoScreen:not([hidden]) .v875-osteo-close-hint {
+    min-height: 42px !important;
+    max-width: min(230px, calc(100vw - 74px)) !important;
+    padding: 6px 9px !important;
+    font-size: 10px !important;
+    line-height: 1.25 !important;
+  }
+  body.treatment-detail-open-v71 .v870-osteo-page.active
+    #v870OsteoVideoScreen:not([hidden]) .v870-video-close {
+    flex: 0 0 44px !important;
+    width: 44px !important;
+    height: 44px !important;
+    min-width: 44px !important;
+    min-height: 44px !important;
+    border-radius: 12px !important;
+    font-size: 34px !important;
+  }
+}
+/* Küçük ekranda sabit uyarı/kapama, video başlığının üzerine binmesin. */
+@media (max-width: 760px) {
+  body.treatment-detail-open-v71 .v870-osteo-page.active
+    #v870OsteoVideoScreen:not([hidden]) .v870-video-head {
+    padding-top: 52px !important;
+  }
+}
+/* V900 son */
+
+
+/* ===============================================================
+ V901 — Osteopati videosu üzerindeki X ve yönlendirme.
+ V900'de kontrol başlık alanında kaldığından görünmeyen ekranlarda
+ kontrol doğrudan video çerçevesinin üstüne taşındı.
+ Sadece osteopati giriş videosu etkilenir; kapatma JS'si aynı kalır.
+ =============================================================== */
+body.treatment-detail-open-v71 .v870-osteo-page.active
+  #v870OsteoVideoScreen:not([hidden]) #v870OsteoVideoFrame {
+  position: relative !important;
+  isolation: isolate !important;
+}
+body.treatment-detail-open-v71 .v870-osteo-page.active
+  #v870OsteoVideoScreen:not([hidden]) #v870OsteoVideoFrame > .v875-osteo-close-controls {
+  position: absolute !important;
+  inset: 14px 14px auto auto !important;
+  top: 14px !important;
+  right: 14px !important;
+  bottom: auto !important;
+  left: auto !important;
+  z-index: 100 !important;
+  display: flex !important;
+  flex-flow: row nowrap !important;
+  align-items: center !important;
+  justify-content: flex-end !important;
+  width: max-content !important;
+  max-width: calc(100% - 28px) !important;
+  min-height: 0 !important;
+  margin: 0 !important;
+  gap: 10px !important;
+  opacity: 1 !important;
+  visibility: visible !important;
+  pointer-events: auto !important;
+}
+body.treatment-detail-open-v71 .v870-osteo-page.active
+  #v870OsteoVideoScreen:not([hidden]) #v870OsteoVideoFrame > .v875-osteo-close-controls .v875-osteo-close-hint {
+  display: inline-flex !important;
+  min-height: 54px !important;
+  max-width: min(340px, calc(100vw - 104px)) !important;
+  padding: 10px 14px !important;
+  color: #074768 !important;
+  background: #f5fcff !important;
+  border: 1px solid #8bdcf8 !important;
+  border-radius: 15px !important;
+  box-shadow: 0 4px 14px #001a30b8 !important;
+  font: 700 12px/1.4 Inter,Arial,sans-serif !important;
+}
+body.treatment-detail-open-v71 .v870-osteo-page.active
+  #v870OsteoVideoScreen:not([hidden]) #v870OsteoVideoFrame > .v875-osteo-close-controls #v870OsteoVideoClose {
+  position: relative !important;
+  display: grid !important;
+  place-items: center !important;
+  flex: 0 0 58px !important;
+  width: 58px !important;
+  height: 58px !important;
+  min-width: 58px !important;
+  min-height: 58px !important;
+  margin: 0 !important;
+  padding: 0 !important;
+  color: #075478 !important;
+  background: #f5fcff !important;
+  border: 1px solid #8bdcf8 !important;
+  border-radius: 15px !important;
+  box-shadow: 0 4px 14px #001a30b8 !important;
+  font: 600 42px/1 Arial,sans-serif !important;
+  opacity: 1 !important;
+  visibility: visible !important;
+  cursor: pointer !important;
+  pointer-events: auto !important;
+}
+@media (max-width: 760px) {
+  body.treatment-detail-open-v71 .v870-osteo-page.active
+    #v870OsteoVideoScreen:not([hidden]) #v870OsteoVideoFrame > .v875-osteo-close-controls {
+    inset: 8px 8px auto auto !important;
+    top: 8px !important;
+    right: 8px !important;
+    width: max-content !important;
+    max-width: calc(100% - 16px) !important;
+    gap: 6px !important;
+  }
+  body.treatment-detail-open-v71 .v870-osteo-page.active
+    #v870OsteoVideoScreen:not([hidden]) #v870OsteoVideoFrame > .v875-osteo-close-controls .v875-osteo-close-hint {
+    min-height: 42px !important;
+    max-width: min(230px, calc(100vw - 75px)) !important;
+    padding: 6px 9px !important;
+    font-size: 10px !important;
+    line-height: 1.25 !important;
+    border-radius: 12px !important;
+  }
+  body.treatment-detail-open-v71 .v870-osteo-page.active
+    #v870OsteoVideoScreen:not([hidden]) #v870OsteoVideoFrame > .v875-osteo-close-controls #v870OsteoVideoClose {
+    flex: 0 0 44px !important;
+    width: 44px !important;
+    height: 44px !important;
+    min-width: 44px !important;
+    min-height: 44px !important;
+    font-size: 34px !important;
+    border-radius: 12px !important;
+  }
+}
+/* V901 son */
+
+
+/* === V902 Klinik Canlı Destek (WhatsApp üzerinden görüşme) === */
+.v902-support{position:fixed!important;right:24px!important;bottom:22px!important;z-index:19500!important;font-family:Inter,Arial,sans-serif!important;box-sizing:border-box!important;line-height:1.45;color:#143d52}
+.v902-support *, .v902-support *::before, .v902-support *::after{box-sizing:border-box}
+.v902-support-trigger{display:inline-flex!important;align-items:center!important;justify-content:center!important;gap:11px!important;min-height:58px!important;padding:13px 21px!important;border:1px solid rgba(163,226,245,.65)!important;border-radius:999px!important;background:linear-gradient(118deg,#075071,#127eaf)!important;color:#fff!important;box-shadow:0 16px 35px rgba(2,43,68,.3),inset 0 1px 0 rgba(255,255,255,.16)!important;cursor:pointer!important;font:750 14px/1.2 Inter,Arial,sans-serif!important;letter-spacing:0!important;white-space:nowrap!important;transition:transform .2s,box-shadow .2s!important}
+.v902-support-trigger:hover{transform:translateY(-2px);box-shadow:0 20px 40px rgba(2,43,68,.34)!important}
+.v902-support-trigger svg{display:block!important;flex-shrink:0!important;fill:none!important;stroke:currentColor!important}
+.v902-support-panel{position:absolute!important;right:0!important;bottom:calc(100% + 14px)!important;width:min(390px,calc(100vw - 28px))!important;max-height:min(690px,calc(100dvh - 104px))!important;display:flex!important;flex-direction:column!important;overflow:hidden!important;padding:0!important;border:1px solid rgba(144,202,225,.7)!important;border-radius:23px!important;background:#f9fcff!important;box-shadow:0 23px 66px rgba(3,44,69,.26)!important;color:#163d53!important;text-align:left!important;isolation:isolate}
+.v902-support-panel[hidden]{display:none!important}
+.v902-support-head{display:flex!important;align-items:center!important;justify-content:space-between!important;gap:12px!important;flex:0 0 auto!important;padding:17px!important;background:linear-gradient(125deg,#053955,#09638b)!important;color:#fff!important}
+.v902-support-head-title{display:flex!important;align-items:center!important;min-width:0!important;gap:11px!important}
+.v902-support-mark{display:grid!important;place-items:center!important;flex:0 0 42px!important;width:42px!important;height:42px!important;border:1px solid rgba(255,255,255,.4)!important;border-radius:13px!important;background:rgba(255,255,255,.15)!important;color:#fff!important;font:800 15px/1 Inter,Arial,sans-serif!important;letter-spacing:.02em!important}
+.v902-support-head-title strong{display:block!important;font:800 13px/1.35 Inter,Arial,sans-serif!important;letter-spacing:0!important;color:#fff!important}
+.v902-support-head-title small{display:block!important;margin-top:3px!important;color:#ccebf8!important;font:500 11px/1.4 Inter,Arial,sans-serif!important}
+.v902-support-close{display:grid!important;place-items:center!important;flex:0 0 36px!important;width:36px!important;height:36px!important;min-width:36px!important;min-height:36px!important;padding:0!important;border:1px solid rgba(255,255,255,.3)!important;border-radius:11px!important;background:rgba(255,255,255,.14)!important;color:#fff!important;cursor:pointer!important;font:400 28px/1 Arial,sans-serif!important}
+.v902-support-close:hover{background:rgba(255,255,255,.25)!important}
+.v902-support-body{flex:1 1 auto!important;min-height:0!important;overflow-y:auto!important;overscroll-behavior:contain!important;padding:16px 17px 17px!important;scrollbar-width:thin}
+.v902-support-message{padding:15px!important;background:#e9f4fa!important;border:1px solid #d2e8f3!important;border-radius:16px 16px 16px 4px!important}
+.v902-support-message-label{display:block!important;margin-bottom:7px!important;color:#34718a!important;font:800 9px/1.4 Inter,Arial,sans-serif!important;letter-spacing:.12em!important}
+.v902-support-message p{margin:0 0 5px!important;color:#163c51!important;font:750 14px/1.45 Inter,Arial,sans-serif!important}
+.v902-support-message small{display:block!important;margin:0!important;color:#587c8c!important;font:500 11px/1.55 Inter,Arial,sans-serif!important}
+.v902-support-hint{margin:17px 0 9px!important;color:#557789!important;font:700 11px/1.35 Inter,Arial,sans-serif!important;letter-spacing:.01em!important}
+.v902-support-choices{display:grid!important;grid-template-columns:1fr!important;gap:7px!important;margin:0!important;padding:0!important}
+.v902-support-choices a{display:flex!important;align-items:center!important;gap:9px!important;min-height:43px!important;width:100%!important;padding:9px 11px!important;border:1px solid #dbeaf0!important;border-radius:12px!important;background:#fff!important;color:#164f6b!important;text-decoration:none!important;font:700 12px/1.4 Inter,Arial,sans-serif!important;box-shadow:none!important;transition:background .16s,border-color .16s!important}
+.v902-support-choices a:hover{background:#f0f9fd!important;border-color:#8fcee7!important}
+.v902-support-choices a span:nth-child(1){flex:0 0 22px!important;text-align:center!important;font-size:16px!important}
+.v902-support-choices a span:nth-child(2){flex:1 1 auto!important}
+.v902-support-choices a span:nth-child(3){font-size:15px!important;color:#2b8fba!important}
+.v902-support-form{display:flex!important;flex-direction:column!important;gap:9px!important;margin-top:15px!important;padding:13px!important;border:1px solid #e0edf2!important;border-radius:14px!important;background:#fff!important}
+.v902-support-form label{margin:0!important;color:#315b6c!important;font:750 11px/1.35 Inter,Arial,sans-serif!important}
+.v902-support-form textarea{display:block!important;width:100%!important;min-height:65px!important;max-height:125px!important;resize:vertical!important;margin:0!important;padding:10px 11px!important;border:1px solid #cee2e9!important;border-radius:11px!important;background:#fafdff!important;color:#1d4050!important;outline:0!important;font:500 12px/1.5 Inter,Arial,sans-serif!important;letter-spacing:0!important}
+.v902-support-form textarea:focus{border-color:#268bb7!important;box-shadow:0 0 0 3px rgba(28,150,197,.12)!important}
+.v902-support-send{display:flex!important;align-items:center!important;justify-content:center!important;gap:7px!important;width:100%!important;min-height:43px!important;padding:10px 12px!important;margin:0!important;border:0!important;border-radius:11px!important;background:#0b8263!important;color:#fff!important;cursor:pointer!important;font:800 12px/1.4 Inter,Arial,sans-serif!important;letter-spacing:0!important}
+.v902-support-send:hover{background:#096c51!important}
+.v902-support-privacy{margin:12px 2px 0!important;color:#718996!important;font:500 10px/1.55 Inter,Arial,sans-serif!important}
+.v902-support-trigger:focus-visible,.v902-support-close:focus-visible,.v902-support-choices a:focus-visible,.v902-support-send:focus-visible{outline:3px solid #46b5e2!important;outline-offset:3px!important}
+@media(max-width:760px){
+  .v902-support{right:12px!important;bottom:max(12px,env(safe-area-inset-bottom))!important}
+  .v902-support-trigger{min-height:52px!important;padding:11px 15px!important;gap:8px!important;font-size:12px!important}
+  .v902-support-panel{right:0!important;bottom:calc(100% + 10px)!important;width:min(375px,calc(100vw - 24px))!important;max-height:calc(100dvh - 88px)!important;border-radius:18px!important}
+  .v902-support-head{padding:13px 14px!important}
+  .v902-support-body{padding:13px!important}
+}
+@media(prefers-reduced-motion:reduce){.v902-support-trigger,.v902-support-choices a{transition:none!important}}
+/* End V902 */
+
+
+/* V903: Klinik destek arayuzu destek-style.css icinden yuklenir. */
+
+
+/* V904: Klinik destek stilini ana dosyada tut; tek başına üç dosya güncellemesiyle de görünsün. */
+/* V903 - Public support widget. Independent namespace; does not change other pages. */
+.v903-support,.v903-support *{box-sizing:border-box}
+.v903-support{position:fixed!important;bottom:20px!important;right:22px!important;z-index:19500!important;font-family:Inter,Arial,sans-serif!important;color:#163f55!important}
+.v903-support-trigger{display:flex!important;align-items:center!important;justify-content:center!important;gap:10px!important;min-height:55px!important;padding:11px 19px!important;border:1px solid #7ebbd2!important;border-radius:28px!important;background:linear-gradient(120deg,#073c58,#0872a2)!important;color:#fff!important;font:750 14px Inter,Arial,sans-serif!important;box-shadow:0 12px 34px #002d4550!important;cursor:pointer!important}
+.v903-support-trigger svg{flex-shrink:0}
+.v903-support-panel{position:absolute!important;bottom:calc(100% + 11px)!important;right:0!important;display:flex!important;flex-direction:column!important;overflow:hidden!important;width:min(410px,calc(100vw - 24px))!important;max-height:min(735px,calc(100dvh - 98px))!important;border-radius:19px!important;border:1px solid #c4dae5!important;background:#f8fbfd!important;box-shadow:0 20px 65px #01364d49!important;text-align:left!important;color:#173e51!important}
+.v903-support-panel[hidden],.v903-support-panel [hidden]{display:none!important}
+.v903-support-head{display:flex!important;align-items:center!important;justify-content:space-between!important;gap:10px!important;flex:none!important;padding:15px!important;background:#053e5b!important;color:#fff!important}
+.v903-support-head-title{display:flex!important;align-items:center!important;gap:11px!important}
+.v903-support-head-title strong{display:block!important;color:#fff!important;font:800 13px/1.4 Inter,Arial,sans-serif!important}
+.v903-support-head-title small{display:block!important;color:#bcddea!important;font:500 11px/1.5 Inter,Arial,sans-serif!important}
+.v903-support-mark{display:grid;place-items:center;min-width:42px;height:42px;border:1px solid #ffffff58;border-radius:11px;background:#ffffff18;color:#fff;font-size:14px;font-weight:800}
+.v903-support-close{display:grid!important;place-items:center!important;width:35px!important;height:35px!important;min-width:35px!important;border:1px solid #ffffff57!important;border-radius:11px!important;background:#ffffff1c!important;color:#fff!important;font:30px/1 Arial!important;cursor:pointer!important}
+.v903-support-scroll{overflow-y:auto!important;min-height:0!important;flex:1 1 auto!important;padding:17px!important;scrollbar-width:thin!important}
+.v903-support-greeting{padding:16px!important;border-radius:15px!important;background:#eaf4fa!important;border:1px solid #d4e9f1!important}
+.v903-support-eyebrow{display:block!important;color:#2b7495!important;letter-spacing:.12em!important;font-size:10px!important;font-weight:800!important;margin-bottom:7px!important}
+.v903-support-greeting strong{display:block!important;font-size:15px!important;color:#123a52!important;line-height:1.4!important}
+.v903-support-greeting p{margin:7px 0 0!important;color:#476d7b!important;font-size:12px!important;line-height:1.55!important}
+.v903-support-label{margin:16px 0 9px!important;font-size:12px!important;font-weight:800!important;color:#284f65!important}
+.v903-support-topics{display:grid!important;grid-template-columns:1fr 1fr!important;gap:8px!important}
+.v903-support-topics button{width:100%!important;min-height:39px!important;margin:0!important;padding:8px 9px!important;white-space:normal!important;text-align:left!important;border:1px solid #d6e4ec!important;border-radius:11px!important;background:white!important;color:#264c5f!important;font:700 11px/1.3 Inter,Arial,sans-serif!important;cursor:pointer!important}
+.v903-support-topics button.is-selected{border:1px solid #2987ae!important;background:#e8f6fc!important;color:#075b81!important}
+.v903-support-start-form,.v903-support-reply-form{display:flex!important;flex-direction:column!important;gap:9px!important;margin:17px 0 0!important}
+.v903-support-start-form>label:first-child,.v903-support-reply-form label{font:800 12px Inter,Arial,sans-serif!important;color:#285066!important}
+.v903-support-start-form textarea,.v903-support-reply-form textarea{display:block!important;width:100%!important;min-height:78px!important;max-height:135px!important;padding:11px!important;resize:vertical!important;border:1px solid #bdd5e1!important;border-radius:11px!important;background:#fff!important;color:#173e51!important;font:500 12px/1.6 Inter,Arial,sans-serif!important;outline:none!important}
+.v903-support-consent{display:flex!important;align-items:flex-start!important;gap:8px!important;color:#496879!important;font:500 10px/1.6 Inter,Arial,sans-serif!important}
+.v903-support-consent input{flex-shrink:0!important;accent-color:#14769c!important;margin-top:3px!important}
+.v903-support-consent a{color:#096a93!important;text-decoration:underline!important}
+.v903-support-primary{display:flex!important;justify-content:center!important;align-items:center!important;gap:8px!important;width:100%!important;min-height:44px!important;padding:10px!important;margin:0!important;background:#067e94!important;border:0!important;border-radius:11px!important;color:white!important;font:800 12px/1.4 Inter,Arial,sans-serif!important;cursor:pointer!important}
+.v903-support-primary:disabled{opacity:.45!important;cursor:not-allowed!important}
+.v903-support-honeypot{position:absolute!important;opacity:0!important;pointer-events:none!important;width:0!important;height:0!important;overflow:hidden!important}
+.v903-support-ticket{display:flex!important;justify-content:space-between!important;gap:8px!important;align-items:center!important;border:1px solid #cddfeb!important;border-radius:12px!important;padding:12px!important;background:white!important}
+.v903-support-ticket span{display:block!important;font-size:10px!important;color:#5b7887!important}
+.v903-support-ticket strong{display:block!important;margin-top:4px!important;max-width:195px!important;overflow:hidden!important;text-overflow:ellipsis!important;color:#084b6e!important;font-size:12px!important}
+.v903-support-ticket-state{font-size:10px!important;border-radius:20px!important;padding:5px 8px!important;background:#eef6fa!important;color:#085e81!important;white-space:nowrap!important}
+.v903-support-thread{display:flex!important;flex-direction:column!important;gap:9px!important;min-height:90px!important;max-height:265px!important;overflow-y:auto!important;margin-top:12px!important;padding:8px 4px!important}
+.v903-support-bubble{width:fit-content!important;max-width:90%!important;border-radius:13px 13px 13px 4px!important;padding:10px 12px!important;background:#e2eef5!important;white-space:pre-wrap!important;overflow-wrap:anywhere!important;color:#183a4d!important;font:500 12px/1.55 Inter,Arial,sans-serif!important}
+.v903-support-bubble.is-visitor{align-self:flex-end!important;border-radius:13px 13px 4px 13px!important;background:#d9f4ef!important}
+.v903-support-bubble small{display:block!important;margin-top:6px!important;font-size:9px!important;color:#56778a!important}
+.v903-support-chat-actions{display:flex!important;justify-content:space-between!important;gap:8px!important;margin-top:12px!important}
+.v903-support-chat-actions button{background:transparent!important;border:0!important;color:#1a7194!important;font:750 11px Inter,Arial,sans-serif!important;cursor:pointer!important}
+.v903-support-notice{min-height:20px!important;margin:12px 0 0!important;font:650 11px/1.5 Inter,Arial,sans-serif!important;color:#146e83!important}
+.v903-support-notice.is-error{color:#ad3535!important}
+.v903-support-privacy{margin:10px 0 0!important;border-top:1px solid #d9e6ed!important;padding-top:10px!important;font:500 10px/1.55 Inter,Arial,sans-serif!important;color:#718997!important}
+.v903-support-trigger:focus-visible,.v903-support-panel button:focus-visible,.v903-support-panel input:focus-visible,.v903-support-panel textarea:focus-visible{outline:3px solid #4ab3df!important;outline-offset:2px!important}
+@media(max-width:500px){.v903-support{right:12px!important;bottom:max(12px,env(safe-area-inset-bottom))!important}.v903-support-trigger{min-height:51px!important;padding:10px 15px!important;font-size:12px!important}.v903-support-panel{width:calc(100vw - 24px)!important;max-height:calc(100dvh - 83px)!important}.v903-support-scroll{padding:13px!important}}
+

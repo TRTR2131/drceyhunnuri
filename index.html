@@ -9,7 +9,7 @@
 <meta content="no-cache, no-store, must-revalidate" http-equiv="Cache-Control"/>
 <meta content="no-cache" http-equiv="Pragma"/>
 <meta content="0" http-equiv="Expires"/>
-<meta content="891" name="site-version"/>
+<meta content="902" name="site-version"/>
 <title>Doktor Ceyhun Nuri</title>
 <meta content="Doktor Ceyhun Nuri resmi web sitesi. Sağlık bilgilendirmeleri, hizmetler, içerikler ve randevu talebi." name="description"/>
 <meta content="#1783c2" name="theme-color"/>
@@ -26,7 +26,7 @@
 <link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect"/>
 <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&amp;family=Sora:wght@600;700;800&amp;display=swap" rel="stylesheet"/>
 <link as="image" fetchpriority="high" href="./ana-sayfa-osteopati-doktor-v668.webp" rel="preload"/>
-<link href="style.css?v=891" rel="stylesheet"/>
+<link href="style.css?v=904" rel="stylesheet"/>
 <style id="treatmentNavCriticalV161">
 /* V161 critical: HTML içine gömülü, eski CSS bu menüyü geri çeviremez */
 body.treatment-detail-open-v71 .treatment-detail-nav-modern-v160{position:fixed!important;z-index:99999!important;top:18px!important;left:50%!important;right:auto!important;bottom:auto!important;transform:translateX(-50%)!important;width:min(1480px,calc(100vw - 38px))!important;min-height:78px!important;display:flex!important;align-items:center!important;justify-content:center!important;gap:8px!important;padding:10px 14px!important;margin:0!important;border:1px solid rgba(116,178,215,.20)!important;border-radius:28px!important;background:rgba(247,252,255,.96)!important;box-shadow:0 22px 52px rgba(32,83,116,.16),inset 0 1px 0 rgba(255,255,255,.96)!important;backdrop-filter:blur(22px) saturate(145%)!important;-webkit-backdrop-filter:blur(22px) saturate(145%)!important;overflow:visible!important;color:#123957!important}
@@ -3853,12 +3853,13 @@ html body .v548-brand .v594-avatar-v594 .v594-avatar-fallback-v594{z-index:1;}
 <main class="osteo-unified-content-v701"><section aria-label="Osteopati uygulama videosu" class="v870-osteo-video-screen" id="v870OsteoVideoScreen">
 <div class="v870-video-head">
 <div><span class="v870-video-eyebrow">OSTEOPATİ · UYGULAMA VİDEOSU</span><h2>Osteopatik değerlendirme ve uygulama</h2></div>
-<div class="v875-osteo-close-controls">
+
+</div>
+<div class="v870-video-frame" id="v870OsteoVideoFrame"><div class="v875-osteo-close-controls">
 <span class="v875-osteo-close-hint" role="note">Detaylı metinleri okumak için <strong>X’e basın</strong><span aria-hidden="true" class="v875-osteo-hint-arrow">→</span></span>
 <button aria-label="Videoyu kapat ve osteopati bilgilerini göster" class="v870-video-close" id="v870OsteoVideoClose" title="Videoyu kapat, yazıları göster" type="button">×</button>
 </div>
-</div>
-<div class="v870-video-frame" id="v870OsteoVideoFrame"><video aria-label="Osteopatik değerlendirme ve uygulama videosu" autoplay="" loop="" muted="" playsinline="" poster="./osteopati-background-poster-v380.jpg" preload="metadata">
+<video aria-label="Osteopatik değerlendirme ve uygulama videosu" autoplay="" loop="" muted="" playsinline="" poster="./osteopati-background-poster-v380.jpg" preload="metadata">
 <source src="./kayropraktik-uygulama-v299.mp4?v=301" type="video/mp4"/>
 </video></div>
 <div class="v870-video-lower"><span>Osteopati uygulamasından görüntüler</span><span>Yazılı içerik için sağ üstteki × düğmesini kullanın</span></div>
@@ -8543,7 +8544,6 @@ html body .v548-brand .v594-avatar-v594 .v594-avatar-fallback-v594{z-index:1;}
 <button aria-selected="false" class="detox-category-btn-v390" data-detox-category-v390="kilo" role="tab" type="button">Kilo Kontrolü <span>6</span></button>
 <button aria-selected="false" class="detox-category-btn-v390" data-detox-category-v390="colyak" role="tab" type="button">Çölyak Uyumlu <span>6</span></button>
 <button aria-selected="false" class="detox-category-btn-v390 detox-category-new-v663" data-detox-category-v390="urogenital" role="tab" type="button">Ürogenital Sistem <span>6</span></button>
-<button aria-selected="false" class="detox-category-btn-v390 detox-category-new-v663" data-detox-category-v390="japon" role="tab" type="button">Japon Tek Öğün <span>6</span></button>
 <button aria-selected="false" class="detox-category-btn-v390 detox-category-new-v663" data-detox-category-v390="aclik" role="tab" type="button">Açlık &amp; Oruç <span>6</span></button>
 </div>
 <div class="detox-results-bar-v390 detox-tools-only-v721" hidden="" id="detoxResultsToolsV721">
@@ -9974,7 +9974,53 @@ html body .v548-brand .v594-avatar-v594 .v594-avatar-fallback-v594{z-index:1;}
 </main>
 </div>
 </section>
-<script src="script.js?v=891"></script>
+
+<!-- V903: Klinik içi özel destek sistemi; canlı veri bağlantısı Supabase yapılandırması ile etkinleşir -->
+<div class="v903-support" id="v903SupportRoot">
+  <button class="v903-support-trigger" id="v903SupportTrigger" type="button" aria-controls="v903SupportPanel" aria-expanded="false" aria-label="Klinik destek penceresini aç">
+    <svg viewBox="0 0 24 24" width="22" height="22" aria-hidden="true" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M20 11.5a8 8 0 0 1-8 8 9 9 0 0 1-3.6-.8L4 20l1.5-4.2A8 8 0 1 1 20 11.5Z"/><path d="M8 11.5h8M8 14.8h5"/></svg>
+    <span>Klinik destek</span>
+  </button>
+  <section class="v903-support-panel" id="v903SupportPanel" aria-labelledby="v903SupportTitle" role="dialog" aria-modal="false" hidden>
+    <header class="v903-support-head">
+      <div class="v903-support-head-title"><div class="v903-support-mark">CN</div><div><strong id="v903SupportTitle">Dr. Ceyhun Nuri Kliniği</strong><small>Özel mesaj ve danışma merkezi</small></div></div>
+      <button class="v903-support-close" id="v903SupportClose" type="button" aria-label="Pencereyi kapat">×</button>
+    </header>
+    <div class="v903-support-scroll">
+      <div id="v903SupportStart">
+        <div class="v903-support-greeting"><span class="v903-support-eyebrow">DANIŞMA MERKEZİ</span><strong>Merhaba, nasıl yardımcı olabiliriz?</strong><p>Sorunuzu buradan yazın. Klinik ekibimiz yanıtladığında konuşmayı bu pencereden takip edebilirsiniz.</p></div>
+        <p class="v903-support-label">Konu seçin</p>
+        <div class="v903-support-topics" role="group" aria-label="Mesaj konusu">
+          <button type="button" class="is-selected" data-support-topic="Randevu">📅 Randevu</button>
+          <button type="button" data-support-topic="Uygulamalar">🩺 Uygulamalar</button>
+          <button type="button" data-support-topic="Muayene ve ücret">💬 Muayene / ücret</button>
+          <button type="button" data-support-topic="Adres ve ulaşım">📍 Ulaşım</button>
+          <button type="button" data-support-topic="Genel danışma">ℹ️ Diğer</button>
+        </div>
+        <form class="v903-support-start-form" id="v903SupportStartForm">
+          <label for="v903SupportFirstMessage">Mesajınız</label>
+          <textarea id="v903SupportFirstMessage" required maxlength="1200" minlength="10" rows="3" placeholder="Örneğin: Randevu almak için hangi saatlerde iletişime geçebilirim?"></textarea>
+          <input type="text" name="website" id="v903SupportHoneypot" tabindex="-1" autocomplete="off" aria-hidden="true" class="v903-support-honeypot" />
+          <label class="v903-support-consent"><input id="v903SupportConsent" type="checkbox" required/><span>Mesajımın yanıtlanması amacıyla kaydedilmesini ve <a href="#kvkk" id="v903SupportPrivacyLink">KVKK bilgilendirmesini</a> okuduğumu kabul ediyorum.</span></label>
+          <button class="v903-support-primary" id="v903SupportCreate" type="submit">Mesajı kliniğe gönder <span aria-hidden="true">→</span></button>
+        </form>
+      </div>
+      <div id="v903SupportChat" hidden>
+        <div class="v903-support-ticket"><div><span>Talep numaranız</span><strong id="v903SupportTicketNumber">—</strong></div><span class="v903-support-ticket-state" id="v903SupportTicketStatus">Yanıt bekliyor</span></div>
+        <div class="v903-support-thread" id="v903SupportThread" aria-live="polite"></div>
+        <form id="v903SupportReplyForm" class="v903-support-reply-form"><label for="v903SupportReply">Mesajınıza devam edin</label><textarea id="v903SupportReply" maxlength="1200" minlength="2" rows="2" placeholder="Yeni mesajınızı yazın..."></textarea><button class="v903-support-primary" id="v903SupportReplySend" type="submit">Mesajı gönder →</button></form>
+        <div class="v903-support-chat-actions"><button type="button" id="v903SupportRefresh">↻ Yanıtları kontrol et</button><button type="button" id="v903SupportNew">Yeni talep oluştur</button></div>
+      </div>
+      <p class="v903-support-notice" id="v903SupportNotice" role="status" aria-live="polite"></p>
+      <p class="v903-support-privacy">Lütfen tetkik, tanı, ilaç listesi, T.C. kimlik numarası veya diğer hassas sağlık bilgilerinizi yazmayın. Bu alan acil yardım ya da tıbbi teşhis hizmeti değildir. Acil durumlarda 112'yi arayın.</p>
+    </div>
+  </section>
+</div>
+<!-- /V903 -->
+
+<script src="support-config.js?v=904"></script>
+<script src="script.js?v=904"></script>
+<!-- V904: destek widget kodu script.js dosyasına dahil edildi -->
 <script>
     document.addEventListener('DOMContentLoaded', function(){
       var socialLinks = document.querySelectorAll('.media-fixed-filter-link-v590');
